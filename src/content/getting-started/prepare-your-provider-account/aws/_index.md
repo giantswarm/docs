@@ -109,7 +109,7 @@ Here are the mandatory steps to create the required IAM resources but we advocat
 
 Open the [IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection.
 
-Our platform needs different permissions to manage various resources on the AWS side. Here is the list of policies that need to be created. Click __Create policy__ and copy the policy content into the JSON editor field. Hit the `Next` button and add the policy name matching the policy link name. Repeat this process for each policy:
+Our platform needs different permissions to manage various resources on the AWS side. Here is the list of policies that need to be created. Click _Create policy_ and copy the policy content into the JSON editor field. Hit the `Next` button and add the policy name matching the policy link name. Repeat this process for each policy:
 
 - [giantswarm-${INSTALLATION_NAME}-capa-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/capa-controller-policy.json)
 - [giantswarm-${INSTALLATION_NAME}-crossplane-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/crossplane-policy.json)
@@ -129,11 +129,11 @@ __Note__: All policy names contain the installation name to make easier identify
 
 #### 2. Create the role metadata {#iam-capa-controller-role-basic}
 
-Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection, and hit the __Create role__ button. In the following screen, when asked to _Select the type of trusted entity_, choose _AWS account_.
+Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection, and hit the _Create role_ button. In the following screen, when asked to _Select the type of trusted entity_, choose _AWS account_.
 
 ![AWS IAM console: Create role](aws-roles-create-role.png)
 
-The __Account ID__ you enter is the ID of the AWS account where the management cluster is running. Could it be the current account in case you are running all your infrastructure in a single account or a different one if you are using separate accounts for management and workload clusters?
+The _Account ID_ you enter is the ID of the AWS account where the management cluster is running. Could it be the current account in case you are running all your infrastructure in a single account or a different one if you are using separate accounts for management and workload clusters?
 
 It's crucial that the _Require external ID_ and _Require MFA_ options remain unchecked so that CAPA can run without requiring human intervention.
 #### 3. Attach all policies to role {#iam-capa-controller-role-policy}
@@ -158,7 +158,7 @@ access both the management cluster's and workload clusters' AWS accounts. This r
 entity, and we recommend that it enforces multi-factor authentication.
 #### 1. Create the admin policy {#iam-staff-policy}
 
-Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection and select __Create policy__ to set the admin permissions. Use the [admin JSON policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy
+Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection and select _Create policy_ to set the admin permissions. Use the [admin JSON policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy
 
 ```nohighlight
 GiantSwarmAdmin
@@ -166,11 +166,11 @@ GiantSwarmAdmin
 
 #### 2. Create the admin role {#iam-staff-role}
 
-Enter again in the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection of the AWS console and select __Create role__ When asked to __Select type of trusted entity__ choose __AWS account__.
+Enter again in the [Roles](https://console.aws.amazon.com/iam/home#/roles) subsection of the AWS console and select _Create role_ When asked to _Select type of trusted entity_ choose _AWS account_.
 
-- In __Account ID__ enter the value `084190472784`.
-- Don't enable __Require external ID__.
-- It 's strongly recommended to check the option __Require MFA__ (multi factor authentication). This adds an extra authentication step for users to assume the role, which increases security.
+- In _Account ID_ enter the value `084190472784`.
+- Don't enable _Require external ID_.
+- It 's strongly recommended to check the option _Require MFA_ (multi factor authentication). This adds an extra authentication step for users to assume the role, which increases security.
 
 #### 3. Attach policy to role {#iam-staff-role-policy}
 
