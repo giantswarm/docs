@@ -17,16 +17,16 @@ user_questions:
   - Why do my clusters run the Prometheus Operator?
 ---
 
-By default, all Giant Swarm clusters are equiped with [Prometheus Operator](https://prometheus-operator.dev/) and a set of [Prometheus](https://prometheus.io/) shards in `agent mode`. These shards are monitoring agents that collect and forward critical cluster and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
+By default, all Giant Swarm clusters are equiped with [Prometheus Operator](https://prometheus-operator.dev/) and a set of [Prometheus](https://prometheus.io/) shards in _agent mode_. These shards are monitoring agents that collect and forward critical cluster and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
 
-No workload is the same, especially in the way it exposes its metrics, so the Observability Platform's monitoring configuration needs to be flexible. That's why it's based on the `ServiceMonitor` and `PodMonitor` Custom Resource Definitions (CRD) provided by the Prometheus Operator.
+No workload is the same, especially in the way it exposes its metrics, so the Observability Platform's monitoring configuration needs to be flexible. That's why it's based on the ServiceMonitor and PodMonitor Custom Resource Definitions (CRD) provided by the Prometheus Operator.
 
 Those allow you to:
 
 - Define where the metrics you want to ingest are (for example the container or port)
 - Transform metrics before ingesting them (for example dropping unneeded data, adding extra labels)
 
-You can learn more about the `ServiceMonitor` and `PodMonitor` CRD by checking the [Prometheus Operator API Docs](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
+You can learn more about the ServiceMonitor and PodMonitor CRD by checking the [Prometheus Operator API Docs](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
 
 ## Prerequisites
 
@@ -34,12 +34,12 @@ Before you start to ingest data from a running container, you need to make sure 
 
 Keep in mind that ingesting new metrics into the Observability Platform comes with a cost. The resource consumption of the central Mimir is related to the amount of metrics it has to handle. This means ingesting more metrics also leads to higher resource consumption of the Observability Platform overall.
 
-You can check the resource usage related to your ServiceMonitor and PodMonitor in the  `ServiceMonitors Overview` dashboard in your installation's Grafana.
+You can check the resource usage related to your ServiceMonitor and PodMonitor in the _ServiceMonitors Overview_ dashboard in your installation's Grafana.
 
 ## Creating a ServiceMonitor
 
 Here is an example showing how to create a [ServiceMonitor](https://github.com/helm/charts/blob/master/stable/prometheus-operator/crds/crd-servicemonitor.yaml).
-This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to team `my-team`.  The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
+This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to team `my-team`. The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
 
 The bare minimum for a ServiceMonitor looks like this:
 
@@ -67,7 +67,7 @@ spec:
 
 __Warning:__ The ServiceMonitor needs to be labeled with `application.giantswarm.io/team: <YOUR-TEAM-NAME>` for the Prometheus Agent to be able to discover it and start collecting metrics.
 
-To make sure that your containers are being scraped by the monitoring agents, you can check either the `ServiceMonitors Overview` or `ServiceMonitors Details` dashboards in your installation's Grafana.
+To make sure that your containers are being scraped by the monitoring agents, you can check either the _ServiceMonitors Overview_ or _ServiceMonitors Details_ dashboards in your installation's Grafana.
 
 ## ServiceMonitor vs. PodMonitor
 
