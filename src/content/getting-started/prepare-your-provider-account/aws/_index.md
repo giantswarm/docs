@@ -35,17 +35,17 @@ Please request an increase of the following quotas (grouped by type):
 - VPC
 
   - VPCs per region: **50**
-  - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
+  - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
   - IPv4 CIDR blocks per VPC: **50**
   - Routes per route table: **200**
 
 - Route 53 Resolver
 
-  - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
+  - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
 
 - Elastic IP
 
-  - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-cluster" >}}))
+  - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
 
 - Elastic Load Balancers
 
@@ -211,7 +211,7 @@ spec:
     name: default
 ```
 
-The `<ACCOUNT_NAME>` is a short unique name referencing AWS account (ie: development, sandbox or staging2). We advocate to use same name as the [organization]({{< relref "/vintage/platform-overview/multi-tenancy/" >}}) to help map the resources and the accounts. The `<ACCOUNT_ID>` is the AWS account ID where the role is created and where the workload cluster will be provisioned.
+The `<ACCOUNT_NAME>` is a short unique name referencing AWS account (`development`, `sandbox` or `staging2`). We advocate to use same name as the [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) to help map the resources and the accounts. The `<ACCOUNT_ID>` is the AWS account ID where the role is created and where the workload cluster will be provisioned.
 
 __Note__: More information about how to configure AWS credential can be found in the [official documentation](https://cluster-api-aws.sigs.k8s.io/topics/multitenancy).
 

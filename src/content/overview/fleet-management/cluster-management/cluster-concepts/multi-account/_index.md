@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-fleet-management-cluster-concepts
     identifier: overview-fleet-management-cluster-concepts-multi-account
-last_review_date: 2024-06-14
+last_review_date: 2024-07-14
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -15,17 +15,13 @@ user_questions:
 
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters, and the workload clusters run your Kubernetes workloads.
 
-{{< platform_support_table aws="ga" azure="ga" >}}
-
 ## How does multi-account support help? {#benefits}
 
-NEEDS TO BE REWRITTEN
+Both on Cluster API for AWS (CAPA) and Azure (CAPZ), workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. The default configuration provisions all workload clusters in the same installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.
 
-Both on AWS and Azure, workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. We configure a default account to use for all workload clusters in an installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.
+__Note__: Some customers use the same account/subscription for both management cluster and workload clusters. This choice doesn't affect the capabilities described below.
 
-**Note:** Some customers use the same account/subscription for both management cluster and workload clusters. This choice doesn't affect the capabilities described below.
-
-With multi-account support you can have more fine-grained control over the accounts used by workload clusters. Each Giant Swarm organization in an installation can have an individual configuration of which cloud provider account to use.
+With multi-account support you can have more fine-grained control over the accounts used by workload clusters. Every Giant Swarm [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) in an installation may be mapped to an individual configuration for a single account.
 
 The following two schemas illustrate the difference:
 
@@ -45,33 +41,28 @@ In both cases, customers benefit from simpler usage and cost allocation, plus a 
 
 Details of the implementation differ between AWS and Azure.
 
-- On AWS, Giant Swarms uses two separate IAM roles in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}}).
+- On CAPA, Giant Swarms needs some role configuration in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/aws" >}}).
 
-- On Azure, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}}).
+- On CAPZ, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/azure" >}}).
 
 ## Additional information {#details}
 
-- Cloud provider account/subscription credentials are specified on the (Giant Swarm) **organization level**.
+- Cloud provider account/subscription credentials are recommended to be configured by Giant Swarm _organization level_. You can create clusters within the same organization in different cloud provider accounts but separating by organization will make it easier to manage.
 
-- Cloud provider credentials are __immutable__ Once specified in an organization, cloud provider credentials can't be modified or deleted. In order to switch to new cloud provider credentials, you'll have to create a new organization and migrate to new clusters owned by that organization.
+- Cloud provider credentials are _immutable_. Once defined in a namespace and used by the controller, cloud provider credentials can't be modified or deleted. In order to switch to new cloud provider credentials, it is recommended to create a new organization and migrate to new clusters owned by that organization.
 
-- If an organization doesn't yet have provider credentials configured but already has workload clusters, these clusters are run in the default workload cluster account. Setting credentials for this organization doesn't affect the workload clusters created already.
+- If an organization doesn't yet have provider credentials configured but already has workload clusters, these clusters are run in the default account, which is the one the management cluster is running. Setting credentials for this organization doesn't affect the workload clusters created already.
 
 ## Get started
 
-To create clusters in a new cloud provider account, you first need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like. Organizations can be created in the Giant Swarm web UI, or via the [Giant Swarm REST API](/api/#operation/addOrganization).
+To create clusters in a new cloud provider account, you first need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like.
 
 To prepare your credentials, either as AWS account roles or as an Azure service principle, please follow our specific guides:
 
-- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}})
-- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}})
+- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/aws" >}})
+- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/azure" >}})
 
-You can then assign the credentials to your organization in several ways:
+Then when creating a cluster, you can specify the organization that should be used for the cluster. This can be done:
 
-- In the Giant Swarm web UI via the organization details page
-- In `gsctl` using the [`update organization set-credentials`]({{< relref "/vintage/use-the-api/gsctl/update-org-set-credentials" >}}) command
-- Via the [Giant Swarm REST API](/api/#operation/addCredentials)
-
-All workload clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
-
-When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}) command, we display cloud provider details in the case the workload cluster doesn't reside in the default account.
+- In CAPA using the `AWSClusterRoleIdentity` like it is explained [here]({{< relref "/getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
+- In CAPZ using the `AzureClusterIdentity` like it is explained [here]({{< relref "/getting-started/prepare-your-provider-account/azure/#configure-cluster-role-identity" >}}) command
