@@ -30,38 +30,6 @@ You will now create resources with `kubectl gs`. In particular, this tutorial us
 You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
-{{< tab id="cluster-vintage-azure" for-impl="vintage_azure" >}}
-
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure), or use `kubectl gs get releases`, and fill it into this example command:
-
-```sh
-kubectl gs template cluster \
-  --provider azure \
-  --name mycluster \
-  --organization testing \
-  --release 19.0.1 `# please fill in your desired release version` \
-  > cluster.yaml
-```
-
-For backward compatibility, vintage cluster templating doesn't require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
-
-{{< /tab >}}
-{{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
-
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
-
-```sh
-kubectl gs template cluster \
-  --provider aws \
-  --name mycluster \
-  --organization testing \
-  --release 19.0.0 `# please fill in your desired release version` \
-  > cluster.yaml
-```
-
-For backward compatibility, vintage cluster templating doesn't require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
-
-{{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
 This will automatically use the latest release of the relevant Helm chart [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md):
@@ -164,21 +132,6 @@ For the [Cluster API (CAPI)]({{< relref "/vintage/platform-overview/architecture
 In the vintage product family, no worker node pool is created by default, so you should attach one:
 
 {{< tabs >}}
-{{< tab id="nodepool-vintage-azure" for-impl="vintage_azure">}}
-
-```sh
-kubectl gs template nodepool \
-  --provider azure \
-  --cluster-name "<please fill in the cluster name from cluster.yaml>" \
-  --description "Worker node pool for workload cluster" \
-  --organization testing \
-  --release 19.0.1 `# please fill in your desired release version` \
-  > nodepool.yaml
-```
-
-This will create a `nodepool.yaml` file with all the CRs needed for attaching a node pool to the cluster created in the previous step.
-
-{{< /tab >}}
 {{< tab id="nodepool-capi" for-impl="capi_any">}}
 
 This isn't needed for CAPI. The `nodePools` value in the cluster app has a default. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product (AWS cloud).

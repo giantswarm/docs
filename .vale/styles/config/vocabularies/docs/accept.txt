@@ -4,12 +4,15 @@ Alertmanager
 API[s]?
 ARN[s]?
 auditable
+autoscaler
+autoscaling
 [Aa][Ww][Ss]
 az
 backbone
 CIDR[s]?
 CLI
 cluster-vsphere
+containerd
 [Cc]rossplane
 CRs
 declaratively
@@ -41,8 +44,11 @@ Trivy
 templated
 randomly
 really
+relref
+runbook[s]?
 separately
 Sigstore
+Spotify
 subnet
 vApp
 very
@@ -51,6 +57,4 @@ VM[s]?
 VMware
 VPC
 vSphere
-vCenter
-vApp
-VMware
+Zot
