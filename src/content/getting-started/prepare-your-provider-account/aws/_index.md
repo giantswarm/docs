@@ -133,7 +133,7 @@ Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subs
 
 ![AWS IAM console: Create role](aws-roles-create-role.png)
 
-The __Account ID__ you enter is the ID of the AWS account where the management cluster is running. Could it be the current account in case you are running all your infrastructure in a single account or a different one if you are using separate accounts for management and workload clusters?
+The _Account ID_ you need to enter is the AWS account where the management cluster runs. In case you run all your clusters in a single account, there is no need to change it, but if your management cluster runs in a separate account, you need to use that one for `Another AWS account` option.
 
 It's crucial that the _Require external ID_ and _Require MFA_ options remain unchecked so that CAPA can run without requiring human intervention.
 #### 3. Attach all policies to role {#iam-capa-controller-role-policy}
