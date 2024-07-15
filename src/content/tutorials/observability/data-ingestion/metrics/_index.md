@@ -26,11 +26,11 @@ Those allow you to:
 - Define where the metrics you want to ingest are (for example the container or port)
 - Transform metrics before ingesting them (for example dropping unneeded data, adding extra labels)
 
-You can learn more about the `ServiceMonitor` and `PodMonitor` CRDs by checking the [Prometheus Operator API Docs](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
+You can learn more about the `ServiceMonitor` and `PodMonitor` CRD by checking the [Prometheus Operator API Docs](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md).
 
 ## Prerequisites
 
-Before you start to ingest data from a running container, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics and make sure the metrics it provides are useful to you.
+Before you start to ingest data from a running container, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics.
 
 Keep in mind that ingesting new metrics into the Observability Platform comes with a cost. The resource consumption of the central Mimir is related to the amount of metrics it has to handle. This means ingesting more metrics also leads to higher resource consumption of the Observability Platform overall.
 
