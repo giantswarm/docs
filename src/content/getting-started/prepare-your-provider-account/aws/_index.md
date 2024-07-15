@@ -18,7 +18,7 @@ In AWS environments, you can run the management and workload clusters in the sam
 
 ![AWS Setup Diagram](aws_onboarding.png)
 
-You will need access to AWS console or having AWS CLI installed and pointing to the right account in order to perform the following steps.
+To perform the following steps, you will need access to the AWS console or have AWS CLI installed and pointed to the right account.
 
 ## Step 1: Service quotas {#quotas}
 
