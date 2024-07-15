@@ -6,7 +6,7 @@ menu:
   principal:
     parent: tutorials-observability
     identifier: tutorials-observability-data-ingestion
-last_review_date: 2024-07-11
+last_review_date: 2024-07-15
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
