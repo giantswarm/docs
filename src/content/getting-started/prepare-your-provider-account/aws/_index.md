@@ -133,9 +133,10 @@ Now move to the IAM [Roles](https://console.aws.amazon.com/iam/home#/roles) subs
 
 ![AWS IAM console: Create role](aws-roles-create-role.png)
 
-The _Account ID_ you enter is the ID of the AWS account where the management cluster is running. Could it be the current account in case you are running all your infrastructure in a single account or a different one if you are using separate accounts for management and workload clusters?
+The _Account ID_ you need to enter is the AWS account where the management cluster runs. In case you run all your clusters in a single account, there is no need to change it, but if your management cluster runs in a separate account, you need to use that one for `Another AWS account` option.
 
 It's crucial that the _Require external ID_ and _Require MFA_ options remain unchecked so that CAPA can run without requiring human intervention.
+
 #### 3. Attach all policies to role {#iam-capa-controller-role-policy}
 
 Now, you must go through all the policies created before and attach them to the role. Search for the installation name, select the policies and hit the _Next_ button.
@@ -151,6 +152,7 @@ giantswarm-${INSTALLATION_NAME}-capa-controller
 ```
 
 ![AWS IAM console: Review](aws-roles-review.png)
+
 ### Staff permissions {#iam-staff-role}
 
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
@@ -184,35 +186,38 @@ Name this role:
 GiantSwarmAdmin
 ```
 
-Giant Swarm staff require access to all management cluster and workload cluster-related AWS accounts, so please repeat the above steps in each account.
+Giant Swarm staff require access to all AWS resources, so please repeat the above steps for every account where you will run clusters.
 
 ## Step 3: Configure the cluster role identity {#configure-cluster-role-identity}
 
-Remember that `default` AWSClusterRoleIdentity is needed but you can additional add more with specific names. (LETS INCLUDE THIS IN CAPZ TOO)
+The last step involves storing the AWS credentials in the platform to allow the CAPA controller manage the infrastructure in your account. In Cluster API there is a custom resource called `AWSClusterRoleIdentity` that stores the AWS role ARN and the name of the role. Take into account this resources is namespaced.
 
-```need to be updated
-When you want to create a new Cluster API workload cluster in a new AWS account you need to create a CR AWSClusterRoleIdentity which will reference the role in the new AWS Account.
+By default there is a `default` configuration used by the controller which points to the role in the management cluster account. In case you want to create a new workload cluster in a new AWS account, you need to create a new `AWSClusterRoleIdentity` resource that references the role of that AWS account. Example:
 
+```yaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSClusterRoleIdentity
 metadata:
   labels:
     cluster.x-k8s.io/watch-filter: capi
-  name: ${ROLE_NAME}
+  name: <ACCOUNT_NAME>
 spec:
   allowedNamespaces:
     list: null
     selector: {}
-  roleARN: ${ROLE_ARN}
+  roleARN: arn:aws:iam::${ACCOUNT_ID}:role/giantswarm-golem-capa-controller
   sourceIdentityRef:
     kind: AWSClusterControllerIdentity
     name: default
-Where:
+```
 
-${ROLE_NAME} is a short unique name referencing AWS account (ie: development, sandbox or staging2)
-${ROLE_ARN} is full ARN of the role created in previous step with giantswarm-aws-account-prerequisites repository.
-This CR needs to be created only once for each AWS Account. It can be then referenced in the cluster-aws repo in the value aws.awsClusterRoleIdentityName.
-**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
+The `<ACCOUNT_NAME>` is a short unique name referencing AWS account (ie: development, sandbox or staging2). We advocate to use same name as the [organization]({{< relref "/vintage/platform-overview/multi-tenancy/" >}}) to help map the resources and the accounts. The `<ACCOUNT_ID>` is the AWS account ID where the role is created and where the workload cluster will be provisioned.
+
+__Note__: More information about how to configure AWS credential can be found in the [official documentation](https://cluster-api-aws.sigs.k8s.io/topics/multitenancy).
+
+In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AWSCluster` uses to provision the cluster adjusting the value `aws.awsClusterRoleIdentityName`.
+
+__Note__: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
 
 ## Next steps
 
