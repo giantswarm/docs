@@ -29,6 +29,7 @@ def get_releases(client, repo_shortname):
     """
     Yields all Github releases in the given repository
     """
+    print(f'Getting releases for {repo_shortname}')
     repo = client.get_repo(repo_shortname)
 
     for release in repo.get_releases():
@@ -127,7 +128,7 @@ def parse_release_yaml(data, repo_shortname, provider, relative_path):
         'date': creation,
         'version_tag': data['metadata']['name'],
         'provider': provider,
-        'url': f'https://github.com/{repo_shortname}/tree/master{relative_path}',
+        'url': f'https://github.com/{repo_shortname}/tree/master/{relative_path}',
         'repository': RELEASES_REPO,
     }
 
@@ -137,52 +138,52 @@ def get_cluster_releases(repo_shortname):
     and emits releases.
     """
     with tempfile.TemporaryDirectory() as tmpdir:
-        print(f'Cloning to temporary directory {tmpdir}')
         git.Git(tmpdir).clone(f"https://github.com/{repo_shortname}.git", depth=1)
 
         (org, repo) = repo_shortname.split("/", maxsplit=1)
 
         provider = None
-        for root, _, files in os.walk(tmpdir):
-            if os.path.basename(root) in ('aws', 'azure', 'kvm'):
-                provider = os.path.basename(root)
+        for provider in ['aws', 'capa', 'capz', 'capv', 'capvcd']:
+            for root, version_dirs, _ in os.walk(tmpdir+"/"+repo+"/"+provider):
+                for version_dir in version_dirs:
+                    print(f'Parsing provider in {provider} -  dir in {version_dir}')
+                    for root_dir, _, files in os.walk(path.join(root, version_dir)):
+                        relative_dir_path = root_dir[len(tmpdir + "/" + repo + "/"):]
+                        for fname in files:
+                            if fname != "release.yaml":
+                                continue
 
-            relative_dir_path = root[len(tmpdir + "/" + repo):]
+                            fpath = path.join(root_dir, fname)
 
-            for fname in files:
-                if fname != "release.yaml":
-                    continue
+                            release = {}
+                            data = None
 
-                fpath = path.join(root, fname)
+                            # Get structured data
+                            with open(fpath, 'r') as releasefile:
+                                data = load(releasefile, Loader=CLoader)
 
-                release = {}
-                data = None
+                                try:
+                                    release = parse_release_yaml(data, repo_shortname, provider, relative_dir_path)
+                                except Exception as e:
+                                    print(f'WARNING: {e}')
 
-                # Get structured data
-                with open(fpath, 'r') as releasefile:
-                    data = load(releasefile, Loader=CLoader)
+                            # Add release notes
+                            release_notes_path = os.path.join(root_dir, "README.md")
+                            release['body'] = "\n"
+                            if os.path.exists(release_notes_path):
+                                with open(release_notes_path, 'r') as release_notes_file:
+                                    release_notes = release_notes_file.read().strip()
 
-                    try:
-                        release = parse_release_yaml(data, repo_shortname, provider, relative_dir_path)
-                    except Exception as e:
-                        print(f'WARNING: {e}')
+                                    # Strip first headline
+                                    lines = release_notes.split("\n")
+                                    if len(lines) > 0:
+                                        if lines[0].startswith('#'):
+                                            lines = lines[1:]
 
-                # Add release notes
-                release_notes_path = os.path.join(root, "README.md")
-                release['body'] = "\n"
-                if os.path.exists(release_notes_path):
-                    with open(release_notes_path, 'r') as release_notes_file:
-                        release_notes = release_notes_file.read().strip()
+                                    release['body'] = "\n".join(lines).strip()
 
-                        # Strip first headline
-                        lines = release_notes.split("\n")
-                        if len(lines) > 0:
-                            if lines[0].startswith('#'):
-                                lines = lines[1:]
-
-                        release['body'] = "\n".join(lines).strip()
-
-                yield release
+                            yield release
+                        break
 
 
 def normalize_version(v):
@@ -238,7 +239,11 @@ def generate_release_file(repo_shortname, repo_config, release, delete):
         categories = [f'Workload cluster releases for {provider_label}']
         title = f'Workload cluster release v{version} for {provider_label}'
         description = f'Release notes for {provider_label} workload cluster release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
-        filename = f"{release['provider']}-{release['version_tag']}.md"
+        # CAPI releases already have provider
+        if release['provider'] in ['capa', 'capz', 'capv', 'capvcd']:
+            filename = f"{release['version_tag']}.md"
+        else:
+            filename = f"{release['provider']}-{release['version_tag']}.md"
         category_path = f"workload-cluster-releases-{provider_label.lower()}"
         aliases = [f"/changes/tenant-cluster-releases-{provider_label.lower()}/releases/{provider_label.lower()}-{release['version_tag']}/"]
     else:
@@ -315,7 +320,6 @@ if __name__ == "__main__":
         if repo_short == RELEASES_REPO:
             for release in get_cluster_releases(repo_short):
                 releases.append(release)
-
         else:
             # Attempt to get GitHub releases (based on tags in the repo).
             releases = list(get_releases(g, repo_short))
