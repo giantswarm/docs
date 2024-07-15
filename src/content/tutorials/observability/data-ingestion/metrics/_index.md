@@ -68,7 +68,6 @@ spec:
 No matter if you are using Helm Charts or GitOps and Kustomize, just put the ServiceMonitor CR next to your app and apply it in the same way. Once it's applied you can check either the _ServiceMonitors Overview_ or _ServiceMonitors Details_ dashboards, or just search for the new metrics ingested in your installation's Grafana to make sure that your containers are being scraped by the new monitoring agents.
 __Warning:__ The ServiceMonitor needs to be labeled with `application.giantswarm.io/team: <YOUR-TEAM-NAME>` for the Prometheus Agent to be able to discover it and start collecting metrics.
 
-To make sure that your containers are being scraped by the monitoring agents, you can check either the _ServiceMonitors Overview_ or _ServiceMonitors Details_ dashboards in your installation's Grafana.
 
 ## ServiceMonitor vs. PodMonitor
 
