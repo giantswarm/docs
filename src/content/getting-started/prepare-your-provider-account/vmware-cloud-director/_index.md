@@ -21,7 +21,7 @@ The solution has some requirements from the VCD environment, and at the same tim
 
 VMware Cloud Director must run at least with API version v36.0 compatibility (minimum version VCD v10.3). It's highly recommended to run VCD v10.4 or above as it includes shared virtual service IPs.
 
-### Networking
+## Step 1: Networking
 
 In terms of virtual networking, the following requirements must be met:
 
@@ -37,7 +37,7 @@ In terms of virtual networking, the following requirements must be met:
 
 - Access to the Internet is required for some of our automation to pull artifacts from the registry or get new certificates from Let's Encrypt. It's possible to configure an egress HTTP proxy to control the traffic. You can check the list of domains that need to be accessible [here]({{< relref "/vintage/platform-overview/security/cluster-security/domain-allowlist/#on-premise-installations" >}}).
 
-### Permissions
+## Step 2: Permissions
 
 The credentials for authentication against the VCD API are configured by cluster. The controller that interacts with the VCD API uses those credentials from a secret provided in the cluster app definition.
 
@@ -52,13 +52,13 @@ To obtain the credentials, you need to create a new role by browsing to `Adminis
 - `Organization VDC => Create a Shared Disk`
 - `User > Manage user's API token`
 
-### Virtual machine templates
+## Step 3: Virtual machine templates
 
 To provision the virtual machines (VMs) for the cluster nodes, the necessary `vApp templates` must be provided in the `giantswarm` organization's catalog. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
 
 __Note__: Our engineers can upload the `vApp templates` to the `giantswarm` catalog or provide you with them, as uploads can fail over a WAN connection in some VCD environments.
 
-### Virtual machine sizing
+## Step 4:  Virtual machine sizing
 
 To define the set of instance types available to the users when deploying clusters, you need to prepare the [virtual machine sizing policies](https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-F6719175-7A29-42CA-BB00-A6BDC22B3EEC.html). You can choose the name and size of these policies, but we propose the following ones as a recommendation
 
@@ -71,3 +71,7 @@ To define the set of instance types available to the users when deploying cluste
 | m1.2xlarge | 16 | 64GB |
 
 After all requirements are met, you can [create your first cluster following this guide]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+
+## Next steps
+
+Once the installation is ready, our engineers will work to provision the management cluster. Usually, it takes a couple of days, depending on the nuances your setup can have. When the cluster is up and running, you [can access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}) to start managing your workloads.
