@@ -1,18 +1,18 @@
 ---
-linkTitle: How to explore logs with LogQL
+linkTitle: Exploring logs with LogQL
 title: Exploring logs with LogQL
-description: Guide explaining how to get explore logs of your management and workload clusterrs stored in Giant Swarm managed Loki.
+description: Guide explaining how to get explore logs of your management and workload clusters stored in the Observability Platform.
 menu:
   main:
-    identifier: getting-started-observability-visualization-exploring-logs
-    parent: getting-started-observability-visualization
+    identifier: tutorials-observability-data-exploration-exploring-logs
+    parent: tutorials-observability-data-exploration
 weight: 40
 aliases:
   - /getting-started/observability/visualization/exploring-logs
-last_review_date: 2024-02-26
+last_review_date: 2024-07-17
 user_questions:
-  - How can I access logs from my installation?
-  - Where can I find workload cluster logs?
+  - How to access logs from my installation?
+  - Where to find workload cluster logs?
   - Which logs are gathered in my installation?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
@@ -24,7 +24,7 @@ This guide provides you with the basics to get started with exploring Logs using
 
 ## How do I access the logs ?
 
-Once you have [access to your management cluster's grafana]({{< relref "/vintage/getting-started/observability/visualization/access" >}}), you should:
+Once you have [access to your management cluster's grafana]({{< relref "../accessing-grafana" >}}), you should:
 
 1. Go to `Explore` item in the `Home` menu
 ![Grafana Explore](loki-explore.png)
@@ -135,7 +135,9 @@ __Note__: When using the `json` filter to access nested properties you use `_` f
 
 ### Metrics queries
 
-You can also generate metrics from logs.
+__Warning:__ The following queries are heavy in terms of performance, please be careful when using them.
+
+You can also generate metrics from logs like so:
 
 * Count number of logs per node
 
@@ -144,14 +146,12 @@ sum(count_over_time({installation="myInstallation", cluster_id="myInstallation",
 ```
 
 * Top 10 number of log lines per scrape_job, app, component and systemd_unit
-/!\ This query is heavy in terms of performance, please be careful /!\
 
 ```promql
 topk(10, sum(rate({cluster_id="myCluster"}[5m])) by (cluster_id, scrape_job, app, component, systemd_unit))
 ```
 
 * Rate of logs per syslog identifier
-/!\ This query is heavy in terms of performance, please be careful /!\
 
 ```promql
 sum(rate({cluster_id="myCluster", scrape_job="system-logs"}[5m] |= `` | json)) by (SYSLOG_IDENTIFIER)

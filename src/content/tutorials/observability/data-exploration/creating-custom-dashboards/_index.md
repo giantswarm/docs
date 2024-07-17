@@ -1,11 +1,11 @@
 ---
-linkTitle: Custom Grafana dashboards
+linkTitle: Creating custom Grafana dashboards
 title: Creating custom Grafana dashboards
-description: Guide explaining how to manage custom Grafana dashboards in our management cluster Grafana.
+description: Guide explaining how to manage custom Grafana dashboards in the Observability Platform.
 menu:
   main:
-    identifier: advanced-observability-visualization-custom-dashboards
-    parent: advanced-observability-visualization
+    identifier: tutorials-observability-data-exploration-create-custom-dashboards
+    parent: tutorials-observability-data-exploration-create-observability-visualization
 weight: 40
 aliases:
   - /advanced/observability/visualization/custom-dashboards
@@ -13,19 +13,17 @@ aliases:
   - /observability/visualization/custom-dashboards
   - /ui-api/observability/grafana/custom-dashboards
   - /ui-api/observability/visualization/custom-dashboards
-last_review_date: 2024-02-09
+last_review_date: 2024-07-17
 user_questions:
-  - How can customize dashboards?
-  - How can I create my own dashboards?
+  - How to customize dashboards?
+  - How to create my own dashboards?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-__Beware__ that the access to this feature is experimental and the implementation specifics can change at a later time (e.g. in favor of Grafana Operator)
+As explained in our guide explaining [how to access Grafana]({{< relref "../accessing-grafana" >}}), we provide a subset of dashboards accessible by our customers.
 
-As explained in our guide explaining [how to access Grafana]({{< relref "/vintage/getting-started/observability/visualization/access" >}}), we provide a subset of dashboards accessible by our customers.
-
-Sometimes, the dashboards we provide are not enough for your use case so we offer you the capability of creating your own (e.g. you are deploying your own apps on the management cluster, or you want custom dashboards for your clusters).
+Sometimes, the dashboards we provide are not enough for your use case so we offer you the capability of creating your own (for example, you are deploying your own apps on the management cluster, or you want custom dashboards for your clusters).
 
 ## Creating your own dashboard
 

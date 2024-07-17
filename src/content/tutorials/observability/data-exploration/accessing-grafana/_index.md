@@ -1,11 +1,11 @@
 ---
-linkTitle: How to access Grafana
-title: How to access Grafana and it's dashboards
-description: Guide explaining how to get access to the data we collect on your management and workload clusters.
+linkTitle: Accessing Grafana
+title: How to access Grafana dashboards
+description: Guide explaining how to get access to the data collected and stored by the Observability Platform.
 menu:
   main:
-    identifier: getting-started-observability-visualization-access
-    parent: getting-started-observability-visualization
+    identifier: tutorials-observability-data-exploration-accessing-grafana
+    parent: tutorials-observability-data-exploration
 weight: 40
 aliases:
   - /getting-started/observability/visualization/access
@@ -13,21 +13,21 @@ aliases:
   - /ui-api/observability/grafana/access
   - /observability/visualization/access
   - /ui-api/observability/visualization/access
-last_review_date: 2024-02-26
+last_review_date: 2024-07-17
 user_questions:
-  - How can I access Grafana for my installation?
-  - How can I access metrics from my installation?
-  - How can I access logs from my installation?
-  - Where can I find workload cluster metrics?
-  - Where can I find workload cluster logs?
-  - Which dashboards do I have access to?
-  - Which metrics are gathered in my installation?
-  - Which logs are gathered in my installation?
+  - How to access Grafana?
+  - How to access metrics from my clusters?
+  - How to access logs from my clusters?
+  - Where to find cluster metrics?
+  - Where to find cluster logs?
+  - Which dashboards exists?
+  - Which metrics are gathered from my clusters?
+  - Which logs are gathered from my clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-Giant Swarm runs an observability stack in each installation, based on [Prometheus](https://prometheus.io/) for metrics, and [Loki](https://grafana.com/docs/loki/latest/) for logs, collecting data from most of the management and workload cluster components.
+Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics, and [Grafana Loki](https://grafana.com/oss/loki/) for logs, collecting data from most of the components managed by Giant Swarm.
 
 To access these metrics and logs, both for you as customers and for our staff we provide a [Grafana](https://grafana.com/) instance per installation.
 
@@ -69,7 +69,7 @@ After selecting the right identity provider, you may run through an authenticati
 
 ## Repository
 
-Dashboard are defined in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository. As an example, [this link](https://github.com/giantswarm/dashboards/blob/2be49ef09bccdb65c4fd62c835567bc0794617da/helm/dashboards/dashboards/shared/home.json) takes you to the _Home_ dashboard definition as of June 28, 2021.
+Dashboard are defined in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository. As an example, [this link](https://github.com/giantswarm/dashboards/blob/2be49ef09bccdb65c4fd62c835567bc0794617da/helm/dashboards/dashboards/shared/home.json) takes you to the _Home_ dashboard definition.
 
 You can easily track changes in that repository directly from the Home dashboard in Grafana or via the [changes and releases](/changes/dashboards/) section.
 
