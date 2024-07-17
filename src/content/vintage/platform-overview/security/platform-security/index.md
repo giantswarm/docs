@@ -39,7 +39,7 @@ The stack consists of multiple distinct components which are independently insta
 | In-Cluster Registry | Harbor | In Catalog | [Harbor][harbor-app]  |
 | Log Alerting | Supported by both Falco and our [managed Observability Bundle][observability-bundle] offering. | In Catalog | [Loki][loki-app] / [Falco][falco-app] |
 | Log Shipping + Storage | Supported by our [managed Loki][loki-app] offering. | In Catalog | [Loki][loki-app]  |
-| Advanced Network Capabilities* | Supported by our managed Connectivity Bundle offering. | In Catalog | [Cilium][cilium-app] / [Linkerd][linkerd-app] / [Linkerd CNI][linkerd-cni-app] / [Linkerd Visualization][linkerd-viz-app]  |
+| Advanced Network Capabilities* | Supported by our managed Connectivity Bundle offering. | In Catalog | [Cilium][cilium-app] |
 | Image Provenance | Sigstore (`cosign`) | Policies supported |   |
 
 \* mTLS, DNS-based egress policies, and other advanced network capabilities are available through separately-managed components.
@@ -190,9 +190,6 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
 [lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
-[linkerd-app]: https://github.com/giantswarm/linkerd2-app
-[linkerd-cni-app]: https://github.com/giantswarm/linkerd2-cni-app
-[linkerd-viz-app]: https://github.com/giantswarm/linkerd-viz-app
 [loki-app]: https://github.com/giantswarm/loki-app
 [net-pols]: {{< relref "/vintage/getting-started/connectivity/network-policies" >}}
 [policy-enforcement]: {{< relref "/vintage/advanced/security/security-policy-enforcement" >}}
