@@ -64,7 +64,7 @@ When logging in, you must authenticate in your browser using the configured iden
 
 ## Step 2: Explore the platform
 
-Let's run some commands and understand what's happening under the hood.
+Let's look at what type of resources and operations platform engineers usually perform against the API. 
 
 The first command we suggest running is `kubectl get orgs`, which lists the organizations defined in your management cluster.
 
