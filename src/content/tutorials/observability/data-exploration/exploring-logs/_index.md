@@ -135,7 +135,7 @@ __Note__: When using the `json` filter to access nested properties you use `_` f
 
 ### Metrics queries
 
-__Warning:__ The following queries are heavy in terms of performance, please be careful when using them.
+__Warning__: The following queries are heavy in terms of performance; please be careful when using them.
 
 You can also generate metrics from logs like so:
 
