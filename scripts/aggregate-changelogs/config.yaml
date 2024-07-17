@@ -111,8 +111,6 @@ repositories:
     category: Managed Apps
   giantswarm/loki-app:
     category: Managed Apps
-  giantswarm/linkerd-bundle:
-    category: Managed Apps
   giantswarm/oauth2-proxy-app:
     category: Managed Apps
   giantswarm/promtail-app:
@@ -126,10 +124,6 @@ repositories:
   giantswarm/starboard-exporter:
     category: Managed Apps
   giantswarm/trivy-app:
-    category: Managed Apps
-  giantswarm/linkerd2-app:
-    category: Managed Apps
-  giantswarm/linkerd2-cni-app:
     category: Managed Apps
   giantswarm/organization-operator:
     category: Management API
