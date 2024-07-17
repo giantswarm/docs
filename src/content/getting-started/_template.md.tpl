@@ -13,7 +13,7 @@ Today, the `getting started` pages are about guiding a new user or platform engi
 
 Recommended sections can help you to start with the article:
 
-## Introduction (does not need the header)
+## Introduction (dont need the title)
 
 General description of the goal you want to achieve. Since this is a step across the getting started section it has a previous and after page entry, so be aware it has continuity.
 
@@ -21,10 +21,14 @@ General description of the goal you want to achieve. Since this is a step across
 
 Indicate if the user needs to have installed any specific tool or should have read or prepared their local environment before.
 
-## Steps
+## Steps (Numbered)
 
 List of sequence steps that users will follow to accomplish the goal described in the introduction.
 
 ## Next steps
 
-Wrap-up of what has been done and what is the next natural step in user journey.
+Wrap-up of what has been done. Comment what it is next, so the user can continue the journey.
+
+## Next steps
+
+The next natural step in the getting started journey.
