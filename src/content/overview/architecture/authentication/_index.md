@@ -31,13 +31,13 @@ We utilize Kubernetes-native RBAC to control access to resources in the platform
 
 ### Authentication: Workload Cluster
 
-For workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters](https://docs.giantswarm.io/vintage/advanced/access-management/configure-dex-in-your-cluster/).
+For the workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters](https://docs.giantswarm.io/vintage/advanced/access-management/configure-dex-in-your-cluster/).
 
 ### Authorization: Workload Cluster
 
 We provide managed apps and tools designed to simplify and automate RBAC configuration for your workload cluster.
 
-One of the key tools we offer is the [rbac-bootstrap-app](https://github.com/giantswarm/rbac-bootstrap-app). This app allows you to create role bindings on workload cluster directly from the management cluster. This centralized approach simplifies RBAC management across multiple clusters.
+One of the key tools we offer is the [rbac-bootstrap-app](https://github.com/giantswarm/rbac-bootstrap-app). This app allows you to create role bindings directly from the management cluster on the workload cluster. This centralized approach simplifies RBAC management across multiple clusters.
 
 When implementing authorization for your workload cluster, consider the following best practices:
 
@@ -46,8 +46,8 @@ When implementing authorization for your workload cluster, consider the followin
 - Use group-based access control where possible for easier management.
 - Leverage OIDC integration for enhanced security and simplified user management.
 
-By utilizing these tools and following best practices, you can create a secure, manageable, and flexible authorization system for your workload cluster that meets your organization's specific needs and security requirements.
+Utilizing these tools and following best practices allows you to create a secure, manageable, and flexible authorization system for your workload cluster that meets your organization's specific needs and security requirements.
 
 ## We're here to help
 
-At Giant Swarm, we understand that configuring authentication and authorization can be complex, especially when dealing with multiple clusters, diverse organizational structures, and varying security requirements. Don't hesitate to reach out to our support channels. Our goal is to ensure you have a secure, well-configured environment that meets your specific requirements while adhering to best practices in cloud-native security.
+At Giant Swarm, we understand that configuring authentication and authorization can be complex, especially when dealing with multiple clusters, diverse organizational structures, and varying security requirements. Don't hesitate to reach out to our support channels. We aim to ensure you have a secure, well-configured environment that meets your specific requirements while adhering to best practices in cloud-native security.
