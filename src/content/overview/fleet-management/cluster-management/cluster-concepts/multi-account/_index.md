@@ -49,7 +49,7 @@ Details of the implementation differ between AWS and Azure.
 
 - Cloud provider account/subscription credentials are recommended to be configured by Giant Swarm _organization level_. You can create clusters within the same organization in different cloud provider accounts but separating by organization will make it easier to manage.
 
-- Cloud provider credentials are _immutable_. Once defined in a namespace and used by the controller, cloud provider credentials can't be modified or deleted. In order to switch to new cloud provider credentials, it is recommended to create a new organization and migrate to new clusters owned by that organization.
+- Cloud provider credentials are _immutable_. Once defined in a namespace and used by the controller, cloud provider credentials can't be modified or deleted. In order to switch to new cloud provider credentials, it's recommended to create a new organization and migrate to new clusters owned by that organization.
 
 - If an organization doesn't yet have provider credentials configured but already has workload clusters, these clusters are run in the default account, which is the one the management cluster is running. Setting credentials for this organization doesn't affect the workload clusters created already.
 
@@ -64,5 +64,5 @@ To prepare your credentials, either as AWS account roles or as an Azure service 
 
 Then when creating a cluster, you can specify the organization that should be used for the cluster. This can be done:
 
-- In CAPA using the `AWSClusterRoleIdentity` like it is explained [here]({{< relref "/getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
-- In CAPZ using the `AzureClusterIdentity` like it is explained [here]({{< relref "/getting-started/prepare-your-provider-account/azure/#configure-cluster-role-identity" >}}) command
+- In CAPA using the `AWSClusterRoleIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
+- In CAPZ using the `AzureClusterIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-account/azure/#configure-cluster-role-identity" >}}) command
