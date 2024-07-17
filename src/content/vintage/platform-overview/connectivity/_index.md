@@ -1,7 +1,7 @@
 ---
 linkTitle: Connectivity
-title: Developer Platform Connectivity Features (ingress, api gateways, service mesh)
-description: Overview of the connectivity related platform features, which includes ingress controllers, api gateways, and service meshes.
+title: Developer Platform Connectivity Features (ingress, api gateways)
+description: Overview of the connectivity related platform features, which includes ingress controllers and api gateways.
 weight: 80
 aliases:
   - /platform-overview/connectivity
@@ -14,6 +14,5 @@ owner:
 user_questions:
   - What app do you recommend for ingress?
   - What app do you recommend for api gateway?
-  - What app do you recommend for service mesh?
-last_review_date: 2024-01-18
+last_review_date: 2024-07-17
 ---

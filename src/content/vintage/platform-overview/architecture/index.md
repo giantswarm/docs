@@ -59,7 +59,7 @@ Today we can offer a set of different features for building your platform, inclu
 - Secret Management: Securely store the secrets your apps need to access other services.
 - CI/CD: Create your pipelines to build and deploy the applications.
 - Registry: Store application artifacts in a secure and available place.
-- Smart Routing: Configure ingress/egress access to your applications with advanced service mesh capabilities.
+- Smart Routing: Configure ingress/egress access to your applications with advanced capabilities.
 - Policy Enforcement: Ensure compliance with company policies across the platform landscape.
 - Resource provisioning: Enable easy provisioning and configuration of external resources.
 
