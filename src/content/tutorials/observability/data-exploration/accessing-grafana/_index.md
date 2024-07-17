@@ -39,15 +39,15 @@ We aim to provide a useful set of dashboards for you to quickly explore all obse
 
 If you have access to the Giant Swarm [web interface]({{< relref "/vintage/platform-overview/web-interface" >}}), the easiest way to get to Grafana is to click the **Monitoring** link in the top menu when logged in.
 
-In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the URL.
+In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the address.
 
-In case you want to construct the URL to the Grafana web application in your installation yourself, it follows the same pattern as the one for our web interface and many other services.
+In case you want to construct the address to the Grafana web application in your installation yourself, it follows the same pattern as the one for our web interface and many other services.
 
-For example, if your web interface URL is
+For example, if your web interface address is
 
     https://happa.g8s.example.westeurope.azure.gigantic.io/
 
-then simply replace `happa` with `grafana` to get to your Grafana URL:
+then simply replace `happa` with `grafana` to get to your Grafana address:
 
     https://grafana.g8s.example.westeurope.azure.gigantic.io/
 
@@ -59,7 +59,7 @@ In order to access Grafana as a customer, you must be a member of the admin grou
 
 **Note**: If you don't have SSO configured yet or have any questions regarding the admin group, please contact your Account Engineer.
 
-Once you open the Grafana URL for your installation, you will be greeted by a page titled "Log in to Dex", where you are prompted to select the identity provider to authenticate with. The screenshot below shows an example.
+Once you open the Grafana address for your installation, you will be greeted by a page titled "Log in to Dex", where you are prompted to select the identity provider to authenticate with. The screenshot below shows an example.
 
 ![Selecting an OIDC provider](access.png)
 

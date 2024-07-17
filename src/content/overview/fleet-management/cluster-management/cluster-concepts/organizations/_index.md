@@ -36,7 +36,7 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 <!-- Source for above image: https://docs.google.com/drawings/d/1PDve3HoE7br_6npe0RSCw8ddt-H7pFztPlSDiQbNabs/edit -->
 
-## Organization CRD and CRs {#organization-crd-cr}
+## Organization resource {#organization-crd-cr}
 
 If the concept of custom resources (CR) and custom resource definitions (CRD) is new to you: Kubernetes allows to define [arbitrary objects](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to be handled via the Kubernetes API. The schema of such an object is specified by a custom resource definition. The actual objects are called the custom resources.
 
