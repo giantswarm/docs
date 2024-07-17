@@ -34,44 +34,44 @@ Please request an increase of the following quotas (grouped by type):
 
 - VPC
 
-  - VPCs per region: **50**
-  - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
-  - IPv4 CIDR blocks per VPC: **50**
-  - Routes per route table: **200**
+    - VPCs per region: **50**
+    - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
+    - IPv4 CIDR blocks per VPC: **50**
+    - Routes per route table: **200**
 
 - Route 53 Resolver
 
-  - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
+    - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
 
 - Elastic IP
 
-  - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
+    - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
 
 - Elastic Load Balancers
 
-  - Application and Classic Load Balancers per region: **100**
+    - Application and Classic Load Balancers per region: **100**
 
 - Auto Scaling
 
-  - Auto Scaling Groups per region: **250**
-  - Launch Configurations per region: **500**
+    - Auto Scaling Groups per region: **250**
+    - Launch Configurations per region: **500**
 
 - S3
 
-  - Buckets per Account: **1000**
+    - Buckets per Account: **1000**
 
 - EC2 Spot Instances
 
-  - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
+    - For every primary instance type you tend to use spot instances with, set the limit according to your needs.
 
 - EC2 Instances
 
-  - m4.xlarge per region: **250**
-  - m4.2xlarge per region: **250**
-  - m5.2xlarge per region: **250**
-  - other instance types to be used as workers: increase accordingly
+    - m4.xlarge per region: **250**
+    - m4.2xlarge per region: **250**
+    - m5.2xlarge per region: **250**
+    - other instance types to be used as workers: increase accordingly
 
-__Note__: Please extend the list of EC2 instances to contain the frequently needed types.
+**Note**: Please extend the list of EC2 instances to contain the frequently needed types.
 
 When requesting a service quota increase, you will be asked for a description of your use case. Use this text for the following purposes:
 
@@ -121,11 +121,11 @@ Our platform needs different permissions to manage various resources on the AWS 
 - [giantswarm-${INSTALLATION_NAME}-network-topology-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/network-topology-operator-policy.json)
 - [giantswarm-${INSTALLATION_NAME}-resolver-rules-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/resolver-rules-operator-policy.json)
 
-__Warning__: Remember to replace the `INSTALLATION_NAME` placeholder with the name of your installation when filling the policy name.
+**Warning**: Remember to replace the `INSTALLATION_NAME` placeholder with the name of your installation when filling the policy name.
 
 ![AWS IAM console: Create policy](aws-roles-create-policy.png)
 
-__Note__: All policy names contain the installation name to make easier identifying the policies and avoid conflicts with other installations running within the same account.
+**Note**: All policy names contain the installation name to make easier identifying the policies and avoid conflicts with other installations running within the same account.
 
 #### 2. Create the role metadata {#iam-capa-controller-role-basic}
 
@@ -158,6 +158,7 @@ giantswarm-${INSTALLATION_NAME}-capa-controller
 Finally, we create an IAM role for Giant Swarm support staff to assume in order to
 access both the management cluster's and workload clusters' AWS accounts. This role must have Giant Swarm's account as a trusted
 entity, and we recommend that it enforces multi-factor authentication.
+
 #### 1. Create the admin policy {#iam-staff-policy}
 
 Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection and select _Create policy_ to set the admin permissions. Use the [admin JSON policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy
@@ -213,13 +214,12 @@ spec:
 
 The `<ACCOUNT_NAME>` is a short unique name referencing AWS account (`development`, `sandbox` or `staging2`). We advocate to use same name as the [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) to help map the resources and the accounts. The `<ACCOUNT_ID>` is the AWS account ID where the role is created and where the workload cluster will be provisioned.
 
-__Note__: More information about how to configure AWS credential can be found in the [official documentation](https://cluster-api-aws.sigs.k8s.io/topics/multitenancy).
+**Note**: More information about how to configure AWS credential can be found in the [official documentation](https://cluster-api-aws.sigs.k8s.io/topics/multitenancy).
 
 In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AWSCluster` uses to provision the cluster adjusting the value `aws.awsClusterRoleIdentityName`.
 
-__Note__: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
+**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
 
 ## Next steps
 
 Contact your Giant Swarm account engineer to verify the setup and proceed with the provisioning of the management cluster. In case you have already set up the management cluster and you have just configured a new AWS account, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
-
