@@ -43,6 +43,14 @@ changes-test:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/test_script.py foo bar baz
 
+collect-changelog-entries:
+	docker run --rm \
+	  --volume=${PWD}:/workdir \
+	  -w /workdir \
+		-e GITHUB_TOKEN \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+	  /workdir/scripts/collect-changelog-entries/script.py
+
 # Generate the reference documentation for the cluster apps.
 update-cluster-app-reference:
 	scripts/update-helm-chart-reference/main.sh
