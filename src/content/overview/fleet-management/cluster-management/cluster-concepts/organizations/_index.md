@@ -1,6 +1,6 @@
 ---
 title: Organizations
-description: Learn about the concept of organizations in the Giant Swarm platform.
+description: Learn in this article about the concept of organizations in the Giant Swarm platform.
 weight: 10
 menu:
   principal:
