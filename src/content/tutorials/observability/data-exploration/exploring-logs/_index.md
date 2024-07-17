@@ -24,7 +24,7 @@ This guide provides you with the basics to get started with exploring Logs using
 
 ## Access to logs
 
-Once you have [access to your management cluster's grafana]({{< relref "../accessing-grafana" >}}), you should:
+Once you have [access to your management cluster's grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}), you should:
 
 1. Go to `Explore` item in the `Home` menu
 ![Grafana Explore](loki-explore.png)
