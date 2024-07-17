@@ -2,7 +2,7 @@
 title: Access to the platform API
 description: How engineers can access the platform API to provision new workload clusters or deploy applications.
 weight: 30
-last_review_date: 2024-06-11
+last_review_date: 2024-07-17
 menu:
   principal:
     parent: getting-started
@@ -18,7 +18,7 @@ Giant Swarm's platform API, a Kubernetes API that operates on the management clu
 
 You can have multiple management clusters, for example, if different cloud providers are used. Each management cluster has its own API endpoint and is isolated from the others. In this guide, you learn how to access the platform API of one of these management clusters.
 
-To interact with the platform API, you have three options:
+Usually, to interact with the platform API, you have three options:
 
 1. Use GitOps flavour using Flux
 2. Use the `kubectl` command-line tool with our custom plugin

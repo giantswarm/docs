@@ -10,7 +10,7 @@ user_questions:
   - What are the authentication and authorization mechanisms in the Giant Swarm platform?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
-last_review_date: 2024-06-26
+last_review_date: 2024-07-17
 ---
 
 During the management cluster installation, Giant Swarm sets up authentication and authorization mechanisms to secure access to the platform. These mechanisms ensure that only authorized users can interact with the platform and its resources.
