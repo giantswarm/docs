@@ -168,8 +168,33 @@ Please run the following command prior to creating a cluster on a given subscrip
 az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
 ```
 
-## Next step
+## Step 4: Configure the cluster role identity {#configure-cluster-role-identity}
 
-If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+The last step involves storing the Azure credentials in the platform to allow the CAPZ controller manage the infrastructure in your account. In Cluster API there is a custom resource called `AzureClusterIdentity` that stores the Azure credentials. Take into account this resources is namespaced.
 
-If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
+By default there is a `default` configuration used by the controller which points to the role in the management cluster account. In case you want to create a new workload cluster in a new Azure subscription, you need to create a new `AzureClusterIdentity` resource that references the role of that Azure subscription. Example:
+
+```yaml
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AzureClusterIdentity
+metadata:
+  labels:
+    cluster.x-k8s.io/watch-filter: capi
+  name: <SUBSCRIPTION_NAME>
+spec:
+  type: WorkloadIdentity
+  tenantID: <TENANT_ID>
+  clientID: <CLIENT_ID>
+```
+
+The `<SUBSCRIPTION_NAME>` is a short unique name referencing Azure subscription (`development`, `sandbox` or `staging2`). We advocate to use same name as the [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) to help map the resources and the accounts. The `<TENANT_ID>` and `<CLIENT_ID>` is the Azure client ID and tenant ID that represent the subcription where the workload cluster will be provisioned.
+
+__Note__: More information about how to configure Azure credentials can be found in the [official documentation](https://capz.sigs.k8s.io/topics/workload-identity).
+
+In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AzureCluster` uses to provision the cluster adjusting the value `providerSpecific.azureClusterIdentity.name`.
+
+__Note__: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the credentials, CAPZ controller and staff to your partner contact.
+
+## Next steps
+
+Contact your Giant Swarm account engineer to verify the setup and proceed with the provisioning of the management cluster. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
