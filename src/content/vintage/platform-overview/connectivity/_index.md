@@ -1,7 +1,7 @@
 ---
 linkTitle: Connectivity
 title: Developer Platform Connectivity Features (ingress, api gateways)
-description: Overview of the connectivity related platform features, which includes ingress controllers and api gateways.
+description: Overview of the connectivity related platform features, which includes ingress controllers and API gateways.
 weight: 80
 aliases:
   - /platform-overview/connectivity
