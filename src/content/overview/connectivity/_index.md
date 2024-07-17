@@ -1,6 +1,6 @@
 ---
 title: Connectivity
-description: Public or private access to your workload applications through ingress. Secure connections between your distributed applications or microservices through a service mesh or API gateway.
+description: Public or private access to your workload applications through ingress. Secure connections between your distributed applications or microservices through a API gateway.
 weight: 70
 menu:
   principal:

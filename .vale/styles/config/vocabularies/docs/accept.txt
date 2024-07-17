@@ -11,11 +11,13 @@ az
 backbone
 CIDR[s]?
 CLI
+CR[s]?
 cluster-vsphere
 containerd
 [Cc]rossplane
 CRs
 declaratively
+[Dd]ex
 easily
 effectively
 ENI[s]?
@@ -28,6 +30,8 @@ Grafana
 gsctl
 Keybase
 Kinvolk
+krew
+Kustomize
 IP[s]?
 IPAM
 kube-vip

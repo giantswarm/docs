@@ -222,3 +222,4 @@ __Note__: In case you are working with a Giant Swarm partner, you might not have
 ## Next steps
 
 Contact your Giant Swarm account engineer to verify the setup and proceed with the provisioning of the management cluster. In case you have already set up the management cluster and you have just configured a new AWS account, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+

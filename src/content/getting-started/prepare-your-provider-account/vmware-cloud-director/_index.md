@@ -72,6 +72,8 @@ To define the set of instance types available to the users when deploying cluste
 
 After all requirements are met, you can [create your first cluster following this guide]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
 
-## Next steps
+## Next step
 
-Once the installation is ready, our engineers will work to provision the management cluster. Usually, it takes a couple of days, depending on the nuances your setup can have. When the cluster is up and running, you [can access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}) to start managing your workloads.
+If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+
+If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
