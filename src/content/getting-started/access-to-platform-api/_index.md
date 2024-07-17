@@ -64,7 +64,7 @@ When logging in, you must authenticate in your browser using the configured iden
 
 ## Step 2: Explore the platform
 
-Let's look at what type of resources and operations platform engineers usually perform against the API. 
+Let's look at what type of resources and operations platform engineers usually perform against the API.
 
 The first command we suggest running is `kubectl get orgs`, which lists the organizations defined in your management cluster.
 
@@ -91,7 +91,7 @@ You may notice some important points:
 
 1. A cluster belonging to an organization called `x` will be represented in the Kubernetes namespace `org-x` in the management cluster (that's why we use the `-A` flag to see all the namespaces)
 2. Organizations may not have any clusters running on their namespace (yet)
-3. There is a `giantswarm` organization in which we define the current management cluster and its configuration. Customers should not make changes in here.
+3. There is a `giantswarm` organization in which we define the current management cluster and its configuration. Customers shouldn't make changes in here.
 
 On the other hand, you can see the YAML definition of a cluster (in this example, cluster `test1` in organization `testing`) by running:
 

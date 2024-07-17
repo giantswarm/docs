@@ -29,6 +29,7 @@ gsctl
 Keybase
 Kinvolk
 krew
+Kustomize
 IP[s]?
 IPAM
 kube-vip
