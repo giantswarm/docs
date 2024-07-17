@@ -108,7 +108,7 @@ golem-capa-karpenter      0.3.0          50d          deployed
 golem-capi-node-labeler   0.5.0          54d          deployed
 golem-cert-exporter       2.8.5          54d          deployed
 golem-cert-manager        3.7.2          39d          deployed
-...
+[...]
 ```
 
 You can notice that the apps are deployed in the `org-x` namespace and are prefixed with the cluster name to avoid conflicts between different clusters living in the same organization. This is a good practice to follow when deploying apps in your clusters.
