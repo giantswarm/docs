@@ -59,7 +59,7 @@ In order to access Grafana as a customer, you must be a member of the admin grou
 
 **Note**: If you don't have SSO configured yet or have any questions regarding the admin group, please contact your Account Engineer.
 
-Once you open the Grafana address for your installation, you will be greeted by a page titled "Log in to Dex", where you are prompted to select the identity provider to authenticate with. The screenshot below shows an example.
+Once you open the Grafana address for your installation, you will be able to login via the Giant Swarm SSO. The screenshot below shows an example.
 
 ![Selecting an OIDC provider](access.png)
 
