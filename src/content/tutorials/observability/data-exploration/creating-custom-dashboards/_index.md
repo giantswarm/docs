@@ -25,7 +25,7 @@ You can find in [your installations Grafana]({{< relref "../accessing-grafana" >
 
 ## Creating your own dashboard
 
-To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want (preferably the one you use for automation) containing the dashboard. For example:
+To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
 
 ```yaml
 apiVersion: v1
