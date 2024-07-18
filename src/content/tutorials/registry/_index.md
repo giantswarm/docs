@@ -6,7 +6,7 @@ weight: 15
 aliases:
   - /tutorials/registry
 menu:
-  main:
+  principal:
     parent: tutorials
     identifier: tutorials-registry
 owner:

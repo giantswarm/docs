@@ -39,7 +39,7 @@ In this diagram, you can see that we run the following tools in each management 
     - Promtail is used to retrieve the container and kubernetes audit logs
     - Grafana Agent is used to retrieve the kubernetes events.
 
-If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/vintage/getting-started/observability/visualization/access" >}}) and how to [explore logs with LogQL]({{< relref "/vintage/getting-started/observability/visualization/log-exploration" >}})
+If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and how to [explore logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}})
 
 ## Logs stored by Giant Swarm
 
