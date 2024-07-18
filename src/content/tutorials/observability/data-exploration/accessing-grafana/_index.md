@@ -27,7 +27,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics, and [Grafana Loki](https://grafana.com/oss/loki/) for logs, collecting data from most of the components managed by Giant Swarm.
+Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics, and [Grafana Loki](https://grafana.com/oss/loki/) for logs, collecting data from the system and apps managed by Giant Swarm, as well as any source of data you configure according to [the data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}).
 
 To access these metrics and logs, both for you as customers and for our staff we provide a [Grafana](https://grafana.com/) instance per installation.
 
