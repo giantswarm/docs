@@ -39,7 +39,7 @@ We aim to provide a useful set of dashboards for you to quickly explore all obse
 
 If you have access to the Giant Swarm [web interface]({{< relref "/vintage/platform-overview/web-interface" >}}), the easiest way to get to Grafana is to click the **Monitoring** link in the top menu when logged in.
 
-In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the address.
+In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the address. In general the address follows the same pattern of any managed service, having the **grafana** subdomain on your installations base URI.
 
 In case you want to construct the address to the Grafana web application in your installation yourself, it follows the same pattern as the one for our web interface and many other services.
 
