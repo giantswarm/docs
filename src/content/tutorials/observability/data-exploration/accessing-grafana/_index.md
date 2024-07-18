@@ -41,16 +41,6 @@ If you have access to the Giant Swarm [web interface]({{< relref "/vintage/platf
 
 In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the address. In general the address follows the same pattern of any managed service, having the **grafana** subdomain on your installations base URI.
 
-In case you want to construct the address to the Grafana web application in your installation yourself, it follows the same pattern as the one for our web interface and many other services.
-
-For example, if your web interface address is
-
-    https://happa.g8s.example.westeurope.azure.gigantic.io/
-
-then simply replace `happa` with `grafana` to get to your Grafana address:
-
-    https://grafana.g8s.example.westeurope.azure.gigantic.io/
-
 ## Authentication and authorization
 
 Access to Grafana is controlled via **single sign-on** (SSO), using the same identity provider you use for the [Management API]({{< relref "/vintage/use-the-api/management-api/authentication" >}}).
