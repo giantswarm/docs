@@ -36,7 +36,7 @@ Once you have [access to your management cluster's grafana]({{< relref "/tutoria
    * `builder` and play with the dropdowns to build your query
    * `code` to write your query using [LogQL](https://grafana.com/docs/loki/latest/logql/)
 
-__Note__: The live mode feature of Grafana Loki isn't available at the moment because we use multi-tenancy (c.f. https://github.com/grafana/loki/issues/9493) 😢
+__Note__: The live mode feature of Grafana Loki isn't available at the moment because of the Observability Platform's multi-tenancy (c.f. https://github.com/grafana/loki/issues/9493) 😢
 
 ## LogQL basics
 
