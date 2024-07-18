@@ -23,7 +23,6 @@ owner:
 
 You can find in [your installations Grafana]({{< relref "../accessing-grafana" >}}) a set of out-of-the-box dashboards provided by Gaint Swarm. However these default dashboards might not satisfy your specific observability requirements or your apps or clusters unique context. This is why the Observability Platform allows you to create your own dashboards in self-service.
 
-
 ## Creating your own dashboard
 
 To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want (preferably the one you use for automation) containing the dashboard. For example:
