@@ -29,7 +29,7 @@ Once you have [access to your management cluster's grafana]({{< relref "/tutoria
 1. Go to `Explore` item in the `Home` menu
 ![Grafana Explore](loki-explore.png)
 
-2. Select `Loki` data source on the top left corner
+2. Select `Loki` as data source on the top left corner
 ![Loki data source](loki-datasource-query.png)
 
 3. Choose how you prefer to build your queries:
