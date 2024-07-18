@@ -50,10 +50,8 @@ metadata:
 
 __Beware__ that the dashboard name must be unique so don't override one of your own.
 
-## How's this feature implemented
+## Giant Swarm Dashboards
 
-We install Grafana through [our fork](https://github.com/giantswarm/grafana-app) of the [upstream Grafana helm chart](https://github.com/grafana/helm-charts/tree/main/charts/grafana)
+For reference, you can take a look at the Giant Swarm provided dashboards in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository.
 
-The chart supports the use of [sidecar containers](https://github.com/grafana/helm-charts/blob/dcc1c7d1b830259c4d208fcddb6fd8ec7e56682f/charts/grafana/values.yaml#L740) to load dashboards, data sources, plugins and notifiers dynamically.
-
-We're using this feature internally to deploy our dashboards alongside the applications we use.
+You can easily track changes in Giant Swarm dashboards directly from the Home dashboard in Grafana or via the [changes and releases](/changes/dashboards/) section.
