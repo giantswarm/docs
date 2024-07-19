@@ -189,11 +189,11 @@ spec:
 
 The `<SUBSCRIPTION_NAME>` is a short unique name referencing Azure subscription (`development`, `sandbox` or `staging2`). We advocate to use same name as the [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) to help map the resources and the accounts. The `<TENANT_ID>` and `<CLIENT_ID>` is the Azure client ID and tenant ID that represent the subcription where the workload cluster will be provisioned.
 
-__Note__: More information about how to configure Azure credentials can be found in the [official documentation](https://capz.sigs.k8s.io/topics/workload-identity).
+**Note**: More information about how to configure Azure credentials can be found in the [official documentation](https://capz.sigs.k8s.io/topics/workload-identity).
 
 In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AzureCluster` uses to provision the cluster adjusting the value `providerSpecific.azureClusterIdentity.name`.
 
-__Note__: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the credentials, CAPZ controller and staff to your partner contact.
+**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the credentials, CAPZ controller and staff to your partner contact.
 
 ## Next steps
 
