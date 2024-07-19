@@ -8,7 +8,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
   - How do I prepare my Azure account for the cloud-native developer platform?
-  - What do I need to do to prepare my Azure account for the cloud-native developer platform?
+  - How must I prepare my Azure account for the cloud-native developer platform?
 ---
 
 When running the Giant Swarm platform in your Azure subscription, several prerequisites must be satisfied to support Cluster API Provider Azure (CAPZ). In the current implementation, management and workload clusters must run in the same subscription.
@@ -26,7 +26,7 @@ In addition to the following prerequisites, your account engineer will provide y
 
 ## Step 1: Service quotas {#quotas}
 
-Azure enforces [service quota through all cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust, depending on number and size of clusters planned to be deployed:
+Azure enforces [service quota through all cloud services](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits). The following overview lists the usual resources you may adjust, depending on the number and size of clusters planned to be deployed:
 
 ![Azure quotas list](./quotas_general.png)
 
@@ -39,7 +39,7 @@ az vm list-usage --location <region>
 If your current quotas are insufficient, you can request an increase. In the Azure portal, follow the steps below:
 
 1. Go to the **Quotas** section in the [Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Capacity/QuotaMenuBlade/~/myQuotas).
-2. Click on pencil button to **request an update**.
+2. Click on the pencil button to **request an update**.
 3. Fill the new limit and submit the request.
 
 ![Azure quotas edit](quota_editing.png)
@@ -48,17 +48,17 @@ You can follow the request status in the **Quotas** section.
 
 ## Step 2: Permissions
 
-There are two permission roles that need to be created in the Azure subscription. One for the Giant Swarm controller used by the CAPZ controller in the management cluster to provision all infrastructure to manage workload clusters, and the other for Giant Swarm engineers to access the Azure account for support purposes.
+Two permission roles need to be created in the Azure subscription: one for the Giant Swarm controller used by the CAPZ controller in the management cluster to provision all infrastructure to manage workload clusters and the other for Giant Swarm engineers to access the Azure account for support purposes.
 
 ### Staff permissions {#iam-staff-role}
 
-Firstly, you need to grant access to Giant Swarm ops/support to your Azure subscription. Access to the portal is important for our every day support, where investigation and manual interventions are sometimes necessary.
+Firstly, you need to grant access to Giant Swarm ops/support to your Azure subscription. Access to the portal is essential for our everyday support, where investigation and manual interventions are sometimes necessary.
 
-The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must allow the `Giant Swarm Staff` group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription, instead you add a managed group that's kept up to date by Giant Swarm. There is a solution available called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which allows to delegate resource managements towards service providers such as Giant Swarm.
+The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must allow the `Giant Swarm Staff` group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription, instead you add a managed group that's kept up to date by Giant Swarm. There is a solution available called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which allows resource management to be delegated to service providers such as Giant Swarm.
 
 The recommendation is to choose Azure's [built-in role `Contributor`](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) to give Giant Swarm access and deployment permissions for resources within your subscription.
 
-Alternatively, you can create your own role assignment with restrictions on access to specific Resource Groups. However, it must be kept up to date so that Giant Swarm can provide full support for newly created clusters as well.
+Alternatively, you can create your role assignment with restricted access to specific Resource Groups. However, it must be kept up to date so that Giant Swarm can also provide full support for newly created clusters.
 
 #### Create a Deployment Environment
 
@@ -78,7 +78,7 @@ Alternatively, you can create your own role assignment with restrictions on acce
                          --verbose
     ```
 
-    The `--name` value can be freely chosen in case you prefer another name.
+    The `--name` value can be freely chosen if you prefer another name.
 
 ### Controller permissions {#iam-azure-operator-role}
 
@@ -136,11 +136,11 @@ The following information needs to be provided to Giant Swarm:
 * TenantID
 ```
 
-**Note**: contact to your Account Engineer, who will help you to find a secure way to share this information. Our recommended tool is [Keybase](https://keybase.io/).
+**Note**: Contact your Account Engineer, who will help you find a secure way to share this information. Our recommended tool is [Keybase](https://keybase.io/).
 
 #### Post deployment cleanup
 
-Once all necessary information is provided, our engineers create the management cluster. With the provided permissions, they work within your subscription to provision and validate the infrastructure, ensuring a seamless and efficient process.
+Once all necessary information is provided, our engineers create the management cluster. The provided permissions work within your subscription to provision and validate the infrastructure, ensuring a seamless and efficient process.
 
 When Giant Swarm completes the management cluster provisioning, our engineers can clean up part of the initial setup. The _Giant Swarm Service Principal_ can be deleted as it's used only for the initial bootstrap, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
 
@@ -150,7 +150,7 @@ When Giant Swarm completes the management cluster provisioning, our engineers ca
 
 Giant Swarm deploys [Flatcar Linux](https://www.flatcar-linux.org/) images for Kubernetes cluster nodes. It's developed by Kinvolk and taken from the Azure Marketplace. In order to be able to run the images, Azure requires customers to accept the legal terms.
 
-Please run the following command prior to creating a cluster on a given subscription:
+Please run the following command before creating a cluster on a given subscription:
 
 ```sh
 az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
@@ -160,9 +160,9 @@ az vm image terms accept --offer flatcar-container-linux-free --plan stable --pu
 
 ### Enable encryption at host
 
-If your security requirements demand this, there is a possibility to enable [encryption of data stored on virtual machine hosts](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). With this enabled, your data will be stored and transferred between storage and host encrypted, adding additional protection from unauthorized access.
+If your security requirements demand this, you can enable [encryption of data stored on virtual machine hosts](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli). With this enabled, your data will be encrypted when stored and transferred between storage and host, adding additional protection from unauthorized access.
 
-Please run the following command prior to creating a cluster on a given subscription:
+Please run the following command before creating a cluster on a given subscription:
 
 ```sh
 az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
@@ -170,9 +170,9 @@ az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --sub
 
 ## Step 4: Configure the cluster role identity {#configure-cluster-role-identity}
 
-The last step involves storing the Azure credentials in the platform to allow the CAPZ controller manage the infrastructure in your account. In Cluster API there is a custom resource called `AzureClusterIdentity` that stores the Azure credentials. Take into account this resources is namespaced.
+The last step involves storing the Azure credentials in the platform to allow the CAPZ controller to manage the infrastructure in your account. In Cluster API, there is a custom resource called `AzureClusterIdentity` that stores the Azure credentials. This resource is namespaced.
 
-By default there is a `default` configuration used by the controller which points to the role in the management cluster account. In case you want to create a new workload cluster in a new Azure subscription, you need to create a new `AzureClusterIdentity` resource that references the role of that Azure subscription. Example:
+By default, the controller uses a `default` configuration, which points to the role in the management cluster account. If you want to create a new workload cluster in a new Azure subscription, you need to create a new `AzureClusterIdentity` resource that references the role of that Azure subscription. Example:
 
 ```yaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
@@ -187,14 +187,14 @@ spec:
   clientID: <CLIENT_ID>
 ```
 
-The `<SUBSCRIPTION_NAME>` is a short unique name referencing Azure subscription (`development`, `sandbox` or `staging2`). We advocate to use same name as the [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) to help map the resources and the accounts. The `<TENANT_ID>` and `<CLIENT_ID>` is the Azure client ID and tenant ID that represent the subcription where the workload cluster will be provisioned.
+The `<SUBSCRIPTION_NAME>` is a short unique name referencing Azure subscription (`development`, `sandbox` or `staging2`). We advocate using the same name as the [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) to help map the resources and the accounts. The `<TENANT_ID>` and `<CLIENT_ID>` is the Azure client ID and tenant ID that represent the subscription where the workload cluster will be provisioned.
 
-**Note**: More information about how to configure Azure credentials can be found in the [official documentation](https://capz.sigs.k8s.io/topics/workload-identity).
+**Note**: The [official documentation](https://capz.sigs.k8s.io/topics/workload-identity) provides more information about configuring Azure credentials.
 
 In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AzureCluster` uses to provision the cluster adjusting the value `providerSpecific.azureClusterIdentity.name`.
 
-**Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the credentials, CAPZ controller and staff to your partner contact.
+**Note**: If you are working with a Giant Swarm partner, you might not have access to the platform API. Please provide the credentials, CAPZ controller, and staff to your partner contact.
 
 ## Next steps
 
-Contact your Giant Swarm account engineer to verify the setup and proceed with the provisioning of the management cluster. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+Contact your Giant Swarm account engineer to verify the setup and proceed with the management cluster provisioning. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
