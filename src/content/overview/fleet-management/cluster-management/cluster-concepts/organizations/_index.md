@@ -1,6 +1,6 @@
 ---
 title: Organizations
-description: Learn about the concept of organizations in the Giant Swarm platform.
+description: Organizations in the Giant Swarm platform allow isolation and logical separation of clusters and apps.
 weight: 10
 menu:
   principal:
