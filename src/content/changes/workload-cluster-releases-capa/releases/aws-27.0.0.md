@@ -10,9 +10,9 @@ changes_entry:
   version: aws-27.0.0
   version_tag: aws-27.0.0
 date: '2024-07-09T12:00:00'
-description: Release notes for CAPA workload cluster release vaws-27.0.0, published
+description: Release notes for CAPA workload cluster release aws-27.0.0, published
   on 09 July 2024, 12:00.
-title: Workload cluster release vaws-27.0.0 for CAPA
+title: Workload cluster release aws-27.0.0 for CAPA
 ---
 
 ## Changes compared to v26.0.0
