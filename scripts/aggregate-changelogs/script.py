@@ -237,12 +237,14 @@ def generate_release_file(repo_shortname, repo_config, release, delete):
         if provider_label == 'AZURE':
             provider_label = 'Azure'
         categories = [f'Workload cluster releases for {provider_label}']
-        title = f'Workload cluster release v{version} for {provider_label}'
-        description = f'Release notes for {provider_label} workload cluster release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
         # CAPI releases already have provider
         if release['provider'] in ['capa', 'capz', 'capv', 'capvcd']:
             filename = f"{release['version_tag']}.md"
+            title = f'Workload cluster release {version} for {provider_label}'
+            description = f'Release notes for {provider_label} workload cluster release {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
         else:
+            title = f'Workload cluster release v{version} for {provider_label}'
+            description = f'Release notes for {provider_label} workload cluster release v{version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
             filename = f"{release['provider']}-{release['version_tag']}.md"
         category_path = f"workload-cluster-releases-{provider_label.lower()}"
         aliases = [f"/changes/tenant-cluster-releases-{provider_label.lower()}/releases/{provider_label.lower()}-{release['version_tag']}/"]
