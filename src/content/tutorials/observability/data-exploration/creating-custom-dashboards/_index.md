@@ -21,13 +21,11 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-As explained in our guide explaining [how to access Grafana]({{< relref "../accessing-grafana" >}}), we provide a subset of dashboards accessible by our customers.
-
-Sometimes, the dashboards we provide aren't enough for your use case so we offer you the capability of creating your own (for example, you are deploying your own apps on the management cluster, or you want custom dashboards for your clusters).
+You can find in [your installations Grafana]({{< relref "../accessing-grafana" >}}) a set of out-of-the-box dashboards provided by Gaint Swarm. However these default dashboards might not satisfy your specific observability requirements or your apps or clusters unique context. This is why the Observability Platform allows you to create your own dashboards in self-service.
 
 ## Creating your own dashboard
 
-To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want (preferably the one you use for automation) containing the dashboard. For example:
+To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
 
 ```yaml
 apiVersion: v1
@@ -50,10 +48,8 @@ metadata:
 
 __Beware__ that the dashboard name must be unique so don't override one of your own.
 
-## How's this feature implemented
+## Giant Swarm Dashboards
 
-We install Grafana through [our fork](https://github.com/giantswarm/grafana-app) of the [upstream Grafana helm chart](https://github.com/grafana/helm-charts/tree/main/charts/grafana)
+For reference, you can take a look at the Giant Swarm provided dashboards in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository.
 
-The chart supports the use of [sidecar containers](https://github.com/grafana/helm-charts/blob/dcc1c7d1b830259c4d208fcddb6fd8ec7e56682f/charts/grafana/values.yaml#L740) to load dashboards, data sources, plugins and notifiers dynamically.
-
-We're using this feature internally to deploy our dashboards alongside the applications we use.
+You can easily track changes in Giant Swarm dashboards directly from the Home dashboard in Grafana or via the [changes and releases](/changes/dashboards/) section.
