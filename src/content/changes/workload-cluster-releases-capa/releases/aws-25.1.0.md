@@ -15,7 +15,7 @@ description: Release notes for CAPA workload cluster release aws-25.1.0, publish
 title: Workload cluster release aws-25.1.0 for CAPA
 ---
 
-This release updates the components, keeping them upto date with Vintage AWS v20.1.x series. Several improvements for Vintage to CAPA migration have also been included.
+This release updates the components, keeping them up to date with Vintage AWS v20.1.x series. Several improvements for Vintage to CAPA migration have also been included.
 
 ## Change details compared to CAPA 25.0.0
 
