@@ -143,7 +143,7 @@ def get_cluster_releases(repo_shortname):
         (org, repo) = repo_shortname.split("/", maxsplit=1)
 
         provider = None
-        for provider in ['aws', 'capa', 'capz', 'capv', 'capvcd']:
+        for provider in ['aws', 'azure', 'capa', 'capz', 'capv', 'capvcd']:
             for root, version_dirs, _ in os.walk(tmpdir+"/"+repo+"/"+provider):
                 for version_dir in version_dirs:
                     print(f'Parsing provider in {provider} -  dir in {version_dir}')
