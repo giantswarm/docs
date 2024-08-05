@@ -147,7 +147,7 @@ def get_cluster_releases(repo_shortname):
             for root, version_dirs, _ in os.walk(tmpdir+"/"+repo+"/"+provider):
                 for version_dir in version_dirs:
 
-                    // Skip archived releases
+                    print(f'Skipping archived releases for {provider}')
                     if version_dir == 'archived':
                         continue
 
