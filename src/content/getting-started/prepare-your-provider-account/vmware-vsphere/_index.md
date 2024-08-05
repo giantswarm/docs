@@ -74,6 +74,9 @@ The `controller` in NSX ALB plays a pivotal role. It's responsible for communica
 
 The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it's recommended that a specific user and role be created for the controller.
 
+> [!CAUTION]
+> The password mustn’t contain ` \ ` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
+
 __Note__: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
 
 Create the user role browsing to `Administration > Access Control > Roles`and clicking `NEW`. The role must have at least the following permissions:
@@ -87,7 +90,7 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Sessions` | `Message`<br>`Validate session` |
 | `Profile` driven storage | `Profile-driven storage view` |
 | `vApp` | `Import` |
-| `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template` |
+| `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Edit Inventory/Create new`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template`<br>`Provisioning/Mark as template`<br>`Provisioning/Mark as virtual machine` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
