@@ -143,9 +143,14 @@ def get_cluster_releases(repo_shortname):
         (org, repo) = repo_shortname.split("/", maxsplit=1)
 
         provider = None
-        for provider in ['aws', 'azure', 'capa', 'capz', 'capv', 'capvcd']:
+        for provider in ['aws', 'azure', 'capa', 'vsphere', 'cloud-director']:
             for root, version_dirs, _ in os.walk(tmpdir+"/"+repo+"/"+provider):
                 for version_dir in version_dirs:
+
+                    // Skip archived releases
+                    if version_dir == 'archived':
+                        continue
+
                     print(f'Parsing provider in {provider} -  dir in {version_dir}')
                     for root_dir, _, files in os.walk(path.join(root, version_dir)):
                         relative_dir_path = root_dir[len(tmpdir + "/" + repo + "/"):]
@@ -238,7 +243,7 @@ def generate_release_file(repo_shortname, repo_config, release, delete):
             provider_label = 'Azure'
         categories = [f'Workload cluster releases for {provider_label}']
         # CAPI releases already have provider
-        if release['provider'] in ['capa', 'capz', 'capv', 'capvcd']:
+        if release['provider'] in ['azure', 'capa', 'vsphere', 'cloud-director']:
             filename = f"{release['version_tag']}.md"
             title = f'Workload cluster release {version} for {provider_label}'
             description = f'Release notes for {provider_label} workload cluster release {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
