@@ -88,29 +88,16 @@ For backward compatibility, vintage cluster templating does not require the `--n
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-This will automatically use the latest release of the relevant Helm chart [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md):
+[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-capa/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
+  --release 28.0.0 `# please fill in your desired release version` \
   > cluster.yaml
 ```
-
-You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
-The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`](https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity).
-
-```sh
-kubectl gs template cluster \
-  --provider capa \
-  --name mycluster \
-  --organization testing \
-  --aws-cluster-role-identity-name=dev-account-role-identity
-  > cluster.yaml
-```
-
-If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
 
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
@@ -125,24 +112,10 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
-You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
-The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`](https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity).
-
-```sh
-kubectl gs template cluster \
-  --provider capa \
-  --name mycluster \
-  --organization testing \
-  --aws-cluster-role-identity-name=dev-account-role-identity
-  > cluster.yaml
-```
-
-If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
-
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-This will automatically use the latest release of the relevant Helm chart [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md):
+Choose a release version among the ones listed with `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -151,6 +124,7 @@ kubectl gs template cluster \
   --organization testing \
   --region westeurope \
   --azure-subscription-id 00000000-0000-0000-0000-000000000000 `# fill in your subscription ID` \
+  --release 28.0.0 `# please fill in your desired release version` \
   > cluster.yaml
 ```
 
@@ -374,6 +348,6 @@ kubectl gs update app \
 
 ### Updating a cluster
 
-Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature in the vintage product family that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
+Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
 More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/vintage/use-the-api/kubectl-gs/update-cluster" >}}).
