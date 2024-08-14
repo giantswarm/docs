@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2024-01-18
+last_review_date: 2024-08-12
 aliases:
   - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/get-clusters/
@@ -35,9 +35,9 @@ to list some information on all clusters available to you in the current install
 For a Cluster API management cluster, the result looks like this:
 
 ```nohighlight
-NAME         AGE   CONDITION   CLUSTER VERSION   PREINSTALLED APPS VERSION   SERVICE PRIORITY   ORGANIZATION            DESCRIPTION
-operations   64d   READY                                                     highest            giantswarm-production   Operations cluster
-gazelle      89d   READY                                                     highest            giantswarm              Management cluster
+NAMESPACE                   NAME         AGE    CONDITION   RELEASE   SERVICE PRIORITY   ORGANIZATION            DESCRIPTION
+org-giantswarm-production   operations   270d   READY       28.1.0    highest            giantswarm-production   Operations Cluster
+org-giantswarm              gazelle      296d   READY       25.0.0    highest            giantswarm              Management Cluster
 ```
 
 Here is some example output from a vintage management cluster:
