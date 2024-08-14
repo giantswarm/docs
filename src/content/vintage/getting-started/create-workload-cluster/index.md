@@ -114,6 +114,7 @@ kubectl gs template cluster \
 
 If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRoleIdentity` called `default` exists and will be used.
 
+
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
