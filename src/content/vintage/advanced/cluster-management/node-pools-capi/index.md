@@ -208,12 +208,13 @@ Instances in the node pool will be rolled whenever these properties are changed 
 
 - `instanceType`
 - `additionalSecurityGroups`
+- `customNodeLabels`
 
 Instances will also be rolled if these values are changed:
 
 - `providerSpecific.ami`
 
-Please be aware that changing the name of a node pool will result in the deletion of the old node pool and the creation of a new one.
+**Warning:** Please be aware that changing the name of a node pool will result in the deletion of the old node pool and the creation of a new one.
 If you still want to change the name of a node pool, we recommend adding a new node pool with the new name, waiting for it to be healthy, and then removing the old one.
 
 ### What happens when a node pool is updated {#what-happens-when-rolling-nodes}
