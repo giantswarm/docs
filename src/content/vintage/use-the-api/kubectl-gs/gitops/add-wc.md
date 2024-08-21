@@ -6,7 +6,7 @@ weight: 25
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2024-01-18
+last_review_date: 2024-08-21
 aliases:
   - /use-the-api/kubectl-gs/gitops
   - /reference/kubectl-gs/gitops/add-wc
@@ -33,22 +33,25 @@ The structure created by this command is presented below. Note, the initial laye
 in a square brackets `[]` are considered optional.
 
 ```nohighlight
-management-clusters/MC_NAME/secrets
-└── WC_NAME.gpgkey.enc.yaml
-management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters
-├── kustomization.yaml
-├── WC_NAME.yaml
-└── WC_NAME
-    └── [mapi]
-        ├── apps
-        │   ├── kustomization.yaml
-        │   └── patch_cluster_config.yaml
-        └── cluster
-            ├── [kustomization.yaml]
-            ├── [cluster_userconfig.yaml]
-            ├── [patch_cluster_userconfig.yaml]
-            ├── [default_apps_userconfig.yaml]
-            └── [patch_default_apps_userconfig.yaml]
+management-clusters/MC_NAME
+└── secrets
+│   └── WC_NAME.gpgkey.enc.yaml
+└── organizations
+    └── ORG_NAME
+        └── workload-clusters
+            ├── kustomization.yaml
+            ├── WC_NAME.yaml
+            └── WC_NAME
+                └── [mapi]
+                    ├── apps
+                    │   ├── kustomization.yaml
+                    │   └── patch_cluster_config.yaml
+                    └── cluster
+                        ├── [kustomization.yaml]
+                        ├── [cluster_userconfig.yaml]
+                        ├── [patch_cluster_userconfig.yaml]
+                        ├── [default_apps_userconfig.yaml]
+                        └── [patch_default_apps_userconfig.yaml]
 ```
 
 The content of the `cluster` directory is optional because in its most basic form, the GitOps repository does not require you to
@@ -63,19 +66,17 @@ nevertheless mandatory, and hence this flag is planned to be removed from `kubec
 
 ## Usage
 
-Basic command syntax: `kubectl gs gitops add workload-cluster FLAGS`
+Basic command syntax: `kubectl gs gitops add workload-cluster <FLAGS>`
 
 ### Flags
 
-- `--cluster-release` -- cluster-app version (required)
-- `--default-apps-release` -- default apps version (required)
+- `--release` -- [workload cluster release](https://github.com/giantswarm/releases) version (required)
 - `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
 - `--name` -- name of the workload cluster (required)
 - `--organization` -- name of the organization the workload cluster belongs to (required)
 - `--repository-name` -- name of the GitOps repository (required)
 - `--base` -- path to the base directory; must be relative to the repository root
 - `--cluster-user-config` -- cluster app user configuration to patch the base with
-- `--default-apps-user-config` -- default apps app user configuration to patch the base with
 - `--skip-mapi` -- skip mapi directory when adding the app
 
 {{% kubectl_gs_gitops_common_flags %}}
@@ -172,8 +173,8 @@ resources:
 {{< /tab >}}
 {{< tab id="with-definition" title="Definition" >}}
 
-When desired to manage cluster definition from GitOps repository, it can be added by the `--base`,
-`--cluster-release`, and the `--default-apps-release` flags.
+When desired to manage cluster definition from GitOps repository, it can be added by the `--base`
+and `--release` flags.
 
 ```nohighlight
 kubectl gs gitops add workload-cluster \
@@ -183,8 +184,7 @@ kubectl gs gitops add workload-cluster \
   --organization demoorg \
   --repository-name gitops-demo \
   --base bases/cluster/capi \
-  --cluster-release 1.0.0 \
-  --default-apps-release 2.0.0 \
+  --release v28.1.0 \
   --dry-run
 ```
 
@@ -211,8 +211,7 @@ spec:
   postBuild:
     substitute:
       cluster_name: demowc
-      cluster_release: 1.0.0
-      default_apps_release: 2.0.0
+      release: v28.1.0
       organization: demoorg
   prune: false
   serviceAccountName: automation
@@ -280,8 +279,7 @@ spec:
   postBuild:
     substitute:
       cluster_name: demowc
-      cluster_release: 1.0.0
-      default_apps_release: 2.0.0
+      release: v28.1.0
       organization: demoorg
   prune: false
   serviceAccountName: automation
@@ -295,8 +293,9 @@ spec:
 {{< tab id="with-definition-config" title="Definition and Configuration" >}}
 
 Cluster definition coming from a base may also be customized with a user configuration passed by the
-`--cluster-user-config` and the `--default-apps-user-config` flags. **Note, files referenced by these flags
-should carry a valid values YAML configuration conforming the values schema of the given cluster- and default-apps- apps versions.**
+`--cluster-user-config` flag.
+
+**Note:**  files referenced by this flag should carry a valid values YAML configuration conforming the values schema of the given cluster app versions.**
 
 Below is the example of `values.yaml` configuring cluster description and name of the cloud config ConfigMap.
 
@@ -315,8 +314,7 @@ kubectl gs gitops add workload-cluster \
   --organization demoorg \
   --repository-name gitops-demo \
   --base bases/cluster/capi \
-  --cluster-release 1.0.0 \
-  --default-apps-release 2.0.0 \
+  --release v28.1.0 \
   --cluster-user-config /tmp/values.yaml
   --dry-run
 ```
@@ -344,8 +342,7 @@ spec:
   postBuild:
     substitute:
       cluster_name: demowc
-      cluster_release: 1.0.0
-      default_apps_release: 2.0.0
+      release: v28.1.0
       organization: demoorg
   prune: false
   serviceAccountName: automation
@@ -439,8 +436,7 @@ spec:
   postBuild:
     substitute:
       cluster_name: demowc
-      cluster_release: 1.0.0
-      default_apps_release: 2.0.0
+      release: v28.1.0
       organization: demoorg
   prune: false
   serviceAccountName: automation
