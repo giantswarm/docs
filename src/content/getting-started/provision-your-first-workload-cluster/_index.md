@@ -162,7 +162,7 @@ kubectl krew install tree
 kubectl tree clusters.cluster.x-k8s.io -n org-testing name-of-workload-cluster
 ```
 
-__Warning__: Note how our example commands use the fully qualified Custom Resource Definition (CRD) name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work, but within the management cluster there are other cluster custom resources like `clusters.rds.aws.upbound.io` that could cause confusion. This is the fact that Kubernetes does not restrict CRDs to share the same shortname.
+__Warning__: Note how our example commands use the fully qualified Custom Resource Definition (CRD) name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work, but within the management cluster there are other cluster custom resources like `clusters.rds.aws.upbound.io` that could cause confusion. This is the fact that Kubernetes doesn't restrict CRDs to share the same shorthand.
 
 ## Step 3: Log in to the workload cluster
 
