@@ -162,7 +162,7 @@ kubectl krew install tree
 kubectl tree clusters.cluster.x-k8s.io -n org-testing name-of-workload-cluster
 ```
 
-Note how our example commands use the fully qualified Custom Resource Definition (CRD) name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work as long as there are no [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) with a conflicting name installed.
+__Warning__: Note how our example commands use the fully qualified Custom Resource Definition (CRD) name `clusters.cluster.x-k8s.io`. The shorthands `cluster` or `clusters` also work, but within the management cluster there are other cluster custom resources like `clusters.rds.aws.upbound.io` that could cause confusion. This is the fact that Kubernetes does not restrict CRDs to share the same shortname.
 
 ## Step 3: Log in to the workload cluster
 
@@ -190,7 +190,7 @@ The workload clusters are where the "actual" work happens, where Giant Swarm-sup
 
 ## Step 4: Deleting the workload cluster {#deleting-workload-cluster}
 
-Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please don't directly delete the Cluster API custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the Cluster API product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
+Deletion works similarly: run `kubectl delete -f cluster.yaml`, `cluster.yaml` being the name selected for the output file when creating the cluster, and the operators in the management cluster will delete the resources in a few minutes. Please don't directly delete the Cluster API custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the Cluster API product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
 
 - `App/<cluster>`
 - `ConfigMap/<cluster>-userconfig`
