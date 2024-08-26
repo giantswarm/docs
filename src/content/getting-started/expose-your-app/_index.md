@@ -1,14 +1,14 @@
 ---
-title: Expose your app to the internet
-description: Make your application accessible from the outside using an ingress controller.
+title: Explore connectivity options
+description: Understand how basic connectivity works in the platform and which options are available for exposing your app.
 weight: 60
-last_review_date: 2024-04-25
+last_review_date: 2024-08-26
 menu:
   principal:
     parent: getting-started
-    identifier: getting-started-expose-app
+    identifier: getting-started-explore-connectivity
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/sig-cabbage
 user_questions:
   - How does basic connectivity work in the platform?
   - What are the options for service connectivity in the platform?
