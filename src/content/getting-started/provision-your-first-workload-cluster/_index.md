@@ -1,7 +1,7 @@
 ---
-title: Create a workload cluster and install applications
+title: Create a first workload cluster
 linkTitle: Provision your first workload cluster
-description: Experience the steps to configure and provision your first workload cluster using the platform API.
+description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 40
 last_review_date: 2024-08-21
 menu:
