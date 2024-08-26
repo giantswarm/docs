@@ -15,7 +15,7 @@ user_questions:
   - What do I need to do to configure the app platform to build my capabilities?
 ---
 
-The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Platform API]({{< relref "/overview/architecture#platform-api" >}}).
+The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) charts and allows you to manage apps and their configurations represented by `App` custom resources (CRs) for multiple clusters, from a single place: the [Platform API]({{< relref "/overview/architecture#platform-api" >}}) on the management cluster.
 
 In this guide, we will install a `hello-world` app together with an Ingress NGINX Controller to serve the application publicly. We will do this by using kubectl, to create an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the platform API of your management cluster.
 
