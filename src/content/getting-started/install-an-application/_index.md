@@ -41,7 +41,9 @@ That way you ensure that the App CR is created in the correct namespace.
 
 ## Step 1: Check applications installed in the cluster
 
-First we will take a look to the existing applications already running in the cluster. By default the cluster has some default apps to make the cluster operational. Since you can have more than one cluster in the namespace lets filter the apps by the cluster name.
+First we will take a look to the existing applications already running in the cluster. By default the cluster has some default apps to make the cluster operational. Since you can have more than one cluster in the namespace, let's filter the apps by the cluster name.
+
+Ensure you are logged into the management cluster.
 
 ```nohighlight
 kubectl gs -n org-namespace get apps | grep CLUSTER_ID
