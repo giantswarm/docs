@@ -59,7 +59,7 @@ test01-teleport-kube-agent             0.9.2               12m          4m24s   
 test01-vertical-pod-autoscaler         5.2.4               12m          110s            deployed
 ```
 
-__Note__: We don't enforce cluster prefix but it's a good practice to have it.
+__Note__: We don't enforce the cluster prefix (here: `test01-`), but it's a good practice to have it.
 
 As you can see the we're several applications already in the cluster. Most of the apps run directly in the workload cluster itself, but app operator runs in the cluster namespace and it's charge to actually deploy the apps in the workload cluster. Learn more about this process [in this guide]({{< relref "/vintage/platform-overview/app-platform/" >}}).
 
