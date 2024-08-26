@@ -19,7 +19,7 @@ The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) chart
 
 In this guide, we will install a `hello-world` app together with an Ingress NGINX Controller to serve the web application publicly. We will do this by using kubectl, to create an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR using the platform API of your management cluster.
 
-In general, you can manage App CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux CD).
+In general, you can manage `App` CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux CD).
 
 ## Requirements
 
