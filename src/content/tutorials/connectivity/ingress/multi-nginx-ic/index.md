@@ -29,24 +29,24 @@ Starting with [ingress nginx controller v1.8.0](/changes/managed-apps/nginx-ingr
 
 Some use cases for this might be:
 
-- An ingress controller that is behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)
+- An ingress controller that's behind an internal ELB for traffic between services within the VPC (or a group of peered VPCs)
 - An ingress controller behind an ELB that already terminates SSL
 - An ingress controller with different functionality or performance
 
 Most ingress nginx controller configuration options have controller-wide defaults. They can also be override on a per-ingress resource level.
 
-In each case below, one installs a second ingress nginx controller with a different global-only configuration and a separate ingressClass. ingress resources managed by this ingress nginx controller installation can still be customized on a per-ingress resource level.
+In each case below, one installs a second ingress nginx controller with a different global-only configuration and a separate ingress class. Ingress resources managed by this ingress nginx controller installation can still be customized on a per-ingress resource level.
 
 Further information on configuring ingress nginx controller can be found on the [Advanced ingress configuration]({{< relref "/tutorials/connectivity/ingress/configuration/index.md" >}}) page.
 
 ## Quick installation instructions for a second ingress nginx controller
 
 1. Install a second ingress nginx controller App (and subsequent apps) with a different global-only configuration.
-2. Change the `ingressClassName` to the appropriate ingressClass name. Make sure the ingressClass name and controller value of each ingress controller do not collide with each other.
+2. Change the `ingressClassName` to the appropriate ingress class name. Make sure the ingress class name and controller value of each ingress controller don't collide with each other.
 
-## Set the ingressClassName of each ingress
+## Set the ingress class name of each ingress
 
-__Note__ that if you are running multiple ingress controllers you need to use the appropriate `ingressClassName` in your ingress resources, e.g.
+__Note__ that if you are running multiple ingress controllers you need to use the appropriate `ingressClassName` in your ingress resources, for example.
 
 ```yaml
 ...
@@ -64,9 +64,9 @@ spec:
 ...
 ```
 
-Not specifying the `ingressClassName` will lead to no ingress controller claiming your ingress. Specifying a value which does not match the class of any existing ingress controller will result in all ingress controllers ignoring the ingress.
+Not specifying the `ingressClassName` will lead to no ingress controller claiming your ingress. Specifying a value which doesn't match the class of any existing ingress controller will result in all ingress controllers ignoring the ingress.
 
-Additionally, please ensure the ingressClass of each of your ingress controllers does not collide with each other. For the community supported ingress nginx controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
+Additionally, please ensure the ingress class of each of your ingress controllers doesn't collide with each other. For the community supported ingress nginx controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
 ## Separating public from internal ingress traffic
 
@@ -86,23 +86,23 @@ controller:
     public: false
     subdomain: ingress-internal
     # Required for KVM only.
-    # Do not set on AWS, Azure & others.
+    # Don't set on AWS, Azure & others.
     nodePorts:
       http: 30012
       https: 30013
 ```
 
-Each ingress nginx controller App installation has to have an unique ingressClass. ingress resources can then declare which ingress controller should be handling their route definition by referencing the respective ingressClass in the `ingressClassName` field. The default ingress nginx controller ingressClass is `nginx`. In the above example we configure `nginx-internal` as the second ingress nginx controller installation's ingressClass.
+Each ingress nginx controller App installation has to have an unique ingress class. ingress resources can then declare which ingress controller should be handling their route definition by referencing the respective ingress class in the `ingressClassName` field. The default ingress nginx controller ingress class is `nginx`. In the above example we configure `nginx-internal` as the second ingress nginx controller installation's ingress class.
 
 On AWS and Azure, ingress nginx controller's `LoadBalancer` Service is fronted by the cloud provider's managed load balancer service. By default, ingress nginx controller will have a public load balancer. Changing `controller.service.public` flag to `false` declares that an internal load balancer should be created instead.
 
-Similarly, the cloud load balancer created for each ingress nginx controller installation on AWS and Azure has to have an unique hostname associated with it. The hostname suffix is common for all and equals to the workload cluster's base domain name. The prefix is configurable via the `controller.service.subdomain` configuration property and defaults to `ingress`. In the example configuration for the second internal ingress nginx controller, it is override to `ingress-internal`.
+Similarly, the cloud load balancer created for each ingress nginx controller installation on AWS and Azure has to have an unique host name associated with it. The host name suffix is common for all and equals to the workload cluster's base domain name. The prefix is configurable via the `controller.service.subdomain` configuration property and defaults to `ingress`. In the example configuration for the second internal ingress nginx controller, it's override to `ingress-internal`.
 
 For ingress nginx controllers running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` service type support. Therefore, ingress nginx controller Service type defaults to `NodePort`. For every ingress nginx controller installation, one must assign a set of unique HTTP and HTTPS node ports. The default ingress nginx controller's HTTP and HTTPS node ports are `30010` and `30011`. The example sets `30012` and `30013` as overrides for the internal ingress nginx controller.
 
 More information on this topic can be found in the document [Services of type LoadBalancer]({{< relref "/tutorial/connectivity/ingress/service-type-loadbalancer" >}}).
 
-It is also possible to only install a single ingress nginx controller and to delegate both external and internal traffic to it. Here is a minimal working example on how to achieve this goal.
+It's also possible to only install a single ingress nginx controller and to delegate both external and internal traffic to it. Here is a minimal working example on how to achieve this goal.
 
 ```yaml
 controller:
@@ -114,7 +114,7 @@ controller:
       subdomain: ingress-internal # default value
 ```
 
-In other words, it is sufficient to set `controller.service.internal.enabled` to `true` to create two services: one for public traffic and one for internal one. On cloud providers, the Services we create will be of type `LoadBalancer`; on premise, depending on the platform, they might be either of type `LoadBalancer` or `NodePort`.
+In other words, it's sufficient to set `controller.service.internal.enabled` to `true` to create two services: one for public traffic and one for internal one. On cloud providers, the Services we create will be of type `LoadBalancer`; on premise, depending on the platform, they might be either of type `LoadBalancer` or `NodePort`.
 
 ## Using weak ciphers for legacy clients
 
@@ -140,7 +140,7 @@ Here is how this can be achieved:
       subdomain: ingress-weak
   ```
 
-For the second ingress nginx controller installation, ingressClass name and hostname subdomain are customized for uniqueness. Additionally, default SSL ciphers are override to include weak ciphers for legacy clients.
+For the second ingress nginx controller installation, ingress class name and host name subdomain are customized for uniqueness. Additionally, default SSL ciphers are override to include weak ciphers for legacy clients.
 
 ## Additional resources
 

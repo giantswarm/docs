@@ -1,6 +1,6 @@
 ---
 title: Advanced ingress configuration
-description: Here we describe how you can customize and enable specific features for the ingress NGINX controller.
+description: Here we describe how you can customize and enable specific features for the ingress nginx controller.
 weight: 10
 menu:
   principal:
@@ -22,10 +22,10 @@ user_questions:
   - How can I let the ingress controller do TLS termination?
   - How can I rate-limit ingress requests?
   - How can I confgiure a different connection timeout for my ingress?
-  - How can I change the ingress NGINX controller configmap?
-  - How can I use ingress NGINX controller as a Web Application Firewall?
+  - How can I change the ingress nginx controller configmap?
+  - How can I use ingress nginx controller as a Web Application Firewall?
   - How can I protect my workload from malicious requests?
-  - How can I enable & configure ModSecurity inside of the ingress NGINX controller?
+  - How can I enable & configure ModSecurity inside of the ingress nginx controller?
 last_review_date: 2024-08-26
 aliases:
   - /advanced/connectivity/ingress/configuration
@@ -40,7 +40,7 @@ The [ingress nginx controller](https://github.com/kubernetes/ingress-nginx) has 
 - [Per-service options](#yaml) in each ingress' YAML definition either directly or via [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ([Complete list of supported Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/)).
 - [Global options](#configmap) that influence all ingresses of a cluster via a ConfigMap ([Complete list of ConfigMap options](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/)).
 
-__Note__: Giant Swarm clusters do not come with an ingress controller pre-installed. See our [guide on how to install an ingress controller from the Giant Swarm catalog]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}).
+__Note__: Giant Swarm clusters don't come with an ingress controller pre-installed. See our [guide on how to install an ingress controller from the Giant Swarm catalog]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}).
 
 ## Per-Service options {#yaml}
 
@@ -78,9 +78,9 @@ spec:
               number: SERVICE_2_PORT
 ```
 
-__Note__: If you are using TLS you also need each of the hosts in the `tls` section (see below) of the yaml.
+__Note__: If you are using TLS you also need each of the hosts in the `tls` section (see below) of the YAML.
 
-### Path Based Fanout
+### Path Based Fan-out
 
 You can route an ingress to different Services based on the path:
 
@@ -115,11 +115,11 @@ __Note__: Your applications need to be capable of running on a non-root path eit
 
 ### TLS
 
-It is possible to configure TLS encryption in your ingress objects. You can either terminate TLS in your application by enabling SSL passthrough or let the ingress controller terminate it for you.
+It's possible to configure TLS encryption in your ingress objects. You can either terminate TLS in your application by enabling SSL passthrough or let the ingress controller terminate it for you.
 
 #### SSL passthrough
 
-__Warning__: This feature was disabled by default in the ingress NGINX controller managed by Giant Swarm. Reason is a potential [crash](https://github.com/kubernetes/ingress-nginx/issues/2354) of internal TCP proxier. We recommend to [terminate TLS in ingress controller](#terminating-tls-in-ingress-controller) instead.
+__Warning__: This feature was disabled by default in the ingress nginx controller managed by Giant Swarm. Reason is a potential [crash](https://github.com/kubernetes/ingress-nginx/issues/2354) of internal TCP proxy. We recommend to [terminate TLS in ingress controller](#terminating-tls-in-ingress-controller) instead.
 
 For SSL passthrough you need to set an annotation and enable TLS for the host:
 
@@ -148,7 +148,7 @@ spec:
               number: SERVICE_PORT
 ```
 
-__Note__: SSL passthrough cannot work with path based routing based on the nature of SSL.
+__Note__: SSL passthrough can't work with path based routing based on the nature of SSL.
 
 #### Terminating TLS in the ingress controller
 
@@ -199,7 +199,7 @@ __Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certifica
 
 The ingress controller includes support for adding authentication to an ingress rule. You have the choice between [Basic and Digest Access Authentication](https://datatracker.ietf.org/doc/html/rfc2617).
 
-First, you need to create a file called `auth` containing your usernames and passwords (one per line). You can do this either by using the [`htpasswd`](https://httpd.apache.org/docs/current/programs/htpasswd.html) command line tool (like in the following example) or an online htpasswd generator.
+First, you need to create a file called `auth` containing your usernames and passwords (one per line). You can do this either by using the [`htpasswd`](https://httpd.apache.org/docs/current/programs/htpasswd.html) command line tool (like in the following example) or an online `htpasswd` generator.
 
 ```nohighlight
 $ htpasswd -c auth foo1
@@ -262,9 +262,9 @@ spec:
 
 ### External Authentication
 
-To use an existing service that provides authentication the ingress rule can be annotated with `nginx.ingress.kubernetes.io/auth-url` to indicate the URL where the HTTP request should be sent. Additionally it is possible to set `nginx.ingress.kubernetes.io/auth-method` to specify the HTTP method to use (GET or POST).
+To use an existing service that provides authentication the ingress rule can be annotated with `nginx.ingress.kubernetes.io/auth-url` to indicate the URL where the HTTP request should be sent. Additionally it's possible to set `nginx.ingress.kubernetes.io/auth-method` to specify the HTTP method to use (GET or POST).
 
-This functionality is based on the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) module, which expects a `2xx` response code from the external service if the access is allowed and `401` or `403` if denied.
+This functionality is based on the [`auth_request`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) module, which expects a `2xx` response code from the external service if the access is allowed and `401` or `403` if denied.
 
 ### CORS
 
@@ -310,23 +310,23 @@ If you specify both annotations in a single ingress rule, `limit-rps` takes prec
 
 ### Secure backends
 
-By default ingress NGINX controller uses `http` to reach the services. Adding the annotation `nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"` in the ingress rule changes the protocol to `https`.
+By default ingress nginx controller uses `http` to reach the services. Adding the annotation `nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"` in the ingress rule changes the protocol to `https`.
 
 ### Server-side HTTPS enforcement through redirect
 
-By default the ingress NGINX controller redirects (301) to `HTTPS` if TLS is enabled for that ingress. If you want to disable that behaviour, you can use the `nginx.ingress.kubernetes.io/ssl-redirect: "false"` annotation.
+By default the ingress nginx controller redirects (301) to `HTTPS` if TLS is enabled for that ingress. If you want to disable that behaviour, you can use the `nginx.ingress.kubernetes.io/ssl-redirect: "false"` annotation.
 
-### Allowlist source range
+### Allowing list source range
 
-You can specify the allowed client IP source ranges through the `nginx.ingress.kubernetes.io/allowlist-source-range` annotation. The value is a comma separated list of [CIDRs](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), e.g. `10.0.0.0/24,172.10.0.1`.
+You can specify the allowed client IP source ranges through the `nginx.ingress.kubernetes.io/allowlist-source-range` annotation. The value is a comma separated list of [CIDRs](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing), for example `10.0.0.0/24,172.10.0.1`.
 
-__Note__: Adding an annotation to an ingress rule overrides any global restrictions set in the ingress NGINX controller.
+__Note__: Adding an annotation to an ingress rule overrides any global restrictions set in the ingress nginx controller.
 
 ### Custom max body size
 
 A 413 error will be returned to the client when the size in a request exceeds the maximum allowed size of the client request body. This size can be configured by the parameter [`client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size) and is set to `1m` (1 Megabyte) by default.
 
-To configure this setting globally for all ingress rules, the `proxy-body-size` value may be set in the [ingress NGINX controller ConfigMap](#configmap).
+To configure this setting globally for all ingress rules, the `proxy-body-size` value may be set in the [ingress nginx controller ConfigMap](#configmap).
 
 To use custom values in a specific ingress add following annotation:
 
@@ -336,11 +336,11 @@ nginx.ingress.kubernetes.io/proxy-body-size: 8m
 
 ### Custom connection timeout
 
-ingress NGINX controller allows to define the timeout that waits to close a connection (`keepalive`) with your workload. You can define a value in the main [Config Map](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#upstream-keepalive-timeout). The default value is `60` and it is measured in seconds.
+ingress nginx controller allows to define the timeout that waits to close a connection (`keepalive`) with your workload. You can define a value in the main [`configmap`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#upstream-keepalive-timeout). The default value is `60` and it's measured in seconds.
 
 There are many other timeouts that can be customized when configuring an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-**Warning**: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress NGINX controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
+**Warning**: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
 
 ### Session Affinity
 
@@ -354,7 +354,7 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 ### Configuration snippets
 
-The ingress NGINX controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the NGINX configuration.
+The ingress nginx controller creates an nginx configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the nginx configuration.
 
 The _configuration snippets_ through ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}).
 
@@ -387,7 +387,7 @@ spec:
 
 Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/configuration-snippet` in the `metadata` section of the manifest.
 
-In case you want to set up a general http snippet you can define it at [ingress NGINX controller ConfigMap](#configmap) level.
+In case you want to set up a general HTTP snippet you can define it at [ingress nginx controller ConfigMap](#configmap) level.
 
 ## Global (per cluster) options {#configmap}
 
@@ -395,9 +395,9 @@ Your Giant Swarm installation comes with a default configuration for the ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `ingress-nginx-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the ingress NGINX controller.
+The page [App configuration reference]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the ingress nginx controller.
 
-### Where is the user values ConfigMap
+### Where's the user values ConfigMap
 
 Given the cluster you are trying to configure has id: `123ab`
 
@@ -411,7 +411,7 @@ ingress-nginx-user-values   0         11m
 
 __Warning__:
 
-Please do not edit any of the other ingress NGINX controller related ConfigMaps.
+Please don't edit any of the other ingress nginx controller related ConfigMaps.
 
 Only the user ConfigMap is safe to edit.
 
@@ -437,7 +437,7 @@ data:
 
 However keep in mind: With great power comes great responsibility!
 
-If the ConfigMap does not exist, create it. In this case you'll need to reference it in the App CR of the ingress controller.
+If the ConfigMap doesn't exist, create it. In this case you'll need to reference it in the App CR of the ingress controller.
 
 ```yaml
 # Add missing keys to the spec field of the App CR
@@ -450,15 +450,15 @@ spec:
 
 Any defaults that we override are visible in the following `values.yaml` file, under the `controller.config` key. Check this [`values.yaml`](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml) as an example.
 
-Do not copy all the defaults if you do not need to change them, that way we can adjust them in case they need to change.
+Don't copy all the defaults if you don't need to change them, that way we can adjust them in case they need to change.
 
-Do make sure you look at the right tag of that repository, when reading this file check that the tag corresponds to the version of the ingress NGINX controller running on your cluster.
+Do make sure you look at the right tag of that repository, when reading this file check that the tag corresponds to the version of the ingress nginx controller running on your cluster.
 
 ### Configure Proxy Protocol
 
 __Warning__:
 
-We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the ingress NGINX controller.
+We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the ingress nginx controller.
 
 #### AWS / CAPA
 
@@ -482,7 +482,7 @@ data:
 
 ### Default certificate
 
-When you want to have the default server on the ingress NGINX controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the user values ConfigMap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
+When you want to have the default server on the ingress nginx controller support TLS you need to provide a certificate. This is configured using the flag `--default-ssl-certificate`. Now you can provide this value in the user values ConfigMap to force the component to be restarted with the provided certificate. The value of the property should be the namespace and secret name which holds the certificate content.
 
 ```yaml
 data:
@@ -506,7 +506,7 @@ data:
 
 ### Web Application Firewall
 
-ingress NGINX controller ships with the [ModSecurity](https://www.modsecurity.org) module which can be used for enhancing your ingress NGINX controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
+ingress nginx controller ships with the [ModSecurity](https://www.modsecurity.org) module which can be used for enhancing your ingress nginx controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
 
 While enabling those capabilities in the first step is quite easy, it might take some more effort to actually fine-tune it to your needs. Since especially in blocking mode even legal requests might get blocked, we recommend to first run ModSecurity in the detection mode and observe its logs while it already checks incoming traffic for malicious requests.
 
@@ -524,7 +524,7 @@ data:
         enable-owasp-modsecurity-crs: "true"
 ```
 
-Adding your own configuration, like for activating the blocking mode, requires a configuration snippet which - at the moment of writing this - [removes the inclusion](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl#L156-L171) of the basic ModSecurity configuration from the resulting NGINX configuration (`nginx.conf`) inside your controller pods. Therefore we first need to re-include the default configuration before adding our own:
+Adding your own configuration, like for activating the blocking mode, requires a configuration snippet which - at the moment of writing this - [removes the inclusion](https://github.com/kubernetes/ingress-nginx/blob/main/rootfs/etc/nginx/template/nginx.tmpl#L156-L171) of the basic ModSecurity configuration from the resulting nginx configuration (`nginx.conf`) inside your controller pods. Therefore we first need to re-include the default configuration before adding our own:
 
 ```yaml
 data:
@@ -556,9 +556,9 @@ data:
         enable-owasp-modsecurity-crs: "true"
 ```
 
-The above configuration snippet makes ModSecurity send its logs to `/dev/stdout`, so you can process them in the same way you're doing for access & error logs of ingress NGINX controller itself. Additionally it disables [rule 920350](https://github.com/coreruleset/coreruleset/blob/v3.3/master/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf#L708-L736), which blocks direct access by IP, which is required for the Kubernetes probes to work. Without disabling this rule, your ingress NGINX controller containers would start to repeatedly get killed the moment you activate the blocking mode. Apart from that, you would see a lot of spam regarding this false-positive in your logs even in detection mode.
+The above configuration snippet makes ModSecurity send its logs to `/dev/stdout`, so you can process them in the same way you're doing for access & error logs of ingress nginx controller itself. Additionally it disables [rule 920350](https://github.com/coreruleset/coreruleset/blob/v3.3/master/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf#L708-L736), which blocks direct access by IP, which is required for the Kubernetes probes to work. Without disabling this rule, your ingress nginx controller containers would start to repeatedly get killed the moment you activate the blocking mode. Apart from that, you would see a lot of spam regarding this false-positive in your logs even in detection mode.
 
-If you do not want to maintain your ModSecurity configuration inside this snippet, you can also mount it as a volume into the ingress NGINX controller pods and include it the same way we are including the default configuration above. In the following example we first create a `ConfigMap` containing your custom configuration in the same namespace as the ingress NGINX controller. This `ConfigMap` is then getting mounted into each of the ingress NGINX controller pods by adding the `controller.extraVolumeMounts` user value:
+If you don't want to maintain your ModSecurity configuration inside this snippet, you can also mount it as a volume into the ingress nginx controller pods and include it the same way we're including the default configuration above. In the following example we first create a `ConfigMap` containing your custom configuration in the same namespace as the ingress nginx controller. This `ConfigMap` is then getting mounted into each of the ingress nginx controller pods by adding the `controller.extraVolumeMounts` user value:
 
 ```apacheconf
 # modsecurity.conf
@@ -611,7 +611,7 @@ data:
         enable-owasp-modsecurity-crs: "true"
 ```
 
-Last but not least and when you've tested all your workloads and fine-tuned ModSecurity to your needs, you can enable the blocking mode by enabling `SecRuleEngine` either in the configuration snippet or the configuration file mounted into the ingress NGINX controller pods:
+Last but not least and when you've tested all your workloads and fine-tuned ModSecurity to your needs, you can enable the blocking mode by enabling `SecRuleEngine` either in the configuration snippet or the configuration file mounted into the ingress nginx controller pods:
 
 ```apacheconf
 # modsecurity.conf
@@ -629,12 +629,12 @@ SecAuditLogType Serial
 SecRuleRemoveById 920350
 ```
 
-If you are currently writing ingress NGINX controller access logs as JSON, you might also be interested in setting the `SecAuditLogFormat` to `JSON`, too. This directive is already included in the before shown configuration examples.
+If you are currently writing ingress nginx controller access logs as JSON, you might also be interested in setting the `SecAuditLogFormat` to `JSON`, too. This directive is already included in the before shown configuration examples.
 
-This section of the documentation is based on an article by Daniel Jimenez Garcia on System Weakness: [Kubernetes NGINX ingress WAF with ModSecurity. From zero to hero!](https://systemweakness.com/nginx-ingress-waf-with-modsecurity-from-zero-to-hero-fa284cb6f54a)
+This section of the documentation is based on an article by Daniel Jimenez Garcia on System Weakness: [Kubernetes nginx ingress WAF with ModSecurity. From zero to hero!](https://systemweakness.com/nginx-ingress-waf-with-modsecurity-from-zero-to-hero-fa284cb6f54a)
 
 ## Further reading
 
 - [Official Kubernetes documentation for the ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-- [Configuration documentation for the ingress NGINX controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
-- [Official ingress NGINX controller configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/configuration-snippets)
+- [Configuration documentation for the ingress nginx controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [Official ingress nginx controller configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/configuration-snippets)

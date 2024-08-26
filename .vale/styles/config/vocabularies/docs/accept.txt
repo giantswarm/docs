@@ -9,6 +9,7 @@ autoscaling
 [Aa][Ww][Ss]
 az
 backbone
+backend
 CIDR[s]?
 CLI
 CR[s]?
@@ -20,6 +21,7 @@ declaratively
 [Dd]ex
 easily
 effectively
+ELB[s]?
 ENI[s]?
 ESXi
 Etcd
@@ -42,10 +44,10 @@ Kyverno
 namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
+NLB[s]?
+passthrough
 perfectly
 quickly
-Trivy
-templated
 randomly
 really
 relref
@@ -54,6 +56,9 @@ separately
 Sigstore
 Spotify
 subnet
+Trivy
+templated
+upstream[s]?
 vApp
 very
 vCenter

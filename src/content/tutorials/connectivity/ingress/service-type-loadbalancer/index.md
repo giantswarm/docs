@@ -25,9 +25,9 @@ owner:
 
 Next to using the default ingress nginx controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using services of type `LoadBalancer`.
 
-You can use this to [expose single services](#service-of-type-lb) to the internet. It is also possible, to [install additional ingress nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
+You can use this to [expose single services](#service-of-type-lb) to the internet. It's also possible, to [install additional ingress nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
 
-__Note__: that this functionality cannot be used on premises in most of the occasions.
+__Note__: that this functionality can't be used on premises in most of the occasions.
 
 ## Exposing a single Service {#service-of-type-lb}
 
@@ -54,7 +54,7 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
+    - host name: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
 The above YAML would expose port `8080` of our `helloworld` pods on the HTTP port of the provisioned Elastic Load Balancer (ELB).
@@ -83,7 +83,7 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
+    - host name: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
 ### Customizing the external load balancer
@@ -130,9 +130,9 @@ The second annotation specifies which protocol a pod speaks. For HTTPS and SSL, 
 
 Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http` requires changing `controller.service.targetPorts.https` to `http` in your ingress nginx controller configuration.
 
-HTTP and HTTPS will select layer 7 proxying: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
+HTTP and HTTPS will select layer 7 proxy: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
 
-TCP and SSL will select layer 4 proxying: the ELB will forward traffic without modifying the headers.
+TCP and SSL will select layer 4 proxy: the ELB will forward traffic without modifying the headers.
 In a mixed-use environment where some ports are secured and others are left unencrypted, the following annotations may be used:
 
 ```yaml
@@ -143,7 +143,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443,8443"
 ```
 
-In the above example, if the service contained three ports, `80`, `443`, and `8443`, then `443` and `8443` would use the SSL certificate, but `80` would just be proxied HTTP.
+In the above example, if the service contained three ports, `80`, `443`, and `8443`, then `443` and `8443` would use the SSL certificate, but `80` would just be a HTTP proxy.
 
 #### Access logs on AWS
 
@@ -182,7 +182,7 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
     # The time, in seconds, that the connection is allowed to be idle (no data has
-    # been sent over connection) before it is closed by the load balancer.
+    # been sent over connection) before it's closed by the load balancer.
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
     # Specifies whether cross-zone load balancing is enabled for the load balancer.
     service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "environment=prod,owner=devops"
@@ -220,7 +220,7 @@ spec:
 
 Network load balancers use [subnet discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
 
-With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by nameTag or subnetID:
+With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by `nameTag` or `subnetID`:
 
 ```yaml
 metadata:
@@ -232,7 +232,7 @@ Multiple subnets can be specified but each has to be in its own availability zon
 
 #### Changing AWS NLBs configuration
 
-Some parameters on AWS Load Balancers (LBs) cannot be updated gracefully. When these options are changed by updating the corresponding `Service` object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
+Some parameters on AWS Load Balancers (LBs) can't be updated gracefully. When these options are changed by updating the corresponding `Service` object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
 
 To avoid downtime, we can create an additional Kubernetes `Service` of type `LoadBalancer`, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original `Service` can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding `Service` can be deleted.
 
@@ -240,7 +240,7 @@ To avoid downtime, we can create an additional Kubernetes `Service` of type `Loa
 
 1. Identify the LoadBalancer Service: Begin by identifying the Kubernetes Service of type LoadBalancer that requires parameter changes.
 
-2. Prepare a temporary replacement: Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The ingress controller (e.g., nginx-ingress-controller) is agnostic to the source of its requests, ensuring that this process does not disrupt ongoing operations.
+2. Prepare a temporary replacement: Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The ingress controller (for example ingress nginx controller) is agnostic to the source of its requests, ensuring that this process doesn't disrupt ongoing operations.
 
 3. Redirect traffic to the temporary LoadBalancer service: Once the temporary Service is set up and the new LoadBalancer can handle traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This seamlessly directs traffic originally intended for the old LoadBalancer to the new temporary one.
 
@@ -264,11 +264,11 @@ When creating a service of type `LoadBalancer`, Kubernetes normally allocates no
 
 In this so called target type `instance` the AWS Network Load Balancer by default preserves the client IP. Together with `externalTrafficPolicy: Local` your service will be able to see the untouched source IP address of your client. This is - theoretically - possible, because the traffic back to your client passes the AWS network and the AWS Network Load Balancer is probably a part of this, so can keep track of responses and handle them.
 
-This works perfectly fine for public client IP addresses, but gets a bit difficult especially for traffic egressing from nodes of the same cluster to internally addressed AWS Network Load Balancers:
+This works perfectly fine for public client IP addresses, but gets a bit difficult especially for traffic out from nodes of the same cluster to internally addressed AWS Network Load Balancers:
 
-Imagine a pod requesting your AWS Network Load Balancer. The packet hits the load balancer using the node's IP it is running on. This source IP is not getting changed. If the target pod of the service called is running on the same node, the traffic is passing the load balancer and getting sent back to the same node. This node then only sees traffic coming from "somewhere else" with its own IP address. Suspicious, isn't it? Indeed! And because of this the traffic is getting dropped. In the end the whole connection (if TCP) won't be established and simply times out on the client side (both TCP & UDP).
+Imagine a pod requesting your AWS Network Load Balancer. The packet hits the load balancer using the node's IP it's running on. This source IP isn't getting changed. If the target pod of the service called is running on the same node, the traffic is passing the load balancer and getting sent back to the same node. This node then only sees traffic coming from "somewhere else" with its own IP address. Suspicious, isn't it? Indeed! And because of this the traffic is getting dropped. In the end the whole connection (if TCP) won't be established and simply times out on the client side (both TCP & UDP).
 
-This whole circumstance is called "Martian Packets". If you are relying on accessing an internal AWS Network Load Balancer from inside the same cluster, you sadly need to disable the client IP preservation of your AWS Network Load Balancer by adding the following annotation:
+This whole circumstance is called `Martian Packets.` If you are relying on accessing an internal AWS Network Load Balancer from inside the same cluster, you sadly need to disable the client IP preservation of your AWS Network Load Balancer by adding the following annotation:
 
 ```yaml
 metadata:
@@ -282,23 +282,23 @@ See [Target groups for your Network Load Balancers: Client IP preservation](http
 
 ##### Health Checks failing when using PROXY protocol and `externalTrafficPolicy: Local`
 
-The before mentioned limitation directly leads us the next pitfall: One could think "well, if the integrated client IP preservation is not working, I can still use PROXY protocol". In theory and at least for the Kubernetes integrated Cloud controller this should work. In theory.
+The before mentioned limitation directly leads us the next pitfall: One could think "well, if the integrated client IP preservation isn't working, I can still use PROXY protocol". In theory and at least for the Kubernetes integrated Cloud controller this should work. In theory.
 
-In reality we need to step back and take a look at how health checks are being implemented with `externalTrafficPolicy: Local`: By default and with `externalTrafficPolicy: Cluster` the AWS Network Load Balancer sends its health check requests to the same port it's sending traffic to: The traffic ports defined in the Kubernetes service. From there they are getting answered by the pods backing your service.
+In reality we need to step back and take a look at how health checks are being implemented with `externalTrafficPolicy: Local`: By default and with `externalTrafficPolicy: Cluster` the AWS Network Load Balancer sends its health check requests to the same port it's sending traffic to: The traffic ports defined in the Kubernetes service. From there they're getting answered by the pods backing your service.
 
 Now, when enabling PROXY protocol, AWS assumes your service is able to understand PROXY protocol for both, traffic and health checks. And this is what happens for services using `externalTrafficPolicy: Cluster` with PROXY protocol enabled: AWS is using it for both the traffic and the health check because in the end and if not configured otherwise by using annotations, they end up on the same port.
 
-But things change when using `externalTrafficPolicy: Local`: Local means the traffic hitting a node on the allocated traffic node port stays on the same node. Therefore only nodes running at least one pod of your service are eligible targets for the AWS Network Load Balancer's target group as other nodes fail to respond to its health checks.
+But things change when using `externalTrafficPolicy: Local`: Local means the traffic hitting a node on the allocated traffic node port stays on the same node. Therefore only nodes running at least one pod of your service are eligible targets for the target group of the AWS Network Load Balancer as other nodes fail to respond to its health checks.
 
-Since the health check might get false negative when two pods are running on the same node and one of them is not healthy (anymore), Kubernetes allocates a separate health check node port and configures it in the AWS Network Load Balancer. This health check node port and requests hitting it is handled by `kube-proxy` or its replacement (Cilium in our case). Unfortunately both of them are not able to handle PROXY protocol and therefore all health checks will fail starting the moment you enable PROXY protocol in your AWS Network Load Balancer in conjunction with `externalTrafficPolicy: Local`.
+Since the health check might get false negative when two pods are running on the same node and one of them isn't healthy (anymore), Kubernetes allocates a separate health check node port and configures it in the AWS Network Load Balancer. This health check node port and requests hitting it's handled by `kube-proxy` or its replacement (Cilium in our case). Unfortunately both of them aren't able to handle PROXY protocol and therefore all health checks will fail starting the moment you enable PROXY protocol in your AWS Network Load Balancer in conjunction with `externalTrafficPolicy: Local`.
 
 At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster, except of using PROXY protocol and `externalTrafficPolicy: Cluster` which leads to the AWS Network Load Balancer balancing traffic across all nodes and adding an extra hop for distribution inside the cluster.
 
 ##### Security Group configuration on internal AWS Network Load Balancers
 
-Last but not least there is one thing, you should take care of, left. If you are not accessing an internal AWS Network Load Balancer from inside your cluster and therefore can actually use the integrated client IP preservation, you might still want to access this load balancer from other internal sources, which is totally fine and working.
+Last but not least there is one thing, you should take care of, left. If you aren't accessing an internal AWS Network Load Balancer from inside your cluster and therefore can actually use the integrated client IP preservation, you might still want to access this load balancer from other internal sources, which is totally fine and working.
 
-But since their source IP addresses are not getting changed, they are hitting your nodes with their original IP addresses. This can become a problem when using the default Security Group configuration for your nodes. By default an AWS Network Load Balancer adds exceptions for both its own IP addresses and, if public, the internet (0.0.0.0/0). Unfortunately and in the case of internal AWS Network Load Balancer with client IP preservation enabled, your traffic matches none of them. Therefore you might need to manually add the source IP addresses of your other internal services accessing the load balancer to the nodes' Security Group configuration.
+But since their source IP addresses aren't getting changed, they're hitting your nodes with their original IP addresses. This can become a problem when using the default Security Group configuration for your nodes. By default an AWS Network Load Balancer adds exceptions for both its own IP addresses and, if public, the internet (0.0.0.0/0). Unfortunately and in the case of internal AWS Network Load Balancer with client IP preservation enabled, your traffic matches none of them. Therefore you might need to manually add the source IP addresses of your other internal services accessing the load balancer to the nodes' Security Group configuration.
 
 ---------------------------------------------------
 
