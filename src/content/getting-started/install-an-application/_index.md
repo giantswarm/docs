@@ -46,8 +46,7 @@ First we will take a look to the existing applications already running in the cl
 Ensure you are logged into the management cluster.
 
 ```nohighlight
-kubectl gs -n org-namespace get apps | grep CLUSTER_ID
-
+$ kubectl gs -n org-namespace get apps
 NAME                                 VERSION          CREATED_AT   LAST_DEPLOYED        STATUS
 test01                                 2.0.0               13m          12m             deployed
 test01-app-operator                    6.11.0              12m          12m             deployed
