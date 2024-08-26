@@ -4,8 +4,9 @@ title: Running multiple ingress nginx controllers
 description: Deploy multiple ingress nginx controllers in a Kubernetes cluster to separate different ingress traffic classes.
 weight: 20
 menu:
-  main:
-    parent: advanced-ingress
+  principal:
+    parent: tutorials-connectivity-ingress
+    identifier: tutorials-connectivity-ingress-multi-ic
 user_questions:
   - How do I install multiple ingress nginx controllers?
   - How do I separate internal and external Services?

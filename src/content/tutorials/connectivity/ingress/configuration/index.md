@@ -3,8 +3,9 @@ title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the ingress NGINX controller.
 weight: 10
 menu:
-  main:
-    parent: advanced-ingress
+  principal:
+    parent: tutorials-connectivity-ingress
+    identifier: tutorials-connectivity-ingress-configuration
 user_questions:
   - How can I allow only certain IPs for ingress access?
   - How can I assign requests to different services, based on the URL path?

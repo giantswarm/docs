@@ -1,19 +1,20 @@
 ---
 linkTitle: Load balancer services
-title: Services of type LoadBalancer
+title: services of type LoadBalancer
 description: Learn how to expose services directly on cloud providers through services of type LoadBalancer.
 weight: 30
 menu:
-  main:
-    parent: advanced-ingress
+  principal:
+    parent: tutorials-connectivity-ingress
+    identifier: tutorials-connectivity-ingress-lb
 user_questions:
-  - How can I expose Services to the internet?
-  - How do I configure an Ingress Controller behind an ELB for traffic between services within the VPC?
-  - How do I configure an Ingress Controller behind an ELB that terminates SSL?
+  - How can I expose services to the internet?
+  - How do I configure an ingress controller behind an ELB for traffic between services within the VPC?
+  - How do I configure an ingress controller behind an ELB that terminates SSL?
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
   - How do I configure an internal Load Balancer on GCP?
-last_review_date: 2023-11-23
+last_review_date: 2024-08-26
 aliases:
   - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
@@ -22,17 +23,17 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
-Next to using the default Ingress NGINX Controller, on cloud providers (currently AWS, Azure and GCP), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
+Next to using the default ingress nginx controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using services of type `LoadBalancer`.
 
-You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional Ingress NGINX Controllers]({{< relref "/vintage/advanced/connectivity/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
+You can use this to [expose single services](#service-of-type-lb) to the internet. It is also possible, to [install additional ingress nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
 
-**Note** that this functionality cannot be used on premises (KVM).
+__Note__: that this functionality cannot be used on premises in most of the occasions.
 
 ## Exposing a single Service {#service-of-type-lb}
 
-Setting the `type` field of your service to `LoadBalancer` will result in your Service being exposed by a dynamically provisioned load balancer.
+Setting the `type` field of your service to `LoadBalancer` will result in your service being exposed by a dynamically provisioned load balancer.
 
-You can do this with any Service within your cluster, including Services that expose several ports.
+You can do this with any service within your cluster, including services that expose several ports.
 
 The actual creation of the load balancer happens asynchronously, and information about the provisioned balancer will be published in the Service’s `status.loadBalancer` field, like following:
 
@@ -56,11 +57,11 @@ status:
     - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
-The above YAML would expose port 8080 of our helloworld Pods on the http port of the provisioned ELB.
+The above YAML would expose port `8080` of our `helloworld` pods on the HTTP port of the provisioned Elastic Load Balancer (ELB).
 
 ### Exposing on a non-HTTP port and protocol
 
-You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort` field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the Ingress Controller.
+You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort` field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the ingress controller.
 
 Following example would set the ELB to TCP and port `8888`:
 
@@ -87,7 +88,7 @@ status:
 
 ### Customizing the external load balancer
 
-This section will focus on the custom options you can set on AWS Load Balancers via a Service of type `LoadBalancer`, but when available will also explain the settings for Azure Load Balancers. You can configure these options by adding annotations to the service.
+This section will focus on the custom options you can set on AWS load balancers via a service of type `LoadBalancer`, but when available will also explain the settings for Azure Load Balancers. You can configure these options by adding annotations to the service.
 
 #### Internal load balancers
 
@@ -108,16 +109,6 @@ metadata:
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 ```
-
-On GCP, an internal Load Balancer can be requested using the following annotation:
-
-```yaml
-metadata:
-  name: my-service
-  annotations:
-    networking.gke.io/load-balancer-type: "Internal"
-```
-
 #### SSL termination on AWS
 
 There are three annotations you can set to configure SSL termination.
@@ -137,7 +128,7 @@ service.beta.kubernetes.io/aws-load-balancer-backend-protocol: (https|http|ssl|t
 
 The second annotation specifies which protocol a pod speaks. For HTTPS and SSL, the ELB will expect the pod to authenticate itself over the encrypted connection.
 
-Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http` requires changing `controller.service.targetPorts.https` to `http` in your Ingress NGINX Controller configuration.
+Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http` requires changing `controller.service.targetPorts.https` to `http` in your ingress nginx controller configuration.
 
 HTTP and HTTPS will select layer 7 proxying: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
 
@@ -156,7 +147,7 @@ In the above example, if the service contained three ports, `80`, `443`, and `84
 
 #### Access logs on AWS
 
-Writing access logs to an S3 bucket is a standard feature of ELBs. For `LoadBalancer` Services this can also be configured using following annotations.
+Writing access logs to an S3 bucket is a standard feature of ELBs. For `LoadBalancer` services this can also be configured using following annotations.
 
 ```yaml
 metadata:
@@ -218,16 +209,16 @@ metadata:
 
 AWS is in the process of replacing ELBs with NLBs (Network Load Balancers) and ALBs (Application Load Balancers). NLBs have a number of benefits over "classic" ELBs including scaling to many more requests.
 
-To be able to fully controll all NLB features, we're strongly recommend installing [AWS Load Balancer Controller](https://github.com/giantswarm/aws-load-balancer-controller-app) as the Kubernetes in-tree AWS Load Balancer implementation only supports [annotations for classic ELBs](https://github.com/kubernetes/kubernetes/blob/v1.26.0/staging/src/k8s.io/legacy-cloud-providers/aws/aws.go#L105-L246).
+To be able to fully control all NLB features, we're strongly recommend installing [AWS Load Balancer controller](https://github.com/giantswarm/aws-load-balancer-controller-app) as the Kubernetes in-tree AWS Load Balancer implementation only supports [annotations for classic ELBs](https://github.com/kubernetes/kubernetes/blob/v1.26.0/staging/src/k8s.io/legacy-cloud-providers/aws/aws.go#L105-L246).
 
-The *AWS Load Balancer Controller* reconciles `Services` that have the `spec.loadBalancerClass` field defined:
+The *AWS Load Balancer controller* reconciles `services` that have the `spec.loadBalancerClass` field defined:
 
 ```yaml
 spec:
   loadBalancerClass: service.k8s.aws/nlb
 ```
 
-Network load balancers use [Subnet Discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
+Network load balancers use [subnet discovery](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/) to attach to a suitable subnet.
 
 With the following [annotation](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/#subnets) the subnet can be specified either by nameTag or subnetID:
 
@@ -245,21 +236,21 @@ Some parameters on AWS Load Balancers (LBs) cannot be updated gracefully. When t
 
 To avoid downtime, we can create an additional Kubernetes `Service` of type `LoadBalancer`, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original `Service` can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding `Service` can be deleted.
 
-#### Process for updating parameters in LoadBalancer Services
+#### Process for updating parameters in LoadBalancer services
 
-1. **Identify the LoadBalancer Service:** Begin by identifying the Kubernetes Service of type LoadBalancer that requires parameter changes.
+1. Identify the LoadBalancer Service: Begin by identifying the Kubernetes Service of type LoadBalancer that requires parameter changes.
 
-2. **Prepare a temporary replacement:** Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The Ingress Controller (e.g., nginx-ingress-controller) is agnostic to the source of its requests, ensuring that this process does not disrupt ongoing operations.
+2. Prepare a temporary replacement: Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The ingress controller (e.g., nginx-ingress-controller) is agnostic to the source of its requests, ensuring that this process does not disrupt ongoing operations.
 
-3. **Redirect traffic to the temporary LoadBalancer service:** Once the temporary Service is set up and the new LoadBalancer can handle traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This seamlessly directs traffic originally intended for the old LoadBalancer to the new temporary one.
+3. Redirect traffic to the temporary LoadBalancer service: Once the temporary Service is set up and the new LoadBalancer can handle traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This seamlessly directs traffic originally intended for the old LoadBalancer to the new temporary one.
 
-4. **Update the original Service:** Apply the configuration changes to the original Service in the Kubernetes cluster.
+4. Update the original Service: Apply the configuration changes to the original Service in the Kubernetes cluster.
 
-5. **Await propagation:** Allow time for this change to propagate through the provider's API.
+5. Await propagation: Allow time for this change to propagate through the provider's API.
 
-6. **Switch back the DNS:** Now, revert the DNS entry back to the original LoadBalancer. This completes the process, ensuring that traffic is handled as expected and the immutable parameters have been successfully updated.
+6. Switch back the DNS: Now, revert the DNS entry back to the original LoadBalancer. This completes the process, ensuring that traffic is handled as expected and the immutable parameters have been successfully updated.
 
-7. **Clean up:** Once the temporary LoadBalancer is drained and no traffic passes through it, remove the temporary Service.
+7. Clean up: Once the temporary LoadBalancer is drained and no traffic passes through it, remove the temporary Service.
 
 Always ensure to closely monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
 
@@ -291,7 +282,7 @@ See [Target groups for your Network Load Balancers: Client IP preservation](http
 
 ##### Health Checks failing when using PROXY protocol and `externalTrafficPolicy: Local`
 
-The before mentioned limitation directly leads us the next pitfall: One could think "well, if the integrated client IP preservation is not working, I can still use PROXY protocol". In theory and at least for the Kubernetes integrated Cloud Controller this should work. In theory.
+The before mentioned limitation directly leads us the next pitfall: One could think "well, if the integrated client IP preservation is not working, I can still use PROXY protocol". In theory and at least for the Kubernetes integrated Cloud controller this should work. In theory.
 
 In reality we need to step back and take a look at how health checks are being implemented with `externalTrafficPolicy: Local`: By default and with `externalTrafficPolicy: Cluster` the AWS Network Load Balancer sends its health check requests to the same port it's sending traffic to: The traffic ports defined in the Kubernetes service. From there they are getting answered by the pods backing your service.
 
@@ -313,9 +304,8 @@ But since their source IP addresses are not getting changed, they are hitting yo
 
 ## Further reading
 
-- [Running Multiple Ingress NGINX Controllers]({{< relref "/vintage/advanced/connectivity/ingress/multi-nginx-ic/index.md" >}})
-- [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
-- [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
-- [Running Multiple Ingress NGINX Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
-- [Deploying the Ingress NGINX Controller]({{< relref "/vintage/getting-started/connectivity/ingress-controller" >}})
-- [Google GCP LoadBalancer Service parameters](https://cloud.google.com/kubernetes-engine/docs/concepts/service-load-balancer-parameters)
+- [Running Multiple ingress nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}})
+- [services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
+- [AWS Load Balancer controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
+- [Running Multiple ingress nginx controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
+- [Deploying the ingress nginx controller]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}})
