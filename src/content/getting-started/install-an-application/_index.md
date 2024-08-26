@@ -25,7 +25,7 @@ In general, you can manage `App` CRs with any tool that can communicate with the
 
 First of all, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
-The App CRs are stored in a organization namespace you are part of, together with the cluster resources. You can list the organizations by running the following command:
+The `App` CRs are stored in an organization namespace, together with the cluster resources. Ensure you are logged into the management cluster. You can list the organizations by running the following command:
 
 ```nohighlight
 kubectl gs get organizations
