@@ -105,7 +105,7 @@ Here are the mandatory steps to create the required IAM resources, but we advoca
 
 ### Controller permissions {#iam-capa-controller-role}
 
-#### 1. Create all policies for the CAPA controller {#iam-capa-controller-policies}
+#### 1. Create all policies for the Cluster API controller {#iam-capa-controller-policies}
 
 Open the [IAM section](https://console.aws.amazon.com/iam/home) of the AWS console and go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection.
 
