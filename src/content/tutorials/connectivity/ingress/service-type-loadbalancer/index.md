@@ -281,7 +281,7 @@ See [Target groups for your Network Load Balancers: Client IP preservation](http
 
 ##### Health Checks failing when using PROXY protocol and `externalTrafficPolicy: Local`
 
-The before mentioned limitation directly leads us the next pitfall: One could think "well, if the integrated client IP preservation isn't working, I can still use PROXY protocol". In theory and at least for the Kubernetes integrated Cloud controller this should work. In theory.
+The before mentioned limitation directly leads us the next pitfall: One could think "well, if the integrated client IP preservation isn't working, it can still use PROXY protocol". In theory and at least for the Kubernetes integrated Cloud controller this should work. In theory.
 
 In reality we need to step back and take a look at how health checks are being implemented with `externalTrafficPolicy: Local`: By default and with `externalTrafficPolicy: Cluster` the AWS Network Load Balancer sends its health check requests to the same port it's sending traffic to: The traffic ports defined in the Kubernetes service. From there they're getting answered by the pods backing your service.
 
