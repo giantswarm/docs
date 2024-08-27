@@ -13,10 +13,6 @@ user_questions:
   - How do I override the NodePorts on KVM Ingresses?
   - How do I configure Ingress NGINX Controller to allow weak ciphers?
 last_review_date: 2023-11-23
-aliases:
-  - /advanced/connectivity/ingress/multi-nginx-ic
-  - /guides/multi-nginx/
-  - /advanced/multi-nginx/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---

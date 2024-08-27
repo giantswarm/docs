@@ -42,7 +42,7 @@ One of the key tools we offer is the [rbac-bootstrap-app](https://github.com/gia
 When implementing authorization for your workload cluster, consider the following best practices:
 
 - Implement the principle of least privilege: Assign the minimum necessary permissions to users and groups.
-- Regularly review and audit permissions to ensure they remain appropriate.
+- Frequently review and audit permissions to ensure they remain appropriate.
 - Use group-based access control where possible for easier management.
 - Leverage OIDC integration for enhanced security and simplified user management.
 
