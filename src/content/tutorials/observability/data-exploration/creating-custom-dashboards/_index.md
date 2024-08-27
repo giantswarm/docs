@@ -21,7 +21,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-You can find in [your installations Grafana]({{< relref "../accessing-grafana" >}}) a set of out-of-the-box dashboards provided by Gaint Swarm. However these default dashboards might not satisfy your specific observability requirements or your apps or clusters unique context. This is why the Observability Platform allows you to create your own dashboards in self-service.
+You can find in [your installations Grafana]({{< relref "../accessing-grafana" >}}) a set of out-of-the-box [dashboards provided by Giant Swarm](https://github.com/giantswarm/dashboards). However these default dashboards might not satisfy your specific observability requirements or your apps or clusters unique context. This is why the Observability Platform allows you to create your own dashboards in self-service.
 
 ## Creating your own dashboard
 
