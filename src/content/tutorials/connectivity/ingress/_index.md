@@ -9,6 +9,8 @@ menu:
 last_review_date: 2024-08-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
+aliases:
+  - /advanced/connectivity/ingress
 user_questions:
   - How do I expose my workloads to the internet using an ingress?
 ---
