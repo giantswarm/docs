@@ -8,7 +8,7 @@ menu:
     identifier: tutorials-connectivity-ingress-ic
 last_review_date: 2024-08-26
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-cabbage
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How can I connect my applications to the internet using an ingress controller?
 ---
