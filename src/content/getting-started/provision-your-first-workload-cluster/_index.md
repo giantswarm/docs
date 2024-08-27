@@ -167,7 +167,6 @@ __Warning__: Note how our example commands use the fully qualified Custom Resour
 
 Use the login command to generate a certificate valid for the workload cluster. As value for `--certificate-group`, you can use `system:masters`. More information about group certificates can be found in [Kubernetes RBAC: Default roles and role bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-
 ```sh
 kubectl gs login gs-wombat \
   --workload-cluster o8r3r \
