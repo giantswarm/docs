@@ -266,7 +266,7 @@ To use an existing service that provides authentication, the ingress rule can be
 
 This functionality is based on the [`auth_request`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) module, which expects a `2xx` response code from the external service if the access is allowed and `401` or `403` if denied.
 
-###  Cross-Origin Resource Sharing
+### Cross-Origin Resource Sharing
 
 To enable Cross-Origin Resource Sharing (CORS) in an ingress rule add the annotation `nginx.ingress.kubernetes.io/enable-cors: "true"`.
 
