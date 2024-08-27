@@ -1,7 +1,6 @@
 ---
-title: Create a workload cluster and install applications
-linkTitle: Provision your first workload cluster
-description: Experience the steps to configure and provision your first workload cluster using the platform API.
+title: Create a first workload cluster
+description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 40
 last_review_date: 2024-08-21
 menu:
@@ -169,7 +168,6 @@ __Warning__: Note how our example commands use the fully qualified Custom Resour
 ## Step 3: Log in to the workload cluster
 
 Use the login command to generate a certificate valid for the workload cluster. As value for `--certificate-group`, you can use `system:masters`. More information about group certificates can be found in [Kubernetes RBAC: Default roles and role bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
-
 
 ```sh
 kubectl gs login gs-wombat \
