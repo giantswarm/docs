@@ -8,13 +8,13 @@ menu:
     identifier: tutorials-connectivity-ingress-configuration
 user_questions:
   - How can I allow only certain IPs for ingress access?
-  - How can I assign requests to different services, based on the URL path?
+  - How can I assign requests to different services, based on the address path?
   - How can I configure ingress to use HTTPS when connecting to my internal service?
   - How can I configure basic authentication in an ingress resource?
   - How can I configure ingress to prevent DDoS attacks?
-  - How can I configure request URL rewrites in the ingress resource?
+  - How can I configure request address rewrites in the ingress resource?
   - How can I configure ingress so requests of one session reach the same backend?
-  - How can I connect several services in one ingress, based on the URL path?
+  - How can I connect several services in one ingress, based on the address path?
   - How can I define several ingresses in one ingress resource?
   - How can I disable the redirect to HTTPS in the ingress configuration?
   - How can I enable CORS headers in the ingress resource?
@@ -272,7 +272,7 @@ To enable Cross-Origin Resource Sharing (CORS) in an ingress rule add the annota
 
 ### Rewrite
 
-In some scenarios the exposed URL in the backend service differs from the specified path in the ingress rule. Without a rewrite any request will return 404. To circumvent this you can set the annotation `nginx.ingress.kubernetes.io/rewrite-target` to the path expected by the service.
+In some scenarios the exposed address in the backend service differs from the specified path in the ingress rule. Without a rewrite any request will return 404. To circumvent this you can set the annotation `nginx.ingress.kubernetes.io/rewrite-target` to the path expected by the service.
 
 This can for example be used together with path based routing, when the application expects to be on `/`:
 
@@ -460,7 +460,7 @@ __Warning__:
 
 We also allow setting `use-proxy-protocol: "true"/"false"`. This setting always applies globally for the ingress nginx controller.
 
-#### AWS / CAPA
+#### Cluster API for AWS
 
 The proxy protocol is enabled by default. It can be disabled by setting the `use-proxy-protocol` to `"false"`. For example:
 
@@ -508,7 +508,7 @@ data:
 
 The ingress nginx controller ships with the [ModSecurity](https://www.modsecurity.org) module, which can be used to enhance your ingress nginx controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
 
-While enabling those capabilities in the first step is quite easy, it might take some more effort to fine-tune it to your needs. Since, especially in blocking mode, even legal requests might get blocked; we recommend first running ModSecurity in the detection mode and observing its logs. At the same time, it already checks incoming traffic for malicious requests.
+While enabling those capabilities in the first step is easy, it might take some more effort to fine-tune it to your needs. Since, especially in blocking mode, even legal requests might get blocked; we recommend first running ModSecurity in the detection mode and observing its logs. At the same time, it already checks incoming traffic for malicious requests.
 
 The included configuration is split into two parts: One is used for the basic setup of the ModSecurity module, and the other is the [OWASP ModSecurity Core Rule Set](https://coreruleset.org), which provides a collection of rules against common and well-known attack vectors. While both can be enabled in parallel, the former will keep the whole ModSecurity in the detection above mode by default until explicitly configured otherwise:
 

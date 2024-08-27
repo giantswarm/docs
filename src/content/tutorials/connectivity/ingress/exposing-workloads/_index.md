@@ -17,7 +17,7 @@ Once you have some workload running on your cluster, you might want to access it
 
 ## Setting up a public ingress {#public-ingress}
 
-Before we explain how to set up ingress for a service, please read the next section carefully to make sure the guide matches your situation as a Giant Swarm user.
+Before we explain how to set up ingress for a service, please read the next section to make sure the guide matches your situation as a Giant Swarm user.
 
 ### Knowing your ingress base domain {#base-zone}
 
@@ -53,7 +53,7 @@ To make the rest of the tutorial match your situation, please set your ingress b
 
 ### Setting up ingress {#setting-up-ingress}
 
-Your workload cluster needs an ingress controller installed. If you haven't done that yet, follow [the installing an application guide]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}) for instructions.
+Your workload cluster needs an ingress controller installed. If you haven't done that yet, follow [the installing an application guide]({{< relref "/getting-startedg/install-an-application#install-ingress-controller" >}}) for instructions.
 
 You can expose services publicly by setting up a simple ingress. You can do this with an ingress manifest.
 
@@ -103,7 +103,7 @@ It will take a moment for the ingress to be created. You can look up the new ing
 kubectl -n NAMESPACE describe ing/INGRESS_NAME
 ```
 
-Once the ingress is up, you will be able to access your service publicly at a URL like this (again replacing the placeholders):
+Once the ingress is up, you will be able to access your service publicly at a address like this (again replacing the placeholders):
 
 ```nohighlight
 https://PREFIX.CLUSTER_ID.k8s.gigantic.io
@@ -113,7 +113,7 @@ For additional features and options, please see our documentation around [advanc
 
 ## Forwarding ports with `kubectl port-forward` {#port-forward}
 
-Forwarding a port with `kubectl` is fairly easy, however, it should be only used for debugging purposes.
+Forwarding a port with `kubectl` is easy, however, it should be only used for debugging purposes.
 
 To know more about forwarding TCP ports using `kubectl port-forward`, you should read the ["Use Port Forwarding to Access Applications in a Cluster"](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/) page in the official Kubernetes documentation.
 

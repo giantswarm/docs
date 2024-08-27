@@ -231,7 +231,7 @@ Multiple subnets can be specified but each has to be in its own availability zon
 
 #### Changing AWS NLBs configuration
 
-Some parameters on AWS Load Balancers (LBs) can't be updated gracefully. When these options are changed by updating the corresponding `Service` object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
+Some parameters on AWS Load Balancers (LBs) can't be updated correctly. When these options are changed by updating the corresponding `Service` object in the Kubernetes cluster, the AWS Load Balancer controller has to re-create either the Target Group or the entire Load Balancer. The first case implies a disruption of traffic during the initialization process of the targets. In the latter scenario, a new LB means a new domain, which requires updating the DNS records or any external load balancer configurations.
 
 To avoid downtime, we can create an additional Kubernetes `Service` of type `LoadBalancer`, with the required configuration. This will generate a new, temporary LB on AWS. Traffic is then rerouted to this temporary LB by switching the DNS entry. Once all sessions on the old LB have closed, the original `Service` can be replaced. The DNS entry is then switched back. Once the temporary AWS LB is drained, the corresponding `Service` can be deleted.
 
@@ -251,7 +251,7 @@ To avoid downtime, we can create an additional Kubernetes `Service` of type `Loa
 
 7. Clean up: Once the temporary LoadBalancer is drained and no traffic passes through it, remove the temporary Service.
 
-Always ensure to closely monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
+Always ensure to monitor the system throughout this entire process to minimize any unforeseen disruptions. Additionally, remember to perform these tasks during a maintenance window or a period of low traffic to minimize the impact on end users.
 
 #### Pitfalls and known limitations of AWS Network Load Balancers
 
@@ -289,7 +289,7 @@ Now, when enabling PROXY protocol, AWS assumes your service is able to understan
 
 But things change when using `externalTrafficPolicy: Local`: Local means the traffic hitting a node on the allocated traffic node port stays on the same node. Therefore only nodes running at least one pod of your service are eligible targets for the target group of the AWS Network Load Balancer as other nodes fail to respond to its health checks.
 
-Since the health check might get false negative when two pods are running on the same node and one of them isn't healthy (anymore), Kubernetes allocates a separate health check node port and configures it in the AWS Network Load Balancer. This health check node port and requests hitting it's handled by `kube-proxy` or its replacement (Cilium in our case). Unfortunately both of them aren't able to handle PROXY protocol and therefore all health checks will fail starting the moment you enable PROXY protocol in your AWS Network Load Balancer in conjunction with `externalTrafficPolicy: Local`.
+Since the health check might get false negative when two pods are running on the same node and one of them isn't healthy (anymore), Kubernetes allocates a separate health check node port and configures it in the AWS Network Load Balancer. This health check node port and requests hitting it's handled by `kube-proxy` or its replacement (Cilium in our case). Both of them aren't able to handle PROXY protocol and therefore all health checks will fail starting the moment you enable PROXY protocol in your AWS Network Load Balancer in conjunction with `externalTrafficPolicy: Local`.
 
 At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster, except of using PROXY protocol and `externalTrafficPolicy: Cluster` which leads to the AWS Network Load Balancer balancing traffic across all nodes and adding an extra hop for distribution inside the cluster.
 
@@ -297,7 +297,7 @@ At last this means there is currently no way of preserving the original client I
 
 Last but not least there is one thing, you should take care of, left. If you aren't accessing an internal AWS Network Load Balancer from inside your cluster and therefore can actually use the integrated client IP preservation, you might still want to access this load balancer from other internal sources, which is totally fine and working.
 
-But since their source IP addresses aren't getting changed, they're hitting your nodes with their original IP addresses. This can become a problem when using the default Security Group configuration for your nodes. By default an AWS Network Load Balancer adds exceptions for both its own IP addresses and, if public, the internet (0.0.0.0/0). Unfortunately and in the case of internal AWS Network Load Balancer with client IP preservation enabled, your traffic matches none of them. Therefore you might need to manually add the source IP addresses of your other internal services accessing the load balancer to the nodes' Security Group configuration.
+But since their source IP addresses aren't getting changed, they're hitting your nodes with their original IP addresses. This can become a problem when using the default Security Group configuration for your nodes. By default an AWS Network Load Balancer adds exceptions for both its own IP addresses and, if public, the internet (0.0.0.0/0). In the case of internal AWS Network Load Balancer with client IP preservation enabled, your traffic matches none of them. Therefore you might need to manually add the source IP addresses of your other internal services accessing the load balancer to the nodes' Security Group configuration.
 
 ---------------------------------------------------
 
