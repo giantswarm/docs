@@ -53,7 +53,7 @@ To make the rest of the tutorial match your situation, please set your ingress b
 
 ### Setting up ingress {#setting-up-ingress}
 
-Your workload cluster needs an ingress controller installed. If you haven't done that yet, follow [the installing an application guide]({{< relref "/getting-started/connectivity/install-an-application#install-ingress-controller" >}}) for instructions.
+Your workload cluster needs an ingress controller installed. If you haven't done that yet, follow [the installing an application guide]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}) for instructions.
 
 You can expose services publicly by setting up a simple ingress. You can do this with an ingress manifest.
 
