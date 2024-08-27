@@ -113,7 +113,7 @@ spec:
 
 __Note__: Your applications need to be capable of running on a non-root path either by default or by setting the base path in their configuration.
 
-### TLS
+### Encryption
 
 It's possible to configure TLS encryption in your ingress objects. You can either terminate TLS in your application by enabling SSL passthrough or let the ingress controller terminate it for you.
 
@@ -262,11 +262,11 @@ spec:
 
 ### External Authentication
 
-To use an existing service that provides authentication the ingress rule can be annotated with `nginx.ingress.kubernetes.io/auth-url` to indicate the URL where the HTTP request should be sent. Additionally it's possible to set `nginx.ingress.kubernetes.io/auth-method` to specify the HTTP method to use (GET or POST).
+To use an existing service that provides authentication, the ingress rule can be annotated with `nginx.ingress.kubernetes.io/auth-url` to indicate the address where the HTTP request should be sent. Additionally, it's possible to set `nginx.ingress.kubernetes.io/auth-method` to specify the HTTP method (GET or POST).
 
 This functionality is based on the [`auth_request`](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) module, which expects a `2xx` response code from the external service if the access is allowed and `401` or `403` if denied.
 
-### CORS
+###  Cross-Origin Resource Sharing
 
 To enable Cross-Origin Resource Sharing (CORS) in an ingress rule add the annotation `nginx.ingress.kubernetes.io/enable-cors: "true"`.
 
@@ -336,13 +336,13 @@ nginx.ingress.kubernetes.io/proxy-body-size: 8m
 
 ### Custom connection timeout
 
-ingress nginx controller allows to define the timeout that waits to close a connection (`keepalive`) with your workload. You can define a value in the main [`configmap`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#upstream-keepalive-timeout). The default value is `60` and it's measured in seconds.
+Ingress nginx controller allows you to define the timeout that waits to close a connection (`keepalive`) with your workload. You can define a value in the main [`configmap`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#upstream-keepalive-timeout). The default value is `60` and it's measured in seconds.
 
-There are many other timeouts that can be customized when configuring an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
+Many other timeouts can be customized when configuring an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-**Warning**: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
+__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
 
-### Session Affinity
+### Session affinity
 
 The annotation `nginx.ingress.kubernetes.io/affinity` enables and sets the affinity type in all upstreams of an ingress. This way, a request will always be directed to the same upstream server.
 
@@ -356,11 +356,11 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The ingress nginx controller creates an nginx configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the nginx configuration.
 
-The _configuration snippets_ through ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}).
+The _configuration snippets_ through ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you must set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}).
 
-Warning: We recommend enabling this option only if you TRUST users with permission to create ingress objects, as this may allow a user to add restricted configurations to the final `nginx.conf` file.
+__Warning__: We recommend enabling this option only if you TRUST users with permission to create ingress objects. Doing so may allow a user to add restricted configurations to the final `nginx.conf` file.
 
-Here is an example adding an `Expires` header to every response:
+Here is an example of adding an `Expires` header to every response:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -389,13 +389,13 @@ Make sure to use the exact annotation scheme `nginx.ingress.kubernetes.io/config
 
 In case you want to set up a general HTTP snippet you can define it at [ingress nginx controller ConfigMap](#configmap) level.
 
-## Global (per cluster) options {#configmap}
+## Global cluster options {#configmap}
 
 Your Giant Swarm installation comes with a default configuration for the ingress controller.
 
-You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `ingress-nginx-user-values` in the management cluster.
+You can override these defaults by setting your per-cluster configuration in a ConfigMap named `ingress-nginx-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the ingress nginx controller.
+The page [App configuration reference]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) contains more information on how to set user-defined configuration for the ingress nginx controller.
 
 ### Where's the user values ConfigMap
 
@@ -448,13 +448,13 @@ spec:
       namespace: NAMESPACE
 ```
 
-Any defaults that we override are visible in the following `values.yaml` file, under the `controller.config` key. Check this [`values.yaml`](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml) as an example.
+Any defaults we override are visible in the following `values.yaml` file under the `controller.config` key. Check this [`values.yaml`](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml) as an example.
 
-Don't copy all the defaults if you don't need to change them, that way we can adjust them in case they need to change.
+Don't copy all the defaults if you don't need to change them; that way, we can adjust them in case they need to be changed.
 
-Do make sure you look at the right tag of that repository, when reading this file check that the tag corresponds to the version of the ingress nginx controller running on your cluster.
+Please make sure you look at the right tag in that repository. When reading this file, check that the tag corresponds to the version of the ingress nginx controller running on your cluster.
 
-### Configure Proxy Protocol
+### Configure proxy protocol
 
 __Warning__:
 
@@ -506,11 +506,11 @@ data:
 
 ### Web Application Firewall
 
-ingress nginx controller ships with the [ModSecurity](https://www.modsecurity.org) module which can be used for enhancing your ingress nginx controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
+The ingress nginx controller ships with the [ModSecurity](https://www.modsecurity.org) module, which can be used to enhance your ingress nginx controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
 
-While enabling those capabilities in the first step is quite easy, it might take some more effort to actually fine-tune it to your needs. Since especially in blocking mode even legal requests might get blocked, we recommend to first run ModSecurity in the detection mode and observe its logs while it already checks incoming traffic for malicious requests.
+While enabling those capabilities in the first step is quite easy, it might take some more effort to fine-tune it to your needs. Since, especially in blocking mode, even legal requests might get blocked; we recommend first running ModSecurity in the detection mode and observing its logs. At the same time, it already checks incoming traffic for malicious requests.
 
-The included configuration is split into two parts: One is used for the basic setup of the ModSecurity module, the other is the [OWASP ModSecurity Core Rule Set](https://coreruleset.org) which provides a collection of rules against common and well-known attack vectors. While both can be enabled in parallel, the former will keep the whole ModSecurity in the before mentioned detection mode by default until explicitly configured otherwise:
+The included configuration is split into two parts: One is used for the basic setup of the ModSecurity module, and the other is the [OWASP ModSecurity Core Rule Set](https://coreruleset.org), which provides a collection of rules against common and well-known attack vectors. While both can be enabled in parallel, the former will keep the whole ModSecurity in the detection above mode by default until explicitly configured otherwise:
 
 ```yaml
 data:
@@ -556,9 +556,9 @@ data:
         enable-owasp-modsecurity-crs: "true"
 ```
 
-The above configuration snippet makes ModSecurity send its logs to `/dev/stdout`, so you can process them in the same way you're doing for access & error logs of ingress nginx controller itself. Additionally it disables [rule 920350](https://github.com/coreruleset/coreruleset/blob/v3.3/master/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf#L708-L736), which blocks direct access by IP, which is required for the Kubernetes probes to work. Without disabling this rule, your ingress nginx controller containers would start to repeatedly get killed the moment you activate the blocking mode. Apart from that, you would see a lot of spam regarding this false-positive in your logs even in detection mode.
+The above configuration snippet makes ModSecurity send its logs to `/dev/stdout`, so you can process them like you're doing for access & error logs of the ingress nginx controller itself. Additionally, it disables [rule 920350](https://github.com/coreruleset/coreruleset/blob/v3.3/master/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf#L708-L736), which blocks direct access by IP, which is required for the Kubernetes probes to work. Without disabling this rule, your ingress nginx controller containers would start to get killed the moment you activate the blocking mode repeatedly. You would also see a lot of spam regarding this false positive in your logs, even in detection mode.
 
-If you don't want to maintain your ModSecurity configuration inside this snippet, you can also mount it as a volume into the ingress nginx controller pods and include it the same way we're including the default configuration above. In the following example we first create a `ConfigMap` containing your custom configuration in the same namespace as the ingress nginx controller. This `ConfigMap` is then getting mounted into each of the ingress nginx controller pods by adding the `controller.extraVolumeMounts` user value:
+Suppose you don't want to maintain your ModSecurity configuration inside this snippet. In that case, you can also mount it as a volume into the ingress nginx controller pods and include it the same way we're including the default configuration above. In the following example, we first create a `ConfigMap` containing your custom configuration in the same namespace as the ingress nginx controller. This `ConfigMap` is then getting mounted into each of the ingress nginx controller pods by adding the `controller.extraVolumeMounts` user value:
 
 ```apacheconf
 # modsecurity.conf

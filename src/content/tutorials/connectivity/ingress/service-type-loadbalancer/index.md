@@ -29,13 +29,13 @@ You can use this to [expose single services](#service-of-type-lb) to the interne
 
 __Note__: that this functionality can't be used on premises in most of the occasions.
 
-## Exposing a single Service {#service-of-type-lb}
+## Exposing a single service {#service-of-type-lb}
 
-Setting the `type` field of your service to `LoadBalancer` will result in your service being exposed by a dynamically provisioned load balancer.
+Setting your service `type` field to `LoadBalancer` will expose it to a dynamically provisioned load balancer.
 
 You can do this with any service within your cluster, including services that expose several ports.
 
-The actual creation of the load balancer happens asynchronously, and information about the provisioned balancer will be published in the Service’s `status.loadBalancer` field, like following:
+The actual creation of the load balancer happens asynchronously, and information about the provisioned balancer will be published in the Service’s `status.loadBalancer` field, like the following:
 
 ```yaml
 apiVersion: v1
@@ -108,7 +108,6 @@ metadata:
   name: my-service
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-```
 #### SSL termination on AWS
 
 There are three annotations you can set to configure SSL termination.

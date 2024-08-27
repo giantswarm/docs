@@ -24,8 +24,7 @@ owner:
 
 ingress nginx controller handles [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
-It is possible to install multiple ingress controllers in a Kubernetes cluster. The ingress nginx controller can be [installed as an App on your cluster]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}).
-ingress nginx installs an `IngressClass` with default name `nginx` and controller value `k8s.io/ingress-nginx`.
+It's possible to install multiple ingress controllers in a Kubernetes cluster. The ingress nginx controller can be [installed as an App on your cluster]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}). Ingress nginx installs an `IngressClass` with the default name `nginx` and controller value `k8s.io/ingress-nginx`.
 
 Some use cases for this might be:
 
@@ -46,7 +45,7 @@ Further information on configuring ingress nginx controller can be found on the 
 
 ## Set the ingress class name of each ingress
 
-__Note__ that if you are running multiple ingress controllers you need to use the appropriate `ingressClassName` in your ingress resources, for example.
+__Note__: if you are running multiple ingress controllers, you need to use the appropriate `ingressClassName` in your ingress resources, for example.
 
 ```yaml
 ...
@@ -94,7 +93,7 @@ controller:
 
 Each ingress nginx controller App installation has to have an unique ingress class. ingress resources can then declare which ingress controller should be handling their route definition by referencing the respective ingress class in the `ingressClassName` field. The default ingress nginx controller ingress class is `nginx`. In the above example we configure `nginx-internal` as the second ingress nginx controller installation's ingress class.
 
-On AWS and Azure, ingress nginx controller's `LoadBalancer` Service is fronted by the cloud provider's managed load balancer service. By default, ingress nginx controller will have a public load balancer. Changing `controller.service.public` flag to `false` declares that an internal load balancer should be created instead.
+On AWS and Azure, ingress nginx controller's `LoadBalancer` service is fronted by cloud provider's managed load balancer service. By default, ingress nginx controller will have a public load balancer. Changing `controller.service.public` flag to `false` declares that an internal load balancer should be created instead.
 
 Similarly, the cloud load balancer created for each ingress nginx controller installation on AWS and Azure has to have an unique host name associated with it. The host name suffix is common for all and equals to the workload cluster's base domain name. The prefix is configurable via the `controller.service.subdomain` configuration property and defaults to `ingress`. In the example configuration for the second internal ingress nginx controller, it's override to `ingress-internal`.
 
