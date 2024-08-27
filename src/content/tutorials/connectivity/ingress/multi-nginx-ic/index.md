@@ -99,7 +99,7 @@ Similarly, the cloud load balancer created for each ingress nginx controller ins
 
 For ingress nginx controllers running on on-prem (KVM) workload clusters there's no out-of-the-box `LoadBalancer` service type support. Therefore, ingress nginx controller Service type defaults to `NodePort`. For every ingress nginx controller installation, one must assign a set of unique HTTP and HTTPS node ports. The default ingress nginx controller's HTTP and HTTPS node ports are `30010` and `30011`. The example sets `30012` and `30013` as overrides for the internal ingress nginx controller.
 
-More information on this topic can be found in the document [Services of type LoadBalancer]({{< relref "/tutorial/connectivity/ingress/service-type-loadbalancer" >}}).
+More information on this topic can be found in the document [Services of type LoadBalancer]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}}).
 
 It's also possible to only install a single ingress nginx controller and to delegate both external and internal traffic to it. Here is a minimal working example on how to achieve this goal.
 
