@@ -47,9 +47,3 @@ metadata:
 ### Limitations
 
 __Beware__ that the dashboard name must be unique so don't override one of your own.
-
-## Giant Swarm Dashboards
-
-For reference, you can take a look at the Giant Swarm provided dashboards in the [giantswarm/dashboards](https://github.com/giantswarm/dashboards) repository.
-
-You can easily track changes in Giant Swarm dashboards directly from the Home dashboard in Grafana or via the [changes and releases](/changes/dashboards/) section.
