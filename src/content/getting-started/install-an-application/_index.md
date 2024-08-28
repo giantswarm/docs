@@ -173,7 +173,7 @@ NAME                INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
 test01-hello-world   2.3.2               11s          8s              deployed
 ```
 
-Now you can access your workload cluster and check the app running and see which ingress URL has been generated:
+Now you can access your workload cluster, check the app running, and see which ingress address has been generated:
 
 ```nohighlight
 kubectl get ingress -n default
@@ -181,7 +181,7 @@ NAME          CLASS   HOSTS                                        ADDRESS      
 hello-world   nginx   cluster.provider.k8s.giantswam.io   ab49484.cn-north-1.elb.amazonaws.com.cn   80, 443   2m29s
 ```
 
-Sadly the URL isn't accessible because we've not passed the right domain to the ingress controller.
+Sadly, the address isn't accessible because we've not passed the right domain on to the ingress controller.
 
 ## Step 4: Configuring the right domain
 
