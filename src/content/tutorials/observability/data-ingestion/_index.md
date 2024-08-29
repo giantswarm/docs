@@ -6,10 +6,10 @@ menu:
   principal:
     parent: tutorials-observability
     identifier: tutorials-observability-data-ingestion
-last_review_date: 2024-07-15
+last_review_date: 2024-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - How can I ingest observability data?
+  - How to ingest observability data?
   - How to add new data into the observability platform?
 ---

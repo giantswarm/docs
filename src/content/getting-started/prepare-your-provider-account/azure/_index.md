@@ -62,8 +62,8 @@ Alternatively, you can create your role assignment with restricted access to spe
 
 #### Create a Deployment Environment
 
-* Download the template file [delegatedResourceManagement.json](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json). This file is left unchanged.
-* Download the parameters example file [delegatedResourceManagement.parameters.json](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) and fill in the required fields:
+* Download the template file [delegatedResourceManagement](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json). This file is left unchanged.
+* Download the parameters example file [delegatedResourceManagement.parameters](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) and fill in the required fields:
 
     * Replace `<GiantSwarmTenantID>` and `<GiantSwarmPrincipalID>` with the values provided by Giant Swarm's Account Engineer
     * Keep the value of `roleDefinitionId` if you are fine assigning the `Contributor` role. If a custom role is desired, please replace the value.
