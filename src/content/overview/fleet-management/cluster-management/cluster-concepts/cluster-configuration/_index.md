@@ -1,6 +1,6 @@
 ---
 title: Cluster configuration
-description: How cluster configuration works and how can it be customized.
+description: Explanation of how cluster configuration works in Cluster API and how you can customize it.
 weight: 10
 menu:
   principal:
@@ -18,6 +18,6 @@ The cluster configuration is managed thanks to the [app platform]({{< relref "/v
 
 In the cluster, there are 3 main configuration sources:
 
-- Default provider-independent app config (comes from cluster chart; if some app has this, then this should be probably moved directly to the app repo itself)
-- Provider-specific app config (comes from cluster-<provider>)
-- Customer-specified app config (come from cluster-<provider> Helm values, it is probably specified in customer's gitops repo).
+- Default provider-independent app configuration (comes from cluster chart; if some app has this, then this should probably be moved directly to the app repository itself)
+- Provider-specific app configuration (comes from cluster-<provider>)
+- Customer-specified app configuration (come from cluster-<provider> Helm values, it's probably specified in customer's GitOps repository).
