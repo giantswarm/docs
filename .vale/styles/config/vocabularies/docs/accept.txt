@@ -34,6 +34,7 @@ gsctl
 HTTP
 IP[s]?
 IPAM
+JSON
 Keybase
 Kinvolk
 krew

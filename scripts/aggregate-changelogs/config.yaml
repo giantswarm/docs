@@ -12,6 +12,8 @@ repositories:
     # config needed
   giantswarm/apiextensions:
     category: Management API
+  giantswarm/alloy-app:
+    category: Observability Platform
   giantswarm/aws-admission-controller:
     category: Management API
   giantswarm/azure-admission-controller:
@@ -42,12 +44,10 @@ repositories:
     category: Managed Apps
   giantswarm/coredns-app:
     category: Managed Apps
-  giantswarm/datadog-app:
-    category: Managed Apps
   giantswarm/dashboards:
     category: Dashboards
   giantswarm/dex-app:
-    category: Dashboards
+    category: Managed Apps
   giantswarm/docs:
     category: Documentation
     # Don't create useless PRs only for empty changelogs in `docs`
@@ -68,7 +68,7 @@ repositories:
   giantswarm/falco-app:
     category: Managed Apps
   giantswarm/fluent-logshipping-app:
-    category: Managed Apps
+    category: Observability Platform
   giantswarm/flux-app:
     category: Managed Apps
   giantswarm/gateway-api-app:
@@ -78,9 +78,9 @@ repositories:
   giantswarm/goldilocks-app:
     category: Managed Apps
   giantswarm/grafana-app:
-    category: Managed Apps
+    category: Observability Platform
   giantswarm/grafana-agent-app:
-    category: Managed Apps
+    category: Observability Platform
   giantswarm/happa:
     category: Web UI
   giantswarm/hello-world-app:
@@ -98,23 +98,23 @@ repositories:
   giantswarm/kong-app:
     category: Managed Apps
   giantswarm/kube-prometheus-stack-app:
-    category: Managed Apps
+    category: Observability Platform
   giantswarm/kubectl-gs:
     category: kubectl gs
   giantswarm/kyverno-app:
     category: Managed Apps
   giantswarm/kyverno-policies:
     category: Management API
+  giantswarm/loki-app:
+    category: Observability Platform
   giantswarm/management-cluster-admission:
     category: Management API
+  giantswarm/mimir-app:
+    category: Observability Platform
   giantswarm/prometheus-operator-app:
-    category: Managed Apps
-  giantswarm/loki-app:
-    category: Managed Apps
-  giantswarm/oauth2-proxy-app:
-    category: Managed Apps
+    category: Observability Platform
   giantswarm/promtail-app:
-    category: Managed Apps
+    category: Observability Platform
   giantswarm/rbac-bootstrap-app:
     category: Managed Apps
   giantswarm/rook-operator-app:
@@ -136,7 +136,9 @@ repositories:
   giantswarm/teleport-tbot:
     category: Managed Apps
   giantswarm/tempo-app:
-    category: Managed Apps
+    category: Observability Platform
+  giantswarm/pyroscope-app:
+    category: Observability Platform
   giantswarm/vertical-pod-autoscaler-app:
     category: Managed Apps
   giantswarm/zot:
