@@ -63,9 +63,9 @@ __Note__: We don't enforce the cluster prefix (here: `test01-`), but it's a good
 
 You can see that several applications already exist for the workload cluster `test01`. Most of the apps run directly in the workload cluster itself. The operator which actually deploys the applications to the workload clusters is running on the management cluster and is called `app-operator`. Learn more about this process [in this guide]({{< relref "/vintage/platform-overview/app-platform/" >}}).
 
-## Step 2: Install an ingress nginx controller
+## Step 2: Install an ingress nginx controller {#install-ingress-controller}
 
-Before we install our publicly accessible `hello-world` app, we need to have an ingress controller running in the cluster. The ingress controller is responsible for routing the incoming traffic to the correct service in the cluster and make it available to the public.
+Before installing the `hello-world` app, an ingress controller must be running in the cluster. The ingress controller is responsible for routing the incoming traffic to the correct service in the cluster and make it available publicly.
 
 To know which applications are available for customers we've extended the platform with two custom resources. First resource is the [`AppCatalog`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogs.application.giantswarm.io/" >}}) which is a recipient to collect application definitions that are available to install in the workload clusters. The second is the [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) which is the representation of the application definition which has a version defined.
 
@@ -94,38 +94,38 @@ giantswarm-ingress-nginx-3.9.2   giantswarm   ingress-nginx   3.9.2     1.11.2  
 ...
 ```
 
-The latest version of the ingress nginx controller is `3.9.2`. Now, we can install the controller just by creating an App CR. We can use the `kubectl gs template app` command to generate the App CR using the latest version from the previous command.
+The latest version of the ingress-nginx controller is `3.9.2` in this example. Next, template the `App` CR using the `kubectl gs template app` command, filling in the desired version:
 
 ```nohighlight
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=test01 \
-  --organization=giantswarm \
+  --organization=testing \
   --app-name=test01-ingress-nginx \
   --name=ingress-nginx \
   --target-namespace=kube-system \
   --version=3.9.2 > ingress-nginx.yaml
 ```
 
-You can push the generated App CR file to your GitOps pipeline or apply it directly to the cluster with the following command:
+You can push the generated `App` CR file to your GitOps repository, or apply it directly to the management cluster with the following command:
 
-```nohighlight
+```sh
 kubectl apply -f ingress-nginx.yaml
 ```
 
-After few second you should see the ingress controller running in the cluster:
+If you log into the workload cluster now, ingress controller should be running very soon:
 
 ```nohighlight
-kubectl get app ingress-nginx
+$ kubectl get app ingress-nginx
 NAME            INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
 test01-ingress-nginx   3.9.2               16s          14s             deployed
 ```
 
 ## Step 3: Deploy hello-world app
 
-The next step is deploying the `hello-world` application using the same approach as we did with the ingress controller.
+The next step is deploying the `hello-world` application using the same approach as for the ingress controller.
 
-First we list the versions with:
+First, list the versions with:
 
 ```nohighlight
 kubectl get appcatalogentries -n default -l app.kubernetes.io/name=hello-world
@@ -134,13 +134,13 @@ NAME                           CATALOG      APP NAME      VERSION   UPSTREAM VER
 giantswarm-hello-world-2.3.2   giantswarm   hello-world   2.3.2     0.2.1              72d
 ```
 
-And later we template the application to target the right organization and cluster:
+Then, template the application to target the right organization and workload cluster:
 
-```nohighlight
+```sh
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=test01 \
-  --organization=giantswarm \
+  --organization=testing \
   --name=test01-hello-world \
   --target-namespace=default \
   --version=2.3.2 > hello-world.yaml
@@ -165,10 +165,10 @@ spec:
 
 The `name` field is the name of the app in the catalog meanwhile `--app-name` designates the name of the app instance installed in the cluster. Keep in mind that the app name is subject to different length limits, depending on how the app is deployed. Using a name under 30 characters is recommended.
 
-After few seconds you will see the deployed status:
+After a few seconds, you should see the deployed status:
 
 ```nohighlight
-kubectl get app test01-hello-world
+$ kubectl get app -n org-testing test01-hello-world
 NAME                INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
 test01-hello-world   2.3.2               11s          8s              deployed
 ```
@@ -187,49 +187,53 @@ Sadly, the address isn't accessible because we've not passed the right domain on
 
 For every workload cluster there is a default wildcard record created automatically by our controllers. The domain is composed by the cluster name and the provider, the region and the base domain.
 
-```nohighlight
-kubectl get cm test01-cluster-values -ojsonpath="{.data.values}" | yq .baseDomain
-test01.capi.aws.k8s.gigantic.io
+```sh
+$ kubectl get cm -n org-testing test01-cluster-values -ojsonpath="{.data.values}" | grep baseDomain
+baseDomain: test01.capi.aws.k8s.gigantic.io
 ```
 
-With that information we can customize our `hello-world` app to use the right domain. Checking the [app values schema](https://github.com/giantswarm/hello-world-app/blob/main/helm/hello-world/values.schema.json) we can see the `host` property should override in `hosts` and `tls` sections.
+With that information, you can customize the `hello-world` app to use the right domain. The [app values schema](https://github.com/giantswarm/hello-world-app/blob/main/helm/hello-world/README.md) documents which values can be changed. Here, the `hosts` and `tls` sections are relevant.
 
-Lets create a file with the values we want to override:
+Create a file containing the Helm chart values:
 
-```nohighlight
-cat > hello-world-values.yaml <<EOL
+```sh
+cat > hello-world-values.yaml <<EOF
 ingress:
 hosts:
-- host: hello.test01.capi.pek.aws.k8s.adidas.com.cn
+- host: hello.test01.capi.aws.k8s.gigantic.io
   paths:
   - path: /
     pathType: Prefix
 tls:
 - secretName: hello-world-tls
   hosts:
-  - hello.test01.capi.pek.aws.k8s.adidas.com.cn
-EOL
+  - hello.test01.capi.aws.k8s.gigantic.io
+EOF
 ```
 
 Now we can template the app again passing the file reference:
 
-```nohighlight
+```sh
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=test01 \
-  --organization=giantswarm \
+  --organization=testing \
   --name=test01-hello-world \
   --target-namespace=default \
   --user-configmap=hello-world-values.yaml \
   --version=2.3.2 > hello-world.yaml
 ```
 
-We push the file or apply the changes to the platform API and wait a couple of seconds to see the changes:
+Again, push the generated `App` CR file to your GitOps repository, or apply it directly to the management cluster with the following command:
+
+```sh
+kubectl apply -f hello-world.yaml
+```
 
 ```nohighlight
-kubectl get app test01-hello-world
-NAME                                  INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
-test01-hello-world                     2.3.2               51m          8s             deployed
+$ kubectl get app test01-hello-world
+NAME                INSTALLED VERSION  CREATED AT  LAST DEPLOYED  STATUS
+test01-hello-world  2.3.2              51m         8s             deployed
 ```
 
 At this point you should be able to access the `hello-world` app using the domain you have configured. Check the `URL` value in the ingress resource has been updated to be sure the changes have been propagated. Now you should be able to see the hello world frontend.
@@ -238,12 +242,13 @@ At this point you should be able to access the `hello-world` app using the domai
 
 __Note__:You can read more about app platform configuration [here]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}).
 
-## Step 5: Deleting the hello-world app
+## Step 5: Deleting the hello-world app and ingress-nginx controller
 
-The deletion of an app is as simple as creating it. You can delete the app by running:
+The deletion of an app is as simple as creating it:
 
 ```nohighlight
 kubectl delete -f hello-world.yaml
+
 kubectl delete -f ingress-nginx.yaml
 ```
 
