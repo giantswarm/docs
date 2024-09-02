@@ -96,7 +96,7 @@ giantswarm-ingress-nginx-3.9.2   giantswarm   ingress-nginx   3.9.2     1.11.2  
 
 The latest version of the ingress-nginx controller is `3.9.2` in this example. Next, template the `App` CR using the `kubectl gs template app` command, filling in the desired version:
 
-```nohighlight
+```sh
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=test01 \
