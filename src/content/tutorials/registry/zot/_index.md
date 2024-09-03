@@ -168,6 +168,33 @@ Finally, enable it via the `"http"` key in the configuration file:
 
 Note how the `"policies"` key is used to define the access control for the repositories. The `"**"` key is a wildcard for all repositories. The `"actions"` key defines the allowed actions for the users.
 
+#### Exposing the registry
+
+In some use-cases you possibly want to expose Zot to be used by let's say workload clusters, so you manage only a single instance by sharing it across multiple workloads.
+
+To enable the ingress in the Giant Swarm managed chart, use these settings matching your cluster:
+
+```yaml
+ingress:
+  enabled: true
+  hosts:
+    - host: my-registry.example.org
+      paths:
+        - path: /
+  tls:
+    - secretName: my-registry-tls
+      hosts:
+        - my-registry.example.org
+```
+
+For private clusters, the ingress needs to be annotated differently from the default for Cert Manager to generate a proper certificate.
+
+```yaml
+ingress:
+  annotations:
+    cert-manager.io/cluster-issuer: private-giantswarm
+```
+
 ### Authenticating with the upstream registry
 
 In case you want to cache container images from private registries, Zot needs credentials for accessing them. In order to provide these credentials, add an entry to the `.secretFiles` key in chart values. Here is an example snippet:
