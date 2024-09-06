@@ -236,7 +236,9 @@ NAME                INSTALLED VERSION  CREATED AT  LAST DEPLOYED  STATUS
 test01-hello-world  2.3.2              51m         8s             deployed
 ```
 
-At this point you should be able to access the `hello-world` app using the domain you have configured. Check the `URL` value in the ingress resource has been updated to be sure the changes have been propagated. Now you should be able to see the hello world frontend.
+If both the ingress-nginx controller and the hello-world app are healthy in the workload cluster, you should be able to access the hello world web page at `https://test01.capi.aws.k8s.gigantic.io` (please fill in your own base domain).
+
+Based on the above `Ingress` definition in the Helm values, a TLS certificate should have been automatically generated using cert-manager, which is installed by default. Since the trusted certificate authority Let's Encrypt is used by default, your browser should show the web page as secure, without warnings.
 
 ![Hello world page](hello-world.png)
 
