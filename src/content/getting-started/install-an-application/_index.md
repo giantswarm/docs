@@ -3,7 +3,7 @@ title: Install an application using the app platform
 linkTitle: Install an application
 description: Add capabilities to your platform by deploying applications from our catalog.
 weight: 50
-last_review_date: 2024-08-23
+last_review_date: 2024-09-06
 menu:
   principal:
     parent: getting-started
@@ -134,65 +134,14 @@ NAME                           CATALOG      APP NAME      VERSION   UPSTREAM VER
 giantswarm-hello-world-2.3.2   giantswarm   hello-world   2.3.2     0.2.1              72d
 ```
 
-Then, template the application to target the right organization and workload cluster:
-
-```sh
-kubectl gs template app \
-  --catalog=giantswarm \
-  --cluster-name=test01 \
-  --organization=testing \
-  --name=test01-hello-world \
-  --target-namespace=default \
-  --version=2.3.2 > hello-world.yaml
-```
-
-Lets take a look at the `App CR` to learn main fields available:
-
-```yaml
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  name: test01-hello-world
-  namespace: org-giantswarm
-spec:
-  catalog: giantswarm
-  kubeConfig:
-    inCluster: false
-  name: hello-world
-  namespace: kube-system
-  version: 2.3.2
-```
-
-The `spec.name` field is the application's name in the catalog; meanwhile, 'metadata.name` designates the name of the instance installed in the cluster. [Read more information about the properties here]({{ relfer "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" }}).
-
-After a few seconds, you should see the deployed status:
-
-```nohighlight
-$ kubectl get app -n org-testing test01-hello-world
-NAME                INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
-test01-hello-world   2.3.2               11s          8s              deployed
-```
-
-Now you can access your workload cluster, check the app running, and see which ingress address has been generated:
-
-```nohighlight
-kubectl get ingress -n default
-NAME          CLASS   HOSTS                                        ADDRESS                                                                       PORTS     AGE
-hello-world   nginx   cluster.provider.k8s.giantswam.io   ab49484.cn-north-1.elb.amazonaws.com.cn   80, 443   2m29s
-```
-
-Sadly, the address isn't accessible because we've not passed the right domain on to the ingress controller.
-
-## Step 4: Configuring the right domain
-
-For every workload cluster there is a default wildcard record created automatically by our controllers. The domain is composed by the cluster name and the provider, the region and the base domain.
+To make our app accessible from Internet an [ingress]() should be defined with the right domain. By default every workload cluster comes with a default wildcard record created automatically by our controllers. The domain is composed by the cluster name and the provider, the region and the base domain.
 
 ```sh
 $ kubectl get cm -n org-testing test01-cluster-values -ojsonpath="{.data.values}" | grep baseDomain
 baseDomain: test01.capi.aws.k8s.gigantic.io
 ```
 
-With that information, you can customize the `hello-world` app to use the right domain. The [app values schema](https://github.com/giantswarm/hello-world-app/blob/main/helm/hello-world/README.md) documents which values can be changed. Here, the `hosts` and `tls` sections are relevant.
+With that information, you can extend the `hello-world` application manifest to use the right domain. Check the [application values schema](https://github.com/giantswarm/hello-world-app/blob/main/helm/hello-world/README.md) to see what values can be customized. Here, the `hosts` and `tls` sections are relevant.
 
 Create a file containing the Helm chart values:
 
@@ -211,7 +160,7 @@ tls:
 EOF
 ```
 
-Now we can template the app again passing the file reference:
+Then, template the application to target the right organization and workload cluster. Also the extra configuration is passed as argument.
 
 ```sh
 kubectl gs template app \
@@ -224,7 +173,39 @@ kubectl gs template app \
   --version=2.3.2 > hello-world.yaml
 ```
 
-Again, push the generated `App` CR file to your GitOps repository, or apply it directly to the management cluster with the following command:
+Lets take a look at the manifests generated to learn how they look like:
+
+```yaml
+apiVersion: v1
+data:
+  values: |
+    ingress:
+      ...
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: test01-hello-world-userconfig
+  namespace: org-testing
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: test01-hello-world
+  namespace: org-testing
+spec:
+  catalog: giantswarm
+  name: hello-world
+  namespace: kube-system
+  userConfig:
+    configMap:
+      name: test01-hello-world-userconfig
+      namespace: org-testing
+  version: 2.3.2
+```
+
+The `spec.name` field is the application's name in the catalog; meanwhile, 'metadata.name` designates the name of the instance installed in the cluster. [Read more information about the properties here]({{ relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" }}).
+
+Now let's push the file to your GitOps repository, or apply it directly to the platform API with the following command:
 
 ```sh
 kubectl apply -f hello-world.yaml
@@ -244,7 +225,33 @@ Based on the above `Ingress` definition in the Helm values, a TLS certificate sh
 
 __Note__:You can read more about app platform configuration [here]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}).
 
-## Step 5: Deleting the hello-world app and ingress-nginx controller
+After a few seconds, you should see the deployed status:
+
+```nohighlight
+$ kubectl get app -n org-testing test01-hello-world
+NAME                INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
+test01-hello-world   2.3.2               11s          8s              deployed
+```
+
+Now you can access your workload cluster, check the app running, and see which ingress address has been generated:
+
+```nohighlight
+kubectl get ingress -n default
+NAME          CLASS   HOSTS      ADDRESS      PORTS     AGE
+hello-world   nginx   hello.test01.capi.aws.k8s.gigantic.io   ab49484...   80, 443   2m29s
+```
+
+It's time to try to reach the application using the ingress:
+
+```sh
+$ curl -Is https://hello.test01.capi.aws.k8s.gigantic.io
+/ HTTP/1.1 200 OK
+/ Accept-Ranges: bytes ...
+```
+
+The `curl` request it's routed through the AWS load balancer to the ingress controller, which then forwards the request to the `hello-world` service.
+
+## Step 4: Deleting the hello-world app and ingress-nginx controller
 
 The deletion of an app is as simple as creating it:
 
