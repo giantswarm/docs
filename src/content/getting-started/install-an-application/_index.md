@@ -163,7 +163,7 @@ spec:
   version: 2.3.2
 ```
 
-The `name` field is the name of the app in the catalog meanwhile `--app-name` designates the name of the app instance installed in the cluster. Keep in mind that the app name is subject to different length limits, depending on how the app is deployed. Using a name under 30 characters is recommended.
+The `spec.name` field is the application's name in the catalog; meanwhile, 'metadata.name` designates the name of the instance installed in the cluster. [Read more information about the properties here]({{ relfer "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" }}).
 
 After a few seconds, you should see the deployed status:
 
