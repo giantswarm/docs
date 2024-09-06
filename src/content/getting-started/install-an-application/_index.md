@@ -256,4 +256,4 @@ kubectl delete -f ingress-nginx.yaml
 
 ## Next step
 
-After learn how to deploy an application in the workload cluster, lets bump into [a different connectivity options you can rely on within the platform]({{< relref "/getting-started/expose-your-app" >}}).
+After learning how to deploy an application in the workload cluster, let's dive into [in how networking works in your cluster and how to configure to harden your application]({{< relref "/getting-started/expose-your-app" >}}).
