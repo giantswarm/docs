@@ -1,0 +1,4 @@
+configmap:
+  ingress:
+    hosts:
+    - host: hello.fer01.capi.pek.aws.k8s.adidas.com.cn

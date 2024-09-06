@@ -1,8 +1,8 @@
 ---
-title: Understand connectivity options
+title: Control the application connectivity
 description: Understand how basic connectivity works in the platform and which options are available for exposing your app.
 weight: 60
-last_review_date: 2024-08-26
+last_review_date: 2024-09-01
 menu:
   principal:
     parent: getting-started
@@ -14,86 +14,91 @@ user_questions:
   - What are the options for service connectivity in the platform?
 ---
 
-By default, the workload clusters created by the platform expose the Kubernetes API endpoint publicly and the cluster workloads have internet access. It is what we called a `public` cluster. This guide focuses on understanding how these cluster's networking works and which options are available for managing your app's connectivity. In case you want to know more about `private clusters` read [this guide]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}).
+By default, the workload clusters created by the platform expose the Kubernetes API endpoint publicly, and the cluster workloads have internet access. It's what we call a `public` cluster. This guide focuses on understanding how these cluster's networking works and which options are available for managing your app's connectivity. In case you want to know more about `private clusters`, read [this guide]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}).
 
-The connectivity within the cluster is managed by the Container Network Interface (CNI) plugin. Our platform uses Cilium as network interface implementation. A part from offering connectivity between the workloads, Cilium also provides network security policies to control traffic between your applications.
+The Container Network Interface (CNI) plugin manages connectivity within the cluster. Our platform uses [Cilium](https://docs.cilium.io/en/stable/index.html) as a network interface implementation. In addition to offering connectivity between workloads, it also provides network security policies to control traffic between your applications.
 
-In this guide we give an overview and introduction of how to create and use these policies.
+In this guide, we give an overview and introduction to how to create and use these policies.
 
 ## Requirements
 
-First of all, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy `hello-world` application explained [here]({{< relref "/getting-started/install-an-application" >}}).
+First of all, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy the `hello-world` application explained [here]({{< relref "/getting-started/install-an-application" >}}).
 
 ## Step 1: Understand network policies
 
-By default, a exception of `kube-system` and `giantswarm` namespaces, all pods in the cluster are non-isolated and accept traffic from any source.
+By default, with an exception for `kube-system` and `giantswarm` namespaces, all pods in the cluster are non-isolated and accept traffic from any source.
 
-As soon as you have a `NetworkPolicy` resource applied that selects a certain group of pods, those pods become isolated and reject any traffic that is not allowed by any other `NetworkPolicy`.
+As soon as a `NetworkPolicy` resource is applied that selects a certain group of pods, those pods become isolated and reject any traffic that's not allowed by any other `NetworkPolicy`.
 
-Note that network policies are additive, so having two network policies that select the same pods will result in allowing both defined policies.
+Note that network policies are additive, so having two network policies that select the same pods will allow both defined policies.
 
-Keep in mind that a `NetworkPolicy` is applied to a particular namespace and only selects pods in that particular namespace.
+Keep in mind that a `NetworkPolicy` is applied to a particular namespace and only selects pods for that specific namespace.
 
 ### Network policy syntax
 
-The network policy resource is part of the API group `networking.k8s.io`. Currently, it is in version `v1`.
+The network policy resource is part of the API group `networking.k8s.io`. Currently, it's in version `v1`.
 
 The `spec` of the resource mainly consists of three parts:
 
 - `podSelector`: Use labels to select the group of pods for which the rules will be applied.
 
-- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to incoming and/or outgoing traffic. If it is not defined, then `Ingress` will be enabled by default and `Egress` only when there are rules defined.
+- `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine if the rules will be applied to incoming and/or outgoing traffic. If it's not defined, then `Ingress` will be enabled by default, and `Egress` will only be enabled when the rules are defined.
 
-- `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (Egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). That select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces or pod our target can talk to. The `ports` block defines which ports are affected by this the rule.
+- `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (Egress) and `ports` blocks. Each `from`/`to` block contains a range of IPs (`ipBlock`) and/or a list of namespaces selected by label (`namespaceSelector`) and/or a list of pods by label (`podSelector`). Select which IPs, namespaces or pods can talk to our target pod or to which IPs, namespaces, or pod our target can speak to. The `ports` block defines which ports are affected by this rule.
 
-An easy example to clarify the explained concepts
+### Hello-world example
+
+In our example, a `hello-world` application is running in the `default` namespace. It has a `NetworkPolicy` that allows traffic on port `8080` for the specific application.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: simple-policy
+  name: hello-world
   namespace: default
 spec:
+  ingress:
+  - ports:
+    - port: 8080
+      protocol: TCP
   podSelector:
     matchLabels:
-      app: target-app-who-is-applied-the-policy
+      app.kubernetes.io/instance: hello-world
+      app.kubernetes.io/name: hello-world
   policyTypes:
   - Ingress
   - Egress
-  ingress:
-  - from:
-    - ipBlock:
-        cidr: 172.17.0.0/16
-    - namespaceSelector:
-        matchLabels:
-          name: namespace-that-can-talk-to-my-app
-    - podSelector:
-        matchLabels:
-          app: pod-that-can-talk-to-my-app
-    ports:
-    - protocol: TCP
-      port: 6379
-  egress:
-  - to:
-    - ipBlock:
-        cidr: 10.0.0.0/24
-    - namespaceSelector:
-        matchLabels:
-          name: namespace-my-app-can-talk-to
-    - podSelector:
-        matchLabels:
-          app: pod-my-app-can-talk-to
-    ports:
-    - protocol: TCP
-      port: 5978
 ```
+
+Let's deploy a [debug-toolbok](https://github.com/giantswarm/debug-toolbox) to check the connectivity.
+
+```sh
+$ kubectl gs template app \
+  --catalog=giantswarm \
+  --organization=testing \
+  --cluster-name=fer01 \
+  --name=debug-toolbox --app-name=fer01-debug-toolbox \
+  --target-namespace=default \
+  --version=1.0.0 | kubectl apply -f -
+```
+
+Wait few seconds until the pod is up and running and then run the command below to check the connectivity.
+
+```sh
+$ kubectl debug-toolbox -- sh
+/ # curl -Is hello-world.default
+/ HTTP/1.1 200 OK
+/ Accept-Ranges: bytes ...
+
+```
+
+The avid reader will have wondered why you need a specific network policy for `hello-world` if there is no default deny policy limiting the traffic in the `default` namespace. The reason is because it's a good practice to ensure the application will work in environments where the default deny policy is in place. You can try removing the `hello-world` network policy and see that the application will still work.
 
 ## Step 2: Create a default network policy
 
-Since we like to follow the zero trust principle, we recommend creating a default deny policy for all namespaces. This way, you can control the traffic that goes in and out of your pods.
+Since the zero trust principle is well known and established widely in the industry, the recommendation is to deploy a default deny policy for all your namespaces. This way, you can control the traffic that goes in and out of your pods.
 
-You can create default policies for a namespace by creating a `NetworkPolicy` that selects all pods as follows:
+Let's create default policy for our `default` namespace by creating a `NetworkPolicy` that selects all pods as follows:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -107,158 +112,140 @@ spec:
   - Egress
 ```
 
-__Warning__: By default all clusters, contain a `default-deny` policy for sensitive namespaces like `giantswarm` and `kube-system`. To communicate with any pods in that namespace you need to explicitly create a network policy that allows it.
+The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`. Let's apply this policy to the `default` namespace and check hello-world application access.
 
-Note that the namespace needs to exist before you apply the network policy to it.
+```sh
+$ kubectl apply -f default-deny.yaml
+```
 
-The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`.
+Now if you remove the `hello-world` network policy, the application won't work anymore.
 
-## Step 3: Allow traffic to your app
+```sh
+$ kubectl delete netpol hello-world
+$ kubectl exec -it debug-toolbox -- sh
+/ curl -Is hello-world.default
+/ <TIMEOUT>
+```
 
-As we mentioned before, we harden the clusters restricting the communication with pods in `kube-system` and `giantswarm`. In case you need to allow communication with a running pod in one of those namespaces you have to explicitly declare it. For example:
+## Step 3: Allow DNS traffic
+
+As we mentioned before, we harden the clusters restricting the communication with pods in `kube-system` and `giantswarm` namespaces. In case you need to allow communication with a running pod in one of those namespaces you have to explicitly declare it. In the next example we enable the DNS traffic from the `debug-toolbox` pod:
 
 ```yaml
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: ksm-can-be-accessed-by-my-app
-  namespace: kube-system
-spec:
-  podSelector:
-    matchLabels:
-      app: kube-state-metrics
-  ingress:
-    - from:
-      - podSelector:
-          matchLabels:
-            app: my-app-that-needs-access-to-ksm
-      ports:
-        - protocol: TCP
-          port: 10301
-```
-
-To make it more visual, this is what the communication between namespaces will look like.
-
-![Network policies diagram](giant-swarm-network-policies-diagram.png)
-
-### Allowing specific pod to pod access
-
-In the following example, we allow traffic to pods labeled `role: backend` from pods with the `role: frontend` label and only on TCP port 6379.
-
-```yaml
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: backend-access
-spec:
-  podSelector:
-    matchLabels:
-      role: backend
-  ingress:
-    - from:
-      - podSelector:
-          matchLabels:
-            role: frontend
-      ports:
-        - protocol: TCP
-          port: 6379
-```
-
-You need to apply this policy to the namespace that the backend pods live in.
-
-```nohighlight
-kubectl -n <namespace> apply -f backend-access.yaml
-```
-
-### Allowing pod to pod access within a namespace
-
-In some cases, you may want to allow all intra-namespace communication. For this, you can use open Pod selectors that catch all pods.
-
-```yaml
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: intra-namespace
-  namespace: freeforall
-spec:
-  podSelector:
-  ingress:
-    - from:
-      - namespaceSelector:
-          matchLabels:
-            name: freeforall
-```
-
-Note that the namespace you apply this policy to needs to carry a label `name:` similar to the actual name key in its metadata:
-
-```yaml
-apiVersion: v1
-kind: namespace
-metadata:
-  name: freeforall
-  labels:
-    name: freeforall
-```
-
-After creating the namespace, you can then create the `NetworkPolicy`.
-
-```nohighlight
-kubectl apply -f freeforall-namespace.yaml
-kubectl apply -f intra-namespace-policy.yaml
-```
-
-## Step 4: Allow traffic to your app from outside the cluster
-
-In case you have publicly exposed a service through ingress and you have a `default-deny` policy in place or just want to limit that traffic to a specific port, you need a network policy like the following:
-
-```yaml
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: allow-external
+  name: debug-toolbox-dns
   namespace: default
 spec:
-  podSelector:
-    matchLabels:
-      app: web
-  ingress:
-  - from: []
-    ports:
-    - port: 80
-```
-
-The `allow-external` policy, described above, will allow any traffic (no matter if it's outside or inside your cluster) to the pods on port 80.
-
-In this guide we discussed different use-cases of limiting Pod communication with network policies, based on our best practices.
-
-## Step 5: Allow DNS traffic from my pod
-
-Once you have a default deny egress policy, the DNS traffic is also blocked. When you want to allow egress traffic for a specific application then you will need to allow DNS traffic too. You can use a network policy that targets just DNS like:
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-dns-for-my-app
-  podSelector:
-    matchLabels:
-      app: web
-  policyTypes:
-    - Egress
   egress:
-  - to:
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 1053
+      protocol: UDP
+    to:
     - namespaceSelector:
         matchLabels:
           name: kube-system
-    ports:
-    - protocol: UDP
-      port: 53
-    - protocol: UDP
-      port: 1053
+  podSelector:
+    matchLabels:
+      app: debug-toolbox
+  policyTypes:
+  - Egress
 ```
 
-__Warning__: By default clusters run CoreDNS listening on the port 1053 (due to security reasons). So you will need to include port `1053` on the list of ports.
+__Warning__: By default, clusters run CoreDNS listening on port 1053 (for security reasons). So, you will need to include port `1053` on the list of ports.
+
+Note that the policy is already deployed in the `default` namespace due to the chart enabled by default. It allows the DNS queries to be resolved like:
+
+```sh
+$ kubectl exec debug-toolbox -- nslookup hello-world
+Server:		172.31.0.10
+Address:	172.31.0.10:53
+
+Name:	hello-world.default.svc.cluster.local
+Address: 172.31.104.47
+```
+
+But removing the policy make it fail as following:
+
+```sh
+$ kubectl delete netpol debug-toolbox-dns
+$ kubectl exec debug-toolbox -- nslookup hello-world
+;; connection timed out; no servers could be reached
+```
+
+## Step 4: Allowing specific pod to pod access
+
+Doing a step further, you can allow specific pod to pod access. In the following example, we allow the `debug-toolbox` pod to access the `hello-world` pod on port `8080` only, any other traffic will be blocked.
+
+```yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-debug-toolbox-to-hello-world
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: hello-world
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: debug-toolbox
+      ports:
+        - port: 8080
+          protocol: TCP
+```
+
+Apply the policy and check the connectivity:
+
+```sh
+$ kubectl apply -f allow-debug-toolbox-to-hello-world.yaml
+$ kubectl exec -it debug-toolbox -- sh
+/ curl -Is hello-world.default
+/ HTTP/1.1 200 OK
+/ ...
+```
+
+### Step 5: Allowing pod to pod access within a namespace
+
+One last interesting scenario to explore is allowing pod-to-pod access within a namespace. In some cases, like in a test environment, you should enable all pods to communicate by default within the same namespace. In the following example, we allow pods to in the `default` namespace to communicate with each other.
+
+```yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-default-namespace
+  namespace: default
+spec:
+  podSelector:
+  ingress:
+ - from:
+ - namespaceSelector:
+          matchLabels:
+            name: default
+```
+
+Note that the namespace you apply this policy too needs to carry a label `name:` similar to the actual name key in its metadata:
+
+```sh
+$ kubectl label namespace default name=default
+```
+
+Now let's delete all network policies and apply the `allow-default-namespace` policy so we can verify it works:
+
+```sh
+kubectl delete netpol --all -n default
+kubectl apply -f allow-default-namespace.yaml
+$ kubectl exec -it debug-toolbox -- sh
+/ curl -Is hello-world.default
+/ HTTP/1.1 200 OK
+```
+
+We've learnt how network policies work and the peculiarities in Giant Swarm clusters. However, the ideal configuration is to have a default deny policy in all your namespaces and allow only the necessary traffic to your applications. This way, you can control the traffic in your cluster and avoid any security issues.
 
 ## Next step
 
-Since you learnt how to configure your application to communicate with other services, now lets dive on how [observe your application]({{< relref "/getting-started/observe-your-app" >}}).
+Since you learnt how to configure your application to communicate with other services, now let's dive into how [observe your application]({{< relref "/getting-started/observe-your-app" >}}).
