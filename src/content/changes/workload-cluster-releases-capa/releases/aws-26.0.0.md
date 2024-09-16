@@ -10,9 +10,9 @@ changes_entry:
   version: aws-26.0.0
   version_tag: aws-26.0.0
 date: '2024-06-26T09:00:00'
-description: Release notes for CAPA workload cluster release vaws-26.0.0, published
+description: Release notes for CAPA workload cluster release aws-26.0.0, published
   on 26 June 2024, 09:00.
-title: Workload cluster release vaws-26.0.0 for CAPA
+title: Workload cluster release aws-26.0.0 for CAPA
 ---
 
 ## Changes compared to v25.0.0
