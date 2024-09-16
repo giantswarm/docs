@@ -30,7 +30,7 @@
   </div>
   <div class="col-sm-12 col-md-8 base-content">
 
-    {{ if and (ne .Kind "page") (gt .Paginator.TotalPages 1) }}
+    {{ if and (ne .Kind "page") }}
       {{ partial "changes/list" . }}
     {{ else }}
       {{ partial "changes/single" . }}

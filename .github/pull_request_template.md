@@ -6,5 +6,5 @@
 
 - If you made content changes
 
-    - Run `make dev` to render and proofread content changes locally.
+    - Run `make lint dev` to render and proofread content changes locally.
     - Bump `last_review_date` in the front matter header if you reviewed the entire page.
