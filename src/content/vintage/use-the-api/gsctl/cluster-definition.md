@@ -43,7 +43,7 @@ v{{% first_aws_nodepools_version %}}, or on Azure starting with workload cluster
 As it's the case with the Giant Swarm REST API, cluster creation using the YAML definition only requires you
 to specify the details you need to deviate from defaults. For every setting not contained in the
 definition, defaults will apply as explained below. For any missing information regarding defaults,
-please contact your Giant Swarm support team via Slack or at support@giantswarm.io.
+please contact your Giant Swarm support team via Slack or at support[at]giantswarm.io.
 
 ## v4 definition {#v4}
 

@@ -27,10 +27,6 @@ user_questions:
   - How can I protect my workload from malicious requests?
   - How can I enable & configure ModSecurity inside of the Ingress NGINX Controller?
 last_review_date: 2023-11-23
-aliases:
-  - /advanced/connectivity/ingress/configuration
-  - /guides/advanced-ingress-configuration/
-  - /advanced/ingress/configuration/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---

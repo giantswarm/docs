@@ -70,22 +70,6 @@ You will now create resources with `kubectl gs`. In particular, this tutorial us
 You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
-{{< tab id="cluster-vintage-azure" for-impl="vintage_azure" >}}
-
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure), or use `kubectl gs get releases`, and fill it into this example command:
-
-```sh
-kubectl gs template cluster \
-  --provider azure \
-  --name mycluster \
-  --organization testing \
-  --release 19.0.1 `# please fill in your desired release version` \
-  > cluster.yaml
-```
-
-For backward compatibility, vintage cluster templating does not require the `--name` parameter. If no name is specified, a random one like `zekfaewnxh` will be generated. The `--name` parameter becomes required with CAPI clusters, but you can also use `--generate-name` if a random name is really desired.
-
-{{< /tab >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
 
 [Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
@@ -104,13 +88,14 @@ For backward compatibility, vintage cluster templating does not require the `--n
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md) and [default-apps-aws](https://github.com/giantswarm/default-apps-aws/blob/master/CHANGELOG.md) (bundle of default apps):
+[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-capa/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
+  --release 28.0.0 `# please fill in your desired release version` \
   > cluster.yaml
 ```
 
@@ -122,6 +107,7 @@ kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
+  --release 28.0.0 `# please fill in your desired release version` \
   --aws-cluster-role-identity-name=dev-account-role-identity
   > cluster.yaml
 ```
@@ -131,7 +117,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md) and [default-apps-eks](https://github.com/giantswarm/default-apps-eks/blob/master/CHANGELOG.md) (bundle of default apps):
+This will automatically use the latest release of the relevant Helm chart [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -158,7 +144,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md) and [default-apps-azure](https://github.com/giantswarm/default-apps-azure/blob/master/CHANGELOG.md) (bundle of default apps):
+[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -167,6 +153,7 @@ kubectl gs template cluster \
   --organization testing \
   --region westeurope \
   --azure-subscription-id 00000000-0000-0000-0000-000000000000 `# fill in your subscription ID` \
+  --release 28.0.0 `# please fill in your desired release version` \
   > cluster.yaml
 ```
 
@@ -177,12 +164,12 @@ The VMware Cloud Director provider is not yet supported by `kubectl gs template 
 
 Make sure to replace the relevant fields to fit your own VCD environment.
 
-This will install the relevant Helm charts [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director) and [default-apps-cloud-director](https://github.com/giantswarm/default-apps-cloud-director) (bundle of default apps).
+This will install the relevant Helm chart [cluster-cloud-director](https://github.com/giantswarm/cluster-cloud-director).
 
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv">}}
 
-This will automatically use the latest release of the relevant Helm charts [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md) and [default-apps-vsphere](https://github.com/giantswarm/default-apps-vsphere/blob/master/CHANGELOG.md) (bundle of default apps):
+This will automatically use the latest release of the relevant Helm chart [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -204,21 +191,6 @@ For the [Cluster API (CAPI)]({{< relref "/vintage/platform-overview/architecture
 In the vintage product family, no worker node pool is created by default, so you should attach one:
 
 {{< tabs >}}
-{{< tab id="nodepool-vintage-azure" for-impl="vintage_azure">}}
-
-```sh
-kubectl gs template nodepool \
-  --provider azure \
-  --cluster-name "<please fill in the cluster name from cluster.yaml>" \
-  --description "Worker node pool for workload cluster" \
-  --organization testing \
-  --release 19.0.1 `# please fill in your desired release version` \
-  > nodepool.yaml
-```
-
-This will create a `nodepool.yaml` file with all the CRs needed for attaching a node pool to the cluster created in the previous step.
-
-{{< /tab >}}
 {{< tab id="nodepool-capi" for-impl="capi_any">}}
 
 This is not needed for CAPI. The `nodePools` value in the cluster app has a default. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product (AWS cloud).
@@ -242,9 +214,7 @@ kubectl apply -f nodepool.yaml
 Deletion works in the same way: run `kubectl delete -f FILENAME.yaml` and the operators in the management cluster will delete the resources in a few minutes. Please do not directly delete the CAPI custom resources (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the CAPI product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
 
 - `App/<cluster>`
-- `App/<cluster>-default-apps`
-- `ConfigMap/<cluster>-user-values`
-- `ConfigMap/<cluster>-default-apps-user-values`
+- `ConfigMap/<cluster>-userconfig`
 
 If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
 
@@ -407,6 +377,6 @@ kubectl gs update app \
 
 ### Updating a cluster
 
-Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature in the vintage product family that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
+Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
 More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/vintage/use-the-api/kubectl-gs/update-cluster" >}}).

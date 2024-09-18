@@ -3,7 +3,7 @@ linkTitle: High-availability control plane
 title: High-Availability Kubernetes control plane
 description: For production clusters with high availability requirements, Giant Swarm on AWS enables control planes with three control plane nodes and three etcd replicas spread over multiple availability zones.
 weight: 10
-last_review_date: 2023-04-04
+last_review_date: 2023-04-08
 menu:
   main:
     parent: advanced-high-availability
@@ -139,7 +139,7 @@ For non-interactive patching:
 
 ```nohighlight
 kubectl patch g8scontrolplanes.infrastructure.giantswarm.io <NAME> \
-  --type merge -p '{"spec": {"replicas": 3}}
+  --type merge -p '{"spec": {"replicas": 3}}'
 ```
 
 Once that is done, the operators will reconcile the desired state and create the

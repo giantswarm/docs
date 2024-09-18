@@ -14,7 +14,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2024-01-18
+last_review_date: 2024-06-10
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -40,15 +40,6 @@ For {{% impl_title "vintage_aws" %}} (`--provider aws`):
 - [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
 - [`G8sControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
 - [`AWSControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
-
-{{< /tab >}}
-{{< tab id="flags-azure" for-impl="vintage_azure">}}
-
-For {{% impl_title "vintage_azure" %}} (`--provider azure`):
-
-- [`Cluster`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AzureCluster`]({{< relref "/vintage/use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - holds Azure-specific configuration.
-- [`AzureMachine`]({{< relref "/vintage/use-the-api/management-api/crd/azuremachines.infrastructure.cluster.x-k8s.io.md" >}}) (API version `infrastructure.cluster.x-k8s.io/v1beta1`) - specifies the control plane nodes.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -232,20 +223,6 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="command-examples-azure" for-impl="vintage_azure">}}
-
-```nohighlight
-kubectl gs template cluster \
-  --provider azure \
-  --organization acme \
-  --release 17.0.0 \
-  --description "Test cluster" \
-  --label environment=testing \
-  --label team=upstate \
-  --service-priority lowest
-```
-
-{{< /tab >}}
 {{< tab id="command-examples-azure-capi" for-impl="capz_vms">}}
 
 Example command for an Azure CAPI cluster:
@@ -261,51 +238,6 @@ kubectl gs template cluster \
 ```
 
 {{< /tab >}}
-{{< tab id="command-examples-gcp" for-impl="capg_vms">}}
-
-```nohighlight
-kubectl gs template cluster \
-  --provider gcp \
-  --name demo1 \
-  --organization demo \
-  --region europe-west3 \
-  --gcp-project project-1234 \
-  --gcp-failure-domains europe-west3-a \
-  --gcp-machine-deployment-failure-domain europe-west3-a \
-  --description "a test cluster" \
-  --gcp-control-plane-sa-email "test-service-account@project-1234.iam.gserviceaccount.com"
-```
-
-{{< /tab >}}
-{{< tab id="command-examples-openstack" for-impl="capo">}}
-
-```nohighlight
-kubectl gs template cluster \
-  --provider openstack \
-  --name demo1 \
-  --organization multi-project \
-  --cloud openstack \
-  --cloud-config cloud-config-giantswarm-2 \
-  --external-network-id 12345678-abcd-1234-abcd-1234567890ef \
-  --node-cidr 10.6.0.0/24 \
-  --bastion-boot-from-volume \
-  --bastion-disk-size 50 \
-  --bastion-image 12345678-abcd-1234-abcd-1234567890ab \
-  --bastion-machine-flavor a1.tiny \
-  --control-plane-az us-east-1 \
-  --control-plane-boot-from-volume \
-  --control-plane-disk-size 50 \
-  --control-plane-image 12345678-abcd-1234-abcd-1234567890cd \
-  --control-plane-machine-flavor a1.small \
-  --worker-boot-from-volume \
-  --worker-disk-size 50 \
-  --worker-failure-domain us-east-1 \
-  --worker-image 12345678-abcd-1234-abcd-1234567890gh \
-  --worker-machine-flavor a1.small \
-  --worker-replicas 3
-```
-
-{{< /tab >}}
 {{< tab id="command-examples-vsphere" for-impl="capv">}}
 
 ```nohighlight
@@ -314,13 +246,12 @@ kubectl gs template cluster \
   --name demo1 \
   --organization multi-project \
   --vsphere-service-load-balancer-cidr 10.10.222.238/30 \
+  --vsphere-network-name demo1 \
   --vsphere-worker-memory-mib 4096 \
   --vsphere-worker-num-cpus 4 \
   --vsphere-worker-replicas 3 \
   --vsphere-control-plane-num-cpus 8 \
   --vsphere-control-plane-memory-mib 12000 \
-  --vsphere-image-template ubuntu-2004-kube-v1.24.11 \
-  --kubernetes-version=1.24.11
 ```
 
 {{< /tab >}}
@@ -558,103 +489,6 @@ spec:
 ```
 
 {{< /tab >}}
-{{< tab id="command-output-azure" for-impl="vintage_azure">}}
-
-```yaml
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-kind: AzureCluster
-metadata:
-  creationTimestamp: null
-  labels:
-    azure-operator.giantswarm.io/version: 5.17.0
-    cluster.x-k8s.io/cluster-name: tt0m5
-    giantswarm.io/cluster: tt0m5
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 17.0.0
-  name: tt0m5
-  namespace: org-acme
-spec:
-  bastionSpec: {}
-  controlPlaneEndpoint:
-    host: ""
-    port: 0
-  location: ""
-  networkSpec:
-    apiServerLB:
-      frontendIPs:
-      - name: tt0m5-API-PublicLoadBalancer-Frontend
-      name: tt0m5-API-PublicLoadBalancer
-      sku: Standard
-      type: Public
-    vnet:
-      name: ""
-  resourceGroup: tt0m5
-status:
-  ready: false
----
-apiVersion: cluster.x-k8s.io/v1beta1
-kind: Cluster
-metadata:
-  annotations:
-    cluster.giantswarm.io/description: Test cluster
-  creationTimestamp: null
-  labels:
-    azure-operator.giantswarm.io/version: 5.17.0
-    cluster-operator.giantswarm.io/version: 3.12.0
-    cluster.x-k8s.io/cluster-name: tt0m5
-    giantswarm.io/cluster: tt0m5
-    giantswarm.io/organization: acme
-    giantswarm.io/service-priority: lowest
-    release.giantswarm.io/version: 17.0.0
-  name: tt0m5
-  namespace: org-acme
-spec:
-  controlPlaneEndpoint:
-    host: ""
-    port: 0
-  infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-    kind: AzureCluster
-    name: tt0m5
-    namespace: org-acme
-status:
-  controlPlaneInitialized: false
-  infrastructureReady: false
----
-apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-kind: AzureMachine
-metadata:
-  creationTimestamp: null
-  labels:
-    azure-operator.giantswarm.io/version: 5.17.0
-    cluster.x-k8s.io/cluster-name: tt0m5
-    cluster.x-k8s.io/control-plane: "true"
-    giantswarm.io/cluster: tt0m5
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 17.0.0
-  name: tt0m5-master-0
-  namespace: org-acme
-spec:
-  image:
-    marketplace:
-      offer: flatcar-container-linux-free
-      publisher: kinvolk
-      sku: stable
-      thirdPartyImage: false
-      version: 2345.3.1
-  osDisk:
-    cachingType: ReadWrite
-    diskSizeGB: 50
-    managedDisk:
-      storageAccountType: Premium_LRS
-    osType: Linux
-  sshPublicKey: ""
-  vmSize: Standard_D4s_v3
-status:
-  ready: false
-```
-
-{{< /tab >}}
 {{< tab id="command-output-azure-capi" for-impl="capz_vms">}}
 
 ```yaml
@@ -751,237 +585,6 @@ spec:
 ```
 
 {{< /tab >}}
-{{< tab id="command-output-gcp" for-impl="capg_vms">}}
-
-```yaml
----
-apiVersion: v1
-data:
-  values: |
-    clusterDescription: a test cluster
-    clusterName: demo1
-    controlPlane:
-      replicas: 3
-      serviceAccount:
-        email: test-service-account@project-1234.iam.gserviceaccount.com
-        scopes:
-        - https://www.googleapis.com/auth/compute
-    gcp:
-      failureDomains:
-      - europe-west3-a
-      project: project-1234
-      region: europe-west3
-    machineDeployments:
-    - failureDomain: europe-west3-a
-      instanceType: n1-standard-2
-      name: worker0
-      replicas: 3
-      rootVolumeSizeGB: 100
-    organization: demo
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  labels:
-    giantswarm.io/cluster: demo1
-  name: demo1-userconfig
-  namespace: org-demo
----
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-  name: demo1
-  namespace: org-demo
-spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: cluster-gcp
-  namespace: org-demo
-  userConfig:
-    configMap:
-      name: demo1-userconfig
-      namespace: org-demo
-  version: 0.14.3
----
-apiVersion: v1
-data:
-  values: |
-    clusterName: demo1
-    organization: demo
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  labels:
-    giantswarm.io/cluster: demo1
-  name: demo1-default-apps-userconfig
-  namespace: org-demo
----
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-  name: demo1-default-apps
-  namespace: org-demo
-spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: default-apps-gcp
-  namespace: org-demo
-  userConfig:
-    configMap:
-      name: demo1-default-apps-userconfig
-      namespace: org-demo
-  version: 0.9.0
-```
-
-{{< /tab >}}
-{{< tab id="command-output-openstack" for-impl="capo">}}
-
-```yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: demo1-cluster-userconfig
-  namespace: org-multi-project
-data:
-  values: |
-    bastion:
-      bootFromVolume: true
-      diskSize: 10
-      flavor: a1.tiny
-      image: 12345678-abcd-1234-abcd-1234567890ab
-    cloudConfig: cloud-config-giantswarm-2
-    cloudName: openstack
-    clusterName: demo1
-    controlPlane:
-      bootFromVolume: true
-      diskSize: 50
-      flavor: a1.small
-      image: 12345678-abcd-1234-abcd-1234567890cd
-      replicas: 1
-    externalNetworkID: 12345678-abcd-1234-abcd-1234567890ef
-    kubernetesVersion: v1.20.9
-    nodeCIDR: 10.6.0.0/24
-    nodeClasses:
-    - bootFromVolume: true
-      diskSize: 50
-      flavor: a1.small
-      image: 12345678-abcd-1234-abcd-1234567890gh
-      name: default
-    nodePools:
-    - class: default
-      failureDomain: us-east-1
-      name: default
-      replicas: 3
-    oidc:
-      enabled: false
-    organization: multi-project
----
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-  name: demo1-cluster
-  namespace: org-multi-project
-spec:
-  catalog: giantswarm
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: cluster-openstack
-  namespace: org-multi-project
-  userConfig:
-    configMap:
-      name: demo1-cluster-userconfig
-      namespace: org-multi-project
-  version: 0.5.0
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: demo1-default-apps-userconfig
-  namespace: org-multi-project
-data:
-  values: |
-    clusterName: demo1
-    oidc:
-      enabled: false
-    organization: multi-project
----
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-  name: demo1-default-apps
-  namespace: org-multi-project
-spec:
-  catalog: giantswarm
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: default-apps-openstack
-  namespace: org-multi-project
-  userConfig:
-    configMap:
-      name: demo1-default-apps-userconfig
-      namespace: org-multi-project
-  version: 0.1.1
-```
-
-{{< /tab >}}
 {{< tab id="command-output-vsphere" for-impl="capv">}}
 
 ```yaml
@@ -989,56 +592,51 @@ spec:
 apiVersion: v1
 data:
   values: |
-    baseDomain: test.gigantic.io
-    cluster:
-      kubernetesVersion: 1.24.11
-    connectivity:
-      network:
-        allowAllEgress: true
-        controlPlaneEndpoint:
-          host: ""
-          ipPoolName: wc-cp-ips
-          port: 6443
-        loadBalancers:
-          cidrBlocks:
-          - 10.10.222.238/30
-    controlPlane:
-      image:
-        repository: registry.k8s.io
-      machineTemplate:
-        cloneMode: linkedClone
-        diskGiB: 50
-        memoryMiB: 12000
+    global:
+      connectivity:
+        baseDomain: test.gigantic.io
         network:
-          devices:
-          - dhcp4: true
-        numCPUs: 8
-        resourcePool: '*/Resources'
-        template: ubuntu-2004-kube-v1.24.11
-      replicas: 3
-    helmReleases:
-      cilium:
-        interval: 20s
-      coredns:
-        interval: 30s
-      cpi:
-        interval: 30s
-    nodeClasses:
-      default:
-        cloneMode: linkedClone
-        diskGiB: 50
-        memoryMiB: 4096
-        network:
-          devices:
-          - dhcp4: true
-        numCPUs: 4
-        resourcePool: '*/Resources'
-        template: ubuntu-2004-kube-v1.24.11
-    nodePools:
-      worker:
-        class: default
+          controlPlaneEndpoint:
+            host: ""
+            ipPoolName: wc-cp-ips
+            port: 6443
+          loadBalancers:
+            cidrBlocks:
+            - 10.10.222.238/30
+            ipPoolName: svc-lb-ips
+      controlPlane:
+        image:
+          repository: gsoci.azurecr.io/giantswarm
+        machineTemplate:
+          cloneMode: linkedClone
+          diskGiB: 50
+          memoryMiB: 12000
+          network:
+            devices:
+            - dhcp4: true
+              networkName: demo1
+          numCPUs: 8
+          resourcePool: '*/Resources'
+          template: flatcar-stable-3602.2.1-kube-v1.24.12-gs
         replicas: 3
-    organization: multi-project
+      metadata:
+        organization: multi-project
+      nodeClasses:
+        default:
+          cloneMode: linkedClone
+          diskGiB: 50
+          memoryMiB: 4096
+          network:
+            devices:
+            - dhcp4: true
+              networkName: demo1
+          numCPUs: 4
+          resourcePool: '*/Resources'
+          template: flatcar-stable-3602.2.1-kube-v1.24.12-gs
+      nodePools:
+        worker:
+          class: default
+          replicas: 3
 kind: ConfigMap
 metadata:
   creationTimestamp: null
@@ -1084,7 +682,7 @@ spec:
     secret:
       name: vsphere-credentials
       namespace: org-multi-project
-  version: 0.7.1
+  version: 0.53.1
 ---
 apiVersion: v1
 data:
@@ -1130,7 +728,7 @@ spec:
     configMap:
       name: demo1-default-apps-userconfig
       namespace: org-multi-project
-  version: 0.11.1
+  version: 0.14.0
 ```
 
 {{< /tab >}}

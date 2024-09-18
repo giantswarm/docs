@@ -1,4 +1,4 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:v0.121.0-full AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.125.5-full AS build
 
 WORKDIR /docs
 
@@ -8,7 +8,7 @@ COPY . /docs
 ENV HUGO_DOCS_VERSION $CIRCLE_TAG
 
 RUN hugo \
-      --verbose \
+      --logLevel info \
       --gc \
       --minify \
       --source src \

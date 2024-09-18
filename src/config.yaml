@@ -47,6 +47,31 @@ menu:
     name: Changes and releases
     url: /changes/
     weight: 90
+  principal:
+  - identifier: overview
+    name: Overview
+    url: /overview/
+    weight: 10
+  - identifier: getting-started
+    name: Getting started
+    url: /getting-started/
+    weight: 20
+  - identifier: tutorials
+    name: Tutorials
+    url: /tutorials/
+    weight: 30
+  - identifier: reference
+    name: Reference
+    url: /reference/
+    weight: 40
+  - identifier: support
+    name: Support
+    url: /support/
+    weight: 50
+  - identifier: changes
+    name: Changes and releases
+    url: /changes/
+    weight: 90
 
 taxonomies:
   changes_category: changes_categories
@@ -70,14 +95,10 @@ params:
     # Provider and implementation specific
     capa_ec2: "CAPA (AWS EC2)"
     capa_eks: "CAPA (AWS EKS)"
-    capg_vms: "CAPG (GCP VMs)"
-    capo: "CAPO (OpenStack)"
     capv: "CAPV (VMware vSphere)"
     capvcd: "CAPVCD (VMware Cloud Director)"
     capz_vms: "CAPZ (Azure VMs)"
     vintage_aws: "Vintage (AWS)"
-    vintage_azure: "Vintage (Azure)"
-    vintage_kvm: "Vintage (KVM)"
   mermaid:
       theme: "neutral"
       align: "center"

@@ -5,7 +5,7 @@ description: A guide explaining how to interact with audit logs on Giant Swarm c
 weight: 50
 menu:
   main:
-    identifier: getting-started-observability-logs-auditlogging
+    identifier: getting-started-observability-logging-auditlogging
     parent: getting-started-observability-logging
 user_questions:
   - What are audit logs?
@@ -16,7 +16,7 @@ aliases:
   - /ui-api/observability/logs/audit-logging
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2024-02-28
+last_review_date: 2024-03-21
 ---
 
 In this document you will learn what are audit logs, which kind is available on Giant Swarm clusters and how to access / ship them to a remote location.
@@ -74,7 +74,7 @@ Kubernetes audit logs can be found on `control-plane` nodes at `/var/log/apiserv
 
 ##### CAPI clusters
 
-In __capi__ clusters, the default kubernetes policy defined on all our clusters is defined [here](https://github.com/giantswarm/cluster/blob/main/helm/cluster/files/etc/kubernetes/policies/audit-policy.yaml) and can be configured by overriding the value of `internal.advancedConfiguration.controlPlane.apiServer.auditPolicy.extraRule` in the cluster helm chart.
+In __capi__ clusters, the default kubernetes policy defined on all our clusters is defined [here](https://github.com/giantswarm/cluster/blob/main/helm/cluster/files/etc/kubernetes/policies/audit-policy.yaml).
 
 ##### Vintage clusters
 

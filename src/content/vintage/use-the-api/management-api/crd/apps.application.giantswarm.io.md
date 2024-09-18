@@ -22,6 +22,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /use-the-api/management-api/crd/apps.application.giantswarm.io/
+  - /reference/cp-k8s-api/apps.application.giantswarm.io/
 technical_name: apps.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
 source_repository_ref: v0.6.1
