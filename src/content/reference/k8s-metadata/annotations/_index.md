@@ -8,7 +8,7 @@ owner:
 last_review_date: 2024-03-08
 ---
 
-**Disclaimer:** Annotations on Kubernetes resources can have many meanings. In this overview we make an attempt to describe our reasons for using certain annotations, and which values or value format is expected. Please be aware that this effort cannot be complete, since there could always be one missing tool that uses or expects a certain label on a certain type of resource.
+**Disclaimer:** Annotations on Kubernetes resources can have many meanings. In this overview we make an attempt to describe our reasons for using certain annotations, and which values or value format is expected. Please be aware that this effort can't be complete, since there could always be one missing tool that uses or expects a certain label on a certain type of resource.
 
 As an additional source, our Go library [k8smetadata](https://github.com/giantswarm/k8smetadata) contains a list of labels and annotations that we use in our Go code.
 

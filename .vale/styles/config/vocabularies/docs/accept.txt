@@ -56,6 +56,7 @@ rapidly
 really
 relref
 runbook[s]?
+SemVer
 separately
 Sigstore
 Spotify

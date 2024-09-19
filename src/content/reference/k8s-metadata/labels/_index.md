@@ -22,7 +22,7 @@ Set on ConfigMap and Secret resources in management clusters for Grafana, to ind
 
 Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the version of the operator that should reconcile the resource. The operator name is the name of the operator that should reconcile the resource, and the version is the version of the operator that should reconcile the resource.
 
-If the operator name is `app-operator`, the label is `app-operator.giantswarm.io/version`. The value of the label is a Semver version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
+If the operator name is `app-operator`, the label is `app-operator.giantswarm.io/version`. The value of the label is a Semantic Versioning (SemVer) version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
 
 [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L7)
 
@@ -38,7 +38,7 @@ Name of the branch of the source repository providing the app/chart the resource
 
 ### application.giantswarm.io/catalog
 
-Used on AppCatalogEntry resources, to indicate which catalog it is associated with. The value is the name of the Catalog resource.
+Used on AppCatalogEntry resources, to indicate which catalog it's associated with. The value is the name of the Catalog resource.
 
 ### application.giantswarm.io/commit
 
@@ -64,7 +64,7 @@ Name of the Giant Swarm team responsible for the application.
 
 Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the version of the operator that should reconcile the resource. The operator name is the name of the operator that should reconcile the resource, and the version is the version of the operator that should reconcile the resource.
 
-If the operator name is `chart-operator`, the label is `chart-operator.giantswarm.io/version`. The value of the label is a Semver version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
+If the operator name is `chart-operator`, the label is `chart-operator.giantswarm.io/version`. The value of the label is a SemVer version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
 
 [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L13)
 
@@ -101,12 +101,12 @@ Associates the resource or the node with a node pool, using the name of the node
 
 This label set on the Cluster resource with the value `false` can be used to disable the gathering of Prometheus metrics for the entire cluster, and id prevents deployment of Prometheus for this cluster.
 
-On other resources, the label serves as a discovery mechanism for metrics scraping. We are replacing this mechanism by service monitors.
+On other resources, the label serves as a discovery mechanism for metrics scraping. We're replacing this mechanism by service monitors.
 
 ### giantswarm.io/monitoring_basic_sli
 
-- TODO Appears on a variety of resources. Value is always "true".
-- Quentin thinks this is introduced by Honeybadger, could be removed at some point.
+- TODO: Appears on a variety of resources. Value is always `true`.
+- Team Atlas thinks this is introduced by Honeybadger, could be removed at some point.
 - Use example: https://github.com/giantswarm/prometheus-rules/blob/d440f5cc724d9ad2fe4c7f85c9f0b54090a6858e/helm/prometheus-rules/templates/recording-rules/service-level.rules.yml#L175
 
 ### giantswarm.io/organization
@@ -120,7 +120,7 @@ Can be set on certain resource types to prevent deletion. See [Prevent accidenta
 ### giantswarm.io/service-type
 
 - TODO Found on various resources in management and workload clusters.
-- [fmt](https://github.com/giantswarm/fmt/blob/278eb4b3318c454e50f24413e7ef2250159f28d6/kubernetes/annotations_and_labels.md?plain=1#L49) has an explanation.
+- [`fmt`](https://github.com/giantswarm/fmt/blob/278eb4b3318c454e50f24413e7ef2250159f28d6/kubernetes/annotations_and_labels.md?plain=1#L49) has an explanation.
 Value is mostly `managed`
 - also found occurrence `manual` in an [ops recipe](https://github.com/giantswarm/giantswarm/blob/0d16eb4ebb0440608bb1bfd0636d34afa6352cc6/content/docs/support-and-ops/ops-recipes/cilium-rate-limit-issue.md?plain=1#L39).
 - Value `system` is also documented.
