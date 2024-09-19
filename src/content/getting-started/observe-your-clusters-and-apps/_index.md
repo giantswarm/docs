@@ -11,7 +11,7 @@ user_questions:
 ---
 
 
-<Explanation how monitoring works in two paragraphs>
+Each cluster created on the Giant Swarm platform benefits from our monitoring feature which allows us to provide you with 24/7 support to ensure best quality of service. The metrics scraped by a in-cluster agent and sent to a central location on the management cluster for you to be able to interact with them through our managed Grafana instance.
 
 ## Requirements
 
