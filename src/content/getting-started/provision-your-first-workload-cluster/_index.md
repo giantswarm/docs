@@ -75,7 +75,7 @@ The name passed to `aws-cluster-role-identity-name` must match the name of [an e
 
 ```sh
 kubectl gs template cluster \
-  --provider capa \
+  --provider eks \
   --name mycluster \
   --organization testing \
   --aws-cluster-role-identity-name=dev-account-role-identity
