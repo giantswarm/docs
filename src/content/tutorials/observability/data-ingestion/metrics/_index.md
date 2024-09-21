@@ -7,13 +7,13 @@ menu:
     parent: tutorials-observability-data-ingestion
     identifier: tutorials-observability-data-ingestion-metrics
 weight: 50
-last_review_date: 2024-07-15
+last_review_date: 2024-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - What is a ServiceMonitor?
   - What is a PodMonitor?
-  - How do I ingest new metrics?
+  - How to ingest new metrics?
   - Why do my clusters run the Prometheus Operator?
 ---
 
