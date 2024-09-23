@@ -38,7 +38,7 @@ kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
-  --release 29.0.0 \
+  --release 29.1.0 \
   > cluster.yaml
 ```
 
@@ -51,7 +51,7 @@ kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
-  --release 29.0.0 \
+  --release 29.1.0 \
   --aws-cluster-role-identity-name=dev-account-role-identity
   > cluster.yaml
 ```
