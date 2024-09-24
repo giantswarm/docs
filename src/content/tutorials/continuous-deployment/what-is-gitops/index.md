@@ -4,9 +4,9 @@ title: GitOps
 description: Learn how to continuous deploy all your workloads thanks to GitOps and Kubernetes.
 weight: 90
 menu:
-  main:
-    identifier: tutorials-continuous-deployment-gitops
+  principal:
     parent: tutorials-continuous-deployment
+    identifier: tutorials-continuous-deployment-what-is-gitops
 last_review_date: 2024-09-25
 user_questions:
   - What is GitOps?

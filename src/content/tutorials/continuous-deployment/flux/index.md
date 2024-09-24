@@ -4,9 +4,9 @@ title: What is FluxCD
 description: An explanation of the GitOps principles and a guide to managing Giant Swarm platform resources with FluxCD.
 weight: 700
 menu:
-  main:
-    parent: advanced-gitops
-    identifier: advanced-gitops-flux
+  principal:
+    parent: tutorials-continuous-deployment
+    identifier: tutorials-continuous-deployment-flux
 user_questions:
   - What is FluxCD?
 aliases:
@@ -14,7 +14,7 @@ aliases:
   - /advanced/fluxcd/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-12-11
+last_review_date: 2024-09-25
 ---
 
 The [FluxCD](https://fluxcd.io) website states:

@@ -6,15 +6,15 @@ weight: 80
 aliases:
   - /advanced/gitops/tools
 menu:
-  main:
-    parent: advanced-gitops
-    identifier: advanced-gitops-gitops-tooling
+  principal:
+    parent: tutorials-continuous-deployment
+    identifier: tutorials-continuous-deployment-tools
 user_questions:
 - What tools should I use to validate my gitops manifests?
 - How can I trace resources that flux controls?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-12-11
+last_review_date: 2024-09-25
 ---
 
 The following scripts and tools may be used to support you in understanding issues which may arise during the deployment

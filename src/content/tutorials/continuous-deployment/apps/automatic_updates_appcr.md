@@ -6,7 +6,7 @@ weight: 50
 aliases:
   - /advanced/gitops/apps
 menu:
-  main:
+  principal:
     identifier: tutorials-continuous-deployment-apps-updates
     parent: tutorials-continuous-deployment-apps
 last_review_date: 2024-09-25
@@ -203,7 +203,7 @@ scan for new tags:
      version: 0.1.2 # {"$imagepolicy": "default:hello-world:tag"}
    ```
 
-## Secrets for scanning private images (optional)
+## secrets for scanning private images (optional)
 
 1. Export path to the Docker registry config with secrets:
 
@@ -217,7 +217,7 @@ scan for new tags:
     cd management-clusters/${MC_NAME}/secrets
     ```
 
-3. Create Kubernetes Secret with Docker Registry credentials and save it into a file:
+3. Create Kubernetes secret with Docker Registry credentials and save it into a file:
 
     ```nohighlight
     kubectl create secret docker-registry \
@@ -228,7 +228,7 @@ scan for new tags:
     -o yaml > pullsecrets.enc.yaml
     ```
 
-4. Import the master GPG public key and encrypt the Kubernetes Secret with it:
+4. Import the master GPG public key and encrypt the Kubernetes secret with it:
 
     ```nohighlight
     gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.master.asc

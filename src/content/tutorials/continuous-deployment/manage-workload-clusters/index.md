@@ -6,13 +6,13 @@ weight: 20
 aliases:
   - /advanced/gitops/manage-workload-clusters
 menu:
-  main:
-    parent: advanced-gitops
-    identifier: advanced-gitops-manage-workload-clusters
+  principal:
+    parent: tutorials-continuous-deployment
+    identifier: tutorials-continuous-deployment-manage-wc
 user_questions:
   - How to manage workload clusters with GitOps?
   - How to prepare repositories for use with FluxCD?
-  - How to ensure security by combining FluxCD with the Management API permission model?
+  - How to ensure security by combining FluxCD with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-25
@@ -297,6 +297,6 @@ The latest version number can be retrieved from the catalog using `helm search r
 
 Commit the newly generated files back to your git repository and push the changes to the remote. After a few minutes you should see the application resources appear on your workload cluster.
 
-To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/vintage/platform-overview/app-platform">}}).
+To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/overview/fleet-management/app-management">}}).
 
 This completes the guide. If you no longer need them, you can delete the organization and cluster.

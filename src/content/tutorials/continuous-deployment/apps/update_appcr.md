@@ -6,7 +6,7 @@ weight: 60
 aliases:
   - /advanced/gitops/apps
 menu:
-  main:
+  principal:
     identifier: tutorials-continuous-deployment-apps-updating-app
     parent: tutorials-continuous-deployment-apps
 last_review_date: 2024-09-25
@@ -78,7 +78,7 @@ export APP_NAME=APP_NAME
     sops --decrypt --in-place secret.enc.yaml
     ```
 
-4. Grab the `.data.values` field from the Secret and base64-decode it:
+4. Grab the `.data.values` field from the secret and base64-decode it:
 
     ```sh
     yq eval .data.values secret.enc.yaml | base64 -d > values.tmp.yaml
@@ -92,7 +92,7 @@ export APP_NAME=APP_NAME
     export NEW_USER_VALUES=$(cat values.tmp.yaml | base64)
     ```
 
-7. Replace Secret's `.data.values` with new value:
+7. Replace secret's `.data.values` with new value:
 
     ```sh
     yq -i eval ".data.values = \"${NEW_USER_VALUES}\"" secret.enc.yaml
@@ -104,7 +104,7 @@ export APP_NAME=APP_NAME
     rm values.tmp.yaml
     ```
 
-9. Re-encrypt the Kubernetes Secret:
+9. Re-encrypt the Kubernetes secret:
 
     ```sh
     sops --encrypt --in-place secret.enc.yaml

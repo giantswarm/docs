@@ -6,7 +6,7 @@ weight: 70
 aliases:
   - /advanced/gitops/apps
 menu:
-  main:
+  principal:
     identifier: tutorials-continuous-deployment-apps
     parent: tutorials-continuous-deployment
 last_review_date: 2024-09-25

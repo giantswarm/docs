@@ -6,9 +6,9 @@ weight: 70
 aliases:
   - /advanced/gitops/environments
 menu:
-  main:
-    parent: advanced-gitops
-    identifier: advanced-gitops-environments
+  principal:
+    parent: tutorials-continuous-deployment
+    identifier: tutorials-continuous-deployment-environments
 user_questions:
   - How can I manage different environments with GitOps?
 owner:

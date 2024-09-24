@@ -1,6 +1,6 @@
 ---
-linkTitle: App platform
-title: App platform
+linkTitle: App management
+title: App management
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
 last_review_date: 2024-09-25
 weight: 50
@@ -10,8 +10,8 @@ aliases:
   - /app-platform/overview
 menu:
   main:
-    parent: platform-overview
-    identifier: platform-overview-app-platform
+    parent: overview-fleet-management
+    identifier: overview-fleet-management-app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

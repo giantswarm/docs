@@ -6,14 +6,14 @@ weight: 10
 aliases:
   - /advanced/gitops/gitops-at-giantswarm
 menu:
-  main:
-    parent: advanced-gitops
-    identifier: advanced-gitops-at-giantswarm
+  principal:
+    parent: tutorials-continuous-deployment
+    identifier: tutorials-continuous-deployment-gitops
 user_questions:
   - GitOps at Giant Swarm?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-03-17
+last_review_date: 2024-09-25
 ---
 
 Here at Giant Swarm, we're dedicated to ensuring you have a successful GitOps journey.

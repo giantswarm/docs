@@ -6,7 +6,7 @@ weight: 90
 aliases:
   - /advanced/gitops/apps
 menu:
-  main:
+  principal:
     identifier: tutorials-continuous-deployment-apps-wc
     parent: tutorials-continuous-deployment-apps
 last_review_date: 2024-09-25
@@ -20,7 +20,7 @@ This document is part of the documentation to use GitOps with Giant Swarm app pl
 
 # Add a new app to a workload cluster
 
-Follow the instructions below to add a new `App` to a workload cluster managed in this repository. You can add an `App` directly (without any intermediate step) or use an [app template]({{< relref "/tutorials/continuous-deployment/apps/advanced-gitops-apps-add-app-template" >}}). The documentation below shows common steps as well as what's different in both cases.
+Follow the instructions below to add a new `App` to a workload cluster managed in this repository. You can add an `App` directly (without any intermediate step) or use an [app template]({{< relref "/tutorials/continuous-deployment/apps/add_app_template/" >}}). The documentation below shows common steps as well as what's different in both cases.
 
 ## Examples
 
@@ -93,9 +93,9 @@ export APP_NAME="${WC_NAME}-APP_NAME"
 
     __Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
-    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details on how to create respective configmaps or Secrets.
+    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details on how to create respective configmaps or secrets.
 
-3. (optional - if adding configuration) Place configmap and Secrets with values as the `configmap.yaml` and `secret.enc.yaml` files respectively:
+3. (optional - if adding configuration) Place configmap and secrets with values as the `configmap.yaml` and `secret.enc.yaml` files respectively:
 
     ```nohighlight
     # Use one of the two for respective kind
@@ -129,7 +129,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     - ${APP_NAME}/configmap.yaml
     ```
 
-  At this point, if you have followed [the WC configuration guide]({{< relref "/tutorials/continuous-deployment/apps/manage-workload-clusters" >}}), all the necessary Flux resources should already be configured.
+  At this point, if you have followed [the WC configuration guide]({{< relref "/tutorials/continuous-deployment/manage-workload-clusters/" >}}), all the necessary Flux resources should already be configured.
 
 ## Adding App using App Template
 

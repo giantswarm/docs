@@ -6,7 +6,7 @@ weight: 70
 aliases:
   - /advanced/gitops/apps
 menu:
-  main:
+  principal:
     identifier: tutorials-continuous-deployment-apps-template
     parent: tutorials-continuous-deployment-apps
 last_review_date: 2024-09-25
@@ -75,7 +75,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
 
     In case you used `kubectl gs` command you realized the output is an `App` custom resource plus the configmap. In case you want to manage the values in plain YAML, you could rely on the configmap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
-    __Warning__: It can't be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an app](./add_appcr.md) docs to check how to add and encrypt a Secret.
+    __Warning__: It can't be used for the secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an app](./add_appcr.md) docs to check how to add and encrypt a secret.
 
 3. Now it's time to create the `kustomization.yaml` file, adding the optional secret or configmap as resources and/or using a configmap generator to manage plain configuration:
 
@@ -93,7 +93,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     # default config block end
     resources:
       - appcr.yaml
-      - secret.enc.yaml # only if you provide the default Secret
+      - secret.enc.yaml # only if you provide the default secret
       # You can add here the configmap in case of generate it via kubectl gs command or manually
     ```
 
