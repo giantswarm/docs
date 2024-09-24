@@ -251,4 +251,4 @@ This guide has introduced how network policies work and some peculiarities to be
 
 ## Next step
 
-Now that you've learned how to configure your application to communicate with other services, let's dive into how [observe your application]({{< relref "/getting-started/observe-your-app" >}}).
+Now that you've learned how to configure your application to communicate with other services, let's dive into how [observe your application]({{< relref "/getting-started/observe-your-clusters-and-apps" >}}).
