@@ -23,30 +23,21 @@ last_review_date: 2024-09-25
 
 ## App Bundle Definition {#app-bundle-definition}
 
-As stated in the [App Platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are
-packaged, maintained and offered as Helm charts and it's no different for the app bundles. What makes them
-special in comparison to solitary apps is that the bundle Helm chart, instead of carrying a regular resources
-composing the actual application, carries [App CRs]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
-which, once delivered and consumed by the App Platform, install the expected applications and their resources.
+As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are packaged, maintained and offered as Helm charts and it's no different for the app bundles. What makes them special in comparison to solitary apps is that the bundle Helm chart, instead of carrying a regular resources composing the actual application, carries [`App` CRs]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.
 
-In other words, an app bundle can be thought of a middleman or meta package, not installing anything in the Workload
-Cluster on its own, but requesting installation of certain pre-defined applications.
+In other words, an app bundle can be thought of a meta package, not installing anything in the workload cluster on its own, but requesting installation of certain pre-defined applications.
 
 The distinction between solitary (on the left side) and bundle (on the right side) apps is depicted in the
 figure below.
 
 ![Solitary app Helm chart vs Bundle app Helm chart](app-bundle-vs-normal-app.png)
 
-The `A1` apps Helm chart consists of end resources representing the actual application. Upon installing this app,
-these resource are created in the **workload cluster directly**. On the other side is a bundle Helm chart
+The `A1` apps Helm chart consists of end resources representing the actual application. Upon installing this app, these resource are created in the **workload cluster directly**. On the other side is a bundle Helm chart
 carrying the `A1-A4` `App` CRs. Installing this bundle results in the creation of these nested `App` CRs in the
-**management cluster**. These `App` CRs are then picked up and reconciled by the App Platform which only then results in
-creating end resources in the workload cluster.
+**management cluster**. These `App` CRs are then picked up and reconciled by the App Platform which only then results in creating end resources in the workload cluster.
 
 As already hinted above, the direct consequence of nesting `App` CRs inside a Helm chart is how the app is
-installed. Installing a solitary app for the workload cluster doesn't result in creating any resources in the management
-cluster, whilst the bundle app is first installed in the management cluster, where it creates the `App` CRs, which are
-then, in the second step, installed in the workload cluster. More about this in the [App Bundle installation](#app-bundle-installation).
+installed. Installing a solitary app for the workload cluster doesn't result in creating any resources in the management cluster, whilst the bundle app is first installed in the management cluster, where it creates the `App` CRs, which are then, in the second step, installed in the workload cluster. More about this in the [App Bundle installation](#app-bundle-installation).
 
 ## App Bundle Installation {#app-bundle-installation}
 
@@ -66,11 +57,11 @@ cluster's App Operator which we call, by convention, `unique`. It lives under th
 
 <div class="feedback well">
 
-<h5><i class="fa fa-help-outline"></i> Is it possible to install app bundles without involving the management
-cluster layer?</h5> No, at least not in the current implementation form. The reason is, app bundles install App
-Custom Resource(s) that are understood only by the management clusters. Attempt to install them directly to the
-workload cluster would result in an error because corresponding `App` CRD is not available there, resulting in the Kubernetes not understanding the submitted objects.
-
+<h5>
+<i class="fa fa-help-outline"></i>
+Is it possible to install app bundles without involving the management cluster layer
+</h5>
+No, at least not in the current implementation form. The reason is, app bundles install `App` custom resources that are understood only by the management clusters. Attempt to install them directly to the workload cluster would result in an error because corresponding `App` CRD isn't available there, resulting in the Kubernetes not understanding the submitted objects.
 </div>
 
 Now, obviously in order to leverage this management cluster layer, the bundle `App` CR must be configured in a certain way which is slightly different in comparison to the solitary apps. Find more details in the [Technical Details paragraph](#technical-details).
@@ -99,8 +90,10 @@ figure below.
 The broken link doesn't result in removing the first instance. It however results in `Chart` CR being continuously switched between apps leading to continuous re-deployments and hence instability. Due to this it's required that the bundle `App` CRs are named uniquely, which results in creation of a separate set of corresponding resources and effectively unique deployment link. See the figure below.
 
 <div class="feedback well">
-
-<h5><i class="fa fa-help-outline"></i> How to best make the names unique?</h5> It's a common practice to either prepend or append the workload cluster name to the `App` CR name, creating for example "wc1-bundle" or "bundle-wc1".
+<h5><i class="fa fa-help-outline"></i>
+How to best make the names unique
+</h5>
+It's a common practice to either prepend or append the workload cluster name to the `App` CR name, creating for example `wc1-bundle` or `bundle-wc1`.
 </div>
 
 ![User installs a bundle twice with correct names](app-bundle-naming-conflict-step-3.png)
@@ -128,17 +121,17 @@ spec:
   ...
 ```
 
-These two settings ensure this `App` CR is picked up and reconciled by the unique App Operator. Fortunately, when the `kubectl-gs` is used then both of these fields are set correctly when templating an app, when the
+These two settings ensure this `App` CR is picked up and reconciled by the unique app operator. When the `kubectl-gs` is used then both of these fields are set correctly when templating an app, when the
 `--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}), so that there is no need to remember about it.
 
 <div class="feedback well">
-
-<h5><i class="fa fa-help-outline"></i> Can I use it to install any app in the management cluster?</h5> No, but it will work for some apps. The management cluster's chart operator uses a limited set of permissions when
-installing user-requested apps, prohibiting the creation of certain cluster-scoped resources such as `ClusterRole`, `ClusterRoleBinding` or CRDs, or to access certain namespaces, like "kube-system". When the app being requested islimited to the namespace you have access to, and doesn't require cluster scoped resource creation, then installing it within the management cluster should work.
-
+<h5>
+<i class="fa fa-help-outline"></i>
+Is possible to install any app in the management cluster
+</h5>No, but it will work for some apps. The management cluster's chart operator uses a limited set of permissions when installing user-requested apps, prohibiting the creation of certain cluster-scoped resources such as `ClusterRole`, `ClusterRoleBinding` or CRDs, or to access certain namespaces, like `kube-system`. When the app being requested is limited to the namespace you have access to, and doesn't require cluster scoped resource creation, then installing it within the management cluster should work.
 </div>
 
-#### Configuring target workload cluster for the nested `App` CRs
+#### Configuring target workload cluster for the nested apps
 
 Once the `App` CR name and configuration for unique App Operator are taken care of, the only thing left is to
 configure the bundle so that nested `App` CRs are placed into correct workload cluster namespace, and with the

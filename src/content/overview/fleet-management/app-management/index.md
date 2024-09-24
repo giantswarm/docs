@@ -2,14 +2,13 @@
 linkTitle: App management
 title: App management
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
-last_review_date: 2024-09-25
-weight: 50
+weight: 40
 aliases:
   - /platform-overview/app-platform
   - /app-platform
   - /app-platform/overview
 menu:
-  main:
+  principal:
     parent: overview-fleet-management
     identifier: overview-fleet-management-app-platform
 owner:
@@ -26,9 +25,8 @@ user_questions:
   - How can I create an organizational app catalog?
   - How can I interact with the Giant Swarm App Platform?
   - Can I create an app catalog?
+last_review_date: 2024-09-25
 ---
-
-![A large image with the words "The Giant Swarm App Platform" prominently visible over a screenshot of a list of apps](app-platform-header.png)
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as Prometheus) from a single place; the management cluster API.
 

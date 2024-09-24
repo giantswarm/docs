@@ -21,17 +21,17 @@ last_review_date: 2024-09-25
 
 ## Overview
 
-Every cluster has a set of apps that are installed automatically at cluster creation time. This set of apps is defined in the [cluster app](https://github.com/giantswarm/cluster) and the list includes important applications that are mandatory to make the cluster work properly. Example of these apps are `coredns` and `cilium`.
+Every cluster has a set of apps that are installed automatically at cluster creation time. This set of apps is defined in the [cluster app](https://github.com/giantswarm/cluster) and the list includes important applications that are mandatory to make the cluster work correct. Example of these apps are `coredns` and `cilium`.
 
 Normally it's advisable to stick to the default values for the configuration of those apps. Sometimes, though, some level of customization is needed.
 
 This page explains how to customize the configuration of such apps.
 
-## Find out what configs can be changed
+## Find out what configuration can be changed
 
-Customizing the app's configuration ultimately means providing overrides to the helm chart's default values for that app.
+Customizing the app's configuration means providing overrides to the helm chart's default values for that app.
 
-In order to find out what options you can customize for each app, you can refer to the app's default values file in the github repo.
+In order to find out what options you can customize for each app, you can refer to the app's default values file in the GitHub repository.
 
 For example, for the `coredns` app you can refer to this file: https://github.com/giantswarm/coredns-app/blob/master/helm/coredns-app/values.yaml
 
@@ -39,7 +39,7 @@ If you can't find the default values file for the app you need to customize the 
 
 ## Prepare the configuration file
 
-Let's say for example you want to decrease the cache TTL for `coredns`. The relevant setting in the vaules file is:
+Let's say for example you want to decrease the cache TTL for `coredns`. The relevant setting in the values file is:
 
 ```yaml
 configmap:
@@ -57,8 +57,7 @@ For the sake of this example, we'll call this file `coredns-config-override.yaml
 
 ## Create a configmap
 
-Once you have your configuration override file ready, you need to create a configmap in the `management cluster`.
-The configmap has to be created in the workload cluster namespace.
+Once you have your configuration override file ready, you need to create a configmap in the `management cluster`. The configmap has to be created in the workload cluster namespace.
 
 ```sh
 kubectl -n <workload cluster name> create configmap coredns-override-default --from-file=values=coredns-config-override.yaml
@@ -84,11 +83,10 @@ You still need to label the secret with the app name:
 kubectl -n <workload cluster name> label secret coredns-override-default app.kubernetes.io/name=coredns
 ```
 
-## Multiple configs and priority
+## Multiple configurations and priority
 
-Please note it's possible to override multiple configuration fields in the same configmap or secret and it's possible to
-have multiple configmaps and secrets for the same app.
+Please note it's possible to override multiple configuration fields in the same configmap or secret and it's possible to have multiple configmaps and secrets for the same app.
 
 In order to specify a priority order in case of multiple configmaps or secrets, you can use the `cluster-operator.giantswarm.io/app-config-priority` annotation.
 
-Please refer to the [App configuration]({{< relref "/tutorials/app-platform/app-configuration#extra-configs" >}}) page for more details.
+Please refer to the [app configuration]({{< relref "/tutorials/app-platform/app-configuration#extra-configs" >}}) page for more details.

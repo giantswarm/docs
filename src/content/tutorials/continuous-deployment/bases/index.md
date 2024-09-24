@@ -16,14 +16,14 @@ owner:
 last_review_date: 2024-09-25
 ---
 
-Our CAPx (CAPI provider-specific clusters) are delivered by Giant Swarm as a set of two applications. The first one is an [App Custom Resource](https://docs.giantswarm.io/overview/fleet-management/app-management/)(CR) with a Cluster instance definition, while the second one is an App CR containing all the default applications needed for a cluster to run correctly. As such, creating a CAPx cluster means that you need to deliver two configured App CRs to the Management Cluster.
+Our clusters are delivered by Giant Swarm as a set of two applications. The first one is an [`App` custom resource](https://docs.giantswarm.io/overview/fleet-management/app-management/)(CR) with a Cluster instance definition, while the second one is an `App` CR containing all the default applications needed for a cluster to run correctly. As such, creating cluster means that you need to deliver two configured `App` CRs to the management cluster.
 
 Adding definitions can be done on two levels: shared cluster template and version-specific template, see [create shared template base](#create-shared-template-base) and [create versioned base](#create-versioned-base-optional).
 
-**IMPORTANT**, CAPx configuration utilizes the [App Platform Configuration Levels](/getting-started/app-platform/app-configuration/#levels), in the following manner:
+**IMPORTANT**, cluster configuration utilizes the [app platform configuration system]({{< relref "/tutorials/app-platform/app-configuration/#levels" >}}), in the following manner:
 
-- cluster templates provide default configuration via App' `config` field,
-- cluster instances provide custom configuration via App' `extraConfig` field, which is overlaid on top of `config`. The file set with higher priority will prevail in case of colliding config values.
+- Cluster templates provide default configuration via `App` `config` field,
+- Cluster instances provide custom configuration via `App` `extraConfig` field, which is overlaid on top of `config`. The file set with higher priority will prevail in case of colliding configuration values.
 
 See more about this approach [here](https://github.com/giantswarm/rfc/tree/main/merging-configmaps-gitops).
 
@@ -33,17 +33,17 @@ In order to avoid code duplication, it's advised to utilize the [bases and overl
 
 ## Create shared cluster template base {#create-shared-template-base}
 
-**IMPORTANT:** shared cluster template base should not serve as a standalone base for cluster creation, it's there only to abstract App CRs that are common to all clusters versions, and to provide basic configuration for default apps App. It's then used as a base for other bases, which provide an overlay with a specific configuration. This is to avoid code duplication across bases.
+**IMPORTANT:** shared cluster template base shouldn't serve as a standalone base for cluster creation, it's there only to abstract `App` CRs that are common to all clusters versions, and to provide basic configuration for default apps `App`. It's then used as a base for other bases, which provide an overlay with a specific configuration. This is to avoid code duplication across bases.
 
-**Bear in mind**, this is not a complete guide of how to create a perfect base, but rather a mere summary of basic steps needed to move forward. Hence, instructions here will not always be precise in telling you what to change, as this can strongly depend on the resources involved, how much of them you would like to include in a base, etc.
+**Bear in mind**, this isn't a complete guide of how to create a perfect base, but rather a mere summary of basic steps needed to move forward. Hence, instructions here won't always be precise in telling you what to change, as this can strongly depend on the resources involved, how much of them you would like to include in a base, etc.
 
-We provide a command to create bases for CAPI clusters in an easy way. A base can be created by running:
+We provide a command to create bases for workload clusters in an easy way. A base can be created by running:
 
 ```nohighlight
 kubectl gs gitops add base --provider capa
 ```
 
-This command will create the folder structure and the specific folder for the provider capa, including the template files in the `template` folder. The structure would be:
+This command will create the folder structure and the specific folder for the provider `capa` (AWS flavour), including the template files in the `template` folder. The structure would be:
 
 ```nohighlight
 bases
@@ -65,9 +65,9 @@ The current possible values for the providers can be checked in the [command ref
 
 There is one example of a versioned base in the `gitops-template` repository for capo [v0.6.0](https://github.com/giantswarm/gitops-template/tree/main/bases/clusters/capo/>=v0.6.0) as major changes were introduced to the `values.yaml` in the [cluster-openstack v0.6.0 release](https://github.com/giantswarm/cluster-openstack/releases/tag/v0.6.0).
 
-**IMPORTANT**, despite the below instructions referencing `kubectl-gs` for templating configuration, `kubectl-gs` generates configuration for the most recent schema only. If you configure a base for older versions of the cluster app, it's advised to check what is generated against the version-specific `values.yaml`.
+**IMPORTANT**, despite the below instructions referencing `kubectl-gs` for templating configuration, `kubectl-gs` generates configuration for the most recent schema only. If you configure a base for older versions of the cluster app, it's advised to check what's generated against the version-specific `values.yaml`.
 
-In this example we're creating a custom version for capa base:
+In this example we're creating a custom version for AWS base:
 
 1. Create a directory structure:
 
@@ -84,10 +84,10 @@ In this example we're creating a custom version for capa base:
     --provider capa | yq -s '.metadata.name'
     ```
 
-3. This creates four files but we're only interested in the cluster userconfig file `mywcl-userconfig.yml`. We will extract the values and create a new `cluster-config.yaml` file in our version folder:
+3. This creates four files but we're only interested in the cluster user configuration file `mywcl-userconfig.yaml`. We will extract the values and create a new `cluster-config.yaml` file in our version folder:
 
     ```nohighlight
-    cat mywcl-userconfig.yml | yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
+    cat mywcl-userconfig.yaml | yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
     ```
 
     The content of the file will be something like this:
@@ -120,7 +120,7 @@ In this example we're creating a custom version for capa base:
 
 5. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
 
-6. Create a patch for the cluster App CR to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
+6. Create a patch for the cluster `App` CR to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
 
     ```nohighlight
     apiVersion: application.giantswarm.io/v1alpha1

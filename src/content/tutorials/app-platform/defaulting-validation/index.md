@@ -45,7 +45,7 @@ The defaulting logic is implemented using a [mutating admission webhook](https:/
 
 - The `app-operator.giantswarm.io/version` label - It determines which instance of app operator processes the App CR. The value is set based on the release version of the cluster. For example `3.0.0`.
 - The cluster values configmap - It contains per cluster values like the base domain for your cluster. For example `x7jwz-cluster-values`.
-- The kubeconfig secret - It lets app-operator connect to your cluster. For example `x7jwz-kubeconfig`
+- The `kubeconfig` secret - It lets app-operator connect to your cluster. For example `x7jwz-kubeconfig`
 
 Here is an example App CR with only the settings you need to provide. The user values configmap is optional, in case you wish to configure the app with your own values.
 
@@ -137,12 +137,10 @@ spec:
       namespace: w0xyz
 ```
 
-The `app-admission-controller` will now allow the App CR to be created despite the referenced `my-app-userconfig` doesn't exist. The app operator will still perform the validation checks and once the referenced ConfigMap or secret exists the app will be installed.
+The `app-admission-controller` will now allow the `App` CR to be created despite the referenced `my-app-userconfig` doesn't exist. The app operator will still perform the validation checks and once the referenced configmap or secret exists the app will be installed.
 
 ## Retry Logic
 
-During cluster creation there can a short delay while the kubeconfig
-secret and cluster values configmap are generated.
+During cluster creation there can a short delay while the `kubeconfig` secret and cluster values configmap are generated.
 
-So if you have an automated process for creating App CRs please ensure
-it retries and the App CRs will be created once these resources exist.
+So if you have an automated process for creating `App` CRs please ensure it retries and the `App` CRs will be created once these resources exist.

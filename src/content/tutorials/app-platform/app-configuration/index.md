@@ -69,21 +69,18 @@ If no value is provided then the default in the chart's values file (`values.yam
 __Note__: Attempting to change configuration at any other level is risky because your changes
 might be overwritten by an operator. That's why our web interface is only able to set user level configuration values.
 
-## General notes about App CR configuration
+## General notes about app configuration
 
-When using App Platform, it's important to remember, that most of the configuration changes in Kubernetes are asynchronous
-and only eventually consistent. This also applies to App CRs and theirs configuration. To better understand that, let's use an example
-where you update the application version in the App CR from version `v1.0.0` to `v2.0.0` and at roughly the same time you update the
-configmap referenced by the App CR (let's call the configmap before the change `configMap v1` and after the change `configMap v2`).
+When using app platform, it's important to remember, that most of the configuration changes in Kubernetes are asynchronous and only eventually consistent. This also applies to `App` CRs and theirs configuration. To better understand that, let's use an example where you update the application version in the `App` CR from version `v1.0.0` to `v2.0.0` and the same time you update the configmap referenced by the `App` CR (let's call the configmap before the change `configMap v1` and after the change `configMap v2`).
+
 As these changes are completely independent for Kubernetes, the following scenario is possible:
 
-- App CR is in version `v1.0.0` and configMap is in `v1`
-- both App CR and the referenced configmap are edited
+- `App` CR is in version `v1.0.0` and configMap is in `v1`
+- both `App` CR and the referenced configmap are edited
 - the application's version change is already processed, so the application runs in `v2.0.0` with a configmap `v1`
 - after some time, the configmap change is processed, the application will now run in `v2.0.0` with a configmap in version `v2`
 
-Obviously, it can also happen that the configmap is updated first, then the application version. The time between one and the
-other change being processed is usually very short, still it's important to understand, that such situations might and will happen.
+Obviously, it can also happen that the configmap is updated first, then the application version. The time between one and the other change being processed is usually very short, still it's important to understand, that such situations might and will happen.
 
 ## Example of values merging {#basic-values-merging-example}
 
@@ -272,7 +269,7 @@ Then for each `kind` (`configMap`, `secret`) we look up each entry and merge the
 
 In case of multiple `spec.extraConfigs` entries with the same `priority` level, the order on the list is binding, with the item lower on the list being merged later (overriding those higher on the list).
 
-### Example of merging extra configs {#complex-values-merging-example}
+### Example of merging extra configuration {#complex-values-merging-example}
 
 Let's take the following example with just configmaps to make it simple. The same merging algorithm applies for secrets as well.
 

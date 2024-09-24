@@ -22,7 +22,7 @@ last_review_date: 2024-09-25
 
 As stated in the [App Platform overview]({{< relref "/overview/fleet-management/app-management/index.md" >}}) all managed apps are
 Helm Charts underneath. This of course means that at the very bottom the platform must trigger the Helm-related
-actions, like installation or upgrade, against the requested application. This process, mostly, cannot be
+actions, like installation or upgrade, against the requested application. This process, mostly, can't be
 influenced by a user as we try to well-tune it universally to all the apps. Yet, we anticipate that apps not
 matching these universal rules may exist, hence we offer a way to tweak some of the Helm's options.
 

@@ -25,7 +25,7 @@ What it's from a developer perspective is a set of operators and Custom Resource
 To get started with FluxCD, you will need to bootstrap FluxCD to your cluster of choice and create at least one of each of the following:
 
 1. `source.toolkit.fluxcd.io` resources - they tell the `source-controller` where to look for the manifests
-2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they are meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
+2. `helmrelease.helm.toolkit.fluxcd.io` or `kustomization.kustomize.toolkit.fluxcd.io` resources - they're meant for `helm-controller` and `kustomize-controller` respectively and govern how the manifests found in sources will be applied
 
 Luckily, FluxCD is bootstrapped and running in Giant Swarm management clusters, so you can start using it immediately.
 

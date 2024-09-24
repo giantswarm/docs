@@ -152,7 +152,7 @@ Now lets check the app using the `kubectl gs get app` command.
 kubectl gs -n ${CLUSTER} get app ingress-nginx -o yaml
 ```
 
-The labels, cluster configuration and kubeconfig have been all defaulted to the correct
+The labels, cluster configuration and `kubeconfig` have been all defaulted to the correct
 values for your cluster. You can read more about defaulting and validation for
 App CRs [here]({{< relref "/tutorials/app-platform/defaulting-validation" >}}).
 
@@ -193,7 +193,7 @@ In the App CR status you can see that the app is deployed. The `appVersion`
 shows that this version of the app is deploying `v0.45.0` of the upstream
 [Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) project.
 
-## Configuring an App CR
+## Configuring an app
 
 The app is now deployed but what if we want to configure it with our own
 settings? App platform is built on top of [Helm](https://helm.sh/docs/) and
@@ -203,7 +203,7 @@ we provide.
 
 For this example we will do something simple and increase the log level from
 notice to info. We can use `kubectl gs template app` to generate both the
-updated App CR and the related Config Map.
+updated `App` CR and the related configmap.
 
 ```nohighlight
 cat > ingress-values.yaml <<EOL
@@ -223,8 +223,8 @@ kubectl apply -f ingress-nginx.yaml
 cat ingress-nginx.yaml
 ```
 
-Now let's see what was generated. In the Config Map there is a values key with
-the YAML and it's referenced in the App CR. You can also configure apps with
+Now let's see what was generated. In the configmap there is a values key with
+the YAML and it's referenced in the `App` CR. You can also configure apps with
 secrets for more sensitive configuration.
 
 ```yaml
@@ -256,8 +256,7 @@ spec:
   version: 1.17.0
 ```
 
-You can read more about app platform configuration [here]({{< relref "/tutorials/app-platform/app-configuration" >}})
-and about advanced ingress configuration [here]({{< relref "/vintage/advanced/connectivity/ingress" >}}).
+You can read more about app platform configuration [here]({{< relref "/tutorials/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/vintage/advanced/connectivity/ingress" >}}).
 
 ## Deleting an App CR
 

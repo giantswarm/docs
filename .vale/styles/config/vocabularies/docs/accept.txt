@@ -20,6 +20,7 @@ configmap[s]?
 [Cc]rossplane
 CRs
 declaratively
+dependabot
 [Dd]ex
 easily
 effectively

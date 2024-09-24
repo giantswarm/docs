@@ -24,7 +24,7 @@ Follow the below instructions to instruct Flux on how to automatically update an
 
 Configuring automated version updates requires a few additional Flux API objects to be defined, namely:
 
-- `ImageUpdateAutomation`, which defines the core update properties, like the git repositorywhere the commits are to be made, commit messages structure and how to update files in the repository,
+- `ImageUpdateAutomation`, which defines the core update properties, like the Git repository where the commits are to be made, commit messages structure and how to update files in the repository,
 - `ImageRepository` to configure where images are stored and new versions can be detected,
 - `ImagePolicy` to configure which of the detected new tags will be considered as possible to update to.
 - Additionally, you have to edit your existing App manifest to include a marker showing the manifest's property you want to have auto updated by Flux (usually App version property).
@@ -35,7 +35,7 @@ __Note__: in order to use this mechanism you have to make sure that the image ta
 
 ## Example
 
-An example of an App automated update is available in the [gitops-template repository in "WC_NAME/apps/hello-world-automatic-updates"](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/apps/hello-world-automatic-updates/).
+An example of an App automated update is available in the [gitops-template repository in `WC_NAME/apps/hello-world-automatic-updates`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/apps/hello-world-automatic-updates/).
 
 ## Export environment variables
 
@@ -138,7 +138,7 @@ scan for new tags:
     EOF
     ```
 
-    __Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they are considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
+    __Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they're considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
 
     Check [Flux docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
 
@@ -205,7 +205,7 @@ scan for new tags:
 
 ## secrets for scanning private images (optional)
 
-1. Export path to the Docker registry config with secrets:
+1. Export path to the Docker registry configuration with secrets:
 
     ```nohighlight
     export DOCKER_CONFIG_JSON=PATH

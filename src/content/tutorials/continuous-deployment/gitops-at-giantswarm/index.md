@@ -18,7 +18,7 @@ last_review_date: 2024-09-25
 
 Here at Giant Swarm, we're dedicated to ensuring you have a successful GitOps journey.
 
-In order to achieve this, we run presentations and workshops with you to help get you started, offer an [opinionated template](https://github.com/giantswarm/gitops-template) which is crafted around our environments, and additional tooling to generate and validate your resource manifests before they are applied.
+In order to achieve this, we run presentations and workshops with you to help get you started, offer an [opinionated template](https://github.com/giantswarm/gitops-template) which is crafted around our environments, and additional tooling to generate and validate your resource manifests before they're applied.
 
 We want you to have complete ownership of the resources you apply to your clusters and to ensure this, in general we've no visibility of your source manifests or configuration. These will always remain your responsibility to create and manage.
 

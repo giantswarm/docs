@@ -29,40 +29,28 @@ last_review_date: 2024-09-25
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
 We extend Helm and an app catalog is also a Helm [chart repository](https://helm.sh/docs/topics/chart_repository/).
-Each app catalog has its own [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
-CR in the management cluster.
+
+Each app catalog has its own [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) CR in the management cluster.
 
 The app catalog is a Git repository that contains
 
 - a Helm repository index (`index.yaml`),
 - chart tarballs for each version of the app that has been published.
 
-These files must be served over HTTP(S).
+These files must be served over HTTP.
 
-You can register community Helm chart repositories with app platform or create
-your own app catalog.
+You can register community Helm chart repositories with app platform or create your own app catalog.
 
-You can search for Helm charts from the community using [Artifact Hub](https://artifacthub.io/).
-Not all community chart repositories are currently supported. If you encounter a
-problem installing an app please let us know. If you're registering a community
-catalog you can skip to the section `Register the catalog`.
+You can search for Helm charts from the community using [Artifact Hub](https://artifacthub.io/). Not all community chart repositories are currently supported. If you encounter a problem installing an app please let us know. If you're registering a community catalog you can skip to the section `Register the catalog`.
 
-When creating your own app catalog we recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/)
-tool to publish apps to your catalog. It adds additional metadata files that
-allows app platform to extend Helm. Such as only allowing an app to be
-installed once in a cluster. You can learn more about the tool by reading its
-[tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
+When creating your own app catalog we recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/) tool to publish apps to your catalog. It adds additional metadata files that
+allows app platform to extend Helm. Such as only allowing an app to be installed once in a cluster. You can learn more about the tool by reading its [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
 
-These metadata files and the Helm `index.yaml` are used to generate app metadata
-that's stored in the management cluster in [App Catalog Entry]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
-CRs.
+These metadata files and the Helm `index.yaml` are used to generate app metadata that's stored in the management cluster in [app catalog entry]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) CRs.
 
-There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
-for serving the catalog over HTTP(S) including GitHub Pages or tools like Harbor or ChartMuseum which run in a
-Kubernetes cluster. At Giant Swarm we use GitHub Pages and this is what we will
-cover in this guide.
+There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories) for serving the catalog over HTTP including GitHub pages or tools like `Harbor` or `ChartMuseum` which run in a Kubernetes cluster. At Giant Swarm we use GitHub pages and this is what we will cover in this guide.
 
-## Create an app catalog hosted using GitHub Pages
+## Create an app catalog hosted using GitHub pages
 
 First, you should choose a name for your catalog Git repository. At Giant Swarm, we follow the convention to have the name end with the `-catalog` suffix, however any name will work.
 
@@ -99,23 +87,18 @@ To configure the action you need to add a secret called `PAT` to the app's Git
 repository. This must contain a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 that has write permission to the app catalog git repository.
 
-We recommend using [Dependabot](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot)
-to keep the GitHub action up to date.
+We recommend using [`dependabot`](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot) to keep the GitHub action up to date.
 
 ## Register the catalog
 
 To register the catalog with app platform you need to create a Catalog CR in the
 management cluster. This can be done using [kubectl gs template catalog]({{< relref "/vintage/use-the-api/kubectl-gs/template-catalog" >}}).
 
-For community catalogs the address should match the address used for the `helm repo add`
-command and is the location of the Helm `index.yaml`.
+For community catalogs the address should match the address used for the `helm repo add` command and is the location of the Helm `index.yaml`.
 
-When registering your own app catalog served using GitHub Pages the address is the
-same address as the GitHub Pages website.
+When registering your own app catalog served using GitHub Pages the address is the same address as the GitHub Pages website.
 
-You should create the Catalog CR in the [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}})
-namespace where the apps will be used. Or if it needs to be used in multiple
-organizations it can be created in the `default` namespace.
+You should create the Catalog CR in the [organization]({{< relref "/overview/fleet-management/multi-tenancy/" >}}) namespace where the apps will be used. Or if it needs to be used in multiple organizations it can be created in the `default` namespace.
 
 ```nohighlight
 kubectl gs template catalog \
@@ -153,7 +136,7 @@ has any other value it will be hidden in the web UI.
 
 ## Install an app from the catalog
 
-If the Catalog CR is not in the `default` namespace you need to set the catalog
+If the `Catalog` CR isn't in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it's stored. This can be done using
 [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app" >}}).
 
@@ -185,12 +168,10 @@ spec:
 
 ## Inspect the catalog
 
-You can see the published apps for a catalog by listing its app catalog entry
-CRs.
+You can see the published apps for a catalog by listing its app catalog entry CRs.
 
 ```nohighlight
 kubectl get appcatalogentry -n org-example -l application.giantswarm.io/catalog=example
 ```
 
-To avoid creating excessive load on the management cluster we only store the 5
-most recent versions for each app according to [semantic versioning](https://semver.org/).
+To avoid creating excessive load on the management cluster we only store the 5 most recent versions for each app according to [semantic versioning](https://semver.org/).
