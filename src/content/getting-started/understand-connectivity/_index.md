@@ -14,7 +14,7 @@ user_questions:
   - What are the options for service connectivity in the platform?
 ---
 
-By default, workload clusters created by the platform expose the Kubernetes API endpoint publicly, and cluster workloads have outbound internet access. This is what we call a "public" cluster, in contrast to "private" clusters, which are not reachable from the public internet. This guide covers how public cluster networking works and which options are available for managing an app's connectivity. To learn more about private clusters, read [this guide]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}).
+By default, workload clusters created by the platform expose the Kubernetes API endpoint publicly, and cluster workloads have outbound internet access. This is what we call a "public" cluster, in contrast to "private" clusters, which aren't reachable from the public internet. This guide covers how public cluster networking works and which options are available for managing an app's connectivity. To learn more about private clusters, read [this guide]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}).
 
 The Container Network Interface (CNI) plugin manages connectivity within the cluster. Our platform uses [Cilium](https://docs.cilium.io/en/stable/index.html) as a network interface implementation. In addition to offering connectivity between workloads, it also provides network security policies to control traffic between applications.
 
@@ -96,7 +96,7 @@ The attentive reader may have wondered why a specific network policy is needed f
 
 ## Step 2: Create a default network policy
 
-Network segmentation is an important measure for reducing risk in the cluster. It is strongly recommended to create a default network policy that denies all traffic by default in each namespace. This way, pods can only send or receive traffic that has been explicitly allowed.
+Network segmentation is an important measure for reducing risk in the cluster. It's strongly recommended to create a default network policy that denies all traffic by default in each namespace. This way, pods can only send or receive traffic that has been explicitly allowed.
 
 Let's create a default deny-all policy for the `default` namespace by creating a `NetworkPolicy` that selects all pods as follows:
 
@@ -169,7 +169,7 @@ Name: hello-world.default.svc.cluster.local
 Address: 172.31.104.47
 ```
 
-Removing the policy will make DNS lookups fail, as demonstrated below:
+Removing the policy will make DNS requests to fail, as demonstrated below:
 
 ```sh
 $ kubectl delete netpol debug-toolbox-dns
@@ -247,7 +247,7 @@ $ kubectl exec -it debug-toolbox -- sh
 / HTTP/1.1 200 OK
 ```
 
-This guide has introduced how network policies work and some peculiarities to be aware of when working in Giant Swarm clusters. However, the ideal configuration is to have a default deny policy in all namespaces, and allow only the necessary traffic to and from each application. This approach greatly improves security, and ensures cluster traffic is intentionally and declaratively managed.
+This guide has introduced how network policies work and some peculiarities to be aware of when working in Giant Swarm clusters. However, the ideal configuration is to have a default deny policy in all namespaces, and allow only the necessary traffic to and from each application. This approach improves security, and ensures cluster traffic is intentionally and declaratively managed.
 
 ## Next step
 
