@@ -20,6 +20,7 @@ containerd
 CRs
 declaratively
 [Dd]ex
+[Dd][Nn][Ss]
 easily
 effectively
 ELB[s]?
