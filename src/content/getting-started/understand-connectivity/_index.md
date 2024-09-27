@@ -162,7 +162,7 @@ Note that the policy is already deployed in the `default` namespace due to the c
 
 ```sh
 $ kubectl exec debug-toolbox -- nslookup hello-world
-Server:		172.31.0.10
+Server: 172.31.0.10
 Address: 172.31.0.10:53
 
 Name: hello-world.default.svc.cluster.local
@@ -234,7 +234,7 @@ spec:
 Note that the namespace to which this policy applies needs to carry a label `name:` similar to the actual name key in its metadata:
 
 ```sh
-$ kubectl label namespace default name=default
+kubectl label namespace default name=default
 ```
 
 Now let's delete all network policies and apply the `allow-default-namespace` policy so we can verify it works:
