@@ -15,7 +15,7 @@ user_questions:
   - Why should a developer platform be open-source?
   - Why do you need a good team of SREs?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
 
 ## Organizational Efficiency and Innovation
