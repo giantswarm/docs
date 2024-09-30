@@ -18,7 +18,7 @@ user_questions:
  - How does installation of an app bundle work?
  - How to properly configure an app bundle?
  - Are there any caveats in using app bundles?
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 ## App Bundle Definition {#app-bundle-definition}

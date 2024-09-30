@@ -20,7 +20,7 @@ user_questions:
   - How can I use App CR defaulting logic when installing Managed Apps?
   - What fields are validated in App CRs when installing or updating Managed Apps?
   - How can I ensure Flux is not blocked by the validating webhook?
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 ## Overview

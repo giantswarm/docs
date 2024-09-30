@@ -13,7 +13,7 @@ user_questions:
   - GitOps at Giant Swarm?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 Here at Giant Swarm, we're dedicated to ensuring you have a successful GitOps journey.

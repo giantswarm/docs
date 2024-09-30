@@ -15,5 +15,5 @@ menu:
     identifier: tutorials-app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---

@@ -16,7 +16,7 @@ aliases:
 user_questions:
   - How can I customize preinstalled apps configuration?
   - How can I customize default apps configuration?
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 ## Overview

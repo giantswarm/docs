@@ -9,7 +9,7 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-sets
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 user_questions:
   - How can I create and use `App Sets` in GitOps?
 owner:

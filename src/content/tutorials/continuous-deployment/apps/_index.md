@@ -9,7 +9,7 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps
     parent: tutorials-continuous-deployment
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 user_questions:
   - How to manage applications with GitOps?
 owner:

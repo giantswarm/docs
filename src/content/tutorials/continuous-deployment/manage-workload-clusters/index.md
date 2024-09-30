@@ -15,7 +15,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing `Flux` - a set of GitOps operators installed in Giant Swarm management clusters.

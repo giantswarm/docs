@@ -26,7 +26,7 @@ user_questions:
   - What are the limitations around secrets when configuring them for an App?
   - How are configuration values stored and referenced in the Control Plane?
   - How can I provide configuration values for apps?
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 Giant Swarm's [App Platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install Apps across your entire

@@ -9,7 +9,7 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-updating-app
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 user_questions:
   - How can I update an existent app deployed with GitOps?
 owner:

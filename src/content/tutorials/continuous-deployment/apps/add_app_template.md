@@ -9,7 +9,7 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-template
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 user_questions:
   - How can I create an template for app deployment in GitOps?
 owner:

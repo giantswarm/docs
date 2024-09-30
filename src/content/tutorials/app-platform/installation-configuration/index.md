@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I configure custom timeouts for installations and upgrades?
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 ## Overview

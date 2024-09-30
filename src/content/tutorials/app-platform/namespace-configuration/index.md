@@ -16,7 +16,7 @@ owner:
 user_questions:
   - How can I label an app CR's target namespace?
   - How can I annotate an app CR's target namespace?
-last_review_date: 2024-09-25
+last_review_date: 2024-09-30
 ---
 
 ## Overview
