@@ -103,12 +103,6 @@ This label set on the Cluster resource with the value `false` can be used to dis
 
 On other resources, the label serves as a discovery mechanism for metrics scraping. We're replacing this mechanism by service monitors.
 
-### giantswarm.io/monitoring_basic_sli
-
-- TODO: Appears on a variety of resources. Value is always `true`.
-- Team Atlas thinks this is introduced by Honeybadger, could be removed at some point.
-- Use example: https://github.com/giantswarm/prometheus-rules/blob/d440f5cc724d9ad2fe4c7f85c9f0b54090a6858e/helm/prometheus-rules/templates/recording-rules/service-level.rules.yml#L175
-
 ### giantswarm.io/organization
 
 An organization is a key concept in the Giant Swarm platform, used to isolate [tenants]({{< relref "/vintage/platform-overview/multi-tenancy" >}}). This label is used on a variety of resources to associate them with one organization. The value is the name of the organization.
