@@ -20,7 +20,7 @@ First step, you need a running workload cluster. If you don't have one, please f
 
 In case you are running your own application, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics.
 
-Also consider that ingesting new metrics into the platform impacts your costs. The resource consumption of the central monitoring system is related to the amount of metrics it has to handle, so choose wisely which metrics you want to ingest.
+Also, consider that ingesting new metrics into the platform impacts your costs. The central monitoring system's resource consumption is actually related to the number of metrics it has to handle, so please choose which metrics you want to ingest carefully.
 
 ## Step 1: Create a service monitor
 
