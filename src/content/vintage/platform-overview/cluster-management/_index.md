@@ -13,5 +13,5 @@ menu:
     parent: platform-overview
     identifier: platform-overview-cluster-management
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
