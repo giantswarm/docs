@@ -2,7 +2,7 @@
 linkTitle: App platform
 title: Guides for using the App platform
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment in all your workload clusters.
-weight: 60
+weight: 30
 aliases:
   - /getting-started/app-platform
   - /developer-platform/app-platform/
