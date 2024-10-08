@@ -1,26 +1,24 @@
 ---
 title: Observe your clusters and apps
-description: Check cluster and app metrics and logs with the observability tools provided with the Giant Swarm platform.
+description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
 weight: 70
-last_review_date: 2024-09-27
+last_review_date: 2024-08-10
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
-  - How do I observe the platform metrics and logs for my application?
-  - What do I need to do to observe the platform metrics and logs for my application?
+  - How do I observe the platform metrics for my application?
+  - What do I need to do to observe the platform metrics for my application?
 ---
 
-In the Giant Swarm platform every cluster benefits from automatic monitoring by default. It enables you to observe your application with little effort. An in-cluster agent scrapes the metrics and sends them to a central location on the management cluster, where you can interact with them through our managed Grafana instance.
-
-Learn how to observe your application metrics and logs with the observability tools provided with the Giant Swarm platform.
+In the Giant Swarm platform, every cluster benefits from automatic monitoring by default. It allows you to observe the cluster health and application behaviour simultaneously with little effort. An in-cluster agent scrapes the metrics and sends them to a central location on the management cluster, where you can interact with them through our managed Grafana instance.
 
 ## Requirements
 
-First step, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy the `hello-world` application explained [in previous entry]({{< relref "/getting-started/install-an-application" >}}).
+First step, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy the `hello-world` application explained [in previous step]({{< relref "/getting-started/install-an-application" >}}). Further, make sure you have installed [`jq`](https://jqlang.github.io/jq/download/) on your local.
 
 In case you are running your own application, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics.
 
-Also, consider that ingesting new metrics into the platform impacts your costs. The central monitoring system's resource consumption is actually related to the number of metrics it has to handle, so please choose which metrics you want to ingest carefully.
+Also, consider that ingesting new metrics into the platform impacts your costs. The central monitoring system's resource consumption is actually related to the number of metrics it has to handle, so please choose which metrics you want to ingest.
 
 ## Step 1: Create a service monitor
 
@@ -45,17 +43,29 @@ spec:
       app.kubernetes.io/instance: my-service
 ```
 
-An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it is required for the Prometheus agent to discover the target. The team name is a unique identifier for your tenant or team.
+An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it's required for the `Prometheus` agent to discover the target. At the same time, it's used as unique identifier for your tenant or team.
 
-Reading the manifest the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application and should match application label.
+Reading the manifest, the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application, so it should match the application label.
 
-After applying the service monitor, you can open the `Explore` view in the Grafana dashboard and start querying the metrics from your application.
+After applying the service monitor, you can open the `Explore` view in the `Grafana` UI and start querying the metrics from your application.
 
 ![Explore application metrics](explore-application-metrics.png)
 
-## Step 2: Check the built-in dashboard
+__Note__: The `Grafana` UI is accessible via ingress. To know the address you can check the ingress resource in the `monitoring` namespace of platform API.
 
-To make it easier to visualize the metrics of your application, lets create a dashboard in Grafana. One logged into the [platform API]() you can create a ConfigMap with the dashboard in JSON format. It will look like this:
+## Step 2: Inspect the default dashboards
+
+The platform provides a set of default dashboards that you can use to monitor the cluster components and your application. You can access them by opening the `Dashboards` view in the `Grafana` UI and explore different options in `Giant Swarm Public Dashboards` folder.
+
+Below is an example of service monitor metrics filtered to show the `hello-world` application and how many cardinality the `promhttp_metric_handler_requests_total` metric has.
+
+![Service monitor metrics](service-monitor-metrics.png)
+
+Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux, and many other components. Don't hesitate to provide feedback on the dashboards or suggest new ones.
+
+## Step 3: Create your own dashboard
+
+In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/vintage/use-the-api/management-api/_index.md" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
 
 ```yaml
 apiVersion: v1
@@ -72,10 +82,26 @@ metadata:
   namespace: my-namespace
 ```
 
-It is important to have an annotation with the key `k8s-sidecar-target-directory` pointing to the location where the dashboard will be stored in the Grafana UI. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
+It's important to have an annotation with the key `k8s-sidecar-target-directory` pointing to the location where the dashboard will be stored in the `Grafana UI`. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
 
-## Step 3: Check the logs
+In our example you can find the dashboard JSON [here](./dashboard.json). Download the dashboard content and use `jq` to minify it:
+
+```bash
+jq -c . dashboard.json
+```
+
+Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the minified JSON content. After that, apply the `ConfigMap` to the platform API:
+
+```bash
+kubectl apply -f config-map.yaml
+```
+
+After few seconds, you can open the `Dashboards` view in the `Grafana` UI and find your custom dashboard in the `Giant Swarm Public Dashboards` folder.
+
+![custom-dashboard](custom-dashboard.png)
+
+As you can see in the image above, the dashboard shows some information about the `hello-world` application. You see the number of errors, the number of success requests, and number of requests by code. Feel free to poke around and create your own panels.
 
 ## Next step
 
-After knowing how your application behaves let's explore what is the [security baseline and how does it affect your workload]({{< relref "/vintage/getting-started/secure-your-app" >}}).
+After knowing how your application behaves let's explore what's the [security baseline and how does it affect your workload]({{< relref "/getting-started/secure-your-app" >}}).

@@ -5,12 +5,12 @@
         "builtIn": 1,
         "datasource": {
           "type": "grafana",
-          "uid": "-- Grafana --"
+          "uid": "--Grafana --"
         },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
+        "name": "Annotations__DASHBOARD_JSON__ Alerts",
         "type": "dashboard"
       }
     ]
@@ -80,7 +80,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(promhttp_metric_handler_requests_total{container=\"hello-world\", code=\"200\"})",
+          "expr": "sum(promhttp_metric_handler_requests_total{container=\"hello-world\",code=\"200\"})",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -150,7 +150,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(promhttp_metric_handler_requests_total{container=\"hello-world\", code=\"500\"})",
+          "expr": "sum(promhttp_metric_handler_requests_total{container=\"hello-world\",code=\"500\"})",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -267,7 +267,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "New dashboard",
+  "title": "Helloworld",
   "version": 0,
   "weekStart": ""
 }
