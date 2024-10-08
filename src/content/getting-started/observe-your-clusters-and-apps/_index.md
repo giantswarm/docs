@@ -10,7 +10,7 @@ user_questions:
   - What do I need to do to observe the platform metrics for my application?
 ---
 
-In the Giant Swarm platform, every cluster benefits from automatic monitoring by default. It allows you to observe the cluster health and application behaviour simultaneously with little effort. An in-cluster agent scrapes the metrics and sends them to a central location on the management cluster, where you can interact with them through our managed Grafana instance.
+Every cluster benefits from automatic monitoring by default in the Giant Swarm platform. It allows you to observe the cluster health and application behaviour simultaneously with little effort. An in-cluster agent scrapes the metrics and sends them to a central location on the management cluster, where you can interact with them through our managed Grafana instance.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ spec:
       app.kubernetes.io/instance: my-service
 ```
 
-An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it's required for the `Prometheus` agent to discover the target. At the same time, it's used as unique identifier for your tenant or team.
+An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it's required for the `Prometheus` agent to discover the target.
 
 Reading the manifest, the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application, so it should match the application label.
 
@@ -75,7 +75,7 @@ data:
 kind: ConfigMap
 metadata:
   annotations:
-    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/giant-swarm-public-dashboards
+    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/customer
   labels:
     app.giantswarm.io/kind: dashboard
   name: my-grafana-dashboard
@@ -96,11 +96,11 @@ Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the mi
 kubectl apply -f config-map.yaml
 ```
 
-After few seconds, you can open the `Dashboards` view in the `Grafana` UI and find your custom dashboard in the `Giant Swarm Public Dashboards` folder.
+After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and find your custom dashboard in the `Customer` folder.
 
 ![custom-dashboard](custom-dashboard.png)
 
-As you can see in the image above, the dashboard shows some information about the `hello-world` application. You see the number of errors, the number of success requests, and number of requests by code. Feel free to poke around and create your own panels.
+As you can see in the image above, the dashboard shows some information about the `hello-world` application. You see the number of errors, the number of success requests, and the number of requests by code. Feel free to poke around and create your own panels.
 
 ## Next step
 
