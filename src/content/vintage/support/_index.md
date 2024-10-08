@@ -8,7 +8,7 @@ user_questions:
   - How is Giant Swarm organizing support?
 last_review_date: 2023-11-07
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
 
 We build and run a platform which lets our customers manage as many clusters as they need with a given set of (managed) applications they decide. We ensure these clusters and applications stay in the same predictable state. This becomes especially important once you need to run multiple clusters and applications for different teams, on different environments, with different configurations or in multiple locations.

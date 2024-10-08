@@ -11,7 +11,7 @@ user_questions:
   - What is a cloud-native developer platform?
   - How does Giant Swarm help engineering teams?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 last_review_date: 2024-04-26
 ---
 
