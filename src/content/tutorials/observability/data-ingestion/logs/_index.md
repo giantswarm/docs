@@ -15,17 +15,17 @@ user_questions:
   - Why do my clusters run Alloy?
 ---
 
-By default, Giant Swarm clusters starting from release v29.0.0 are equipped with [Alloy](https://grafana.com/docs/alloy), it is a lightweight, high-performance log agent that collects system logs from your cluster and forwards them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster.
+By default, Giant Swarm clusters starting from release v29.0.0 are equipped with [Alloy](https://grafana.com/docs/alloy), it's a lightweight, high-performance log agent that collects system logs from your cluster and forwards them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster.
 
 The Giant Swarm Observability Platform allows you to ingest logs from your workloads in a self-service way using labels to select which pods to ingest logs from.
 
 ### Label your resources
 
-The label `giantswarm.io/logging` can be set to `true` or `false` on any Namespace or Pod. When the label is not set it is considered `false`.
+The label `giantswarm.io/logging` can be set to `true` or `false` on any Namespace or Pod. When the label isn't set it's considered `false`.
 
 - Pods in any namespace can be labeled
 - Namespace can be labeled, the value used for the namespace will be the default for all pods in this namespace
-- Pods label take precedence over Namespace label, e.g. logging can be enabled for a pod in a namespace where logging is disabled and vice versa.
+- Pods label take precedence over Namespace label. For example logging can be enabled for a pod in a namespace where logging is disabled and vice versa.
 
 ||Pod `giantswar.io/logging=true`|Pod `giantswar.io/logging=false`|Pod `unset`
 |-|------------------------------|--------------------------------|--------------------------
@@ -44,6 +44,6 @@ Logs lines can then be viewed in Grafana Explore, learn more about this in [Expl
 
 ### Performances considerations
 
-Keep in mind that ingesting new logs into the Observability Platform comes with a cost. The resource consumption of the central Loki is related to the amount of logs it has to handle. This means ingesting more lokgs also leads to higher resource consumption of the Observability Platform overall. Also note that logs are tailed through Kubernetes API which has an impact on network traffic and CPU consumption of Kubernetes API server pods.
+Keep in mind that ingesting new logs into the Observability Platform comes with a cost. The resource consumption of the central Loki is related to the amount of logs it has to handle. This means ingesting more logs also leads to higher resource consumption of the Observability Platform overall. Also note that logs are tailed through Kubernetes API which has an impact on network traffic and CPU consumption of Kubernetes API server pods.
 
 You can check the resources usage of Kubernetes API server pods in `Kubernetes / Compute Resources / Pod` dashboard in your installation's Grafana.
