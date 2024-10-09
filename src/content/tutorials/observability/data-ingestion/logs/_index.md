@@ -7,7 +7,7 @@ menu:
     parent: tutorials-observability-data-ingestion
     identifier: tutorials-observability-data-ingestion-logs
 weight: 50
-last_review_date: 2024-11-08
+last_review_date: 2024-10-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
