@@ -1,6 +1,6 @@
 ---
 title: Secure your app
-description: Learn how to secure your app on the Giant Swarm platform.
+description: Learn how to secure your application on the Giant Swarm platform.
 weight: 70
 last_review_date: 2024-10-08
 owner:
@@ -16,11 +16,11 @@ user_questions:
 
 <requirements>
 
-## Step 1:
+## Step 1: To be determined
 
 <content>
 
-## Step 2:
+## Step 2:  To be determined
 
 <content>
 
