@@ -25,6 +25,24 @@ title: Workload cluster release aws-29.2.0 for CAPA
 
 ### cluster-aws [v2.0.0...v2.2.0](https://github.com/giantswarm/cluster-aws/compare/v2.0.0...v2.2.0)
 
+#### ⚠️ Breaking change
+
+- Do not allow additional properties in the following fields in order to avoid unnoticed typos:
+
+  - `global.connectivity.network`
+  - `global.connectivity.network.pods`
+  - `global.connectivity.network.services`
+  - `global.connectivity.subnets[]`
+  - `global.connectivity.topology`
+  - `global.controlPlane`
+  - `global.controlPlane.additionalSecurityGroups[]`
+  - `global.controlPlane.machineHealthCheck`
+  - `global.controlPlane.oidc`
+  - `global.providerSpecific`
+  - `global.providerSpecific.instanceMetadataOptions`
+
+If you were using values like `global.controlPlane.containerdVolumeSizeGB` and `global.controlPlane.kubeletVolumeSizeGB`, please move to the new `.global.controlPlane.libVolumeSizeGB` which defines the size of disk volume used for `/var/lib` mount point.
+
 #### Added
 
 - Allow to enable `auditd` through `global.components.auditd.enabled` helm value.
