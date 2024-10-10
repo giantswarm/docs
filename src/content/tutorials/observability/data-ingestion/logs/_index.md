@@ -29,7 +29,7 @@ From release v30.0.0 the label `giantswarm.io/logging` can be set to `true` or `
 
 ||Pod `giantswar.io/logging=true`|Pod `giantswar.io/logging=false`|Pod `unset`
 |-|------------------------------|--------------------------------|--------------------------
-**Namespace** `giantswar.io/logging=true`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>
+**Namespace** `giantswarm.io/logging=true`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>
 **Namespace** `giantswar.io/logging=false`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-times"></i>
 **Namespace** `unset`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-times"></i>
 
