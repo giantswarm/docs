@@ -27,7 +27,7 @@ From release v30.0.0 the label `giantswarm.io/logging` can be set to `true` or `
 - Namespace can be labeled, the value used for the namespace will be the default for all pods in this namespace
 - Pods label take precedence over Namespace label. For example logging can be enabled for a pod in a namespace where logging is disabled and vice versa.
 
-||Pod `giantswar.io/logging=true`|Pod `giantswar.io/logging=false`|Pod `unset`
+||Pod `giantswarm.io/logging=true`|Pod `giantswarm.io/logging=false`|Pod `unset`
 |-|------------------------------|--------------------------------|--------------------------
 **Namespace** `giantswarm.io/logging=true`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>
 **Namespace** `giantswar.io/logging=false`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-times"></i>
