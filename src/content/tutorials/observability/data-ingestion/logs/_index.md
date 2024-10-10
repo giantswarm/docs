@@ -15,7 +15,7 @@ user_questions:
   - Why do my clusters run Alloy?
 ---
 
-By default, Giant Swarm clusters starting from release v29.0.0 are equipped with [Alloy](https://grafana.com/docs/alloy), it's a lightweight, high-performance OpenTelemetry collector. It's configured to collects system logs from your cluster and forwards them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster.
+By default, Giant Swarm clusters starting from release v29.0.0 are equipped with [Alloy](https://grafana.com/docs/alloy), a lightweight, high-performance `OpenTelemetry` collector. It's configured to collect system logs from your cluster and forward them to a central [`Loki`](https://grafana.com/docs/loki) instance running on the management cluster.
 
 The Giant Swarm Observability Platform allows you to ingest logs from your workloads in a self-service way using labels to select which pods to ingest logs from.
 
