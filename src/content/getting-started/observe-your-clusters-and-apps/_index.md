@@ -14,7 +14,7 @@ Every cluster benefits from automatic monitoring by default in the Giant Swarm p
 
 ## Requirements
 
-First step, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy the `hello-world` application explained [in previous step]({{< relref "/getting-started/install-an-application" >}}). Further, make sure you have installed [`jq`](https://jqlang.github.io/jq/download/) on your local.
+First step, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy the `hello-world` application explained [in the previous step]({{< relref "/getting-started/install-an-application" >}}). Further, make sure you have installed [`jq`](https://jqlang.github.io/jq/download/) on your local machine.
 
 In case you are running your own application, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics.
 
