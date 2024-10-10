@@ -17,7 +17,7 @@ aliases:
   - /general/support
   - /basics/giant-swarm-support/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
 
 In Giant Swarm we have developed a custom support model. In order to offer a great support we define different layers of assistance.
