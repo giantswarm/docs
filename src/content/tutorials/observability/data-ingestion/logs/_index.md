@@ -24,8 +24,8 @@ The Giant Swarm Observability Platform allows you to ingest logs from your workl
 From release v30.0.0 the label `giantswarm.io/logging` can be set to `true` or `false` on any Namespace or Pod to select targets to collect logs from. When the label isn't set it's considered `false`.
 
 - Pods in any namespace can be labeled
-- Namespace can be labeled, the value used for the namespace will be the default for all pods in this namespace
-- Pods label take precedence over Namespace label. For example logging can be enabled for a pod in a namespace where logging is disabled and vice versa.
+- Namespace can be labelled; the value used for the namespace will be the default for all pods in this namespace.
+- Pods label take precedence over namespace label. For example, logging can be enabled for a pod in a namespace where logging is disabled and vice versa.
 
 ||Pod `giantswarm.io/logging=true`|Pod `giantswarm.io/logging=false`|Pod `unset`
 |-|------------------------------|--------------------------------|--------------------------
