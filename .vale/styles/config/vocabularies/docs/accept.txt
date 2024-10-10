@@ -16,9 +16,11 @@ CR[D]?[s]?
 [cC]loud
 cluster-vsphere
 containerd
+configmap[s]?
 [Cc]rossplane
 CRs
 declaratively
+dependabot
 [Dd]ex
 [Dd][Nn][Ss]
 easily

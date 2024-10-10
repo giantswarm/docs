@@ -43,7 +43,7 @@ In case you don't have access to the Giant Swarm web interface, you can ask your
 
 ## Authentication and authorization
 
-Access to Grafana is controlled via **single sign-on** (SSO), using the same identity provider you use for the [Management API]({{< relref "/vintage/use-the-api/management-api/authentication" >}}).
+Access to Grafana is controlled via **single sign-on** (SSO), using the same identity provider you use for the [platform API]({{< relref "/vintage/use-the-api/management-api/authentication" >}}).
 
 In order to access Grafana as a customer, you must be a member of the admin group. Specifically, that's a group in your identity provider selected to specify which users have admin permissions in the Giant Swarm installation.
 
