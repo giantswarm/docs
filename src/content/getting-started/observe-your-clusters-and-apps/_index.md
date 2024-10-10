@@ -86,7 +86,7 @@ It's important to have an annotation with the key `k8s-sidecar-target-directory`
 
 The easiest way to build a dashboard is using the Grafana UI. There, you can create panels with the desired visualizations and then export them by selecting `Share > Export`` in the dashboard context menu or by accessing the JSON Model in the dashboard settings.
 
-__Warning__: The dashboards served in the platform are all created from a GitOps repository or created by users through config maps; there is no persistent storage for `Grafana`, which means dashboards are not persisted if the system restarts or are upgraded.
+__Warning__: The dashboards served in the platform are all created from a GitOps repository or created by users through `ConfigMap` resources; there is no persistent storage for `Grafana`, which means dashboards aren't persisted if the system restarts or are upgraded.
 
 In our example, you can find the dashboard JSON [here](./dashboard.json). Download the dashboard content and use `jq` to minify it:
 
