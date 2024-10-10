@@ -44,6 +44,6 @@ Logs lines can then be viewed in `Grafana`UI on the `Explore` page; learn more a
 
 ### Performances considerations
 
-Keep in mind that ingesting new logs into the Observability Platform comes with a cost. The resource consumption of the central Loki is related to the amount of logs it has to handle. This means ingesting more logs also leads to higher resource consumption of the Observability Platform overall. Also note that logs are tailed through Kubernetes API on the cluster which has an impact on network traffic and CPU consumption of Kubernetes API server pods.
+Keep in mind that ingesting new logs into the observability platform comes with a cost. The resource consumption of the central `Loki` is related to the amount of logs it has to handle. This means ingesting more logs also leads to higher resource consumption of the observability platform overall. Also note that logs are tailed through Kubernetes API on the cluster, impacting network traffic and CPU consumption of the API server pods.
 
 You can check the resources usage of Kubernetes API server pods in `Kubernetes / Compute Resources / Pod` dashboard in your installation's Grafana.
