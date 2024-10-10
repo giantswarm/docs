@@ -40,7 +40,7 @@ kubectl label namespace <namespace> giantswarm.io/logging=true
 kubectl label pod <pod> giantswarm.io/logging=true
 ```
 
-Logs lines can then be viewed in Grafana Explore, learn more about this in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
+Logs lines can then be viewed in `Grafana`UI on the `Explore` page; learn more about this in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
 
 ### Performances considerations
 
