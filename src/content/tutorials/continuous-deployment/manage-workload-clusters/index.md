@@ -2,7 +2,7 @@
 linkTitle: Managing workload clusters
 title: Managing workload clusters with GitOps
 description: A guide to create workload clusters in Giant Swarm platform with Flux.
-weight: 20
+weight: 40
 aliases:
   - /advanced/gitops/manage-workload-clusters
 menu:
@@ -15,22 +15,22 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-09-30
+last_review_date: 2024-10-10
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing `Flux` - a set of GitOps operators installed in Giant Swarm management clusters.
 
 ## Managing resources with Flux
 
-In this section, we will guide you through an example Flux setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [`giantswarm/gitops-template`](https://github.com/giantswarm/gitops-template), where you can find all resources used in this section in full, unabbreviated forms and Flux will use these to sync with.
+In this section, we will guide you through an example `Flux` setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [`giantswarm/gitops-template`](https://github.com/giantswarm/gitops-template), where you can find all resources used in this section in full, unabbreviated forms and `Flux` will use these to sync with.
 
 We will be using [`Flux` CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
 
 ## Access control for organizations
 
-To proceed with this tutorial, you need to use a ServiceAccount with a set of permissions that allows you to create and reconcile Flux resources. All the examples are using `default` namespace and `automation` ServiceAccount in that namespace. You will find them in every Management Cluster and they're already assigned with the required privileges.
+To proceed with this tutorial, you need to use a `ServiceAccount` with a set of permissions that allows you to create and reconcile `Flux` resources. All the examples are using `default` namespace and `automation` `ServiceAccount` in that namespace. You will find them in every Management Cluster and they're already assigned with the required privileges.
 
-If you wish to proceed by creating the resources in one of the Organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
+If you wish to proceed by creating the resources in one of the organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
 
 - `read-all-customer`
 - `write-client-certificates-customer`
@@ -111,9 +111,9 @@ kubectl gs gitops add management-cluster --name MC_NAME --repository-name MC_NAM
 
 This command creates the folder for the management cluster, the `Kustomization` file for the MC, `organizations` folder and `secrets` folder, already populated with an encoding key.
 
-Then, we create a Flux `GitRepository` resource that points to the repository. We need a `GitRepository` resource for every management cluster we want to manage. In the `GitRepository` resource we define the address where our repository is stored.
+Then, we create a `Flux` `GitRepository` resource that points to the repository. We need a `GitRepository` resource for every management cluster we want to manage. In the `GitRepository` resource we define the address where our repository is stored.
 
-Now, we need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (we will refer to it as `GIT_CREDENTIALS_SECRET`, please, replace with the chosen name) with the credentials to access the repository. This will allow Flux to download the repository files in order to apply all resources. If your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
+Now, we need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (we will refer to it as `GIT_CREDENTIALS_SECRET`, please, replace with the chosen name) with the credentials to access the repository. This will allow `Flux` to download the repository files in order to apply all resources. If your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
 This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
 
 ```nohighlight
@@ -143,7 +143,7 @@ NAME        URL                                       READY   STATUS            
 flux-demo   https://github.com/giantswarm/flux-demo   True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f   27s
 ```
 
-or Flux CLI - `flux`:
+or `Flux` CLI - `flux`:
 
 ```nohighlight
  flux get sources git -n default

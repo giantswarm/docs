@@ -96,7 +96,7 @@ A `managed app` is an app in our Giant Swarm catalog that provides:
 
 - Safe and tested deployment
 
-Helm chart are ready to use and tested, either sanitizing the upstream forked applications or creating good defaults for our maintained ones. [It is offered a common way of building apps](https://github.com/giantswarm/app-build-suite) and a [testing framework](https://github.com/giantswarm/app-test-suite) which ensure the application is deployable and works as expected. Security and upgrade viability are checked too during the integration process.
+Helm chart are ready to use and tested, either sanitizing the upstream forked applications or creating good defaults for our maintained ones. [It's offered a common way of building apps](https://github.com/giantswarm/app-build-suite) and a [testing framework](https://github.com/giantswarm/app-test-suite) which ensure the application is deployable and works as expected. Security and upgrade viability are checked too during the integration process.
 
 - Monitoring
 
@@ -126,7 +126,7 @@ It's the responsibility of the customer to upgrade the applications they run. Wh
 
 - Dependencies
 
-If a managed app requires secondary apps to run, charts are adapted to run a "standard" deployment of the secondary app. However, these are not managed and maintained in the same terms as a primary app.
+If a managed app requires secondary apps to run, charts are adapted to run a "standard" deployment of the secondary app. However, these aren't managed and maintained in the same terms as a primary app.
 
 __Note__: Overall, it adapts the chart to make sure the app works with the customer’s custom configurations and plugins.
 

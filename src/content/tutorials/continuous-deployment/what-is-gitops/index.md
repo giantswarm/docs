@@ -2,12 +2,12 @@
 linkTitle: GitOps
 title: GitOps
 description: Learn how to continuous deploy all your workloads thanks to GitOps and Kubernetes.
-weight: 90
+weight: 20
 menu:
   principal:
     parent: tutorials-continuous-deployment
     identifier: tutorials-continuous-deployment-what-is-gitops
-last_review_date: 2024-09-30
+last_review_date: 2024-10-10
 user_questions:
   - What is GitOps?
   - How to manage resources with GitOps?
@@ -27,7 +27,7 @@ The GitOps Working Group [defines GitOps as a set of principles](https://github.
 > **Continuously Reconciled**
 > Software agents continuously observe the actual system state and attempt to apply the desired state.
 
-The way these principles manifest in popular tools, such as FluxCD or ArgoCD can be summarized as follows:
+The way these principles manifest in popular tools, such as `Flux` or `ArgoCD` can be summarized as follows:
 
 The cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, etc. GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case discrepancies are found.
 
