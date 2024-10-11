@@ -67,7 +67,7 @@ You can see that several applications already exist for the workload cluster `te
 
 Before installing the `hello-world` app, an ingress controller must be running in the cluster. The ingress controller is responsible for routing the incoming traffic to the correct service in the cluster and make it available publicly.
 
-To know which applications are available for customers we've extended the platform with two custom resources. First resource is the [`AppCatalog`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogs.application.giantswarm.io/" >}}) which is a recipient to collect application definitions that are available to install in the workload clusters. The second is the [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) which is the representation of the application definition which has a version defined.
+To know which applications are available for customers we've extended the platform with two custom resources. The first resource is [`AppCatalog`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogs.application.giantswarm.io/" >}}) which contains application definitions that are available for installation in the workload clusters. The second is the [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) which is the application definition for each application version.
 
 By default there is a single catalog in the platform with the applications maintained by us:
 
@@ -134,7 +134,9 @@ NAME                           CATALOG      APP NAME      VERSION   UPSTREAM VER
 giantswarm-hello-world-2.3.2   giantswarm   hello-world   2.3.2     0.2.1              72d
 ```
 
-To make our app accessible from Internet an [ingress]() should be defined with the right domain. By default every workload cluster comes with a default wildcard record created automatically by our controllers. The domain is composed by the cluster name and the provider, the region and the base domain.
+To make our app accessible from the internet, an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) should be defined with the right domain. By default every workload cluster comes with a default wildcard DNS record (e.g. `*.test01.capi.aws.k8s.gigantic.io`). The domain is composed by the cluster name and the management cluster's base domain.
+
+You can find the domain of your workload cluster like this:
 
 ```sh
 $ kubectl get cm -n org-testing test01-cluster-values -ojsonpath="{.data.values}" | grep baseDomain
@@ -180,7 +182,7 @@ apiVersion: v1
 data:
   values: |
     ingress:
-      ...
+      [...]
 kind: ConfigMap
 metadata:
   creationTimestamp: null
@@ -203,7 +205,7 @@ spec:
   version: 2.3.2
 ```
 
-The `spec.name` field is the application's name in the catalog; meanwhile, 'metadata.name` designates the name of the instance installed in the cluster. [Read more information about the properties here]({{ relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" }}).
+The `spec.name` field is the application's name in the catalog, while `metadata.name` designates the name of the `App` object in the cluster and can therefore be freely chosen. [Read more information about the properties here]({{ relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" }}).
 
 Now let's push the file to your GitOps repository, or apply it directly to the platform API with the following command:
 
@@ -212,12 +214,12 @@ kubectl apply -f hello-world.yaml
 ```
 
 ```nohighlight
-$ kubectl get app test01-hello-world
+$ kubectl get app -n org-testing test01-hello-world
 NAME                INSTALLED VERSION  CREATED AT  LAST DEPLOYED  STATUS
 test01-hello-world  2.3.2              51m         8s             deployed
 ```
 
-If both the ingress-nginx controller and the hello-world app are healthy in the workload cluster, you should be able to access the hello world web page at `https://test01.capi.aws.k8s.gigantic.io` (please fill in your own base domain).
+If both the ingress-nginx controller and the hello-world app are healthy in the workload cluster, you should be able to access the hello world web page at `https://hello.test01.capi.aws.k8s.gigantic.io` (please fill in your own workload cluster domain).
 
 Based on the above `Ingress` definition in the Helm values, a TLS certificate should have been automatically generated using cert-manager, which is installed by default. Since the trusted certificate authority Let's Encrypt is used by default, your browser should show the web page as secure, without warnings.
 
@@ -243,7 +245,7 @@ hello-world   nginx   hello.test01.capi.aws.k8s.gigantic.io   ab49484...   80, 4
 
 It's time to try to reach the application using the ingress:
 
-```sh
+```nohighlight
 $ curl -Is https://hello.test01.capi.aws.k8s.gigantic.io
 / HTTP/1.1 200 OK
 / Accept-Ranges: bytes ...
@@ -255,7 +257,7 @@ The `curl` request it's routed through the AWS load balancer to the ingress cont
 
 The deletion of an app is as simple as creating it:
 
-```nohighlight
+```sh
 kubectl delete -f hello-world.yaml
 
 kubectl delete -f ingress-nginx.yaml
@@ -263,4 +265,4 @@ kubectl delete -f ingress-nginx.yaml
 
 ## Next step
 
-After learning how to deploy an application in the workload cluster, let's dive into [in how networking works in your cluster and how to configure to harden your application]({{< relref "/getting-started/expose-your-app" >}}).
+After learning how to deploy an application in the workload cluster, let's dive into [in how networking works in your cluster and how to configure security hardening of your application]({{< relref "/getting-started/expose-your-app" >}}).
