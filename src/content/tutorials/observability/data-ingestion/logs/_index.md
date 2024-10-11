@@ -45,10 +45,11 @@ Logs lines can then be viewed in `Grafana`UI on the `Explore` page; learn more a
 ### Technical considerations
 
 Per default log ingestion is enabled for the following namespaces:
+
 - `kube-system`
 - `giantswarm`
 
-Targets are discovered using a set of predefined [PodLogs](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.source.podlogs/) resources which are labelled with `giantswarm.io/managed-by=alloy-logs`. These PodLOgs should not be overwritten or we cannot guarantee the operational safety of the clusters.
+Targets are discovered using a set of predefined [PodLogs](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.source.podlogs/) resources which are labelled with `giantswarm.io/managed-by=alloy-logs`. These PodLogs shouldn't be overwritten or we can't guarantee the operational safety of the clusters.
 
 ### Performances considerations
 
