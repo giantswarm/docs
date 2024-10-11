@@ -42,6 +42,14 @@ kubectl label pod <pod> giantswarm.io/logging=true
 
 Logs lines can then be viewed in `Grafana`UI on the `Explore` page; learn more about this in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
 
+### Technical considerations
+
+Per default log ingestion is enabled for the following namespaces:
+- `kube-system`
+- `giantswarm`
+
+Targets are discovered using a set of predefined [PodLogs](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.source.podlogs/) resources which are labelled with `giantswarm.io/managed-by=alloy-logs`. These PodLOgs should not be overwritten or we cannot guarantee the operational safety of the clusters.
+
 ### Performances considerations
 
 Keep in mind that ingesting new logs into the observability platform comes with a cost. The resource consumption of the central `Loki` is related to the amount of logs it has to handle. This means ingesting more logs also leads to higher resource consumption of the observability platform overall. Also note that logs are tailed through Kubernetes API on the cluster, impacting network traffic and CPU consumption of the API server pods.
