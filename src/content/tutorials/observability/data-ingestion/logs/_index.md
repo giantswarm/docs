@@ -33,7 +33,7 @@ From release `v30.0.0`, the label `giantswarm.io/logging` can be set to `true` o
 **Namespace** `giantswar.io/logging=false`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-times"></i>
 **Namespace** `unset`|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-times"></i>
 
-You can use the following command to label a namespace or a pod:
+Resources can be labelled in your git repository. Alternatively you can use the following command to label a namespace or a pod:
 
 ```bash
 kubectl label namespace <namespace> giantswarm.io/logging=true
