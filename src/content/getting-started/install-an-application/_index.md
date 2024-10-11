@@ -251,7 +251,7 @@ $ curl -Is https://hello.test01.capi.aws.k8s.gigantic.io
 / Accept-Ranges: bytes ...
 ```
 
-The `curl` request it's routed through the AWS load balancer to the ingress controller, which then forwards the request to the `hello-world` service.
+The `curl` request is routed through the AWS load balancer to the ingress controller, which then forwards the request to the `hello-world` service.
 
 ## Step 4: Deleting the hello-world app and ingress-nginx controller
 
