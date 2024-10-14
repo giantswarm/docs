@@ -235,7 +235,7 @@ NAME                INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
 test01-hello-world   2.3.2               11s          8s              deployed
 ```
 
-Now you can access your workload cluster, check the app running, and see which ingress address has been generated:
+Now you can access your workload cluster, check the app running, and see which `Ingress` resource has been generated:
 
 ```nohighlight
 kubectl get ingress -n default
