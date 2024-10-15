@@ -64,7 +64,7 @@ Per default log ingestion is enabled for the following namespaces:
 - `kube-system`
 - `giantswarm`
 
-This is done through a set of predefined [PodLogs][1] resources created in the `kube-system` namespace and labelled with `giantswarm.io/managed-by=alloy-logs`. These PodLogs shouldn't be overwritten or we can't guarantee the operational safety of the clusters.
+This is done through a set of predefined [PodLogs][1] resources created in the `kube-system` namespace and labelled with `giantswarm.io/managed-by: alloy-logs`. These PodLogs shouldn't be overwritten or we can't guarantee the operational safety of the clusters.
 
 ### Performances considerations
 
