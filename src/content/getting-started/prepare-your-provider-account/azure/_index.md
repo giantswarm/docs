@@ -152,7 +152,7 @@ Giant Swarm deploys [Flatcar Linux](https://www.flatcar-linux.org/) images for K
 
 Please run the following command before creating a cluster on a given subscription:
 
-```text
+```sh
 az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
 ```
 
@@ -164,7 +164,7 @@ If your security requirements demand this, you can enable [encryption of data st
 
 Please run the following command before creating a cluster on a given subscription:
 
-```text
+```sh
 az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
 ```
 

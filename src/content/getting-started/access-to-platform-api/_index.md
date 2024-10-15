@@ -40,7 +40,7 @@ Select your operating system:
 {{< /tab >}}
 {{< tab title="macOS (Homebrew)">}}
 
-```text
+```sh
 brew install kubernetes-cli krew
 kubectl krew install gs
 ```
@@ -52,7 +52,7 @@ kubectl krew install gs
 
 A special command to log in to the platform API is `kubectl gs login`. You need to provide the address of the management cluster's API endpoint, which is usually provided by Giant Swarm.
 
-```sh
+```text
 $ kubectl gs login "https://api.<management cluster base domain>/"
 [...]
 A new kubectl context named 'gs-wombat' has been created and selected. To switch back to this context later, use either of these commands:
@@ -68,7 +68,7 @@ Let's look at what type of resources and operations platform engineers usually p
 
 The first command we suggest running is `kubectl get orgs`, which lists the organizations defined in your management cluster.
 
-```sh
+```text
 $ kubectl get orgs
 NAME                    AGE
 production              97d
@@ -80,7 +80,7 @@ Organizations are a way to separate and isolate clusters, apps, etc., between di
 
 Secondly, run the `kubectl gs get clusters -A` command, which shows all the clusters managed by your management cluster, the `-A` flag stands for all namespaces.
 
-```sh
+```text
 $ kubectl gs get clusters -A
 NAMESPACE          NAME    AGE    CONDITION   SERVICE PRIORITY  RELEASE   ORGANIZATION  DESCRIPTION
 org-testing        test1   84d    UPDATED     lowest            25.1.0    testing       Testing cluster
@@ -95,13 +95,13 @@ You may notice some important points:
 
 On the other hand, you can see the YAML definition of a cluster (in this example, cluster `test1` in organization `testing`) by running:
 
-```text
+```sh
 kubectl gs get cluster test1 -n org-testing -o yaml
 ```
 
 Finally, you can see the apps deployed in a cluster by running:
 
-```sh
+```text
 $ kubectl gs get app -n org-giantswarm
 NAME                     VERSION     LAST DEPLOYED     STATUS
 golem-capa-karpenter      0.3.0          50d          deployed

@@ -147,7 +147,7 @@ Now, you must go through all the policies created before and attach them to the 
 
 The last step of role creation requires you to set a name for the role. As with the policies, please use the name changing the `INSTALLATION_NAME` placeholder to the name of your management cluster.
 
-```text
+```sh
 giantswarm-${INSTALLATION_NAME}-capa-controller
 ```
 

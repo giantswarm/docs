@@ -72,7 +72,7 @@ spec:
 
 Let's deploy a [debug-toolbox](https://github.com/giantswarm/debug-toolbox) to check the connectivity.
 
-```text
+```sh
 kubectl gs template app \
   --catalog=giantswarm \
   --organization=testing \
@@ -84,7 +84,7 @@ kubectl gs template app \
 
 Wait few seconds until the pod is up and running and then run the command below to check the connectivity.
 
-```sh
+```text
 $ kubectl debug-toolbox -- sh
 / # curl -Is hello-world.default
 / HTTP/1.1 200 OK
@@ -114,14 +114,14 @@ spec:
 
 The default policy shown above will limit ingress and egress traffic in the namespace applied. You can also restrict only for `egress` or `ingress`. Let's apply this policy to the `default` namespace and check hello-world application access.
 
-```sh
+```text
 $ kubectl apply -f default-deny.yaml
 networkpolicy.networking.k8s.io/default-deny created
 ```
 
 Now if you remove the `hello-world` network policy, the application won't work anymore.
 
-```sh
+```text
 $ kubectl delete netpol hello-world
 $ kubectl exec -it debug-toolbox -- sh
 / curl -Is hello-world.default
@@ -160,7 +160,7 @@ __Warning__: By default, clusters run CoreDNS listening on port 1053 (for securi
 
 Note that the policy is already deployed in the `default` namespace due to the chart enabled by default. It allows the DNS queries to be resolved like:
 
-```sh
+```text
 $ kubectl exec debug-toolbox -- nslookup hello-world
 Server: 172.31.0.10
 Address: 172.31.0.10:53
@@ -171,7 +171,7 @@ Address: 172.31.104.47
 
 Removing the policy will make DNS requests to fail, as demonstrated below:
 
-```sh
+```text
 $ kubectl delete netpol debug-toolbox-dns
 $ kubectl exec debug-toolbox -- nslookup hello-world
 ;; connection timed out; no servers could be reached
@@ -204,7 +204,7 @@ spec:
 
 Apply the policy and check the connectivity:
 
-```sh
+```text
 $ kubectl apply -f allow-debug-toolbox-to-hello-world.yaml
 $ kubectl exec -it debug-toolbox -- sh
 / curl -Is hello-world.default
@@ -233,13 +233,13 @@ spec:
 
 Note that the namespace to which this policy applies needs to carry a label `name:` similar to the actual name key in its metadata:
 
-```text
+```sh
 kubectl label namespace default name=default
 ```
 
 Now let's delete all network policies and apply the `allow-default-namespace` policy so we can verify it works:
 
-```sh
+```text
 $ kubectl delete netpol --all -n default
 $ kubectl apply -f allow-default-namespace.yaml
 $ kubectl exec -it debug-toolbox -- sh

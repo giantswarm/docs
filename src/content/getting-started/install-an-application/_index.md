@@ -27,7 +27,7 @@ First of all, you need a running workload cluster. If you don't have one, please
 
 The `App` CRs are stored in an organization namespace, together with the cluster resources. Ensure you are logged into the management cluster. You can list the organizations by running the following command:
 
-```text
+```sh
 kubectl gs get organizations
 ```
 
@@ -39,7 +39,7 @@ First we will take a look to the existing applications already running in the cl
 
 Ensure you are logged into the management cluster.
 
-```sh
+```text
 $ kubectl gs -n org-namespace get apps
 NAME                                 VERSION          CREATED_AT   LAST_DEPLOYED        STATUS
 test01                                 2.0.0               13m          12m             deployed
@@ -65,7 +65,7 @@ To know which applications are available for customers we've extended the platfo
 
 By default there is a single catalog in the platform with the applications maintained by us:
 
-```sh
+```text
 $ kubectl gs get catalogs
 NAME                    CATALOG URL
 giantswarm              https://giantswarm.github.io/giantswarm-catalog/
@@ -75,13 +75,13 @@ __Note__: You can [create your own catalog]({{< relref "/vintage/getting-started
 
 To browse which applications are available in the catalog you can run the following command:
 
-```text
+```sh
 kubectl get appcatalogentries -n default -l application.giantswarm.io/catalog=giantswarm
 ```
 
 In our case we're interested in the ingress nginx controller, so let's check the latest version available in the catalog:
 
-```sh
+```text
 $ kubectl gs get appcatalogentries -n default -l app.kubernetes.io/name=ingress-nginx
 NAME                             CATALOG      APP NAME        VERSION   UPSTREAM VERSION   AGE
 giantswarm-ingress-nginx-3.9.2   giantswarm   ingress-nginx   3.9.2     1.11.2             2d4h
@@ -90,7 +90,7 @@ giantswarm-ingress-nginx-3.9.2   giantswarm   ingress-nginx   3.9.2     1.11.2  
 
 The latest version of the ingress-nginx controller is `3.9.2` in this example. Next, template the `App` CR using the `kubectl gs template app` command, filling in the desired version:
 
-```text
+```sh
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=test01 \
@@ -103,13 +103,13 @@ kubectl gs template app \
 
 You can push the generated `App` CR file to your GitOps repository, or apply it directly to the management cluster with the following command:
 
-```text
+```sh
 kubectl apply -f ingress-nginx.yaml
 ```
 
 If you log into the workload cluster now, ingress controller should be running very soon:
 
-```sh
+```text
 $ kubectl get app ingress-nginx
 NAME            INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
 test01-ingress-nginx   3.9.2               16s          14s             deployed
@@ -121,7 +121,7 @@ The next step is deploying the `hello-world` application using the same approach
 
 First, list the versions with:
 
-```sh
+```text
 $ kubectl get appcatalogentries -n default -l app.kubernetes.io/name=hello-world
 NAME                           CATALOG      APP NAME      VERSION   UPSTREAM VERSION   AGE
 [...]
@@ -132,7 +132,7 @@ To make our app accessible from the internet, an [ingress](https://kubernetes.io
 
 You can find the domain of your workload cluster like this:
 
-```sh
+```text
 $ kubectl get cm -n org-testing test01-cluster-values -ojsonpath="{.data.values}" | grep baseDomain
 baseDomain: test01.capi.aws.k8s.gigantic.io
 ```
@@ -141,7 +141,7 @@ With that information, you can extend the `hello-world` application manifest to 
 
 Create a file containing the Helm chart values:
 
-```sh
+```text
 $ cat > hello-world-values.yaml <<EOF
 ingress:
 hosts:
@@ -158,7 +158,7 @@ EOF
 
 Then, template the application to target the right organization and workload cluster. Also the extra configuration is passed as argument.
 
-```text
+```sh
 kubectl gs template app \
   --catalog=giantswarm \
   --cluster-name=test01 \
@@ -203,11 +203,11 @@ The `spec.name` field is the application's name in the catalog, while `metadata.
 
 Now let's push the file to your GitOps repository, or apply it directly to the platform API with the following command:
 
-```text
+```sh
 kubectl apply -f hello-world.yaml
 ```
 
-```sh
+```text
 $ kubectl get app -n org-testing test01-hello-world
 NAME                INSTALLED VERSION  CREATED AT  LAST DEPLOYED  STATUS
 test01-hello-world  2.3.2              51m         8s             deployed
@@ -223,7 +223,7 @@ __Note__:You can read more about app platform configuration [here]({{< relref "/
 
 After a few seconds, you should see the deployed status:
 
-```sh
+```text
 $ kubectl get app -n org-testing test01-hello-world
 NAME                INSTALLED VERSION   CREATED AT   LAST DEPLOYED   STATUS
 test01-hello-world   2.3.2               11s          8s              deployed
@@ -231,7 +231,7 @@ test01-hello-world   2.3.2               11s          8s              deployed
 
 Now you can access your workload cluster, check the app running, and see which `Ingress` resource has been generated:
 
-```sh
+```text
 $ kubectl get ingress -n default
 NAME          CLASS   HOSTS      ADDRESS      PORTS     AGE
 hello-world   nginx   hello.test01.capi.aws.k8s.gigantic.io   ab49484...   80, 443   2m29s
@@ -239,7 +239,7 @@ hello-world   nginx   hello.test01.capi.aws.k8s.gigantic.io   ab49484...   80, 4
 
 It's time to try to reach the application using the ingress:
 
-```sh
+```text
 $ curl -Is https://hello.test01.capi.aws.k8s.gigantic.io
 / HTTP/1.1 200 OK
 / Accept-Ranges: bytes ...
@@ -251,7 +251,7 @@ The `curl` request is routed through the AWS load balancer to the ingress contro
 
 The deletion of an app is as simple as creating it:
 
-```text
+```sh
 kubectl delete -f hello-world.yaml
 kubectl delete -f ingress-nginx.yaml
 ```
