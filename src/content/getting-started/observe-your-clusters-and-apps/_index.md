@@ -90,13 +90,13 @@ __Warning__: The dashboards served in the platform are all created from a GitOps
 
 In our example, you can find the dashboard JSON [here](./dashboard.json). Download the dashboard content and use `jq` to minify it:
 
-```bash
+```text
 jq -c . dashboard.json
 ```
 
 Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the minified JSON content. After that, apply the `ConfigMap` to the platform API:
 
-```bash
+```text
 kubectl apply -f config-map.yaml
 ```
 

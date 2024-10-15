@@ -70,15 +70,15 @@ Alternatively, you can create your role assignment with restricted access to spe
 
 * Now you can run this command to create the Deployment Environment:
 
-    ```sh
-    az deployment create --name "giantswarm-access" \
-                         --location <AzureRegion> \
-                         --template-file delegatedResourceManagement.json \
-                         --parameters delegatedResourceManagement.parameters.json \
-                         --verbose
-    ```
+```sh
+$ az deployment create --name "giantswarm-access" \
+                      --location <AzureRegion> \
+                      --template-file delegatedResourceManagement.json \
+                      --parameters delegatedResourceManagement.parameters.json \
+                      --verbose
+```
 
-    The `--name` value can be freely chosen if you prefer another name.
+The `--name` value can be freely chosen if you prefer another name.
 
 ### Controller permissions {#iam-azure-operator-role}
 
@@ -92,7 +92,7 @@ The _Giant Swarm Service Principal_ can be created in two different ways: via th
 
 Please run the following command and keep the output for later usage.
 
-```sh
+```text
 # Please fill in the details of the management cluster (MC) and Azure subscription
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
 MC_NAME=ZZZZ
@@ -152,7 +152,7 @@ Giant Swarm deploys [Flatcar Linux](https://www.flatcar-linux.org/) images for K
 
 Please run the following command before creating a cluster on a given subscription:
 
-```sh
+```text
 az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
 ```
 
@@ -164,7 +164,7 @@ If your security requirements demand this, you can enable [encryption of data st
 
 Please run the following command before creating a cluster on a given subscription:
 
-```sh
+```text
 az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
 ```
 

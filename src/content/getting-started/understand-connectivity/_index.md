@@ -72,8 +72,8 @@ spec:
 
 Let's deploy a [debug-toolbox](https://github.com/giantswarm/debug-toolbox) to check the connectivity.
 
-```sh
-$ kubectl gs template app \
+```text
+kubectl gs template app \
   --catalog=giantswarm \
   --organization=testing \
   --cluster-name=fer01 \
@@ -209,7 +209,7 @@ $ kubectl apply -f allow-debug-toolbox-to-hello-world.yaml
 $ kubectl exec -it debug-toolbox -- sh
 / curl -Is hello-world.default
 / HTTP/1.1 200 OK
-/ ...
+/ [...]
 ```
 
 ### Step 5: Allowing pod to pod access within a namespace
@@ -233,15 +233,15 @@ spec:
 
 Note that the namespace to which this policy applies needs to carry a label `name:` similar to the actual name key in its metadata:
 
-```sh
+```text
 kubectl label namespace default name=default
 ```
 
 Now let's delete all network policies and apply the `allow-default-namespace` policy so we can verify it works:
 
 ```sh
-kubectl delete netpol --all -n default
-kubectl apply -f allow-default-namespace.yaml
+$ kubectl delete netpol --all -n default
+$ kubectl apply -f allow-default-namespace.yaml
 $ kubectl exec -it debug-toolbox -- sh
 / curl -Is hello-world.default
 / HTTP/1.1 200 OK

@@ -33,7 +33,7 @@ You can template a cluster ([command reference]({{< relref "/vintage/use-the-api
 
 This will automatically use the latest release of the relevant Helm chart [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md):
 
-```sh
+```text
 kubectl gs template cluster \
   --provider capa \
   --name mycluster \
@@ -46,7 +46,7 @@ You can select the AWS account by specifying the `aws-cluster-role-identity-name
 
 The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`]({{< relref "getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
 
-```sh
+```text
 kubectl gs template cluster \
   --provider capa \
   --name mycluster \
@@ -63,7 +63,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 
 This will automatically use the latest release of the relevant Helm chart [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md):
 
-```sh
+```text
 kubectl gs template cluster \
   --provider eks \
   --name mycluster \
@@ -75,7 +75,7 @@ You can select the AWS account by specifying the `aws-cluster-role-identity-name
 
 The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`]({{< relref "getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
 
-```sh
+```text
 kubectl gs template cluster \
   --provider eks \
   --name mycluster \
@@ -91,7 +91,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 
 This will automatically use the latest release of the relevant Helm chart [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md):
 
-```sh
+```text
 kubectl gs template cluster \
   --provider capz \
   --name mycluster \
@@ -115,7 +115,7 @@ This will install the relevant Helm chart [cluster-cloud-director](https://githu
 
 This will automatically use the latest release of the relevant Helm chart [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md):
 
-```sh
+```text
 kubectl gs template cluster \
   --provider vsphere \
   --name mycluster \
@@ -138,7 +138,7 @@ __Note__: Templating these and other resources as YAML files is reasonable when 
 
 To _actually_ create the resources you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
 
-```sh
+```text
 kubectl apply -f cluster.yaml
 ```
 
@@ -146,13 +146,13 @@ kubectl apply -f cluster.yaml
 
 You can watch the creation and status of the workload cluster running:
 
-```sh
+```text
 kubectl gs get clusters -A
 ```
 
 Additionally, you may want to display the relations and status of the Cluster API manifests using upstream tooling:
 
-```sh
+```text
 kubectl describe clusters.cluster.x-k8s.io -n org-testing name-of-workload-cluster
 
 # Using Cluster API's clusterctl tool (https://cluster-api.sigs.k8s.io/clusterctl/overview.html)
@@ -169,7 +169,7 @@ __Warning__: Note how our example commands use the fully qualified Custom Resour
 
 Use the login command to generate a certificate valid for the workload cluster. As value for `--certificate-group`, you can use `system:masters`. More information about group certificates can be found in [Kubernetes RBAC: Default roles and role bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-```sh
+```text
 kubectl gs login gs-wombat \
   --workload-cluster o8r3r \
   --organization giantswarm \
@@ -181,7 +181,7 @@ At this point, you are logged in to the workload cluster, with full access. Try 
 
 Some of the [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) available in the management cluster aren't available in the workload cluster because those concepts don't exist in workload clusters. For instance, if we try to get the organizations, we get an error, because they're a concept that makes sense in the MC but not in the WC:
 
-```text
+```sh
 $ kubectl get orgs
 error: the server doesn't have a resource type "organizations"
 ```

@@ -75,7 +75,7 @@ Please request an increase in the following quotas (grouped by type):
 
 You will be asked to describe your use case when requesting a service quota increase. Use this text for the following purposes:
 
-```nohighlight
+```text
 We intend to run multiple Kubernetes clusters in this account, potentially used
 by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
@@ -147,7 +147,7 @@ Now, you must go through all the policies created before and attach them to the 
 
 The last step of role creation requires you to set a name for the role. As with the policies, please use the name changing the `INSTALLATION_NAME` placeholder to the name of your management cluster.
 
-```nohighlight
+```text
 giantswarm-${INSTALLATION_NAME}-capa-controller
 ```
 
@@ -161,7 +161,7 @@ Finally, we create an IAM role for Giant Swarm support staff to assume access to
 
 Go to the [Policies](https://console.aws.amazon.com/iam/home#/policies) subsection and select _Create policy_ to set the admin permissions. Use the [admin JSON policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/admin-role/iam-policy.json) file as the policy content. This time, call the policy.
 
-```nohighlight
+```text
 GiantSwarmAdmin
 ```
 
@@ -181,7 +181,7 @@ Attach the newly created `GiantSwarmAdmin` policy to the role you are creating.
 
 Name this role:
 
-```nohighlight
+```text
 GiantSwarmAdmin
 ```
 
