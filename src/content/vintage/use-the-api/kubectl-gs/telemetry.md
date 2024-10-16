@@ -35,7 +35,7 @@ Whenever a command is executed (this does not include calling a command with `-h
 
 ## User identifier hash {#user-id-hash}
 
-We submit a hash that is supposed to be unique to each user using kubectl-gs, to allow counting unique users. The hash is generated based on the following data and SHA256-hashed before submission:
+We submit a hash that is supposed to be distinct to each user using kubectl-gs, to allow counting users. It is generated based on the following data and SHA256-hashed before submission:
 
 - Operating system
 - Processor architecture
