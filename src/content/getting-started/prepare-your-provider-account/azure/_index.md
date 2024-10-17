@@ -78,7 +78,7 @@ Alternatively, you can create your role assignment with restricted access to spe
                           --verbose
     ```
 
-The `--name` value can be freely chosen if you prefer another name.
+    The `--name` value can be freely chosen if you prefer another name.
 
 ### Controller permissions {#iam-azure-operator-role}
 
