@@ -51,7 +51,7 @@ spec:
 EOF
 ```
 
-This will select all pods with the `foo: bar` label in the namespace `charlie` and add the `node_name` label to the logs metadata.
+This will select all pods with the `foo: bar` label in the namespace `charlie` and add the `node_name` label to the logs metadata. More examples can be found [here](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
 
 Logs lines can then be viewed in `Grafana`UI on the `Explore` page; learn more about this in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
 
