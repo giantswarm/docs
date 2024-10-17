@@ -31,7 +31,7 @@ From release `v30.0.0` additional targets to collect logs from can be configured
 
 Example:
 
-```bash
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: monitoring.grafana.com/v1alpha2
 kind: PodLogs
