@@ -21,7 +21,7 @@ The observability platform allows to ingest logs from your workloads in a self-s
 
 ### Using PodLogs
 
-From release `v30.0.0` additional targets to collect logs from can be configured using [PodLogs][1] resource. Those resources must be labelled with `giantswarm.io/managed-by=someValue` and can be created in any namespace. [PodLogs][1] resources can be used to:
+From release `v30.0.0` additional targets to collect logs from can be configured using [PodLogs][1] resource. Those resources can be created in any namespace. [PodLogs][1] resources can be used to:
 
 - Filter pods targets using label selector
 - Filter pods' namespaces using label selector
@@ -37,8 +37,6 @@ apiVersion: monitoring.grafana.com/v1alpha2
 kind: PodLogs
 metadata:
   name: example-podlogs
-  labels:
-    giantswarm.io/managed-by: example-value
 spec:
   selector:
     matchLabels:
