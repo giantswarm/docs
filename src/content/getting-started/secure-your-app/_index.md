@@ -2,7 +2,7 @@
 title: Secure your app
 description: Learn how to secure and protect your application on the Giant Swarm platform.
 weight: 70
-last_review_date: 2024-10-08
+last_review_date: 2024-10-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
