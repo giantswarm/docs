@@ -70,13 +70,13 @@ Alternatively, you can create your role assignment with restricted access to spe
 
 * Now you can run this command to create the Deployment Environment:
 
-```sh
-$ az deployment create --name "giantswarm-access" \
-                      --location <AzureRegion> \
-                      --template-file delegatedResourceManagement.json \
-                      --parameters delegatedResourceManagement.parameters.json \
-                      --verbose
-```
+    ```sh
+    $ az deployment create --name "giantswarm-access" \
+                          --location <AzureRegion> \
+                          --template-file delegatedResourceManagement.json \
+                          --parameters delegatedResourceManagement.parameters.json \
+                          --verbose
+    ```
 
 The `--name` value can be freely chosen if you prefer another name.
 
