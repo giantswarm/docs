@@ -17,7 +17,7 @@ aliases:
   - /getting-started/observability/logging/architecture
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2024-03-21
+last_review_date: 2024-10-21
 ---
 
 Logging is an important pillar of observability and it is thus only natural that Giant Swarm provides and manages a logging solution for operational purposes.
