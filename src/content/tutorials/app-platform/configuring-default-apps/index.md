@@ -2,34 +2,26 @@
 linkTitle: Customizing default apps
 title: Customizing default apps
 description: How to customize preinstalled apps configuration using configmaps or secrets.
-weight: 40
+weight: 50
 menu:
   principal:
     parent: tutorials-app-platform
     identifier: tutorials-app-platform-app-default-apps
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-aliases:
-  - /getting-started/app-platform/configuring-default-apps
-  - /developer-platform/app-platform/configuring-default-apps
-  - /app-platform/configuring-default-apps
 user_questions:
   - How can I customize preinstalled apps configuration?
   - How can I customize default apps configuration?
-last_review_date: 2024-09-30
+last_review_date: 2024-10-21
 ---
 
-## Overview
+In a Giant Swarm platform, every cluster has a set of apps that are installed automatically at creation time. This set of apps is defined in the [cluster app](https://github.com/giantswarm/cluster) and the list includes important applications that are mandatory to make the cluster work correct. Example of these apps are `coredns` or `cilium`.
 
-Every cluster has a set of apps that are installed automatically at cluster creation time. This set of apps is defined in the [cluster app](https://github.com/giantswarm/cluster) and the list includes important applications that are mandatory to make the cluster work correct. Example of these apps are `coredns` and `cilium`.
-
-Normally it's advisable to stick to the default values for the configuration of those apps. Sometimes, though, some level of customization is needed.
-
-This page explains how to customize the configuration of such apps.
+Normally it's advisable to stick to the default values for the configuration of those apps. Sometimes, though, some level of customization is needed. This page explains how to customize the configuration of such apps.
 
 ## Find out what configuration can be changed
 
-Customizing the app's configuration means providing overrides to the helm chart's default values for that app.
+Customizing the app's configuration means providing overrides to the `Helm` chart's default values for that app.
 
 In order to find out what options you can customize for each app, you can refer to the app's default values file in the GitHub repository.
 
@@ -46,27 +38,28 @@ configmap:
   cache: 30
 ```
 
-In order to change the default value of 30 seconds, you need to prepare a file with the same structure, such as:
+In order to change the default value of `30` seconds, you need to prepare a file with the same structure, such as:
 
 ```yaml
 configmap:
   cache: 15
 ```
 
-For the sake of this example, we'll call this file `coredns-config-override.yaml`.
+For the sake of this example, let's call the file `coredns-config-override.yaml`.
 
 ## Create a configmap
 
-Once you have your configuration override file ready, you need to create a configmap in the `management cluster`. The configmap has to be created in the workload cluster namespace.
+Once you have your configuration override file ready, you need to create a configmap in the management cluster. The configmap has to be created in the workload cluster namespace.
 
 ```sh
-kubectl -n <workload cluster name> create configmap coredns-override-default --from-file=values=coredns-config-override.yaml
+export ORG=<organization name>
+kubectl -n $ORG create configmap coredns-override-default --from-file=values=coredns-config-override.yaml
 ```
 
 After you created the configmap, you need to label it in order to associate the configuration with the app you want to override the configuration to. In our example this is `coredns`.
 
 ```sh
-kubectl -n <workload cluster name> label configmap coredns-override-default app.kubernetes.io/name=coredns
+kubectl -n $ORG label configmap coredns-override-default app.kubernetes.io/name=coredns
 ```
 
 ## Confidential data
@@ -74,13 +67,13 @@ kubectl -n <workload cluster name> label configmap coredns-override-default app.
 In case the configuration change involves confidential data, you might want to provide the setting as a secret rather than a configmap. Example:
 
 ```sh
-kubectl -n <workload cluster name> create secret generic coredns-override-default --from-file=values=coredns-config-override.yaml
+kubectl -n $ORG create secret generic coredns-override-default --from-file=values=coredns-config-override.yaml
 ```
 
 You still need to label the secret with the app name:
 
 ```sh
-kubectl -n <workload cluster name> label secret coredns-override-default app.kubernetes.io/name=coredns
+kubectl -n $ORG label secret coredns-override-default app.kubernetes.io/name=coredns
 ```
 
 ## Multiple configurations and priority

@@ -7,19 +7,13 @@ menu:
   principal:
     parent: tutorials-app-platform
     identifier: tutorials-app-platform-namespace-config
-aliases:
-  - /getting-started/app-platform/namespace-configuration
-  - /developer-platform/app-platform/namespace-configuration
-  - /app-platform/namespace-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I label an app CR's target namespace?
   - How can I annotate an app CR's target namespace?
-last_review_date: 2024-09-30
+last_review_date: 2024-10-21
 ---
-
-## Overview
 
 At some point, you might want to add specific labels or annotations to an app's target namespace to enable other tools such as `kiam`. To tell it you do allow Loki to get logs from pods running in this namespace.
 This feature enables you to add labels and annotations to the app's target namespace via its [App CR]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}).

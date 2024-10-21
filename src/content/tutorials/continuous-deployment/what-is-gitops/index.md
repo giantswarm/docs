@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-The GitOps Working Group [defines GitOps as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
+The GitOps working group [defines the term as a set of principles](https://github.com/open-gitops/documents/blob/release-v1.0.0/PRINCIPLES.md):
 > GitOps is a set of principles for operating and managing software systems. These principles are derived from modern software operations, but are also rooted in pre-existing and widely adopted best practices.
 > The desired state of a GitOps managed system must be:
 > **Declarative**
@@ -29,7 +29,7 @@ The GitOps Working Group [defines GitOps as a set of principles](https://github.
 
 The way these principles manifest in popular tools, such as `Flux` or `ArgoCD` can be summarized as follows:
 
-The cluster's desired state, or manifest, is kept in Git repositories (or Helm repositories, S3 buckets, etc. GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case discrepancies are found.
+The cluster's desired state, or manifest, is kept in Git repositories (or `Helm` repositories, `S3` buckets, etc. GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case discrepancies are found.
 
 If the cluster's state changes in a way that's not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
 

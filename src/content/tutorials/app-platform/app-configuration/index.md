@@ -7,11 +7,6 @@ menu:
     parent: tutorials-app-platform
     identifier: tutorials-app-platform-app-config
 weight: 30
-aliases:
-  - /getting-started/app-platform/app-configuration
-  - /reference/app-configuration/
-  - /app-platform/app-configuration
-  - /developer-platform/app-platform/app-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -26,59 +21,55 @@ user_questions:
   - What are the limitations around secrets when configuring them for an App?
   - How are configuration values stored and referenced in the Control Plane?
   - How can I provide configuration values for apps?
-last_review_date: 2024-09-30
+last_review_date: 2024-10-21
 ---
 
-Giant Swarm's [App Platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install Apps across your entire
-fleet of clusters. We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog, which you can of course also use for your own applications by creating a new Catalog.
+The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install apps across your entire fleet of clusters. The platform fully support [`Helm`](https://helm.sh/) as a general tool to deploy your applications as well as the official Giant Swarm app catalog.
 
-Apps are packaged as Helm charts. Helm charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your App you set the values that become available to the templates when they're deployed.
+The apps are packaged as `Helm` charts. Those charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your app you set the values that become available to the templates when they're deployed.
 
 ## Configuration levels {#levels}
 
 There are three levels of configuration:
 
-1. **Catalog**: Configuration provided by the publisher of the App Catalog.
+1. **Catalog**: Configuration provided by the publisher of the `App` catalog.
 2. **Cluster**: Configuration provided by the cluster admin.
-3. **User**: Configuration provided by the user installing an App.
+3. **User**: Configuration provided by the user installing an `App`.
 
 Each level overrides the previous one. As a user you aren't expected to edit configuration at the `catalog` or `cluster` level. However, user level configuration can override both catalog and cluster level configuration.
 
-Since `app-operator` version `v6.2.0` you can set a list of extra configuration layers with special `priority` field
-you can control the level around which they will be applied to the core configurations. Head to the [Extra configuration layers](#extra-configs) section to learn more about them.
+Besides, there is a list of extra configuration layers with special `priority` field that you can control the level around which they will be applied to the core configurations. Head to the [extra configuration layers](#extra-configs) section to learn more about them.
 
 Each level of configuration - same applies to extra configuration layers - has two types of values that you can provide:
 
-1. **Configuration values**: Configuration provided as a configmap resource.
-2. **Secret values**: Configuration and credentials provided as a secret resource.
+1. **Configuration values**: Configuration provided as a `configMap` resource.
+2. **Secret values**: Configuration and credentials provided as a `Secret` resource.
 
-All values are gathered together and merged into the final values
-object that will become available to the chart template.
+All values are gathered together and merged into the final values object that will become available to the chart template.
 
 Values are merged in the following order:
 
-1. Catalog configuration values
-2. Catalog secret values
-3. Cluster configuration values
-4. Cluster secret values
-5. User configuration values
-6. User secret values
+1. `Catalog` configuration values
+2. `Catalog` secret values
+3. `Cluster` configuration values
+4. `Cluster` secret values
+5. `User` configuration values
+6. `User` secret values
 
 If no value is provided then the default in the chart's values file (`values.yaml`) is used.
 
-__Note__: Attempting to change configuration at any other level is risky because your changes
-might be overwritten by an operator. That's why our web interface is only able to set user level configuration values.
+__Note__: Attempting to change configuration at any other level is risky because your changes might be overwritten by an operator.
 
 ## General notes about app configuration
 
-When using app platform, it's important to remember, that most of the configuration changes in Kubernetes are asynchronous and only eventually consistent. This also applies to `App` CRs and theirs configuration. To better understand that, let's use an example where you update the application version in the `App` CR from version `v1.0.0` to `v2.0.0` and the same time you update the configmap referenced by the `App` CR (let's call the configmap before the change `configMap v1` and after the change `configMap v2`).
+When using app platform, it's important to remember, that most of the configuration changes in Kubernetes are asynchronous and only eventually consistent. This also applies to `App` resources and theirs configuration. To better understand that, let's use an example where you update the application version in the `App` resource from version `v1.0.0` to `v2.0.0` and the same time you update the configmap referenced by the `App` resource (let's call the configmap before the change `configMap v1` and after the change `configMap v2`).
 
 As these changes are completely independent for Kubernetes, the following scenario is possible:
 
-- `App` CR is in version `v1.0.0` and configMap is in `v1`
-- both `App` CR and the referenced configmap are edited
-- the application's version change is already processed, so the application runs in `v2.0.0` with a configmap `v1`
-- after some time, the configmap change is processed, the application will now run in `v2.0.0` with a configmap in version `v2`
+- The `App` resource is in version `v1.0.0` and configMap is in `v1`
+- Both `App` resource and the referenced configmap are edited
+- The application's version change is already processed, so the application runs in `v2.0.0` with a configmap `v1`
+- After some time, the configmap change is processed, the application will now run in `v2.0.0` with a configmap in version `v2`
 
 Obviously, it can also happen that the configmap is updated first, then the application version. The time between one and the other change being processed is usually very short, still it's important to understand, that such situations might and will happen.
 
@@ -96,8 +87,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level configmap and a `user`
-level secret:
+Now you create an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level configmap and a user level secret:
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -146,14 +136,14 @@ data:
   values: "Y29sb3I6CiAgc2VjcmV0Q29sb3I6ICJibHVlIgo="
 ```
 
-__Note__: when Base64-decoding the string `.data.values` field in the secret, you'll get this:
+__Note__: when `Base64` decoding the string `.data.values` field in the secret, you'll get this:
 
 ```nohighlight
 colors:
   secretColor: "blue"
 ```
 
-Then the resulting values applied to the Helm chart will be:
+Then the resulting values applied to the `Helm` chart will be:
 
 ```yaml
 colors:
@@ -162,11 +152,9 @@ colors:
   secretColor: "blue"
 ```
 
-As you can see, we made an override for `.colors.background`, changing it from
-`black` to `red`, and set the `.colors.secretColor` value to `blue` using values from the secret.
+As you can see, we made an override for `.colors.background`, changing it from `black` to `red`, and set the `.colors.secretColor` value to `blue` using values from the secret.
 
-You can use these values throughout your chart using the normal templating of
-Helm charts:
+You can use these values throughout your chart using the normal templating of `Helm` charts:
 
 ```yaml
 # hello-world-app/helm/chart/hello-world-app/templates/colors-configmap.yaml
@@ -195,11 +183,11 @@ data:
   secretColor: {{.Values.colors.secretColor | b64enc | quote}}
 ```
 
-__Note__: If you uploaded your secret as individual plain  values and want to use one of those values in an actual templated secret, then you have to base64 encode it to comply with how Kubernetes stores secrets. Our API only encodes the entire secrets value string. It doesn't individually encode each value.
+__Note__: If you uploaded your secret as individual plain  values and want to use one of those values in an actual templated secret, then you have to `base64` encode it to comply with how Kubernetes stores secrets. Our API only encodes the entire secrets value string. It doesn't individually encode each value.
 
-## How configuration values are stored and referenced in the Control Plane {#storage-referencing}
+## How configuration values are stored {#storage-referencing}
 
-Configuration for apps are stored as configmaps and secrets, which are referenced by `name` and `namespace` in various `spec` fields of the [`App`]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) Custom Resource (CR).
+Configuration for apps are stored as configmaps and secrets, which are referenced by `name` and `namespace` in various `spec` fields of the [`App`]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource.
 
 Our operators act on those resources to ensure the actual state ends up looking like the desired state. More information is available in our [general overview of the app platform]({{< relref "/overview/fleet-management/app-management" >}}).
 
@@ -221,8 +209,6 @@ Our operators act on those resources to ensure the actual state ends up looking 
 |||`.spec.userConfig.secret.namespace`|
 
 ## Extra configuration layers {#extra-configs}
-
-This feature is available since app operator version `v6.2.0`.
 
 You can set a list of extra configuration layers via `.spec.extraConfigs`. For example:
 
@@ -254,7 +240,7 @@ The three configuration levels all have an assigned priority value bound to them
 
 The `priority` field for `spec.extraConfigs` entries must be set to a numerical value between (inclusively) `1` and `150`.
 
-This extends the [Example of values merging](#basic-values-merging-example) section.
+This extends the [example of values merging](#basic-values-merging-example) section.
 
 The base upon we merge all other layers is always the `Catalog` layer. That's why it has `priority` set to `0` and you can only set `priority` value starting from `1`.
 
@@ -313,20 +299,20 @@ spec:
          namespace: i5h93
 ```
 
-The merge order for configmaps (with P as the indicated or calculated priority) will be:
+The merge order for configmaps (with `P` as the indicated or calculated priority) will be:
 
-1. Catalog (P = 0)
-2. Configmap: hello-world-high-priority (P = 10)
-3. Configmap: hello-world-pre-cluster (P = 25)
-4. Configmap: hello-world-values (P = 50)
-5. Configmap: hello-world-pre-user (P = 75)
-6. Configmap: hello-world-app-user-values (P = 100)
-7. Configmap: hello-world-post-user (P = 125, position in the list: 1)
-8. Configmap: hello-world-final (P = 125, position in the list: 4)
+1. `Catalog` (P = 0)
+2. `Configmap`: `hello-world-high-priority` (P = 10)
+3. `Configmap`: `hello-world-pre-cluster` (P = 25)
+4. `Configmap`: `hello-world-values` (P = 50)
+5. `Configmap`: `hello-world-pre-user` (P = 75)
+6. `Configmap`: `hello-world-app-user-values` (P = 100)
+7. `Configmap`: `hello-world-post-user` (P = 125, position in the list: `1)
+8. `Configmap`: `hello-world-final` (P = 125, position in the list: 4)
 
 ## Format of values in configmap and secret {#values-format}
 
-The `configmap` and `Secret` must contain a `.data.values` key, under which all configuration values are kept, as a String of valid YAML. For secrets, the string must be base64 encoded, as is required by Kubernetes.
+The `configmap` and `secret` must contain a `.data.values` key, under which all configuration values are kept, as a string of valid YAML. For secrets, the string must be `base64` encoded, as is required by Kubernetes.
 
 > In this context, the secret is used to populate the values file with secret information, it's not used to create secrets on the workload cluster.
 
@@ -356,10 +342,8 @@ data:
   values: "Y29sb3I6CiAgc2VjcmV0Q29sb3I6ICJibHVlIgo="
 ```
 
-## Setting configuration values
+## Applying configuration values
 
-There are many approaches to managing resources in Kubernetes, which go beyond
-the scope of this article. But the simplest would probably be to `kubectl apply` a file directly to the cluster.
+There are many approaches to apply resources in Kubernetes, which go beyond the scope of this article. You can test the examples by running `kubectl apply` to the platform API. For more advanced use cases, we advocate using [GitOps]({{< relref "/tutorials/continuous-deployment/what-is-gitops" >}}) to maintain your configuration in a `Git` repositories always in sync with your clusters.
 
-__Note__: Depending on your installation you might not have access to the Control Plane API yet.
-Please contact your SE if you would like more information about that.
+__Note__: Depending on your installation you might not have access to the platform API yet. Please contact your account engineer if you would like more information about that or follow [the getting started page to learn how to configure it]({{< relref "/getting-started/access-to-platform-api" >}}).

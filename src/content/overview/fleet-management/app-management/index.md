@@ -3,10 +3,6 @@ linkTitle: App management
 title: App management
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
 weight: 40
-aliases:
-  - /platform-overview/app-platform
-  - /app-platform
-  - /app-platform/overview
 menu:
   principal:
     parent: overview-fleet-management
@@ -25,18 +21,17 @@ user_questions:
   - How can I create an organizational app catalog?
   - How can I interact with the Giant Swarm App Platform?
   - Can I create an app catalog?
-last_review_date: 2024-09-30
+last_review_date: 2024-10-21
 ---
 
-The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as Prometheus) from a single place; the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
+The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as `Prometheus`) from a single place; the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
 
-Giant Swarm fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general `App Catalog`. Apps are packaged as Helm charts and can be configured with _values_. A recommended [app configuration]({{< relref "/tutorials/app-platform/app-configuration" >}}) is provided which you can override to meet your needs.
+Giant Swarm fully support [`Helm`](https://helm.sh/) as a general tool to deploy your applications as well as for our general `App Catalog`. Apps are packaged as `Helm` charts and can be configured with _values_. A recommended [app configuration]({{< relref "/tutorials/app-platform/app-configuration" >}}) is provided which you can override to meet your needs.
 
-The app platform then, underneath, installs these Helm Charts whenever an app installation is requested by you.
-The Helm execution is mostly not configurable for you, with the exception to the options presented in
+The app platform then, underneath, installs these `Helm` Charts whenever an app installation is requested by you. The `Helm` execution is mostly not configurable, with the exception to the options presented in
 [installation configuration]({{< relref "/tutorials/app-platform/installation-configuration" >}}).
 
-This feature of the platform provides a collection of curated managed apps. These managed apps are grouped into app catalogs, which can be browsed through our web interface. may also install their own catalogs using the platform API. Finally, it's worth noting that Giant Swarm uses the app platform to install the apps that are pre-installed in your clusters, such as `coredns` or `cluster-autoscaler`.
+This feature of the platform provides a collection of curated managed apps. These managed apps are grouped into app catalogs, which can be browsed through our web interface. They may also install their own catalogs using the platform API. Finally, it's worth noting that Giant Swarm uses the app platform to install the pre-installed apps in your clusters, such as `coredns` or `cluster-autoscaler`.
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an app catalog is a collection of apps.
 
@@ -44,13 +39,9 @@ Giant Swarm provides an app catalog with our offered set of cloud-native applica
 
 ### What makes up the Giant Swarm app platform {#what-makes-up-the-app-platform}
 
-Technically the app platform is implemented as a set of operators
-running on your management cluster and workload clusters. These operators watch various
-Custom Resources, some created by us, and others created by you. Together, they make up
-the desired state of the app platform.
+Technically the app platform is implemented as a set of operators running on your management cluster and workload clusters. These operators watch various custom resources, some created by us, and others created by you. Together, they make up the desired state of the app platform.
 
-For example, this `App` custom resource indicates that you want `Kong` installed
-on a specific workload cluster. Some values are [defaulted]({{< relref "/tutorials/app-platform/defaulting-validation" >}}) for the workload cluster you select.
+For example, this `App` custom resource indicates that you want `Kong` installed on a specific workload cluster. Some values are [defaulted]({{< relref "/tutorials/app-platform/defaulting-validation" >}}) for the workload cluster you select.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -88,7 +79,7 @@ The maturity levels of apps in this catalog are expressed through semantic versi
 
 - Version with `-alpha` or `-beta` suffix - the application is only at a basic maturity level. There is no stable release. It's supported on a best effort basis,
 - Version with `-rc*` suffix - the application is at a preview maturity level. This allows customers to preview a new release of an application and evaluate new features. It's supported on a best effort basis.
-- version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It's available to our customers as a managed offering with support and SLA.
+- Version >= `v1.0.0` with no suffix - the specified version of the application is at a stable maturity level. It's available to our customers as a managed offering with support and SLA.
 
 ### Managed app definition
 
@@ -96,7 +87,7 @@ A `managed app` is an app in our Giant Swarm catalog that provides:
 
 - Safe and tested deployment
 
-Helm chart are ready to use and tested, either sanitizing the upstream forked applications or creating good defaults for our maintained ones. [It's offered a common way of building apps](https://github.com/giantswarm/app-build-suite) and a [testing framework](https://github.com/giantswarm/app-test-suite) which ensure the application is deployable and works as expected. Security and upgrade viability are checked too during the integration process.
+The `Helm` chart is ready to use and tested, either sanitizing the upstream forked applications or creating good defaults for our maintained ones. [It's offered a common way of building apps](https://github.com/giantswarm/app-build-suite) and a [testing framework](https://github.com/giantswarm/app-test-suite) which ensure the application is deployable and works as expected. Security and upgrade viability are checked too during the integration process.
 
 - Monitoring
 
@@ -106,7 +97,7 @@ In case of an alert, operations team perform an Root Cause Analysis (RCA) to und
 
 __Note__: Giant Swarm don't fix bugs upstream when they involve significant code changes. That said, our team always try to find a workaround or the root cause of the issue and submit a ticket to the upstream project. In some cases, our engineers fix the bug ourselves where it’s necessary and possible for us, and provide the fix to the upstream project. This might result in temporarily running a non-upstream patch version from Giant Swarm until upstream merges our patch. Customers can, in general, expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
 
-- Configurations and Plugins
+- Configurations and plugins
 
 The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app. The application configuration is the customer's responsibility. In other words, configurations that derail from the default ones have to be tested and maintained by the customer. Giant Swarm is always happy to help in validating whether those configurations adhere to best-practices and test them together with the customer, but it's the latter's responsibility to actually deploy those configurations in their environments according to their deployment processes and maintenance windows.
 
@@ -130,9 +121,9 @@ If a managed app requires secondary apps to run, charts are adapted to run a "st
 
 __Note__: Overall, it adapts the chart to make sure the app works with the customer’s custom configurations and plugins.
 
-### Installing your own App Catalog
+### Installing your own app catalog
 
-It’s possible to create your own App Catalog. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm platform API. You can request access from your account engineer. Prerequisite for this is a standard Helm chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
+It’s possible to create your own `App Catalog`. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm platform API. You can request access from your account engineer. Prerequisite for this is a standard `Helm` chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
 
 ### How interact with the Giant Swarm app platform
 
