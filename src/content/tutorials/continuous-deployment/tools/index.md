@@ -14,7 +14,7 @@ user_questions:
 - How can I trace resources that flux controls?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-09-30
+last_review_date: 2024-10-21
 ---
 
 The following scripts and tools may be used to support you in understanding issues which may arise during the deployment of resources managed by flux. Some of these tools are introduced by us here at Giant Swarm, whilst others are provided as part of the upstream package or from the community.

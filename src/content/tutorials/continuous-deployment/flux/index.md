@@ -14,7 +14,7 @@ aliases:
   - /advanced/fluxcd/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-10-10
+last_review_date: 2024-10-21
 ---
 
 The [FluxCD](https://fluxcd.io), called just `Flux` too, website states:

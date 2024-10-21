@@ -7,7 +7,7 @@ menu:
   principal:
     parent: tutorials-continuous-deployment
     identifier: tutorials-continuous-deployment-what-is-gitops
-last_review_date: 2024-10-10
+last_review_date: 2024-10-21
 user_questions:
   - What is GitOps?
   - How to manage resources with GitOps?

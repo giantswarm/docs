@@ -9,14 +9,14 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-sets
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-10-10
 user_questions:
   - How can I create and use `App Sets` in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2024-10-21
 ---
 
-This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [App Platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
+This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
 
 # Creating and using app sets
 
@@ -31,9 +31,9 @@ Even though `App Sets` have a lot of benefits, their implementation with `kustom
 
 In general, the whole problem can be summarized as `kustomize` isn't a templating engine. It can override some values, even in bulks, but it can't put the same value in any arbitrary place.
 
-In the common case, it's impossible to configure a variable once and use it with multiple apps. There are only two choices here: either each pair of apps shares exactly the same configmap or secret as a `config:` attribute of an App CR or they use two separate configmaps. In the latter case, it's your responsibility to provide exactly the same value in both configmaps or secrets. In the former, it means that your apps share the same configuration input and must be able to handle this situation correctly: there can be no conflicting options and each shared option must be understood exactly the same by each app. In practice, it means that the apps must be prepared on the Helm chart layer to work together.
+In the common case, it's impossible to configure a variable once and use it with multiple apps. There are only two choices here: either each pair of apps shares exactly the same configmap or secret as a `config:` attribute of an `App` resource or they use two separate configmaps. In the latter case, it's your responsibility to provide exactly the same value in both configmaps or secrets. In the former, it means that your apps share the same configuration input and must be able to handle this situation correctly: there can be no conflicting options and each shared option must be understood exactly the same by each app. In practice, it means that the apps must be prepared on the Helm chart layer to work together.
 
-If none of these two solutions is applicable, you might want to solve the problem of bundling the apps together elsewhere. One of possible routes is to create a new umbrella Helm Chart that includes all the necessary apps as [sub-charts](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
+If none of these two solutions is applicable, you might want to solve the problem of bundling the apps together elsewhere. One of possible routes is to create a new umbrella `Helm` chart that includes all the necessary apps as [sub-charts](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
 
 ## Example
 
@@ -95,7 +95,7 @@ Please note the following in the example above:
 
 - We use the `gitops.giantswarm.io/appSet: YOUR_NAME` that will identify all the components included in the `App Set`. This makes debugging easier later, as you can easily find what belongs to the Set after it's deployed.
 - One of the key benefits of `App Sets` is to be able to provide a specific set of app versions, that's known to make the apps work well together. Over here, we do that as a set of in-line patches, so it's immediately visible in the `kustomization.yaml` file which versions are used.
-- When using `App` CRs, we've two configuration slots available: `config` and `userConfig`. Since we always want to leave `userConfig` at the end users disposal, we're left with overriding the whole configmap coming from the base application as the only option.
+- When using `App` resources, we've two configuration slots available: `config` and `userConfig`. Since we always want to leave `userConfig` at the end users disposal, we're left with overriding the whole configmap coming from the base application as the only option.
 - It's recommended to re-use App Templates to create `App Set` Templates. That's exactly what we do here: apps defined in the `resources:` block are App Templates, that, if needed, can be also used standalone.
 - The example above doesn't cover handling secrets - we do that for brevity. secrets can be created the same way as in normal [App Templates](./add_app_template.md) and overrode the same as configmaps or secrets when creating [App from a Template](/advanced/gitops/apps/add_appcr/#adding-app-using-app-template).
 

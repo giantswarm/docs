@@ -3,8 +3,6 @@ linkTitle: Managing workload clusters
 title: Managing workload clusters with GitOps
 description: A guide to create workload clusters in Giant Swarm platform with Flux.
 weight: 40
-aliases:
-  - /advanced/gitops/manage-workload-clusters
 menu:
   principal:
     parent: tutorials-continuous-deployment
@@ -15,7 +13,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-10-10
+last_review_date: 2024-10-21
 ---
 
 In this document you will learn how to manage infrastructure and applications by utilizing `Flux` - a set of GitOps operators installed in Giant Swarm management clusters.

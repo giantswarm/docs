@@ -15,16 +15,15 @@ user_questions:
 last_review_date: 2024-10-21
 ---
 
-At some point, you might want to add specific labels or annotations to an app's target namespace to enable other tools such as `kiam`. To tell it you do allow Loki to get logs from pods running in this namespace.
-This feature enables you to add labels and annotations to the app's target namespace via its [App CR]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}).
-This is simpler and easier than using other solutions such as triggering a Kubernetes job via a Helm hook.
+When installation apps through the app platform, you might want to add specific labels or annotations to an app's target namespace (for example to allow `Loki` to scrape logs from a specific namespace).
+
+The [App custom resource]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) allows you to configure the target namespace via the spec.
 
 ## Configuring labels and annotations
 
-You can use `.spec.namespaceConfig` to configure the namespace metadata. You can set `.spec.namespaceConfig.annotations` and / or
-`spec.namespaceConfig.labels` and provide the values as a key/value map. App platform then ensures the namespace exists and has this metadata.
+You can use `.spec.namespaceConfig` to configure the namespace metadata. When setting `.spec.namespaceConfig.annotations` or `spec.namespaceConfig.labels` you provide the values as a key/value map. Later the app platform will ensure the namespace is updated with the provided metadata.
 
-For example, if you want to add an annotation `ownership.my-org.com/responsible: my-team` to the target namespace `loki` add this to the app CR.
+For example, to enable logs in your namespace you set the annotation `ownership.my-org.com/responsible: my-team` in the `App` custom resource.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -71,5 +70,4 @@ spec:
 
 ### Validation
 
-The [validation logic]({{< relref "/tutorials/app-platform/defaulting-validation" >}}) in app-admission-controller checks whether multiple app CRs are updating the same namespace
-with different values. The validation webhook will prevent the conflicting value from being added.
+The [validation logic]({{< relref "/tutorials/app-platform/defaulting-validation" >}}) in app admission controller checks whether multiple `App` resources are updating the same namespace with different values. The validation webhook will prevent the conflicting value from being added.

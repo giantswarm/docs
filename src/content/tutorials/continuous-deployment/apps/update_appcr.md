@@ -9,22 +9,22 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-updating-app
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-10-10
 user_questions:
   - How can I update an existent app deployed with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2024-10-21
 ---
 
-This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [App Platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
+This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
 
 # Update an existing App
 
-Follow the below instructions to update an existing App.
+Follow the below instructions to update an existing `App`.
 
 ## Export environment variables
 
-The Management Cluster codename, Organization name, workload cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+The management cluster codename, organization name, workload cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```sh
 export MC_NAME=CODENAME
@@ -35,21 +35,21 @@ export APP_NAME=APP_NAME
 
 ## Updating App
 
-  App update and reconfiguration must be done in the correct resource. If you want to reconfigure a property of App CR, like the application version, you have to edit the `appcr.yaml` file. If you want to edit the plain text or encrypted configuration, you have to edit the relevant resource type.
+App update and reconfiguration must be done in the correct resource. If you want to reconfigure a property of `App` resource, like the application version, you have to edit the `appcr.yaml` file. If you want to edit the plain text or encrypted configuration, you have to edit the relevant resource type.
 
-### Updating App CR
+### Updating App resource
 
-1. Go to the App directory:
+1. Go to the `App` directory:
 
     ```sh
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
     ```
 
-2. Edit the `appcr.yaml` if you want to update the App CR fields, like version, catalog, etc. For all the supported fields reference [the App CRD schema](https://docs.giantswarm.io/use-the-api/management-api/crd/apps.application.giantswarm.io/)
+2. Edit the `appcr.yaml` if you want to update the `App` resource fields, like version, catalog, etc. For all the supported fields reference [the App CRD schema](https://docs.giantswarm.io/use-the-api/management-api/crd/apps.application.giantswarm.io/)
 
 ### Updating configmap user values
 
-1. Go to the App directory:
+1. Go to the `App` directory:
 
     ```sh
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
@@ -78,7 +78,7 @@ export APP_NAME=APP_NAME
     sops --decrypt --in-place secret.enc.yaml
     ```
 
-4. Grab the `.data.values` field from the secret and base64-decode it:
+4. Grab the `.data.values` field from the secret and `base64` decode it:
 
     ```sh
     yq eval .data.values secret.enc.yaml | base64 -d > values.tmp.yaml
@@ -86,7 +86,7 @@ export APP_NAME=APP_NAME
 
 5. Edit the `values.tmp.yaml` if you want to update a secret user configuration
 
-6. Save the base64-encoded `values.tmp.yaml` into variable:
+6. Save the `base64` encoded `values.tmp.yaml` into variable:
 
     ```sh
     export NEW_USER_VALUES=$(cat values.tmp.yaml | base64)
@@ -104,13 +104,13 @@ export APP_NAME=APP_NAME
     rm values.tmp.yaml
     ```
 
-9. Re-encrypt the Kubernetes secret:
+9. Re-encrypt the `Kubernetes` secret:
 
     ```sh
     sops --encrypt --in-place secret.enc.yaml
     ```
 
-10. Remove the private GPG key from your keychain and submit the PR.
+10. Remove the private GPG key from your keychain and submit a pull request.
 
     ```sh
     gpg --delete-secret-keys "${KEY_FP}"

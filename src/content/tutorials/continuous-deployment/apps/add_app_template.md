@@ -9,11 +9,11 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-template
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-10-10
 user_questions:
   - How can I create an template for app deployment in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2024-10-21
 ---
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).

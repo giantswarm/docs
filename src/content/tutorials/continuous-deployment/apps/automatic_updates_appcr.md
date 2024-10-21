@@ -9,37 +9,37 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-updates
     parent: tutorials-continuous-deployment-apps
-last_review_date: 2024-10-10
 user_questions:
   - How can I enable and configure auto update for apps deployment with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+last_review_date: 2024-10-21
 ---
 
-This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [App Platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
+This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
 
 # Enable automatic updates of an existing App
 
-Follow the below instructions to instruct Flux on how to automatically update an existing App. Automatic update means Flux will scan a remote repository and automatically update your deployed application version while also creating commits in your repository to reflect these changes.
+Follow the below instructions to instruct Flux on how to automatically update an existing `App`. Automatic update means `Flux` will scan a remote repository and automatically update your deployed application version while also creating commits in your repository to reflect these changes.
 
-Configuring automated version updates requires a few additional Flux API objects to be defined, namely:
+Configuring automated version updates requires a few additional `Flux` API objects to be defined, namely:
 
 - `ImageUpdateAutomation`, which defines the core update properties, like the Git repository where the commits are to be made, commit messages structure and how to update files in the repository,
 - `ImageRepository` to configure where images are stored and new versions can be detected,
 - `ImagePolicy` to configure which of the detected new tags will be considered as possible to update to.
 - Additionally, you have to edit your existing App manifest to include a marker showing the manifest's property you want to have auto updated by Flux (usually App version property).
 
-Flux will watch for new Docker image tags for your App and use them to update the `.spec.version` field in the App CR. It will do it by pushing commits to this repository.
+`Flux` will watch for new docker image tags for your `App` and use them to update the `.spec.version` field in the `App` resource. It will do it by pushing commits to this repository.
 
-__Note__: in order to use this mechanism you have to make sure that the image tags of your App correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
+__Note__: in order to use this mechanism you have to make sure that the image tags of your `App` correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
 
 ## Example
 
-An example of an App automated update is available in the [gitops-template repository in `WC_NAME/apps/hello-world-automatic-updates`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/apps/hello-world-automatic-updates/).
+An example of an `App` automated update is available in the [gitops-template repository in `WC_NAME/apps/hello-world-automatic-updates`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/apps/hello-world-automatic-updates/).
 
 ## Export environment variables
 
-__Note__: Management Cluster codename, Organization name, workload cluster name and some App-related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+__Note__: management cluster codename, organization name, workload cluster name and some `App` related values are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
 
 ```nohighlight
 export MC_NAME=CODENAME
@@ -64,7 +64,7 @@ export APP_IMAGE_REGISTRY=APP_IMAGE_REGISTRY
     cd automatic-updates
     ```
 
-3. Create the `imageupdate.yaml` file that defines an automation process for updating Git repository:
+3. Create the `imageupdate.yaml` file that defines an automation process for updating `Git` repository:
 
     ```nohighlight
     cat <<EOF > imageupdate.yaml
@@ -95,14 +95,13 @@ export APP_IMAGE_REGISTRY=APP_IMAGE_REGISTRY
     EOF
     ```
 
-4. Leave `automatic-updates` directory and go into the App directory:
+4. Leave `automatic-updates` directory and go into the `App` directory:
 
     ```nohighlight
     cd ../apps/${APP_NAME}
     ```
 
-5. Create the [ImageRepository CR](https://fluxcd.io/docs/components/image/imagerepositories/) to configure registry to
-scan for new tags:
+5. Create the [`ImageRepository` custom resource](https://fluxcd.io/docs/components/image/imagerepositories/) to configure registry to scan for new tags:
 
     ```nohighlight
     cat <<EOF > imagerepository.yaml
@@ -117,7 +116,7 @@ scan for new tags:
     EOF
     ```
 
-6. Create the [ImagePolicy CR](https://fluxcd.io/docs/components/image/imagepolicies/) with rules for tags selection:
+6. Create the [`ImagePolicy` resource](https://fluxcd.io/docs/components/image/imagepolicies/) with rules for tags selection:
 
     ```nohighlight
     cat <<EOF > imagepolicy.yaml
@@ -138,9 +137,9 @@ scan for new tags:
     EOF
     ```
 
-    __Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they're considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
+__Note__: the `filterTags` is processed first and gives the opportunity to filter the image tags before they're considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
 
-    Check [Flux docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
+Check [`Flux` docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
 
 7. Go back to the `apps` directory:
 
@@ -164,7 +163,7 @@ scan for new tags:
     - ${APP_NAME}/imagerepository.yaml
     ```
 
-9. Edit the `kustomization.yaml` file again, and add a patch for placing Flux' resources in the default namespace or one of your organization namespaces:
+9. Edit the `kustomization.yaml` file again, and add a patch for placing `Flux'` resources in the default namespace or one of your organization namespaces:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -178,15 +177,15 @@ scan for new tags:
       kind: 'ImagePolicy|ImageRepository'
     ```
 
-## App CR version field mark
+## App resource version field mark
 
-1. Go to the App directory:
+1. Go to the `App` directory:
 
     ```nohighlight
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
     ```
 
-2. Mark the `.spec.version` field for update in the App CR:
+2. Mark the `.spec.version` field for update in the `App` resource:
 
     ```nohighlight
     sed -i "s/version:.*$/& # {\"\$imagepolicy\": \"default:${APP_NAME}:tag\"}/" appcr.yaml
@@ -203,7 +202,7 @@ scan for new tags:
      version: 0.1.2 # {"$imagepolicy": "default:hello-world:tag"}
    ```
 
-## secrets for scanning private images (optional)
+## Secrets for scanning private images (optional)
 
 1. Export path to the Docker registry configuration with secrets:
 
@@ -211,13 +210,13 @@ scan for new tags:
     export DOCKER_CONFIG_JSON=PATH
     ```
 
-2. Go to the Management Cluster secrets directory:
+2. Go to the management cluster secrets directory:
 
     ```nohighlight
     cd management-clusters/${MC_NAME}/secrets
     ```
 
-3. Create Kubernetes secret with Docker Registry credentials and save it into a file:
+3. Create `Kubernetes` secret with Docker registry credentials and save it into a file:
 
     ```nohighlight
     kubectl create secret docker-registry \
@@ -228,7 +227,7 @@ scan for new tags:
     -o yaml > pullsecrets.enc.yaml
     ```
 
-4. Import the master GPG public key and encrypt the Kubernetes secret with it:
+4. Import the master GPG public key and encrypt the `Kubernetes` secret with it:
 
     ```nohighlight
     gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.master.asc
@@ -241,7 +240,7 @@ scan for new tags:
     yq -i eval '.resources += "pullsecrets.enc.yaml" | .resources style=""' kustomization.yaml
     ```
 
-6. Go to the App directory:
+6. Go to the `App` directory:
 
     ```nohighlight
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}

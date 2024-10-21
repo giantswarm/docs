@@ -156,7 +156,7 @@ For terminating TLS in the ingress controller you first need to create a TLS sec
 
 ```yaml
 apiVersion: v1
-kind: secret
+kind: Secret
 type: kubernetes.io/tls
 metadata:
   name: TLS_SECRET
@@ -223,7 +223,7 @@ Next, we create a secret containing our `auth` file:
 
 ```yaml
 apiVersion: v1
-kind: secret
+kind: Secret
 type: Opaque
 metadata:
   name: AUTH_SECRET
