@@ -50,7 +50,6 @@ CAPA until v29.1.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i 
 CAPZ until v29.0.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
 vintage (all releases)|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
 
-
 If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and how to [explore logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}})
 
 ## Logs stored by Giant Swarm
