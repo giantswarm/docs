@@ -35,9 +35,21 @@ In this diagram, you can see that we run the following tools in each management 
 
 - `Grafana Loki` that is accessible through our managed Grafana instance.
 - `multi-tenant-proxy`, a proxy component used to handle multi-tenancy for Loki.
-- A couple of logging agents (`Grafana Promtail` and `Grafana Agent`) that run on the management cluster and your workload clusters alike. We currently need two different tools for different purposes.
-    - Promtail is used to retrieve the container and kubernetes audit logs
+- A couple of scrapping agents run on the management cluster and your workload clusters alike. There is different tools for different purposes:
+    - Promtail is used in older versions to retrieve the container and kubernetes audit logs.
+    - Alloy is used in newer versions to retrieve the container and kubernetes audit logs.
     - Grafana Agent is used to retrieve the kubernetes events.
+
+### Release compatibility
+
+Release|Alloy|Promtail|Grafana Agent|
+-------|-----|--------|-------------|
+CAPA from v29.2.0|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|
+CAPZ from v29.1.0|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|
+CAPA until v29.1.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+CAPZ until v29.0.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+vintage (all releases)|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+
 
 If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and how to [explore logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}})
 
