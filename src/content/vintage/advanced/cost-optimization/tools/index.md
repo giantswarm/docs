@@ -13,7 +13,7 @@ user_questions:
 aliases:
   - /advanced/cost-optimization/tools
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
 
 The adoption of Kubernetes still requires monitoring cost drivers. Improving resource utilization allows you to get the most out of your infrastructure while maintaining your budget. This document is comprised of a curated list of helpful tools on the journey to cost optimization. The list is based on our experience building and running our own infrastructure, in addition to the learnings we gained from working with large global enterprises.

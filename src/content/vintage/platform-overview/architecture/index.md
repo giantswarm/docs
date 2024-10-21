@@ -16,7 +16,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-  - https://github.com/orgs/giantswarm/teams/team-horizon
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
 
 Giant Swarm's mission is to empower our customers to innovate rapidly and confidently, and we do that by providing fully automated infrastructure, applications, and ongoing tailored services to help our customers maximize the value of their clusters. We traditionally work alongside or fill the role of a platform, ops, or SRE team, depending on the organization's terminology.
