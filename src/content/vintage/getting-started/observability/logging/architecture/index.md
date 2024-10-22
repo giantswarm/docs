@@ -46,8 +46,8 @@ Release|Alloy|Promtail|Grafana Agent|
 -------|-----|--------|-------------|
 CAPA from v29.2.0|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|
 CAPZ from v29.1.0|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|
-CAPA until v29.1.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
-CAPZ until v29.0.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+CAPA before v29.2.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+CAPZ before v29.1.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
 vintage (all releases)|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
 
 If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and how to [explore logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}})
