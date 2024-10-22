@@ -36,8 +36,8 @@ In this diagram, you can see that we run the following tools in each management 
 - `Grafana Loki` that is accessible through our managed Grafana instance.
 - `multi-tenant-proxy`, a proxy component used to handle multi-tenancy for Loki.
 - A couple of scraping agents run on the management cluster and your workload clusters. There are different tools for different purposes:
-    - Promtail is used in older versions to retrieve the container and kubernetes audit logs.
-    - Alloy is used in newer versions to retrieve the container and kubernetes audit logs.
+    - Promtail is used in older Giant Swarm releases to retrieve the container and kubernetes audit logs.
+    - Alloy is used in newer Giant Swarm releases to retrieve the container and kubernetes audit logs.
     - Grafana Agent is used to retrieve the kubernetes events.
 
 ### Release compatibility
