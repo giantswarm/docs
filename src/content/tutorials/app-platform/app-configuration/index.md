@@ -21,7 +21,7 @@ user_questions:
   - What are the limitations around secrets when configuring them for an App?
   - How are configuration values stored and referenced in the Control Plane?
   - How can I provide configuration values for apps?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install apps across your entire fleet of clusters. The platform fully support [`Helm`](https://helm.sh/) as a general tool to deploy your applications as well as the official Giant Swarm app catalog.

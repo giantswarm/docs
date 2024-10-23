@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I configure custom timeouts for installations and upgrades?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 As explained in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are `Helm` charts underneath. It means that at the very bottom the platform must trigger the Helm-related actions, like installation or upgrade, against the requested application. This process, mostly, can't be influenced by a user as we try to well-tune it universally to all the apps. Yet, we anticipate that apps not matching these universal rules may exist, hence we offer a way to tweak some of the `Helm's` options.

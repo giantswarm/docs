@@ -13,7 +13,7 @@ user_questions:
   - How can I deploy an app using an App CR?
   - How can I configure an App CR?
   - How can I see which apps are available using the platform API?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 The _Giant Swarm App Platform_ is built on top of [`Helm`](https://helm.sh/) and allows you to manage apps and their configurations represented by `App` custom resources for multiple clusters, from a single place: the [platform API]({{< relref "/vintage/platform-overview/management-api" >}}).

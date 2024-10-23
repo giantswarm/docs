@@ -13,22 +13,22 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
-In this document you will learn how to manage infrastructure and applications by utilizing `Flux` - a set of GitOps operators installed in Giant Swarm management clusters.
+Below you will learn how to manage infrastructure and applications in the Giant Swarm `Flux` setup.
 
-## Managing resources with Flux
+## Requirements
 
-In this section, we will guide you through an example `Flux` setup on a Giant Swarm Management Cluster. You will create resources locally. Mentions of _example resources_ or _example repository_ refers to [`giantswarm/gitops-template`](https://github.com/giantswarm/gitops-template), where you can find all resources used in this section in full, unabbreviated forms and `Flux` will use these to sync with.
+In the following example, based on the [`GitOps template`](https://github.com/giantswarm/gitops-template), you will find all the resources used in this section.
 
-We will be using [`Flux` CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https://github.com/giantswarm/kubectl-gs). Please make sure you have both installed on your machine. If you would rather follow the guide without them, use the example resources provided.
+It's necessary to have [`Flux` CLI](https://fluxcd.io/docs/cmd/) and [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs) installed in your machine.
 
-## Access control for organizations
+## Organization access control
 
-To proceed with this tutorial, you need to use a `ServiceAccount` with a set of permissions that allows you to create and reconcile `Flux` resources. All the examples are using `default` namespace and `automation` `ServiceAccount` in that namespace. You will find them in every Management Cluster and they're already assigned with the required privileges.
+To proceed with this tutorial, you need to use a `ServiceAccount` with permissions allowing you to create and reconcile `Flux` resources. All the examples are using `default` namespace and automation `ServiceAccount` in that namespace. All management clusters have aforementioned resource and those are already assigned with the required privileges.
 
-If you wish to proceed by creating the resources in one of the organization namespaces (`org-*`), you will need to create a ServiceAccount there and assign the following roles to it:
+If you wish to proceed by creating the resources in one of the organization namespaces (`org-*`), you must create a `ServiceAccount` there and assign the following roles to it:
 
 - `read-all-customer`
 - `write-client-certificates-customer`
@@ -37,11 +37,11 @@ If you wish to proceed by creating the resources in one of the organization name
 - `write-organizations-customer`
 - `write-silences-customer`
 
-To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/vintage/platform-overview/web-interface/organizations/access-control/index.md" >}}).
+__Note__: To learn more about managing roles, please read the [introduction to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
 
-## Management cluster security policies
+## Security policies
 
-If you are creating any of the resources we talk about in this document on a management cluster, you may see the following error:
+It's common to find errors like the following when trying to apply resources:
 
 ```nohighlight
 resource Kustomization... was blocked due to the following policies
@@ -52,11 +52,11 @@ flux-multi-tenancy:
   sourceRefNamespace: preconditions not met
 ```
 
-Due to extra security policies enforced by `Kyverno`, setting `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources in our management clusters is mandatory. Usually, you will want to use `serviceAccountName: "automation"`.
+For security reasons, our platform enforces the definition of `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources to ensure that the resources are created with the correct permissions. In this case, let's define the `serviceAccountName` equal to `automation` to allow the controller to manage resources.
 
 ## Creating your repository structure
 
-Whilst a GitOps repository can have any arbitrary layout, which provides flexibility in adapting the repository to your own infrastructure, at Giant Swarm we recommend a clear hierarchical structure which provides a number of advantages:
+At Giant Swarm we recommend to have a clear hierarchical structure in your GitOps repository because:
 
 - The general layout of the repository mirrors the infrastructure defined within Giant Swarm.
 - It's easy to locate resources and know what they're and where they're deployed.
@@ -83,103 +83,109 @@ management-clusters
                 └── WC_NAME2
 ```
 
-We provide a template repository where this structure is elaborated and explained in detail in [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template). It's not necessary to clone the repository to follow this guide, but it can provide a good reference for every possible use case. We recommend copying, at least, the bases folder from that repository to your own repository because cluster creation uses them as templates as we will see later in this document.
+Our team provides a template repository where [this structure is elaborated and explained in detail](https://github.com/giantswarm/gitops-template). It's not necessary to clone the repository to follow this guide, but it can provide a good reference for every possible use case. We recommend copying, at least, the bases folder from that repository to your own repository because cluster creation uses them as templates as we will see later in this document.
 
 ### Setting up sources
 
-First thing's first - create a bare-bones repository where we will store the resources that will be deployed. In this repository we need to create the structure described in the last section, and copy the bases for workload clusters and other apps in the Giant Swarm catalog. Follow these steps:
+First, let's create the repository skeleton to store the resources that will be deployed. In this repository, let's create the structure described in the last section, and copy the bases for workload clusters and other apps in the Giant Swarm catalog. Follow these steps:
 
-1. Copy bases folder from [giantswarm/gitops-template](https://github.com/giantswarm/gitops-template)
+1. Copy bases folder from [GitOps template](https://github.com/giantswarm/gitops-template)
 
-2. Init the repository in order to create the first part of the structure and some git hooks. This will create a folder `management-clusters`. Use the command:
+```sh
+git clone https://github.com/giantswarm/gitops-template.git /tmp/gitops-template  && \
+cp -r /tmp/gitops-template/bases . && \
+rm -rf /tmp/gitops-template
+```
 
-```nohighlight
+2. Use our plugin to init the repository to set the basic structure and some `Git` hooks. This will create a folder `management-clusters`.
+
+```sh
 kubectl gs gitops init
 ```
 
-**Note**: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/vintage/use-the-api/kubectl-gs/" >}}).
-
 ### Attach the repository to a management cluster
 
-Now we create the structure for the management clusters we're going to deploy to. Run this command for every management cluster.
+Now, let's create the structure for the management cluster you would like to use. You can set multiple management clusters in the same repository.
 
-```nohighlight
-kubectl gs gitops add management-cluster --name MC_NAME --repository-name MC_NAME-git-repository--gen-master-key
+```sh
+export MC_NAME=mymc
+kubectl gs gitops add management-cluster --name $MC_NAME --repository-name ${MC_NAME}-git-repository
 ```
 
-This command creates the folder for the management cluster, the `Kustomization` file for the MC, `organizations` folder and `secrets` folder, already populated with an encoding key.
+This command creates the folder for the management cluster, the `Kustomization` file for the management cluster, `organizations` folder and `secrets` folder, already populated with an encoding key.
 
-Then, we create a `Flux` `GitRepository` resource that points to the repository. We need a `GitRepository` resource for every management cluster we want to manage. In the `GitRepository` resource we define the address where our repository is stored.
+Then, let's create a `GitRepository` resource that points to the repository. It's needed a `GitRepository` resource for every management cluster to manage. There, the address of the repository is configured.
 
-Now, we need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (we will refer to it as `GIT_CREDENTIALS_SECRET`, please, replace with the chosen name) with the credentials to access the repository. This will allow `Flux` to download the repository files in order to apply all resources. If your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
+Now, we need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (we will refer to it as `GIT_CREDENTIALS_TOKEN`, please, replace with the chosen name) with the credentials to access the repository. This allows `Flux` to download the repository files in order to apply all resources. If your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
 This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
 
-```nohighlight
-flux create source git MC_NAME-git-repository\
-        --url=YOUR_REPO_URL \
+```sh
+export YOUR_REPO_URL="https://github.com/<your_org>/<your_repo>.git"
+flux create source git ${MC_NAME}-git-repository \
+        --url=${YOUR_REPO_URL} \
         --branch=main \
         --interval=30s \
         --namespace=default \
         --ignore-paths='**,!management-clusters/MC_NAME/**,!bases/**,**.md' \
-        --secret-ref=GIT_CREDENTIALS_SECRET \
+        --secret-ref=GIT_CREDENTIALS_TOKEN \
         --export > management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-This command creates the custom resource for us and exports it to a file in the `management-clusters` folder.
+Now, the `Git` repository resource is created and exported in the `management-clusters` folder. Next, you apply the resource towards the [platform API]({{< relref "/getting-started/access-to-platform-api" >}}) where the resources will run:
 
-Time to apply the generated file:
-
-```nohighlight
+```sh
 kubectl create -f management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-We can see if the change was applied using `kubectl` (names will differ):
+Observe the changes applied using `kubectl` (names will differ):
 
-```nohiglight
+```text
 kubectl get gitrepositories -n default
 NAME        URL                                       READY   STATUS                                                            AGE
 flux-demo   https://github.com/giantswarm/flux-demo   True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f   27s
 ```
 
-or `Flux` CLI - `flux`:
+Alternatively you can use `Flux` CLI too:
 
-```nohighlight
+```text
  flux get sources git -n default
 NAME            READY   MESSAGE                                                         REVISION                                        SUSPENDED
 flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054c63b71f main/74f8d19cc2ac9bee6f45660236344a054c63b71f   False
 ```
 
-Next, we configure the keys that will be used in the management cluster `Flux` to decipher secrets so they can be stored in the repository.
+The next step, you configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. Our recommendation is to keep secrets encrypted in the repository together with your applications but if your company policy does not allow it you can use [`External Secret Operator`]() to use different sources.
 
-In this example we're using `sops` with `pgp` key management and creating a master key for all the `kustomizations` in this management cluster.
+Giant Swarm uses `sops` with `pgp` for key management, creating master keys for all the `kustomizations` in the management cluster.
 
-This master key is created automatically by the `kubectl gs gitops add management-cluster` command so we only need to apply the secret in the cluster and store the private GPG key so we can use it to encrypt files before pushing them to the repository.
+The master key is created automatically by the `kubectl gs gitops add management-cluster` command. So you only need to apply the secret in the platform and store the private `GPG` key to encrypt files before pushing them to the repository.
 
 To import the private key (replace X's by the specific file name):
 
-```nohighlight
+```sh
 gpg --import ./management-clusters/grizzly/.sops.keys/master.XXXXXXXXXXXXXXXXXXXX.asc
 ```
 
-> Important! You must store the private key and keep it secret!
+__Warning__: You must store the private key and keep it secret!
 
-To create the secret in the cluster we run:
+Now run the create command:
 
-```nohighlight
+```sh
 kubectl create -f management-clusters/MC_NAME/secrets/MC_NAME.gpgkey.enc.yaml
 ```
 
-Now, to store the key in the repository we can encode the file using `sops`:
+Next you store the key in the repository so it can encode using `sops`:
 
-```nohighlight
+```sh
 sops --encrypt --in-place management-clusters/MC_NAME/secrets/${MC_NAME}.gpgkey.enc.yaml
 ```
 
-Now we're applying the `Kustomization` file to the management cluster so the files in this repository will be monitored and the resources created accordingly. After this, any resource creation in the cluster doesn't need kubectl access. Now, if you add any more CRs inside the folders managed by the `Kustomization` they will be picked up by `Flux` automatically once it's committed and pushed.
+Following let's apply the `Kustomization` to the platform API to ensure the files in the repository are in sync.
 
-```nohighlight
+```sh
 kubectl create -f management-clusters/MC_NAME/MC_NAME.yaml
 ```
+
+From now on, any resource can be managed using `Git`, using proper `pull-requests` and revieweing the changes.
 
 ### Managing organizations
 
@@ -187,13 +193,13 @@ The highest level Giant Swarm custom resource you can create is an [organization
 
 In order to create the files in the repository, run the command (in the root):
 
-```nohighlight
+```sh
 kubectl gs gitops add organization --name ORG_NAME --management-cluster MC_NAME
 ```
 
 This is enough to create the organization on our own. It creates automatically the organization namespace where your cluster resources will be applied.
 
-```nohighlight
+```text
 kubectl get namespaces (names will difer)
 NAME            STATUS   AGE
 org-acme   Active   2m29s
@@ -220,7 +226,7 @@ In this tutorial we're implementing a cluster from a base without applying any e
 
 In order to create a workload cluster in our repository we run the command:
 
-```nohighlight
+```sh
 kubectl gs gitops add workload-cluster \
 --management-cluster MC_NAME \
 --name WL_NAME \
@@ -233,7 +239,7 @@ kubectl gs gitops add workload-cluster \
 
 In order to get current `cluster-release` and `default-apps-release` version you can get them from the catalog with the command:
 
-```nohighlight
+```sh
 kubectl gs get catalog -n giantswarm cluster
 ```
 
@@ -241,7 +247,7 @@ Depending on the provider of the cluster you are connected the return will vary,
 
 An example of the output would be:
 
-```nohighlight
+```text
 CATALOG   APP NAME                    VERSION   UPSTREAM VERSION   AGE   DESCRIPTION
 cluster   capa-internal-proxy-stack   0.1.0     0.1.0              64d   repository to aggregate CRs necessery to create capa internal outgoing proxy clu...
 cluster   cluster-aws                 0.21.0                       23h   A helm chart for creating Cluster API clusters with the AWS infrastructure provi...
@@ -264,7 +270,7 @@ It's just as easy to install managed apps in existing workload clusters. In this
 We're showing the process installing `Grafana` from the `GiantSwarm` app catalog in the namespace `monitoring`.
 In order to add the manifest files to the repository, we run the command (check version numbers for latest releases):
 
-```nohighlight
+```sh
 kubectl gs gitops add app --management-cluster MC_NAME --workload-cluster WL_NAME --organization ORG_NAME --app grafana --catalog giantswarm --target-namespace monitoring --version 2.0.2
 ```
 
@@ -275,3 +281,5 @@ Commit the newly generated files back to your git repository and push the change
 To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/overview/fleet-management/app-management">}}).
 
 This completes the guide. If you no longer need them, you can delete the organization and cluster.
+
+To learn more about Giant Swarm's `kubectl` plugin, visit [`kubectl-gs` documentation]({{< relref "/vintage/use-the-api/kubectl-gs/" >}}).

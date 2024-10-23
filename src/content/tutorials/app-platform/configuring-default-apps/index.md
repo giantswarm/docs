@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How can I customize preinstalled apps configuration?
   - How can I customize default apps configuration?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 In a Giant Swarm platform, every cluster has a set of apps that are installed automatically at creation time. This set of apps is defined in the [cluster app](https://github.com/giantswarm/cluster) and the list includes important applications that are mandatory to make the cluster work correct. Example of these apps are `coredns` or `cilium`.

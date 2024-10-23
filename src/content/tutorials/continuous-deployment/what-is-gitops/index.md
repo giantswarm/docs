@@ -7,7 +7,7 @@ menu:
   principal:
     parent: tutorials-continuous-deployment
     identifier: tutorials-continuous-deployment-what-is-gitops
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 user_questions:
   - What is GitOps?
   - How to manage resources with GitOps?
@@ -27,10 +27,10 @@ The GitOps working group [defines the term as a set of principles](https://githu
 > **Continuously Reconciled**
 > Software agents continuously observe the actual system state and attempt to apply the desired state.
 
-The way these principles manifest in popular tools, such as `Flux` or `ArgoCD` can be summarized as follows:
+These principles are manifested in popular tools, such as `Flux` or `ArgoCD`, and can be summarized as follows:
 
-The cluster's desired state, or manifest, is kept in Git repositories (or `Helm` repositories, `S3` buckets, etc. GitOps operators are deployed to clusters and configured to watch the manifest. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them in case discrepancies are found.
+- The cluster and application configuration is kept in `Git` repositories (or `Helm` repositories, `S3` buckets, ...). GitOps operators are deployed to clusters and configured to watch the manifests. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them if discrepancies are found.
 
-If the cluster's state changes in a way that's not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
+- If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
 
-This way of managing Kubernetes comes with all the benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it's also a perfect tool for development and testing.
+- This way of managing Kubernetes comes with all the benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it's also a perfect tool for development and testing.

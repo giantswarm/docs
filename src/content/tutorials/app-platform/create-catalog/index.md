@@ -18,7 +18,7 @@ user_questions:
   - How can I hide or show an app catalog in the web UI?
   - How can I install an apps from an app catalog?
   - How can I inspect the apps in an app catalog?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm app platform.

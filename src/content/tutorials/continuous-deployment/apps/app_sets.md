@@ -13,7 +13,7 @@ user_questions:
   - How can I create and use `App Sets` in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
@@ -96,7 +96,7 @@ Please note the following in the example above:
 - We use the `gitops.giantswarm.io/appSet: YOUR_NAME` that will identify all the components included in the `App Set`. This makes debugging easier later, as you can easily find what belongs to the Set after it's deployed.
 - One of the key benefits of `App Sets` is to be able to provide a specific set of app versions, that's known to make the apps work well together. Over here, we do that as a set of in-line patches, so it's immediately visible in the `kustomization.yaml` file which versions are used.
 - When using `App` resources, we've two configuration slots available: `config` and `userConfig`. Since we always want to leave `userConfig` at the end users disposal, we're left with overriding the whole configmap coming from the base application as the only option.
-- It's recommended to re-use App Templates to create `App Set` Templates. That's exactly what we do here: apps defined in the `resources:` block are App Templates, that, if needed, can be also used standalone.
+- It's recommended to re-use App Templates to create `App Set` Templates. That's exactly what we do here: apps defined in the `resources:` block are `App` remplates, that, if needed, can be also used standalone.
 - The example above doesn't cover handling secrets - we do that for brevity. secrets can be created the same way as in normal [App Templates](./add_app_template.md) and overrode the same as configmaps or secrets when creating [App from a Template](/advanced/gitops/apps/add_appcr/#adding-app-using-app-template).
 
 ## Using an app set

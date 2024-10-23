@@ -14,7 +14,7 @@ user_questions:
   - How can I use App CR defaulting logic when installing Managed Apps?
   - What fields are validated in App CRs when installing or updating Managed Apps?
   - How can I ensure Flux is not blocked by the validating webhook?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 The Giant Swarm applications use a defaulting and validation logic for the [`App` custom resources]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) to enhance the user experience and prevent common mistakes.

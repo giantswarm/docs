@@ -13,7 +13,7 @@ user_questions:
   - How can I add an app to a workload cluster with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).

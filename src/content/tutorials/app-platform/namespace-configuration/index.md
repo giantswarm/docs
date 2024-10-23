@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How can I label an app CR's target namespace?
   - How can I annotate an app CR's target namespace?
-last_review_date: 2024-10-21
+last_review_date: 2024-10-22
 ---
 
 When installation apps through the app platform, you might want to add specific labels or annotations to an app's target namespace (for example to allow `Loki` to scrape logs from a specific namespace).
