@@ -7,6 +7,9 @@ menu:
   main:
     identifier: getting-started-observability-logging-architecture
     parent: getting-started-observability-logging
+  principal:
+    identifier: overview-observability-logging
+    parent: overview-observability
 user_questions:
   - What is the logging architecture?
   - Why is Giant Swarm using Loki?
@@ -17,7 +20,7 @@ aliases:
   - /getting-started/observability/logging/architecture
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2024-03-21
+last_review_date: 2024-10-21
 ---
 
 Logging is an important pillar of observability and it is thus only natural that Giant Swarm provides and manages a logging solution for operational purposes.
@@ -35,9 +38,20 @@ In this diagram, you can see that we run the following tools in each management 
 
 - `Grafana Loki` that is accessible through our managed Grafana instance.
 - `multi-tenant-proxy`, a proxy component used to handle multi-tenancy for Loki.
-- A couple of logging agents (`Grafana Promtail` and `Grafana Agent`) that run on the management cluster and your workload clusters alike. We currently need two different tools for different purposes.
-    - Promtail is used to retrieve the container and kubernetes audit logs
+- A couple of scraping agents run on the management cluster and your workload clusters. There are different tools for different purposes:
+    - Promtail is used in older Giant Swarm releases to retrieve the container and Kubernetes audit logs.
+    - Alloy is used in newer Giant Swarm releases to retrieve the container and Kubernetes audit logs.
     - Grafana Agent is used to retrieve the kubernetes events.
+
+### Release compatibility
+
+Release|Alloy|Promtail|Grafana Agent|
+-------|-----|--------|-------------|
+CAPA from v29.2.0|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|
+CAPZ from v29.1.0|<i class="fas fa-check"></i>|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|
+CAPA before v29.2.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+CAPZ before v29.1.0|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
+vintage (all releases)|<i class="fas fa-times"></i>|<i class="fas fa-check"></i>|<i class="fas fa-check"></i>|
 
 If you want to play with Loki, you should definitely check out our guides explaining [how to access Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and how to [explore logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}})
 
@@ -49,11 +63,11 @@ The logging agents that we have deployed on management and workload clusters cur
 
 - Kubernetes Pod logs from the `kube-system` and `giantswarm` namespaces.
 - Kubernetes Events created in the `kube-system` and `giantswarm` namespaces.
-- [Kubernetes audit logs]({{< relref "./audit-logs#kubernetes-audit-logs" >}})
+- [Kubernetes audit logs]({{< relref "../../../vintage/getting-started/observability/logging/audit-logs#kubernetes-audit-logs" >}})
 
 In the future, we will also store the following logs:
 
-- [Machine (Node) audit logs]({{< relref "./audit-logs#machine-audit-logs" >}})
+- [Machine (Node) audit logs]({{< relref "../../../vintage/getting-started/observability/logging/audit-logs#machine-audit-logs" >}})
 - Teleport audit logs, tracked in https://github.com/giantswarm/roadmap/issues/3250
 - Giant Swarm customer workload logs as part of our observability platform, tracked in https://github.com/giantswarm/roadmap/issues/2771
 
