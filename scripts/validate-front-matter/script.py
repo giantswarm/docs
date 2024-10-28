@@ -16,8 +16,8 @@ except ImportError:
 path              = 'src/content'
 vintage_path      = 'src/content/vintage'
 changes_path      = 'src/content/changes'
-crds_path         = 'src/content/vintage/use-the-api/management-api/crd'
-cluster_apps_path = 'src/content/vintage/use-the-api/management-api/cluster-apps'
+crds_path         = 'src/content/reference/platform-api/crd'
+cluster_apps_path = 'src/content/reference/platform-api/cluster-apps'
 docs_host         = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()

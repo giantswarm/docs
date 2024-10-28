@@ -1,29 +1,25 @@
 ---
 linkTitle: Authorization
-title: Authorization in the Platform API
+title: Authorization in the platform API
 description: Granting users specific permission to certain resources is what authorization is all about. The Platform API uses Kubernetes' role based access control (RBAC) primitives and provides automation on top of it to make authorization easy for most real-life use cases. Here we explain them in detail.
 weight: 20
 menu:
   main:
-    identifier: reference-platform-api-authorization
-    parent: reference-platform-api
-last_review_date: 2024-10-17
-aliases:
-  - /use-the-api/management-api/authorization
-  - /reference/management-api/authorization/
-  - /ui-api/management-api/authorization/
+    identifier: tutorials-access-management-authorization
+    parent: tutorials-access-management
+last_review_date: 2024-10-28
 user_questions:
   - What automation is working in a management cluster to ensure RBAC permissions?
   - How can I set up access to resources in the management cluster?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
+  - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-Once your users are [authenticated]({{< relref "/vintage/use-the-api/management-api/authentication" >}}) for the Platform API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.
+Once your users are [authenticated]({{< relref "/reference/platform-api/authentication" >}}) for the platform API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.
 
 Some remarks before we dive in:
 
-As authorization in the management cluster is based on some fundamental Kubernetes concepts, we assume basic knowledge of:
+As authorization in the management cluster is based on some fundamental `kubernetes` concepts, we assume basic knowledge of:
 
 - [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and
 - [Role-based access control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
@@ -45,28 +41,23 @@ We'll explain next which resources are to be found in which scope or namespace.
 
 In Giant Swarm management clusters in particular, three resource types are cluster-scoped, so they are not residing in any namespace:
 
-- [`Organization`]({{< relref "/vintage/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}) defines, well, an organization
-- [`Release`]({{< relref "/vintage/use-the-api/management-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to use when creating a new workload cluster, or to upgrade a workload cluster to.
-- [`RoleBindingTemplate`]({{< relref "/vintage/use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) a template for roleBindings that are applied to certain or all organizations
+- [`Organization`]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}}) defines, well, an organization
+- [`Release`]({{< relref "/reference/platform-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to use when creating a new workload cluster, or to upgrade a workload cluster to.
+- [`RoleBindingTemplate`]({{< relref "/reference/platform-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) a template for roleBindings that are applied to certain or all organizations
 
 ### Namespace `default` {#default-namespace}
 
 Next, the following resources reside in the `default` namespace:
 
-- App catalogs ([`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) and [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resources) provided by Giant Swarm
+- App catalogs ([`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) and [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resources) provided by Giant Swarm
 
 ### Organization namespaces {#org-namespaces}
 
 For each [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
 
-- Resources defining [workload clusters and node pools]({{< relref "/vintage/use-the-api/management-api/creating-workload-clusters" >}})
-- [Cloud provider credentials]({{< relref "/vintage/use-the-api/management-api/credentials" >}}) in the form of `Secret` resources
-
-### Workload cluster namespaces {#wc-namespaces}
-
-For every workload cluster, there is a namespace with a name identical to the workload cluster name. In this namespace, resources related to apps installed in the workload cluster are located. The resources are of these types:
-
-- [`App`]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) which defines an app to be installed in a workload clusters
+- Resources defining [workload clusters and node pools]({{< relref "/reference/platform-api/creating-workload-clusters" >}})
+- [Cloud provider credentials]({{< relref "/reference/platform-api/credentials" >}}) in the form of `Secret` resources
+- [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which defines an app to be installed in a workload clusters
 - `ConfigMap` which optionally provides configuration for such an app
 - `Secret` which provides additional (confidential) configuration for such an app
 
@@ -102,7 +93,7 @@ As explained previously, various resources reside in different scopes and namesp
 
 ### Role Binding Templates {#role-binding-templates}
 
-In addition to the above automation, [rbac-operator](https://github.com/giantswarm/rbac-operator) reconciles the [`RoleBindingTemplate`]({{< relref "/vintage/use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) custom resource.
+In addition to the above automation, [rbac-operator](https://github.com/giantswarm/rbac-operator) reconciles the [`RoleBindingTemplate`]({{< relref "/reference/platform-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) custom resource.
 This custom resource allows users to dynamically apply and remove `RoleBindings` across organizations.
 
 The `spec.template` property is used to define the desired `RoleBinding` while the `spec.scopes` property allows to specify where it should be applied.

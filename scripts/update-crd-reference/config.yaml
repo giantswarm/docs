@@ -98,7 +98,7 @@ source_repositories:
     metadata:
       organizations.security.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-bigmac
+          - https://github.com/orgs/giantswarm/teams/team-shield
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/apiextensions
@@ -293,10 +293,6 @@ source_repositories:
           - vsphere
         topics:
           - workloadcluster
-      drainerconfigs.core.giantswarm.io:
-        hidden: true
-      draughtsmanconfigs.core.giantswarm.io:
-        hidden: true
       eksconfigs.bootstrap.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -306,8 +302,6 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       etcdbackups.backup.giantswarm.io:
-        hidden: true
-      flannelconfigs.core.giantswarm.io:
         hidden: true
       g8scontrolplanes.infrastructure.giantswarm.io:
         owner:
@@ -345,24 +339,6 @@ source_repositories:
           - azure
         topics:
           - workloadcluster
-      kvmclusterconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - kvm
-        topics:
-          - workloadcluster
-        deprecation:
-          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
-      kvmconfigs.provider.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - kvm
-        topics:
-          - workloadcluster
-        deprecation:
-          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
       machinedeployments.cluster.x-k8s.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -397,38 +373,6 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
         provider:
           - aws
-        topics:
-          - workloadcluster
-      openstackclusters.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
-      openstackclustertemplates.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
-      openstackmachines.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
-      openstackmachinetemplates.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
         topics:
           - workloadcluster
       releasecycles.release.giantswarm.io:
@@ -519,7 +463,7 @@ source_repositories:
     metadata:
       rolebindingtemplates.auth.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-bigmac
+          - https://github.com/orgs/giantswarm/teams/team-shield
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/kyverno-policy-operator
