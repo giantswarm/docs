@@ -26,12 +26,12 @@ last_review_date: 2024-10-22
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as `prometheus`) from a single place; the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
 
-Giant Swarm fully support [`helm`](https://helm.sh/) as a general tool to deploy your applications as well as for our general `App Catalog`. Apps are packaged as `helm` charts and can be configured with _values_. A recommended [app configuration]({{< relref "/tutorials/app-platform/app-configuration" >}}) is provided which you can override to meet your needs.
+Giant Swarm fully supports [`helm`](https://helm.sh/) as a general tool to deploy your applications as well as for our `App Catalog`. Apps are packaged as `helm` charts and can be configured with _values_. A recommended [app configuration]({{< relref "/tutorials/app-platform/app-configuration" >}}) is provided which you can override to meet your needs.
 
-The app platform then, underneath, installs these `helm` charts whenever an app installation is requested by you. The `helm` execution is mostly not configurable, with the exception to the options presented in
+The app platform installs these `helm` charts whenever an app installation is requested by you. The `helm` execution is mostly not configurable, with the exception to the options presented in
 [installation configuration]({{< relref "/tutorials/app-platform/installation-configuration" >}}).
 
-This feature of the platform provides a collection of curated managed apps. These managed apps are grouped into app catalogs, which can be browsed through our web interface. They may also install their own catalogs using the platform API. Finally, it's worth noting that Giant Swarm uses the app platform to install the pre-installed apps in your clusters, such as `coredns` or `cluster-autoscaler`.
+This feature of the platform provides a collection of curated managed apps. These managed apps are grouped into app catalogs, which can be browsed through our web interface. They may also install their own catalogs using the platform API. Finally, it's worth noting that Giant Swarm uses the app platform to pre-install apps such as `coredns` or `cluster-autoscaler` into your clusters.
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an app catalog is a collection of apps.
 
@@ -95,7 +95,7 @@ Giant Swarm makes sure all the main components of the app are running and that t
 
 In case of an alert, operations team perform an root cause analysis (RCA) to understand if it's a Giant Swarm or customer-inflicted issue that broke the application.
 
-__Note__: Giant Swarm don't fix bugs upstream when they involve significant code changes. That said, our team always try to find a workaround or the root cause of the issue and submit a ticket to the upstream project. In some cases, our engineers fix the bug ourselves where it’s necessary and possible for us, and provide the fix to the upstream project. This might result in temporarily running a non-upstream patch version from Giant Swarm until upstream merges our patch. Customers can, in general, expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
+__Note__: In general, Giant Swarm does not fix bugs in upstream projects, however our team will always try to find a solution to an issue, or the root cause of the issue and submit a ticket to the upstream project when relevant to do so. In certain instances, our engineers may attempt to fix the bug where it is necessary and possible for us, and provide the fix to the upstream project. This can result in Giant Swarm temporarily running an intermediate patch version whilst waiting for upstream to release a new version containing our patch. Customers can expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
 
 - Configurations and plugins
 
