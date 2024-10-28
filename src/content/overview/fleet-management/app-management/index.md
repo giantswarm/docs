@@ -95,7 +95,7 @@ Giant Swarm makes sure all the main components of the app are running and that t
 
 In case of an alert, operations team perform an root cause analysis (RCA) to understand if it's a Giant Swarm or customer-inflicted issue that broke the application.
 
-__Note__: In general, Giant Swarm does not fix bugs in upstream projects, however our team will always try to find a solution to an issue, or the root cause of the issue and submit a ticket to the upstream project when relevant to do so. In certain instances, our engineers may attempt to fix the bug where it is necessary and possible for us, and provide the fix to the upstream project. This can result in Giant Swarm temporarily running an intermediate patch version whilst waiting for upstream to release a new version containing our patch. Customers can expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
+__Note__: In general, Giant Swarm doesn't fix bugs in upstream projects, however our team will always try to find a solution to an issue, or the root cause of the issue and submit a ticket to the upstream project when relevant to do so. In certain instances, our engineers may attempt to fix the bug where it's necessary and possible for us, and provide the fix to the upstream project. This can result in Giant Swarm temporarily running an intermediate patch version whilst waiting for upstream to release a new version containing our patch. Customers can expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
 
 - Configurations and plugins
 
