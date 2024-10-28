@@ -17,7 +17,7 @@ last_review_date: 2024-10-28
 
 When installation apps through the app platform, you might want to add specific labels or annotations to an app's target namespace (for example to allow `loki` to scrape logs from a specific namespace).
 
-The [App custom resource]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) allows you to configure the target namespace via the spec.
+The [`App` custom resource]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) allows you to configure the target namespace via the spec.
 
 ## Configuring labels and annotations
 
