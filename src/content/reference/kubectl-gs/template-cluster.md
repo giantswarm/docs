@@ -14,7 +14,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2024-06-10
+last_review_date: 2024-10-29
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.

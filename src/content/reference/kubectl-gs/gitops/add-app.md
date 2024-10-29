@@ -6,7 +6,7 @@ weight: 30
 menu:
   main:
     parent: kubectlgs-gitops
-last_review_date: 2024-01-18
+last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

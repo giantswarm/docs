@@ -9,7 +9,7 @@ menu:
   main:
     identifier: uiapi-cluster-apps
     parent: reference-platform-api
-last_review_date: 2024-03-01
+last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---

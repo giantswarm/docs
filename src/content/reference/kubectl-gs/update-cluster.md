@@ -7,7 +7,7 @@ menu:
   main:
     parent: reference-kubectlgs
     identifier: reference-kubectlgs-updatecluster
-last_review_date: 2023-04-04
+last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:

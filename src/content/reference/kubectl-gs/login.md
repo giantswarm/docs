@@ -17,7 +17,7 @@ user_questions:
   - How can I log in with kubectl for the Management API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
-last_review_date: 2023-11-29
+last_review_date: 2024-10-29
 ---
 
 Use this command to set up a kubectl context to work with:

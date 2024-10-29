@@ -12,7 +12,7 @@ aliases:
   - /ui-api/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2023-12-21
+last_review_date: 2024-10-29
 user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?
   - How can I install the Giant Swarm plugin for kubectl?

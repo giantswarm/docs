@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2024-08-12
+last_review_date: 2024-10-29
 aliases:
   - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/get-clusters/

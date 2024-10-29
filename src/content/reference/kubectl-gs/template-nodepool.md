@@ -8,7 +8,7 @@ menu:
     parent: reference-kubectlgs
 user_questions:
   - How can I create a node pool manifest for the Management API?
-last_review_date: 2024-01-18
+last_review_date: 2024-10-29
 aliases:
   - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/template-nodepool/

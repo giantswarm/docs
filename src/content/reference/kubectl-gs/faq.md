@@ -6,7 +6,7 @@ weight: 15
 menu:
   main:
     parent: reference-kubectlgs
-last_review_date: 2024-01-18
+last_review_date: 2024-10-29
 aliases:
   - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/faq

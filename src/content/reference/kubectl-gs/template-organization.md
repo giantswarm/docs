@@ -10,7 +10,7 @@ aliases:
   - /use-the-api/kubectl-gs
   - /reference/kubectl-gs/template-organization/
   - /ui-api/kubectl-gs/template-organization/
-last_review_date: 2024-01-18
+last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
