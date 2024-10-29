@@ -2,10 +2,8 @@ import datetime
 import json
 import os
 import re
-
 import click
 from colored import fg, bg, attr
-
 from yaml import load
 try:
     from yaml import CLoader as Loader
@@ -246,7 +244,7 @@ def print_json(rdict):
                 doc_owner = check.get('owner')
                 if hasattr(doc_owner, "__len__"):
                   for i in doc_owner:
-                    team_name = re.search('\/.*\/([^\/]+)\/?$', i).group(1)
+                    team_name = re.search(r'/.*\/([^\/]+)\/?$', i).group(1)
                     team_label = team_name.replace("-", "/")
                     owners.append(team_label)
             except AttributeError:
