@@ -4,12 +4,8 @@ title: "'kubectl gs template catalog' command reference"
 description: Reference documentation on how to create a manifest for a Catalog using 'kubectl gs'.
 weight: 80
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/template-catalog/
-  - /ui-api/kubectl-gs/template-catalog/
 last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -20,9 +16,9 @@ user_questions:
 
 The `template catalog` command allows to create an [app catalog]({{< relref "/vintage/getting-started/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
-The resulting manifest will define a [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
+The resulting manifest will define a [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
 
-**Note:** The `Catalog` CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
+**Note:** The `Catalog` CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/reference/platform-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [Management API]({{< relref "/vintage/platform-overview/management-api" >}}).
 
 The Catalog CRD supports having a related `ConfigMap` and/or `Secret` resource with values YAML. These values serve as a base for the rest of the [configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.

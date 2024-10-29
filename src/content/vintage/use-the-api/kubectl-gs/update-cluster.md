@@ -9,7 +9,6 @@ menu:
     identifier: uiapi-kubectlgs-updatecluster
 aliases:
   - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/update-cluster/
   - /ui-api/kubectl-gs/update-cluster/
 last_review_date: 2023-04-04
 owner:

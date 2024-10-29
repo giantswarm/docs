@@ -4,12 +4,8 @@ title: "'kubectl gs template app' command reference"
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
 weight: 70
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/template-app/
-  - /ui-api/kubectl-gs/template-app/
 last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -20,7 +16,7 @@ user_questions:
 
 The `template app` command allows to create a manifest for an app to be installed in a workload cluster. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
-The resulting manifest of the `template app` defines an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
+The resulting manifest of the `template app` defines an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
 
 ## Usage
 
@@ -75,9 +71,9 @@ It also supports the following optional flags:
 - `--defaulting-enabled`: Only include fields that differ from the default value (default true). When false, a much longer template is created.
 - `--user-configmap`: Path to the user values configmap YAML file.
 - `--user-secret`: Path to the user secrets YAML file.
-- `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/vintage/getting-started/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
-- `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/vintage/getting-started/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
-- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps, for example [Security Pack]({{< relref "/vintage/platform-overview/security" >}}).
+- `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/vintage/getting-started/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
+- `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/vintage/getting-started/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
+- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps, for example [Security Pack]({{< relref "/vintage/platform-overview/security" >}}).
 
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/vintage/getting-started/app-platform/defaulting-validation" >}}).

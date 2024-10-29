@@ -4,17 +4,13 @@ title: "'kubectl gs gitops add app' command reference"
 description: Reference documentation on how to add a new App to the GitOps repository.
 weight: 30
 menu:
-  main:
+  principal:
     parent: kubectlgs-gitops
 last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How do I add App to my Workload Cluster with the GitOps repository?
-aliases:
-  - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-app
-  - /ui-api/kubectl-gs/gitops/add-app
 ---
 
 This command adds a new App to the GitOps repository.
@@ -23,10 +19,10 @@ This command adds a new App to the GitOps repository.
 
 Your GitOps repository should provide the following structural layers:
 
-- Basic structure (see [`init`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}))
-- Management cluster (see [`add management-cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-mc" >}}))
-- Organization (see [`add organization`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-org" >}}))
-- Workload cluster (see [`add workload-cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-wc" >}}))
+- Basic structure (see [`init`]({{< relref "/reference/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/reference/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/reference/kubectl-gs/gitops/add-org" >}}))
+- Workload cluster (see [`add workload-cluster`]({{< relref "/reference/kubectl-gs/gitops/add-wc" >}}))
 
 ## Description
 

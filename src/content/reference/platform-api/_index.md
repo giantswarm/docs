@@ -4,7 +4,7 @@ title: The Giant Swarm Platform API
 description: The Platform API is the Kubernetes API of a Giant Swarm management cluster, allowing control over workload clusters and apps in a declarative fashion using the proven Kubernetes paradigms.
 weight: 20
 menu:
-  main:
+  principal:
     identifier: reference-platform-api
     parent: reference
 owner:

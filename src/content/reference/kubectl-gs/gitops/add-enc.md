@@ -4,13 +4,9 @@ title: "'kubectl gs gitops add encryption' command reference"
 description: Reference documentation on how to configure encryption for the GitOps repository.
 weight: 40
 menu:
-  main:
+  principal:
     parent: kubectlgs-gitops
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-enc
-  - /ui-api/kubectl-gs/gitops/add-enc
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -23,11 +19,11 @@ This command configures encryption for the GitOps repository.
 
 Your GitOps repository should provide the following structural layers:
 
-- Basic structure (see [`init`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}))
-- Management cluster (see [`add management-cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-mc" >}}))
-- Organization (see [`add organization`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-org" >}}))
-- Workload cluster (see [`add workload-cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-wc" >}}))
-- Apps (see [`add app`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-app" >}}))
+- Basic structure (see [`init`]({{< relref "/reference/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/reference/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/reference/kubectl-gs/gitops/add-org" >}}))
+- Workload cluster (see [`add workload-cluster`]({{< relref "/reference/kubectl-gs/gitops/add-wc" >}}))
+- Apps (see [`add app`]({{< relref "/reference/kubectl-gs/gitops/add-app" >}}))
 
 ## Description
 
@@ -51,7 +47,7 @@ The structure created by this command is presented below. Resources enclosed in 
 ```
 
 Encryption can be configured for multiple layers of the repository depending on the set of the flags passed to the command.
-As stated in the [init command]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}), the `kubectl-gs` does not perform encryption on behalf of the user, hence user is
+As stated in the [init command]({{< relref "/reference/kubectl-gs/gitops/init" >}}), the `kubectl-gs` does not perform encryption on behalf of the user, hence user is
 obliged to run the `sops` binary on his own. The command will however instruct user of how to import the public key into his
 keychain.
 

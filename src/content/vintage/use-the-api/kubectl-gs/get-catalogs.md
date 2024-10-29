@@ -8,7 +8,6 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-catalogs/
   - /ui-api/kubectl-gs/get-catalogs/
 last_review_date: 2024-01-18
 owner:

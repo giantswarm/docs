@@ -4,12 +4,8 @@ title: "'kubectl gs template organization' command reference"
 description: Reference documentation on how to create a manifest for an organization using 'kubectl gs'.
 weight: 110
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/template-organization/
-  - /ui-api/kubectl-gs/template-organization/
 last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -18,7 +14,7 @@ user_questions:
 ---
 The `template organization` command creates an [organization]({{< relref "/vintage/platform-overview/multi-tenancy/index.md" >}})
 manifest which can be applied to a management cluster, e. g. via `kubectl apply`.
-The manifest will define an [`Organization`]({{< relref "/vintage/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}})
+The manifest will define an [`Organization`]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}})
 resource (API group/version `security.giantswarm.io/v1alpha1`).
 
 ## Usage

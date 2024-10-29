@@ -4,7 +4,7 @@ title: "'kubectl gs get releases' command reference"
 description: Reference documentation on how to list releases and get details for a single release using 'kubectl gs'.
 weight: 50
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -12,10 +12,6 @@ user_questions:
   - How can I list releases in a cluster using kubectl?
   - How can I inspect releases using kubectl?
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-releases/
-  - /ui-api/kubectl-gs/get-releases/
 ---
 
 **Note** This command relates to our vintage product and is not relevant for
@@ -111,4 +107,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

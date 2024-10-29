@@ -4,9 +4,9 @@ linkTitle: default-apps-aws
 description:  A Helm chart for default-apps-aws; Check here the different properties of the chart.
 weight: 100
 menu:
-  main:
+  principal:
     identifier: default-apps-aws
-    parent: uiapi-cluster-apps
+    parent: reference-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for default-apps-aws?

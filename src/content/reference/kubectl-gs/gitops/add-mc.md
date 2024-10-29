@@ -4,13 +4,9 @@ title: "'kubectl gs gitops add management-cluster' command reference"
 description: Reference documentation on how to add a new Management Cluster to the GitOps repository.
 weight: 15
 menu:
-  main:
+  principal:
     parent: kubectlgs-gitops
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-mc
-  - /ui-api/kubectl-gs/gitops/add-mc
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -23,7 +19,7 @@ This command adds a new Management Cluster to the GitOps repository.
 
 Your GitOps repository should provide the following structural layers:
 
-- Basic structure (see [`init`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}))
+- Basic structure (see [`init`]({{< relref "/reference/kubectl-gs/gitops/init" >}}))
 
 ## Description
 
@@ -43,7 +39,7 @@ management-clusters
 
 **Note**, in a default mode the creation of SOPS GPG key pair is skipped. It is because in its most basic form, a GitOps
 repository can be driven without encryption. To enable the keys creation, pass the `--gen-master-key` flag
-when adding the cluster. When skipped at this point, encryption can still be added later by the [`add encryption`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-enc" >}})
+when adding the cluster. When skipped at this point, encryption can still be added later by the [`add encryption`]({{< relref "/reference/kubectl-gs/gitops/add-enc" >}})
 command.
 
 ## Usage

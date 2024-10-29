@@ -52,7 +52,7 @@ Let's go into details for the most relevant properties (also called "claims") of
 
 ## Token lifetime {#id-token-ttl}
 
-By default, ID tokens for the platform API are issued with a lifetime of **{{% mapi_oidc_token_ttl_minutes %}} minutes**.
+By default, ID tokens for the platform API are issued with a lifetime of {{% mapi_oidc_token_ttl_minutes %}} minutes.
 
 After that period, clients like `kubectl` will automatically attempt to get a fresh token from the identity provider. This doesn't require any additional user interaction. However, when this happens, the round-trip time for a `kubectl` command can be increased by a few seconds.
 
@@ -64,11 +64,11 @@ When assigning users to groups in your identity provider, and when removing user
 
 Giant Swarm assists all customers with setting up single sign-on (SSO) for the platform API. During that process, we make sure that these requirements are met:
 
-- As a customer, you need to decide on an **identity provider** to use. Most enterprise-grade organizations have a solution already in place. Since we use [Dex](https://github.com/dexidp/dex) as a connector between the platform API and your identity provider, we can support a variety of common standards like `OpenID Connect` (OIDC) and `LDAP`.
+- As a customer, you need to decide on an identity provider to use. Most enterprise-grade organizations have a solution already in place. Since we use [Dex](https://github.com/dexidp/dex) as a connector between the platform API and your identity provider, we can support a variety of common standards like `OpenID Connect` (OIDC) and `LDAP`.
 
     For cases where no suitable identity provider is available, or not yet available, we recommend to use GitHub, where an organization and teams can be set up and managed easily.
 
-- Your identity provider must define a **group to be considered as admins** for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the platform API.
+- Your identity provider must define a group to be considered as admins for the Giant Swarm installation. All members of this group automatically get administrative permissions when authenticating with the platform API.
 
 ## Further reading
 

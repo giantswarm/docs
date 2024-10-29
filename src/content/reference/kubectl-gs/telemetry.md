@@ -4,7 +4,7 @@ title: Usage data collection in 'kubectl gs'
 description: kubectl-gs collects anonymous usage data, which helps us to prioritize our further development on the tool.
 weight: 1000
 menu:
-  main:
+  principal:
     identifier: reference-kubectlgs-telemetry
     parent: reference-kubectlgs
 owner:

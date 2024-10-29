@@ -4,16 +4,12 @@ title: "'kubectl gs get clusters' command reference"
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
 weight: 40
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-clusters/
-  - /ui-api/kubectl-gs/get-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
@@ -89,7 +85,7 @@ Here we document the flags that have a particular meaning for the `get clusters`
 
 To inspect a cluster's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for cluster `ab12c`. It would return the [Cluster]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
+The following example command would print the main resource for cluster `ab12c`. It would return the [Cluster]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
 
 ```nohighlight
 kubectl gs get clusters ab12c --output yaml
@@ -109,4 +105,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

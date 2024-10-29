@@ -4,9 +4,9 @@ linkTitle: cluster-vsphere
 description:  A helm chart for creating Cluster API clusters with the vSphere provider (CAPV).; Check here the different properties of the chart.
 weight: 100
 menu:
-  main:
+  principal:
     identifier: cluster-vsphere
-    parent: uiapi-cluster-apps
+    parent: reference-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for cluster-vsphere?

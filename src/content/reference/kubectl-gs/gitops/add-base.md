@@ -4,13 +4,9 @@ title: "'kubectl gs gitops add base' command reference"
 description: Reference documentation on how to add a new base to create clusters in a GitOps repository.
 weight: 20
 menu:
-  main:
+  principal:
     parent: kubectlgs-gitops
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-org
-  - /ui-api/kubectl-gs/gitops/add-org
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -23,7 +19,7 @@ This command adds a new base to the GitOps repository.
 
 Your GitOps repository should provide the following structural layers:
 
-- Basic structure (see [`init`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}))
+- Basic structure (see [`init`]({{< relref "/reference/kubectl-gs/gitops/init" >}}))
 
 ## Description
 

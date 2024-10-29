@@ -4,12 +4,8 @@ title: Installing kubectl-gs
 description: How to obtain kubectl gs, the Giant Swarm kubectl plugin, how to keep it up to date, and where to find the Docker image.
 weight: 10
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/installation/
-  - /ui-api/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-10-29

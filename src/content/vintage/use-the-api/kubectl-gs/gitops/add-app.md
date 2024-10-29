@@ -13,7 +13,6 @@ user_questions:
   - How do I add App to my Workload Cluster with the GitOps repository?
 aliases:
   - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-app
   - /ui-api/kubectl-gs/gitops/add-app
 ---
 

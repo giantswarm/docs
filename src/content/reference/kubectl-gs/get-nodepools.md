@@ -4,12 +4,8 @@ title: "'kubectl gs get nodepools' command reference"
 description: Reference documentation on how to list node pools and get details for a single node pool using 'kubectl gs'.
 weight: 50
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-nodepools/
-  - /ui-api/kubectl-gs/get-nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -81,7 +77,7 @@ Similar to other `get` subcommands, you can specify the output format of `kubect
 
 To inspect a node pool's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment]({{< relref "/vintage/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource printed. On Azure, it would return the [MachinePool]({{< relref "/vintage/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource.
+The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment]({{< relref "/reference/platform-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource printed. On Azure, it would return the [MachinePool]({{< relref "/reference/platform-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource.
 
 ```nohighlight
 kubectl gs get nodepool ab12c --output yaml
@@ -101,4 +97,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

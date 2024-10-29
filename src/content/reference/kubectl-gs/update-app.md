@@ -4,12 +4,8 @@ title: "'kubectl gs update app' command reference"
 description: Reference documentation on how to update an App CR using 'kubectl gs'.
 weight: 120
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/update-app/
-  - /ui-api/kubectl-gs/update-app/
 last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -17,7 +13,7 @@ user_questions:
   - How can I update an app version from the command line?
 ---
 
-This command helps with updating [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resources.
+This command helps with updating [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) custom resources.
 
 ## Usage
 
@@ -47,4 +43,4 @@ App 'starboard-app' updated to version '0.2.1'
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

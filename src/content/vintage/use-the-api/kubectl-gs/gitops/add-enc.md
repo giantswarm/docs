@@ -9,7 +9,6 @@ menu:
 last_review_date: 2024-01-18
 aliases:
   - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-enc
   - /ui-api/kubectl-gs/gitops/add-enc
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

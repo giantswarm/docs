@@ -16,7 +16,6 @@ user_questions:
   - Which commands does kubectl-gs offer?
 aliases:
   - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/
   - /ui-api/kubectl-gs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

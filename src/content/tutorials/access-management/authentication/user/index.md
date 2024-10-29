@@ -17,8 +17,8 @@ owner:
 
 As a user of the platform API for any given installation, you need:
 
-- A **user account** in the identity provider used by the installation (single sign-on).
-- The platform API **endpoint** of the installation. Alternatively, the web user interface address.
+- A `user account` in the identity provider used by the installation (single sign-on).
+- The platform API `endpoint` of the installation. Alternatively, the web user interface address.
 
 For command-line access to the cluster using `kubectl`, authentication via our `kubectl` plugin is required. Detailed instructions are provided below. If you prefer a graphical interface, we also outline the Web UI login method.
 

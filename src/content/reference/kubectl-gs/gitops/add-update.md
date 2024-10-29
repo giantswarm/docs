@@ -4,13 +4,9 @@ title: "'kubectl gs gitops add automatic-update' command reference"
 description: Reference documentation on how to configure automatic updates for an App to the GitOps repository.
 weight: 35
 menu:
-  main:
+  principal:
     parent: kubectlgs-gitops
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-update
-  - /ui-api/kubectl-gs/gitops/add-update
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -23,11 +19,11 @@ This command adds configuration to automatically update an App into a GitOps rep
 
 Your GitOps repository should provide the following structural layers:
 
-- Basic structure (see [`init`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}))
-- Management cluster (see [`add management-cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-mc" >}}))
-- Organization (see [`add organization`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-org" >}}))
-- Workload cluster (see [`add workload-cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-wc" >}}))
-- Apps (see [`add app`]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-app" >}}))
+- Basic structure (see [`init`]({{< relref "/reference/kubectl-gs/gitops/init" >}}))
+- Management cluster (see [`add management-cluster`]({{< relref "/reference/kubectl-gs/gitops/add-mc" >}}))
+- Organization (see [`add organization`]({{< relref "/reference/kubectl-gs/gitops/add-org" >}}))
+- Workload cluster (see [`add workload-cluster`]({{< relref "/reference/kubectl-gs/gitops/add-wc" >}}))
+- Apps (see [`add app`]({{< relref "/reference/kubectl-gs/gitops/add-app" >}}))
 
 ## Description
 

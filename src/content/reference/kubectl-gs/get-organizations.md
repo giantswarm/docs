@@ -4,12 +4,8 @@ title: "'kubectl gs get organizations' command reference"
 description: Reference documentation on how to list organizations and get details for a single organization using 'kubectl gs'.
 weight: 50
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-organizations/
-  - /ui-api/kubectl-gs/get-organizations/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -97,4 +93,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

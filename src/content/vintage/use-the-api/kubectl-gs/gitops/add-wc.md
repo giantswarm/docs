@@ -9,7 +9,6 @@ menu:
 last_review_date: 2024-08-21
 aliases:
   - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops/add-wc
   - /ui-api/kubectl-gs/gitops/add-wc
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

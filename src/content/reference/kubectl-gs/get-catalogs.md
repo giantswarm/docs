@@ -4,12 +4,8 @@ title: "'kubectl gs get catalogs' command reference"
 description: Reference documentation on how to list catalogs and get details for a single catalog using 'kubectl gs'.
 weight: 20
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-catalogs/
-  - /ui-api/kubectl-gs/get-catalogs/
 last_review_date: 2024-10-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -18,10 +14,10 @@ user_questions:
   - How can I inspect catalogs using kubectl?
 ---
 
-Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a [Catalog]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a [Catalog]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}})
 custom resource in this case, or list several of them.
 
-The Catalog CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogs.application.giantswarm.io.md" >}})
+The Catalog CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/reference/platform-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [Management API]({{< relref "/vintage/platform-overview/management-api" >}}).
 
 ## Usage
@@ -98,7 +94,7 @@ However by default we hide internal catalogs in the `giantswarm` namespace.
 
 To inspect a catalogs main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for catalog `giantswarm`. It would return the [Catalog]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) resource.
+The following example command would print the main resource for catalog `giantswarm`. It would return the [Catalog]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) resource.
 
 ```nohighlight
 kubectl gs get catalogs giantswarm --output yaml
@@ -118,4 +114,4 @@ items:
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.

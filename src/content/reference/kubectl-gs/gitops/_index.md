@@ -2,10 +2,10 @@
 linkTitle: gitops
 title: "The 'kubectl gs gitops' command family reference"
 description: Main page for documentation on the 'kubectl' GitOps support, with an overview of all commands.
-weight: 50
+weight: 135
 layout: single
 menu:
-  main:
+  principal:
     identifier: kubectlgs-gitops
     parent: reference-kubectlgs
 last_review_date: 2024-10-29
@@ -13,10 +13,6 @@ user_questions:
   - Which GitOps commands does the kubectl-gs plugin offer?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-aliases:
-  - /use-the-api/kubectl-gs/gitops
-  - /reference/kubectl-gs/gitops
-  - /ui-api/kubectl-gs/gitops
 ---
 
 The `gitops` command family provides operations to set up a GitOps repository as required to manage Giant Swarm infrastructure, as well as add and modify resources in this repository.
@@ -63,11 +59,11 @@ Refer to the subcommand documentation for details.
 | [`add encryption`][7]         | [Add a new GPG key pair to the SOPS repository configuration][7]        |
 | [`add base`][8]               | [Add a new base to create workload clusters for different providers][8] |
 
-[1]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/init" >}}
-[2]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-mc" >}}
-[3]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-org" >}}
-[4]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-wc" >}}
-[5]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-app" >}}
-[6]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-update" >}}
-[7]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-enc" >}}
-[8]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-base" >}}
+[1]: {{< relref "/reference/kubectl-gs/gitops/init" >}}
+[2]: {{< relref "/reference/kubectl-gs/gitops/add-mc" >}}
+[3]: {{< relref "/reference/kubectl-gs/gitops/add-org" >}}
+[4]: {{< relref "/reference/kubectl-gs/gitops/add-wc" >}}
+[5]: {{< relref "/reference/kubectl-gs/gitops/add-app" >}}
+[6]: {{< relref "/reference/kubectl-gs/gitops/add-update" >}}
+[7]: {{< relref "/reference/kubectl-gs/gitops/add-enc" >}}
+[8]: {{< relref "/reference/kubectl-gs/gitops/add-base" >}}

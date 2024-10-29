@@ -2,15 +2,11 @@
 linkTitle: FAQ
 title: Questions and answers on kubectl-gs
 description: Frequently asked questions and answers and help for troubleshooting around `kubectl-gs`.
-weight: 15
+weight: 140
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
 last_review_date: 2024-10-29
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/faq
-  - /ui-api/kubectl-gs/faq
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -28,11 +24,11 @@ user_questions:
 
 ### How can I create a cluster or node pool
 
-`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster.md" >}}) reference pages. We also provide more verbose tutorials for [AWS]({{< relref "/vintage/use-the-api/management-api/creating-workload-clusters/aws" >}}) and [Azure]({{< relref "/vintage/use-the-api/management-api/creating-workload-clusters/azure" >}}).
+`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) reference pages. You can find more information in [the getting started page]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
 ### How can I install an app in a workload cluster
 
-Check the [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/vintage/getting-started/app-platform/deploy-app/" >}}).
+Check the [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/vintage/getting-started/app-platform/deploy-app/" >}}).
 
 ### Can kubectl-gs work without kubectl
 
@@ -40,7 +36,7 @@ Yes, you can execute the binary as `kubectl-gs`, too. However, most commands exp
 
 ### Do you provide a container image for kubectl-gs
 
-Yes, please check the [installation]({{< relref "/vintage/use-the-api/kubectl-gs/installation.md#docker" >}}) page for details.
+Yes, please check the [installation]({{< relref "/reference/kubectl-gs/installation.md#docker" >}}) page for details.
 
 ### Why do I see "API rate limit exceeded" errors
 
@@ -48,15 +44,11 @@ kubectl-gs accesses the GitHub API to check whether the user is running the late
 
 To circumvent this problem, you can execute every command with the `--disable-version-check` flag. As an alternative, you can set the `GITHUB_TOKEN` environment variable to a GitHub token, and make the request count towards your personal rate limit, not the (lower) IP based one.
 
-### What commands replace my old gsctl command
-
-Please check the [migration]({{< relref "/vintage/use-the-api/gsctl/migrate.md" >}}) page.
-
 ## `kubectl gs login`
 
-### How can I find out my Management API endpoint
+### How can I find out my platform API endpoint
 
-You can simply ask your Giant Swarm support contact. As an alternative, `kubectl gs login` also accepts the web UI URL as an argument. So if you happen to know that one, simply use that. (The logic behind this is quite simple: The domain prefix `happa.` simply gets removed from the web UI URL, and the result is the Management API endpoint URL.)
+You can simply ask your Giant Swarm support contact. The endpoint is generated with the base domain plus the prefix `api`. For example, if your base domain is `snorkel.gigantic.io`, the endpoint would be `api.snorkel.gigantic.io`.
 
 ### What does 'Error: Token renewal failed' mean
 

@@ -4,13 +4,9 @@ title: "'kubectl gs login' command reference"
 description: Reference documentation on how to ensure an authenticated kubectl context for a Giant Swarm management or workload cluster, using 'kubectl gs'.
 weight: 60
 menu:
-  main:
+  principal:
     identifier: reference-kubectlgs-login
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/login/
-  - /ui-api/kubectl-gs/login/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

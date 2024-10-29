@@ -12,7 +12,6 @@ user_questions:
 last_review_date: 2024-08-12
 aliases:
   - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-clusters/
   - /ui-api/kubectl-gs/get-clusters/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

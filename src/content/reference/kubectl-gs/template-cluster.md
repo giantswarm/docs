@@ -4,12 +4,8 @@ title: "'kubectl gs template cluster' command reference"
 description: Reference documentation on how to create a manifest for a Cluster using 'kubectl gs'.
 weight: 90
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/template-cluster/
-  - /ui-api/kubectl-gs/template-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -26,9 +22,9 @@ The outcome depends on the provider, set via the `--provider` flag.
 
 For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
 
-- [`App (name=<cluster name>)`]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
+- [`App (name=<cluster name>)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
 - `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}) for which cluster chart is used, depending on the cloud provider.
-- [`App (name=<cluster name>-default-apps)`]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
+- [`App (name=<cluster name>-default-apps)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
 - `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}) for which default apps chart is used, depending on the cloud provider.
 
 {{< /tab >}}
@@ -36,10 +32,10 @@ For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
 
 For {{% impl_title "vintage_aws" %}} (`--provider aws`):
 
-- [`Cluster`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
-- [`G8sControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
-- [`AWSControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
+- [`Cluster`]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
+- [`AWSCluster`]({{< relref "/reference/platform-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
+- [`G8sControlPlane`]({{< relref "/reference/platform-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
+- [`AWSControlPlane`]({{< relref "/reference/platform-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
 {{< /tabs >}}

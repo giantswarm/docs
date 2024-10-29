@@ -14,7 +14,6 @@ user_questions:
 last_review_date: 2024-01-18
 aliases:
   - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/get-releases/
   - /ui-api/kubectl-gs/get-releases/
 ---
 

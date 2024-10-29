@@ -4,9 +4,9 @@ linkTitle: default-apps-eks
 description:  A Helm chart for default-apps-eks; Check here the different properties of the chart.
 weight: 100
 menu:
-  main:
+  principal:
     identifier: default-apps-eks
-    parent: uiapi-cluster-apps
+    parent: reference-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for default-apps-eks?

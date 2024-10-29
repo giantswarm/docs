@@ -6,23 +6,18 @@ weight: 30
 
 # layout: single avoids the listing of sub pages at the end
 layout: single
-
 menu:
-  main:
+  principal:
     identifier: reference-kubectlgs
-    parent: use-the-api
+    parent: reference
 last_review_date: 2024-10-29
 user_questions:
   - Which commands does kubectl-gs offer?
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/
-  - /ui-api/kubectl-gs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-`kubectl-gs` is a CLI and a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin (invoked as `kubectl gs`) for the Giant Swarm [Management API]({{< relref "/vintage/use-the-api/management-api" >}}).
+`kubectl-gs` is a CLI and a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin (invoked as `kubectl gs`) for the Giant Swarm [Management API]({{< relref "/reference/platform-api" >}}).
 
 **Note:** Management API support is under active development. Supported functionality depends on the provider and the workload cluster release used. Please pay attention to the compatibility information given on the individual command reference pages.
 
@@ -90,15 +85,15 @@ kubectl krew install gs
 kubectl krew upgrade gs
 ```
 
-Find out more details in our [installation docs]({{< relref "/vintage/use-the-api/kubectl-gs/installation" >}}).
+Find out more details in our [installation docs]({{< relref "/reference/kubectl-gs/installation" >}}).
 
 ## Usage data collection
 
-Starting with version 4.3.0, kubectl-gs collects anonymous usage data. [Learn more]({{< relref "/vintage/use-the-api/kubectl-gs/telemetry" >}}).
+Starting with version 4.3.0, kubectl-gs collects anonymous usage data. [Learn more]({{< relref "/reference/kubectl-gs/telemetry" >}}).
 
 ## Troubleshooting
 
-Otherwise, your Giant Swarm support staff is available for you in case you run into an issue. Also feel free to check our [frequently asked questions]({{< relref "/vintage/use-the-api/kubectl-gs/faq.md" >}}) on `kubectl-gs`.
+Otherwise, your Giant Swarm support staff is available for you in case you run into an issue. Also feel free to check our [frequently asked questions]({{< relref "/reference/kubectl-gs/faq.md" >}}) on `kubectl-gs`.
 
 ## Contributing
 
@@ -106,18 +101,18 @@ See the [GitHub project](https://github.com/giantswarm/kubectl-gs) for source co
 
 As a Giant Swarm customer, feel free to use your Slack channel to give feedback, ask questions and suggest improvements for `kubectl-gs`.
 
-[1]: {{< relref "/vintage/use-the-api/kubectl-gs/login" >}}
-[2]: {{< relref "/vintage/use-the-api/kubectl-gs/get-apps" >}}
-[3]: {{< relref "/vintage/use-the-api/kubectl-gs/get-catalogs" >}}
-[4]: {{< relref "/vintage/use-the-api/kubectl-gs/get-clusters" >}}
-[5]: {{< relref "/vintage/use-the-api/kubectl-gs/get-nodepools" >}}
-[6]: {{< relref "/vintage/use-the-api/kubectl-gs/template-app" >}}
-[7]: {{< relref "/vintage/use-the-api/kubectl-gs/template-catalog" >}}
-[8]: {{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}
-[9]: {{< relref "/vintage/use-the-api/kubectl-gs/template-nodepool" >}}
-[10]: {{< relref "/vintage/use-the-api/kubectl-gs/template-organization" >}}
-[11]: {{< relref "/vintage/use-the-api/kubectl-gs/get-releases" >}}
-[12]: {{< relref "/vintage/use-the-api/kubectl-gs/update-app" >}}
-[13]: {{< relref "/vintage/use-the-api/kubectl-gs/update-cluster" >}}
-[14]: {{< relref "/vintage/use-the-api/kubectl-gs/gitops" >}}
-[15]: {{< relref "/vintage/use-the-api/kubectl-gs/get-organizations" >}}
+[1]: {{< relref "/reference/kubectl-gs/login" >}}
+[2]: {{< relref "/reference/kubectl-gs/get-apps" >}}
+[3]: {{< relref "/reference/kubectl-gs/get-catalogs" >}}
+[4]: {{< relref "/reference/kubectl-gs/get-clusters" >}}
+[5]: {{< relref "/reference/kubectl-gs/get-nodepools" >}}
+[6]: {{< relref "/reference/kubectl-gs/template-app" >}}
+[7]: {{< relref "/reference/kubectl-gs/template-catalog" >}}
+[8]: {{< relref "/reference/kubectl-gs/template-cluster" >}}
+[9]: {{< relref "/reference/kubectl-gs/template-nodepool" >}}
+[10]: {{< relref "/reference/kubectl-gs/template-organization" >}}
+[11]: {{< relref "/reference/kubectl-gs/get-releases" >}}
+[12]: {{< relref "/reference/kubectl-gs/update-app" >}}
+[13]: {{< relref "/reference/kubectl-gs/update-cluster" >}}
+[14]: {{< relref "/reference/kubectl-gs/gitops" >}}
+[15]: {{< relref "/reference/kubectl-gs/get-organizations" >}}

@@ -3,11 +3,9 @@ linkTitle: Cluster App Charts
 title: The Cluster App Charts to build new clusters
 description: The Giant Swarm Cluster Charts to provision new clusters and default components.
 weight: 100
-aliases:
-  - /use-the-api/management-api/cluster-apps
 menu:
-  main:
-    identifier: uiapi-cluster-apps
+  principal:
+    identifier: reference-cluster-apps
     parent: reference-platform-api
 last_review_date: 2024-10-29
 owner:

@@ -8,7 +8,6 @@ menu:
     parent: uiapi-kubectlgs
 aliases:
   - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/installation/
   - /ui-api/kubectl-gs/installation/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

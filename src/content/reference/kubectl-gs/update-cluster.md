@@ -4,7 +4,7 @@ title: "'kubectl gs update cluster' command reference"
 description: Reference documentation on how to upgrade a workload cluster using kubectl-gs.
 weight: 130
 menu:
-  main:
+  principal:
     parent: reference-kubectlgs
     identifier: reference-kubectlgs-updatecluster
 last_review_date: 2024-10-29
@@ -58,5 +58,5 @@ This adds annotations to the cluster resource, triggering the upgrade to the spe
 
 ## Related
 
-- [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
+- [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
 - [`cluster-upgrades`]({{< relref "/vintage/platform-overview/cluster-management/cluster-upgrades" >}}) - Cluster upgrades.
