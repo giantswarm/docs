@@ -24,26 +24,26 @@ As authorization in the management cluster is based on some fundamental `kuberne
 - [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and
 - [Role-based access control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
 
-Also be aware that this article deals with permissions **in the management cluster only**. Handling authorization in workload clusters is not covered here, however we provide a comprehensive article on [RBAC and PSPs in workload clusters]({{< relref "/vintage/getting-started/security" >}}).
+Also be aware that this article deals with permissions **in the management cluster only**. Handling authorization in workload clusters isn't covered here, however we provide a comprehensive article on [RBAC and PSPs in workload clusters]({{< relref "/vintage/getting-started/security" >}}).
 
 If you are mostly interested in how to set up access for certain types of users, we recommend to skip to the [typical use cases](#typical-use-cases) section. You can always catch up on the basics later, as needed. Alternatively, if you work through this page from top to bottom, you'll pick up the pieces in a more logical order and put them together later.
 
 ## Where resources reside
 
-For controlling access to resources in a management cluster, it is vital to understand
+For controlling access to resources in a management cluster, it's vital to understand
 
 1. whether a resource is **cluster-scoped** or **namespace-scoped**
-2. if it is namespace-scoped, **in which namespace** they are to be found
+2. if it's namespace-scoped, **in which namespace** they're to be found
 
 We'll explain next which resources are to be found in which scope or namespace.
 
 ### Cluster scope
 
-In Giant Swarm management clusters in particular, three resource types are cluster-scoped, so they are not residing in any namespace:
+In Giant Swarm management clusters in particular, three resource types are cluster-scoped, so they're not residing in any namespace:
 
 - [`Organization`]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}}) defines, well, an organization
 - [`Release`]({{< relref "/reference/platform-api/crd/releases.release.giantswarm.io.md" >}}) defines a workload cluster release to use when creating a new workload cluster, or to upgrade a workload cluster to.
-- [`RoleBindingTemplate`]({{< relref "/reference/platform-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) a template for roleBindings that are applied to certain or all organizations
+- [`RoleBindingTemplate`]({{< relref "/reference/platform-api/crd/rolebindingtemplates.auth.giantswarm.io.md" >}}) a template for role bindings that are applied to certain or all organizations
 
 ### Namespace `default` {#default-namespace}
 
@@ -77,9 +77,9 @@ In addition there are two special cluster roles which don't define any permissio
 
 We'll explain the effect of binding these roles in the next section on RBAC automation.
 
-## RBAC automation {#rbac-automation}
+## Role automation {#rbac-automation}
 
-As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we have some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
+As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we've some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
 
 **Grant admin permissions to a default group**. Where customers own a Giant Swarm installation exclusively (which is the opposite case of using a [shared installation]({{< relref "/vintage/support/shared-installation" >}})), they name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
 
@@ -97,8 +97,8 @@ In addition to the above automation, [rbac-operator](https://github.com/giantswa
 This custom resource allows users to dynamically apply and remove `RoleBindings` across organizations.
 
 The `spec.template` property is used to define the desired `RoleBinding` while the `spec.scopes` property allows to specify where it should be applied.
-It is possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.organizationSelector.matchLabels`.
-Furthermore, `spec.scopes.organizationSelector.matchExpressions` can be used for more advanced label matching. (e.g. excluding all organizations with a certain label)
+It's possible to dynamically apply `RoleBindings` to a specific set of organizations using a label matcher in `spec.scopes.organizationSelector.matchLabels`.
+Furthermore, `spec.scopes.organizationSelector.matchExpressions` can be used for more advanced label matching. (for example excluding all organizations with a certain label)
 If a matcher is defined, the `RoleBinding` will be applied within the organization scopes of all `Organization` CRs with matching labels.
 If no matcher is defined, the `RoleBinding` will be maintained across all organization scopes.
 An organization scope refers to the organization namespace as well as namespaces associated with clusters within the organization.
@@ -109,7 +109,7 @@ For the purpose of this documentation article we'll introduce a few example case
 
 1. **Read-only user**: allowed to "browse" most resources in specific organizations.
 
-2. **App developer**: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discovers clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
+2. **Developer**: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discovers clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
 
 3. **Organization admin**: users who have full permissions to resources belonging to a specific [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
 
@@ -234,14 +234,14 @@ subjects:
   name: customer:GROUPNAME
 ```
 
-Be aware that it is currently not possible to configure additional admins via our web UI.
+Be aware that it's currently not possible to configure additional admins via our web UI.
 
 ### Configure access automatically across organizations {#configure-across-organizations}
 
 As described above, a `RoleBindingTemplate` can be applied whenever identical access needs to be maintained across several or all organizations dynamically.
 
 The following template will create a `RoleBinding` that binds a role to a service account in all organization namespaces dynamically.
-Since it is filled in dynamically, we do not give a namespace for the service account.
+Since it's filled in dynamically, we don't give a namespace for the service account.
 
 ```yaml
 apiVersion: auth.giantswarm.io/v1alpha1
@@ -288,7 +288,7 @@ spec:
         add-additional-admins: true
 ```
 
-Alternatively, the following scopes will result the roleBinding to be applied in namespaces belonging to organizations which _DO NOT_ carry the `add-additional-admins=false` label.
+Alternatively, the following scopes will result the role binding to be applied in namespaces belonging to organizations which **not** carry the `add-additional-admins=false` label.
 
 ```yaml
 ...
