@@ -12,7 +12,7 @@ crd:
   technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions
-  source_repository_ref: v5.0.0
+  source_repository_ref: v6.6.0
   versions:
     - v1alpha3
   topics:
@@ -22,9 +22,12 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+aliases:
+  - /use-the-api/management-api/crd/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
+  - /reference/cp-k8s-api/azuremachinepools.exp.infrastructure.cluster.x-k8s.io/
 technical_name: azuremachinepools.exp.infrastructure.cluster.x-k8s.io
 source_repository: https://github.com/giantswarm/apiextensions
-source_repository_ref: v5.0.0
+source_repository_ref: v6.6.0
 ---
 
 # AzureMachinePool
@@ -400,6 +403,73 @@ spec:
 <div class="property-description">
 <p>Lun Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. The value must be between 0 and 63.</p>
 
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.dataDisks[*].managedDisk">.spec.template.dataDisks[*].managedDisk</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ManagedDisk defines the managed disk options for a VM.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.dataDisks[*].managedDisk.diskEncryptionSet">.spec.template.dataDisks[*].managedDisk.diskEncryptionSet</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>DiskEncryptionSetParameters defines disk encryption options.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.dataDisks[*].managedDisk.diskEncryptionSet.id">.spec.template.dataDisks[*].managedDisk.diskEncryptionSet.id</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ID defines resourceID for diskEncryptionSet resource. It must be in the same subscription</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha3-.spec.template.dataDisks[*].managedDisk.storageAccountType">.spec.template.dataDisks[*].managedDisk.storageAccountType</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
 </div>
 
 </div>
@@ -1390,7 +1460,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>FutureData is the base64 url encoded json Azure AutoRest Future</p>
+<p>FutureData is the base64 url encoded json Azure AutoRest Future.</p>
 
 </div>
 
@@ -1408,7 +1478,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Name is the name of the Azure resource</p>
+<p>Name is the name of the Azure resource.</p>
 
 </div>
 
@@ -1426,7 +1496,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>ResourceGroup is the Azure resource group for the resource</p>
+<p>ResourceGroup is the Azure resource group for the resource.</p>
 
 </div>
 
@@ -1444,7 +1514,7 @@ spec:
 </div>
 
 <div class="property-description">
-<p>Type describes the type of future, update, create, delete, etc</p>
+<p>Type describes the type of future, update, create, delete, etc.</p>
 
 </div>
 

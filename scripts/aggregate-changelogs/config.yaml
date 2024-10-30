@@ -11,13 +11,13 @@ repositories:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
   giantswarm/apiextensions:
-    category: Management API
+    category: Platform API
   giantswarm/alloy-app:
     category: Observability Platform
   giantswarm/aws-admission-controller:
-    category: Management API
+    category: Platform API
   giantswarm/azure-admission-controller:
-    category: Management API
+    category: Platform API
   giantswarm/athena:
     category: Managed Apps
   giantswarm/auth-bundle:
@@ -104,11 +104,11 @@ repositories:
   giantswarm/kyverno-app:
     category: Managed Apps
   giantswarm/kyverno-policies:
-    category: Management API
+    category: Platform API
   giantswarm/loki-app:
     category: Observability Platform
   giantswarm/management-cluster-admission:
-    category: Management API
+    category: Platform API
   giantswarm/mimir-app:
     category: Observability Platform
   giantswarm/prometheus-operator-app:
@@ -126,9 +126,9 @@ repositories:
   giantswarm/trivy-app:
     category: Managed Apps
   giantswarm/organization-operator:
-    category: Management API
+    category: Platform API
   giantswarm/rbac-operator:
-    category: Management API
+    category: Platform API
   giantswarm/strimzi-kafka-operator-app:
     category: Managed Apps
   giantswarm/teleport-kube-agent-app:
@@ -146,7 +146,7 @@ repositories:
 
 # Here we define the colors for categories.
 categories:
-  - name: Management API
+  - name: Platform API
     color: "#b47fb0"
   - name: Dashboards
     color: "#e461a9"

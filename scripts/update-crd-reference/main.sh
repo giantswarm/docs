@@ -2,7 +2,7 @@
 
 set -e
 
-CRD_DOCS_GENERATOR_VERSION=0.12.0
+CRD_DOCS_GENERATOR_VERSION=0.11.1
 DESTINATION=src/content/reference/platform-api/crd
 
 # Clear output folder

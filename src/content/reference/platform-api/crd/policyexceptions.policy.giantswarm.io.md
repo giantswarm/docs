@@ -12,16 +12,19 @@ crd:
   technical_name: policyexceptions.policy.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/kyverno-policy-operator
-  source_repository_ref: v0.0.7
+  source_repository_ref: v0.0.8
   versions:
     - v1alpha1
   topics:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /use-the-api/management-api/crd/policyexceptions.policy.giantswarm.io/
+  - /reference/cp-k8s-api/policyexceptions.policy.giantswarm.io/
 technical_name: policyexceptions.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/kyverno-policy-operator
-source_repository_ref: v0.0.7
+source_repository_ref: v0.0.8
 ---
 
 # PolicyException

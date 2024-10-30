@@ -12,7 +12,7 @@ crd:
   technical_name: appcatalogentries.application.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.6.1
+  source_repository_ref: v0.6.2
   versions:
     - v1alpha1
   topics:
@@ -20,9 +20,12 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io/
+  - /reference/cp-k8s-api/appcatalogentries.application.giantswarm.io/
 technical_name: appcatalogentries.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.6.1
+source_repository_ref: v0.6.2
 ---
 
 # AppCatalogEntry

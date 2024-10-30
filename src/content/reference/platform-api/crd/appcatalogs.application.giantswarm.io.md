@@ -12,7 +12,7 @@ crd:
   technical_name: appcatalogs.application.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/apiextensions-application
-  source_repository_ref: v0.6.1
+  source_repository_ref: v0.6.2
   versions:
     - v1alpha1
   topics:
@@ -24,9 +24,12 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /use-the-api/management-api/crd/appcatalogs.application.giantswarm.io/
+  - /reference/cp-k8s-api/appcatalogs.application.giantswarm.io/
 technical_name: appcatalogs.application.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions-application
-source_repository_ref: v0.6.1
+source_repository_ref: v0.6.2
 ---
 
 # AppCatalog
