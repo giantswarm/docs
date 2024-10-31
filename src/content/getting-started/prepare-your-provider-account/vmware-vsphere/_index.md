@@ -86,7 +86,7 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Network` | `Assign network` |
 | `Resource` | `Assign virtual machine to resource pool` |
 | `Sessions` | `Message`<br>`Validate session` |
-| `Profile` driven storage | `Profile-driven storage view` |
+| `Profile driven storage` (vSphere 7)<br>`VM storage policies` (vSphere 8) | `Profile-driven storage view`<br>`View VM storage policies` |
 | `vApp` | `Import` |
 | `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Edit Inventory/Create new`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template`<br>`Provisioning/Mark as template`<br>`Provisioning/Mark as virtual machine` |
 
