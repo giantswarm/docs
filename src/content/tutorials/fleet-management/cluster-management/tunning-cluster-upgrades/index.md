@@ -1,6 +1,5 @@
 ---
-linkTitle: Fine-tuning upgrade disruption
-title: Fine-tuning upgrade disruption on CAPI
+title: Avoid disruption of workloads during cluster upgrade
 description: The level of disruption caused by cluster upgrades can be influenced per cluster. This article explains how to adjust the number of nodes that is updated simlutaneously, and the wait time between batches of nodes.
 weight: 10
 menu:
