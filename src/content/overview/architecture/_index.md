@@ -10,8 +10,8 @@ menu:
 user_questions:
   - What is the architecture of the Giant Swarm cloud-native developer platform?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-horizon
-last_review_date: 2024-05-13
+  - https://github.com/orgs/giantswarm/teams/team-planeteers
+last_review_date: 2024-11-04
 ---
 
 <!-- I like the current structure of the platform arch page to be honest but the content is too specific in some places, and maybe too much I will make it shorter. -->
@@ -23,4 +23,3 @@ Proposed outline:
 - One or two paragraph section for each layer/section of the diagram
 
 Ensure during the description of each layer/section we link to the relevant documentation page that goes into more detail.
-

@@ -3,16 +3,10 @@ linkTitle: Creating custom Grafana dashboards
 title: Creating custom Grafana dashboards
 description: Guide explaining how to manage custom Grafana dashboards in the Observability Platform.
 menu:
-  main:
+  principal:
     identifier: tutorials-observability-data-exploration-create-custom-dashboards
-    parent: tutorials-observability-data-exploration-create-observability-visualization
+    parent: tutorials-observability-data-exploration
 weight: 40
-aliases:
-  - /advanced/observability/visualization/custom-dashboards
-  - /observability/grafana/custom-dashboards
-  - /observability/visualization/custom-dashboards
-  - /ui-api/observability/grafana/custom-dashboards
-  - /ui-api/observability/visualization/custom-dashboards
 last_review_date: 2024-07-17
 user_questions:
   - How to customize dashboards?

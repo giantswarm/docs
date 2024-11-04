@@ -101,7 +101,7 @@ kubectl gs get cluster test1 -n org-testing -o yaml
 
 Finally, you can see the apps deployed in a cluster by running:
 
-```sh
+```text
 $ kubectl gs get app -n org-giantswarm
 NAME                     VERSION     LAST DEPLOYED     STATUS
 golem-capa-karpenter      0.3.0          50d          deployed
