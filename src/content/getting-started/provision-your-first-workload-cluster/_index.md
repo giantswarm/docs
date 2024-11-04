@@ -38,6 +38,7 @@ kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
+  --release 29.1.0 \
   > cluster.yaml
 ```
 
@@ -50,6 +51,7 @@ kubectl gs template cluster \
   --provider capa \
   --name mycluster \
   --organization testing \
+  --release 29.1.0 \
   --aws-cluster-role-identity-name=dev-account-role-identity
   > cluster.yaml
 ```
@@ -179,7 +181,7 @@ At this point, you are logged in to the workload cluster, with full access. Try 
 
 Some of the [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) available in the management cluster aren't available in the workload cluster because those concepts don't exist in workload clusters. For instance, if we try to get the organizations, we get an error, because they're a concept that makes sense in the MC but not in the WC:
 
-```text
+```sh
 $ kubectl get orgs
 error: the server doesn't have a resource type "organizations"
 ```
