@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-Based on our extensive experience, we understand that orchestrating a large-scale microservices platform poses significant challenges. Ideally, workloads should be designed for seamless execution in the cloud and containers. However, this becomes exponentially more complex when juggling multiple infrastructure providers, regions, clusters and environments.
+Based on our extensive experience, we understand that orchestrating a large-scale microservices platform poses significant challenges. Ideally, workloads should be designed for seamless execution in cloud and containers. However, this becomes exponentially more complex when juggling multiple infrastructure providers, regions, clusters and environments.
 
 With such complexity, you need to streamline the management of your platform in a declarative and simplified way. You will want to manage your fleet coherently and transparently, relying on capabilities that help you define standards and implement governance globally.
 

@@ -11,6 +11,8 @@ user_questions:
   - What do I need to do to prepare my VMware vSphere account for the cloud-native developer platform?
 ---
 
+MODIFY ACCORDING TO THE TEMPLATE
+
 In order to run the Giant Swarm platform in your VMware vSphere environment, several prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
 
 ## Requirements
@@ -31,7 +33,7 @@ The minimum version of vSphere required is 6.7 Update 3. It's recommended to run
 
 It's recommended to create one resource pool across the hosts where the workload cluster virtual machines will run. However, in case of inconvenience, it's possible to run the virtual machines in the implicit root resource pool located at the vSphere cluster level.
 
-## Networking
+## Step 1: Networking
 
 In the cluster definition, you need to specify a network for the controller to provision the default gateway and connect the virtual machines (VMs). The DHCP service must be enabled on this network to assign IP addresses to the cluster nodes automatically.
 
@@ -68,9 +70,12 @@ The `controller` in NSX ALB plays a pivotal role. It's responsible for communica
 {{< /tab >}}
 {{< /tabs >}}
 
-## Permissions
+## Step 2: Permissions
 
 The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it's recommended that a specific user and role be created for the controller.
+
+> [!CAUTION]
+> The password mustn’t contain ` \ ` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
 
 __Note__: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
 
@@ -85,7 +90,7 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Sessions` | `Message`<br>`Validate session` |
 | `Profile` driven storage | `Profile-driven storage view` |
 | `vApp` | `Import` |
-| `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template` |
+| `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Edit Inventory/Create new`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template`<br>`Provisioning/Mark as template`<br>`Provisioning/Mark as virtual machine` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
@@ -100,6 +105,12 @@ Apart of the permissions you need to assign the role to the following objects:
 
 __Warning__: In case you want to leverage failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
 
-## Virtual machine templates
+## Step 3: Virtual machine templates
 
 To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
+
+## Next step
+
+If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+
+If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
