@@ -51,6 +51,7 @@ node[pP]ool[s]?
 NLB[s]?
 passthrough
 perfectly
+Promtail
 quickly
 randomly
 rapidly
