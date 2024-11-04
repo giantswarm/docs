@@ -92,6 +92,10 @@ kubectl krew upgrade gs
 
 Find out more details in our [installation docs]({{< relref "/vintage/use-the-api/kubectl-gs/installation" >}}).
 
+## Usage data collection
+
+Starting with version 4.3.0, kubectl-gs collects anonymous usage data. [Learn more]({{< relref "/vintage/use-the-api/kubectl-gs/telemetry" >}}).
+
 ## Troubleshooting
 
 Otherwise, your Giant Swarm support staff is available for you in case you run into an issue. Also feel free to check our [frequently asked questions]({{< relref "/vintage/use-the-api/kubectl-gs/faq.md" >}}) on `kubectl-gs`.

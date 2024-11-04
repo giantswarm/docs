@@ -20,6 +20,7 @@ containerd
 CRs
 declaratively
 [Dd]ex
+[Dd][Nn][Ss]
 easily
 effectively
 ELB[s]?
@@ -50,6 +51,7 @@ node[pP]ool[s]?
 NLB[s]?
 passthrough
 perfectly
+Promtail
 quickly
 randomly
 rapidly
