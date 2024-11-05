@@ -22,11 +22,11 @@ Giant Swarm's cloud-native platform is a collection of open-source components th
 
 The platform architecture consists of the following layers:
 
-- Infrastructure layer: responsible for managing the underlying infrastructure, including the cloud provider resources or on-premises infrastructure. To abstract the underlying infrastructure, the platform uses the `Kubernetes`.
+- Interface layer: offers a set of templates, APIs, and tools that developers can use to interact with the platform.
 
 - Capabilities layer: provides a set of capabilities to manage the lifecycle of applications, including deploying, scaling, and monitoring applications.
 
-- Interface layer: offers a set of templates, APIs, and tools that developers can use to interact with the platform.
+- Infrastructure layer: responsible for managing the underlying infrastructure, including the cloud provider resources or on-premises infrastructure. To abstract the underlying infrastructure, the platform uses the `Kubernetes`.
 
 Along these layers, Giant Swarm provides a real support channel, incident management, and good documentation to help you get the most out of the platform. Additionally, you have a dedicated account engineer to help creating a common roadmap and to provide guidance on how to use the platform.
 
@@ -44,24 +44,44 @@ Most often, you have a single management cluster that manages multiple workload 
 
 ## GitOps
 
-Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster, applications and so on.
+Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. It's modern operational framework which allow managing our resources using `Git` repositories as the single source of truth. In the platform, GitOps ensures that all changes are version-controlled, auditable, and easily reversible. By leveraging Git’s robust workflows, teams can automate deployments and rollbacks while maintaining consistency and reliability across environments. This capability empowers developers to implement continuous delivery practices, facilitating faster and more secure releases.
+
+[Learn more in our guide about GitOps]({{< relref "/tutorials/continuous-deployment" >}}).
 
 ## Developer portal
 
-The developer portal allows platform engineers and developers to interact with the platform in a visual way. It provides a set of templates and tools that developers can use to deploy and manage their applications.
+Giant Swarm uses [Backstage](https://www.cncf.io/projects/backstage/) as developer portal serving as the central hub for accessing all platform services and resources. It provides an intuitive interface where platform engineers and developers find documentation, manage their projects, and access tools necessary for application development and deployment. By consolidating resources and simplifying access, you developer portal enhances the user experience, reduces onboarding time, and fosters collaboration among teams. It acts as the gateway to the platform’s capabilities, streamlining workflows and promoting productivity.
 
 ## Observability
 
-## Single sign-on
+Observability on the Giant Swarm platform is based in Mimir, Loki and Grafana. The stack runs in the management cluster and provides a centralized view of the platform metrics, logs, and traces. You can add application metrics and logs letting the your teams detect anomalies, troubleshoot issues, and optimize resources efficiently. The platform supports customizable dashboards and alerts, enabling proactive management and a deeper understanding of application behavior and infrastructure status.
+
+## Single sign-On
+
+Single Sign-On (SSO) simplifies user authentication across the Giant Swarm platform by allowing users to access multiple services with your existing identity provider. It enhances security and user convenience by reducing password fatigue and centralizing identity management. You can build on top of `Kubernetes` Role-Based Access Control (RBAC) to define fine-grained access policies and permissions, ensuring that only authorized users can interact with the platform resources.
 
 ## Network and connectivity
 
+The different technologies used in the Giant Swarm platform provides you with a secure and reliable network and connectivity between your applications and services. Platform engineers can create network policies to control traffic flow and enforce security rules, ensuring that data is protected and isolated. Relying on the built-in networking capabilities of `Kubernetes`, the platform supports many routing and load balancing strategies, enabling seamless communication between services and applications.
+
 ## Runtime security
+
+Runtime security focuses on protecting applications and infrastructure during execution. [Falco](https://www.cncf.io/projects/falco/) project provide you with intrusion detection, vulnerability scanning, and automated threat response capabilities. The Giant Swarm platform ensures that security policies are enforced consistently, reducing the attack surface and mitigating risks.
 
 ## Cost management
 
+Cost control is becoming increasingly important as organizations seek to optimize their cloud spending. Based on lessons learned from our experience with customers, the platform is built to help you manage costs effectively. Our solution engineers will help you to add visibility and control over your resource usage and expenses, leading to better decision-making and cost savings.
+
 ## Automatic cluster management
 
-## Cluster scaling
+Leaning on the `Cluster API`, the Giant Swarm platform provides solid automation to manage the lifecycle of your clusters. On top, our team has developed additional logic cover certain aspects of the cluster lifecycle not included in the upstream project.
+
+Our system includes automated provisioning, scaling, and upgrading of clusters, reducing the operational burden on your team. The platform ensures clusters are always running optimally and securely, allowing developers to focus on building and deploying applications without worrying about underlying infrastructure management.
+
+## Cluster Scaling
+
+One of the key features of the Giant Swarm platform is the ability to scale clusters automatically. It allows for dynamic adjustment of resources based on demand, supporting both horizontal and vertical scaling, ensuring applications have the necessary resources to handle varying workloads. By automating the scaling process, the platform helps maintain performance and reliability while optimizing resource utilization and cost.
 
 ## Cloud resources provisioning
+
+Most likely, you have already external cloud resources which could be managed by the platform. Thanks to [Crossplane](https://www.cncf.io/projects/crossplane/) project, you can include all your infrastructure, such as databases, queues or buckets, as part of the platform, relying on the same principles `Kubernetes` offers. Centralizing the management of all the infrastructure in a single place, helps you to reduce the operational overhead and to have a better control over your resources.
