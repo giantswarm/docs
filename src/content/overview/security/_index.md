@@ -19,7 +19,7 @@ The platform's security features ensure that your applications and data are prot
 
 - **Policy enforcement**: Implement fine-grained security policies to restrict resource access and prevent running risky workloads. This includes native Kubernetes Role-Based Access Control (RBAC), Network Policies, and Pod Security Standards (PSS), as well as platform support for a vast range of optional and custom policies.
 
-- Image scanning and provenance: Ensure the safety of container images by scanning them for vulnerabilities, identifying improperly handled secrets, and verifying the authenticity and integrity of the image before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
+- **Image scanning and provenance**: Ensure the safety of container images by scanning them for vulnerabilities, identifying improperly handled secrets, and verifying the authenticity and integrity of the image before deployment. This helps to prevent the use of compromised or malicious images in your environment, thereby reducing the risk of security threats.
 
 - **Runtime anomalies**: Detect and respond to abnormal behaviour during runtime. This includes monitoring for unusual activity, such as unexpected process executions, file system changes, network connections, or other events that deviate from the expected or regular operation of the system and could indicate a security breach or unauthorized access.
 
