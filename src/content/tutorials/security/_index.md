@@ -1,6 +1,6 @@
 ---
-linkTitle: Security
 description: Take a look at the list of guides that delve into the security aspects of the Giant Swarm platform.
+title: Security
 weight: 15
 menu:
   principal:
