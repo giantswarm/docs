@@ -32,19 +32,17 @@ Along these layers, Giant Swarm provides a live support channel, incident manage
 
 ## Platform API
 
-The Giant Swarm platform is build on top of `Kubernetes` thanks to [`Cluster API`](https://cluster-api.sigs.k8s.io/), a open source  project that standardize the cluster lifecycle management across different cloud providers or on-premises infrastructure.
+The Giant Swarm platform is build on top of `Kubernetes` based on [`Cluster API`](https://cluster-api.sigs.k8s.io/), an open source  sub-project that standardizes the cluster lifecycle management across different cloud providers or on-premises infrastructure.
 
-The Platform API is the regular Kubernetes API of your central _management cluster_ and is your interface for deploying workload clusters and applications, or to reach other capabilities such as the observability and security dashboards.
+The platform API is the regular `Kubernetes` API of your central _management cluster_ and is your interface for deploying workload clusters and applications, or to reach other capabilities such as the observability and security dashboards. Thanks to being based on `Kubernetes`, you can use the same tools and workflows you are already familiar with, such as `kubectl`, `GitOps` or any other existing tooling compatible.
 
-In Giant Swarm, the management cluster is also used for enhancing the platform capabilities, such as monitoring, logging, and alerting. The customer platform team uses the management cluster to configure which capabilities are available to the developers, and even to create new capabilities.
-
-Most often, you have a single management cluster that manages multiple workload clusters, but in case of running infrastructure in multiple regions, you can have multiple management clusters. The platform API isn't more than the `Kubernetes` management cluster API, but with some additional resources that allow you to manage the lifecycle of your workloads across multiple clusters or inspect the application metrics of your fleet of clusters.
+In Giant Swarm, the management cluster is also used for enhancing the platform with capabilities, such as monitoring, alerting, policy management, and many more. You can use the platform API of our management clusters to configure these capabilities and even add your own capabilities through operators.
 
 [Learn how to access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
 
 ## GitOps
 
-Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. It's modern operational framework which allow managing our resources using `Git` repositories as the single source of truth. In the platform, GitOps ensures that all changes are version-controlled, auditable, and easily reversible. By leveraging Git’s robust workflows, teams can automate deployments and rollbacks while maintaining consistency and reliability across environments. This capability empowers developers to implement continuous delivery practices, facilitating faster and more secure releases.
+Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. In the platform, the `Flux` operator runs to ensure all changes are version-controlled, auditable, and easily reversible. You can use it too to manage your applications and configurations. It's as simple as adding your existing repositories to the platform and let the platform do the rest.
 
 [Learn more in our guide about GitOps]({{< relref "/tutorials/continuous-deployment" >}}).
 
@@ -72,7 +70,7 @@ Runtime security focuses on protecting applications and infrastructure during ex
 
 ## Cost management
 
-Cost control is becoming increasingly important as organizations seek to optimize their cloud spending. Based on lessons learned from our experience with customers, the platform is built to help you manage costs effectively. Our solution engineers will help you to add visibility and control over your resource usage and expenses, leading to better decision-making and cost savings.
+Cost control is becoming increasingly important as organizations seek to optimize their cloud spending. Based on lessons learned from our experience with customers, the platform is built to help you manage costs effectively. The platform provides auto-scaling and resource optimization, allowing you to adjust resources based on demand and reduce waste. Our solution engineers will help you to add visibility and control over your resource usage and expenses, leading to better decision-making and cost savings.
 
 ## Automatic cluster management
 
