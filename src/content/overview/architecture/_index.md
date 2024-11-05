@@ -34,7 +34,7 @@ Along these layers, Giant Swarm provides a real support channel, incident manage
 
 The Giant Swarm platform is build on top of `Kubernetes` thanks to [`Cluster API`](https://cluster-api.sigs.k8s.io/), a open source  project that standardize the cluster lifecycle management across different cloud providers or on-premises infrastructure.
 
-In `Cluster API`, there is a distinction between the management cluster and the workload clusters. The management cluster is responsible for managing the lifecycle of the workload clusters. The workload clusters are the clusters where you deploy your applications.
+The Platform API is the regular Kubernetes API of your central _management cluster_ and is your interface for deploying workload clusters and applications, or to reach other capabilities such as the observability and security dashboards.
 
 In Giant Swarm, the management cluster is also used for enhancing the platform capabilities, such as monitoring, logging, and alerting. The customer platform team uses the management cluster to configure which capabilities are available to the developers, and even to create new capabilities.
 
