@@ -14,7 +14,7 @@ owner:
 last_review_date: 2024-11-04
 ---
 
-Giant Swarm's cloud-native platform is a collection of open-source components that work together to provide a seamless experience for managing the lifecycle of containerized applications. The platform is designed to be cloud-agnostic, allowing you to deploy your applications on any of the supported cloud providers. Besides, the platform offers a rich set of APIs that our customers can use to offer a set of self-service capabilities to their developers.
+Giant Swarm's cloud-native developer platform integrates open-source components that work together to provide a seamless experience for managing the lifecycle of containerized applications. The platform is based on Kubernetes and designed to be cloud-agnostic, allowing you to deploy your applications on any of the supported cloud providers, including on-premises. The interfaces allow development teams and automations to deploy applications, keep the clusters secure, and use other capabilities that we explain below. On top, you benefit from our strong support model that ensures your long-term success and stability of workloads.
 
 ## Platform architecture
 
