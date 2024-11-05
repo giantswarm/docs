@@ -54,7 +54,7 @@ Giant Swarm uses [Backstage](https://www.cncf.io/projects/backstage/) as develop
 
 ## Observability
 
-Observability on the Giant Swarm platform is based in Mimir, Loki and Grafana. The stack runs in the management cluster and provides a centralized view of the platform metrics, logs, and traces. You can add application metrics and logs letting the your teams detect anomalies, troubleshoot issues, and optimize resources efficiently. The platform supports customizable dashboards and alerts, enabling proactive management and a deeper understanding of application behavior and infrastructure status.
+Observability on the Giant Swarm platform is based on the Grafana stack. Collectors store metrics, logs and traces in central storage and you can use them in the managed Grafana instance on your management cluster to get a centralized view, set up alerts and dashboards, or troubleshoot issues. In our tutorial (TODO LINK HERE OR BELOW), you see how easily your developers can start monitoring applications with this stack. Giant Swarm's pre-installed dashboards let you view the infrastructure and cluster health without extra effort.
 
 ## Single sign-on
 
