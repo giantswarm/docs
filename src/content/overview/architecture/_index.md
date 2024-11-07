@@ -42,7 +42,7 @@ In Giant Swarm, the management cluster is also used for enhancing the platform w
 
 ## GitOps
 
-Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. In the platform, the `Flux` operator runs to ensure all changes are version-controlled, auditable, and easily reversible. You can use it too to manage your applications and configurations. It's as simple as adding your existing repositories to the platform and let the platform do the rest.
+Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. In the platform, the `Flux` operator runs to ensure all changes are version-controlled, auditable, and easily reversible. You can use it to manage your applications and configurations. It's as simple as adding your existing repositories to the platform and let the platform do the rest.
 
 [Learn more in our guide about GitOps]({{< relref "/tutorials/continuous-deployment" >}}).
 
