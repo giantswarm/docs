@@ -67,15 +67,17 @@ Now, obviously in order to leverage this management cluster layer, the bundle `A
 
 The first, not so obvious, consequence of installing a bundle in a management cluster before its nested apps are installed in the workload cluster, is the requirement for name uniqueness. When a given app bundle is to be installed for more than one workload cluster, each `App` custom resource instance of this bundle must be given a unique name within the management cluster.
 
-It comes natural for the solitary apps, say the [`Hello World` app](https://github.com/giantswarm/hello-world-app),when one needs to install it twice in the workload cluster, both `App` custom resources instances must be named uniquely. It's natural because both live under the same namespace, but even if we could break them into separate namespaces, this uniqueness would still be demanded because both apps targets the same workload cluster, hence must be distinguished by its operators.
+It becomes natural for solitary apps, for example, the [`Hello World` app](https://github.com/giantswarm/hello-world-app), that when one needs to install it twice in the workload cluster, both `App` custom resources instances must be named uniquely. It's natural because both live under the same namespace, but even if we could break them into separate namespaces, this uniqueness would still be demanded because both apps targets the same workload cluster, hence must be distinguished by its operators.
 
 It's less obvious for the bundle apps, because these are usually scattered across the namespaces for the corresponding workload clusters from the very beginning, hence giving the impression they're isolated, which we already know to not be the case. Not complying to this rule results in apps competing over certain resources, and hence conflicting.
 
-Let's walk through an example to understand it better. Let's imagine a user has two workload clusters created, the `WC1` and the `WC2`, on the management cluster. The user then installs, via the `App` custom resource called just `bundle`, an app bundle in the `WC1` cluster. Everything works perfectly so far, see the figure below.
+Let's walk through an example to understand it better.
+
+Imagine that a user has two workload clusters created, the `WC1` and the `WC2`, on the management cluster. The user then installs, via the `App` custom resource called just `bundle`, an app bundle in the `WC1` cluster. Everything works perfectly so far, see the figure below.
 
 ![User installs a bundle once](app-bundle-naming-conflict-step-1.png)
 
-The flow of actions can be thought of as an unbroken link. The continuity of this link is guarantee of delivering end resources. Now let's assume user wants to install the same app bundle, but for the `WC2` cluster this time.
+The flow of actions can be thought of as an unbroken link. The continuity of this link is guarantee of delivering end resources. Now let's assume the user wants to install the same app bundle, but for the `WC2` cluster this time.
 
 The user creates `App` custom resource in the `WC2` namespace and names it `bundle` as well. This is a problem, because globally, the`bundle` app is already installed in the management cluster, hence corresponding `Chart` custom resource of the name `bundle` already exists. Creating another app of the same name results in unique app operator to re-assign this `Chart` custom resource to the new instance of the app, effectively breaking the aforementioned link for the old one. See this in the figure below.
 
