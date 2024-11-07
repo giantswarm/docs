@@ -32,7 +32,7 @@ Along these layers, Giant Swarm provides a live support channel, incident manage
 
 ## Platform API
 
-The Giant Swarm platform is build on top of `Kubernetes` based on [`Cluster API`](https://cluster-api.sigs.k8s.io/), an open source  sub-project that standardizes the cluster lifecycle management across different cloud providers or on-premises infrastructure.
+The Giant Swarm platform is build on top of Kubernetes based on [Cluster API](https://cluster-api.sigs.k8s.io/), an open source Kubernetes sub-project that standardizes the cluster lifecycle management across different cloud providers or on-premises infrastructure.
 
 The platform API is the regular `Kubernetes` API of your central _management cluster_ and is your interface for deploying workload clusters and applications, or to reach other capabilities such as the observability and security dashboards. Thanks to being based on `Kubernetes`, you can use the same tools and workflows you are already familiar with, such as `kubectl`, `GitOps` or any other existing Kubernetes-compatible tooling.
 
