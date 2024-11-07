@@ -14,7 +14,7 @@ owner:
 last_review_date: 2024-11-04
 ---
 
-Giant Swarm's cloud-native developer platform integrates open-source components that work together to provide a seamless experience for managing the lifecycle of containerized applications. The platform is based on Kubernetes and designed to be cloud-agnostic, allowing you to deploy your applications on any of the supported cloud providers, including on-premises. The interfaces allow development teams and automations to deploy applications, keep the clusters secure, and use other capabilities that we explain below. On top, you benefit from our strong support model that ensures your long-term success and stability of workloads.
+Giant Swarm's cloud-native developer platform integrates open-source components that work together to provide a seamless experience for managing the lifecycle of containerized applications. The platform is based on Kubernetes and designed to be cloud-agnostic, allowing you to deploy your applications on any of the supported cloud providers, including on-premises. The interfaces allow development teams and automation to deploy applications, keep the clusters secure, and use other capabilities that we explain below. On top, you benefit from our strong support model that ensures your long-term success and stability of workloads.
 
 ## Platform architecture
 
@@ -24,7 +24,7 @@ The platform architecture consists of the following layers:
 
 - Interfaces: how administrators, developers and automation can access the platform, for example to deploy applications, monitor health of clusters and workloads or use other capabilities.
 
-- Capabilities: features offered by the platform, such as application deployment, auto-scaling, security or observability.
+- Capabilities: features offered by the platform, such as application deployment, autoscaling, security or observability.
 
 - Infrastructure: the Kubernetes-based platform can manage clusters on several cloud providers. We support AWS, Azure, VMware (on-premises) or a mixture thereof ("hybrid").
 
@@ -56,7 +56,7 @@ Observability on the Giant Swarm platform is based on the Grafana stack. Collect
 
 ## Single sign-on
 
-Single Sign-On (SSO) simplifies user authentication across your use of the Giant Swarm platform by authenticating user access with your existing identity provider (for example Google Workspaces or Microsoft Entra / Active Directory). This enhances security and user convenience by centralizing identity management and not requiring a separate password. You can build on top of Kubernetes Role-Based Access Control (RBAC) to define fine-grained access policies and permissions, ensuring which users are authorized to access certain platform resources.
+Single Sign-On (SSO) simplifies user authentication across your use of the Giant Swarm platform by authenticating user access with your existing identity provider (for example `Google Workspaces` or `Microsoft Entra` / `Active Directory`). This enhances security and user convenience by centralizing identity management and not requiring a separate password. You can build on top of Kubernetes Role-Based Access Control (RBAC) to define fine-grained access policies and permissions, ensuring which users are authorized to access certain platform resources.
 
 TODO LINK OVERVIEW ARTICLE
 
@@ -64,17 +64,17 @@ TODO LINK OVERVIEW ARTICLE
 
 The different technologies used in the Giant Swarm platform provide you with a secure and reliable network and connectivity between your applications and services. Platform engineers can create network policies to control traffic flows and enforce security rules, ensuring that data is protected and isolated. Relying on the built-in networking capabilities of `Kubernetes` as well as the extended capabilities of `Cilium CNI`, the platform supports many routing and load balancing strategies, enabling seamless communication between services and applications.
 
-## Runtime security
+## Platform security
 
-Runtime security focuses on protecting applications and infrastructure during execution. [Falco](https://www.cncf.io/projects/falco/) provides you with intrusion detection, vulnerability scanning, and automated threat response capabilities. The Giant Swarm platform ensures that security policies are enforced consistently, reducing the attack surface and mitigating risks.
+Platform security is a critical aspect on the Giant Swarm platform, encompassing various components to ensure the safety and integrity of systems. [Kyverno](https://www.cncf.io/projects/kyverno/) plays a pivotal role as a policy engine by establishing, enforcing, and automating security policies across all your environments. These policies govern access controls, resource configurations, and compliance requirements, ensuring that all your workloads adhere to organizational and regulatory standards. On top of that, the platform provides intrusion detection, vulnerability scanning, and automated threat response capabilities thanks to [Falco](https://www.cncf.io/projects/falco/).
 
 ## Cost management
 
-Cost control is becoming increasingly important as organizations seek to optimize their cloud spending. Based on lessons learned from our experience with customers, the platform is built to help you manage costs effectively. The platform provides auto-scaling and resource optimization, allowing you to adjust resources based on demand and reduce waste. Our solution engineers will help you to add visibility and control over your resource usage and expenses, leading to better decision-making and cost savings.
+Cost control is becoming increasingly important as organizations seek to optimize their cloud spending. Based on lessons learned from our experience with customers, the platform is built to help you manage costs effectively. The platform provides autoscaling and resource optimization, allowing you to adjust resources based on demand and reduce waste. Our solution engineers will help you to add visibility and control over your resource usage and expenses, leading to better decision-making and cost savings.
 
 ## Automatic cluster management
 
-Based on Cluster API and other operators, the Giant Swarm platform provides automated provisioning, scaling, (planned) upgrading and deletion of clusters, reducing the operational burden on your team. The platform ensures clusters are always running optimally and securely, allowing developers to focus on building and deploying applications without worrying about underlying infrastructure management. In addition, special capabilities such as private clusters and routing are possible, allowing you to integrate the platform in your existing networks.
+Based on `Cluster API` and other operators, the Giant Swarm platform provides automated provisioning, scaling, (planned) upgrading and deletion of clusters, reducing the operational burden on your team. The platform ensures clusters are always running optimally and securely, allowing developers to focus on building and deploying applications without worrying about underlying infrastructure management. In addition, special capabilities such as private clusters and routing are possible, allowing you to integrate the platform in your existing networks.
 
 ## Cluster scaling
 
