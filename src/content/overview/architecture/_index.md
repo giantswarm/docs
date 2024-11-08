@@ -1,7 +1,7 @@
 ---
 title: Architecture of the Giant Swarm cloud-native developer platform
 linkTitle: Architecture of the platform
-description: Components, capabilities, supported cloud providers, and the Management API of the Giant Swarm platform.
+description: Components, capabilities, supported cloud providers, and the platform API.
 weight: 20
 menu:
   principal:
@@ -11,7 +11,7 @@ user_questions:
   - What is the architecture of the Giant Swarm cloud-native developer platform?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-planeteers
-last_review_date: 2024-04-26
+last_review_date: 2024-11-04
 ---
 
 Giant Swarm's cloud-native developer platform integrates open-source components that work together to provide a seamless experience for managing the lifecycle of containerized applications. The platform is based on Kubernetes and designed to be cloud-agnostic, allowing you to deploy your applications on any of the supported cloud providers, including on-premises. The interfaces allow development teams and automation to deploy applications, keep the clusters secure, and use other capabilities that we explain below. On top, you benefit from our strong support model that ensures your long-term success and stability of workloads.
@@ -20,6 +20,7 @@ Giant Swarm's cloud-native developer platform integrates open-source components 
 
 <!-- source google slides https://docs.google.com/presentation/d/1LoyfqmmgIJV2AJo46Ofv3a3hCnbkN4C3ujHM-t3VJko/edit#slide=id.g30b77c7823c_1_0 -->
 ![Platform architecture](./platform-architecture.svg)
+
 The platform architecture consists of the following layers:
 
 - Interfaces: how administrators, developers and automation can access the platform, for example to deploy applications, monitor health of clusters and workloads or use other capabilities.
