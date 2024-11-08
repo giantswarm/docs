@@ -14,9 +14,6 @@ owner:
 last_review_date: 2024-04-26
 ---
 
-<<<<<<< Updated upstream
-## Platform API {#platform-api}
-=======
 Giant Swarm's cloud-native developer platform integrates open-source components that work together to provide a seamless experience for managing the lifecycle of containerized applications. The platform is based on Kubernetes and designed to be cloud-agnostic, allowing you to deploy your applications on any of the supported cloud providers, including on-premises. The interfaces allow development teams and automation to deploy applications, keep the clusters secure, and use other capabilities that we explain below. On top, you benefit from our strong support model that ensures your long-term success and stability of workloads.
 
 ## Platform architecture
@@ -84,4 +81,3 @@ One of the key features of the Giant Swarm platform is the ability to scale clus
 ## Cloud resources provisioning
 
 Most likely, you have already external cloud resources which could be managed by the platform. Thanks to [Crossplane](https://www.cncf.io/projects/crossplane/) included in the management API, you can include all your infrastructure, such as databases, queues or buckets, as part of the platform, relying on the same principles `Kubernetes` offers. Centralizing the management of all the infrastructure in a single place, helps you reduce the operational overhead and offer a self-service experience to your developers.
->>>>>>> Stashed changes
