@@ -19,7 +19,7 @@ Giant Swarm's cloud-native developer platform integrates open-source components 
 ## Platform architecture
 
 <!-- source google slides https://docs.google.com/presentation/d/1LoyfqmmgIJV2AJo46Ofv3a3hCnbkN4C3ujHM-t3VJko/edit#slide=id.g30b77c7823c_1_0 -->
-![Platform architecture](./platform-architecture.png)
+![Platform architecture](./platform-architecture.svg)
 
 The platform architecture consists of the following layers:
 
