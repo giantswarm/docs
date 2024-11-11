@@ -11,7 +11,7 @@ user_questions:
   - How can I create an base template for workload clusters in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-07
+last_review_date: 2024-11-11
 ---
 
 In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [the app platform](https://docs.giantswarm.io/overview/fleet-management/app-management/). The application custom resource contains the specification and configuration of the cluster in this format:
@@ -29,7 +29,7 @@ spec:
 
 As such, creating cluster means that you need to deliver a configured `App` resource to the platform API also known as the management cluster API where your cluster will run.
 
-Adding definitions is done via the [cluster provider `Helm` template](https://github.com/giantswarm/cluster-aws) (Cluster API for AWs example). The chart definition contains a basic provider agnostic definition which is a dependency and points to the [cluster generic template](https://github.com/giantswarm/cluster). Also, it has another dependency which contains all the common resources running by default within a cluster, it is called [cluster shared](https://github.com/giantswarm/cluster-shared).
+Adding definitions is done via the [cluster provider `Helm` template](https://github.com/giantswarm/cluster-aws) (AWS example). The chart definition contains a basic provider agnostic definition which is a dependency and points to the [cluster generic template](https://github.com/giantswarm/cluster). Also, it has another dependency which contains all the common resources running by default within a cluster, it is called [cluster shared](https://github.com/giantswarm/cluster-shared).
 
 As consequence, the cluster configuration leverages the [app platform configuration]({{< relref "/tutorials/app-platform/app-configuration/#levels" >}}), in the following manner:
 
@@ -42,41 +42,37 @@ In order to avoid code duplication, the [bases and overlays](https://kubernetes.
 
 ## Create a cluster template base {#create-template-base}
 
-**IMPORTANT:** shared cluster template base shouldn't serve as a standalone base for cluster creation, it's there only to abstract `App` CRs that are common to all clusters versions, and to provide basic configuration for default apps `App`. It's then used as a base for other bases, which provide an overlay with a specific configuration. This is to avoid code duplication across bases.
+The shared cluster template base shouldn't serve as a standalone base for cluster creation, it's only abstracting `App` resources common to all clusters versions. It's then used as a base for other bases, which provide an overlay with a specific configuration. That way you avoid code duplication across bases.
 
-**Bear in mind**, this isn't a complete guide of how to create a perfect base, but rather a mere summary of basic steps needed to move forward. Hence, instructions here won't always be precise in telling you what to change, as this can strongly depend on the resources involved, how much of them you would like to include in a base, etc.
+__Note__: This isn't a complete guide of how to create a perfect base, but rather a mere summary of basic steps needed to move forward. Hence, instructions here won't always be precise in telling you what to change, as this can strongly depend on the resources involved, how much of them you would like to include in a base, etc.
 
-We provide a command to create bases for workload clusters in an easy way. A base can be created by running:
+You can create bases for workload clusters easily thanks to the `kubectl gs` command:
 
-```nohighlight
+```sh
 kubectl gs gitops add base --provider capa
 ```
 
 This command will create the folder structure and the specific folder for the provider `capa` (AWS flavour), including the template files in the `template` folder. The structure would be:
 
-```nohighlight
+```text
 bases
 └── clusters
     └── capa
         └── template
             ├── cluster_config.yaml
             ├── cluster.yaml
-            ├── default_apps_config.yaml
-            ├── default_apps.yaml
             └── kustomization.yaml
 ```
 
-The current possible values for the providers can be checked in the [command reference]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-base" >}})
+The current possible values for the providers can be checked in the [command reference]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-base" >}}).
 
 ## Create versioned base (optional) {#create-versioned-base-optional}
 
-**IMPORTANT**, versioned cluster template bases use a shared cluster template base and overlay it with a preferably generic configuration for a given cluster version. Versioning comes from the fact that `values.yaml` schema may change over multiple releases, and although minor differences can be handled on the `extraConfig` level, it's advised for the bases to follow major `values.yaml` schema versions to avoid confusion.
+Versioning cluster template bases is a good practice to avoid breaking changes in `values.yaml` schema affecting your clusters.
 
-There is one example of a versioned base in the `gitops-template` repository for capo [v0.6.0](https://github.com/giantswarm/gitops-template/tree/main/bases/clusters/capo/>=v0.6.0) as major changes were introduced to the `values.yaml` in the [cluster-openstack v0.6.0 release](https://github.com/giantswarm/cluster-openstack/releases/tag/v0.6.0).
+The `kubectl-gs` base command for templating configuration only generates configuration for the most recent schema. If you configure a base for older versions of the cluster app, it's advised to check what's generated against the version-specific `values.yaml`.
 
-**IMPORTANT**, despite the below instructions referencing `kubectl-gs` for templating configuration, `kubectl-gs` generates configuration for the most recent schema only. If you configure a base for older versions of the cluster app, it's advised to check what's generated against the version-specific `values.yaml`.
-
-In this example we're creating a custom version for AWS base:
+In this example you create a custom version for AWS base:
 
 1. Create a directory structure:
 
@@ -93,7 +89,7 @@ In this example we're creating a custom version for AWS base:
     --provider capa | yq -s '.metadata.name'
     ```
 
-3. This creates four files but we're only interested in the cluster user configuration file `mywcl-userconfig.yaml`. We will extract the values and create a new `cluster-config.yaml` file in our version folder:
+3. The above command generates four files, though in the current example you are only interested in the cluster user configuration file `mywcl-userconfig.yaml`.Extract the values and create a new `cluster-config.yaml` file in our version folder:
 
     ```nohighlight
     cat mywcl-userconfig.yaml | yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
@@ -129,7 +125,7 @@ In this example we're creating a custom version for AWS base:
 
 5. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
 
-6. Create a patch for the cluster `App` CR to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
+6. Create a patch for the cluster `App` resource to provide the newly created configuration. For this create a file `patch_config.yaml` with this content:
 
     ```nohighlight
     apiVersion: application.giantswarm.io/v1alpha1
@@ -163,4 +159,4 @@ In this example we're creating a custom version for AWS base:
       - ../template
     ```
 
-Now learn [how to create workload clusters]({{< relref "/tutorials/continuous-deployment/manage-workload-clusters/"}}) using these bases.
+Now learn [how to create workload clusters]({{< relref "/tutorials/continuous-deployment/manage-workload-clusters/" >}}) using these bases.
