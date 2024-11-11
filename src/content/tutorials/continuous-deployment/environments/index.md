@@ -367,4 +367,4 @@ We've published [gitops-template](https://github.com/giantswarm/gitops-template/
 
 Further, you can find some helpers in the`tools` folder. For example, we've developed `fake-flux-build` scrip to render and inspect the final resources merging all values. For more information check `tools/README.md`.
 
-Find [which tools you can run to verify your resources]({{< relref "/tutorials/continuous-deployment/tools/"}}).
+Find [which tools you can run to verify your resources]({{< relref "/tutorials/continuous-deployment/tools/" >}}).

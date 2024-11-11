@@ -35,4 +35,4 @@ These principles are manifested in popular tools, such as `Flux` or `ArgoCD`, an
 
 - This way of managing Kubernetes comes with all the benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it's also a perfect tool for development and testing.
 
-Learn more about our GitOps operator, [`Flux`]({{< relref "/tutorials/continuous-deployment/flux/"}}).
+Learn more about our GitOps operator, [`Flux`]({{< relref "/tutorials/continuous-deployment/flux/" >}}).

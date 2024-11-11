@@ -31,4 +31,4 @@ If want to learn more about `Flux` and its capabilities, here are some useful li
 - [Get started with `Flux`](https://fluxcd.io/docs/get-started/) is a great way to get familiar with `Flux` on a test cluster or even a [`Kind`](https://kind.sigs.k8s.io/) cluster.
 - [GitOps toolkit components](https://fluxcd.io/docs/components/) is where you can browse `Flux` custom resources and their use cases.
 
-Learn [`what's a base template`]({{< relref "/tutorials/continuous-deployment/bases/"}}).
+Learn [`what's a base template`]({{< relref "/tutorials/continuous-deployment/bases/" >}}).

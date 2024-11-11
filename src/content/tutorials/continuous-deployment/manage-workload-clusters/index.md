@@ -34,7 +34,7 @@ __Note__: To learn more about managing roles, please read the [introduction to p
 
 ## Creating your repository structure
 
-At Giant Swarm we recommend to have a clear hierarchical structure in your GitOps repository because:
+At Giant Swarm, the recommendation is to have a clear hierarchical structure in your repository so you will benefit from the following:
 
 - The general layout of the repository mirrors the infrastructure defined within Giant Swarm.
 - It's easy to locate resources and know what they're and where they're deployed.
@@ -61,7 +61,7 @@ management-clusters
                 └── WC_NAME2
 ```
 
-Our team provides a template repository where [this structure is elaborated and explained in detail](https://github.com/giantswarm/gitops-template). It's not necessary to clone the repository to follow this guide, but it can provide a good reference for every possible use case. We recommend copying, at least, the bases folder from that repository to your own repository because cluster creation uses them as templates as we will see later in this document.
+Our team provides a template repository where [the structure is explained in detail](https://github.com/giantswarm/gitops-template). Cloning the entire repository to follow this guide is not required, but it can provide a good reference for every possible use case. You can copy, at least, the `bases` folder to your repository because the cluster creation uses them as templates, as described later.
 
 ### Setting up the repository
 
@@ -94,8 +94,9 @@ This command creates the folder for the management cluster, the `Kustomization` 
 
 Then, let's create a `GitRepository` resource that points to the repository. It's needed a `GitRepository` resource for every management cluster to manage. There, the address of the repository is configured.
 
-Now, we need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (we will refer to it as `GIT_CREDENTIALS_TOKEN`, please, replace with the chosen name) with the credentials to access the repository. This allows `Flux` to download the repository files in order to apply all resources. If your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
-This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
+Now, you need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (referred as `GIT_CREDENTIALS_TOKEN`) with the credentials to access the repository. It enables `Flux` to download the repository files in order to apply all resources. In case your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
+
+__Note__: This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
 
 ```sh
 export YOUR_REPO_URL="https://github.com/<your_org>/<your_repo>.git"
@@ -109,7 +110,7 @@ flux create source git ${MC_NAME}-git-repository \
         --export > management-clusters/MC_NAME/MC_NAME-git-repo.yaml
 ```
 
-Now, the `Git` repository resource is created and exported in the `management-clusters` folder. Next, you apply the resource towards the [management cluster API]({{< relref "/getting-started/access-to-platform-api" >}}) where the resources will run:
+Now, the `GitRepository` resource is created and exported in the `management-clusters` folder. Next, you apply the resource towards the [management cluster API]({{< relref "/getting-started/access-to-platform-api" >}}) where the resources will run:
 
 ```sh
 kubectl create -f management-clusters/MC_NAME/MC_NAME-git-repo.yaml
@@ -194,86 +195,74 @@ org-acme   Active   2m29s
 
 ### Managing workload clusters
 
-In the next step, we've the organization created so now we can define some workload clusters inside it to run our applications. In Giant Swarm, we've developed several providers where clusters can be provisioned. Every provider has a different syntax for the infrastructure definition and to reduce the complexity we've defined some [`bases`](https://github.com/giantswarm/gitops-template/tree/main/bases) that helps to configure the clusters.
+In the next step, you will create a workload cluster for running your applications. In Giant Swarm, there are several providers supported. Every provider has a different syntax for the infrastructure definition. In order to reduce complexity you can use the [`bases`](https://github.com/giantswarm/gitops-template/tree/main/bases) which abstract some of those details.
 
-The configuration is structured in such a way that each layer can modify the configuration and create a custom and very powerful structure. The different possible layers would be:
+The configuration is structured in layers, and each layer has the ability to modify the previous layer. The different layers would be:
 
-- Base with fundamental cluster creation manifests
-- Base versions with different modifications
-- Environments that implement configuration modifications in the bases
-- Clusters that implement specific configurations
+- Base layer with the fundamental cluster manifests
+- Base version layer with different modifications by version
+- Environment layer with modifications for your different stages
+- Clusters specific layer with modifications for each cluster
 
-There are a bunch of advantages to creating clusters starting from a base (using different versions):
+Those layers give us the advantage of group clusters by type of stage, modify all the clusters of certain type at once, or even promote a cluster from one environment to another.
 
-- We can group clusters in logical groups that match our infra (development, staging, production)
-- Modifying the base, we modify all the clusters that implement it (batch update)
-- We can change the clusters between different environments easily
+Read the [base creation tutorial]({{< relref "/tutorials/continuous-deployment/bases" >}}) if you want to create your own base. Otherwise, you can use the bases provided by Giant Swarm.
 
-In this tutorial we're implementing a cluster from a base without applying any extra configuration. In order to create a base for the provider you are using, you can follow the tutorial of [base creation]({{< relref "/tutorials/continuous-deployment/bases" >}}).
-
-In order to create a workload cluster in our repository we run the command:
+The next command will create a workload cluster in the organization using the base from the `gitops-template`:
 
 ```sh
+export WC_NAME=mywc
 kubectl gs gitops add workload-cluster \
---management-cluster MC_NAME \
---name WL_NAME \
+--management-cluster ${MC_NAME} \
+--name ${WC_NAME} \
 --organization ORG_NAME \
---repository-name MC_NAME-git-repository\
---base bases/cluster/PROVIDER/template \
---cluster-release 0.21.0 \
---default-apps-release 0.15.0
+--repository-name ${MC_NAME}-git-repository\
+--base bases/cluster/capa/template \
+--release 29.0.0
 ```
 
-In order to get current `cluster-release` and `default-apps-release` version you can get them from the catalog with the command:
+__Note__: The `--release` flag is optional. If you don't provide it, the latest version of the base will be used. If you want to use a specific version, you can check the check the releases page of the cluster provider.
 
-```sh
-kubectl gs get catalog -n giantswarm cluster
-```
+The command will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
 
-Depending on the provider of the cluster you are connected the return will vary, but you should get there at least the version for `cluster-PROVIDER` and `default-apps-PROVIDER`.
-
-An example of the output would be:
-
-```text
-CATALOG   APP NAME                    VERSION   UPSTREAM VERSION   AGE   DESCRIPTION
-cluster   capa-internal-proxy-stack   0.1.0     0.1.0              64d   repository to aggregate CRs necessery to create capa internal outgoing proxy clu...
-cluster   cluster-aws                 0.21.0                       23h   A helm chart for creating Cluster API clusters with the AWS infrastructure provi...
-cluster   cluster-shared              0.6.4     0.0.1              64d   A library chart of shared CAPI cluster helpers
-cluster   default-apps-aws            0.15.0                       2d    A Helm chart for default-apps-aws
-cluster   default-apps-azure          0.0.8     0.0.1              47h   A Helm chart defining the preinstalled apps running in all Giant Swarm Azure clu...
-cluster   outgoing-proxy-stack        0.2.4     0.1.0              26d   repository to aggregate CRs necessery to create capa internal outgoing proxy clu...
-```
-
-Where we can extract that the current version of `cluster-aws` is `0.21.0` and `default-apps-aws` is `0.15.0`.
-
-This will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
-
-You can add user configurations to the cluster created including different configmaps and add them to the manifests.
+Alternatively, you can add the flag `--cluster-user-config` with the values you want to add to the cluster and it will generate a `ConfigMap` with the values.
 
 ### Installing managed apps
 
-It's just as easy to install managed apps in existing workload clusters. In this part of the guide, we will assume you have completed the previous steps and have both an organization and a cluster running.
+Installing applications is easy now that you have the GitOps structure in place. In this tutorial you are going to install `Grafana` to understand the process.
 
-We're showing the process installing `Grafana` from the `GiantSwarm` app catalog in the namespace `monitoring`.
-In order to add the manifest files to the repository, we run the command (check version numbers for latest releases):
+In the next command, you will add the `Grafana` application to the repository structure, setting the version and namespace:
 
 ```sh
-kubectl gs gitops add app --management-cluster MC_NAME --workload-cluster WL_NAME --organization ORG_NAME --app grafana --catalog giantswarm --target-namespace monitoring --version 2.0.2
+kubectl gs gitops add app --management-cluster ${MC_NAME} --workload-cluster ${WC_NAME} --organization ${ORG_NAME} --app grafana --catalog giantswarm --target-namespace monitoring --version 2.0.2
 ```
 
-The latest version number can be retrieved from the catalog using `helm search repository giantswarm/grafana`
+__Note__: To inspect which `Grafana` versions are available, you can use the `helm search repository giantswarm/grafana` command.
 
-Commit the newly generated files back to your git repository and push the changes to the remote. After a few minutes you should see the application resources appear on your workload cluster.
+The output for the previous command will be the following:
 
-To learn more about how to utilize and configure Managed Apps, please refer to [the documentation]({{< relref "/overview/fleet-management/app-management">}}).
+```text
+management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME/mapi/
+└── apps
+    ├── grafana
+    │   └── appcr.yaml
+    └── kustomization.yaml
+```
 
-This completes the guide. If you no longer need them, you can delete the organization and cluster.
+Committing and pushing the changes to the repository will trigger the creation of the `Grafana` application in the workload cluster. Now you can check the status of the app in the platform API:
 
-To learn more about Giant Swarm's `kubectl` plugin, visit [`kubectl-gs` documentation]({{< relref "/vintage/use-the-api/kubectl-gs/" >}}).
+```text
+kubectl get app -n $ORG_NAME
+alba-grafana-agent    2.0.2    10s    deployed
+```
+
+In the workload cluster the `Helm` release and all the resources applied should be created in the `monitoring` namespace.
 
 ## Troubleshooting
 
-It's common to find errors like the following when trying to apply resources:
+In case you have any issues with the creation of the resources, you can check the logs of the `Flux` controller to understand what is happening. You can use the following command to check the logs:
+
+```sh
 
 ```nohighlight
 resource Kustomization... was blocked due to the following policies
@@ -286,4 +275,4 @@ flux-multi-tenancy:
 
 For security reasons, our platform enforces the definition of `.spec.serviceAccountName` for `Kustomization`/`HelmRelease` resources to ensure that the resources are created with the correct permissions. In this case, let's define the `serviceAccountName` equal to `automation` to allow the controller to manage resources.
 
-Discover [how to use different configuration by environment]({{< relref "/tutorials/continuous-deployment/environments/"}}).
+Keep learning GitOps [reading how to use different configuration by environment]({{< relref "/tutorials/continuous-deployment/environments/" >}}).
