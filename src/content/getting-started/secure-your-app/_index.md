@@ -28,7 +28,7 @@ A part, you need to deploy an application, here `hello-world` application is use
 
 ## Step 1: Understand the security baseline
 
-By default the clusters come with a `restricted` set of policies. You can read more about which policies are part of the `restricted` set in the [upstream documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted). The `restricted` set of policies are applied to all the namespaces in the cluster.
+By default the clusters come with a `restricted` set of policies. You can read more about which policies are part of the `restricted` set in the [our documentation]({{< relref "/vintage/advanced/security/security-policy-enforcement/#default-policies" >}}). The `restricted` set of policies are applied to all the namespaces in the cluster.
 
 As brief summary, the `restricted` set of policies includes:
 
@@ -150,7 +150,7 @@ spec:
         - default
 ```
 
-Note that the exception is created in the `policy-exceptions` namespace. The main reason behind this is to separate the policy exceptions from the workload resources, and the same time those can exists and be approved by security team before they're applied to the cluster.
+Note that the exception is created in the `policy-exceptions` namespace. This decision is made consciously to separate exceptions from workloads resources. This allows the security team to approve exceptions independently.
 
 Now you can apply again the deployment and the policy engine won't block the deployment.
 
