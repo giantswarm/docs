@@ -24,7 +24,7 @@ In this guide, you will learn how to make your application compliant with the se
 
 Before start, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
-A part, you need to deploy an application, here `hello-world` application is used, to the workload cluster. For explanation on how to deploy the application please read the [previous step]({{< relref "/getting-started/install-an-application" >}}).
+As a next step, you need to deploy an application, here the `hello-world` application, to the workload cluster. For explanation on how to deploy the application please read the [previous step]({{< relref "/getting-started/install-an-application" >}}).
 
 ## Step 1: Understand the security baseline
 
@@ -32,7 +32,7 @@ By default the clusters come with a `restricted` set of policies. You can read m
 
 As brief summary, the `restricted` set of policies includes:
 
-- Containers only can run with `non-root` users
+- Containers can only run with `non-root` users
 - Not allowing privileged containers
 - Not allowing host namespaces
 - Allowing only a set of capabilities (indeed, only `NET_BIND_SERVICE` is allowed)
@@ -46,7 +46,7 @@ In case you application needs to use any of the features that aren't allowed by 
 
 In the `hello-world` application, the `restricted` policies aren't violated. The application is running with a `non-root` user and it's not using any special capability of the system.
 
-In `Kubernetes`, the security context is defined in the `Pod` resource. Even you don't need a special security configuration, you still need to a minimal security context to your `Pod` resource. Inside the `Pod` resource, you find a general `securityContext` which are applied to all the containers within the resource. A part, you can define a `securityContext` for each container.
+In `Kubernetes`, the security context is defined in the `Pod` resource. Even if you don't need a special security configuration, you still need to add a minimal security context to your `Pod` resource. Inside the `Pod` manifest, you will find a general `securityContext` which is applied to all the containers within the resource. Additionally, you can define a `securityContext` for each container.
 
 Inspecting the `hello-world` application, you can see pods are created without general `securityContext` but with a `securityContext` for the container.
 
@@ -70,7 +70,7 @@ Those are necessary to be compliant and pass the validation of the policy engine
 
 ## Step 3:  Create a policy exception
 
-Let's decide the `hello-world` application needs to run as a `root` user because the container image is designed to run as a `root` user you don't have more time and your CTO is pushing you to deploy the application.
+Let’s assume the `hello-world` application needs to run as a `root` user because the container image is designed this way. You don't have more time and your CTO is pushing you to deploy the application.
 
 First, you need to modify the deployment to configure the `securityContext` to allow the container to run as a `root` user.
 
