@@ -2,7 +2,7 @@
 description: Learn how security is applied to your application on the Giant Swarm platform.
 title: Secure your app
 weight: 70
-last_review_date: 2024-11-05
+last_review_date: 2024-11-12
 menu:
   principal:
     parent: getting-started
@@ -102,7 +102,7 @@ require-run-as-non-root-user:
 
 It works as expected. Now, it's time to create a policy exception. Depending on your platform team the policy has to be approved before it's applied to the cluster. In this guide, we will assume the policy is approved.
 
-In the platform, there is an extended API, `PolicyException`, to abstract the policy definition from the policy engine. If the underlaying policy engine is changed, the `PolicyException` resource will be still valid. In our scenario, the resource looks like:
+In the platform, there is an extended API, `PolicyException`, to abstract the policy definition from the policy engine. If the underlying policy engine is changed, the `PolicyException` resource will be still valid. In our scenario, the resource looks like:
 
 ```yaml
 apiVersion: policy.giantswarm.io/v1alpha1
