@@ -14,7 +14,7 @@ user_questions:
   - What do I need to do to observe the platform metrics and logs for my application?
 ---
 
-Giant Swarm platform is secured by default. The workload clusters are configured with security best practices in mind. The core functionality is built based on a policy enforcement engine. The `Kubernetes` project comes with [`Pod Security Standards (PSS)`](https://kubernetes.io/docs/concepts/security/pod-security-standards/) to ensure that the pods are running with the least privilege. The main problem of this technology is settings are cluster-wide and it's hard to create exceptions for specific workloads.
+The Giant Swarm platform is secured by default. The workload clusters are configured with security best practices in mind. The core functionality is built based on a policy enforcement engine. The `Kubernetes` project comes with [`Pod Security Standards (PSS)`](https://kubernetes.io/docs/concepts/security/pod-security-standards/) to ensure that the pods are running with the least privilege. The main problem of this technology is settings are cluster-wide and it's hard to create exceptions for specific workloads.
 
 For that reason, the platform comes with an extended policy engine, `Kyverno`. A part of enforce the common pod security standards, your clusters have additional policies which can be customized to your needs. Your developers can create exceptions for their workloads without compromising the security of the cluster.
 
@@ -24,11 +24,11 @@ In this guide, you will learn how to make your application compliant with the se
 
 Before start, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
-As a next step, you need to deploy an application, here the `hello-world` application, to the workload cluster. For explanation on how to deploy the application please read the [previous step]({{< relref "/getting-started/install-an-application" >}}).
+As a next step, you need to deploy an application, here the `hello-world` application, to the workload cluster. Please follow the tutorial [Installing an application]({{< relref "/getting-started/install-an-application" >}}) for that.
 
 ## Step 1: Understand the security baseline
 
-By default the clusters come with a `restricted` set of policies. You can read more about which policies are part of the `restricted` set in the [our documentation]({{< relref "/vintage/advanced/security/security-policy-enforcement/#default-policies" >}}). The `restricted` set of policies are applied to all the namespaces in the cluster.
+By default the clusters come with a `restricted` set of policies that apply to all the namespaces in the cluster. You can read more about which policies are part of the `restricted` set in [Default policies]({{< relref "/vintage/advanced/security/security-policy-enforcement/#default-policies" >}}).
 
 As brief summary, the `restricted` set of policies includes:
 
@@ -40,11 +40,11 @@ As brief summary, the `restricted` set of policies includes:
 - Only default `Seccomp` and `AppArmor` profiles are allowed
 - `ReadOnlyRootFilesystem` is enforced
 
-In case you application needs to use any of the features that aren't allowed by the `restricted` policies, you need to create a policy exception.
+In case your application needs to use any of the features that aren't allowed by the `restricted` policies, you need to create a policy exception.
 
 ## Step 2:  Configure the security context
 
-In the `hello-world` application, the `restricted` policies aren't violated. The application is running with a `non-root` user and it's not using any special capability of the system.
+In the `hello-world` application, the `restricted` policies aren't violated. The application is running with a `non-root` user and it's not using any special capability of the system (e.g. access to raw sockets).
 
 In `Kubernetes`, the security context is defined in the `Pod` resource. Even if you don't need a special security configuration, you still need to add a minimal security context to your `Pod` resource. Inside the `Pod` manifest, you will find a general `securityContext` which is applied to all the containers within the resource. Additionally, you can define a `securityContext` for each container.
 
@@ -54,7 +54,7 @@ Inspecting the `hello-world` application, you can see pods are created without g
 spec:
   containers:
   - name: hello-world
-    ...
+    # [...]
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
