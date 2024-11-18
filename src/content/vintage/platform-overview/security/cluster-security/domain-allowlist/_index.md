@@ -1,6 +1,6 @@
 ---
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
-last_review_date: 2023-06-28
+last_review_date: 2024-11-14
 linkTitle: Domain allowlist
 menu:
   main:
@@ -144,6 +144,10 @@ Below is a list of the external domains we require access to for our clusters to
     - domains:
         - `teleport.giantswarm.io`
     - Used to securely access Kubernetes cluster and SSH access to nodes.
+- xpkg.upbound.io
+    - domains:
+        - `xpkg.upbound.io`
+    - Used to fetch Crossplane packages.
 
 ## On-premise installations
 
