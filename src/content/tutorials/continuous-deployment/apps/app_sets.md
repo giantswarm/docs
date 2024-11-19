@@ -119,4 +119,4 @@ resources:
   - ../../../../../../../../../bases/app_sets/hello-web-app
 ```
 
-Above you can see how it's override the configuration of the `hello-world` app from the original template. The configuration replaces the `extraConfigs` property using the values from `override_config_hello_world` YAML file. This modifies the keys that match from original template definition. Notice the example overwrites the `namespace` as well for the whole app deployment. If you want to learn more about how configuration overrides work, please read our [docs about creating apps]({{< relref "/advanced/gitops/apps/add_appcr/" >}}).
+Above you can see how it's override the configuration of the `hello-world` app from the original template. The configuration replaces the `extraConfigs` property using the values from `override_config_hello_world` YAML file. This modifies the keys that match from original template definition. Notice the example overwrites the `namespace` as well for the whole app deployment. If you want to learn more about how configuration overrides work, please read our [docs about creating apps]({{< relref "/tutorials/continuous-deployment/apps/add_appcr" >}}).

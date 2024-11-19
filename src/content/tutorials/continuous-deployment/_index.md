@@ -6,7 +6,7 @@ menu:
   principal:
     identifier: tutorials-continuous-deployment
     parent: tutorials
-last_review_date: 2024-11-07
+last_review_date: 2024-11-19
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
