@@ -61,7 +61,7 @@ management-clusters
                 └── WC_NAME2
 ```
 
-Our team provides a template repository where [the structure is explained in detail](https://github.com/giantswarm/gitops-template). Cloning the entire repository to follow this guide is not required, but it can provide a good reference for every possible use case. You can copy, at least, the `bases` folder to your repository because the cluster creation uses them as templates, as described later.
+Our team provides a template repository where [the structure is explained in detail](https://github.com/giantswarm/gitops-template). Cloning the entire repository to follow this guide isn't required, but it can provide a good reference for every possible use case. You can copy, at least, the `bases` folder to your repository because the cluster creation uses them as templates, as described later.
 
 ### Setting up the repository
 
@@ -134,7 +134,7 @@ flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054
 
 ### Setting up secrets {#setting-up-secrets}
 
-The next step, you configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. Our recommendation is to keep secrets encrypted in the repository together with your applications but if your company policy does not allow it you can use [`external secret operator`](https://docs.giantswarm.io/vintage/advanced/security/external-secrets-operator/) to use different sources.
+The next step, you configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. Our recommendation is to keep secrets encrypted in the repository together with your applications but if your company policy doesn't allow it you can use [`external secret operator`](https://docs.giantswarm.io/vintage/advanced/security/external-secrets-operator/) to use different sources.
 
 Giant Swarm uses `sops` with `pgp` for key management, creating master keys for all the `kustomizations` in the management cluster. In `kubectl-gs` you can generate a master and public key for the management cluster.
 
@@ -260,7 +260,7 @@ In the workload cluster the `Helm` release and all the resources applied should 
 
 ## Troubleshooting
 
-In case you have any issues with the creation of the resources, you can check the logs of the `Flux` controller to understand what is happening. You can use the following command to check the logs:
+In case you have any issues with the creation of the resources, you can check the logs of the `Flux` controller to understand what's happening. You can use the following command to check the logs:
 
 ```sh
 

@@ -53,7 +53,7 @@ examples](https://github.com/fluxcd/flux2-kustomize-helm-example/tree/main/scrip
 
 When none of the above tools give you the output you are looking for, it's possible to call `flux build `kustomization`` in `--dry-run` mode. In fact when using `fake-flux` in its default mode, this is exactly what it does under the hood.
 
-When using dry-run mode, it's important to note that variable substitutions from secrets or configmaps are skipped so your manifests may not be exactly what's parsed by flux on the server but it will give you a close enough approximation to allow you to verify your manifests are likely build and succeed when deployed to the cluster.
+When using dry-run mode, it's important to note that variable substitutions from `Secrets` or `ConfigMaps` are skipped so your manifests may not be exactly what's parsed by flux on the server but it will give you a close enough approximation to allow you to verify your manifests are likely build and succeed when deployed to the cluster.
 
 Documentation on `flux build kustomization` can be found in the [`Flux` documentation here](https://fluxcd.io/flux/cmd/flux_build_kustomization/).
 

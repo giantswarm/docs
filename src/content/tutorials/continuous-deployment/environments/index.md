@@ -64,7 +64,7 @@ Let's see how to create these files for the different environments.
 
 #### The development cluster
 
-In the development cluster `kustomization.yaml` file you find three main sections. First, the block generates the configmaps with the development configuration values. The second one is the patch structure adding a reference to these configmaps in the cluster app customer resource. Finally the reference to the `base` template where defaults for a cluster live.
+In the development cluster `kustomization.yaml` file you find three main sections. First, the block generates the `ConfigMaps` with the development configuration values. The second one is the patch structure adding a reference to these `ConfigMaps` in the cluster app customer resource. Finally the reference to the `base` template where defaults for a cluster live.
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

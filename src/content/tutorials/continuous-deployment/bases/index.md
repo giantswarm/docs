@@ -29,7 +29,7 @@ spec:
 
 As such, creating cluster means that you need to deliver a configured `App` resource to the platform API also known as the management cluster API where your cluster will run.
 
-Adding definitions is done via the [cluster provider `Helm` template](https://github.com/giantswarm/cluster-aws) (AWS example). The chart definition contains a basic provider agnostic definition which is a dependency and points to the [cluster generic template](https://github.com/giantswarm/cluster). Also, it has another dependency which contains all the common resources running by default within a cluster, it is called [cluster shared](https://github.com/giantswarm/cluster-shared).
+Adding definitions is done via the [cluster provider `Helm` template](https://github.com/giantswarm/cluster-aws) (AWS example). The chart definition contains a basic provider agnostic definition which is a dependency and points to the [cluster generic template](https://github.com/giantswarm/cluster). Also, it has another dependency which contains all the common resources running by default within a cluster, it's called [cluster shared](https://github.com/giantswarm/cluster-shared).
 
 As consequence, the cluster configuration leverages the [app platform configuration]({{< relref "/tutorials/app-platform/app-configuration/#levels" >}}), in the following manner:
 

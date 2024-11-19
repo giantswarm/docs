@@ -29,9 +29,9 @@ The GitOps working group [defines the term as a set of principles](https://githu
 
 These principles are manifested in popular tools, such as `Flux` or `ArgoCD`, and can be summarized as follows:
 
-- The cluster and application configuration is kept in `Git` repositories (or `Helm` repositories, `S3` buckets, ...). GitOps operators are deployed to clusters and configured to watch the manifests. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them if discrepancies are found.
+- The cluster and application configuration is kept in `Git` repositories (or `Helm` repositories, `S3` buckets) GitOps operators are deployed to clusters and configured to watch the manifests. The operators are tasked with periodically comparing the desired and actual states of the cluster's resources and reconciling them if discrepancies are found.
 
-- If the cluster's state changes in a way that is not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
+- If the cluster's state changes in a way that's not reflected in the code, the change will be reverted. If the code is updated with a new configuration and/or resources, the cluster will be instantly updated to match the desired state.
 
 - This way of managing Kubernetes comes with all the benefits and best practices of a versioning system: code reviews, pull requests, versioned releases, test branches, commit history, and full accountability. Due to the almost instant deployment of committed changes, it's also a perfect tool for development and testing.
 

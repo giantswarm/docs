@@ -3,8 +3,6 @@ linkTitle: Update an existing App
 title: Update an existing App
 description: Learn how to update an App already deployed in a workload cluster with GitOps.
 weight: 60
-aliases:
-  - /advanced/gitops/apps
 menu:
   principal:
     identifier: tutorials-continuous-deployment-apps-updating-app
@@ -13,18 +11,18 @@ user_questions:
   - How can I update an existent app deployed with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-07
+last_review_date: 2024-11-19
 ---
 
-This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "overview/fleet-management/app-management/" >}}).
+This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
 # Update an existing App
 
-Follow the below instructions to update an existing `App`.
+In order to update an existing app, you need to edit the `App` resource and/or the `ConfigMap` or `Secret` resources that are associated with it. In the following sections, you will find instructions on how to do that.
 
 ## Export environment variables
 
-The management cluster codename, organization name, workload cluster name and App name are needed in multiple places across this instruction, the least error prone way of providing them is by exporting them as environment variables:
+The management cluster, the organization, the workload cluster and the app names are needed during the process. The easiest way of providing them is by exporting them as environment variables:
 
 ```sh
 export MC_NAME=CODENAME
@@ -33,85 +31,59 @@ export WC_NAME=CLUSTER_NAME
 export APP_NAME=APP_NAME
 ```
 
-## Updating App
+## Updating the App
 
-App update and reconfiguration must be done in the correct resource. If you want to reconfigure a property of `App` resource, like the application version, you have to edit the `appcr.yaml` file. If you want to edit the plain text or encrypted configuration, you have to edit the relevant resource type.
+There are three resources that you might need to update:
+
+- The `App` resource itself.
+- The `ConfigMap` resource that holds the user values.
+- The `Secret` resource that holds the user values.
 
 ### Updating App resource
 
-1. Go to the `App` directory:
+When you want to update the version of the app, the catalog, or any other field of the `App` resource, you need to edit the `appcr.yaml` file.
 
-    ```sh
-    cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
-    ```
+Edit the `appcr.yaml` following always [the `App` resource schema](https://docs.giantswarm.io/use-the-api/management-api/crd/apps.application.giantswarm.io/) and apply the changes to the `Git` repository.
 
-2. Edit the `appcr.yaml` if you want to update the `App` resource fields, like version, catalog, etc. For all the supported fields reference [the App CRD schema](https://docs.giantswarm.io/use-the-api/management-api/crd/apps.application.giantswarm.io/)
+### Updating configuration
 
-### Updating configmap user values
+In case you just want to update the configuration of the app, you need to edit the `configmap.yaml` with the new values. As soon as you apply the changes to the `Git` repository, the `Flux` operator will apply the changes to the workload cluster.
 
-1. Go to the `App` directory:
+### Updating secrets
 
-    ```sh
-    cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
-    ```
+In this case, you need to decrypt the `secret.enc.yaml` file before editing it. Then you perform the changes and encrypt the file again.
 
-2. Edit the `configmap.yaml` if you want to update a non-secret user configuration
+Import the workload cluster private `GPG` key from your key chain tool. In our example, you see `LastPass` for this purpose:
 
-### Updating secret user values
+```sh
+gpg --import \
+<(lpass show --notes "Shared-Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)")
+```
 
-1. Go to the App directory:
+Then you can decrypt the `secret.enc.yaml` file and decode the `values` field:
 
-    ```sh
-    cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
-    ```
+```sh
+sops --decrypt --in-place secret.enc.yaml
+yq eval .data.values secret.enc.yaml | base64 -d > values.tmp.yaml
+```
 
-2. Import the workload cluster regular GPG private key from your safe storage into your key chain. In our example, we're gonna use `LastPass` for that:
+Now you can edit the `values.tmp.yaml` file with the new values. After that, you need to encode the file back to `base64` and replace the `values` field in the `secret.enc.yaml` file:
 
-    ```sh
-    gpg --import \
-    <(lpass show --notes "Shared-Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)")
-    ```
+```sh
+export NEW_USER_VALUES=$(cat values.tmp.yaml | base64)
+yq -i eval ".data.values = \"${NEW_USER_VALUES}\"" secret.enc.yaml
+```
 
-3. Decrypt the `secret.enc.yaml` file with SOPS:
+Finally, you can re-encrypt the `secret.enc.yaml` file:
 
-    ```sh
-    sops --decrypt --in-place secret.enc.yaml
-    ```
+```sh
+sops --encrypt --in-place secret.enc.yaml
+```
 
-4. Grab the `.data.values` field from the secret and `base64` decode it:
+It's a good practice to remove the decrypted file as follows:
 
-    ```sh
-    yq eval .data.values secret.enc.yaml | base64 -d > values.tmp.yaml
-    ```
+```sh
+gpg --delete-secret-keys "${KEY_FP}"
+```
 
-5. Edit the `values.tmp.yaml` if you want to update a secret user configuration
-
-6. Save the `base64` encoded `values.tmp.yaml` into variable:
-
-    ```sh
-    export NEW_USER_VALUES=$(cat values.tmp.yaml | base64)
-    ```
-
-7. Replace secret's `.data.values` with new value:
-
-    ```sh
-    yq -i eval ".data.values = \"${NEW_USER_VALUES}\"" secret.enc.yaml
-    ```
-
-8. Remove the `values.tmp.yaml`:
-
-    ```sh
-    rm values.tmp.yaml
-    ```
-
-9. Re-encrypt the `Kubernetes` secret:
-
-    ```sh
-    sops --encrypt --in-place secret.enc.yaml
-    ```
-
-10. Remove the private GPG key from your keychain and submit a pull request.
-
-    ```sh
-    gpg --delete-secret-keys "${KEY_FP}"
-    ```
+Now applying the changes to the `Git` repository will trigger the `Flux` operator to apply the changes to the workload cluster.
