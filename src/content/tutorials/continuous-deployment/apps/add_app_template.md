@@ -67,7 +67,7 @@ Additionally you can provide a default configuration, and additional secrets for
 
 __Note__: Including `${cluster_name}` in the app name avoids collision between clusters running same apps within the same organization.
 
-Reference [the app configuration]({{< relref "/tutorials/app-platform/app-configuration/" >}}) for more details about how to create the respective `ConfigMaps` or secrets.
+Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/" >}}) for more details about how to create the respective `ConfigMaps` or secrets.
 
 After running the `kubectl gs` command you can observe the output has an `App` resource together with the `ConfigMap`. Instead, you could rely on the `ConfigMap` generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources) to generate it on the fly.
 

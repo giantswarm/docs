@@ -314,7 +314,7 @@ resources:
   - ../../../../../../../../bases/environments/regions/eu-central
 ```
 
-__Note__:  It uses the extra configuration feature of `App` resource to patch additional layers of configurations. [Read more here]({{< relref "/tutorials/app-platform/app-configuration/#extra-configs" >}}).
+__Note__:  It uses the extra configuration feature of `App` resource to patch additional layers of configurations. [Read more here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/#extra-configs" >}}).
 
 ## Tips for developing environments
 

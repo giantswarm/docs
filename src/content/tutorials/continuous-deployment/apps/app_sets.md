@@ -94,13 +94,13 @@ Please note the following in the example above:
 
 - You can use the `gitops.giantswarm.io/appSet: YOUR_NAME` label to  identify all the components included in the `App Set`. It makes debugging easier later, as you can easily find what belongs to the Set after it's deployed.
 - One of the key benefits of `App Sets` is to be able to provide a specific set of app versions, that's known to make the apps work well together. To achieve that you see a set of in-line patches exposing the versions of the apps.
-- When using `App` resources, you have three configuration slots available: `config`, `extraConfigs` and `userConfig`. Learn more about them in the [App configuration]({{< relref "/tutorials/continuous-deployment/app-platform/app-configuration" >}}) documentation.
+- When using `App` resources, you have three configuration slots available: `config`, `extraConfigs` and `userConfig`. Learn more about them in the [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) documentation.
 - It's recommended to re-use app templates to create `App Set` templates. You can observe the apps defined in the `resources:`  are `App` templates, that can be also used standalone.
-- Secrets can be created the same way as explained in the [app templates]({{< relref "/add_app_template.md" >}}) and override the same as `ConfigMaps` or secrets when creating [App from a Template]({{< relref "/tutorials/continuous-deployment/apps/add_appcr/#adding-app-using-app-template" >}}).
+- Secrets can be created the same way as explained in the [app templates]({{< relref "/tutorials/continuous-deployment/apps/add_app_template" >}}) and override the same as `ConfigMaps` or secrets when creating [App from a Template]({{< relref "/tutorials/continuous-deployment/apps/add_appcr/#adding-app-using-app-template" >}}).
 
 ## Use an app set
 
-Using an `App Set` template is similar to use a single [`App Set`]({{< relref "/tutorials/continuous-deployment/apps/add_appcr/#adding-app-using-app-template" >}}). To create one, save a path that contains your desired `App Set` template in the [gitops-template repository in "bases/app_sets"](https://github.com/giantswarm/gitops-template/tree/main/bases/app_sets/) directory. Then, create a new directory in the `app_sets` directory of your working cluster. In that directory, create a `kustomization.yaml` file based on the following pattern:
+Using an `App Set` template is similar to use a single [`App Set`]({{< relref "/tutorials/continuous-deployment/apps/add_appcr#adding-app-using-app-template" >}}). To create one, save a path that contains your desired `App Set` template in the [gitops-template repository in "bases/app_sets"](https://github.com/giantswarm/gitops-template/tree/main/bases/app_sets/) directory. Then, create a new directory in the `app_sets` directory of your working cluster. In that directory, create a `kustomization.yaml` file based on the following pattern:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

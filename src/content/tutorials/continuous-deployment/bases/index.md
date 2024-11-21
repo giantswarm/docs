@@ -31,7 +31,7 @@ As such, creating cluster means that you need to deliver a configured `App` reso
 
 Adding definitions is done via the [cluster provider `Helm` template](https://github.com/giantswarm/cluster-aws) (AWS example). The chart definition contains a basic provider agnostic definition which is a dependency and points to the [cluster generic template](https://github.com/giantswarm/cluster). Also, it has another dependency which contains all the common resources running by default within a cluster, it's called [cluster shared](https://github.com/giantswarm/cluster-shared).
 
-As consequence, the cluster configuration leverages the [app platform configuration]({{< relref "/tutorials/app-platform/app-configuration/#levels" >}}), in the following manner:
+As consequence, the cluster configuration leverages the [app platform configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/#levels" >}}), in the following manner:
 
 - The cluster template has a default configuration via `App` `config` field.
 - User can add additional custom configuration via `App` `extraConfig` field, which is overlaid on top of the default `config`. The file set with higher priority will prevail in case of colliding configuration values.

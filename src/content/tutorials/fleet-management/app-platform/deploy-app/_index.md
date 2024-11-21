@@ -132,7 +132,7 @@ Now lets check the app using the `kubectl gs get app` command.
 kubectl gs -n ${CLUSTER} get app ingress-nginx -o yaml
 ```
 
-The labels, cluster configuration and `kubeconfig` have been all defaulted to the correct values for your cluster. You can read more about defaulting and validation for `App` custom resources [here]({{< relref "/tutorials/app-platform/defaulting-validation" >}}).
+The labels, cluster configuration and `kubeconfig` have been all defaulted to the correct values for your cluster. You can read more about defaulting and validation for `App` custom resources [here]({{< relref "/tutorials/fleet-management/app-platform/defaulting-validation" >}}).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -224,7 +224,7 @@ spec:
   version: 1.17.0
 ```
 
-You can read more about app platform configuration [here]({{< relref "/tutorials/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/vintage/advanced/connectivity/ingress" >}}).
+You can read more about app platform configuration [here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/vintage/advanced/connectivity/ingress" >}}).
 
 ## Deleting an App CR
 

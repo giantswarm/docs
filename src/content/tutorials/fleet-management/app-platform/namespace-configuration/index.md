@@ -70,4 +70,4 @@ spec:
 
 ### Validation
 
-The [validation logic]({{< relref "/tutorials/app-platform/defaulting-validation" >}}) in app admission controller checks whether multiple `App` resources are updating the same namespace with different values. The validation webhook will prevent the conflicting value from being added.
+The [validation logic]({{< relref "/tutorials/fleet-management/app-platform/defaulting-validation" >}}) in app admission controller checks whether multiple `App` resources are updating the same namespace with different values. The validation webhook will prevent the conflicting value from being added.

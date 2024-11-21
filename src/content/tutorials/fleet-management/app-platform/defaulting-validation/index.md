@@ -89,7 +89,7 @@ Currently we validate:
 - The `app-operator.giantswarm.io/version` label is present.
 - All referenced `ConfigMaps` and `Secrets` exist.
 - The catalog has a matching `Catalog` custom resource.
-- There is no `App` resource with a conflicting annotation or label value for the [target namespace]({{< relref "/tutorials/app-platform/namespace-configuration" >}}).
+- There is no `App` resource with a conflicting annotation or label value for the [target namespace]({{< relref "/tutorials/fleet-management/app-platform/namespace-configuration" >}}).
 
 If app operator finds a matching [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resource, it will use this to run more validation checks.
 

@@ -82,4 +82,4 @@ Please note it's possible to override multiple configuration fields in the same 
 
 In order to specify a priority order in case of multiple `ConfigMaps` or `Secrets`, you can use the `cluster-operator.giantswarm.io/app-config-priority` annotation.
 
-Please refer to the [app configuration]({{< relref "/tutorials/app-platform/app-configuration#extra-configs" >}}) page for more details.
+Please refer to the [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration#extra-configs" >}}) page for more details.

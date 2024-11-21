@@ -190,6 +190,6 @@ metadata:
   namespace: wc1
 ```
 
-Please refer to [`App` configuration]({{< relref "/tutorials/app-platform/app-configuration" >}}) to understand how the user configuration works, and to the [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}) reference to understand how you can automate this process.
+Please refer to [`App` configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) to understand how the user configuration works, and to the [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}) reference to understand how you can automate this process.
 
 At this point, the bundle's `App` custom resource carries all the information to be successfully installed.
