@@ -71,11 +71,11 @@ Alternatively, you can create your role assignment with restricted access to spe
 * Now you can run this command to create the Deployment Environment:
 
     ```sh
-    az deployment create --name "giantswarm-access" \
-                         --location <AzureRegion> \
-                         --template-file delegatedResourceManagement.json \
-                         --parameters delegatedResourceManagement.parameters.json \
-                         --verbose
+    $ az deployment create --name "giantswarm-access" \
+                          --location <AzureRegion> \
+                          --template-file delegatedResourceManagement.json \
+                          --parameters delegatedResourceManagement.parameters.json \
+                          --verbose
     ```
 
     The `--name` value can be freely chosen if you prefer another name.
@@ -92,7 +92,7 @@ The _Giant Swarm Service Principal_ can be created in two different ways: via th
 
 Please run the following command and keep the output for later usage.
 
-```sh
+```text
 # Please fill in the details of the management cluster (MC) and Azure subscription
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
 MC_NAME=ZZZZ
