@@ -1,6 +1,6 @@
 ---
 title: CAPA migration
-description: Learn how the Vintage-to-CAPI migration works, and how to resolve some of the known issues
+description: Learn how the Vintage-to-CAPI migration works, and how to resolve some of the known issues.
 weight: 60
 menu:
   principal:
