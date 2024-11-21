@@ -110,8 +110,8 @@ metadata:
 Diff:
 
 ```diff
---- one.yaml	2024-11-21 14:20:41
-+++ two.yaml	2024-11-21 14:20:53
+--- one.yaml  2024-11-21 14:20:41
++++ two.yaml  2024-11-21 14:20:53
 @@ -20,9 +20,6 @@
                  maxSize: 9
          providerSpecific:
