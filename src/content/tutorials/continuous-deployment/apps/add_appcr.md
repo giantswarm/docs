@@ -105,15 +105,15 @@ You can find more information on encrypting secrets in [this document](https://g
 
 Lastly, edit the `kustomization.yaml` in the apps folder adding all the newly created files as resources:
 
-    ```yaml
-    apiVersion: kustomize.config.k8s.io/v1beta1
-    kind: Kustomization
-    resources:
-    ...
-    - ${APP_NAME}/appcr.yaml
-    - ${APP_NAME}/secret.enc.yaml
-    - ${APP_NAME}/configmap.yaml
-    ```
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+...
+- ${APP_NAME}/appcr.yaml
+- ${APP_NAME}/secret.enc.yaml
+- ${APP_NAME}/configmap.yaml
+```
 
 At this point, if you have completed [the workload cluster configuration guide]({{< relref "/tutorials/continuous-deployment/manage-workload-clusters/" >}}), all the necessary `Flux` resources should already be configured.
 

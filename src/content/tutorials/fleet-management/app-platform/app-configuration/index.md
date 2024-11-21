@@ -58,7 +58,7 @@ Values are merged in the following order:
 
 If no value is provided then the default in the chart's values file (`values.yaml`) is used.
 
-__Note__: Attempting to change configuration at any other level is risky because your changes might be overwritten by an operator.
+**Note**: Attempting to change configuration at any other level is risky because your changes might be overwritten by an operator.
 
 ## General notes about app configuration
 
@@ -136,9 +136,9 @@ data:
   values: "Y29sb3I6CiAgc2VjcmV0Q29sb3I6ICJibHVlIgo="
 ```
 
-__Note__: when `Base64` decoding the string `.data.values` field in the secret, you'll get this:
+**Note**: when `Base64` decoding the string `.data.values` field in the secret, you'll get this:
 
-```nohighlight
+```text
 colors:
   secretColor: "blue"
 ```
@@ -183,7 +183,7 @@ data:
   secretColor: {{.Values.colors.secretColor | b64enc | quote}}
 ```
 
-__Note__: If you uploaded your secret as individual plain  values and want to use one of those values in an actual templated secret, then you have to `base64` encode it to comply with how `kubernetes` stores secrets. Our API only encodes the entire secrets value string. It doesn't individually encode each value.
+**Note**: If you uploaded your secret as individual plain  values and want to use one of those values in an actual templated secret, then you have to `base64` encode it to comply with how `kubernetes` stores secrets. Our API only encodes the entire secrets value string. It doesn't individually encode each value.
 
 ## How configuration values are stored {#storage-referencing}
 
@@ -346,4 +346,4 @@ data:
 
 There are many approaches to apply resources in `kubernetes`, which go beyond the scope of this article. You can test the examples by running `kubectl apply` to the platform API. For more advanced use cases, we advocate using [GitOps]({{< relref "/tutorials/continuous-deployment/what-is-gitops" >}}) to maintain your configuration in a `Git` repositories always in sync with your clusters.
 
-__Note__: Depending on your installation you might not have access to the platform API yet. Please contact your account engineer if you would like more information about that or follow [the getting started page to learn how to configure it]({{< relref "/getting-started/access-to-platform-api" >}}).
+**Note**: Depending on your installation you might not have access to the platform API yet. Please contact your account engineer if you would like more information about that or follow [the getting started page to learn how to configure it]({{< relref "/getting-started/access-to-platform-api" >}}).

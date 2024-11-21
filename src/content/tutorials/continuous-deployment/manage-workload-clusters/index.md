@@ -69,17 +69,17 @@ First, let's create the repository skeleton to store the resources that will be 
 
 1. Copy bases folder from [GitOps template](https://github.com/giantswarm/gitops-template)
 
-```sh
-git clone https://github.com/giantswarm/gitops-template.git /tmp/gitops-template  && \
-cp -r /tmp/gitops-template/bases . && \
-rm -rf /tmp/gitops-template
-```
+    ```sh
+    git clone https://github.com/giantswarm/gitops-template.git /tmp/gitops-template  && \
+    cp -r /tmp/gitops-template/bases . && \
+    rm -rf /tmp/gitops-template
+    ```
 
 2. Use our plugin to init the repository to set the basic structure and some `Git` hooks. This will create a folder `management-clusters`.
 
-```sh
-kubectl gs gitops init
-```
+    ```sh
+    kubectl gs gitops init
+    ```
 
 ### Adding a management cluster
 
