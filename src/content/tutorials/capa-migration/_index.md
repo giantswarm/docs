@@ -1,6 +1,6 @@
 ---
 title: CAPA migration
-description: Documentation on the Vintage-to-CAPI migration process
+description: Learn how the Vintage-to-CAPI migration works, and how to resolve some of the known issues
 weight: 60
 menu:
   principal:
@@ -13,7 +13,7 @@ owner:
 
 ## Post-migration clean-up
 
-There are some fields in the cluster manifest that are only used during the migration, and can be cleaned up afterwards. We try to make sure our migration tool cleans up the manifests and removes those fields automatically after a successful migration, but there could be some left-overs, or it could be that a cluster got migrated before that clean-up process got implemented in the tool. Bellow you'll find a non-exhaustive list of the fields that can be cleaned up (or modified) after a successful migration:
+There are some fields in the cluster manifest that are only used during the migration, and can be cleaned up afterward. We try to make sure our migration tool cleans up the manifests and removes those fields automatically after a successful migration, but there could be some left-overs, or it could be that a cluster got migrated before that clean-up process got implemented in the tool. Bellow you'll find a non-exhaustive list of the fields that can be cleaned up (or modified) after a successful migration:
 
 - `cluster.internal.advancedConfiguration.controlPlane.etcd`: can be completely removed
 - `cluster.internal.advancedConfiguration.controlPlane.files`: everything except the following fields can be deleted
