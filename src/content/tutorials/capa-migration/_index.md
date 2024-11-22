@@ -20,9 +20,10 @@ There are some fields in the cluster manifest that are only used during the migr
     - To be kept
         - `/migration/add-vintage-service-account-key.sh`
         - `/etc/kubernetes/pki/sa-old.pem`
-- `cluster.internal.advancedConfiguration.controlPlane.{preKubeadmCommands,postKubeadmCommands}`: everything except the following fields can be deleted
+- `cluster.internal.advancedConfiguration.controlPlane.preKubeadmCommands`: everything except the following fields can be deleted
     - To be kept
         - `/bin/sh /migration/add-vintage-service-account-key.sh`
+- `cluster.internal.advancedConfiguration.controlPlane.postKubeadmCommands`: can be completely removed
 - `internal.migration.irsaAdditionalDomain`: starting from release v25.1.1 this domain needs to be appended to `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`, and the `internal.migration.irsaAdditionalDomain` field can be removed
 
 Here's an example manifest, and a diff with the proposed changes:
@@ -88,14 +89,20 @@ data:
                         - contentFrom:
                             secret:
                                 name: foo-migration-custom-files
-                                key: add-extra-service-account-issuers
-                          path: /migration/add-vintage-service-account-issuers.sh
+                                key: add-extra-service-account-key
+                          path: /migration/add-vintage-service-account-key.sh
                           permissions: "0644"
+                        - contentFrom:
+                            secret:
+                                name: foo-sa-old
+                                key: tls.key
+                          path: /etc/kubernetes/pki/sa-old.pem
+                          permissions: "0640"
                     preKubeadmCommands:
                         - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
                         - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
                         - /bin/sh /migration/join-existing-cluster.sh
-                        - /bin/sh /migration/add-vintage-service-account-issuers.sh
+                        - /bin/sh /migration/add-vintage-service-account-key.sh
                         - sleep 90
                     postKubeadmCommands:
                         - /bin/sh /migration/move-etcd-leader.sh
@@ -131,9 +138,9 @@ Diff:
 -                        experimental:
 -                            peerSkipClientSanVerification: true
                      files:
-                         - contentFrom:
-                             secret:
-                                 name: foo-migration-custom-files
+-                        - contentFrom:
+-                            secret:
+-                                name: foo-migration-custom-files
 -                                key: join-etcd-cluster
 -                          path: /migration/join-existing-cluster.sh
 -                          permissions: "0644"
@@ -149,17 +156,23 @@ Diff:
 -                                key: api-healthz-vintage-pod
 -                          path: /etc/kubernetes/manifests/api-healthz-vintage-pod.yaml
 -                          permissions: "0644"
--                        - contentFrom:
--                            secret:
--                                name: foo-migration-custom-files
-                                 key: add-extra-service-account-issuers
-                           path: /migration/add-vintage-service-account-issuers.sh
+                         - contentFrom:
+                             secret:
+                                 name: foo-migration-custom-files
+                                 key: add-extra-service-account-key
+                           path: /migration/add-vintage-service-account-key.sh
                            permissions: "0644"
+                           - contentFrom:
+                            secret:
+                                name: foo-sa-old
+                                key: tls.key
+                          path: /etc/kubernetes/pki/sa-old.pem
+                          permissions: "0640"
                      preKubeadmCommands:
 -                        - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
 -                        - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
 -                        - /bin/sh /migration/join-existing-cluster.sh
-                         - /bin/sh /migration/add-vintage-service-account-issuers.sh
+                         - /bin/sh /migration/add-vintage-service-account-key.sh
 -                        - sleep 90
 -                    postKubeadmCommands:
 -                        - /bin/sh /migration/move-etcd-leader.sh
