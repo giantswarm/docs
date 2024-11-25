@@ -114,18 +114,9 @@ source_repositories:
       - docs/cr
     metadata:
       awsclusters.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsclusters.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       awsclusterconfigs.core.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
