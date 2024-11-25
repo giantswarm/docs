@@ -1,6 +1,6 @@
 ---
-linkTitle: Cluster App Charts
-title: The Cluster App Charts to build new clusters
+linkTitle: Cluster app charts
+title: Cluster app charts to build new clusters
 description: The Giant Swarm Cluster Charts to provision new clusters and default components.
 weight: 100
 menu:
