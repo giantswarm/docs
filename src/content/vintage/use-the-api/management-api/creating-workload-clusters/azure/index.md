@@ -185,7 +185,7 @@ spec: {}
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
 Therefore, if you create a CR with wrong field values, that can result in a broken workload cluster.
-That's why we offer a [kubectl plugin]({{< relref "/vintage/use-the-api/kubectl-gs" >}}), which helps to template valid CRs.
+That's why we offer a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 

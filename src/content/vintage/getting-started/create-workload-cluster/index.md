@@ -21,7 +21,7 @@ user_questions:
 last_review_date: 2023-12-12
 ---
 
-In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/vintage/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/vintage/getting-started/management-cluster" >}}), is used to create such clusters.
+In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/reference/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/vintage/getting-started/management-cluster" >}}), is used to create such clusters.
 
 ## Step 1: Log in to the management cluster
 
@@ -198,7 +198,7 @@ This is not needed for CAPI. The `nodePools` value in the cluster app has a defa
 {{< /tab >}}
 {{< /tabs >}}
 
-Templating these and other resources as YAML files is reasonable if you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository) or want to develop/deploy using scripts or the command line, without manual steps in the web interface. We recommend running `kubectl gs template [...] --help` and the online [reference]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
+Templating these and other resources as YAML files is reasonable if you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository) or want to develop/deploy using scripts or the command line, without manual steps in the web interface. We recommend running `kubectl gs template [...] --help` and the online [reference]({{< relref "/reference/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
 
 To _actually_ create the resources – the workload cluster and (only for vintage product family) worker node pool – you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
 
