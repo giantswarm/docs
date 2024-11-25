@@ -53,11 +53,7 @@ source_repositories:
       - docs/cr
     metadata:
       configs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-honeybadger
-        topics:
-          - apps
-          - managementcluster
+        hidden: true
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
