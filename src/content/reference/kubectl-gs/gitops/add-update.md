@@ -6,11 +6,13 @@ weight: 35
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How do I configure automatic updates for an App with the GitOps repository?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/gitops/add-update/
 ---
 
 This command adds configuration to automatically update an App into a GitOps repository.

@@ -8,9 +8,11 @@ menu:
     parent: reference-kubectlgs
 user_questions:
   - How can I create a node pool manifest for the Management API?
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /vintage/use-the-api/kubectl-gs/template-nodepool/
 ---
 
 The `template nodepool` command allows to create [node pools]({{< relref "/vintage/advanced/cluster-management/node-pools-vintage" >}}), which are groups of worker nodes in a cluster sharing common configuration. The command creates a manifest for the custom resources that define a node pool. These are then meant to be applied to the management cluster, e.g. via `kubectl apply`.

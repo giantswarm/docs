@@ -6,11 +6,13 @@ weight: 30
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How do I add App to my Workload Cluster with the GitOps repository?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/gitops/add-app/
 ---
 
 This command adds a new App to the GitOps repository.

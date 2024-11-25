@@ -10,11 +10,13 @@ menu:
   principal:
     identifier: reference-kubectlgs
     parent: reference
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 user_questions:
   - Which commands does kubectl-gs offer?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /vintage/use-the-api/kubectl-gs/
 ---
 
 `kubectl-gs` is a CLI and a [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/) plugin (invoked as `kubectl gs`) for the Giant Swarm [Management API]({{< relref "/reference/platform-api" >}}).

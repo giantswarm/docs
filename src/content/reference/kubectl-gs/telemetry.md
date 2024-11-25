@@ -14,7 +14,9 @@ user_questions:
   - How does Giant Swarm use the usage data collected from kubectl-gs?
   - Where is usage data from kubectl-gs stored?
   - How can I opt out of usage data collection in kubectl-gs?
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
+aliases:
+  - /vintage/use-the-api/kubectl-gs/telemetry/
 ---
 
 Since kubectl-gs version 4.3.0, Giant Swarm collects anonymous usage data about `kubectl gs` command execution. This allows us to understand better which commands are used how widely and how frequently, and to better prioritize our development efforts.

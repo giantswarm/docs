@@ -6,11 +6,13 @@ weight: 110
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create an organization manifest for the Management API?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/template-organization/
 ---
 The `template organization` command creates an [organization]({{< relref "/vintage/platform-overview/multi-tenancy/index.md" >}})
 manifest which can be applied to a management cluster, e. g. via `kubectl apply`.

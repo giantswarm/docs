@@ -8,13 +8,15 @@ menu:
     parent: reference-kubectlgs
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?
   - How can I install the Giant Swarm plugin for kubectl?
   - How can I keep the Giant Swarm plugin for kubectl up to date?
   - How can I install kubectl-gs?
   - Is there an official Docker image for kubectl-gs?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/installation/
 ---
 
 `kubectl-gs` is the Giant Swarm plug-in for `kubectl` with the official plug-in name `gs`.

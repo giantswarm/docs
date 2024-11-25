@@ -7,12 +7,14 @@ menu:
   principal:
     parent: reference-kubectlgs
     identifier: reference-kubectlgs-updatecluster
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How can I upgrade a workload cluster from the command line?
   - How can I schedule a workload cluster upgrade from the command line?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/update-cluster/
 ---
 
 This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/vintage/platform-overview/cluster-management/releases" >}}).
