@@ -279,14 +279,7 @@ source_repositories:
       etcdbackups.backup.giantswarm.io:
         hidden: true
       g8scontrolplanes.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       haproxyloadbalancers.infrastructure.cluster.x-k8s.io:
         hidden: true
       ingressconfigs.core.giantswarm.io:
