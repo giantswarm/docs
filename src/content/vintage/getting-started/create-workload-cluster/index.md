@@ -67,7 +67,7 @@ First, please choose a name for the new workload cluster. We recommend you choos
 
 You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
-You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
+You can template a cluster ([command reference]({{< relref "/reference/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
@@ -379,4 +379,4 @@ kubectl gs update app \
 
 Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
-More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/vintage/use-the-api/kubectl-gs/update-cluster" >}}).
+More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/reference/kubectl-gs/update-cluster" >}}).

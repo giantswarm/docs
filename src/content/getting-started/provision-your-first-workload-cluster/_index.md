@@ -26,7 +26,7 @@ In case you haven't installed the `kubectl-gs` CLI plugin yet, please follow the
 
 You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The template commands don't immediately create the cluster–the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster.
 
-You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
+You can template a cluster ([command reference]({{< relref "/reference/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}

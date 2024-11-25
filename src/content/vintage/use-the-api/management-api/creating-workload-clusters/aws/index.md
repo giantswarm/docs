@@ -232,9 +232,9 @@ The utility supports rendering CRs:
 - `App`
 
 The installation procedure is described in the [`kubectl gs` reference]({{< relref "/vintage/use-the-api/kubectl-gs#install" >}}).
-There are also specific reference pages for [cluster templating]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}) and [node pool templating]({{< relref "/vintage/use-the-api/kubectl-gs/template-nodepool" >}}).
+There are also specific reference pages for [cluster templating]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [node pool templating]({{< relref "/reference/kubectl-gs/template-nodepool" >}}).
 
-As a result of rendering the CRs ([sample]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster#example" >}})), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
+As a result of rendering the CRs ([sample]({{< relref "/reference/kubectl-gs/template-cluster#example" >}})), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 
