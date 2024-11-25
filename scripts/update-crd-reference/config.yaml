@@ -238,27 +238,15 @@ source_repositories:
         topics:
           - workloadcluster
       azuremanagedclusters.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremanagedcontrolplanes.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremanagedmachinepools.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azurepodidentityexceptions.aadpodidentity.k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       certconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        topics:
-          - managementcluster
-          - workloadcluster
+        hidden: true
       chartconfigs.core.giantswarm.io:
         hidden: true
       clusterclasses.cluster.x-k8s.io:
