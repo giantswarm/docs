@@ -18,14 +18,14 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-planeteers
 ---
 
-Giant Swarm perceives the cloud-native landscape as a journey and it takes time and effort to get across it successfully. Based on the lessons learnt through these years helping our customers, our teams have built a set of trainings that develop several areas of the journey that guide the teams to understand the principles and the tools. The trainings are why-focused rather than how-focused, meaning that we aim to explain the reasons behind the tools and practices, rather than just how to use them.
+Giant Swarm perceives the cloud-native landscape as a journey, and it takes time and effort to get across it successfully. Based on the lessons learnt through these years helping our customers, our teams have built a training set that guides customers to understand the principles and the tools. The training is why-focused rather than how-focused, meaning that the aim is to explain the reasons behind the tools and practices, rather than just how to use them.
 
 ### Getting Started with Giant Swarm
 
-[_Team Teddyfriends_](https://www.giantswarm.io/about)
+[_Team Planeteers_](https://www.giantswarm.io/about)
 
 - Who is Giant Swarm?
-- What is the Support model?
+- What is the support model?
 - Onboarding into the web UI and the CLI - `kubectl gs`
 - How does GS help platform teams serve application teams?
 - What are best practices that we should aim for together?
@@ -33,31 +33,31 @@ Giant Swarm perceives the cloud-native landscape as a journey and it takes time 
 
 ### Kubernetes 101
 
-[_Team Teddyfriends_](https://www.giantswarm.io/about)
+[_Team Planeteers_](https://www.giantswarm.io/about)
 
 - High level overview of microservices
-- What is Kubernetes and what are the reasons to use it
-- Basic Kubernetes concepts
-- Basic Kubernetes best practices
+- What is `Kubernetes` and what are the reasons to use it
+- Basic `Kubernetes` concepts
+- Basic `Kubernetes` best practices
 
 ### GitOps 101
 
 [_Team Honeybadger_](https://www.giantswarm.io/about)
 
-- What is GitOps?
-- What led us to GitOps in the first place?
+- What is `GitOps`?
+- What led us to `GitOps` in the first place?
 - What are the advantages and reasons to work towards this method?
 - Tooling - our recommendations
 - Internal tour of how Giant Swarm automation and pipeline is setup
-- An example of GitOps in action
+- An example of `GitOps` in action
 
 ### Cloud Native Security 101
 
 [_Team Shield_](https://www.giantswarm.io/about)
 
 - What does security mean in a cloud-native world?
-- What are Pod Security Standards, NetworkPolicies, RBAC, etc.?
-- What needs to be considered in securing infrastructure outside of Kubernetes clusters?
+- What are `Pod Security Standards`, `Network Policies`, `RBAC`, etc.?
+- What needs to be considered in securing infrastructure outside of `Kubernetes` clusters?
 - Tooling options for "Day 2" operations
 - Our default security stack
 
@@ -65,7 +65,7 @@ Giant Swarm perceives the cloud-native landscape as a journey and it takes time 
 
 [_Team Atlas_](https://www.giantswarm.io/about)
 
-- What is the advantage of observability on Kubernetes?
+- What is the advantage of observability on `Kubernetes`?
 - Which tools do we provide and recommend? Why?
 - How does Giant Swarm do alerting internally?
 - What does the Giant Swarm monitoring stack look like?
@@ -73,10 +73,10 @@ Giant Swarm perceives the cloud-native landscape as a journey and it takes time 
 
 ### Troubleshooting and Best Practices 101
 
-[_Team Teddyfriends_](https://www.giantswarm.io/about)
+[_Team Planeteers_](https://www.giantswarm.io/about)
 
 - What are the most common mistakes we have seen in 10 years of experience?
 - How do we make deployments Cloud Native?
 - How do we ensure proper scalability?
-- How do we debug issues in a Kubernetes cluster?
+- How do we debug issues in a `Kubernetes` cluster?
 - Tips and tricks for day-to-day operations and debugging
