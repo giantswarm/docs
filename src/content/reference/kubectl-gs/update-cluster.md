@@ -65,7 +65,7 @@ kubectl gs update cluster \
   --provider capa \
   --namespace org-acme \
   --name a1b2c \
-  --release-version 16.1.0
+  --release-version 26.2.0
 ```
 
 To schedule a workload cluster upgrade in the future, the `--scheduled-time` flag is used, like in the example below:
