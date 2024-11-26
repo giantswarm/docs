@@ -25,18 +25,18 @@ Giant Swarm perceives the cloud-native landscape as a journey, and it takes time
 [_Team Planeteers_](https://www.giantswarm.io/about)
 
 - Who is Giant Swarm?
-- What is the support model?
-- Onboarding into the web UI and the CLI - `kubectl gs`
+- What's the support model?
+- The onboarding into the web UI and the CLI - `kubectl gs`
 - How does GS help platform teams serve application teams?
 - What are best practices that we should aim for together?
-- What is some useful "technical" knowledge? What differentiates Giant Swarm from other providers?
+- What's some useful "technical" knowledge? What differentiates Giant Swarm from other providers?
 
 ### Kubernetes 101
 
 [_Team Planeteers_](https://www.giantswarm.io/about)
 
 - High level overview of microservices
-- What is `Kubernetes` and what are the reasons to use it
+- What's `Kubernetes` and what are the reasons to use it
 - Basic `Kubernetes` concepts
 - Basic `Kubernetes` best practices
 
@@ -44,7 +44,7 @@ Giant Swarm perceives the cloud-native landscape as a journey, and it takes time
 
 [_Team Honeybadger_](https://www.giantswarm.io/about)
 
-- What is `GitOps`?
+- What's `GitOps`?
 - What led us to `GitOps` in the first place?
 - What are the advantages and reasons to work towards this method?
 - Tooling - our recommendations
@@ -65,7 +65,7 @@ Giant Swarm perceives the cloud-native landscape as a journey, and it takes time
 
 [_Team Atlas_](https://www.giantswarm.io/about)
 
-- What is the advantage of observability on `Kubernetes`?
+- What's the advantage of observability on `Kubernetes`?
 - Which tools do we provide and recommend? Why?
 - How does Giant Swarm do alerting internally?
 - What does the Giant Swarm monitoring stack look like?
@@ -75,7 +75,7 @@ Giant Swarm perceives the cloud-native landscape as a journey, and it takes time
 
 [_Team Planeteers_](https://www.giantswarm.io/about)
 
-- What are the most common mistakes we have seen in 10 years of experience?
+- What are the most common mistakes we've seen in 10 years of experience?
 - How do we make deployments Cloud Native?
 - How do we ensure proper scalability?
 - How do we debug issues in a `Kubernetes` cluster?

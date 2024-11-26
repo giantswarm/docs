@@ -35,7 +35,7 @@ Every customer is assigned a dedicated `Account Engineer` who holds regular sync
 
 Our team trust the `DevOps` principle `You build it, you run it` and for that reason each part of the platform is managed by a different team.
 
-On-call engineers monitor all alerts from environments where your workloads run. These engineers are available every day, ensuring that issues are addressed promptly, even during nights and weekends.
+On-call engineers monitor all alerts from environments where your workloads run. These engineers are available every day, ensuring that issues are addressed as quick as possible, even during nights and weekends.
 
 Currently, the mean time to acknowledge an alert is around two minutes, with incident resolution typically taking less than two hours. Not all alerts result in downtime; alerts are configured to resolve issues before they lead to actual incidents.
 

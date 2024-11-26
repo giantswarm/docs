@@ -32,6 +32,7 @@ firewalling
 freely
 Grafana
 gsctl
+Honeybadger
 HTTP
 IP[s]?
 IPAM
@@ -52,6 +53,7 @@ NLB[s]?
 onboarding
 passthrough
 perfectly
+Planeteers
 Promtail
 quickly
 randomly
@@ -61,6 +63,7 @@ relref
 runbook[s]?
 separately
 Sigstore
+SLA[s]?
 Spotify
 SSL
 subnet
