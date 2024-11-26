@@ -23,7 +23,7 @@ Our first level of support involves close interactions via Slack, ensuring bi-di
 
 The first level support is available from 08:00 to 18:00 (CET) on Monday-Friday. With a distributed team across the world, questions are often answered outside these hours. Support shifts rotate across teams, focusing on channels with clear internal handovers.
 
-In case the first line support is unable to resolve your request, it is escalated to an engineer from the team responsible of the component or application in question. This is managed through a 24-hour rotating shift.
+In case the first line support is unable to resolve your request, it's escalated to an engineer from the team responsible of the component or application in question. This is managed through a 24-hour rotating shift.
 
 ## Project management
 
@@ -35,11 +35,11 @@ Every customer is assigned a dedicated `Account Engineer` who holds regular sync
 
 Our team trust the `DevOps` principle `You build it, you run it` and for that reason each part of the platform is managed by a different team.
 
-On-call engineers monitor all alerts from environments where your workloads run. These engineers are available 24/7, ensuring that issues are addressed promptly, even during nights and weekends.
+On-call engineers monitor all alerts from environments where your workloads run. These engineers are available every day, ensuring that issues are addressed promptly, even during nights and weekends.
 
 Currently, the mean time to acknowledge an alert is around two minutes, with incident resolution typically taking less than two hours. Not all alerts result in downtime; alerts are configured to resolve issues before they lead to actual incidents.
 
-Additionally, you have a dedicated email address to contact the on-call engineer 24/7 for cases where problems are noticed that have not been detected by monitoring.
+Additionally, you have a dedicated email address to contact the on-call engineer at any time for cases where problems are noticed that haven't been detected by monitoring.
 
 ### Fully monitored platform
 
@@ -57,7 +57,7 @@ Treating every alert as an incident offers many benefits: information is contain
 
 ### Postmortem process
 
-The `postmortem` culture, [created by Google](https://sre.google/sre-book/postmortem-culture/), is established to document problems correctly, find root causes, and fix them permanently across all installations. Every time an incident is closed, if it is not a false positive, a postmortem is created.
+The `postmortem` culture, [created by Google](https://sre.google/sre-book/postmortem-culture/), is established to document problems correctly, find root causes, and fix them permanently across all installations. Every time an incident is closed, if it's not a false positive, a postmortem is created.
 
 Postmortems are developed throughout the week. On Mondays, the product team meets to distribute postmortems across product teams. During each team's weekly sprint planning, a specific engineer is assigned to each postmortem. Postmortems take priority over feature development, with engineers dedicating at least one day a week to solving these problems.
 
@@ -65,4 +65,4 @@ A postmortem is only closed once the underlying issue is fixed and deployed to a
 
 ## The future
 
-The support process is continually evolving. As improvements are made, policies, processes, and tools are refined. However, the goals remain clear and steadfast: to provide seamless support to you, the customer.
+The support process is always evolving. As improvements are made, policies, processes, and tools are refined. However, the goals remain clear and steadfast: to provide seamless support to you, the customer.
