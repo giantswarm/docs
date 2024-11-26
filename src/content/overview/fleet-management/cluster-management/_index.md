@@ -1,7 +1,7 @@
 ---
 title: Cluster management
 description: Supported cloud providers and management of clusters on the Giant Swarm platform.
-weight: 40
+weight: 30
 menu:
   principal:
     parent: overview-fleet-management

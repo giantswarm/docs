@@ -4,13 +4,13 @@ title: Setting up a caching container registry within a cluster using Zot
 description: A registry cache within the cluster can provide benefits for availability, performance, and cost. Here we explain how to set up a registry, using the Zot app provided by Giant Swarm.
 weight: 110
 menu:
-  main:
+  principal:
     parent: tutorials-registry
     identifier: tutorials-registry-in-cluster-cache-using-zot
 user_questions:
   - How can I cache container images within the cluster?
   - How can I have a backup registry for container images?
-last_review_date: 2024-07-12
+last_review_date: 2024-10-31
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---

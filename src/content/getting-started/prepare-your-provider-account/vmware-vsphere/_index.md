@@ -11,8 +11,6 @@ user_questions:
   - What do I need to do to prepare my VMware vSphere account for the cloud-native developer platform?
 ---
 
-MODIFY ACCORDING TO THE TEMPLATE
-
 In order to run the Giant Swarm platform in your VMware vSphere environment, several prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
 
 ## Requirements
@@ -83,25 +81,28 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 
 | Category | permissions |
 | -------- | -------- |
+| `CNS`    | `Searchable` |
 | `Datastore` | `Allocate space`<br>`Browse datastore`<br>`Low level file operations` |
 | `Global` | `Disable methods`<br>`Enable methods`<br>`Licenses` |
 | `Network` | `Assign network` |
 | `Resource` | `Assign virtual machine to resource pool` |
 | `Sessions` | `Message`<br>`Validate session` |
-| `Profile` driven storage | `Profile-driven storage view` |
+| `Profile driven storage` _(vSphere 7)_<br>`VM storage policies` _(vSphere 8)_ | `Profile-driven storage view`<br>`View VM storage policies` |
 | `vApp` | `Import` |
-| `Virtual machine` | `Configuration/Change Configuration`<br>`Configuration/Add existing disk`<br>`Configuration/Add new disk`<br>`Configuration/Add or remove device`<br>`Configuration/Advanced configuration`<br>`Configuration/Change CPU count`<br>`Configuration/Change Memory`<br>`Configuration/Change Settings`<br>`Configuration/Configure Raw device`<br>`Configuration/Extend virtual disk`<br>`Configuration/Modify device settings`<br>`Configuration/Remove disk`<br>`Configuration/Create from existing`<br>`Configuration/Remove`<br>`Edit Inventory/Create new`<br>`Interaction/Power off`<br>`Interaction/Power on`<br>`Provisioning/Deploy template`<br>`Provisioning/Mark as template`<br>`Provisioning/Mark as virtual machine` |
+| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
-- vCenter Server
-- Data centers or data center folders
-- Hosts and clusters
-- VM templates
-- Resource pools (With Propagate to children)
-- Distributed Port Group
-- Distributed Switch
-- VM and Template folders (With Propagate to children).
+| Resource to apply role to | Propagate to children |
+| ------------------------- | --------------------- |
+| vCenter Server | |
+| Data centers or data center folders | |
+| Hosts and clusters | |
+| VM templates | |
+| Resource pools | Yes |
+| Distributed Port Group | |
+| Distributed Switch | |
+| VM and Template folders | Yes |
 
 __Warning__: In case you want to leverage failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
 
