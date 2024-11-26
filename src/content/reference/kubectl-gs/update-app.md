@@ -6,11 +6,13 @@ weight: 120
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I update an app version from the command line?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/update-app/
 ---
 
 This command helps with updating [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) custom resources.

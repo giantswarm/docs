@@ -9,9 +9,11 @@ menu:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /vintage/use-the-api/kubectl-gs/get-clusters/
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a cluster in this case, or list several of them.

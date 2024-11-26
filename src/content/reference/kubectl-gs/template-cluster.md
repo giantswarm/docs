@@ -10,7 +10,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the Management API?
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
+aliases:
+  - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
 
 This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
@@ -33,7 +35,7 @@ For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
 For {{% impl_title "vintage_aws" %}} (`--provider aws`):
 
 - [`Cluster`]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- [`AWSCluster`]({{< relref "/reference/platform-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
+- `AWSCluster` (`awsclusters.infrastructure.giantswarm.io` API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
 - [`G8sControlPlane`]({{< relref "/reference/platform-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
 - [`AWSControlPlane`]({{< relref "/reference/platform-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
@@ -258,124 +260,6 @@ kubectl gs template cluster \
 The above example command would generate the following output:
 
 {{< tabs >}}
-{{< tab id="command-output-aws" for-impl="vintage_aws">}}
-
-```yaml
-apiVersion: cluster.x-k8s.io/v1beta1
-kind: Cluster
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/clusters.cluster.x-k8s.io/
-  creationTimestamp: null
-  labels:
-    cluster-operator.giantswarm.io/version: 3.13.0
-    cluster.x-k8s.io/cluster-name: x5g6e
-    environment: testing
-    giantswarm.io/cluster: x5g6e
-    giantswarm.io/organization: acme
-    giantswarm.io/service-priority: lowest
-    release.giantswarm.io/version: 17.0.0
-    team: upstate
-  name: x5g6e
-  namespace: org-acme
-spec:
-  controlPlaneEndpoint:
-    host: ""
-    port: 0
-  infrastructureRef:
-    apiVersion: infrastructure.giantswarm.io/v1alpha3
-    kind: AWSCluster
-    name: x5g6e
-    namespace: org-acme
-status:
-  controlPlaneInitialized: false
-  infrastructureReady: false
----
-apiVersion: infrastructure.giantswarm.io/v1alpha3
-kind: AWSCluster
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
-  creationTimestamp: null
-  labels:
-    aws-operator.giantswarm.io/version: 10.17.0
-    cluster.x-k8s.io/cluster-name: x5g6e
-    giantswarm.io/cluster: x5g6e
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 17.0.0
-  name: x5g6e
-  namespace: org-acme
-spec:
-  cluster:
-    description: 'Cluster #2'
-    dns:
-      domain: ""
-    kubeProxy: {}
-    oidc:
-      claims: {}
-  provider:
-    credentialSecret:
-      name: ""
-      namespace: giantswarm
-    master:
-      availabilityZone: eu-central-1a
-      instanceType: m5.xlarge
-    nodes: {}
-    pods:
-      cidrBlock: 10.2.0.0/16
-      externalSNAT: true
-    region: ""
-status:
-  cluster: {}
-  provider:
-    network: {}
----
-apiVersion: infrastructure.giantswarm.io/v1alpha3
-kind: G8sControlPlane
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io/
-  creationTimestamp: null
-  labels:
-    cluster-operator.giantswarm.io/version: 3.13.0
-    cluster.x-k8s.io/cluster-name: x5g6e
-    giantswarm.io/cluster: x5g6e
-    giantswarm.io/control-plane: wy76e
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 17.0.0
-  name: wy76e
-  namespace: org-acme
-spec:
-  infrastructureRef:
-    apiVersion: infrastructure.giantswarm.io/v1alpha3
-    kind: AWSControlPlane
-    name: wy76e
-    namespace: org-acme
-  replicas: 1
-status: {}
----
-apiVersion: infrastructure.giantswarm.io/v1alpha3
-kind: AWSControlPlane
-metadata:
-  annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io/
-  creationTimestamp: null
-  labels:
-    aws-operator.giantswarm.io/version: 10.17.0
-    cluster.x-k8s.io/cluster-name: x5g6e
-    giantswarm.io/cluster: x5g6e
-    giantswarm.io/control-plane: wy76e
-    giantswarm.io/organization: acme
-    release.giantswarm.io/version: 17.0.0
-  name: wy76e
-  namespace: org-acme
-spec:
-  availabilityZones:
-  - eu-central-1a
-  instanceType: m5.xlarge
-```
-
-{{< /tab >}}
 {{< tab id="command-output-aws-capi" for-impl="capa_ec2">}}
 
 ```yaml

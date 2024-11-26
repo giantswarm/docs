@@ -8,11 +8,13 @@ menu:
   principal:
     identifier: kubectlgs-gitops
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 user_questions:
   - Which GitOps commands does the kubectl-gs plugin offer?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /vintage/use-the-api/kubectl-gs/gitops/
 ---
 
 The `gitops` command family provides operations to set up a GitOps repository as required to manage Giant Swarm infrastructure, as well as add and modify resources in this repository.

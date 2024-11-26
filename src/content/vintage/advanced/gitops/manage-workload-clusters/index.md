@@ -122,7 +122,7 @@ First thing's first - create a bare-bones repository where we will store the res
 kubectl gs gitops init
 ```
 
-**Note**: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/vintage/use-the-api/kubectl-gs/" >}}).
+**Note**: To learn more about Giant Swarm's kubectl plugin, visit [kubectl-gs documentation]({{< relref "/reference/kubectl-gs/" >}}).
 
 ### Attach the repo to a management cluster
 

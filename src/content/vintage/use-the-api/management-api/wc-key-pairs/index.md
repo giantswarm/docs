@@ -16,7 +16,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
-As of `kubectl gs` v1.44.0, the [`login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) command supports the creation of client certificates for workload clusters.
+As of `kubectl gs` v1.44.0, the [`login`]({{< relref "/reference/kubectl-gs/login" >}}) command supports the creation of client certificates for workload clusters.
 
 **Note**: We recommend the use of OIDC authentication over client certificates. Please see our related documentation:
 

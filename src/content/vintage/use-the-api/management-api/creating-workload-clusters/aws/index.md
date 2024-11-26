@@ -216,7 +216,7 @@ spec:
 All the CRs, mentioned above, have strict spec and important requirements to be considered valid.
 There is very limited CR validation available in the Control Plane for now.
 Therefore, if you create a CR with wrong field values, that can result in a broken workload cluster.
-That's why we offer a [kubectl plugin]({{< relref "/vintage/use-the-api/kubectl-gs" >}}), which helps to template valid CRs.
+That's why we offer a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}), which helps to template valid CRs.
 
 The utility supports rendering CRs:
 
@@ -231,10 +231,10 @@ The utility supports rendering CRs:
 - `AppCatalog`
 - `App`
 
-The installation procedure is described in the [`kubectl gs` reference]({{< relref "/vintage/use-the-api/kubectl-gs#install" >}}).
-There are also specific reference pages for [cluster templating]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}) and [node pool templating]({{< relref "/vintage/use-the-api/kubectl-gs/template-nodepool" >}}).
+The installation procedure is described in the [`kubectl gs` reference]({{< relref "/reference/kubectl-gs#install" >}}).
+There are also specific reference pages for [cluster templating]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [node pool templating]({{< relref "/reference/kubectl-gs/template-nodepool" >}}).
 
-As a result of rendering the CRs ([sample]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster#example" >}})), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
+As a result of rendering the CRs ([sample]({{< relref "/reference/kubectl-gs/template-cluster#example" >}})), a user will get YAML manifests containing valid CRs that can create a workload cluster and its node pools.
 The resources can then be created by applying the manifest files to the Control Plane, e.g. `kubectl create -f <cluster manifest file>.yaml`.
 Of course, that requires the user to be authorized towards Kubernetes Control Plane API.
 

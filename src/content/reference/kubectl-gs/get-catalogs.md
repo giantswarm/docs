@@ -6,12 +6,14 @@ weight: 20
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I list catalogs using kubectl?
   - How can I inspect catalogs using kubectl?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/get-catalogs/
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a [Catalog]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}})

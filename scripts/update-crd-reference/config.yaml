@@ -52,11 +52,7 @@ source_repositories:
       - docs/cr
     metadata:
       configs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-honeybadger
-        topics:
-          - apps
-          - managementcluster
+        hidden: true
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
@@ -113,18 +109,9 @@ source_repositories:
       - docs/cr
     metadata:
       awsclusters.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsclusters.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       awsclusterconfigs.core.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -250,27 +237,15 @@ source_repositories:
         topics:
           - workloadcluster
       azuremanagedclusters.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremanagedcontrolplanes.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremanagedmachinepools.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azurepodidentityexceptions.aadpodidentity.k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       certconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        topics:
-          - managementcluster
-          - workloadcluster
+        hidden: true
       chartconfigs.core.giantswarm.io:
         hidden: true
       clusterclasses.cluster.x-k8s.io:
@@ -303,14 +278,7 @@ source_repositories:
       etcdbackups.backup.giantswarm.io:
         hidden: true
       g8scontrolplanes.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       haproxyloadbalancers.infrastructure.cluster.x-k8s.io:
         hidden: true
       ingressconfigs.core.giantswarm.io:

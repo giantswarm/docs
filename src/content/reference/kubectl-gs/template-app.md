@@ -6,12 +6,14 @@ weight: 70
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create an app manifest for the Management API?
   - How can I add labels and annotations to the target namespace of an app?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/template-app/
 ---
 
 The `template app` command allows to create a manifest for an app to be installed in a workload cluster. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.

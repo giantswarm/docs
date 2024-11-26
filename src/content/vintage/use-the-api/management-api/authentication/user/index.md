@@ -28,7 +28,7 @@ For command-line access to the cluster using `kubectl`, authentication via our `
 
 ## Using `kubectl gs login` {#kubectl-gs-login}
 
-Assuming that you want to work with the API using `kubectl`, we recommend you install the [Giant Swarm plug-in]({{< relref "/vintage/use-the-api/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/vintage/use-the-api/kubectl-gs/installation/index.md" >}}) and updated using `krew`.
+Assuming that you want to work with the API using `kubectl`, we recommend you install the [Giant Swarm plug-in]({{< relref "/reference/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/reference/kubectl-gs/installation/index.md" >}}) and updated using `krew`.
 
 To set up your `kubectl` configuration with a context for your Giant Swarm installation's Management API, execute the following command:
 
@@ -41,7 +41,7 @@ As a `URL`, use either
 - the Management API endpoint URL (normally starting with `https://g8s.`) or
 - the web user interface URL (normally starting with `https://happa.g8s.`) of the installation.
 
-More information can be found in the [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login/index.md" >}}) manual page.
+More information can be found in the [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login/index.md" >}}) manual page.
 
 [![Authentication flow](sso-auth-flow-with-kubectl-gs-login.svg)](sso-auth-flow-with-kubectl-gs-login.svg)
 

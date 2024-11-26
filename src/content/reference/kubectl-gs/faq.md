@@ -6,7 +6,7 @@ weight: 140
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -18,6 +18,8 @@ user_questions:
   - How can I find out my Management API endpoint for 'kubectl gs login'?
   - "What does 'Error: Token renewal failed' mean?"
   - Why does the command connect to a service called "athena"?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/faq/
 ---
 
 ## General

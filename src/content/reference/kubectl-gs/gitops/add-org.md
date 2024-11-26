@@ -6,11 +6,13 @@ weight: 20
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How do I add an organization to a GitOps repository?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/gitops/add-org/
 ---
 
 This command adds a new Organization to the GitOps repository.

@@ -6,12 +6,14 @@ weight: 80
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-10-29
+last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create an catalog manifest for the Management API?
   - How can I add catalog level values or secrets for the apps deployed from this catalog?
+aliases:
+  - /vintage/use-the-api/kubectl-gs/template-catalog/
 ---
 
 The `template catalog` command allows to create an [app catalog]({{< relref "/vintage/getting-started/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.

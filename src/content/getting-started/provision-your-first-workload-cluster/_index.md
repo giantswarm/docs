@@ -26,7 +26,7 @@ In case you haven't installed the `kubectl-gs` CLI plugin yet, please follow the
 
 You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The template commands don't immediately create the cluster–the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster.
 
-You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
+You can template a cluster ([command reference]({{< relref "/reference/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
@@ -134,7 +134,7 @@ You will notice that clusters are templated exactly like [managed apps]({{< relr
 
 In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product.
 
-__Note__: Templating these and other resources as YAML files is reasonable when you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository). We recommend running `kubectl gs template --help` and the online [reference]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
+__Note__: Templating these and other resources as YAML files is reasonable when you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository). We recommend running `kubectl gs template --help` and the online [reference]({{< relref "/reference/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
 
 To _actually_ create the resources you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
 

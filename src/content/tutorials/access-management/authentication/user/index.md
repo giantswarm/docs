@@ -24,7 +24,7 @@ For command-line access to the cluster using `kubectl`, authentication via our `
 
 ## Using `kubectl gs login` {#kubectl-gs-login}
 
-Assuming that you want to work with the API using `kubectl`, we recommend you install the [Giant Swarm plug-in]({{< relref "/vintage/use-the-api/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/vintage/use-the-api/kubectl-gs/installation/index.md" >}}) and updated using `krew`.
+Assuming that you want to work with the API using `kubectl`, we recommend you install the [Giant Swarm plug-in]({{< relref "/reference/kubectl-gs/_index.md" >}}) named `gs`. It can be [installed]({{< relref "/reference/kubectl-gs/installation/index.md" >}}) and updated using `krew`.
 
 To set up your `kubectl` configuration with a context for your Giant Swarm installation's platform API, execute the following command:
 
