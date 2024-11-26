@@ -3,16 +3,10 @@ linkTitle: Accessing Grafana
 title: How to access Grafana dashboards
 description: Guide explaining how to get access to the data collected and stored by the Observability Platform.
 menu:
-  main:
+  principal:
     identifier: tutorials-observability-data-exploration-accessing-grafana
     parent: tutorials-observability-data-exploration
 weight: 40
-aliases:
-  - /getting-started/observability/visualization/access
-  - /observability/grafana/access
-  - /ui-api/observability/grafana/access
-  - /observability/visualization/access
-  - /ui-api/observability/visualization/access
 last_review_date: 2024-07-17
 user_questions:
   - How to access Grafana?

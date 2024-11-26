@@ -66,3 +66,5 @@ Then when creating a cluster, you can specify the organization that should be us
 
 - In CAPA using the `AWSClusterRoleIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
 - In CAPZ using the `AzureClusterIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-account/azure/#configure-cluster-role-identity" >}}) command
+
+__Note__: For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first.

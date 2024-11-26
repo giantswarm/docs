@@ -98,7 +98,7 @@ Please note the following in the example above:
 - One of the key benefits of App Sets is to be able to provide a specific set of app versions, that is known to make the apps work well together. Over here, we do that as a set of in-line patches, so it is immediately visible in the `kustomization.yaml` file which versions are used.
 - When using `App` CRs, we have two configuration slots available: `config` and `userConfig`. Since we always want to leave `userConfig` at the end users disposal, we're left with overriding the whole ConfigMap coming from the base application as the only option.
 - It is recommended to re-use App Templates to create App Set Templates. That's exactly what we do here: apps defined in the `resources:` block are App Templates, that, if needed, can be also used standalone.
-- The example above doesn't cover handling Secrets - we do that for brevity. Secrets can be created the same way as in normal [App Templates](./add_app_template.md) and overrode the same as ConfigMaps or Secrets when creating [App from a Template](/advanced/gitops/apps/add_appcr/#adding-app-using-app-template).
+- The example above doesn't cover handling Secrets - we do that for brevity. Secrets can be created the same way as in normal [app templates]({{< relref "/tutorials/continuous-deployment/apps/add_app_template" >}}) and overrode the same as `ConfigMaps` or `Secrets` when creating [app from a template](/advanced/gitops/apps/add_appcr/#adding-app-using-app-template).
 
 ## Using an App Set
 
