@@ -74,6 +74,6 @@ After all requirements are met, you can [create your first cluster following thi
 
 ## Next step
 
-If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days.
+If you are running these steps for the first time and still don't have a management cluster, Giant Swarm will provide it in the next few days. For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first.
 
 If you already have a management cluster, you can proceed with the next step and learn how to [access to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).

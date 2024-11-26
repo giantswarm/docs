@@ -197,4 +197,4 @@ In the [next step]({{< relref "/getting-started/provision-your-first-workload-cl
 
 ## Next steps
 
-Contact your Giant Swarm account engineer to verify the setup and proceed with the management cluster provisioning. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+Contact your Giant Swarm account engineer to verify the setup and proceed with the management cluster provisioning. For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).

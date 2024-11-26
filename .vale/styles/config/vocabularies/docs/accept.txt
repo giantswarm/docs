@@ -49,6 +49,7 @@ namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
 NLB[s]?
+onboarding
 passthrough
 perfectly
 Promtail

@@ -3,12 +3,10 @@ linkTitle: Exploring logs with LogQL
 title: Exploring logs with LogQL
 description: Guide explaining how to get explore logs of your management and workload clusters stored in the Observability Platform.
 menu:
-  main:
+  principal:
     identifier: tutorials-observability-data-exploration-exploring-logs
     parent: tutorials-observability-data-exploration
 weight: 40
-aliases:
-  - /getting-started/observability/visualization/exploring-logs
 last_review_date: 2024-07-17
 user_questions:
   - How to access logs from my installation?
