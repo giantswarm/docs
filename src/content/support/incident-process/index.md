@@ -6,9 +6,9 @@ weight: 100
 aliases:
   - /support/p1-process
 menu:
-  main:
-    parent: support-training
-    weight: 20
+  principal:
+    parent: support
+    identifier: support-incident
 user_questions:
   - What process does Giant Swarm follow in case of critical incidents?
 owner:
