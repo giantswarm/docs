@@ -27,3 +27,5 @@ If `Keybase` is your tool of choice for sharing secrets with us, ask our enginee
 The [`age`](https://github.com/FiloSottile/age) project offers a simple command-line tool that allows for encrypting secrets easily and in a classic UNIX-style fashion. A lovely feature about `age` is the possibility to encrypt messages using the public keys associated with a `GitHub` profile.
 
 If `age` is your tool of choice for sharing secrets with us, ask our engineer for their `GitHub` username, run a command such as `curl https://github.com/<USERNAME>.keys | age --recipients-file - my_secret.txt > my_secret.txt.age` in your shell and share the `.age` file with the engineer. The engineer will be able to decrypt it using their private key.
+
+In case you need to decrypt a secret shared with you, run a command such as `age --decrypt -i <PATH_TO_SSH_KEY> -o my_secret.txt my_secret.txt.age` in your shell.
