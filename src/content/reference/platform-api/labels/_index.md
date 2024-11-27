@@ -118,7 +118,7 @@ On other resources, the label serves as a discovery mechanism for metrics scrapi
 
 ### giantswarm.io/organization
 
-An organization is a key concept in the Giant Swarm platform, used to isolate [tenants]({{< relref "/vintage/platform-overview/multi-tenancy" >}}). This label is used on a variety of resources to associate them with one organization. The value is the name of the organization.
+An organization is a key concept in the Giant Swarm platform, used to isolate [tenants]({{< relref "/overview/fleet-management/multi-tenancy" >}}). This label is used on a variety of resources to associate them with one organization. The value is the name of the organization.
 
 ### giantswarm.io/prevent-deletion
 
