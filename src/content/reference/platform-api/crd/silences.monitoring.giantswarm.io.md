@@ -12,7 +12,7 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.11.2
+  source_repository_ref: v0.12.0
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.11.2
+source_repository_ref: v0.12.0
 ---
 
 # Silence
