@@ -25,17 +25,17 @@ Set on ConfigMap and Secret resources in management clusters for Grafana, to ind
 
 ### app-operator.giantswarm.io/version
 
-Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the version of the operator that should reconcile the resource. The operator name is the name of the operator that should reconcile the resource, and the version is the version of the operator that should reconcile the resource.
+Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the operator that should reconcile the resource, including the specific version.
 
 If the operator name is `app-operator`, the label is `app-operator.giantswarm.io/version`. The value of the label is a Semantic Versioning (SemVer) version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L7)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L7)
 
 ### app-operator.giantswarm.io/watching
 
 The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on ConfigMap and Secret resources to enable the operator to watch the resource. The operator name is the name of the operator that should watch the resource. If the operator name is `app-operator`, the label is `app-operator.giantswarm.io/watching`. The value of the label must be `true`.
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L5)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L5)
 
 ### application.giantswarm.io/branch
 
@@ -43,7 +43,7 @@ Name of the branch of the source repository providing the app/chart the resource
 
 ### application.giantswarm.io/catalog
 
-Used on AppCatalogEntry resources, to indicate which catalog it's associated with. The value is the name of the Catalog resource.
+Used on [AppCatalogEntry]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resources, to indicate which catalog it's associated with. The value is the name of the Catalog resource.
 
 ### application.giantswarm.io/commit
 
@@ -51,15 +51,15 @@ The commit SHA representing the state of the source repository providing the app
 
 ### application.giantswarm.io/catalog-type
 
-Used on Catalog resources and on AppCatalogEntry resources to indicate the type of source for this catalog or app. Value is either `stable`, `test`, or `community`.
+Used on [Catalog]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) resources and on [AppCatalogEntry]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resources to indicate the type of source for this catalog or app. Value is either `stable`, `test`, or `community`.
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/catalog.go#L9)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/catalog.go#L9)
 
 ### application.giantswarm.io/catalog-visibility
 
 Used on Catalog resources to indicate the target audience of the catalog. Value is `public` (deployed to `default` namespace) or `internal` (deployed to `giantswarm` namespace).
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/catalog.go#L13)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/catalog.go#L13)
 
 ### application.giantswarm.io/team
 
@@ -67,17 +67,17 @@ Name of the Giant Swarm team responsible for the application.
 
 ### chart-operator.giantswarm.io/version
 
-Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the version of the operator that should reconcile the resource. The operator name is the name of the operator that should reconcile the resource, and the version is the version of the operator that should reconcile the resource.
+Labels in the form `OPERATOR_NAME.giantswarm.io/version` are used to specify the operator that should reconcile the resource, including the specific version.
 
 If the operator name is `chart-operator`, the label is `chart-operator.giantswarm.io/version`. The value of the label is a SemVer version number. The special value `0.0.0` means that the resource is handled by the "unique" operator, which is an instance of the operator deployed to the `giantswarm` namespace of the cluster.
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L13)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/version.go#L13)
 
 ### cluster-apps-operator.giantswarm.io/watching
 
 The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on resources to enable the operator to watch the resource. The operator name is the name of the operator that should watch the resource. If the operator name is `cluster-apps-operator`, the label is `cluster-apps-operator.giantswarm.io/watching`. The value of the label must be `true`.
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L9)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L9)
 
 ### giantswarm.io/aws-ebs-limit
 
@@ -97,10 +97,14 @@ Associates the resource or the node with a node pool, using the name of the node
 
 ### giantswarm.io/managed-by
 
+_Description pending_
+
+<!--
 - TODO Found on various resources in MC and WC. Value differs.
     - E. g. `rbac-operator` on RBAC resources indicates that rbac-operator created these and will reconcile/delete them.
     - Value `flux` on an App resource indicates that the App is reconciled by Flux.
     - Name of a bundle on an App resource indicates that the App has been installed by a bundle.
+-->
 
 ### giantswarm.io/monitoring
 
@@ -118,35 +122,41 @@ Can be set on certain resource types to prevent deletion. See [Prevent accidenta
 
 ### giantswarm.io/service-type
 
+_Description pending_
+
+<!--
 - TODO Found on various resources in management and workload clusters.
 - [`fmt`](https://github.com/giantswarm/fmt/blob/278eb4b3318c454e50f24413e7ef2250159f28d6/kubernetes/annotations_and_labels.md?plain=1#L49) has an explanation.
 Value is mostly `managed`
 - also found occurrence `manual` in an [ops recipe](https://github.com/giantswarm/giantswarm/blob/0d16eb4ebb0440608bb1bfd0636d34afa6352cc6/content/docs/support-and-ops/ops-recipes/cilium-rate-limit-issue.md?plain=1#L39).
 - Value `system` is also documented.
 - Example use: [PrometheusRule](https://github.com/giantswarm/prometheus-rules/blob/d440f5cc724d9ad2fe4c7f85c9f0b54090a6858e/helm/prometheus-rules/templates/recording-rules/gs-managed-app-deployment-status.rules.yml#L16) - Here it seems to be used to differentiate workloads managed by Giant Swarm from other workloads.
+-->
 
 ### giantswarm.io/service-priority
 
 Used on cluster-related resources to indicate the [service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
 
-### policy.giantswarm.io/psp-status
-
-- TODO Found on App, Chart, and Cluster resources, MC and WC. On clusters with PSS the value is `disabled`.
-
 ### policy.giantswarm.io/resource-kind
 
-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values are like `Deployment`, `CronJob`.
+_Description pending_
+
+<!-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values are like `Deployment`, `CronJob`. -->
 
 ### policy.giantswarm.io/resource-name
 
-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values is the name of the resource the exception is for.
+_Description pending_
+
+<!-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values is the name of the resource the exception is for. -->
 
 ### policy.giantswarm.io/resource-namespace
 
-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values is the namespace of the resource the exception is for.
+_Description pending_
+
+<!-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values is the namespace of the resource the exception is for. -->
 
 ### ui.giantswarm.io/display
 
 Affects whether or not a resource is intended for display in a user interface like the Giant Swarm web UI. For example, it can be used to hide irrelevant RBAC system roles from users. The value can either be `"true"` (to display a resource) or `"false"` (for hiding it). The default behavior depends on the context.
 
-[Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/ui.go#L11)
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/ui.go#L11)
