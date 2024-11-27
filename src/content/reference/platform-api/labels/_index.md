@@ -126,7 +126,7 @@ Can be set on certain resource types to prevent deletion. See [Prevent accidenta
 
 ### giantswarm.io/service-type
 
-_Description pending_
+Description pending
 
 <!--
 - TODO Found on various resources in management and workload clusters.
@@ -143,19 +143,19 @@ Used on cluster-related resources to indicate the [service priority]({{< relref 
 
 ### policy.giantswarm.io/resource-kind
 
-_Description pending_
+Description pending
 
 <!-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values are like `Deployment`, `CronJob`. -->
 
 ### policy.giantswarm.io/resource-name
 
-_Description pending_
+Description pending
 
 <!-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values is the name of the resource the exception is for. -->
 
 ### policy.giantswarm.io/resource-namespace
 
-_Description pending_
+Description pending
 
 <!-- TODO Found in PolicyException and PolicyExceptionDraft resources. Values is the namespace of the resource the exception is for. -->
 
