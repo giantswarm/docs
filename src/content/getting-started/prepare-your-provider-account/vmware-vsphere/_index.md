@@ -89,7 +89,8 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Sessions` | `Message`<br>`Validate session` |
 | `Profile driven storage` _(vSphere 7)_<br>`VM storage policies` _(vSphere 8)_ | `Profile-driven storage view`<br>`View VM storage policies` |
 | `vApp` | `Import` |
-| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
+| `vSphere Tagging` | `Assign or Unassign vSphere Tag `<br>`Assign or Unassign vSphere Tag on Object` |
+| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Console interaction `<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
