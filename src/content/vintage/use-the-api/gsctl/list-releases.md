@@ -88,4 +88,4 @@ Output details:
 - [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}})
 - [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}})
 - [API: Get releases](/api/#operation/getReleases)
-- [`kubectl gs get releases`]({{< relref "/vintage/use-the-api/kubectl-gs/get-releases" >}})
+- [`kubectl gs get releases`]({{< relref "/reference/kubectl-gs/get-releases" >}})

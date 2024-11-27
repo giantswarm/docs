@@ -8,9 +8,9 @@ Cluster App chart configuration page for {{ .Title }}.
 {{- end }}
 weight: {{ .Weight }}
 menu:
-  main:
+  principal:
     identifier: {{ .Title | nospace }}
-    parent: uiapi-cluster-apps
+    parent: reference-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for {{ .Title }}?

@@ -11,9 +11,9 @@ user_questions:
   - How do I change the pod network CIDR?
 ---
 
-By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium container network interface. This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. **We therefore recommend using this default mode unless you have specific requirements, as listed below.**
+By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium container network interface. This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. We therefore recommend using this default mode unless you have specific requirements, as listed below.
 
-A workload cluster can be configured to deviate from this default and choose pod IPs from an AWS-allocated IP range (CIDR). **The [Cilium ENI IPAM mode](https://docs.cilium.io/en/latest/network/concepts/ipam/eni/) creates ENIs (Elastic Network Interfaces) and allocates pod IPs directly on those interfaces.**
+A workload cluster can be configured to deviate from this default and choose pod IPs from an AWS-allocated IP range (CIDR). The [Cilium ENI IPAM mode](https://docs.cilium.io/en/latest/network/concepts/ipam/eni/) creates ENIs (Elastic Network Interfaces) and allocates pod IPs directly on those interfaces.
 
 ## Advantages of Cilium ENI IPAM mode
 

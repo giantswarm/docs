@@ -36,7 +36,7 @@ Access to the Giant Swarm Management API is secured using OIDC. Our [authenticat
 
 Customers already visually interact with the Management API through our [web user interface]({{< relref "/vintage/platform-overview/web-interface" >}}).
 
-The Management API can also be used via `kubectl`. Our kubectl plug-in called [`kubectl gs`]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) facilitates operations such as logging into the cluster or templating custom resources.
+The Management API can also be used via `kubectl`. Our kubectl plug-in called [`kubectl gs`]({{< relref "/reference/kubectl-gs" >}}) facilitates operations such as logging into the cluster or templating custom resources.
 
 ### Organizing resources in namespaces
 
