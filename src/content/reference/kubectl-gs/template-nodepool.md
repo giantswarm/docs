@@ -33,7 +33,7 @@ The resulting resources depend on the provider, set via the `--provider` flag.
 {{< tabs >}}
 {{< tab id="flags-aws" for-impl="vintage_aws">}}
 
-- [`MachineDeployment`]({{< relref "/reference/platform-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
+- [`MachineDeployment`]({{< relref "/vintage/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
 - [`AWSMachineDeployment`]({{< relref "/vintage/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`)
 
 {{< /tab >}}
@@ -65,7 +65,7 @@ Here are the supported flags:
 - `--use-alike-instance-types` - Enables the use of instance types similar to the one specified via `--aws-instance-type` (default: false). This can increase the likelihood of getting the required instances, especially when requesting spot instances. See [our reference]({{< relref "/vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types" >}}) for details.
 - `--on-demand-percentage-above-base-capacity` - To use only on-demand instances, set this to 100. For any other value, the remainder to 100 will be filled with spot instances. For example, 50 will create a node pool that is half spot and half on-demand instances. 0 (zero) will use only spot instances. See [our AWS spot instances docs]({{< relref "/vintage/advanced/cluster-management/spot-instances/aws" >}}) for more information.
 - `--on-demand-base-capacity` - Can be used to set a fixed number of on-demand instances, regardless of the percentage (see above) of spot vs. on-demand to be used otherwise.
-- `--machine-deployment-subnet`: Size of the IPv4 subnet to reserve for the node pool. Must be a number between 20 and 28. For example, 24 stands for a /24 subnet with 256 addresses. Check the [`alpha.aws.giantswarm.io/aws-subnet-size`]({{< relref "/reference/platform-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md#v1alpha2-alpha.aws.giantswarm.io/aws-subnet-size" >}}) annotation for details.
+- `--machine-deployment-subnet`: Size of the IPv4 subnet to reserve for the node pool. Must be a number between 20 and 28. For example, 24 stands for a /24 subnet with 256 addresses. Check the [`alpha.aws.giantswarm.io/aws-subnet-size`]({{< relref "/vintage/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md#v1alpha2-alpha.aws.giantswarm.io/aws-subnet-size" >}}) annotation for details.
 
 ### Azure specific
 
