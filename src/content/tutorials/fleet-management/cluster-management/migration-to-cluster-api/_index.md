@@ -58,7 +58,7 @@ Our engineers will check that all resources and infrastructure are correctly mig
 
 ### Cluster manifest clean-up
 
-There are some fields in the cluster manifest that are only used during the migration, and can be cleaned up afterward. We try to make sure our migration tool cleans up the manifests and removes those fields automatically after a successful migration, but there could be some left-overs, or it could be that a cluster got migrated before that clean-up process got implemented in the tool. Bellow you'll find a non-exhaustive list of the fields that can be cleaned up (or modified) after a successful migration:
+There are some fields in the cluster manifest that are only used during the migration, and can be cleaned up afterward. We try to make sure our migration tool cleans up the manifests and removes those fields automatically after a successful migration, but there could be some left-overs, or it could be that a cluster got migrated before that clean-up process got implemented in the tool. Below, you'll find a non-exhaustive list of the fields that can be cleaned up (or modified) after a successful migration:
 
 - `cluster.internal.advancedConfiguration.controlPlane.etcd`: can be completely removed
 - `cluster.internal.advancedConfiguration.controlPlane.files`: besides the following files, all other files in the list can be deleted
