@@ -32,7 +32,7 @@ At Giant Swarm, two roles are defined: `Incident Coordinators` and `Operations E
 
 The `Incident Coordinator` maintains the high-level overview of the incident. Structuring the incident response, the coordinator assigns responsibilities according to need and priority. By default, the coordinator holds all positions/responsibilities not delegated. If necessary, the coordinator can remove roadblocks that prevent operations engineers from working effectively.
 
-The coordinator is the public face of the incident response, responsible for issuing periodic updates to all involved teams—both customer teams and within Giant Swarm—acting as the bridge between customer and team. The coordinator will need to be present in the war rooms of customers. For this reason, an [Opsgenie team](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) groups all members who can act as incident coordinators.
+The coordinator is the public face of the incident response, responsible for issuing periodic updates to all involved teams—both customer teams and within Giant Swarm—acting as the bridge between customer and team. The coordinator will need to be present in the situation rooms of customers. For this reason, an [Opsgenie team](https://support.atlassian.com/opsgenie/docs/what-are-teams-in-opsgenie/) groups all members who can act as incident coordinators.
 
 When there is a dedicated coordinator assigned to an incident, this person isn’t debugging systems but focuses on coordinating the team and managing customer communication.
 
@@ -64,7 +64,7 @@ The first step is to identify the incident and understand its impact and severit
 2. Customer reaches out via Slack
 3. Customer sends an urgent email
 
-For the first two options, the engineer declares an incident using the `Slack` shortcut directly on the alert or customer message in the communication channel. The shortcut generates a pop-up to introduce details of the incident, such as name, whether it's a live incident or triage, severity, summary, or affected customer.
+For the first two options, the engineer [declares an incident](https://help.incident.io/en/articles/5947915-declaring-incidents) using the `Slack` shortcut directly on the alert or customer message in the communication channel. The shortcut generates a pop-up to introduce details of the incident, such as name, whether it's a live incident or triage, severity, summary, or affected customer.
 
 ![Incident.io Shortcut Popup Screenshot](shortcut_screenshot.png)
 
@@ -92,11 +92,11 @@ Operations Engineers focus on the investigation, but 30-minute intervals are est
 
 If the coordinator needs more responders, escalation to more team members is possible using [incident.io](https://incident.io/) command `/inc escalate`.
 
-By default, every 30 minutes [incident.io](https://incident.io/) will remind you to share updates with the customer or report any progress on the incident channel.
+By default, every 30 minutes [incident.io](https://incident.io/) will remind the coordinator to share updates with the customer or report any progress on the incident channel.
 
 ### Fixing
 
-After identifying the root cause, a solution is implemented to prevent further downtime for the customer service. Often, the solution is temporary and replaced once the actual fix is rolled out to the platform. Once the cause is identified and the problem is being fixed, update the incident channel status to `Fixing` (using `/inc update`). The same command can be used to update the summary with any progress.
+After identifying the root cause, a solution is implemented to prevent further downtime for the customer service. Often, the solution is temporary and replaced once the actual fix is rolled out to the platform. Once the cause is identified and the problem is being fixed, the coordinator updates the incident channel status to `Fixing` (using `/inc update`). The same command can be used to update the summary with any progress.
 
 ### Monitoring
 
@@ -106,7 +106,7 @@ Once the fix or workaround is implemented, the coordinator communicates with the
 
 Closing the incident doesn’t mean the work is done. The coordinator creates a [`Postmortem`](https://docs.giantswarm.io/support/overview/#postmortem-process) document detailing all information collected during the incident and shares it with the customer. The [incident.io](https://incident.io/) functionality allows generating a `Google` document as post-mortem, filling most parts with metadata and pinned messages gathered during the incident. The dedicated account engineer for the customer will review and seek feedback from any incident participants.
 
-Any remaining follow-up items are converted into GitHub tickets for the coordinator and moved to the product teams to improve service and avoid repeating mistakes.
+Any remaining follow-up items are converted into GitHub tickets by the coordinator and moved to the product teams to improve service and avoid repeating mistakes.
 
 ### Diagram
 
