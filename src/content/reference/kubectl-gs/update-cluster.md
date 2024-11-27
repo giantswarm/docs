@@ -4,13 +4,9 @@ title: "'kubectl gs update cluster' command reference (cluster upgrades)"
 description: Reference documentation on how to upgrade a workload cluster using kubectl-gs.
 weight: 130
 menu:
-  main:
-    parent: uiapi-kubectlgs
-    identifier: uiapi-kubectlgs-updatecluster
-aliases:
-  - /use-the-api/kubectl-gs
-  - /reference/kubectl-gs/update-cluster/
-  - /ui-api/kubectl-gs/update-cluster/
+  principal:
+    parent: reference-kubectlgs
+    identifier: reference-kubectlgs-updatecluster
 last_review_date: 2024-11-28
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -25,11 +21,38 @@ This command's purpose is to modify details of a workload cluster. Currently it 
 
 ## Usage
 
-### Upgrading a workload cluster {#cluster-upgrade} for Vintage cluster
+### Upgrading a workload cluster {#cluster-upgrade} for CAPI cluster
+
+**Note:** This feature is currently only working when the cluster configuration is **not stored** via GitOps.
 
 Upgrades can either be triggered immediately, or the upgrade can be scheduled to happen at a specific date and time.
 
 The following example shows how to upgrade a workload cluster to the release specified via the `--release-version` flag.
+
+```nohighlight
+kubectl gs update cluster \
+  --provider capa \
+  --namespace org-acme \
+  --name a1b2c \
+  --release-version 26.2.0
+```
+
+To schedule a workload cluster upgrade in the future, the `--scheduled-time` flag is used, like in the example below:
+
+```nohighlight
+kubectl-gs update cluster \
+  --provider capa \
+  --name a1b2c \
+  --namespace org-acme \ 
+  --release-version 29.0.0 
+  --scheduled-time "2024-08-28 12:10"
+```
+
+This adds annotations to the cluster resource, triggering the upgrade to the specified version at the scheduled time.
+
+### Upgrading a workload cluster {#cluster-upgrade} for Vintage cluster
+
+To upgrade a workload cluster immediately, use the following command:
 
 ```nohighlight
 kubectl gs update cluster \
@@ -50,33 +73,6 @@ kubectl gs update cluster \
   --name a1b2c \
   --release-version 16.1.0 \
   --scheduled-time "2022-01-01 02:00"
-```
-
-This adds annotations to the cluster resource, triggering the upgrade to the specified version at the scheduled time.
-
-### Upgrading a workload cluster {#cluster-upgrade} for CAPI cluster
-
-**Note:** This feature is currently only working when the cluster configuration is **not stored** via GitOps.
-
-To upgrade a workload cluster immediately, use the following command:
-
-```nohighlight
-kubectl gs update cluster \
-  --provider capa \
-  --namespace org-acme \
-  --name a1b2c \
-  --release-version 26.2.0
-```
-
-To schedule a workload cluster upgrade in the future, the `--scheduled-time` flag is used, like in the example below:
-
-```nohighlight
-kubectl-gs update cluster \
-  --provider capa \
-  --name a1b2c \
-  --namespace org-acme \ 
-  --release-version 29.0.0 
-  --scheduled-time "2024-08-28 12:10"
 ```
 
 ## Flags
