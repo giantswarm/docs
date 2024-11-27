@@ -37,7 +37,7 @@ For {{% impl_title "vintage_aws" %}} (`--provider aws`):
 - [`Cluster`]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
 - `AWSCluster` (`awsclusters.infrastructure.giantswarm.io` API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
 - [`G8sControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
-- [`AWSControlPlane`]({{< relref "/reference/platform-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
+- [`AWSControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
 {{< /tabs >}}

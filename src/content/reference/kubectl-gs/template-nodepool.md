@@ -34,7 +34,7 @@ The resulting resources depend on the provider, set via the `--provider` flag.
 {{< tab id="flags-aws" for-impl="vintage_aws">}}
 
 - [`MachineDeployment`]({{< relref "/reference/platform-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`)
-- [`AWSMachineDeployment`]({{< relref "/reference/platform-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`)
+- [`AWSMachineDeployment`]({{< relref "/vintage/use-the-api/management-api/crd/awsmachinedeployments.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`)
 
 {{< /tab >}}
 {{< /tabs >}}
