@@ -191,9 +191,9 @@ def get_cluster_releases(repo_shortname):
 
 def normalize_version(v):
     """
-    Removes a 'v' prefix from the version string
+    Removes a 'v' prefix from the version string when it is followd by a number
     """
-    if v.startswith('v'):
+    if bool(re.match(r'^v\d', v)):
         return v[1:]
     return v
 

@@ -115,7 +115,7 @@ We provide a [detailed guide]({{< relref "/vintage/getting-started/cloud-provide
 
 When creating a workload cluster, depending on the cloud provider, there will be an [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) or [`AzureCluster`]({{< relref "/vintage/use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) resource created, containing the provider-specific configuration of your workload cluster.
 
-If you create your cluster manifest manually or via the [`kubectl gs template cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}) command, you are free to adapt the provider cluster resource to match your exact requirements before submitting the manifest to the API (e. g. via `kubectl apply`).
+If you create your cluster manifest manually or via the [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/template-cluster" >}}) command, you are free to adapt the provider cluster resource to match your exact requirements before submitting the manifest to the API (e. g. via `kubectl apply`).
 
 In **AWS**, it is possible to reference your credential secret directly. The custom resource definition (CRD) provides an attribute [`.spec.provider.credentialSecret`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md#v1alpha3-.spec.provider.credentialSecret" >}}). The two sub-attributes `name` has to match the credential secret's resource name. The `namespace` sub-attribute accordingly must match the secret's namespace.
 
