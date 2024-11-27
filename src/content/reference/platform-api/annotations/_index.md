@@ -3,6 +3,11 @@ linkTitle: Annotations
 title: Kubernetes resource annotations reference
 description: Overview of Kubernetes resource annotations used by Giant Swarm, and their meaning.
 layout: single
+menu:
+  principal:
+    parent: reference-platform-api
+    identifier: reference-platform-api-annotations
+weight: 600
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-03-08

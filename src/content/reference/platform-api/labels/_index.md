@@ -3,6 +3,11 @@ linkTitle: Labels
 title: Kubernetes resource labels reference
 description: Overview of Kubernetes resource labels used by Giant Swarm, and their meaning.
 layout: single
+menu:
+  principal:
+    parent: reference-platform-api
+    identifier: reference-platform-api-labels
+weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-03-08
