@@ -12,17 +12,20 @@ crd:
   technical_name: rolebindingtemplates.auth.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/rbac-operator
-  source_repository_ref: v0.39.0
+  source_repository_ref: v0.41.1
   versions:
     - v1alpha1
   topics:
     - managementcluster
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
+  - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io/
+  - /reference/cp-k8s-api/rolebindingtemplates.auth.giantswarm.io/
 technical_name: rolebindingtemplates.auth.giantswarm.io
 source_repository: https://github.com/giantswarm/rbac-operator
-source_repository_ref: v0.39.0
+source_repository_ref: v0.41.1
 ---
 
 # RoleBindingTemplate

@@ -12,7 +12,7 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.4.0
+  source_repository_ref: v0.11.2
   versions:
     - v1alpha1
   topics:
@@ -20,9 +20,12 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
+aliases:
+  - /use-the-api/management-api/crd/silences.monitoring.giantswarm.io/
+  - /reference/cp-k8s-api/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.4.0
+source_repository_ref: v0.11.2
 ---
 
 # Silence
@@ -118,6 +121,24 @@ source_repository_ref: v0.4.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.issue_url">.spec.issue_url</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>IssueURL is a link to a GitHub issue describing the problem.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.matchers">.spec.matchers</h3>
 </div>
 <div class="property-body">
@@ -196,12 +217,48 @@ source_repository_ref: v0.4.0
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.owner">.spec.owner</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Owner is GitHub username of a person who created and/or owns the silence.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.postmortem_url">.spec.postmortem_url</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>PostmortemURL is a link to a document describing the problem. Deprecated: Use IssueURL instead.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.targetTags">.spec.targetTags</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">array</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>

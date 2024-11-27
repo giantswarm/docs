@@ -1,5 +1,4 @@
 template_path: ./crd.template
-
 # List of repositories containing CRDs.
 # Sequence is important here if several repos provide the same CRD (based on the full name).
 # In this case, the first repo "wins". Subsequent repos adding the same CRD will result in a
@@ -8,7 +7,7 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions-application
     organization: giantswarm
     short_name: apiextensions-application
-    commit_reference: v0.6.1
+    commit_reference: v0.6.2
     crd_paths:
       - config/crd
     cr_paths:
@@ -46,7 +45,7 @@ source_repositories:
   - url: https://github.com/giantswarm/config-controller
     organization: giantswarm
     short_name: config-controller
-    commit_reference: v0.5.1
+    commit_reference: v0.10.1
     crd_paths:
       - config/crd
     cr_paths:
@@ -57,7 +56,7 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.4.0
+    commit_reference: v0.12.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -71,7 +70,7 @@ source_repositories:
   - url: https://github.com/giantswarm/release-operator
     organization: giantswarm
     short_name: release-operator
-    commit_reference: v3.0.1
+    commit_reference: v4.2.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -86,7 +85,7 @@ source_repositories:
   - url: https://github.com/giantswarm/organization-operator
     organization: giantswarm
     short_name: organization-operator
-    commit_reference: v1.0.2
+    commit_reference: v2.0.2
     crd_paths:
       - config/crd
     cr_paths:
@@ -100,7 +99,7 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
-    commit_reference: v5.0.0
+    commit_reference: v6.6.0
     annotations_paths:
       - pkg/annotation
     crd_paths:
@@ -423,7 +422,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.39.0
+    commit_reference: v0.41.1
     crd_paths:
       - config/crd
     cr_paths:
@@ -437,7 +436,7 @@ source_repositories:
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.0.7
+    commit_reference: v0.0.8
     crd_paths:
       - helm
     metadata:

@@ -12,7 +12,7 @@ crd:
   technical_name: releases.release.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/release-operator
-  source_repository_ref: v3.0.1
+  source_repository_ref: v4.2.0
   versions:
     - v1alpha1
   topics:
@@ -21,9 +21,12 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
+aliases:
+  - /use-the-api/management-api/crd/releases.release.giantswarm.io/
+  - /reference/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/release-operator
-source_repository_ref: v3.0.1
+source_repository_ref: v4.2.0
 ---
 
 # Release
@@ -79,9 +82,6 @@ spec:
     version: 1.0.0
   - name: net-exporter
     version: 1.6.0
-  - componentVersion: 0.29.0
-    name: nginx-ingress-controller
-    version: 1.5.0
   - componentVersion: 0.18.1
     name: node-exporter
     version: 1.2.0
@@ -238,6 +238,37 @@ spec:
 
 <div class="property-description">
 <p>Version of the upstream component used in the app.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.apps[*].dependsOn">.spec.apps[*].dependsOn</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>DependsOn is the list of apps that should be installed before installation of this one is attempted.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.apps[*].dependsOn[*]">.spec.apps[*].dependsOn[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 

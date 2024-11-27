@@ -2,7 +2,8 @@
 title: Organization CRD schema reference (group security.giantswarm.io)
 linkTitle: Organization
 description: |
-  Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.
+  Organization represents schema for managed Kubernetes namespace.
+  Reconciled by organization-operator.
 weight: 100
 crd:
   name_camelcase: Organization
@@ -12,23 +13,27 @@ crd:
   technical_name: organizations.security.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/organization-operator
-  source_repository_ref: v1.0.2
+  source_repository_ref: v2.0.2
   versions:
     - v1alpha1
   topics:
     - managementcluster
 layout: crd
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
+  - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /use-the-api/management-api/crd/organizations.security.giantswarm.io/
+  - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/organization-operator
-source_repository_ref: v1.0.2
+source_repository_ref: v2.0.2
 ---
 
 # Organization
 
 
-<p class="crd-description">Organization represents schema for managed Kubernetes namespace. Reconciled by organization-operator.</p>
+<p class="crd-description">Organization represents schema for managed Kubernetes namespace.
+Reconciled by organization-operator.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">organizations.security.giantswarm.io</dd>
@@ -77,7 +82,10 @@ spec: {}
 </div>
 
 <div class="property-description">
-<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+<p>APIVersion defines the versioned schema of this representation of an object.
+Servers should convert recognized schemas to the latest internal value, and
+may reject unrecognized values.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
 
 </div>
 
@@ -95,7 +103,11 @@ spec: {}
 </div>
 
 <div class="property-description">
-<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>Kind is a string value representing the REST resource this object represents.
+Servers may infer this from the endpoint the client submits requests to.
+Cannot be updated.
+In CamelCase.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
 
@@ -109,7 +121,7 @@ spec: {}
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
@@ -122,7 +134,12 @@ spec: {}
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
-<span class="property-required">Required</span>
+
+</div>
+
+<div class="property-description">
+<p>OrganizationSpec defines the desired state of Organization</p>
+
 </div>
 
 </div>
@@ -135,6 +152,11 @@ spec: {}
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>OrganizationStatus defines the observed state of Organization</p>
 
 </div>
 
