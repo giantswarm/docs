@@ -2,10 +2,8 @@ import datetime
 import json
 import os
 import re
-
 import click
 from colored import fg, bg, attr
-
 from yaml import load
 try:
     from yaml import CLoader as Loader
@@ -16,8 +14,9 @@ except ImportError:
 path              = 'src/content'
 vintage_path      = 'src/content/vintage'
 changes_path      = 'src/content/changes'
-crds_path         = 'src/content/vintage/use-the-api/management-api/crd'
-cluster_apps_path = 'src/content/vintage/use-the-api/management-api/cluster-apps'
+crds_path         = 'src/content/reference/platform-api/crd'
+vintage_crds_path = 'src/content/vintage/use-the-api/management-api/crd'
+cluster_apps_path = 'src/content/reference/platform-api/cluster-apps'
 docs_host         = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
@@ -98,40 +97,40 @@ checks = (
     {
         'id': NO_DESCRIPTION,
         'description': 'Each page should have a description',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_FAIL,
     },
     {
         'id': LONG_DESCRIPTION,
         'description': 'The description should be less than 300 characters',
-        'ignore_paths': [crds_path],
+        'ignore_paths': [crds_path, vintage_crds_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
     {
         'id': NO_FULL_STOP_DESCRIPTION,
         'description': 'The description should end with a full stop',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
     {
         'id': SHORT_DESCRIPTION,
         'description': 'The description should be longer than 70 characters',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
     },
     {
         'id': INVALID_DESCRIPTION,
         'description': 'Description must be a simple string without any markup or line breaks',
-        'ignore_paths': [crds_path],
+        'ignore_paths': [crds_path, vintage_crds_path],
         'severity': SEVERITY_FAIL,
     },
     {
         'id': NO_LINK_TITLE,
         'description': 'The page should have a linkTitle, which appears in menus and list pages. If not given, title will be used and should be no longer than 40 characters.',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_WARN,
     },
     {
@@ -149,7 +148,7 @@ checks = (
     {
         'id': NO_OWNER,
         'description': 'The page should have an owner assigned',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_FAIL,
     },
     {
@@ -161,7 +160,7 @@ checks = (
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
-        'ignore_paths': [crds_path, changes_path, cluster_apps_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path, cluster_apps_path],
         'severity': SEVERITY_WARN,
     },
     {
@@ -180,7 +179,7 @@ checks = (
     {
         'id': NO_USER_QUESTIONS,
         'description': 'The page should have user_questions assigned',
-        'ignore_paths': [crds_path, changes_path],
+        'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_FAIL,
     },
     {
@@ -246,7 +245,7 @@ def print_json(rdict):
                 doc_owner = check.get('owner')
                 if hasattr(doc_owner, "__len__"):
                   for i in doc_owner:
-                    team_name = re.search('\/.*\/([^\/]+)\/?$', i).group(1)
+                    team_name = re.search(r'/.*\/([^\/]+)\/?$', i).group(1)
                     team_label = team_name.replace("-", "/")
                     owners.append(team_label)
             except AttributeError:

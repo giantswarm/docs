@@ -132,4 +132,4 @@ You can interact with the Giant Swarm app platform through creating `App` custom
 - [App CRD reference]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
 - [The Giant Swarm developer portal]({{< relref "/overview/developer-portal/" >}})
 
-As you have direct access to the platform API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack. And as Kubernetes resources and especially some custom resource definitions require lots of boilerplate and conventions, our team built a [kubectl plugin]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to help you with that.
+As you have direct access to the platform API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack. And as Kubernetes resources and especially some custom resource definitions require lots of boilerplate and conventions, our team built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.

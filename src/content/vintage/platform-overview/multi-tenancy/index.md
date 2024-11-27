@@ -140,6 +140,6 @@ Organizations can be managed in several ways.
 
 - The [Management API]({{< relref "/vintage/use-the-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
 
-In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/vintage/use-the-api/kubectl-gs/_index.md" >}}) plug-in.
+In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/reference/kubectl-gs/_index.md" >}}) plug-in.
 
 <!-- TODO: set links to more organization-specific sub sections once they are published -->

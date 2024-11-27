@@ -105,7 +105,7 @@ to keep the GitHub action up to date.
 ## Register the catalog
 
 To register the catalog with app platform you need to create a Catalog CR in the
-management cluster. This can be done using [kubectl gs template catalog]({{< relref "/vintage/use-the-api/kubectl-gs/template-catalog" >}}).
+management cluster. This can be done using [kubectl gs template catalog]({{< relref "/reference/kubectl-gs/template-catalog" >}}).
 
 For community catalogs the URL should match the URL used for the `helm repo add`
 command and is the location of the Helm `index.yaml`.
@@ -155,7 +155,7 @@ has any other value it will be hidden in the web UI.
 
 If the Catalog CR is not in the `default` namespace you need to set the catalog
 namespace to the organization namespace where it is stored. This can be done using
-[kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app" >}}).
+[kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app" >}}).
 
 ```nohighlight
 kubectl gs template app \
