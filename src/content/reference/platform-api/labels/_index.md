@@ -97,7 +97,11 @@ Associates the resource or the node with a node pool, using the name of the node
 
 ### giantswarm.io/managed-by
 
-_Description pending_
+Defines which operator is in charge of the resource. Common examples:
+
+- `rbac-operator` on RBAC resources indicates that the operator created these and will reconcile/delete them.
+- `flux` on an app resource indicates that Flux reconciles the application.
+- A bundle name on an `App` resource indicates that a bundle has installed the App.
 
 <!--
 - TODO Found on various resources in MC and WC. Value differs.
