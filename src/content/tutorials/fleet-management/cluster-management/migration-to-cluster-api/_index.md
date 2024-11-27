@@ -56,6 +56,10 @@ Our engineers will check that all resources and infrastructure are correctly mig
 - Some customers have been using [k8s-initiator-app](https://github.com/giantswarm/k8s-initiator-app/) to configure some aspects of the workload cluster API.
   In the new Cluster API implementation, [most of the features enabled by the app](https://github.com/giantswarm/capi-migration-cli/tree/main/k8s-initiator-features) are now supported natively by the platform. The app should be removed and moved to the new syntax if our migration CLI doesn't handle your use-case. Giant Swarm account engineers will help you with this process.
 
+### Service Account issuer switch
+
+
+
 ### Cluster manifest clean-up
 
 There are some fields in the cluster manifest that are only used during the migration, and can be cleaned up afterward. We try to make sure our migration tool cleans up the manifests and removes those fields automatically after a successful migration, but there could be some left-overs, or it could be that a cluster got migrated before that clean-up process got implemented in the tool. Below, you'll find a non-exhaustive list of the fields that can be cleaned up (or modified) after a successful migration:
@@ -98,7 +102,7 @@ data:
             region: eu-west-1
     internal:
         migration:
-            irsaAdditionalDomain: irsa.foo.k8s.bar.acme.net
+            irsaAdditionalDomain: api.foo.k8s.vintage.acme.net
     cluster:
         internal:
             advancedConfiguration:
@@ -107,7 +111,7 @@ data:
                         bindPort: 443
                         etcdPrefix: giantswarm.io
                         extraCertificateSANs:
-                            - api.foo.k8s.bar.acme.net
+                            - api.foo.k8s.vintage.acme.net
                     etcd:
                         initialClusterState: existing
                         experimental:
@@ -170,14 +174,14 @@ Diff:
              region: eu-west-1
 -    internal:
 -        migration:
--            irsaAdditionalDomain: irsa.foo.k8s.bar.acme.net
+-            irsaAdditionalDomain: api.foo.k8s.vintage.acme.net
      cluster:
          internal:
              advancedConfiguration:
 @@ -32,43 +29,23 @@
                          etcdPrefix: giantswarm.io
                          extraCertificateSANs:
-                             - api.foo.k8s.bar.acme.net
+                             - api.foo.k8s.vintage.acme.net
 -                    etcd:
 -                        initialClusterState: existing
 -                        experimental:
@@ -227,7 +231,7 @@ Diff:
 +                    clusterConfiguration:
 +                        apiServer:
 +                            serviceAccountIssuers:
-+                                - url: https://irsa.foo.k8s.bar.acme.net
++                                - url: https://api.foo.k8s.vintage.acme.net
 +                                - templateName: awsIrsaServiceAccountIssuer
  kind: ConfigMap
  metadata:
