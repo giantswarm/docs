@@ -31,8 +31,8 @@ In general, you can manage App CRs with any tool that can communicate with the K
 
 ## Setting up
 
-You can access your management cluster using the [kubectl gs login]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}})
-command of our kubectl plugin. See [here]({{< relref "/vintage/use-the-api/kubectl-gs/installation" >}})
+You can access your management cluster using the [kubectl gs login]({{< relref "/reference/kubectl-gs/login" >}})
+command of our kubectl plugin. See [here]({{< relref "/reference/kubectl-gs/installation" >}})
 for how to install it.
 
 In the management cluster your App CRs are stored in a namespace with the same
@@ -105,7 +105,7 @@ giantswarm   ingress-nginx   v1.8.0        3.0.0     25d
 
 ## Creating an App CR
 
-We can use the [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}})
+We can use the [kubectl gs template app]({{< relref "/reference/kubectl-gs/login" >}})
 command to generate the App CR using the latest version from the previous command.
 
 ```nohighlight

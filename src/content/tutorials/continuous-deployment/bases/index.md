@@ -64,7 +64,7 @@ bases
             └── kustomization.yaml
 ```
 
-The current possible values for the providers can be checked in the [command reference]({{< relref "/vintage/use-the-api/kubectl-gs/gitops/add-base" >}}).
+The current possible values for the providers can be checked in the [command reference]({{< relref "/reference/kubectl-gs/gitops/add-base" >}}).
 
 ## Create versioned base (optional) {#create-versioned-base-optional}
 

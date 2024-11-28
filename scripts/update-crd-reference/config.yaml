@@ -1,5 +1,4 @@
 template_path: ./crd.template
-
 # List of repositories containing CRDs.
 # Sequence is important here if several repos provide the same CRD (based on the full name).
 # In this case, the first repo "wins". Subsequent repos adding the same CRD will result in a
@@ -8,7 +7,7 @@ source_repositories:
   - url: https://github.com/giantswarm/apiextensions-application
     organization: giantswarm
     short_name: apiextensions-application
-    commit_reference: v0.6.1
+    commit_reference: v0.6.2
     crd_paths:
       - config/crd
     cr_paths:
@@ -46,22 +45,18 @@ source_repositories:
   - url: https://github.com/giantswarm/config-controller
     organization: giantswarm
     short_name: config-controller
-    commit_reference: v0.5.1
+    commit_reference: v0.10.1
     crd_paths:
       - config/crd
     cr_paths:
       - docs/cr
     metadata:
       configs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-honeybadger
-        topics:
-          - apps
-          - managementcluster
+        hidden: true
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.4.0
+    commit_reference: v0.12.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -75,7 +70,7 @@ source_repositories:
   - url: https://github.com/giantswarm/release-operator
     organization: giantswarm
     short_name: release-operator
-    commit_reference: v3.0.1
+    commit_reference: v4.2.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -90,7 +85,7 @@ source_repositories:
   - url: https://github.com/giantswarm/organization-operator
     organization: giantswarm
     short_name: organization-operator
-    commit_reference: v1.0.2
+    commit_reference: v2.0.2
     crd_paths:
       - config/crd
     cr_paths:
@@ -98,13 +93,13 @@ source_repositories:
     metadata:
       organizations.security.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-bigmac
+          - https://github.com/orgs/giantswarm/teams/team-shield
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/apiextensions
     organization: giantswarm
     short_name: apiextensions
-    commit_reference: v5.0.0
+    commit_reference: v6.6.0
     annotations_paths:
       - pkg/annotation
     crd_paths:
@@ -114,164 +109,69 @@ source_repositories:
       - docs/cr
     metadata:
       awsclusters.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsclusters.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       awsclusterconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsclustercontrolleridentities.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsclusterroleidentities.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsclusterstaticidentities.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsconfigs.provider.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awscontrolplanes.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       awsfargateprofiles.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsmachinedeployments.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
+        hidden: true
       awsmachinepools.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsmachines.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsmachinetemplates.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsmanagedclusters.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsmanagedcontrolplanes.controlplane.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       awsmanagedmachinepools.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azureassignedidentities.aadpodidentity.k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azureclusteridentities.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azureclusters.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       azureclusterconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azureconfigs.provider.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azureidentities.aadpodidentity.k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azureidentitybindings.aadpodidentity.k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremachinepools.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       azuremachinepools.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       azuremachines.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       azuremachinetemplates.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       azuremanagedclusters.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremanagedcontrolplanes.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azuremanagedmachinepools.exp.infrastructure.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       azurepodidentityexceptions.aadpodidentity.k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       certconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        topics:
-          - managementcluster
-          - workloadcluster
+        hidden: true
       chartconfigs.core.giantswarm.io:
         hidden: true
       clusterclasses.cluster.x-k8s.io:
@@ -283,235 +183,65 @@ source_repositories:
       clusters.core.giantswarm.io:
         hidden: true
       clusters.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-          - azure
-          - capa
-          - vsphere
-        topics:
-          - workloadcluster
-      drainerconfigs.core.giantswarm.io:
-        hidden: true
-      draughtsmanconfigs.core.giantswarm.io:
         hidden: true
       eksconfigs.bootstrap.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       eksconfigtemplates.bootstrap.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
         hidden: true
       etcdbackups.backup.giantswarm.io:
         hidden: true
-      flannelconfigs.core.giantswarm.io:
-        hidden: true
       g8scontrolplanes.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-        deprecation:
-          info: This CRD will be removed once Cluster API resources are used for all AWS workload clusters.
+        hidden: true
       haproxyloadbalancers.infrastructure.cluster.x-k8s.io:
         hidden: true
       ingressconfigs.core.giantswarm.io:
         hidden: true
       kubeadmconfigs.bootstrap.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - aws
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       kubeadmconfigtemplates.bootstrap.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-          - https://github.com/orgs/giantswarm/teams/team-rocket
         hidden: true
       kubeadmcontrolplanes.controlplane.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - aws
-          - azure
-        topics:
-          - workloadcluster
-      kvmclusterconfigs.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - kvm
-        topics:
-          - workloadcluster
-        deprecation:
-          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
-      kvmconfigs.provider.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - kvm
-        topics:
-          - workloadcluster
-        deprecation:
-          info: Support for KVM clusters has reached end of life and this CRD will be removed in future versions.
+        hidden: true
       machinedeployments.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - aws
-          - vsphere
-        topics:
-          - workloadcluster
+        hidden: true
       machinehealthchecks.cluster.x-k8s.io:
         hidden: true
       machinepools.exp.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       machinepools.cluster.x-k8s.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       machines.cluster.x-k8s.io:
         hidden: true
       machinesets.cluster.x-k8s.io:
         hidden: true
       networkpools.infrastructure.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - aws
-        topics:
-          - workloadcluster
-      openstackclusters.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
-      openstackclustertemplates.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
-      openstackmachines.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
-      openstackmachinetemplates.infrastructure.cluster.x-k8s.io:
-        hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - openstack
-        topics:
-          - workloadcluster
       releasecycles.release.giantswarm.io:
         hidden: true
       sparks.core.giantswarm.io:
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-phoenix
-        provider:
-          - azure
-        topics:
-          - workloadcluster
+        hidden: true
       storageconfigs.core.giantswarm.io:
         hidden: true
-        topics:
-          - managementcluster
       vsphereclusteridentities.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vsphereclusters.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vsphereclustertemplates.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vspheredeploymentzones.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vspherefailuredomains.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vspheremachines.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vspheremachinetemplates.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
       vspherevms.infrastructure.cluster.x-k8s.io:
         hidden: true
-        owner:
-          - https://github.com/orgs/giantswarm/teams/team-rocket
-        provider:
-          - vsphere
-        topics:
-          - workloadcluster
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.39.0
+    commit_reference: v0.41.1
     crd_paths:
       - config/crd
     cr_paths:
@@ -519,13 +249,13 @@ source_repositories:
     metadata:
       rolebindingtemplates.auth.giantswarm.io:
         owner:
-          - https://github.com/orgs/giantswarm/teams/team-bigmac
+          - https://github.com/orgs/giantswarm/teams/team-shield
         topics:
           - managementcluster
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.0.7
+    commit_reference: v0.0.8
     crd_paths:
       - helm
     metadata:
