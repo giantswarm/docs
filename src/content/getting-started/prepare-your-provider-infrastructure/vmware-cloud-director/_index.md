@@ -1,9 +1,13 @@
 ---
 title: Prepare your provider environment for VMware Cloud Director
-linkTitle: Prepare your VCD environment
+linkTitle: VCD environment
 description: Prepare your VMware Cloud Director setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 30
 last_review_date: 2024-11-28
+menu:
+  principal:
+    parent: getting-started-prepare-provider-infrastructure
+    identifier: getting-started-prepare-provider-infrastructure-vcd
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

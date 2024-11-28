@@ -1,8 +1,12 @@
 ---
-title: Prepare your AWS account
+title: AWS account
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2024-06-14
+last_review_date: 2024-11-28
+menu:
+  principal:
+    parent: getting-started-prepare-provider-infrastructure
+    identifier: getting-started-prepare-provider-infrastructure-aws
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
