@@ -22,7 +22,7 @@ In this guide, we give an overview and introduction to how to create and use the
 
 ## Requirements
 
-This guide will configure networking for the `hello-world` app on a workload cluster. [Create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) to use, or choose an already running cluster. Then, deploy the `hello-world` application as explained [here]({{< relref "/getting-started/install-an-application" >}}).
+This guide will configure networking for the `hello-world` app on a workload cluster. [Create a workload cluster]({{< relref "/getting-started/create-a-workload-cluster" >}}) to use, or choose an already running cluster. Then, deploy the `hello-world` application as explained [here]({{< relref "/getting-started/install-an-application" >}}).
 
 ## Step 1: Understand network policies
 

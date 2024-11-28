@@ -1,8 +1,8 @@
 ---
-title: Create a first workload cluster
+title: Create a workload cluster
 description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 40
-last_review_date: 2024-08-21
+last_review_date: 2024-11-28
 menu:
   principal:
     parent: getting-started

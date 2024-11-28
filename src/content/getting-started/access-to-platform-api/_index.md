@@ -2,7 +2,7 @@
 title: Access to the platform API
 description: How engineers can access the platform API to provision new workload clusters or deploy applications.
 weight: 30
-last_review_date: 2024-07-17
+last_review_date: 2024-11-28
 menu:
   principal:
     parent: getting-started
@@ -22,7 +22,6 @@ Usually, to interact with the platform API, you have three options:
 
 1. Use GitOps flavour using Flux
 2. Use the `kubectl` command-line tool with our custom plugin
-3. Use the [Giant Swarm Web UI](https://docs.giantswarm.io/ui-api/)
 
 This guide focuses on the second option, using the `kubectl` command-line tool. However, you can find more information about the other options in the [tutorials](https://docs.giantswarm.io/tutorials/).
 
@@ -76,7 +75,7 @@ testing                 97d
 giantswarm              97d
 ```
 
-Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [Multi-tenancy]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
+Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [Multi-tenancy]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
 Secondly, run the `kubectl gs get clusters -A` command, which shows all the clusters managed by your management cluster, the `-A` flag stands for all namespaces.
 
@@ -115,4 +114,4 @@ You can notice that the apps are deployed in the `org-x` namespace and are prefi
 
 ## Next step
 
-Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/getting-started/create-a-workload-cluster" >}}).

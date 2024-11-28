@@ -191,10 +191,10 @@ The `<SUBSCRIPTION_NAME>` is a short unique name referencing Azure subscription 
 
 **Note**: The [official documentation](https://capz.sigs.k8s.io/topics/workload-identity) provides more information about configuring Azure credentials.
 
-In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AzureCluster` uses to provision the cluster adjusting the value `providerSpecific.azureClusterIdentity.name`.
+In the [next step]({{< relref "/getting-started/create-a-workload-cluster" >}}) you define which role the `AzureCluster` uses to provision the cluster adjusting the value `providerSpecific.azureClusterIdentity.name`.
 
 **Note**: If you are working with a Giant Swarm partner, you might not have access to the platform API. Please provide the credentials, CAPZ controller, and staff to your partner contact.
 
 ## Next steps
 
-Contact your Giant Swarm account engineer to verify the setup and proceed with the management cluster provisioning. For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+Contact your Giant Swarm account engineer to verify the setup and proceed with the management cluster provisioning. For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first. In case you have already set up the management cluster and you have just configured a new Azure subscription, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/create-a-workload-cluster" >}}).

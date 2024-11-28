@@ -26,7 +26,7 @@ aliases:
 
 ### How can I create a cluster or node pool
 
-`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) reference pages. You can find more information in [the getting started page]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) reference pages. You can find more information in [the getting started page]({{< relref "/getting-started/create-a-workload-cluster" >}}).
 
 ### How can I install an app in a workload cluster
 

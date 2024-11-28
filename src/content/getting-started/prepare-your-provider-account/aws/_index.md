@@ -214,10 +214,10 @@ The `<ACCOUNT_NAME>` is a short unique name referencing the AWS account (`develo
 
 **Note**: The [official documentation](https://cluster-api-aws.sigs.k8s.io/topics/multitenancy) provides more information about configuring AWS credentials.
 
-In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AWSCluster` uses to provision the cluster adjusting the value `aws.awsClusterRoleIdentityName`.
+In the [next step]({{< relref "/getting-started/create-a-workload-cluster" >}}) you define which role the `AWSCluster` uses to provision the cluster adjusting the value `aws.awsClusterRoleIdentityName`.
 
 **Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
 
 ## Next steps
 
-Contact your Giant Swarm account engineer to verify the setup and proceed with the provisioning of the management cluster. For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first. In case you have already set up the management cluster and you have just configured a new AWS account, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+Contact your Giant Swarm account engineer to verify the setup and proceed with the provisioning of the management cluster. For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first. In case you have already set up the management cluster and you have just configured a new AWS account, you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/create-a-workload-cluster" >}}).
