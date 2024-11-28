@@ -74,7 +74,7 @@ The `controller` in NSX ALB plays a pivotal role. It's responsible for communica
 
 The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it's recommended that a specific user and role be created for the controller.
 
-**Warning**: The password mustn’t contain ` \ ` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
+**Warning**: The password may not contain `\` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
 
 **Note**: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
 
