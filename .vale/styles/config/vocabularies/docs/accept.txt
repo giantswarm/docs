@@ -49,6 +49,7 @@ namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
 NLB[s]?
+onboarding
 passthrough
 perfectly
 Promtail
@@ -58,6 +59,7 @@ rapidly
 really
 relref
 runbook[s]?
+SemVer
 separately
 Sigstore
 Spotify

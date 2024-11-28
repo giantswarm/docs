@@ -23,7 +23,7 @@ Before we explain how to set up ingress for a service, please read the next sect
 
 Setting up ingress means to make services publicly available via DNS names. For an application facing the public, you will eventually want to set up names ending in your own domain.
 
-However, for development or test purposes, you can use the fact that every Giant Swarm installation maps to a DNS zone. We call this the **ingress base domain**.
+However, for development or test purposes, you can use the fact that every Giant Swarm installation maps to a DNS zone. We call this the __ingress base domain__.
 
 In our cloud installation, for example, the ingress base domain is
 
