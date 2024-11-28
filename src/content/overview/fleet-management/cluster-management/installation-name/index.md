@@ -24,7 +24,7 @@ also use it in your internal communication.
 
 For example, if the installation is called `panda`, it's easy to refer to a concrete workload cluster called `prod-eu1` as follows in chat:
 
-> Dear Giant Swarm support, we see this problem on panda/prod-eu1: ...
+> Dear Giant Swarm support, we see this problem on panda/prod-eu1 
 
 ## Criteria for good installation names
 
