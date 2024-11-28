@@ -1,6 +1,6 @@
 ---
-linkTitle: Training Catalog
-title: Giant Swarm Training Catalog
+linkTitle: Training catalog
+title: Giant Swarm training catalog
 description: Overview of the trainings and workshops offered to customers in order to share our knowledge and best practices with them and answer possible follow-up questions.
 weight: 20
 menu:
