@@ -44,8 +44,8 @@ The Zot project provides a [full configuration reference](https://zotregistry.de
 
 You can configure either active or on-demand replication via the Zot configuration file.
 
-- **Active** (`onDemand: false`) means that Zot will actively sync images from the upstream registry, to have it available when needed.
-- **On-demand** (`onDemand: true`) means that Zot will only pull the image when it's requested, and then cache it.
+- __Active__ (`onDemand: false`) means that Zot will actively sync images from the upstream registry, to have it available when needed.
+- __On-demand__ (`onDemand: true`) means that Zot will only pull the image when it's requested, and then cache it.
 
 The below example configures `docker.io` as on-demand mirror, while the `my-registry.example.org` registry it's set to actively sync all `6.*` tagged images for `my-organization/my-image`.
 
@@ -92,7 +92,7 @@ The below example configures `docker.io` as on-demand mirror, while the `my-regi
 
 <!-- Please update the section below once containerd mirroring configuration is settled -->
 
-**Note:** For Zot to be used on the cluster, you need to for example configure containerd on the nodes to use Zot as a mirror for given upstream registries. The containerd configuration in Giant Swarm clusters is currently subject to change. Please reach out to Giant Swarm support for the latest information.
+__Note:__ For Zot to be used on the cluster, you need to for example configure containerd on the nodes to use Zot as a mirror for given upstream registries. The containerd configuration in Giant Swarm clusters is currently subject to change. Please reach out to Giant Swarm support for the latest information.
 
 For the full mirroring documentation, check the [upstream documentation](https://zotregistry.dev/latest/articles/mirroring/).
 

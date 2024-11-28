@@ -153,4 +153,4 @@ You can interact with the Giant Swarm App Platform through creating App custom r
 Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 
 As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
-And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to help you with that.
+And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.
