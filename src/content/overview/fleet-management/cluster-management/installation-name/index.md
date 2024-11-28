@@ -32,7 +32,7 @@ The installation name can't be changed. So the best names are long-lasting, even
 
 There is a GitHub repository with [installation name candidates](https://github.com/giantswarm/installation-names) available for you to pick from. The names offered there should fulfill all of our criteria for a name.
 
-## How to select a name
+## How to claim a name
 
 To select a name for your new installation, please
 
