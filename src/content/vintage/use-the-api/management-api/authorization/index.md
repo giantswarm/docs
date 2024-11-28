@@ -90,15 +90,15 @@ We'll explain the effect of binding these roles in the next section on RBAC auto
 
 As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we have some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
 
-**Grant admin permissions to a default group**. Where customers own a Giant Swarm installation exclusively, they name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
+    - **Grant admin permissions to a default group**: you have to name a group from your identity provider configured to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
 
-**Provide service accounts with admin privileges**. Service accounts named `automation` are created in the `default` namespace and in all organization namespaces, bound to the pre-defined `cluster-admin` role.
+    - **Provide service accounts with admin privileges**: service accounts named `automation` are created in the `default` namespace and in all organization namespaces, bound to the pre-defined `cluster-admin` role.
 
-**Grant access to releases and app catalogs**. For every subject (user, group, service account) bound to any role (`Role` or `ClusterRole`) in an organization namespace, we ensure that read permissions are granted to workload cluster releases (in the cluster scope) and app catalogs provided by Giant Swarm (in the `default` namespace).
+    - **Grant access to releases and app catalogs**: for every subject (user, group, service account) bound to any role (`Role` or `ClusterRole`) in an organization namespace, we ensure that read permissions are granted to workload cluster releases (in the cluster scope) and app catalogs provided by Giant Swarm (in the `default` namespace).
 
-**Grant access to resources in workload cluster namespaces**. For every subject bound to the `read-in-cluster-ns` role in an organization namespace, we ensure read access to `App`, `ConfigMap` and `Secret` resources in the workload cluster namespaces belonging to the organization. Likewise, for subjects bound to the role `write-in-cluster-ns`, we ensure full permissions to these resources.
+    - **Grant access to resources in workload cluster namespaces**: for every subject bound to the `read-in-cluster-ns` role in an organization namespace, we ensure read access to `App`, `ConfigMap` and `Secret` resources in the workload cluster namespaces belonging to the organization. Likewise, for subjects bound to the role `write-in-cluster-ns`, we ensure full permissions to these resources.
 
-**Grant access to the organization**. For every subject bound to any role in an organization's namespace, we ensure that the subject also has `get` permission to the `Organization` resource defining that organization. (Why? As this allows clients like our web UI to detect which organizations a user has access to, without requiring `list` permissions for organizations.)
+    - **Grant access to the organization**: for every subject bound to any role in an organization's namespace, we ensure that the subject also has `get` permission to the `Organization` resource defining that organization. (Why? As this allows clients like our web UI to detect which organizations a user has access to, without requiring `list` permissions for organizations.)
 
 ### Role Binding Templates {#role-binding-templates}
 

@@ -22,6 +22,8 @@ Giant Swarm perceives the cloud-native landscape as a journey, and it takes time
 
 ### Getting Started with Giant Swarm
 
+Giant Swarm offers a series of training sessions to help you get started with our platform. During the onboarding process, your account engineer will schedule these sessions. Our experts will present to you the following topics:
+
 [_Team Planeteers_](https://www.giantswarm.io/about)
 
 - Who is Giant Swarm?
