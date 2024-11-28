@@ -76,7 +76,7 @@ The Cluster API controller that provisions the infrastructure in the vSphere env
 
 **Warning**: The password mustn’t contain ` \ ` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
 
-__Note__: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
+**Note**: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
 
 Create the user role browsing to `Administration > Access Control > Roles`and clicking `NEW`. The role must have at least the following permissions:
 
@@ -90,8 +90,8 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Sessions` | `Message`<br>`Validate session` |
 | `Profile driven storage` _(vSphere 7)_<br>`VM storage policies` _(vSphere 8)_ | `Profile-driven storage view`<br>`View VM storage policies` |
 | `vApp` | `Import` |
-| `vSphere Tagging` | `Assign or Unassign vSphere Tag `<br>`Assign or Unassign vSphere Tag on Object` |
-| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Console interaction `<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
+| `vSphere Tagging` | `Assign or Unassign vSphere Tag`<br>`Assign or Unassign vSphere Tag on Object` |
+| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Console interaction`<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
@@ -106,7 +106,7 @@ Apart of the permissions you need to assign the role to the following objects:
 | Distributed Switch | |
 | VM and Template folders | Yes |
 
-__Warning__: In case you want to use failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
+**Warning**: In case you want to use failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
 
 ## Step 3: Virtual machine templates
 
