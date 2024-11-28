@@ -1,14 +1,14 @@
 ---
-title: Prepare your provider account for VMware Cloud Director
-linkTitle: Prepare your VCD account
+title: Prepare your provider environment for VMware Cloud Director
+linkTitle: Prepare your VCD environment
 description: Prepare your VMware Cloud Director setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 30
-last_review_date: 2024-05-17
+last_review_date: 2024-11-28
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
-  - How do I prepare my VMware Cloud Director account for the cloud-native developer platform?
-  - What do I need to do to prepare my VCD account for the cloud-native developer platform?
+  - How do I prepare my VMware Cloud Director environment for the cloud-native developer platform?
+  - What do I need to do to prepare my VCD environment for the cloud-native developer platform?
 ---
 
 In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, several prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).
@@ -54,13 +54,13 @@ To obtain the credentials, you need to create a new role by browsing to `Adminis
 
 ## Step 3: Virtual machine templates
 
-To provision the virtual machines (VMs) for the cluster nodes, the necessary `vApp templates` must be provided in the `giantswarm` organization's catalog. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
+To provision the virtual machines (VMs) for the cluster nodes, the necessary `vApp templates` must be provided in the `giantswarm` organization's catalog. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-xxxx.y.z-kube-x.yy.zz-tooling-x.yy.1-gs`).
 
-__Note__: Our engineers can upload the `vApp templates` to the `giantswarm` catalog or provide you with them, as uploads can fail over a WAN connection in some VCD environments.
+__Note__: Our engineers can upload the `vApp templates` to the `giantswarm` catalog, or they can provide them to you if uploads fail over a WAN connection like in some VCD environments.
 
 ## Step 4:  Virtual machine sizing
 
-To define the set of instance types available to the users when deploying clusters, you need to prepare the [virtual machine sizing policies](https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-F6719175-7A29-42CA-BB00-A6BDC22B3EEC.html). You can choose the name and size of these policies, but we propose the following ones as a recommendation
+To define the set of instance types available to the users when deploying clusters, you need to prepare the [virtual machine sizing policies](https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-F6719175-7A29-42CA-BB00-A6BDC22B3EEC.html). You can choose the name and sizes of these policies, but we propose the following ones as a starting point
 
 | Name | vCPU | Memory |
 |------|------|--------|
