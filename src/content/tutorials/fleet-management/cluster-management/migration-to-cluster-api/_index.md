@@ -64,7 +64,7 @@ Our engineers will check that all resources and infrastructure are correctly mig
 
 For context, a cluster Service Account issuer is an OIDC provider that signs and issues the tokens for the cluster's Service Accounts. In turn, these Service Accounts can be used to authenticate workloads against the Kubernetes API and against the AWS API via IRSA.
 
-In CAPA, since the cluster domain name changes from Vintage, a new Service Account issuer is also introduced. To make for a smooth migration though, we support defining multiple issuers in a cluster. This way, Service Account tokens issued by all the defined issuers will be accepted in the cluster's K8s API. The accepted issuers are defined in `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` in the cluster App values (order matters as we'll see below).
+In CAPA, since the cluster domain name changes from Vintage, a new Service Account issuer is also introduced. To make for a smooth migration though, we support defining multiple issuers in a cluster. This way, Service Account tokens issued by all the defined issuers will be accepted in the cluster's Kubernetes API. The accepted issuers are defined in `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` in the cluster App values (order matters as we'll see below).
 
 After a cluster is migrated to CAPI, the Vintage Service Account issuer needs to be phased out, since it's tied to the Vintage cluster domain name, which is also to be phased out eventually. This is a gradual, multi-step process that will require rolling the master nodes in multiple phases.
 
@@ -111,7 +111,7 @@ After a cluster is migrated to CAPI, the Vintage Service Account issuer needs to
    - This will roll the master nodes of the cluster.
    - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
 3. Wait until all Service Account tokens have been renewed
-   - For [bound service account tokens](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume) this happens either when the Pod gets deleted or after a defined lifespan (by default, that is 1 hour). This could be forced by rolling all the worker nodes, which would delete and re-schedule all Pods.
+   - For [bound service account tokens](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume) this happens either when the Pod gets deleted or after a defined lifespan (1 hour by default). This could be forced by rolling all the worker nodes, which would delete and re-schedule all Pods.
    - If [long-lived tokens are in use via `Secret` objects](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#manual-secret-management-for-serviceaccounts), these will need to be re-created and re-distributed manually.
 4. Remove the Vintage issuer from the cluster configuration values (`cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`). Important notes:
    - All Service Account tokens issued by the Vintage issuer will no longer be accepted by the cluster's Kubernetes API, so make sure all tokens are renewed (step 3.).
