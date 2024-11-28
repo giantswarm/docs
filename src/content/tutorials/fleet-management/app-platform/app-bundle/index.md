@@ -115,7 +115,7 @@ spec:
 ```
 
 These two settings ensure this `App` custom resource is picked up and reconciled by the unique app operator. When the `kubectl-gs` is used then both of these fields are set correctly when templating an app, when the
-`--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}), so that there is no need to remember about it.
+`--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}}), so that there is no need to remember about it.
 
 <div class="feedback well">
 <h5>
@@ -190,6 +190,6 @@ metadata:
   namespace: wc1
 ```
 
-Please refer to [`App` configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) to understand how the user configuration works, and to the [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}) reference to understand how you can automate this process.
+Please refer to [`App` configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) to understand how the user configuration works, and to the [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}}) reference to understand how you can automate this process.
 
 At this point, the bundle's `App` custom resource carries all the information to be successfully installed.

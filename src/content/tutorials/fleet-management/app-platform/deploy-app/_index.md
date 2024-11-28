@@ -27,7 +27,7 @@ In general, you can manage `App` custom resources with any tool that can communi
 
 ## Setting up
 
-You can access your management cluster using the [`kubectl gs login`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}}) command of our kubectl plugin. See [here]({{< relref "/vintage/use-the-api/kubectl-gs/installation" >}}) for how to install it.
+You can access your management cluster using the [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) command of our kubectl plugin. See [here]({{< relref "/reference/kubectl-gs/installation" >}}) for how to install it.
 
 In the management cluster your App custom resources are stored in a namespace with the same name as your workload cluster ID. Let's set an environment variable for this which we will use in the later steps.
 
@@ -90,7 +90,7 @@ giantswarm   ingress-nginx   v1.8.0        3.0.0     25d
 
 ## Creating an App resource
 
-We can use the [`kubectl gs template app`]({{< relref "/vintage/use-the-api/kubectl-gs/login" >}})
+We can use the [`kubectl gs template app`]({{< relref "/reference/kubectl-gs/login" >}})
 command to generate the `App` resource using the latest version from the previous command.
 
 ```nohighlight

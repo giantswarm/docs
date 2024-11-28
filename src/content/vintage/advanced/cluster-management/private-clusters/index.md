@@ -40,7 +40,7 @@ Private clusters have special requirements:
 
 To get everything set up correctly, please get in contact with Giant Swarm. We will help creating and supporting your desired private cluster configuration within your network architecture.
 
-At the moment, we have these [`kubectl gs template cluster` command line options]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}) to configure access to/from the cluster:
+At the moment, we have these [`kubectl gs template cluster` command line options]({{< relref "/reference/kubectl-gs/template-cluster" >}}) to configure access to/from the cluster:
 
 - `--cluster-type`
 - `--vpc-mode`

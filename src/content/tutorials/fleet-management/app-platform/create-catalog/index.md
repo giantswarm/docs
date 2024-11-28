@@ -78,7 +78,7 @@ The recommendation is to use [`dependabot`](https://docs.github.com/en/code-secu
 
 ## Register the catalog {#register-the-catalog}
 
-To register the catalog with app platform you need to create a `Catalog` resource in the platform. This can be done using [`kubectl gs template catalog`]({{< relref "/vintage/use-the-api/kubectl-gs/template-catalog" >}}).
+To register the catalog with app platform you need to create a `Catalog` resource in the platform. This can be done using [`kubectl gs template catalog`]({{< relref "/reference/kubectl-gs/template-catalog" >}}).
 
 For community catalogs the address should match the address used for the `helm repo add` command and is the location of the `helm` `index.yaml`.
 
@@ -121,7 +121,7 @@ If its value is `public` it will appear in the [developer portal]({{< relref "/o
 
 ## Install an app from the catalog
 
-If the `Catalog` resource isn't in the `default` namespace you need to set the catalog namespace to the organization namespace where it's stored. This can be done using [`kubectl gs template app`]({{< relref "/vintage/use-the-api/kubectl-gs/template-app" >}}).
+If the `Catalog` resource isn't in the `default` namespace you need to set the catalog namespace to the organization namespace where it's stored. This can be done using [`kubectl gs template app`]({{< relref "/reference/kubectl-gs/template-app" >}}).
 
 ```nohighlight
 kubectl gs template app \

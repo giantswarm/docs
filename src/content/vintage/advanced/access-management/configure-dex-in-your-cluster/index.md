@@ -372,7 +372,7 @@ To get an overview on the authentication success and error rates of your Dex ins
 
 ## Logging into your workload cluster via `kubectl gs` with `Athena`
 
-Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs]({{< relref "/vintage/use-the-api/kubectl-gs" >}}).
+Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs]({{< relref "/reference/kubectl-gs" >}}).
 
 In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL.
 On all Giant Swarm management clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
@@ -490,4 +490,4 @@ __Want to simplify initial access setup?__ Use our [RBAC bootstrap app](https://
 
 - [Authenticating with Microsoft Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}})
 - [App platform overview]({{< relref "/vintage/platform-overview/app-platform" >}})
-- [kubectl gs]({{< relref "/vintage/use-the-api/kubectl-gs" >}})
+- [kubectl gs]({{< relref "/reference/kubectl-gs" >}})
