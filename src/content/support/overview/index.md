@@ -53,7 +53,7 @@ Applications running on top of the platform, offering observability, connectivit
 
 Whenever an on-call engineer receives an alert from the monitoring platform, the incident process begins. A new Slack channel is created specifically for the issue, where information is gathered. Thanks to [incident.io](https://incident.io) automation, the ops team can quickly escalate an incident or generate a report for you (postmortem).
 
-Treating every alert as an incident offers many benefits: information is contained in a single channel, recurrent problems or trends can be identified to improve the support process, and there is a historical record of actions and information related to specific issues. More information about the incident process can be found in the [Giant Swarm incident process]({{< relref "/support/incident-process" >}}).
+Treating major alerts as incidents offers many benefits: information is contained in a single channel, recurrent problems or trends can be identified to improve the support process, and there is a historical record of actions and information related to specific issues. More information about the incident process can be found in the [Giant Swarm incident process]({{< relref "/support/incident-process" >}}).
 
 ### Postmortem process
 
