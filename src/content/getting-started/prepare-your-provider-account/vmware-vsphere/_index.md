@@ -2,7 +2,7 @@
 title: Prepare your provider account for VMware vSphere
 linkTitle: Prepare your vSphere account
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
-weight: 10
+weight: 30
 last_review_date: 2024-05-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
