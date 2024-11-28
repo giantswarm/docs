@@ -2,7 +2,7 @@
 title: Prepare your provider account for VMware vSphere
 linkTitle: Prepare your vSphere account
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
-weight: 10
+weight: 40
 last_review_date: 2024-05-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
@@ -33,13 +33,15 @@ It's recommended to create one resource pool across the hosts where the workload
 
 ## Step 1: Networking
 
-In the cluster definition, you need to specify a network for the controller to provision the default gateway and connect the virtual machines (VMs). The DHCP service must be enabled on this network to assign IP addresses to the cluster nodes automatically.
+The network must have:
 
-__Warning__: In case you plan to use several networks on the cluster please contact Giant Swarm support to discuss the network configuration.
+- DHCP enabled.
+- Access to vCenter endpoint on port `443` so the controllers can manage the cluster's lifecycle.
+- Access to internet on port `443` to pull artifacts from our repositories, download CVE databases, pull container images, etc. You can whitelist the domains in this [domain allow list](https://docs.giantswarm.io/vintage/platform-overview/security/cluster-security/domain-allowlist/). Note that we also support authenticated HTTP proxies.
 
-The cluster nodes must have access to the vCenter endpoint on port `443` so the controllers can manage the cluster's lifecycle. At the same time, they must have access to the Internet on port `443` to pull artifacts from our repositories, download CVE databases, pull container images, etc. We support authenticated HTTP proxies and provide a [domain allowing list](https://docs.giantswarm.io/vintage/platform-overview/security/cluster-security/domain-allowlist/) to guide you to configure the company's firewall.
+**Warning**: In case you plan to use several networks on the cluster please contact Giant Swarm support to discuss the network configuration.
 
-A vSphere environment has no concept of the load balancer, which Kubernetes requires to expose services of the type load balancer and the API in a highly available mode. As a result, the Cluster API implementation includes `kube-vip`, a layer-2 load balancer to address all environments. The other option is to use NSX Advanced Load Balancer when available in your environment.
+A vSphere environment has no concept of load balancer, which Kubernetes requires to expose services of type load balancer, and the API in a highly available mode. As a result, we include `kube-vip`, a layer-2 load balancer to address all environments. The other option is to use NSX Advanced Load Balancer when available in your environment.
 
 {{< tabs >}}
 {{< tab id="flags-kubevip" title="kube-vip">}}
@@ -72,8 +74,7 @@ The `controller` in NSX ALB plays a pivotal role. It's responsible for communica
 
 The Cluster API controller that provisions the infrastructure in the vSphere environment needs a role with a set of permissions. To follow the principle of least privilege, it's recommended that a specific user and role be created for the controller.
 
-> [!CAUTION]
-> The password mustn’t contain ` \ ` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
+**Warning**: The password mustn’t contain ` \ ` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
 
 __Note__: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
 
@@ -89,7 +90,8 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Sessions` | `Message`<br>`Validate session` |
 | `Profile driven storage` _(vSphere 7)_<br>`VM storage policies` _(vSphere 8)_ | `Profile-driven storage view`<br>`View VM storage policies` |
 | `vApp` | `Import` |
-| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
+| `vSphere Tagging` | `Assign or Unassign vSphere Tag `<br>`Assign or Unassign vSphere Tag on Object` |
+| `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Console interaction `<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
 
 Apart of the permissions you need to assign the role to the following objects:
 
@@ -104,11 +106,11 @@ Apart of the permissions you need to assign the role to the following objects:
 | Distributed Switch | |
 | VM and Template folders | Yes |
 
-__Warning__: In case you want to leverage failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
+__Warning__: In case you want to use failure domains at the host level where a group of hosts is a failure domain (data centers, racks, PDU distribution, Etcd), Cluster API implementation needs permissions to work with `anti-affinity` rules. As a result the role requires the following permissions: `Host > Edit > Modify cluster`.
 
 ## Step 3: Virtual machine templates
 
-To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-3815.2.1-kube-v1.25.16`).
+To provision the virtual machines (VMs) for the cluster nodes, Giant Swarm needs permissions to upload `VM templates` to vCenter Server (included in the table above). The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-xxxx.y.z-kube-x.yy.zz-tooling-x.yy.1-gs`).
 
 ## Next step
 
