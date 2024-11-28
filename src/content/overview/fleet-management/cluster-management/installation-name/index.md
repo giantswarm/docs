@@ -22,7 +22,7 @@ A Giant Swarm installation is the management cluster where all our platform comp
 Once a name is decided on, you will use it often in your communication with Giant Swarm. Of course, you can
 also use it in your internal communication.
 
-For example, if the installation is called `panda`, it is easy to refer to a concrete workload cluster called `prod-eu1` as follows in chat:
+For example, if the installation is called `panda`, it's easy to refer to a concrete workload cluster called `prod-eu1` as follows in chat:
 
 > Dear Giant Swarm support, we see this problem on panda/prod-eu1: ...
 
