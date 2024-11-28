@@ -1,7 +1,7 @@
 ---
 linkTitle: CRDs
-title: Platform API CRDs
-description: Schema reference of all custom resource definitions (CRD) and custom resources (CR) you can use with the Platform API.
+title: Custom resource definitions (CRDs)
+description: Schema reference of all CRDs provided by Giant Swarm, in use in the Platform API.
 layout: management-api-reference
 weight: 50
 menu:
