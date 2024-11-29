@@ -1,6 +1,6 @@
 ---
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
-last_review_date: 2024-11-14
+last_review_date: 2024-11-29
 linkTitle: Domain allowlist
 menu:
   main:
@@ -12,12 +12,11 @@ weight: 40
 user_questions:
   - What domains do Giant Swarm clusters need access to?
 aliases:
+  - /vintage/platform-overview/security/cluster-security/domain-allowlist/
   - /platform-overview/security/cluster-security/domain-allowlist
-  - /security/domain-allowlist
-  - /reference/domain-allowlist/
 ---
 
-Below is a list of the external domains we require access to for our clusters to function.
+List of the external domains we require access to for our clusters to function.
 
 - alpinelinux.org
     - domains:
