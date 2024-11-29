@@ -24,7 +24,7 @@ last_review_date: 2024-10-28
 An app catalog is a collection of apps that can be deployed using the Giant Swarm app platform.
 It's an extension of `helm` [chart repository](https://helm.sh/docs/topics/chart_repository/).
 
-Every app catalog has its own [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource defined in the platform API.
+Every app catalog has its own [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource defined in the platform API.
 
 The app catalog is a `Git` repository that contains:
 
