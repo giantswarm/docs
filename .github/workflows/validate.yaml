@@ -92,13 +92,25 @@ jobs:
             # Convert JSON lines to array
             jq --slurp '.' mvdel-annotations-lines.json > mvdel-annotations.json
             rm mvdel-annotations-lines.json
+
+            # Save as environment variable for next step
+            echo "::set-env name=deletes_or_moves_files::true"
           fi
 
           rm files.txt
 
       - name: Send annotations for moved or deleted files
+        if: ${{ env.deletes_or_moves_files == 'true' }}
         uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+
+
+      - name: Comment PR with execution number
+        if: ${{ env.deletes_or_moves_files == 'true' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          title: Moved or deleted files
-          input: ./mvdel-annotations.json
+          comment-tag: files-deleted-or-moved
+          message: |
+            This PR moves/renames, or deletes some files. Please make sure to
+            
+            - maintain references (also important for images)
+            - Maintain `aliases` in the front matter of moved markdown files
