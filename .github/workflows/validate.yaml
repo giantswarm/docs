@@ -70,11 +70,11 @@ jobs:
       - name: Check for moved or deleted files
         run: |
           git --no-pager diff --name-status --diff-filter=RD "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
-          ls -la files.txt
+
           if [ -s files.txt ]; then
-            # Creat annotations JSON
+
+            # Creat annotations JSON, as one object per line first
             while read line; do
-              echo "$line"
               parts=($line)
               mode=${parts[0]}
               filename=${parts[1]}
@@ -83,12 +83,17 @@ jobs:
                 echo "File $filename was deleted"
                 echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File deleted\", \"message\": \"File deleted\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
               else
-                echo "File $filename was moved"
-                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
+                echo "File $filename was moved/renamed"
+                newFilename=${parts[2]}
+                echo "{\"file\": \"$newFilename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
               fi
             done <files.txt
+
+            # Convert JSON lines to array
             jq --slurp '.' mvdel-annotations-lines.json > mvdel-annotations.json
+            rm mvdel-annotations-lines.json
           fi
+
           rm files.txt
 
       - name: Send annotations for moved or deleted files
