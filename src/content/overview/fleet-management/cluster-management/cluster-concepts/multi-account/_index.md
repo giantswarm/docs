@@ -41,9 +41,9 @@ In both cases, customers benefit from simpler usage and cost allocation, plus a 
 
 Details of the implementation differ between AWS and Azure.
 
-- On CAPA, Giant Swarms needs some role configuration in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/aws" >}}).
+- On CAPA, Giant Swarms needs some role configuration in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-infrastructure/aws" >}}).
 
-- On CAPZ, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/azure" >}}).
+- On CAPZ, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-infrastructure/azure" >}}).
 
 ## Additional information {#details}
 
@@ -59,12 +59,12 @@ To create clusters in a new cloud provider account, you first need to provide th
 
 To prepare your credentials, either as AWS account roles or as an Azure service principle, please follow our specific guides:
 
-- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/aws" >}})
-- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-account/azure" >}})
+- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-infrastructure/aws" >}})
+- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/getting-started/prepare-your-provider-infrastructure/azure" >}})
 
 Then when creating a cluster, you can specify the organization that should be used for the cluster. This can be done:
 
-- In CAPA using the `AWSClusterRoleIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
-- In CAPZ using the `AzureClusterIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-account/azure/#configure-cluster-role-identity" >}}) command
+- In CAPA using the `AWSClusterRoleIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-infrastructure/aws/#configure-cluster-role-identity" >}}).
+- In CAPZ using the `AzureClusterIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-infrastructure/azure/#configure-cluster-role-identity" >}}) command
 
 __Note__: For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first.
