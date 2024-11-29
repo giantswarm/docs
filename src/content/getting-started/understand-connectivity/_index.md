@@ -1,8 +1,8 @@
 ---
 title: Control the application connectivity
 description: Understand how basic connectivity works in the platform and which options are available for exposing your app.
-weight: 60
-last_review_date: 2024-09-01
+weight: 50
+last_review_date: 2024-11-28
 menu:
   principal:
     parent: getting-started

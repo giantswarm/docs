@@ -35,7 +35,7 @@ In terms of virtual networking, the following requirements must be met:
 
 - The virtual machines (VMs) must have access to the VCD API endpoint for the controllers to work.
 
-- Access to the Internet is required for some of our automation to pull artifacts from the registry or get new certificates from Let's Encrypt. It's possible to configure an egress HTTP proxy to control the traffic. You can check the list of domains that need to be accessible [here]({{< relref "/vintage/platform-overview/security/cluster-security/domain-allowlist/#on-premise-installations" >}}).
+- Access to the Internet is required for some of our automation to pull artifacts from the registry or get new certificates from Let's Encrypt. It's possible to configure an egress HTTP proxy to control the traffic. You can check the list of domains that need to be accessible [here]({{< relref "/overview/security/domain-allowlist/#on-premise-installations" >}}).
 
 ## Step 2: Permissions
 
@@ -70,7 +70,7 @@ To define the set of instance types available to the users when deploying cluste
 | m1.xlarge | 8 | 16GB |
 | m1.2xlarge | 16 | 64GB |
 
-After all requirements are met, you can [create your first cluster following this guide]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+After all requirements are met, you can [create your first cluster following this guide]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}).
 
 ## Next step
 
