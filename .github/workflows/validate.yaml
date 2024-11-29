@@ -28,7 +28,7 @@ jobs:
         run: cat ./annotations.json
 
       - name: Send front matter annotations
-        uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
+        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: Front matter problems
@@ -53,7 +53,7 @@ jobs:
         run: cat ./markdownlint-annotations.json
 
       - name: Send markdownlint annotations
-        uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
+        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: markdownlint problems
