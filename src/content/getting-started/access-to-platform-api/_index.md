@@ -1,7 +1,7 @@
 ---
 title: Access to the platform API
 description: How engineers can access the platform API to provision new workload clusters or deploy applications.
-weight: 30
+weight: 20
 last_review_date: 2024-07-17
 menu:
   principal:
@@ -14,7 +14,7 @@ user_questions:
   - What do I need to do to access the platform API?
 ---
 
-Giant Swarm's platform API, a Kubernetes API that operates on the management cluster, offers unique features and custom resources. These enable you to perform a range of actions, from creating and updating clusters to deploying applications, enhancing your cluster and workload resource management capabilities.
+Giant Swarm's platform API, a `Kubernetes` API that operates on the management cluster, offers unique features and custom resources. These enable you to perform a range of actions, from creating and updating clusters to deploying applications, enhancing your cluster and workload resource management capabilities.
 
 You can have multiple management clusters, for example, if different cloud providers are used. Each management cluster has its own API endpoint and is isolated from the others. In this guide, you learn how to access the platform API of one of these management clusters.
 
@@ -60,7 +60,7 @@ A new kubectl context named 'gs-wombat' has been created and selected. To switch
  kubectl config use-context gs-wombat
 ```
 
-When logging in, you must authenticate in your browser using the configured identity provider (for example, by signing into an Active Directory or GitHub user account). To learn more about the different authentication methods, see the [authentication page]({{< relref "/overview/architecture/authentication" >}}).
+When logging in, you must authenticate in your browser using the configured identity provider (for example, by signing into an `Active Directory` or `GitHub` user account). To learn more about the different authentication methods, see the [authentication page]({{< relref "/overview/architecture/authentication" >}}).
 
 ## Step 2: Explore the platform
 

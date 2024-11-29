@@ -1,6 +1,6 @@
 ---
 title: Security
-description: Guides explaining how security works on the Giant Swarm platform.
+description: Guides explaining how security works and which tools you have available on the Giant Swarm platform.
 weight: 20
 menu:
   principal:

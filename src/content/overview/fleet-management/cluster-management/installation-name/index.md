@@ -19,11 +19,12 @@ A Giant Swarm installation is the management cluster where all our platform comp
 
 ## Why an installation name
 
-Every Giant Swarm installation has an unique name. This name helps to identify the installation in our systems and in your communication with Giant Swarm.
+Once a name is decided on, you will use it often in your communication with Giant Swarm. Of course, you can
+also use it in your internal communication.
 
-When setting up a new installation for you, a name is needed. Think of this name as your handy alias for everything you do with Giant Swarm in a specific infrastructure provider region, for example _AWS Frankfurt (eu-central-1)_.
+For example, if the installation is called `panda`, it's easy to refer to a concrete workload cluster called `prod-eu1` as follows in chat:
 
-Once a name is decided on, you will use it often in your communication with Giant Swarm. Of course, you can also use it in your internal communication.
+> Dear Giant Swarm support, we see this problem on panda/prod-eu1
 
 ## Criteria for good installation names
 

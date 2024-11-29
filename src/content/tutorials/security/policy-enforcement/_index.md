@@ -13,7 +13,7 @@ user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
  -  What are Pod Security Standards (PSS)?
-last_review_date: 2024-11-28
+last_review_date: 2024-11-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
