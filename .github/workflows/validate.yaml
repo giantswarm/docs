@@ -21,13 +21,17 @@ jobs:
         run: |
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
-          cat files.txt | python3 scripts/validate-front-matter/script.py
+          if [ -s files.txt ]; then
+            cat files.txt | python3 scripts/validate-front-matter/script.py
+            # Print for debugging
+            cat ./annotations.json
+            # Save as environment variable for next step
+            echo "found_front_matter_issues=true" >> $GITHUB_ENV
+          fi
           rm files.txt
 
-      - name: Print front matter annotations
-        run: cat ./annotations.json
-
       - name: Send front matter annotations
+        if: ${{ env.found_front_matter_issues == 'true' }}
         uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -48,11 +52,15 @@ jobs:
           cat markdownlint.out \
             | jq -nR '[inputs | (. | capture("(?<filename>[^:]+):(?<line>[0-9]+)(:(?<col>[0-9]+))?\\s+(?<description>.+)") | {"file": .filename, "line": (.line | tonumber), "end_line": (.line | tonumber), "title": "markdownlint problem", "message": .description, "annotation_level": "error"})]' \
             > markdownlint-annotations.json
-
-      - name: Print markdownlint annotations
-        run: cat ./markdownlint-annotations.json
+          
+          # Print for debugging
+          cat ./markdownlint-annotations.json
+          
+          # Save as environment variable for next step
+          echo "found_markdown_issues=true" >> $GITHUB_ENV
 
       - name: Send markdownlint annotations
+        if: ${{ env.found_markdown_issues == 'true' }}
         uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
