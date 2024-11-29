@@ -35,8 +35,8 @@ Providers are the cloud provider specific extensions to core `Crossplane` that o
 
 ### Notable features
 
-- [Provider Configs](https://docs.crossplane.io/v1.11/concepts/providers/#configuring-providers) is an excellent way to manage the actor (access keys, roles, identities) handling given resources down to the individual level
-- [Composite Resources](https://docs.crossplane.io/latest/concepts/composition/) is collection of other resources that can be offered by your devops team to developers to make it easier to bring up common infrastructure for application
+- [Provider configuration](https://docs.crossplane.io/latest/concepts/providers/#provider-configuration) is an excellent way to manage the actor (access keys, roles, identities) handling given resources down to the individual level
+- [Composite resources](https://docs.crossplane.io/latest/concepts/composition/) is a collection of other resources that can be offered by your DevOps team to developers to make it easier to bring up common infrastructure for applications
 
 ## Giant Swarm managed solution
 
@@ -51,7 +51,7 @@ Configuring access keys, roles, identities - `ProviderConfig`s, see example belo
 
 ### Example usage
 
-An example of creating - and maintaining the state of - an AWS S3 bucket via the official AWS provider you first need to create a config for the provider that will be used to manage the resource:
+As an example of creating - and maintaining the state of - an AWS S3 bucket via the official AWS provider, you first need to create a configuration for the provider that will be used to manage the resource:
 
 ```yaml
 apiVersion: aws.upbound.io/v1beta1
