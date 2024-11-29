@@ -23,7 +23,7 @@ last_review_date: 2024-10-28
 
 ## App bundle definition {#app-bundle-definition}
 
-As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are packaged, maintained and offered as `helm` charts and it's no different for the app bundles. What makes them special in comparison to solitary apps is that the bundle `helm` chart, instead of carrying a regular resources composing the actual application, carries [`App` custom resources]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.
+As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are packaged, maintained and offered as `helm` charts and it's no different for the app bundles. What makes them special in comparison to solitary apps is that the bundle `helm` chart, instead of carrying a regular resources composing the actual application, carries [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.
 
 In other words, an app bundle can be thought of a meta package, not installing anything in the workload cluster on its own, but requesting installation of certain pre-defined applications.
 
@@ -48,7 +48,7 @@ The figure below depicts the process. Note however, some parts present in the [A
 
 ![App bundle installation process](app-bundle-installation.png)
 
-When `App` custom resource for the bundle is created within the management cluster, it's first picked up by the management cluster's app operator which is called, by convention, `unique`. It lives under the protected `giantswarm` namespace, but in principle operates the same way the workload clusters app operators do. Essentially, it reconciles the `App` custom resource by creating a corresponding [`Chart` custom resource]({{< relref "/vintage/use-the-api/management-api/crd/charts.application.giantswarm.io.md" >}}) in the `giantswarm` namespace, which is then picked up by the management cluster's chart operator also living in that namespace. The chart operator then installs the app resources, which in this case are nested `App` custom resources to be created in the workload cluster namespace. Once delivered, the nested `App` custom resources are picked up by the workload cluster's app operator and installed in the well known way.
+When `App` custom resource for the bundle is created within the management cluster, it's first picked up by the management cluster's app operator which is called, by convention, `unique`. It lives under the protected `giantswarm` namespace, but in principle operates the same way the workload clusters app operators do. Essentially, it reconciles the `App` custom resource by creating a corresponding [`Chart` custom resource]({{< relref "/reference/platform-api/crd/charts.application.giantswarm.io.md" >}}) in the `giantswarm` namespace, which is then picked up by the management cluster's chart operator also living in that namespace. The chart operator then installs the app resources, which in this case are nested `App` custom resources to be created in the workload cluster namespace. Once delivered, the nested `App` custom resources are picked up by the workload cluster's app operator and installed in the well known way.
 
 <div class="feedback well">
 

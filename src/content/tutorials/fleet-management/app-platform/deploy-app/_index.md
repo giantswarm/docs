@@ -16,10 +16,10 @@ user_questions:
 last_review_date: 2024-10-28
 ---
 
-The _Giant Swarm App Platform_ is built on top of [`helm`](https://helm.sh/) and allows you to manage apps and their configurations represented by `App` custom resources for multiple clusters, from a single place: the [platform API]({{< relref "/vintage/platform-overview/management-api" >}}).
+The _Giant Swarm App Platform_ is built on top of [`helm`](https://helm.sh/) and allows you to manage apps and their configurations represented by `App` custom resources for multiple clusters, from a single place: the [platform API]({{< relref "/overview/architecture/#platform-api" >}}).
 
 In this guide, we will install an ingress controller app. You will do this by using `kubectl`, creating
-an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resource using the cluster API of your management cluster (also known platform API).
+an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) custom resource using the cluster API of your management cluster (also known platform API).
 
 The `App` custom resources can be created this way via your automation(See: [guide]({{< relref "/vintage/getting-started/connectivity/ingress-controller" >}})).
 
@@ -65,9 +65,9 @@ The `app-operator` is running in the management cluster and the rest of the apps
 
 ## Finding the ingress controller version
 
-You can browse the apps in our catalog using [the developer portal UI]({{< relref "/overview/developer-portal/" >}}) but this information is also available in the management cluster in form of resources. The [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resources show the apps that are available.
+You can browse the apps in our catalog using [the developer portal UI]({{< relref "/overview/developer-portal/" >}}) but this information is also available in the management cluster in form of resources. The [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resources show the apps that are available.
 
-First let's list the available [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resources.
+First let's list the available [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resources.
 
 ```nohighlight
 kubectl gs get catalogs
