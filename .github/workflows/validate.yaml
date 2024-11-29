@@ -94,7 +94,7 @@ jobs:
             rm mvdel-annotations-lines.json
 
             # Save as environment variable for next step
-            echo "::set-env name=deletes_or_moves_files::true"
+            echo "deletes_or_moves_files=true" >> $GITHUB_ENV
           fi
 
           rm files.txt
