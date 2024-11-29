@@ -36,7 +36,7 @@ jobs:
 
       - name: markdownlint
         run: |
-          make RUNNING_IN_CI=true lint || true
+          make RUNNING_IN_CI=true lint-markdown || true
 
           # Only fail if the run didn't work for technical reasons
           if [ ! -e markdownlint.out ]; then
