@@ -1,6 +1,6 @@
 ---
 title: Disable monitoring
-description: Learn how to disable automatic monitoring for your cluster.
+description: Learn how to disable automatic monitoring for your cluster on Giant Swarm.
 weight: 50
 menu:
   principal:
