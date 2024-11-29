@@ -24,6 +24,7 @@ jobs:
           if [ -s files.txt ]; then
             cat files.txt | python3 scripts/validate-front-matter/script.py
             # Print for debugging
+            echo "\nAnnotations JSON:"
             cat ./annotations.json
             # Save as environment variable for next step
             echo "found_front_matter_issues=true" >> $GITHUB_ENV
@@ -54,6 +55,7 @@ jobs:
             > markdownlint-annotations.json
           
           # Print for debugging
+          echo "\nAnnotations JSON:"
           cat ./markdownlint-annotations.json
           
           # Save as environment variable for next step
@@ -88,10 +90,8 @@ jobs:
               filename=${parts[1]}
               
               if [ "$mode" == "D" ]; then
-                echo "File $filename was deleted"
                 echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File deleted\", \"message\": \"File deleted\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
               else
-                echo "File $filename was moved/renamed"
                 newFilename=${parts[2]}
                 echo "{\"file\": \"$newFilename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
               fi
@@ -100,6 +100,10 @@ jobs:
             # Convert JSON lines to array
             jq --slurp '.' mvdel-annotations-lines.json > mvdel-annotations.json
             rm mvdel-annotations-lines.json
+
+            # Print for debugging
+            echo "\nAnnotations JSON:"
+            cat ./mvdel-annotations.json
 
             # Save as environment variable for next step
             echo "deletes_or_moves_files=true" >> $GITHUB_ENV
