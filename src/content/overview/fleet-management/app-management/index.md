@@ -129,7 +129,7 @@ It’s possible to create your own `App Catalog`. This is useful if you want to 
 
 You can interact with the Giant Swarm app platform through creating `App` custom resources using the platform API or the developer portal.
 
-- [App CRD reference]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
+- [App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}})
 - [The Giant Swarm developer portal]({{< relref "/overview/developer-portal/" >}})
 
 As you have direct access to the platform API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack. And as Kubernetes resources and especially some custom resource definitions require lots of boilerplate and conventions, our team built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.
