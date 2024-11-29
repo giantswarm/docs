@@ -82,11 +82,4 @@ We default to storing all resources of an organization in its organization `org-
 
 ## Managing organizations
 
-Organizations can be managed in several ways.
-
-<!-- MAYBE EXCLUDED -->
-- The [web user interface]({{< relref "/vintage/platform-overview/web-interface/organizations/_index.md" >}}) allows creating and deleting organizations interactively.
-
-- The [platform API]({{< relref "/vintage/use-the-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
-
-In addition, we plan to enhance the `kubectl` user experience for organization management via our [`gs`]({{< relref "/reference/kubectl-gs/_index.md" >}}) plug-in.
+The [platform API]({{< relref "/reference/platform-api" >}}) provides full, native support for managing all organization-related resources.
