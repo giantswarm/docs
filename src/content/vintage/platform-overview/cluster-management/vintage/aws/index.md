@@ -97,7 +97,7 @@ CNI used until AWS release 18.
 
 #### Cilium CNI
 
-CNI used until AWS release [19](https://docs.giantswarm.io/advanced/cluster-management/upgrades/aws-19-release/).
+CNI used until AWS release [19]({{< relref "/vintage/advanced/cluster-management/upgrades/aws-19-release" >}}).
 
 [Cilium CNI](https://docs.cilium.io/en/stable/overview/intro/) offers advanced [eBPF](https://ebpf.io/) networking without overlay.
 

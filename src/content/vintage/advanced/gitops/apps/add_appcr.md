@@ -71,7 +71,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
     export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     ```
 
-2. Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+2. Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR]({{< relref "/reference/kubectl-gs/template-app/" >}}):
 
     ```nohighlight
     cd ${APP_NAME}/
@@ -93,7 +93,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
 
     __Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
-    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details on how to properly create respective ConfigMaps or Secrets.
+    Reference [the App Configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/" >}}) for more details on how to properly create respective ConfigMaps or Secrets.
 
 3. (optional - if adding configuration) Place ConfigMap and Secrets with values as the `configmap.yaml` and `secret.enc.yaml` files respectively:
 
@@ -166,7 +166,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
 
 Please note, that the block marked "configuration override block" is needed only if you override the default config and/or the secret config (from the Template). In case you don't override any, skip both parts in `kustomization.yaml` and also the next three configuration points below.
 
-1. (optional - if you override either config or secret) Create a patch configuration file, that will enhance your App Template with a `userConfig` attribute (refer to [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how `config` and `userConfig` properties of App CR are used).
+1. (optional - if you override either config or secret) Create a patch configuration file, that will enhance your App Template with a `userConfig` attribute (refer to [the App Configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) for more details about how `config` and `userConfig` properties of App CR are used).
 
     ```nohighlight
     cat <<EOF > config_patch.yaml
