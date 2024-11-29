@@ -4,10 +4,10 @@ title: Authentication for the platform API as a user
 description: Here you learn how to log in to the platform API as a user, using single sign-on (SSO), to use tools like kubectl.
 weight: 10
 menu:
-  main:
+  principal:
     identifier: tutorials-access-management-authentication-user
     parent: tutorials-access-management-authentication
-last_review_date: 2024-10-28
+last_review_date: 2024-11-29
 user_questions:
   - How can I authenticate as a user to the platform API?
   - How can I authenticate to the platform API without kubectl-gs?
