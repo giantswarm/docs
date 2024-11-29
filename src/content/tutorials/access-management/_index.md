@@ -1,4 +1,5 @@
 ---
+title: Platform access management
 linkTitle: Access management
 description: List of guides that delve into the access management are and its components.
 weight: 20

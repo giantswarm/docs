@@ -19,22 +19,22 @@ owner:
 
 At Giant Swarm, we automatically configure Dex in management clusters to allow you to authenticate using your own identity providers, towards allowing you to manage your infrastructure using the management cluster's Kubernetes API.
 
-For workload clusters - where you run your applications - we do not enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here, we're going to detail how to configure [Dex](https://dexidp.io/) in those clusters, to provide SSO using OIDC.
+For workload clusters - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). Here, we're going to detail how to configure [Dex](https://dexidp.io/) in those clusters, to provide SSO using OIDC.
 
 ![Multi cluster Dex architecture](dex-architecture.png)
 <!-- Source: https://drive.google.com/file/d/12Li9z2cqS8uWo1f9bGk6nwV6PLgty9g_ -->
 
 ## Why Dex
 
-There are other projects that help to configure OIDC to access Kubernetes clusters, but we consider [Dex](https://dexidp.io/) to be the most feature-rich. First of all, it is not tied to Kubernetes, so you can use Dex to handle authentication and authorization for your own apps as well. Secondly, Dex can act like an identity provider hub, where you can plug in different providers via different connectors, and choose between them when you want to log in.
+There are other projects that help to configure OIDC to access Kubernetes clusters, but we consider [Dex](https://dexidp.io/) to be the most feature-rich. First of all, it's not tied to Kubernetes, so you can use Dex to handle authentication and authorization for your own apps as well. Secondly, Dex can act like an identity provider hub, where you can plug in different providers via different connectors, and choose between them when you want to log in.
 
-## OIDC in Kubernetes
+## OpenID Connect in Kubernetes
 
 The Kubernetes API allows users to authenticate using the OIDC protocol, making it possible to enforce multi-factor authentication (MFA) or password policies by delegating to your identity provider. The API will use the field named `id_token` from the response as a bearer token to authenticate users.
 
-## Configure the OIDC values on the cluster resource
+## Configure the OpenID Connect values on the cluster resource
 
-We need to set values for the OIDC Issuer URL and Client ID. You can define those values in the cluster custom resource. These values will then be set as flags on the Kubernetes API Server (specifically, `--oidc-issuer-url` and `--oidc-client-id`).
+We need to set values for the OpenID Connect (OIDC) issuer address and client ID. You can define those values in the cluster custom resource. These values will then be set as flags on the `Kubernetes` API server (specifically, `--oidc-issuer-url` and `--oidc-client-id`).
 
 {{< tabs >}}
 {{< tab title="Azure">}}
@@ -129,13 +129,13 @@ data:
 {{< /tab >}}
 {{< /tabs >}}
 
-__Note__: In the above snippets you need to replace the `CLUSTER_NAME` and `BASE_DOMAIN` placeholder with the correct values, which is the name of the workload cluster you are configuring, and the base domain that you use for your installation. You can also derive them from the workload cluster's Kubernetes API endpoint, which has a URL in the format of `https://api.CLUSTER_NAME.BASE_DOMAIN`.
+__Note__: In the above snippets you need to replace the `CLUSTER_NAME` and `BASE_DOMAIN` placeholder with the correct values, which is the name of the workload cluster you are configuring, and the base domain that you use for your installation. You can also derive them from the workload cluster's Kubernetes API endpoint, which has an address in the format of `https://api.CLUSTER_NAME.BASE_DOMAIN`.
 
 ## Deploy the app to your cluster
 
-In this guide, we will use a single app deployment for each cluster that you want to authenticate towards. There are different ways to set up how you authenticate towards your Kubernetes API with Dex, but in our opinion, using a single deployment per cluster is more resilient than having a common Dex deployment for all your workload clusters.
+In this guide, you will use a single app deployment for each cluster that you want to authenticate towards. There are different ways to set up how you authenticate towards your Kubernetes API with Dex, but in our opinion, using a single deployment per cluster is more resilient than having a common Dex deployment for all your workload clusters.
 
-We'll use the [app platform]({{< relref "/vintage/getting-started/app-platform" >}}) to deploy the app, as it allows us to deploy apps across workload clusters using a single API endpoint. In this example, we create an `App` custom resource (CR) with the parameters to install our [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `Secret` with the configuration values. The app platform also supports providing the configuration values in a `ConfigMap`, but in case of Dex some configuration values are credentials, therefore using a `Secret` is the preferred method. It is also possible to split the configuration values, provide the public part in a `ConfigMap` and the credentials in a `Secret`, but in this example we will provide the entire configuration in a `Secret`:
+You will use the [app platform]({{< relref "/overview/app-platform" >}}) to deploy the app, as it allows you to deploy apps across workload clusters using a single API endpoint. In this example, you create an `App` custom resource (CR) with the parameters to install your [`dex-app`](https://github.com/giantswarm/dex-app) in the desired cluster, and a `Secret` with the configuration values. The app platform also supports providing the configuration values in a `ConfigMap`, but in the case of Dex, some configuration values are credentials; therefore, using a `Secret` is the preferred method. It's also possible to split the configuration values, provide the public part in a `ConfigMap` and the credentials in a `Secret`, but in this example, you will provide the entire configuration in a `Secret`:
 
 ```yaml
 apiVersion: v1
@@ -147,7 +147,7 @@ data:
   values: ... # base64 encoded connector config
 ```
 
-The format of the `connector config` content can look different depending on the oidc provider you want to use. Some examples can be found below.
+The format of the `connector config` content can look different depending on the OpenID Connect provider you want to use. Some examples can be found below.
 Details on all connectors and their respective configuration is available in the [Dex documentation](https://dexidp.io/docs/connectors/).
 
 {{< tabs >}}
@@ -177,7 +177,7 @@ oidc:
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
 
-The values for `CLIENT_ID` and `CLIENT_SECRET` are created/defined in the Keycloak OIDC client configuration. `KEYCLOAK_HOST` is the fully qualified host name of your Keycloak instance.
+The values for `CLIENT_ID` and `CLIENT_SECRET` are created/defined in the `Keycloak` OpenID Connect client configuration. `KEYCLOAK_HOST` is the fully qualified hostname of your `Keycloak` instance.
 
 {{< /tab >}}
 {{< tab title="GitHub">}}
@@ -206,9 +206,9 @@ oidc:
           - GITHUB_TEAM_SLUG
 ```
 
-The value for `CLIENT_ID` is automatically generated by GitHub after creation of an OAuth app. Please also generate a client secret for that app and replace `CLIENT_SECRET` with the contents of that secret.
+The value for `CLIENT_ID` is automatically generated by GitHub after the creation of an `OAuth` app. Please also generate a client secret for that app and replace `CLIENT_SECRET` with the contents of that secret.
 
-In the above example we show how to configure access for a certain GitHub team (named `GITHUB_TEAM_SLUG`, belonging to the `GITHUB_ORGANIZATION` organization). To restrict access in this way, make sure to list the team's _slug_ as it appears in the handle and team URL. For example, for a team named `Team Infra`, the handle my be `@my-organization/team-infra` and the slug to be used here would be `team-infra`.
+In the above example you see how to configure access for a certain GitHub team (named `GITHUB_TEAM_SLUG`, belonging to the `GITHUB_ORGANIZATION` organization). To restrict access in this way, make sure to list the team's _slug_ as it appears in the handle and team URL. For example, for a team named `Team Infra`, the handle may be `@my-organization/team-infra`, and the slug used here would be `team-infra`.
 
 Specifying `teams` enables Dex's [group filtering]({{< relref "/vintage/advanced/access-management/configure-dex-in-your-cluster#dex-group-filtering" >}}).
 
@@ -269,7 +269,7 @@ oidc:
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
 
-The values for `CLIENT_ID` and `CLIENT_SECRET` have to be created in the Okta configuration. `OKTA_OIDC_ENDPOINT` must be replaced using the fully qualified host name of your Okta instance.
+The values for `CLIENT_ID` and `CLIENT_SECRET` must be created in the `Okta` configuration. `OKTA_OIDC_ENDPOINT` must be replaced with the fully qualified host name of your `Okta` instance.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -321,7 +321,7 @@ Group or team filtering is a valuable mechanism that instructs Dex to selectivel
 We highly recommend utilizing group filtering as the default setting for two compelling reasons:
 
 - Users who are not part of any preconfigured groups will be unable to acquire an ID token, ensuring tighter security.
-- Extensive group memberships can result in larger ID tokens, potentially causing issues such as oversized HTTP headers.
+- Extensive group memberships can result in larger ID tokens, causing issues such as oversized `HTTP` headers.
 
 The disadvantage of using group filtering is that each time you want to use a new group, you will have to update the Dex connector config.
 
@@ -352,7 +352,7 @@ ingress:
 
 When deploying Dex to a private workload cluster, it is required to specify a proxy configuration in order to ensure that Dex has access to the outside network.
 Proxy setup can be provided in the `cluster.proxy` section of the `Secret` or `ConfigMap` with configuration values for the Dex app.
-It is required to specify the URL of the HTTPS proxy in the `https` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `noProxy` property.
+It's required to specify the address of the `HTTPS` proxy in the `https` property and exclude Kubernetes API from running through the proxy by adding its IP address or network to the `noProxy` property.
 
 ```yaml
 cluster:
@@ -371,7 +371,7 @@ To get an overview on the authentication success and error rates of your Dex ins
 
 Once Dex is set up in your workload cluster, you can enable access via OIDC through our `kubectl` plugin [kubectl gs]({{< relref "/vintage/use-the-api/kubectl-gs" >}}).
 
-In order to communicate with the API, `kubectl gs` needs the clusters CA certificate as well as some cluster specific information, such as the management cluster name and the dex issuer URL.
+In order to communicate with the API, `kubectl gs` needs the cluster's CA certificate as well as some cluster-specific information, such as the management cluster name and the dex issuer address.
 On all Giant Swarm management clusters we use a public service called `Athena` to expose the CA certificate and some information on the installation to the client.
 For easy integration with `kubectl gs` you can install [Athena](https://github.com/giantswarm/athena) on your workload cluster via the [app platform]({{< relref "/vintage/getting-started/app-platform" >}}).
 
@@ -437,7 +437,7 @@ ingress:
     keyPemB64: ...
 ```
 
-If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you should be able to create a kubectl context using the management API URL.
+If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you can create a kubectl context using the management API address.
 
 ```sh
 kubectl gs login https://api.test.example.io
