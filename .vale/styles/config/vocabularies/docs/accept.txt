@@ -37,7 +37,9 @@ HTTP
 IP[s]?
 IPAM
 JSON
+k8s
 Keybase
+keyless
 Kinvolk
 krew
 Kustomize
@@ -60,6 +62,7 @@ randomly
 rapidly
 really
 relref
+rulesets
 runbook[s]?
 SemVer
 separately
