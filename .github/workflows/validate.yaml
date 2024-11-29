@@ -1,4 +1,7 @@
 name: Validate
+
+# This is supposed to run on all pull requests to ensure
+# formal sanity of content, formatting, front matter, and structure.
 on:
   pull_request:
     branches:
