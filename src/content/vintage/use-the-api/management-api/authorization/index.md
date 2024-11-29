@@ -7,7 +7,7 @@ menu:
   main:
     identifier: uiapi-managementapi-authorization
     parent: uiapi-managementapi
-last_review_date: 2023-09-04
+last_review_date: 2024-11-29
 aliases:
   - /use-the-api/management-api/authorization
   - /reference/management-api/authorization/
@@ -92,13 +92,13 @@ As explained previously, various resources reside in different scopes and namesp
 
     - **Grant admin permissions to a default group**: you have to name a group from your identity provider configured to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
 
-    - **Provide service accounts with admin privileges**: service accounts named `automation` are created in the `default` namespace and in all organization namespaces, bound to the pre-defined `cluster-admin` role.
+- **Provide service accounts with admin privileges**: service accounts named `automation` are created in the `default` namespace and in all organization namespaces, bound to the pre-defined `cluster-admin` role.
 
-    - **Grant access to releases and app catalogs**: for every subject (user, group, service account) bound to any role (`Role` or `ClusterRole`) in an organization namespace, we ensure that read permissions are granted to workload cluster releases (in the cluster scope) and app catalogs provided by Giant Swarm (in the `default` namespace).
+- **Grant access to releases and app catalogs**: for every subject (user, group, service account) bound to any role (`Role` or `ClusterRole`) in an organization namespace, we ensure that read permissions are granted to workload cluster releases (in the cluster scope) and app catalogs provided by Giant Swarm (in the `default` namespace).
 
-    - **Grant access to resources in workload cluster namespaces**: for every subject bound to the `read-in-cluster-ns` role in an organization namespace, we ensure read access to `App`, `ConfigMap` and `Secret` resources in the workload cluster namespaces belonging to the organization. Likewise, for subjects bound to the role `write-in-cluster-ns`, we ensure full permissions to these resources.
+- **Grant access to resources in workload cluster namespaces**: for every subject bound to the `read-in-cluster-ns` role in an organization namespace, we ensure read access to `App`, `ConfigMap` and `Secret` resources in the workload cluster namespaces belonging to the organization. Likewise, for subjects bound to the role `write-in-cluster-ns`, we ensure full permissions to these resources.
 
-    - **Grant access to the organization**: for every subject bound to any role in an organization's namespace, we ensure that the subject also has `get` permission to the `Organization` resource defining that organization. (Why? As this allows clients like our web UI to detect which organizations a user has access to, without requiring `list` permissions for organizations.)
+- **Grant access to the organization**: for every subject bound to any role in an organization's namespace, we ensure that the subject also has `get` permission to the `Organization` resource defining that organization. (Why? As this allows clients like our web UI to detect which organizations a user has access to, without requiring `list` permissions for organizations.)
 
 ### Role Binding Templates {#role-binding-templates}
 
@@ -142,7 +142,6 @@ More details on this role are given in the [pre-defined roles](#pre-defined-role
 The manifest below shows how the according role bindings could be created.
 
 ```yaml
----
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -167,7 +166,6 @@ Compared to a read-only user, this type of user would gain permission to install
 The according example manifest:
 
 ```yaml
----
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -204,7 +202,6 @@ Like in the case of the read-only user, these bindings can be set up easily via 
 To grant full permissions to a group of users in the context of a particular organization, bind the pre-defined `cluster-admin` role to that group. Here is an example manifest:
 
 ```yaml
----
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -300,7 +297,7 @@ spec:
 Alternatively, the following scopes will result the roleBinding to be applied in namespaces belonging to organizations which _DO NOT_ carry the `add-additional-admins=false` label.
 
 ```yaml
-...
+  ...
   scopes:
     organizationSelector:
       matchExpressions:
