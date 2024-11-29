@@ -53,7 +53,7 @@ Next, the following resources reside in the `default` namespace:
 
 ### Organization namespaces {#org-namespaces}
 
-For each [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
+For each [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
 
 - Resources defining [workload clusters and node pools]({{< relref "/getting-started/provision-your-first-workload-cluster" >}})
 - [Cloud provider credentials]({{< relref "/getting-started/prepare-your-provider-infrastructure#configure-cluster-role-identity" >}}) in the form of `Secret` resources
@@ -111,7 +111,7 @@ For the purpose of this documentation article we'll introduce a few example case
 
 2. __Developer__: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discovers clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
 
-3. __Organization admin__: users who have full permissions to resources belonging to a specific [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
+3. __Organization admin__: users who have full permissions to resources belonging to a specific [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
 4. __Admin__: a type of user that has permission to create, modify, and delete most types of resources in the management cluster.
 
