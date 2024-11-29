@@ -102,6 +102,8 @@ jobs:
       - name: Send annotations for moved or deleted files
         if: ${{ env.deletes_or_moves_files == 'true' }}
         uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
 
       - name: Comment PR with execution number
@@ -109,7 +111,6 @@ jobs:
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
         with:
           comment-tag: files-deleted-or-moved
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
           message: |
             This PR moves/renames, or deletes some files. Please make sure to
             
