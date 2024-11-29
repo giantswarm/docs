@@ -103,6 +103,8 @@ jobs:
 
             # Save as environment variable for next step
             echo "deletes_or_moves_files=true" >> $GITHUB_ENV
+          else
+            echo "deletes_or_moves_files=false" >> $GITHUB_ENV
           fi
 
           rm files.txt
@@ -116,7 +118,7 @@ jobs:
           title: "Files moved or deleted"
 
 
-      - name: Comment PR with execution number
+      - name: Add/update comment about moved/deleted files
         if: ${{ env.deletes_or_moves_files == 'true' }}
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
         with:
@@ -126,3 +128,10 @@ jobs:
             
             - maintain references (also important for images)
             - Maintain `aliases` in the front matter of moved markdown files
+
+      - name: Delete comment about moved/deleted files
+        if: ${{ env.deletes_or_moves_files == 'false' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: files-deleted-or-moved
+          mode: delete
