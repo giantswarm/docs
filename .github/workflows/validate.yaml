@@ -81,12 +81,13 @@ jobs:
               
               if [ "$mode" == "D" ]; then
                 echo "File $filename was deleted"
-                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File deleted\", \"message\": \"File deleted\", \"annotation_level\": \"warning\"}" >> mvdel-annotations.json
+                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File deleted\", \"message\": \"File deleted\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
               else
                 echo "File $filename was moved"
-                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations.json
+                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
               fi
             done <files.txt
+            jq --slurp '.' mvdel-annotations-lines.json > mvdel-annotations.json
           fi
           rm files.txt
 
