@@ -68,7 +68,7 @@ In CAPA, since the cluster domain name changes from vintage, a new service accou
 
 After a cluster is migrated to CAPI, the vintage service account issuer needs to be phased out, since it's tied to the vintage cluster domain name, which will also be phased out eventually. This is a gradual, multi-step process that will require rolling the master nodes in multiple phases.
 
-1. Update the trust policy for all the AWS IAM Roles used by a `ServiceAccount` via IRSA. The trust policy should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. This is how the trust policy of the IAM roles would look like (for example, make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references):
+1. Update the trust policy for all the AWS IAM Roles used by a `ServiceAccount` via IRSA. The trust policy should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, this is how the trust policy of the IAM roles would look like (make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references):
 
    ```json
    {
