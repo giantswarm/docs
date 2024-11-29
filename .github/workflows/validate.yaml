@@ -128,7 +128,7 @@ jobs:
         with:
           comment-tag: files-deleted-or-moved
           message: |
-            This PR moves/renames, or deletes some files. Please make sure to
+            This PR moves/renames or deletes some files. Please make sure to
             
             - maintain references (also important for images)
             - Maintain `aliases` in the front matter of moved markdown files
