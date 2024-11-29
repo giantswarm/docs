@@ -75,7 +75,9 @@ It also supports the following optional flags:
 - `--user-secret`: Path to the user secrets YAML file.
 - `--namespace-annotations`: Additional annotations to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.annotations`]({{< relref "/vintage/getting-started/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple annotations, either separate annotation pairs with commata (,) or specify the flag multiple times.
 - `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/vintage/getting-started/app-platform/namespace-configuration/index.md" >}}) of [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
-- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps, for example [Security Pack]({{< relref "/vintage/platform-overview/security" >}}).
+- `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps.
+
+<!-- TODO: review section below -->
 
 Only required fields are templated. Other fields are are set by the
 [defaulting webhook]({{< relref "/vintage/getting-started/app-platform/defaulting-validation" >}}).

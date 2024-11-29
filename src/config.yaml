@@ -39,9 +39,9 @@ menu:
     name: Use the API
     url: /vintage/use-the-api/
     weight: 40
-  - identifier: support-training
+  - identifier: support
     name: Support & Training
-    url: /vintage/support/
+    url: /support/
     weight: 50
   - identifier: changes
     name: Changes and releases
