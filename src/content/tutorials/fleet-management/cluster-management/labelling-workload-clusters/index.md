@@ -16,7 +16,7 @@ owner:
 
 The workload clusters, like any other `Kubernetes` custom resource, can be enriched with [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). Labels are key-value-pairs, where each key can be used only once per object (here: per workload cluster).
 
-Workload clusters are defined by a main `Cluster` resource ([`clusters.cluster.x-k8s.io`]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io" >}})). Accordingly, the labels referred to in this article are those on that resource type only.
+Workload clusters are defined by a main `Cluster` resource ([`clusters.cluster.x-k8s.io`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io" >}})). Accordingly, the labels referred to in this article are those on that resource type only.
 
 ## Special purpose labels
 
