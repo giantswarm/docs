@@ -311,4 +311,3 @@ Alternatively, the following scopes will result the roleBinding to be applied in
 ```
 
 `matchExpressions` supports `In`, `NotIn`, `Exists` and `DoesNotExist` as operators for advanced selectors.
-
