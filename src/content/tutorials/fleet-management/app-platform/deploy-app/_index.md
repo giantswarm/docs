@@ -19,7 +19,7 @@ last_review_date: 2024-10-28
 The _Giant Swarm App Platform_ is built on top of [`helm`](https://helm.sh/) and allows you to manage apps and their configurations represented by `App` custom resources for multiple clusters, from a single place: the [platform API]({{< relref "/vintage/platform-overview/management-api" >}}).
 
 In this guide, we will install an ingress controller app. You will do this by using `kubectl`, creating
-an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) custom resource using the cluster API of your management cluster (also known platform API).
+an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) custom resource using the cluster API of your management cluster (also known platform API).
 
 The `App` custom resources can be created this way via your automation(See: [guide]({{< relref "/vintage/getting-started/connectivity/ingress-controller" >}})).
 

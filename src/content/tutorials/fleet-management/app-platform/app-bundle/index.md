@@ -23,7 +23,7 @@ last_review_date: 2024-10-28
 
 ## App bundle definition {#app-bundle-definition}
 
-As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are packaged, maintained and offered as `helm` charts and it's no different for the app bundles. What makes them special in comparison to solitary apps is that the bundle `helm` chart, instead of carrying a regular resources composing the actual application, carries [`App` custom resources]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.
+As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are packaged, maintained and offered as `helm` charts and it's no different for the app bundles. What makes them special in comparison to solitary apps is that the bundle `helm` chart, instead of carrying a regular resources composing the actual application, carries [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.
 
 In other words, an app bundle can be thought of a meta package, not installing anything in the workload cluster on its own, but requesting installation of certain pre-defined applications.
 
