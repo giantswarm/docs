@@ -115,4 +115,4 @@ You can notice that the apps are deployed in the `org-x` namespace and are prefi
 
 ## Next step
 
-Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}).

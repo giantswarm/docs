@@ -25,9 +25,9 @@ The outcome depends on the provider, set via the `--provider` flag.
 For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
 
 - [`App (name=<cluster name>)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
-- `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}) for which cluster chart is used, depending on the cloud provider.
+- `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which cluster chart is used, depending on the cloud provider.
 - [`App (name=<cluster name>-default-apps)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
-- `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}) for which default apps chart is used, depending on the cloud provider.
+- `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which default apps chart is used, depending on the cloud provider.
 
 {{< /tab >}}
 {{< tab id="flags-aws" for-impl="vintage_aws">}}
