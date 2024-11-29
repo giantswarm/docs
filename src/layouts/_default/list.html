@@ -12,7 +12,7 @@
     {{ partial "menu" . }}
   </div>
   <div class="col-sm-12 col-md-8 col-lg-7 list-content">
-    <h1 id="title">{{ .LinkTitle }}</h1>
+    <h1 id="title">{{ .Title }}</h1>
 
     {{ if or .Description .Content }}
       {{- with .Description -}}
@@ -29,7 +29,7 @@
       <ul class="linklist">
         {{ range .Pages.ByWeight }}
         <li>
-          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
           <div class="meta">{{ .Description }}</div>
         </li>
         {{ end }}
