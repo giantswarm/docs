@@ -71,4 +71,22 @@ jobs:
         run: |
           git --no-pager diff --name-status --diff-filter=RD "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           ls -la files.txt
+          if [ ! -s files.txt ]; then
+            # Creat annotations JSON
+            while read line; do
+              echo "$line"
+              parts=($line)
+              mode=${parts[0]}
+              filename=${parts[1]}
+              
+              if [ "$mode" == "D" ]; then
+                echo "File $filename was deleted"
+                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File deleted\", \"message\": \"File deleted\", \"annotation_level\": \"warning\"}" >> mvdel-annotations.json
+              else
+                echo "File $filename was moved"
+                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations.json
+              fi
+            done <files.txt
+            cat mvdel-annotations.json
+          fi
           rm files.txt
