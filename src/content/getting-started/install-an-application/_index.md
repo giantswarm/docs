@@ -2,8 +2,8 @@
 title: Install an application using the app platform
 linkTitle: Install an application
 description: Add capabilities to your platform by deploying applications from our catalog.
-weight: 50
-last_review_date: 2024-09-06
+weight: 40
+last_review_date: 2024-11-28
 menu:
   principal:
     parent: getting-started
