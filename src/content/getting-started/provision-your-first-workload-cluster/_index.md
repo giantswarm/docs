@@ -45,7 +45,7 @@ kubectl gs template cluster \
 
 You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
 
-The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`]({{< relref "getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
+The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`]({{< relref "getting-started/prepare-your-provider-infrastructure/aws/#configure-cluster-role-identity" >}}).
 
 ```sh
 kubectl gs template cluster \
@@ -74,7 +74,7 @@ kubectl gs template cluster \
 
 You can select the AWS account by specifying the `aws-cluster-role-identity-name` argument when templating the cluster.
 
-The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`]({{< relref "getting-started/prepare-your-provider-account/aws/#configure-cluster-role-identity" >}}).
+The name passed to `aws-cluster-role-identity-name` must match the name of [an existing `AWSClusterRoleIdentity`]({{< relref "getting-started/prepare-your-provider-infrastructure/aws/#configure-cluster-role-identity" >}}).
 
 ```sh
 kubectl gs template cluster \
