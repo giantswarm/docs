@@ -52,7 +52,7 @@ Together, you and Giant Swarm agree on a project. You have an account engineer a
 
 ### Pick an organization name
 
-It's up to you to decide for an organization name that represents you as a company, business unit, or team. Please take our [naming conventions]({{< relref "/vintage/platform-overview/multi-tenancy#naming-conventions" >}}) into account.
+It's up to you to decide for an organization name that represents you as a company, business unit, or team. Please take our [naming conventions]({{< relref "/overview/fleet-management/multi-tenancy#naming-conventions" >}}) into account.
 
 ### Prepare a cloud provider account
 

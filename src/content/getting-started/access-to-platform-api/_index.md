@@ -76,7 +76,7 @@ testing                 97d
 giantswarm              97d
 ```
 
-Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [Multi-tenancy]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
+Organizations are a way to separate and isolate clusters, apps, etc., between different teams or environments. More information can be found in [Multi-tenancy]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
 Secondly, run the `kubectl gs get clusters -A` command, which shows all the clusters managed by your management cluster, the `-A` flag stands for all namespaces.
 
@@ -115,4 +115,4 @@ You can notice that the apps are deployed in the `org-x` namespace and are prefi
 
 ## Next step
 
-Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}).
+Now that you have access to the platform API and know a bit more about it, you are ready to [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}).

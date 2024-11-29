@@ -69,7 +69,7 @@ Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux
 
 ## Step 3: Create your own dashboard
 
-In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/vintage/use-the-api/management-api/_index.md" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
+In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
 
 ```yaml
 apiVersion: v1
