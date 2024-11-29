@@ -65,7 +65,7 @@ The `app-operator` is running in the management cluster and the rest of the apps
 
 ## Finding the ingress controller version
 
-You can browse the apps in our catalog using [the developer portal UI]({{< relref "/overview/developer-portal/" >}}) but this information is also available in the management cluster in form of resources. The [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resources show the apps that are available.
+You can browse the apps in our catalog using [the developer portal UI]({{< relref "/overview/developer-portal/" >}}) but this information is also available in the management cluster in form of resources. The [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resources show the apps that are available.
 
 First let's list the available [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resources.
 

@@ -91,7 +91,7 @@ Currently we validate:
 - The catalog has a matching `Catalog` custom resource.
 - There is no `App` resource with a conflicting annotation or label value for the [target namespace]({{< relref "/tutorials/fleet-management/app-platform/namespace-configuration" >}}).
 
-If app operator finds a matching [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resource, it will use this to run more validation checks.
+If app operator finds a matching [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resource, it will use this to run more validation checks.
 
 - Cloud provider compatibility (For example you can’t install the `azure-ad-pod-identity` app in AWS cluster).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).
