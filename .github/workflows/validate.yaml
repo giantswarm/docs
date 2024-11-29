@@ -19,6 +19,7 @@ jobs:
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           cat files.txt | python3 scripts/validate-front-matter/script.py
+          rm files.txt
 
       - name: Print front matter annotations
         run: cat ./annotations.json
@@ -62,3 +63,10 @@ jobs:
             echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
             exit 1
           fi
+
+      - name: Check for moved or deleted files
+        run: |
+          git --no-pager diff --name-status --diff-filter=RD | tee files.txt
+          ls -la files.txt
+          cat files.txt
+          rm files.txt
