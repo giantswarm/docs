@@ -29,7 +29,7 @@ A workload cluster can be configured to deviate from this default and choose pod
 
 The IPAM mode must be set at cluster creation time and can't be changed for a running cluster. Below, you will create a cluster template and adjust the required values before actually creating the cluster.
 
-First, template a regular cluster (refer to [Creating a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}})):
+First, template a regular cluster (refer to [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}})):
 
 ```sh
 kubectl gs template cluster \
