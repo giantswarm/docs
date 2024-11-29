@@ -16,7 +16,7 @@ owner:
 
 The workload clusters, like any other `Kubernetes` custom resource, can be enriched with [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). Labels are key-value-pairs, where each key can be used only once per object (here: per workload cluster).
 
-Workload clusters are defined by a main `Cluster` resource ([`clusters.cluster.x-k8s.io`]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io" >}})). Accordingly, the labels referred to in this article are those on that resource type only.
+Workload clusters are defined by a main `Cluster` resource ([`clusters.cluster.x-k8s.io`](https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_clusters.yaml). Accordingly, the labels referred to in this article are those on that resource type only.
 
 ## Special purpose labels
 
@@ -93,7 +93,7 @@ To modify labels on a cluster, use  `kubectl label` command towards the cluster 
 ### Modify cluster labels using `kubectl` {#modify-using-kubectl}
 
 With access to the platform API, you are able to use `kubectl` to manage workload cluster labels.
-The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/reference/platform-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](https://github.com/kubernetes-sigs/cluster-api/blob/main/config/crd/bases/cluster.x-k8s.io_clusters.yaml) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 The [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) command is the most convenient way to set, modify, and delete labels of a cluster resource.
 
