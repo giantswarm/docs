@@ -20,7 +20,7 @@ Like with all `get` commands in `kubectl`, this command can be used to get detai
 custom resource in this case, or list several of them.
 
 The Catalog CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/reference/platform-api/crd/appcatalogs.application.giantswarm.io.md" >}})
-CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [Management API]({{< relref "/vintage/platform-overview/management-api" >}}).
+CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [platform API]({{< relref "/overview/architecture/#platform-api" >}}).
 
 ## Usage
 
