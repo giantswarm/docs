@@ -157,7 +157,7 @@ As you can see, we made an override for `.colors.background`, changing it from `
 You can use these values throughout your chart using the normal templating of `helm` charts:
 
 ```yaml
-# hello-world-app/helm/chart/hello-world-app/templates/colors-configmap.yaml
+# hello-world-app/helm/chart/hello-world/templates/colors-configmap.yaml
 apiVersion: v1
 kind: configmap
 metadata:
@@ -171,7 +171,7 @@ data:
 ```
 
 ```yaml
-# hello-world-app/helm/chart/hello-world-app/templates/colors-secret.yaml
+# hello-world-app/helm/chart/hello-world/templates/colors-secret.yaml
 apiVersion: v1
 kind: secret
 metadata:

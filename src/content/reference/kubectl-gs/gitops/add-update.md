@@ -73,7 +73,7 @@ kubectl gs gitops add automatic-update \
   --organization demoorg \
   --workload-cluster demowc \
   --app hello-world \
-  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app \
+  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world \
   --repository gitops-demo \
   --dry-run
 ```
@@ -131,7 +131,7 @@ kind: ImageRepository
 metadata:
   name: demowc-hello-world
 spec:
-  image: giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app
+  image: giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world
   interval: 10m0s
 
 
@@ -176,7 +176,7 @@ kubectl gs gitops add automatic-update \
   --organization demoorg \
   --workload-cluster demowc \
   --app hello-world \
-  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world-app \
+  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world \
   --repository gitops-demo \
   --dry-run
 ```
