@@ -68,5 +68,4 @@ jobs:
         run: |
           git --no-pager diff --name-status --diff-filter=RD "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           ls -la files.txt
-          cat files.txt
           rm files.txt
