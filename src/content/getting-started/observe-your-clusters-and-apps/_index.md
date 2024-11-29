@@ -1,8 +1,12 @@
 ---
 title: Observe your clusters and apps
 description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
-weight: 70
-last_review_date: 2024-08-10
+weight: 60
+last_review_date: 2024-11-28
+menu:
+  principal:
+    parent: getting-started
+    identifier: getting-started-observe
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -108,4 +112,4 @@ As you can see in the image above, the dashboard shows some information about th
 
 ## Next step
 
-After knowing how your application behaves let's explore what's the [security baseline and how does it affect your workload]({{< relref "/getting-started/secure-your-app" >}}).
+After knowing how your application behaves let's explore how security is handled in the platform. Learn more [in the security overview]({{< relref "/overview/security" >}}).

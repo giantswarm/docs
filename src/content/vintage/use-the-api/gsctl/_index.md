@@ -27,7 +27,7 @@ owner:
 last_review_date: 2023-12-21
 ---
 
-gsctl is the command line utility to manage your Giant Swarm clusters.
+gsctl is a CLI tool we published to manage Giant Swarm clusters via the [Rest API]({{< relref "/vintage/use-the-api/rest-api" >}}) that is now deprecated and no longer developed.
 
 {{% gsctl_deprecation_disclaimer %}}
 

@@ -2,9 +2,9 @@
 linkTitle: Authorization
 title: Authorization in the platform API
 description: Granting users specific permission to certain resources is what authorization is all about. The Platform API uses Kubernetes' role based access control (RBAC) primitives and provides automation on top of it to make authorization easy for most real-life use cases. Here we explain them in detail.
-weight: 20
+weight: 30
 menu:
-  main:
+  principal:
     identifier: tutorials-access-management-authorization
     parent: tutorials-access-management
 last_review_date: 2024-10-28
@@ -56,7 +56,7 @@ Next, the following resources reside in the `default` namespace:
 For each [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
 
 - Resources defining [workload clusters and node pools]({{< relref "/getting-started/provision-your-first-workload-cluster" >}})
-- [Cloud provider credentials]({{< relref "/getting-started/prepare-your-provider-account#configure-cluster-role-identity" >}}) in the form of `Secret` resources
+- [Cloud provider credentials]({{< relref "/getting-started/prepare-your-provider-infrastructure#configure-cluster-role-identity" >}}) in the form of `Secret` resources
 - [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which defines an app to be installed in a workload clusters
 - `ConfigMap` which optionally provides configuration for such an app
 - `Secret` which provides additional (confidential) configuration for such an app

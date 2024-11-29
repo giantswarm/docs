@@ -3,9 +3,9 @@ title: Prepare your provider account for Azure
 linkTitle: Prepare your Azure account
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
-last_review_date: 2024-05-28
+last_review_date: 2024-11-28
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How do I prepare my Azure account for the cloud-native developer platform?
   - How must I prepare my Azure account for the cloud-native developer platform?
