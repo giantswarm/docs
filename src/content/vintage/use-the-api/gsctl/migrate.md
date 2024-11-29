@@ -20,7 +20,7 @@ aliases:
 
 `gsctl` is a CLI for Giant Swarm's proprietary REST API, which is no longer developed. To make full use of clusters and apps with Giant Swarm, users have to migrate to the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
 
-Since the Management API is the Kubernetes API of the management cluster, `kubectl` is available as a CLI to work with the API. In addition, Giant Swarm provides [kubectl-gs]({{< relref "/vintage/use-the-api/kubectl-gs/" >}}), which can be run as plugin for `kubectl` with the shorthand `gs`.
+Since the Management API is the Kubernetes API of the management cluster, `kubectl` is available as a CLI to work with the API. In addition, Giant Swarm provides [kubectl-gs]({{< relref "/reference/kubectl-gs/" >}}), which can be run as plugin for `kubectl` with the shorthand `gs`.
 
 Some, but not all, `gsctl` commands have direct equivalents in `kubectl-gs`.
 
@@ -28,17 +28,17 @@ Here is a table for all replacements:
 
 | gsctl command           | kubectl gs command |
 |-------------------------|--------------------|
-| gsctl create cluster    | [kubectl gs template cluster]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster.md" >}}) |
-| gsctl create keypair    | [kubectl gs login]({{< relref "/vintage/use-the-api/kubectl-gs/login.md" >}}) |
-| gsctl create kubeconfig | [kubectl gs login]({{< relref "/vintage/use-the-api/kubectl-gs/login.md" >}}) |
-| gsctl create nodepool   | [kubectl gs template nodepool]({{< relref "/vintage/use-the-api/kubectl-gs/template-nodepool.md" >}}) |
-| gsctl list clusters     | [kubectl gs get clusters]({{< relref "/vintage/use-the-api/kubectl-gs/get-clusters.md" >}}) |
-| gsctl list nodepools    | [kubectl gs get nodepools]({{< relref "/vintage/use-the-api/kubectl-gs/get-nodepools.md" >}}) |
-| gsctl list releases     | [kubectl gs get releases]({{< relref "/vintage/use-the-api/kubectl-gs/get-releases.md" >}}) |
-| gsctl login             | [kubectl gs login]({{< relref "/vintage/use-the-api/kubectl-gs/login.md" >}}) |
-| gsctl show cluster      | [kubectl gs get clusters]({{< relref "/vintage/use-the-api/kubectl-gs/get-clusters.md" >}}) |
-| gsctl show nodepool     | [kubectl gs get nodepools]({{< relref "/vintage/use-the-api/kubectl-gs/get-nodepools.md" >}}) |
-| gsctl show release      | [kubectl gs get releases]({{< relref "/vintage/use-the-api/kubectl-gs/get-releases.md" >}}) |
+| gsctl create cluster    | [kubectl gs template cluster]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) |
+| gsctl create keypair    | [kubectl gs login]({{< relref "/reference/kubectl-gs/login.md" >}}) |
+| gsctl create kubeconfig | [kubectl gs login]({{< relref "/reference/kubectl-gs/login.md" >}}) |
+| gsctl create nodepool   | [kubectl gs template nodepool]({{< relref "/reference/kubectl-gs/template-nodepool.md" >}}) |
+| gsctl list clusters     | [kubectl gs get clusters]({{< relref "/reference/kubectl-gs/get-clusters.md" >}}) |
+| gsctl list nodepools    | [kubectl gs get nodepools]({{< relref "/reference/kubectl-gs/get-nodepools.md" >}}) |
+| gsctl list releases     | [kubectl gs get releases]({{< relref "/reference/kubectl-gs/get-releases.md" >}}) |
+| gsctl login             | [kubectl gs login]({{< relref "/reference/kubectl-gs/login.md" >}}) |
+| gsctl show cluster      | [kubectl gs get clusters]({{< relref "/reference/kubectl-gs/get-clusters.md" >}}) |
+| gsctl show nodepool     | [kubectl gs get nodepools]({{< relref "/reference/kubectl-gs/get-nodepools.md" >}}) |
+| gsctl show release      | [kubectl gs get releases]({{< relref "/reference/kubectl-gs/get-releases.md" >}}) |
 
 Below is some additional information on commands that don't have a direct replacement.
 
