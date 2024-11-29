@@ -61,7 +61,7 @@ You can see that several applications already exist for the workload cluster `te
 
 Before installing the `hello-world` app, an ingress controller must be running in the cluster. The ingress controller is responsible for routing the incoming traffic to the correct service in the cluster and make it available publicly.
 
-To know which applications are available for customers we've extended the platform with two custom resources. The first resource is [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io/" >}}) which contains application definitions that are available for installation in the workload clusters. The second is the [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) which is the application definition for each application version.
+To know which applications are available for customers we've extended the platform with two custom resources. The first resource is [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) which contains application definitions that are available for installation in the workload clusters. The second is the [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) which is the application definition for each application version.
 
 By default there is a single catalog in the platform with the applications maintained by us:
 
