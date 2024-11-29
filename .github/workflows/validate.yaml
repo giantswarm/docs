@@ -87,6 +87,12 @@ jobs:
                 echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations.json
               fi
             done <files.txt
-            cat mvdel-annotations.json
           fi
           rm files.txt
+
+      - name: Send annotations for moved or deleted files
+        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          title: Moved or deleted files
+          input: ./mvdel-annotations.json
