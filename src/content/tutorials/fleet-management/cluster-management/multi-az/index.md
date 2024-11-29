@@ -107,6 +107,7 @@ When inspecting details of such a cluster, you can get the node pool information
 
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
+
 ```text
 kubectl get awsmachinepool  -oyaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
@@ -119,18 +120,25 @@ spec:
   - eu-west-1a
   ...
 ```
+
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
+
 ```text
 ```
+
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
+
 ```text
 ```
+
 {{< /tab >}}
 {{< tab id="cluster-capvcd" for-impl="capvcd">}}
+
 ```text
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
