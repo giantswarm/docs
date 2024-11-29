@@ -37,7 +37,7 @@ The network must have:
 
 - DHCP enabled.
 - Access to vCenter endpoint on port `443` so the controllers can manage the cluster's lifecycle.
-- Access to internet on port `443` to pull artifacts from our repositories, download CVE databases, pull container images, etc. You can whitelist the domains in this [domain allow list]({{< relref "/vintage/platform-overview/security/cluster-security/domain-allowlist/" >}}). Note that we also support authenticated HTTP proxies.
+- Access to internet on port `443` to pull artifacts from our repositories, download CVE databases, pull container images, etc. You can whitelist the domains in this [domain allow list]({{ relref "/overview/security/domain-allowlist" }}). Note that we also support authenticated HTTP proxies.
 
 **Warning**: In case you plan to use several networks on the cluster please contact Giant Swarm support to discuss the network configuration.
 
