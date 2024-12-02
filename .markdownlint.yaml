@@ -55,3 +55,6 @@ MD051: false
 # We use the Hugo functionality such as `[1]: {{< relref "..." >}}` which markdownlint recognizes as undefined reference,
 # so the lint is not helpful.
 MD052: false
+
+MD046:
+  style: fenced

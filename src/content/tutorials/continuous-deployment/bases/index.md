@@ -14,7 +14,7 @@ owner:
 last_review_date: 2024-11-11
 ---
 
-In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [the app platform](https://docs.giantswarm.io/overview/fleet-management/app-management/). The application custom resource contains the specification and configuration of the cluster in this format:
+In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [the app platform]({{< relref "/overview/fleet-management/app-management/" >}}). The application custom resource contains the specification and configuration of the cluster in this format:
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1

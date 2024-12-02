@@ -87,7 +87,7 @@ colors:
   secretColor: ""
 ```
 
-Now you create an [App]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level `ConfigMap` and a user level secret:
+Now you create an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resource that references a user level `ConfigMap` and a user level secret:
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -157,7 +157,7 @@ As you can see, we made an override for `.colors.background`, changing it from `
 You can use these values throughout your chart using the normal templating of `helm` charts:
 
 ```yaml
-# hello-world-app/helm/chart/hello-world-app/templates/colors-configmap.yaml
+# hello-world-app/helm/chart/hello-world/templates/colors-configmap.yaml
 apiVersion: v1
 kind: configmap
 metadata:
@@ -171,7 +171,7 @@ data:
 ```
 
 ```yaml
-# hello-world-app/helm/chart/hello-world-app/templates/colors-secret.yaml
+# hello-world-app/helm/chart/hello-world/templates/colors-secret.yaml
 apiVersion: v1
 kind: secret
 metadata:
@@ -187,7 +187,7 @@ data:
 
 ## How configuration values are stored {#storage-referencing}
 
-Configuration for apps are stored as `ConfigMaps` and `Secrets`, which are referenced by `name` and `namespace` in various `spec` fields of the [`App`]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) and [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource.
+Configuration for apps are stored as `ConfigMaps` and `Secrets`, which are referenced by `name` and `namespace` in various `spec` fields of the [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) and [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource.
 
 Our operators act on those resources to ensure the actual state ends up looking like the desired state. More information is available in our [general overview of the app platform]({{< relref "/overview/fleet-management/app-management" >}}).
 
