@@ -49,7 +49,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
     mkdir ${APP_NAME}
     ```
 
-2. Navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+2. Navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [App CR]({{< relref "/reference/kubectl-gs/template-app/" >}}):
 
     ```nohighlight
     cd ${APP_NAME}/
@@ -71,7 +71,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
 
     __Note__: We're including `${cluster_name}` in the app name to avoid a problem when two or more clusters in the same organization want to deploy the same app with its default name.
 
-    Reference [the App Configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details about how to properly create the respective ConfigMaps or Secrets.
+    Reference [the App Configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) for more details about how to properly create the respective ConfigMaps or Secrets.
 
     In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the ConfigMap. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
