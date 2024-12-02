@@ -84,16 +84,17 @@ Additionally, the Platform API includes a concept called organizations, which ar
 
 The user space layer is defined as the layer pertaining to a single workload cluster Kubernetes API. Workload clusters are the Kubernetes clusters that run your workloads.
 
-Tenant admins have `cluster-admin` roles in all workload clusters of the installation.
+Tenant admins can manage access to workload clusters through different mechanisms:
 
-Additional users on this level are either created by a Tenant admin as Service Accounts inside the workload cluster or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
+They can create certificate-based access using the kubectl gs CLI. Using this access should be time-limited to set up RBAC roles and bindings for Service Accounts and OIDC users.
 
-However, a user with access to the Kubernetes API does not gain any permissions by default, as the clusters are locked down using RBAC. To provide access, a cluster admin first needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific cluster. They can be bound to either single users or groups of them.
+End users on this level are then created by a Tenant admin either as Service Accounts inside the workload cluster or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
+
+However, a user with access to the Kubernetes API does not gain any permissions by default, as the clusters are locked down using RBAC. To provide access, a cluster admin needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific cluster. They can be bound to either single users or groups of them.
 
 This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user.
 
 ## Further reading
 
 - [Securing your Cluster with RBAC and PSP]({{< relref "/vintage/getting-started/security" >}})
-- [Creating a kubeconfig with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-kubeconfig" >}})
-- [Creating a key pair with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-keypair" >}})
+- [Creating a client certificate for workload cluster access]({{< relref "/reference/kubectl-gs/login/#workload-cluster-client-certificate" >}})
