@@ -8,6 +8,7 @@ from yaml import load
 try:
     from yaml import CLoader as Loader
 except ImportError:
+    print("Warning: Using slower Python YAML loader. Install LibYAML for faster performance.")
     from yaml import Loader
 
 # Some path config

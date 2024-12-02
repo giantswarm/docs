@@ -1,6 +1,6 @@
 ---
-linkTitle: kubectl-gs
-title: kubectl-gs reference
+linkTitle: kubectl-gs CLI
+title: kubectl-gs CLI reference
 description: Main page for documentation on kubectl-gs, the Giant Swarm kubectl plugin, with an overview of all commands, plus information on how to install and upgrade.
 weight: 30
 
@@ -34,7 +34,7 @@ aliases:
 | [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        |
 | [`get organizations`][15]     | [List organizations or get details on a single organization][15] |
 | [`get releases`][11]          | [List releases or get details on a single release][11]           |
-| [`gitops`][14]                | [Gathers GitOps related subcommand][14]                          |
+| [`gitops`][14]                | [Gathers GitOps related subcommands][14]                          |
 | [`template app`][6]           | [Create manifests for an app][6]                                 |
 | [`template catalog`][7]       | [Create manifests for a catalog][7]                              |
 | [`template cluster`][8]       | [Create manifests for a cluster][8]                              |
