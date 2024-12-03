@@ -27,7 +27,6 @@ The official documentation from AWS: [IAM roles for service accounts](https://do
 The Cluster APi for AWs controller comes with an attached policy name `giantswarm-<INSTALLATION>-irsa-controller-policy` that contains permissions like:
 
 ```json
-...
   {
       "Effect": "Allow",
       "Action": [
@@ -47,8 +46,7 @@ The Cluster APi for AWs controller comes with an attached policy name `giantswar
         ...
       ],
       "Resource": "arn:aws:s3:::*-g8s-*"
-  },
- ...
+  }
 ```
 
 This policy allows the controller to create a Cloudfront distribution, ACM certificate, S3 bucket and OpenID Connect provider to enable the usage of the IRSA feature.
