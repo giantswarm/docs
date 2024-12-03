@@ -108,16 +108,58 @@ When inspecting details of such a cluster, you can get the node pool information
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-The node pools in Cluster API for AWS are managed by the `AWSMachinePool` resource. When you create a cluster with `kubectl gs template cluster` you can define the availability zones for the worker nodes as shown below.
+The node pools in Cluster API for AWS are managed by the `AWSMachinePool` resource. When you create a cluster with `kubectl gs template cluster` you rely on `Helm` [`cluster-aws`](https://github.com/giantswarm/cluster-aws) chart. To extend or modify the availability zones for the node pools you can provide a `values.yaml` file as shown below.
 
-```text
-$ kubectl gs template cluster \
-  --provider capa \
-  --name mycluster \
-  --organization testing --user-configmap=/tmp/values.yaml
+Define the node pool with the availability zones in the `values.yaml` file.
+
+```sh
+cat << EOF > /tmp/values.yaml
+data:
+  values: |
+    global:
+      nodePools:
+        np001:
+          instanceType: m6i.xlarge
+          maxSize: 3
+          minSize: 1
+          availabilityZones:
+          - eu-west-1a
+          - eu-west-1b
+EOF
 ```
 
-Get the node pool information by querying the `AWSMachinePool` resource as shown below.
+Template the cluster with `kubectl gs template cluster`:
+
+```sh
+kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing \
+  --release 29.0.1 > /tmp/cluster.yaml
+```
+
+Append the node pool values configuration manually or using this `yq` command:
+
+```sh
+yq eval-all '
+  select(fileIndex == 0) |
+  (
+    select(.kind == "ConfigMap") |
+    .data.values |= (
+      (. | from_yaml) * (load("/tmp/values.yaml").data.values | from_yaml) | to_yaml
+    )
+  ),
+  select(fileIndex == 0 and .kind == "App")
+' /tmp/cluster.yaml > /tmp/merged.yaml
+```
+
+Now you can apply the merged configuration:
+
+```sh
+kubectl apply -f /tmp/merged.yaml
+```
+
+To get the node pool information, query the `AWSMachinePool` resource as shown below.
 
 ```text
 $ kubectl get AWSManagedMachinePool -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
@@ -135,16 +177,59 @@ spec:
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
-The node pools in EKS are managed by the `AWSManagedMachinePool` resource. When you create a cluster with `kubectl gs template cluster` you can define the availability zones for the worker nodes as shown below.
+The node pools in Cluster API for EKS are managed by the `AWSManagedMachinePool` resource. When you create a cluster with `kubectl gs template cluster` you rely on `Helm` [`cluster-eks`](https://github.com/giantswarm/cluster-eks) chart. To extend or modify the availability zones for the node pools you can provide a `values.yaml` file as shown below.
 
-```text
-$ kubectl gs template cluster \
-  --provider eks \
-  --name mycluster \
-  --organization testing --user-configmap=/tmp/values.yaml
+Define the node pool with the availability zones in the `values.yaml` file.
+
+```sh
+cat << EOF > /tmp/values.yaml
+data:
+  values: |
+    global:
+      nodePools:
+        np001:
+          name: "np001"
+          instanceType: "m5.large"
+          minSize: 1
+          maxSize: 3
+          availabilityZones: ["us-west-2a", "us-west-2b", "us-west-2c"]
+EOF
 ```
 
-Get the node pool information by querying the `AWSManagedMachinePool` resource as shown below.
+Template the cluster with `kubectl gs template cluster`:
+
+```sh
+kubectl gs template cluster \
+  --provider eks \
+  --name mycluster \
+  --organization testing \
+  --release 29.0.1 > /tmp/cluster.yaml
+```
+
+Append the node pool values configuration manually or using this `yq` command:
+
+```sh
+yq eval-all '
+  select(fileIndex == 0) |
+  (
+    select(.metadata.name == "mycluster-userconfig") |
+    .data.values |= (
+      (. | from_yaml) * (load("/tmp/values.yaml").data.values | from_yaml) | to_yaml
+    )
+  ),
+  select(fileIndex == 0 and .metadata.name == "mycluster"),
+  select(fileIndex == 0 and .metadata.name == "mycluster-default-apps-userconfig"),
+  select(fileIndex == 0 and .metadata.name == "mycluster-default-apps")
+' /tmp/cluster.yaml > /tmp/merged.yaml
+```
+
+Now you can apply the merged configuration:
+
+```sh
+kubectl apply -f /tmp/merged.yaml
+```
+
+To get the node pool information, query the `AWSManagedMachinePool` resource as shown below.
 
 ```text
 $ kubectl get AWSManagedMachinePool -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
@@ -155,7 +240,8 @@ metadata:
   namespace: org-testing
 spec:
   availabilityZones:
-  - eu-west-1a
+  - us-west-2a
+  - us-west-2b
   ...
 ```
 
@@ -164,11 +250,52 @@ spec:
 
 The node pools in Cluster API for Azure are managed by the `MachineDeployment` resource. When you create a cluster with `kubectl gs template cluster` you can define the availability zones for the worker nodes as shown below.
 
+Define the failure domain for the node pool in the `values.yaml` file.
+
+```sh
+cat << EOF > /tmp/cluster.yaml
+data:
+  values: |
+    global:
+      nodePools:
+        np001:
+          instanceType: Standard_D4s_v5
+          replicas: 4
+          failureDomain: "2"
+EOF
+```
+
+Template the cluster with `kubectl gs template cluster`:
+
 ```text
 $ kubectl gs template cluster \
   --provider capz \
   --name mycluster \
-  --organization testing --user-configmap=/tmp/values.yaml
+  --organization testing \
+  --region westeurope \
+  --azure-subscription-id xxxxxxxxx \
+  --release 29.0.1 > /tmp/cluster.yaml
+```
+
+Append the node pool values configuration manually or using this `yq` command:
+
+```sh
+yq eval-all '
+  select(fileIndex == 0) |
+  (
+    select(.metadata.name == "mycluster-userconfig") |
+    .data.values |= (
+      (. | from_yaml) * (load("/tmp/values.yaml").data.values | from_yaml) | to_yaml
+    )
+  ),
+  select(fileIndex == 0 and .metadata.name == "mycluster")
+' /tmp/cluster.yaml > /tmp/merged.yaml
+```
+
+Now you can apply the merged configuration:
+
+```sh
+kubectl apply -f /tmp/merged.yaml
 ```
 
 Get the node pool information by querying the `MachineDeployment` resource as shown below.
@@ -185,6 +312,7 @@ spec:
   ...
 ```
 
+{{< /tab >}}
 {{< /tabs >}}
 
 Learn more about [node pools]({{< relref "/tutorials/fleet-management/cluster-management/node-pools" >}}) and how to manage them.
