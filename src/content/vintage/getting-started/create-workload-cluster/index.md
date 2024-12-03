@@ -72,7 +72,7 @@ You can template a cluster ([command reference]({{< relref "/reference/kubectl-g
 {{< tabs >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
 
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
+[Choose a release version here](/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -88,7 +88,7 @@ For backward compatibility, vintage cluster templating does not require the `--n
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-capa/), or use `kubectl gs get releases`, and fill it into this example command:
+[Choose a release version here](/changes/workload-cluster-releases-for-capa/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -144,7 +144,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure/), or use `kubectl gs get releases`, and fill it into this example command:
+[Choose a release version here](/changes/workload-cluster-releases-for-azure/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \

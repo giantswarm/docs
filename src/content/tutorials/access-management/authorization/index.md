@@ -2,9 +2,9 @@
 linkTitle: Authorization
 title: Authorization in the platform API
 description: Granting users specific permission to certain resources is what authorization is all about. The Platform API uses Kubernetes' role based access control (RBAC) primitives and provides automation on top of it to make authorization easy for most real-life use cases. Here we explain them in detail.
-weight: 20
+weight: 30
 menu:
-  main:
+  principal:
     identifier: tutorials-access-management-authorization
     parent: tutorials-access-management
 last_review_date: 2024-10-28
@@ -53,7 +53,7 @@ Next, the following resources reside in the `default` namespace:
 
 ### Organization namespaces {#org-namespaces}
 
-For each [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
+For each [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}}) there is a namespace to be used as the standard location for storing resources. In these namespaces you will usually find:
 
 - Resources defining [workload clusters and node pools]({{< relref "/getting-started/provision-your-first-workload-cluster" >}})
 - [Cloud provider credentials]({{< relref "/getting-started/prepare-your-provider-infrastructure#configure-cluster-role-identity" >}}) in the form of `Secret` resources
@@ -81,7 +81,7 @@ We'll explain the effect of binding these roles in the next section on RBAC auto
 
 As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we've some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
 
-- __Grant admin permissions to a default group__. Where customers own a Giant Swarm installation exclusively (which is the opposite case of using a [shared installation]({{< relref "/vintage/support/shared-installation" >}})), they name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
+- __Grant admin permissions to a default group__. Customers name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
 
 - __Provide service accounts with admin privileges__. Service accounts named `automation` are created in the `default` namespace and in all organization namespaces, bound to the pre-defined `cluster-admin` role.
 
@@ -111,7 +111,7 @@ For the purpose of this documentation article we'll introduce a few example case
 
 2. __Developer__: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discovers clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
 
-3. __Organization admin__: users who have full permissions to resources belonging to a specific [organization]({{< relref "/vintage/platform-overview/multi-tenancy" >}}).
+3. __Organization admin__: users who have full permissions to resources belonging to a specific [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
 4. __Admin__: a type of user that has permission to create, modify, and delete most types of resources in the management cluster.
 

@@ -1,8 +1,12 @@
 ---
 title: Observe your clusters and apps
 description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
-weight: 70
-last_review_date: 2024-08-10
+weight: 60
+last_review_date: 2024-11-28
+menu:
+  principal:
+    parent: getting-started
+    identifier: getting-started-observe
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -65,7 +69,7 @@ Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux
 
 ## Step 3: Create your own dashboard
 
-In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/vintage/use-the-api/management-api/_index.md" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
+In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
 
 ```yaml
 apiVersion: v1
@@ -108,4 +112,4 @@ As you can see in the image above, the dashboard shows some information about th
 
 ## Next step
 
-After knowing how your application behaves let's explore what's the [security baseline and how does it affect your workload]({{< relref "/getting-started/secure-your-app" >}}).
+After knowing how your application behaves let's explore how security is handled in the platform. Learn more [in the security overview]({{< relref "/overview/security" >}}).

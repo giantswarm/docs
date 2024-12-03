@@ -108,7 +108,7 @@ themselves and can find the application chart at
 
 For more information on configuring apps within the Giant Swarm App Platform,
 please follow the documentation at
-[https://docs.giantswarm.io/getting-started/app-platform/app-configuration/](https://docs.giantswarm.io/getting-started/app-platform/app-configuration/)
+[https://docs.giantswarm.io/getting-started/app-platform/app-configuration/]({{< relref "/overview/fleet-management/app-management" >}})
 
 ### Combining ESO and SOPs
 
