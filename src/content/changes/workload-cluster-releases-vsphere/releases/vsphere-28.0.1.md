@@ -7,12 +7,12 @@ changes_categories:
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/vsphere/v28.0.1
-  version: sphere-28.0.1
+  version: vsphere-28.0.1
   version_tag: vsphere-28.0.1
 date: '2024-10-23T12:00:00'
-description: Release notes for VSPHERE workload cluster release sphere-28.0.1, published
+description: Release notes for VSPHERE workload cluster release vsphere-28.0.1, published
   on 23 October 2024, 12:00.
-title: Workload cluster release sphere-28.0.1 for VSPHERE
+title: Workload cluster release vsphere-28.0.1 for VSPHERE
 ---
 
 ## Changes compared to v27.0.1
