@@ -108,13 +108,24 @@ When inspecting details of such a cluster, you can get the node pool information
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
+The node pools in Cluster API for AWS are managed by the `AWSMachinePool` resource. When you create a cluster with `kubectl gs template cluster` you can define the availability zones for the worker nodes as shown below.
+
 ```text
-kubectl get awsmachinepool  -oyaml
+$ kubectl gs template cluster \
+  --provider capa \
+  --name mycluster \
+  --organization testing --user-configmap=/tmp/values.yaml
+```
+
+Get the node pool information by querying the `AWSMachinePool` resource as shown below.
+
+```text
+$ kubectl get AWSManagedMachinePool -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
-kind: AWSMachinePool
+kind: AWSManagedMachinePool
 metadata:
-  name: mycluster-np01
-  namespace: org-giantswarm
+  name: mycluster-np001
+  namespace: org-testing
 spec:
   availabilityZones:
   - eu-west-1a
@@ -124,22 +135,56 @@ spec:
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
+The node pools in EKS are managed by the `AWSManagedMachinePool` resource. When you create a cluster with `kubectl gs template cluster` you can define the availability zones for the worker nodes as shown below.
+
 ```text
+$ kubectl gs template cluster \
+  --provider eks \
+  --name mycluster \
+  --organization testing --user-configmap=/tmp/values.yaml
+```
+
+Get the node pool information by querying the `AWSManagedMachinePool` resource as shown below.
+
+```text
+$ kubectl get AWSManagedMachinePool -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: AWSManagedMachinePool
+metadata:
+  name: mycluster-np001
+  namespace: org-testing
+spec:
+  availabilityZones:
+  - eu-west-1a
+  ...
 ```
 
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-```text
-```
-
-{{< /tab >}}
-{{< tab id="cluster-capvcd" for-impl="capvcd">}}
+The node pools in Cluster API for Azure are managed by the `MachineDeployment` resource. When you create a cluster with `kubectl gs template cluster` you can define the availability zones for the worker nodes as shown below.
 
 ```text
+$ kubectl gs template cluster \
+  --provider capz \
+  --name mycluster \
+  --organization testing --user-configmap=/tmp/values.yaml
 ```
 
-{{< /tab >}}
+Get the node pool information by querying the `MachineDeployment` resource as shown below.
+
+```text
+$ kubectl get MachineDeployment -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: mycluster-np001
+  namespace: org-testing
+spec:
+  failureDomain: 2
+  ...
+```
+
 {{< /tabs >}}
 
 Learn more about [node pools]({{< relref "/tutorials/fleet-management/cluster-management/node-pools" >}}) and how to manage them.
