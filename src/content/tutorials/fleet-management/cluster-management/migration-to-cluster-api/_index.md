@@ -56,6 +56,69 @@ Our engineers will check that all resources and infrastructure are correctly mig
 - Some customers have been using [k8s-initiator-app](https://github.com/giantswarm/k8s-initiator-app/) to configure some aspects of the workload cluster API.
   In the new Cluster API implementation, [most of the features enabled by the app](https://github.com/giantswarm/capi-migration-cli/tree/main/k8s-initiator-features) are now supported natively by the platform. The app should be removed and moved to the new syntax if our migration CLI doesn't handle your use-case. Giant Swarm account engineers will help you with this process.
 
+- [Service Account issuer switch](#service-account-issuer-switch)
+
+- [Cluster manifest clean-up](#cluster-manifest-clean-up)
+
+### Service Account issuer switch
+
+For context, a cluster's service account issuer is an OIDC provider that signs and issues the tokens for the cluster's Service Accounts. These service accounts can then be used to authenticate workloads against the Kubernetes API and the AWS API via IRSA.
+
+In CAPA, since the cluster domain name changes from vintage, a new service account issuer has also been introduced. To make for a smooth migration though, we support defining multiple issuers in a cluster. This way, service account tokens issued by all the defined issuers will be accepted in the cluster's Kubernetes API. The accepted issuers are defined in `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` in the cluster app values (order matters as we'll see below).
+
+After a cluster is migrated to CAPI, the vintage service account issuer needs to be phased out, since it's tied to the vintage cluster domain name, which will also be phased out eventually. This is a gradual, multi-step process that will require rolling the master nodes in multiple phases.
+
+1. Update the trust policy for all the AWS IAM Roles used by a `ServiceAccount` via IRSA. The trust policy should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, this is how the trust policy of the IAM roles would look like (make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references):
+
+   ```json
+   {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Federated": "arn:aws:iam::1234567890:oidc-provider/irsa.foo.k8s.vintage.acme.net"
+                },
+                "Action": "sts:AssumeRoleWithWebIdentity",
+                "Condition": {
+                    "ForAnyValue:StringEquals": {
+                        "irsa.foo.k8s.vintage.acme.net:sub": [
+                            "system:serviceaccount:somenamespace:someserviceaccount"
+                        ]
+                    }
+                }
+            },
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Federated": "arn:aws:iam::1234567890:oidc-provider/irsa.foo.capi.acme.net"
+                },
+                "Action": "sts:AssumeRoleWithWebIdentity",
+                "Condition": {
+                    "ForAnyValue:StringEquals": {
+                        "irsa.foo.capi.acme.net:sub": [
+                            "system:serviceaccount:somenamespace:someserviceaccount"
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+   ```
+
+2. Switch the order of the service account issuers in the cluster values (`cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`). This will instruct the Kubernetes API to start issuing service account tokens using the CAPI issuer, while still accepting tokens from the vintage issuer. Important notes:
+   - This needs to be done __after__ all IAM role trust policies have been updated (step 1.).
+   - This will roll the master nodes of the cluster.
+   - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
+3. Wait until all service account tokens have been renewed
+   - For [bound service account tokens](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume) this happens either when the Pod gets deleted or after a defined lifespan (1 hour by default). This could be forced by rolling all the worker nodes, which would delete and re-schedule all `Pods`.
+   - If [long-lived tokens are in use via `Secret` objects](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#manual-secret-management-for-serviceaccounts), these will need to be re-created and re-distributed manually.
+4. Remove the vintage issuer from the cluster configuration values (`cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`). Important notes:
+   - All Service Account tokens issued by the Vintage issuer will no longer be accepted by the cluster's Kubernetes API, so make sure all tokens are renewed (step 3.).
+   - This will roll the master nodes of the cluster.
+   - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
+5. (Optional) Update all the AWS IAM Roles used by a `ServiceAccount` via IRSA, to remove the Vintage issuer from their trust policy
+
 ### Cluster manifest clean-up
 
 There are some fields in the cluster manifest that are only used during the migration, and can be cleaned up afterward. We try to make sure our migration tool cleans up the manifests and removes those fields automatically after a successful migration, but there could be some left-overs, or it could be that a cluster got migrated before that clean-up process got implemented in the tool. Below, you'll find a non-exhaustive list of the fields that can be cleaned up (or modified) after a successful migration:
@@ -98,7 +161,7 @@ data:
             region: eu-west-1
     internal:
         migration:
-            irsaAdditionalDomain: api.foo.k8s.vintage.acme.net
+            irsaAdditionalDomain: irsa.foo.k8s.vintage.acme.net
     cluster:
         internal:
             advancedConfiguration:
@@ -170,7 +233,7 @@ Diff:
              region: eu-west-1
 -    internal:
 -        migration:
--            irsaAdditionalDomain: api.foo.k8s.vintage.acme.net
+-            irsaAdditionalDomain: irsa.foo.k8s.vintage.acme.net
      cluster:
          internal:
              advancedConfiguration:
@@ -227,7 +290,7 @@ Diff:
 +                    clusterConfiguration:
 +                        apiServer:
 +                            serviceAccountIssuers:
-+                                - url: https://api.foo.k8s.vintage.acme.net
++                                - url: https://irsa.foo.k8s.vintage.acme.net
 +                                - templateName: awsIrsaServiceAccountIssuer
  kind: ConfigMap
  metadata:
