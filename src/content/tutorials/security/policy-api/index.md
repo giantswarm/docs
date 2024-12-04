@@ -17,9 +17,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-
-{{< platform_support_table aws="ga=v19.1.1">}}
-
 __Note__: This guide is intended for cluster administrators running Giant Swarm managed Kubernetes clusters. More general information about Pod Security Standards can be found on the [Security policy enforcement][sec-policy-enforcement] page.
 
 ## Managing cluster security policies with the Giant Swarm Policy API
@@ -85,7 +82,7 @@ Among these are a number of capabilities designed for enforcing policies within 
 We use and manage tools we believe are the "right tool for the job" and add value for customers.
 Over time, however, the "right tool" may change.
 It can be difficult to keep up with so many rapidly evolving projects (think of all the alpha or beta version APIs currently in production!), and the simple reality is that many teams don't care what the tool is as long as their needs are met.
-By decoupling our customers' intent from the underlying tooling, we can automate much of the migration work needed to smoothly transition them between policy implementations.
+By decoupling our customers' intent from the underlying tooling, we can automate much of the migration work needed to transition between policy implementations.
 
 When Pod Security Policies were removed, for example, many workloads had to be re-evaluated and new exceptions created for them, even though neither the workload nor the inherent risk had changed.
 Much effort was spent maintaining feature parity and avoiding security regressions as clusters upgraded to v1.25.
