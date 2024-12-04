@@ -153,13 +153,14 @@ jobs:
           grep "WARN" hugo.out > hugo-warnings.out
           if [ -s hugo-warnings.out ]; then
             echo "hugo_warnings=true" >> $GITHUB_ENV
-            echo "hugo-warnings=$(cat hugo-warnings.out)" >> $GITHUB_OUTPUT
+            {
+              echo 'hugo-warnings<<EOF'
+              at hugo-warnings.out
+              echo EOF
+            } >> $GITHUB_OUTPUT
           else
             echo "hugo_warnings=false" >> $GITHUB_ENV
           fi
-
-          # debugging
-          echo '${{ toJSON(github) }}'
 
       - name: Add/update comment about Hugo warnings
         if: ${{ env.hugo_warnings == 'true' }}
@@ -170,7 +171,7 @@ jobs:
             Hugo yielded some warnings. Please [check](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) whether they require action.
             
             ```json
-            ${{ toJSON(steps.hugobuild) }}
+            ${{ toJSON(steps.hugobuild.outputs) }}
             ```
 
             <small>Based on commit ${{ github.sha }}</small>
