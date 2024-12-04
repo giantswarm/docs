@@ -13,12 +13,49 @@ user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
  -  What are Pod Security Standards (PSS)?
+ -  How can I give my container permission to access a persistent volume?
+ -  How can I run a container as a certain user?
+ -  How can I run a container as privileged?
+ -  Why is my container lacking permission to use a persistent volume?
 last_review_date: 2024-11-29
+mermaid: true
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-To enforce security best practices, several policies mapped to the [`Kubernetes Pod Security Standards`](https://kubernetes.io/docs/concepts/security/pod-security-standards/) (PSS) are pre-installed in Giant Swarm clusters.
+Giant Swarm uses Kyverno to enforce the official Kubernetes Pod Security Standards, and provides platform-level automation of common policy management practices.
+
+## Pod Security Standards
+
+The Kubernetes maintainers publish a set of policies called the `Pod Security Standards` (PSS), which describe acceptable pod configurations for different levels of risk. The policies apply to several pod and container specification-level fields which have security implications for the workload, and are grouped into three increasingly restrictive levels.
+
+The `baseline` policy level limits the capabilities a pod can use to a limited subset (~14 possibilities). The `restricted` level takes this policy further and requires each pod to explicitly drop all capabilities in its Pod spec, and allows adding back only a single capability (`NET_BIND_SERVICE`). The least restrictive level, `privileged`, is a no-op policy which doesn't perform any validation or impose any rules. Refer to the [official Pod Security Standards docs][k8s-pss] for more information.
+
+The `Pod Security Standards` only provide a set of suggested policies intended to be enforced by other implementations of actual controls which validate pods against the `PSS` rules.
+
+### Pod Security Admission
+
+The Kubernetes API includes feature called `Pod Security Admission` (PSA), which is a specific implementation of a technical control for the `Pod Security Standards`. It's an admission controller which is built into the API server, and can be configured using labels on cluster namespaces.
+
+Due to perceived limitations in the initial implementation of `PSA`, Giant Swarm uses an external admission controller to enforce these policies instead of the Kubernetes built-in PSA.
+
+To learn more about built-in `PSA`, please refer to the [upstream Kubernetes Pod Security Admission documentation][k8s-psa]. You can read [a blog post outlining our decision not to use PSA][gs-psp-blog].
+
+### Pod Security Standards with Kyverno
+
+Instead of the `Pod Security Admission` controller, Giant Swarm clusters use Kyverno along with a set of Kyverno cluster policies which map to the `Pod Security Standards`.
+
+{{< mermaid >}}
+flowchart TD
+    A["Pod Security Standards (PSS)"] -->|Enforced by| B("Kyverno <br/> (outside API Server)")
+    A --> |Enforced by| C("Pod Security Admission (PSA) <br/> (inside API Server)")
+{{< /mermaid >}}
+
+By default, Giant Swarm clusters enforce the `restricted` level `Pod Security Standards`. This level aligns with our "secure by default" principle, and is intended to ensure our clusters are hardened according to community best practices.
+
+Cluster administrators have complete flexibility and control over their policy enforcement, and may choose to ease their security requirements or enforce additional policies to suit their risk tolerance and business needs.
+
+To enforce security best practices, several policies mapped to the [Kubernetes `Pod Security Standards`][k8s-pss] (PSS) are pre-installed in Giant Swarm clusters.
 
 These policies validate `Pod` and `Pod` controller (`Deployment`, `DaemonSet`, `StatefulSet`) resources and deny admission of the resource if it doesn't comply. Individual policies forbid deploying resources with various kinds of known risky configurations, and require some additional defensive options to be set in order to reduce the likelihood and/or impact of a workload becoming compromised.
 
@@ -26,18 +63,18 @@ Users who are unaware of those requirements may be surprised when their workload
 
 ### Kyverno
 
-Giant Swarm clusters currently use `Kyverno` to perform the actual enforcement of the policies we manage.
-Our [Policy API]({{< relref "/tutorials/security/policy-api" >}}), along with other platform internals, manage the `Kyverno` cluster policy resources as well as any necessary `Kyverno` policy exceptions.
+Giant Swarm clusters currently use Kyverno to perform the actual enforcement of the policies we manage.
+Our [Policy API]({{< relref "/tutorials/security/policy-api" >}}), along with other platform internals, manage the Kyverno cluster policy resources as well as any necessary Kyverno policy exceptions.
 
-`Kyverno` is an admission controller, which inspects incoming requests to the `Kubernetes` API server and checks them against configured policies. `Kyverno` policies can be configured in two modes: `audit` and `enforce`.
+Kyverno is an admission controller, which inspects incoming requests to the Kubernetes API server and checks them against configured policies. Kyverno policies can be configured in two modes: `audit` and `enforce`.
 
-In `audit` mode, `Kyverno` won't reject admission of a resource even if it fails the policy. It will instead create a report and add an `Event` to the resource indicating that the resource has failed the policy. In `enforce` mode, `Kyverno` will block the creation of a resource if it fails a policy. No report or event will be created, because the resource will never exist in the cluster.
+In `audit` mode, Kyverno won't reject admission of a resource even if it fails the policy. It will instead create a report and add an `Event` to the resource indicating that the resource has failed the policy. In `enforce` mode, Kyverno will block the creation of a resource if it fails a policy. No report or event will be created, because the resource will never exist in the cluster.
 
-By default, `Kyverno` will periodically re-scan all existing resources in a cluster and generate reports about their compliance.
+By default, Kyverno will periodically re-scan all existing resources in a cluster and generate reports about their compliance.
 
 Resources which fail a policy will receive an `Event` similar to the example below, indicating which policy has failed. These events are useful for evaluating which resources are affected by a policy or potential policy change. If a resource has these warning events for a given policy, it means that the resource would be rejected if that policy were to change to `enforce` mode.
 
-Much more extensive documentation about `Kyverno` configuration and policy behavior is available [in the official docs](https://kyverno.io/docs/).
+Much more extensive documentation about Kyverno configuration and policy behavior is available [in the official docs][kyverno-docs].
 
 ### Sample policy warnings
 
@@ -100,7 +137,7 @@ spec:
 
 ## Common pitfalls
 
-- The `PSS` policies described here apply to Pods as well as their controller types, like `Deployments`, `DaemonSets`, and `StatefulSets`. However, cluster administrators can deploy additional policies which apply to any arbitrary`Kubernetes` resource type, like `Services`, `ConfigMaps`, etc. For that reason, this guide often uses the term "resource" instead of `Pod` when referring to the object being targeted by a `Kyverno` policy.
+- The `PSS` policies described here apply to Pods as well as their controller types, like `Deployments`, `DaemonSets`, and `StatefulSets`. However, cluster administrators can deploy additional policies which apply to any arbitrary Kubernetes resource type, like `Services`, `ConfigMaps`, etc. For that reason, this guide often uses the term "resource" instead of `Pod` when referring to the object being targeted by a Kyverno policy.
 - Many policies target configuration set at the container level, so *all* containers in a `Pod` must satisfy each policy, including `init` and `ephemeral` containers.
 - Some policies contain multiple rules. Resources must be compliant with *all* of the rules in order to pass validation by that policy.
 - Many policies are satisfied if the fields they target are simply omitted or left unset. However, some `restricted` level policies require that the resource explicitly sets a particular value. It may be necessary to add new content to an existing resource in order to make it compliant.
@@ -1046,7 +1083,7 @@ __Note__: under most circumstances, only a cluster administrator will be able to
 
 To exclude a workload from a policy, create a `PolicyException` resource for that workload-policy combination.
 
-There are two ways to do this, depending on your cluster administrators' policy management preferences: via the Giant Swarm `Policy` API, or via native `Kyverno` resources.
+There are two ways to do this, depending on your cluster administrators' policy management preferences: via the Giant Swarm `Policy` API, or via native Kyverno resources.
 
 ### Configuring exceptions with Policy API
 
@@ -1080,13 +1117,13 @@ This example allows a `Deployment` (and the `ReplicaSet` and `Pods` it creates) 
 
 __Note__: creating a many-to-many exception (multiple targets excluded from multiple policies) isn't currently permitted. Either `policies` or `targets` must contain exactly one entry.
 
-Various `Policy` API components watch these resources and make the corresponding changes in supported any lower-level policies. `PSS` policies are currently enforced using `Kyverno`, so when this Giant Swarm `PolicyException` is created, the Policy API controllers will ensure that a corresponding `Kyverno` policy exception is created or updated to exclude the workload from the named policies.
+Various `Policy` API components watch these resources and make the corresponding changes in supported any lower-level policies. `PSS` policies are currently enforced using Kyverno, so when this Giant Swarm `PolicyException` is created, the Policy API controllers will ensure that a corresponding Kyverno policy exception is created or updated to exclude the workload from the named policies.
 
 For policies which are enforced or audited by multiple distinct tools, a Giant Swarm `PolicyException` can be used to declaratively configure all of the underlying implementations simultaneously.
 
 ### Configuring exceptions with Kyverno
 
-Cluster administrators may prefer to manage exceptions themselves. In this case, it's necessary to create the underlying `Kyverno` policy exception directly.
+Cluster administrators may prefer to manage exceptions themselves. In this case, it's necessary to create the underlying Kyverno policy exception directly.
 
 There are different ways to structure a `PolicyException`, and your cluster administrator may have a preferred format.
 
@@ -1125,7 +1162,12 @@ This example allows a `Deployment` (and the `ReplicaSet` and `Pods` it creates) 
 
 Noteworthy pieces of this example:
 
-- `Kyverno` policy rules are usually written at the `Pod` level. For convenience, `Kyverno` automatically generates equivalent rules for `Pod` controllers like `Deployments` and `DaemonSets`. Such rules are prefaced with the value `autogen-` and added to the policy automatically (two such rules are visible in the example). When writing a `PolicyException`, any applicable `autogen` rules must also be listed if a workload should be exempt from them.
+- Kyverno policy rules are usually written at the `Pod` level. For convenience, Kyverno automatically generates equivalent rules for `Pod` controllers like `Deployments` and `DaemonSets`. Such rules are prefaced with the value `autogen-` and added to the policy automatically (two such rules are visible in the example). When writing a `PolicyException`, any applicable `autogen` rules must also be listed if a workload should be exempt from them.
 - Similarly, when listing resource kinds to be matched in a `PolicyException`, every sub-resource controller must be listed as well. For example: If a `Policy` is written at the `CronJob` level (and `autogen` policies are enabled for it), then the `Job` and `Pod` resources created from the `CronJob` also need to be explicitly matched in the `PolicyException`. The same happens with Deployments, where the `ReplicaSet` and `Pod` controllers will need to be excluded as well.
 - A policy can contain multiple rules -- exceptions can be applied to individual rules so that the others remain in effect. Here, the workload is allowed to fail the `host-path` and `restricted-volumes` rules (and their automatically generated equivalents). A workload is only exempt from the rules listed in a `ruleNames` list. If a policy contains other rules not listed in the `PolicyException`, and the workload doesn't satisfy those rules, the workload will be rejected.
 - Cluster administrators can choose the namespace where `PolicyExceptions` are stored. The correct namespace for a `PolicyException` might be different than the namespace for the `Pod` itself.
+
+[gs-psp-blog]: https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp
+[k8s-psa]: https://kubernetes.io/docs/concepts/security/pod-security-admission/
+[k8s-pss]: https://kubernetes.io/docs/concepts/security/pod-security-standards/
+[kyverno-docs]: https://kyverno.io/docs/

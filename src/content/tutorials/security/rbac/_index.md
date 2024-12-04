@@ -1,7 +1,7 @@
 ---
 linkTitle: Cluster access control
 title: Cluster access control with RBAC and Pod Security Standards
-description: Introduction to using role-based access control (RBAC) and pod security standards (PSS) to secure your cluster and manage access control.
+description: Introduction to using role-based access control (RBAC) to secure access to cluster resources.
 weight: 10
 menu:
   principal:
@@ -9,19 +9,15 @@ menu:
     identifier: tutorials-security-rbac
 user_questions:
   - How can I add permissions to a service account?
-  - How can I give my container permission to access a persistent volume?
-  - How can I run a container as a certain user?
-  - How can I run a container as privileged?
   - How can I specify which permissions are associated with a key pair?
   - Why are my containers failing to access some resources?
-  - Why is my container lacking permission to use a persistent volume?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 last_review_date: 2024-11-28
 mermaid: true
 ---
 
-Two of the most central mechanisms to secure your cluster in `Kubernetes` are `Role Based Access Control` (RBAC) and `Pod Security Standards` (PSS). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
+Role Base Access Control (RBAC) is the primary authorization mechanism for managing access to cluster resources in Kubernetes. It is enabled and partially configured by default on Giant Swarm clusters, and we support common automation use cases through additional platform capabilities described in our [Platform Access Management section][platform-access-management].
 
 ## Role based access control
 
@@ -209,11 +205,11 @@ For a detailed explanation of how to refer to subjects in bindings you can read 
 
 #### Default role bindings {#default-roles-bindings}
 
-Your `Kubernetes` cluster comes by default with a set of roles and cluster roles as well as some default bindings. These are automatically reconciled and thus can't be changed or deleted.
+Your cluster comes by default with a set of roles and cluster roles as well as some default bindings. These are automatically reconciled and thus can't be changed or deleted.
 
 You can use the `Role` and `ClusterRole` resources to create bindings for your users. Following example would grant all users in the group `mynamespace-admin` full permissions to resources in the `mynamespace` namespace.
 
-See how it references a `ClusterRole` named `admin`, which comes with `Kubernetes` by default.
+See how it references a `ClusterRole` named `admin`, which comes with Kubernetes by default.
 
 ```yaml
 kind: ClusterRoleBinding
@@ -233,11 +229,11 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default role bindings is for the `cluster-admin` role, which depicts a super-user in the cluster. By default, it's bound to the `system:masters` group. Thus, if you need cluster admin access to your `Kubernetes` cluster, you need to [generate user credentials]({{< relref "/getting-started/access-to-platform-api" >}}) that includes the group.
+One of the most important default role bindings is for the `cluster-admin` role, which represents a super-user in the cluster. By default, it's bound to the `system:masters` group. If cluster admin access is required, [user credentials can be generated]({{< relref "/getting-started/access-to-platform-api" >}}) that explicitly include that group.
 
 For a complete overview of default roles and bindings you can read the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it's like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For `Kubernetes`, it translates in selecting a proper username and group name. Read [the authentication documentation]({{< relref "/overview/architecture/authentication/" >}}) to know more.
+__Warning:__ Consider the principle of least privilege and be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. Using the `cluster-admin` role by default in a Kubernetes cluster is analogous to giving root access to every user in a Linux system. Consider whether a binding to `cluster-admin` is truly necessary, or if a more minimal role can be bound instead. Read [the platform access management documentation][platform-access-management] to know more.
 
 ### Verifying if you Have Access
 
@@ -274,41 +270,9 @@ $ kubectl auth can-i get pods --as-group=system:masters
 yes
 ```
 
-## Pod Security Standards
-
-The Kubernetes maintainers publish a set of policies called `Pod Security Standards` (PSS), which describe acceptable pod configurations for different levels of risk. The policies apply to several pod and container specification-level fields which have security implications for the workload, and are grouped into three increasingly restrictive levels.
-
-For example, the `baseline` policy level limits the capabilities a pod can use to a limited subset (~14 possibilities). The `restricted` level takes this policy further and requires each pod to explicitly drop all capabilities in its Pod spec, and allows adding back only a single capability (`NET_BIND_SERVICE`). The least restrictive level, `privileged`, is a no-op policy which doesn't perform any validation or impose any rules. Refer to the [official Pod Security Standards docs](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for more information.
-
-The `Pod Security Standards` provide only a set of suggested policies intended to be enforced by other implementations of actual controls which validate pods against the `PSS` rules.
-
-### Pod Security Admission
-
-The `Kubernetes` API includes a built-in admission controller called `Pod Security Admission` (PSA), which a specific implementation of a technical control for the `Pod Security Standards`. It's an admission controller which is built into the API server, and can be configured using labels on cluster namespaces.
-
-Due to perceived limitations in the initial implementation of `PSA`, Giant Swarm uses an external admission controller to enforce these policies instead of the `Kubernetes` built-in PSA.
-
-To learn more about built-in `PSA`, please refer to the [upstream Kubernetes Pod Security Admission documentation](https://kubernetes.io/docs/concepts/security/pod-security-admission/). You can read [a blog post outlining our decision not to use PSA](https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp).
-
-### Pod Security Standards with Kyverno
-
-Instead of the `Pod Security Admission` controller, Giant Swarm clusters use `Kyverno` along with a set of Kyverno cluster policies which map to the `Pod Security Standards`.
-
-{{< mermaid >}}
-flowchart TD
-    A["Pod Security Standards (PSS)"] -->|Enforced by| B("Kyverno <br/> (outside API Server)")
-    A --> |Enforced by| C("Pod Security Admission (PSA) <br/> (inside API Server)")
-{{< /mermaid >}}
-
-By default, Giant Swarm clusters enforce the `restricted` level `Pod Security Standards`. This level aligns with our "secure by default" principle, and is intended to ensure our clusters are hardened according to community best practices.
-
-Cluster administrators have complete flexibility and control over their policy enforcement, and may choose to ease their security requirements or enforce additional policies to suit their risk tolerance and business needs.
-
-[A detailed guide to working with `Kyverno` PSS policies and exceptions]({{< relref "/tutorials/security/policy-enforcement" >}}) is available as a standalone resource.
-
 ## User management
 
-Though our recommendation is to integrate your `Identity Provider` with the platform API, you can also manage users using certificates and `RBAC` bindings.
+Although our recommendation is to integrate your Identity Provider with the platform API, it is also possible to manage users using certificates and RBAC bindings.
 
 ### Using common name as username
 
@@ -320,17 +284,17 @@ Setting a `Common Name` prefix results in a username like the following:
 
 where `<cn-prefix>` is a username of your choice and `<cluster-domain>` is your cluster's domain, for example `w6wn8.k8s.example.eu-central-1.aws.gigantic.io`.
 
-When binding roles to a user you need to use the full username mentioned above.
+When binding roles to a user, the full username must be used, in the format above.
 
 ### Using organizations
 
-Organizations you set when creating `key-pairs` get mapped to groups inside `Kubernetes`. You can then assign roles to a whole group of users. A user can be part of multiple groups and thus be assigned multiple roles, too.
+Organizations you set when creating `key-pairs` get mapped to groups inside Kubernetes. This allows role assignment to whole groups of users. A user can be part of multiple groups and thus be assigned multiple roles, the permissions of which are additive.
 
-There is only a single predefined user group inside Kubernetes. Members of the `system:masters` group will directly be assigned the default `cluster-admin` role inside your cluster, which is allowed to do anything. Our recommendation is to only use this kind of user, when bootstrapping security settings for the cluster.
+There is only a single predefined user group inside Kubernetes. Members of the `system:masters` group will directly be assigned the default `cluster-admin` role, which is allowed to do anything. Our recommendation is to only use this kind of user when bootstrapping security settings for the cluster.
 
 ### Default settings
 
-The `<cn-prefix>` defaults to the email you sign in with at Giant Swarm. The default organization is empty. Thus, a user that's created without any additional `CN` prefix and/or Organizations won't have any rights on the cluster unless you bind a role to their specific username.
+The `<cn-prefix>` defaults to the email you sign in with at Giant Swarm. The default organization is empty. Thus, a user that's created without any additional `CN` prefix and/or Organizations won't have any rights on the cluster unless a role to their specific username is bound in the cluster.
 
 ## Bootstrapping and managing access rights
 
@@ -349,13 +313,13 @@ kubectl gs login $PLATFORM_API \
 
 This will create a `kubeconfig` with a `cluster-admin` user that's valid for a three hours (as you don't want to yield that power for too long).
 
-With this user you can now start creating roles and bindings for your users and apps. Let's go through some examples.
+With this user, you can now start creating roles and bindings for your users and apps. Let's go through some examples.
 
-Note that in these examples you are assuming you are creating users through platform API. If you have plugged in your `Identity Provider` you can skip the user creation step and directly bind roles to your users.
+Note that these examples assume you are creating users through platform API. If you have connected an identity provider, you can skip the user creation step and directly bind roles to your users.
 
 ### Giving admin access to a specific namespace
 
-There is a default admin role defined inside `Kubernetes`. You can bind that role to a user or group of users for a specific namespace with a role binding similar to following.
+There is a default admin role defined inside Kubernetes. You can bind that role to a user or group of users for a specific namespace with a role binding similar to following.
 
 ```yaml
 kind: RoleBinding
@@ -416,7 +380,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Above YAML gives view rights to the whole cluster to both the user with `CN` prefix `jane` and all users within the `cluster-view` group.
+The above YAML gives view rights over the whole cluster to both the user with `CN` prefix `jane` and all users within the `cluster-view` group.
 
 Let's assume you have already created both users from the example above. As Jane's username hasn't changed, she automatically gets the new rights using her existing credentials.
 
@@ -431,13 +395,13 @@ kubectl gs login $PLATFORM_API \
   --certificate-group "dev-admin, cluster-view"
 ```
 
-With the above Marc would now be part of both groups and thus be bound by both bindings.
+With the above, Marc would now be part of both groups and thus be bound by both bindings.
 
 ### Running applications with API access
 
-Applications running inside your cluster that need access to the `Kubernetes` API need the right permissions bound to them. For this the Pods need to use a `ServiceAccount`.
+Applications running inside your cluster that need access to the Kubernetes API need the right permissions bound to them. For this, Pods need to use a `ServiceAccount`.
 
-The typical process looks like following example:
+The typical process looks like the following:
 
 #### 1. Create a Service Account for your app {#app-api-create-sa}
 
@@ -451,7 +415,7 @@ metadata:
 
 #### 2. Add the Service Account to your app {#app-api-add-sa}
 
-This is done by adding a line referencing the `ServiceAccount` to the `Pod` spec of your `Deployment` or `Daemonset`. To be sure  you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
+This is done by adding a line referencing the `ServiceAccount` to the `Pod` spec of your `Deployment` or `DaemonSet`. To be sure  you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
 
 ```yaml
 [...]
@@ -459,6 +423,7 @@ spec:
   template:
         metadata:
           name: fluentd
+          namespace: logging
           labels:
             component: fluentd
         spec:
@@ -507,4 +472,8 @@ You can revoke access from any user or group of users by either completely remov
 
 Note that bindings that come with the cluster by default like `system:masters` can't be removed as they're reconciled. Our team highly recommend to use OIDC integration to manage users and groups. Otherwise, you rely on short-lived users access (for example certificates with a TTL of a day or less) as optional security measure.
 
+__Warning:__ certificates with bindings to built-in groups like `system:masters` with no expiration can only be revoked by rotating the root certificate authority for the entire cluster, which can be very disruptive to workloads and external resource access. For this reason, we strongly recommend using alternative groups and bindings even for administrative purposes.
+
 Learn more about [policies]({{< relref "/tutorials/security/policy-enforcement" >}}) and how to enforce security them through the platform.
+
+[platform-access-management]: {{< relref "/tutorials/access-management" >}}
