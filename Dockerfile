@@ -32,15 +32,19 @@ RUN find /public \
   -delete
 
 FROM gsoci.azurecr.io/giantswarm/nginx:1.25-alpine
+EXPOSE 8080
+USER 0
 
 # Delete default config (which we have no control over)
 RUN rm -r /etc/nginx/conf.d && rm /etc/nginx/nginx.conf
-
 COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN nginx -t -c /etc/nginx/nginx.conf && \
-    rm -rf /tmp/nginx.pid
+# Ensure tmp dir exists and has right ownership
+RUN mkdir -p /tmp/nginx && chown -R 101 /tmp/nginx
 
-EXPOSE 8080
+RUN nginx -t -c /etc/nginx/nginx.conf && \
+    rm -rf /tmp/nginx/nginx.pid
 
 COPY --from=build --chown=101 /public /usr/share/nginx/html
+
+USER 101
