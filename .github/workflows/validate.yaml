@@ -24,7 +24,7 @@ jobs:
           if [ -s files.txt ]; then
             cat files.txt | python3 scripts/validate-front-matter/script.py
             # Print for debugging
-            echo "\nAnnotations JSON:"
+            printf "\nAnnotations JSON:\n"
             cat ./annotations.json
             # Save as environment variable for next step
             echo "found_front_matter_issues=true" >> $GITHUB_ENV
@@ -55,7 +55,7 @@ jobs:
             > markdownlint-annotations.json
           
           # Print for debugging
-          echo "\nAnnotations JSON:"
+          printf "\nAnnotations JSON:\n"
           cat ./markdownlint-annotations.json
           
           # Save as environment variable for next step
@@ -102,7 +102,7 @@ jobs:
             rm mvdel-annotations-lines.json
 
             # Print for debugging
-            echo "\nAnnotations JSON:"
+            printf "\nAnnotations JSON:\n"
             cat ./mvdel-annotations.json
 
             # Save as environment variable for next step
