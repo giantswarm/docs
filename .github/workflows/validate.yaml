@@ -158,6 +158,9 @@ jobs:
             echo "hugo-warnings=$(cat hugo-warnings.out)\n" >> $GITHUB_OUTPUT
           fi
 
+          # debugging
+          echo '${{ toJSON(github) }}'
+
       - name: Add/update comment about Hugo warnings
         if: ${{ env.hugo_warnings == 'true' }}
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
