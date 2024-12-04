@@ -150,7 +150,7 @@ jobs:
         name: Build Hugo site
         run: |
           hugo --source ./src --printPathWarnings --printUnusedTemplates | tee hugo.out
-          grep "WARN" hugo.out > hugo-warnings.out
+          grep "WARN" hugo.out > hugo-warnings.out || true
           if [ -s hugo-warnings.out ]; then
             echo "hugo_warnings=true" >> $GITHUB_ENV
             {
