@@ -7,10 +7,6 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-namespace-config
-aliases:
-  - /getting-started/app-platform/namespace-configuration
-  - /developer-platform/app-platform/namespace-configuration
-  - /app-platform/namespace-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-18

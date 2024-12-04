@@ -12,10 +12,6 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-28
-aliases:
-  - /advanced/observability/logging/disable
-  - /ui-api/observability/logging/disable
-  - /observability/logging/disable
 ---
 
 In this article you will learn how you can disable managed logging for your cluster (i.e. logs of components to ensure the observability of the cluster).

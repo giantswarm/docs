@@ -11,12 +11,6 @@ user_questions:
   - What is Prometheus RemoteWrite?
   - How Prometheus RemoteWrite works?
   - How do I get access to management cluster metrics?
-aliases:
-  - /getting-started/observability/monitoring/prometheus/remotewrite
-  - /observability/prometheus/remotewrite
-  - /observability/monitoring/prometheus/remotewrite
-  - /ui-api/observability/prometheus/remotewrite
-  - /ui-api/observability/monitoring/prometheus/remotewrite
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-26
