@@ -147,4 +147,30 @@ jobs:
           extended: true
       
       - name: Build Hugo site
-        run: hugo --source ./src --printPathWarnings --printUnusedTemplates
+        run: |
+          hugo --source ./src --printPathWarnings --printUnusedTemplates | tee hugo.out
+          grep "WARN" hugo.out > hugo-warnings.out
+          if [ -s hugo-warnings.out ]; then
+            echo "hugo_warnings=true" >> $GITHUB_ENV
+          else
+            echo "hugo_warnings=false" >> $GITHUB_ENV
+          fi
+
+      - name: Add/update comment about Hugo warnings
+        if: ${{ env.hugo_warnings == 'true' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: hugo-warnings
+          message: |
+            Hugo yielded some warnings. Please check whether they require action.
+            
+            ```
+            $(cat hugo-warnings.out)
+            ```
+  
+      - name: Delete comment about Hugo warnings
+        if: ${{ env.hugo_warnings == 'false' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: hugo-warnings
+          mode: delete
