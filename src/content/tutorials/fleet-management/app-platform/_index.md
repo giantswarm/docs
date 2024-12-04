@@ -5,7 +5,7 @@ description: The app platform allows to manage app catalogs and apps, for simple
 weight: 30
 menu:
   principal:
-    parent: tutorials
+    parent: tutorials-fleet-management
     identifier: tutorials-fleet-management-app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
