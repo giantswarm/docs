@@ -147,6 +147,7 @@ jobs:
           extended: true
       
       - name: Build Hugo site
+        id: hugobuild
         run: |
           hugo --source ./src --printPathWarnings --printUnusedTemplates | tee hugo.out
           grep "WARN" hugo.out > hugo-warnings.out
@@ -154,6 +155,7 @@ jobs:
             echo "hugo_warnings=true" >> $GITHUB_ENV
           else
             echo "hugo_warnings=false" >> $GITHUB_ENV
+            echo "hugo-warnings=$(cat hugo-warnings.out)\n" >> $GITHUB_OUTPUT
           fi
 
       - name: Add/update comment about Hugo warnings
@@ -165,7 +167,7 @@ jobs:
             Hugo yielded some warnings. Please check whether they require action.
             
             ```
-            $(cat hugo-warnings.out)
+            ${{ steps.hugobuild.outputs.hugo-warnings }}
             ```
   
       - name: Delete comment about Hugo warnings
