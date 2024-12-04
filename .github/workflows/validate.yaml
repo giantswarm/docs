@@ -155,7 +155,7 @@ jobs:
             echo "hugo_warnings=true" >> $GITHUB_ENV
             {
               echo 'hugo-warnings<<EOF'
-              at hugo-warnings.out
+              cat hugo-warnings.out
               echo EOF
             } >> $GITHUB_OUTPUT
           else
