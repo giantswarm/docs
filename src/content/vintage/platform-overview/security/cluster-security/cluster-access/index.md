@@ -124,6 +124,5 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 
 - [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github)
 - [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
-- [Giant Swarm Operational Layers]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
-- [Giant Swarm REST API]({{< relref "/vintage/platform-overview/security/operational-layers#giant-swarm-api" >}})
-- [Giant Swarm User Space]({{< relref "/vintage/platform-overview/security/operational-layers#userspace" >}})
+- [Giant Swarm Operational Layers]({{< relref "/overview/architecture/operational-layers" >}})
+- [Giant Swarm User Space]({{< relref "/overview/architecture/operational-layers#userspace" >}})
