@@ -7,10 +7,6 @@ menu:
   main:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-config-install
-aliases:
-  - /getting-started/app-platform/installation-configuration
-  - /developer-platform/app-platform/installation-configuration
-  - /app-platform/installation-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-18

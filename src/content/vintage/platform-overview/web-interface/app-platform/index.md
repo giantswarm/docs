@@ -7,11 +7,6 @@ weight: 50
 menu:
   main:
     parent: platform-overview-web
-aliases:
-  - /platform-overview/web-interface/app-platform
-  - /ui-api/web/app-platform
-  - /reference/web-interface/app-catalog/
-  - /reference/web-interface/app-platform/
 user_questions:
   - How can I browse and install apps via the web interface?
 owner:
