@@ -146,4 +146,4 @@ jobs:
           hugo-version: "0.125.5"
       
       - name: Build Hugo site
-        run: hugo --source ./src --printPathWarnings --printUnusedTemplates --quiet
+        run: hugo --source ./src --printPathWarnings --printUnusedTemplates
