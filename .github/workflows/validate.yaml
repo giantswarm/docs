@@ -146,4 +146,4 @@ jobs:
           hugo-version: "0.125.5"
       
       - name: Build Hugo site
-        run: hugo server -s src --disableFastRender
+        run: hugo build --source ./src --disableFastRender --renderToMemory --printPathWarnings --printUnusedTemplates --quiet
