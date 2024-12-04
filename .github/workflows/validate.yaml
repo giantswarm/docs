@@ -167,13 +167,13 @@ jobs:
         with:
           comment-tag: hugo-warnings
           message: |
-            Hugo yielded some warnings. Please check whether they require action.
+            Hugo yielded some warnings. Please [check](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) whether they require action.
             
             ```json
             ${{ toJSON(steps.hugobuild.outputs) }}
             ```
 
-            _(execution **${{ github.run_id }}** / attempt **${{ github.run_attempt }}**)_
+            <small>Based on commit ${{ github.sha }}</small>
   
       - name: Delete comment about Hugo warnings
         if: ${{ env.hugo_warnings == 'false' }}
