@@ -17,7 +17,7 @@ last_review_date: 2024-11-28
 mermaid: true
 ---
 
-Role Base Access Control (RBAC) is the primary authorization mechanism for managing access to cluster resources in Kubernetes. It is enabled and partially configured by default on Giant Swarm clusters, and we support common automation use cases through additional platform capabilities described in our [Platform Access Management section][platform-access-management].
+Role Base Access Control (RBAC) is the primary authorization mechanism for managing access to cluster resources in Kubernetes. It is enabled and configured by default on Giant Swarm clusters, and we support common automation use cases through additional platform capabilities described in our [Platform Access Management section][platform-access-management].
 
 ## Role based access control
 
