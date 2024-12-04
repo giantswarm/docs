@@ -1,6 +1,6 @@
 ---
 linkTitle: App platform
-title: Guides for using the App platform
+title: App management
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment in all your workload clusters.
 menu:
   principal:
