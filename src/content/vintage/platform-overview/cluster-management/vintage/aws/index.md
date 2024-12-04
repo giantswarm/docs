@@ -150,6 +150,6 @@ Please note, while this document went into extensive details with regards to how
 ## Further reading
 
 - [Giant Swarm support model]({{< relref "/support" >}})
-- [Giant Swarm operational layers]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
+- [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})
 - [Giant Swarm App Catalog]({{< relref "/vintage/platform-overview/app-platform" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access" >}})
