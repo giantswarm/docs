@@ -13,10 +13,6 @@ user_questions:
   - As of which release are Azure spot VMs supported?
   - What's the difference between spot VMs and on-demand VMs on Azure?
 last_review_date: 2023-11-07
-aliases:
-  - /advanced/cluster-management/spot-instances/azure/overview
-  - /advanced/spot-instances/aws/overview/
-  - /guides/spot-instances/aws/overview/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

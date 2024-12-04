@@ -10,10 +10,6 @@ menu:
 # Enforce the single page layout here instead of section template,
 # to avoid automatic listing of all sub pages.
 layout: single
-aliases:
-  - /use-the-api/gsctl
-  - /reference/gsctl/
-  - /ui-api/gsctl/
 user_questions:
 - What are the commands for the Giant Swarm command line utility, gsctl?
 - What is the list of subcommands of gsctl?
