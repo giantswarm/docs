@@ -61,7 +61,7 @@ A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), integ
 
 #### Platform API access for Customers
 
-The Platform API is basically the Kubernetes API on every management cluster. It has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex github repository](https://github.com/dexidp/dex/tree/master/connector).
+The Platform API is basically the Kubernetes API on every management cluster. It has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex GitHub repository](https://github.com/dexidp/dex/tree/master/connector).
 
 ##### Authorization
 
