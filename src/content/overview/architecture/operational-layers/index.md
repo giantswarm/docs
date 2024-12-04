@@ -90,7 +90,7 @@ They can create certificate-based access using the kubectl gs CLI. Using this ac
 
 End users on this level are then created by a Tenant admin either as Service Accounts inside the workload cluster or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
 
-However, a user with access to the Kubernetes API does not gain any permissions by default, as the clusters are locked down using RBAC. To provide access, a cluster admin needs to create roles and bindings for the users. These roles can be defined as narrowly or broadly as needed for the specific cluster. They can be bound to either single users or groups of them.
+However, a user with access to the Kubernetes API does not gain any permissions by default, as the clusters are locked down using RBAC. To provide access, a cluster admin needs to create roles and bindings for the users. These roles can be defined as narrow or broad as needed for the specific cluster. They can be bound to either single users or groups of them.
 
 This enables the customer to individually set up their user management according to the needs of their organization. The configuration for this can be kept in version control and needs to be done by an initial cluster admin user.
 
