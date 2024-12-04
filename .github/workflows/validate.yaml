@@ -169,6 +169,8 @@ jobs:
             ```
             ${{ steps.hugobuild.outputs.hugo-warnings }}
             ```
+
+            _(execution **${{ github.run_id }}** / attempt **${{ github.run_attempt }}**)_
   
       - name: Delete comment about Hugo warnings
         if: ${{ env.hugo_warnings == 'false' }}
