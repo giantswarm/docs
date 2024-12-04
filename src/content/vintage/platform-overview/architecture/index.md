@@ -174,4 +174,4 @@ To support customers in their use of Flux and the CI/CD features available to th
 
 - [Giant Swarm Management API]({{< relref "/vintage/platform-overview/management-api" >}})
 - [Giant Swarm support model]({{< relref "/support" >}})
-- [Giant Swarm operational layers]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
+- [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})

@@ -69,6 +69,7 @@ separately
 Sigstore
 SLA[s]?
 Spotify
+SRE[s]?
 SSL
 subnet
 Trivy
