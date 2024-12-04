@@ -173,8 +173,6 @@ jobs:
             ```nohighlight
             ${{ steps.hugobuild.outputs.hugo-warnings }}
             ```
-
-            <small>Based on commit ${{ github.sha }}</small>
   
       - name: Delete comment about Hugo warnings
         if: ${{ env.hugo_warnings == 'false' }}
