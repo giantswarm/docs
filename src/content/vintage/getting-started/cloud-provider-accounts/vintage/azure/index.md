@@ -12,9 +12,6 @@ user_questions:
   - What do I need to configure in Azure in order to run Giant Swarm clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-aliases:
-  - /azure
-  - /getting-started/cloud-provider-accounts/azure/
 last_review_date: 2023-11-27
 ---
 
