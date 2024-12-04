@@ -1,10 +1,5 @@
 name: docs-app
 namespace: docs
-image:
-  registry: gsoci.azurecr.io
-  name: docs
-  tag: "[[.Version]]"
-  sha: "[[.SHA]]"
 
 resources:
   requests:
