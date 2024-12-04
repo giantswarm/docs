@@ -1,7 +1,6 @@
 ---
 title: Infrastructure management
 description: Management of external infrastructure across different cloud providers.
-weight: 50
 menu:
   principal:
     parent: tutorials-fleet-management
