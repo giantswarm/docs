@@ -146,8 +146,8 @@ jobs:
           hugo-version: "0.125.5"
           extended: true
       
-      - name: Build Hugo site
-        id: hugobuild
+      - id: hugobuild
+        name: Build Hugo site
         run: |
           hugo --source ./src --printPathWarnings --printUnusedTemplates | tee hugo.out
           grep "WARN" hugo.out > hugo-warnings.out
@@ -170,7 +170,7 @@ jobs:
             Hugo yielded some warnings. Please [check](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) whether they require action.
             
             ```json
-            ${{ toJSON(steps.hugobuild.outputs) }}
+            ${{ toJSON(steps) }}
             ```
 
             <small>Based on commit ${{ github.sha }}</small>
