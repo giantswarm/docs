@@ -1,0 +1,5 @@
+generate-metadata: true
+chart-dir: ./helm/docs-app
+destination: ./build
+catalog-base-url: https://giantswarm.github.io/giantswarm-operations-platform-catalog/
+replace-chart-version-with-git: true

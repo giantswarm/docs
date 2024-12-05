@@ -6,10 +6,6 @@ weight: 150
 menu:
   main:
     parent: uiapi-gsctl
-aliases:
-  - /use-the-api/gsctl
-  - /reference/gsctl/list-nodepools/
-  - /ui-api/gsctl/list-nodepools/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
