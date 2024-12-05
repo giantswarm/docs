@@ -18,7 +18,7 @@ You can associate an IAM role with a `Kubernetes` service account. This service 
 
 Applications must sign their AWS API requests with AWS credentials. This feature provides a strategy for managing credentials for your applications, similar to the way that Amazon EC2 instance profiles provide credentials to Amazon EC2 instances. Instead of creating and distributing your AWS credentials to the containers or using the Amazon EC2 instance’s role, you can associate an IAM role with a `Kubernetes` service account. The applications in the pod’s containers can then use an AWS SDK or the AWS CLI to make API requests to authorized AWS services.
 
-The official documentation from AWS: [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) `IRSA`.
+The official documentation from AWS: [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) (`IRSA`).
 
 ## IAM role permissions on `capa` controller
 
@@ -103,18 +103,18 @@ In order to assume roles cross AWS accounts you will need to create a new AWS Id
 
 Login into the AWS on the account where the cluster is running:
 
-- Grab the address of the `Identity Provider` in your current cluster `IAM > Identity Providers`. It will look like `https://s3.REGION.amazonaws.com/AWS_ACCOUNT-g8s-CLUSTER_ID-oidc-pod-identity-v2` or `https://CLOUDFRONT_ID.cloudfront.net`.
+- Grab the address of the `Identity Provider` in your current cluster via [AWS Console > IAM > Identity Providers](https://us-east-1.console.aws.amazon.com/iam/home?#/identity_providers). It will look like `https://irsa.mycluster.<basedomain>`.
 
-Login into the account where the IAM role is located and create an identity provider in `IAM > Identity Providers`:
+Log into the account where the IAM role is located and create an identity provider in `IAM > Identity Providers`:
 
 - Set `Provider URL` to the previously gathered address and click the `Get thumbprint` to import the certificate.
-- Set the `audience` to `sts.amazonaws.com` OR `sts.amazonaws.com.cn` for China regions.
+- Set the `audience` to `sts.amazonaws.com` (for China regions: `sts.amazonaws.com.cn`).
 
 ## Verify your configuration is correct
 
 Once your pod is running with the configured service account, you should see a file in the pod called `/var/run/secrets/eks.amazonaws.com/serviceaccount/token`, which contains a `JWT` token with details of the role.
 
-The pod should also have configured environment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
+The pod should also automatically receive configured environment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
 
 Check the pod using command `kubectl -n NAMESPACE get pod POD_NAME -o yaml` and search for the environment variables or for the volume mounts.
 
