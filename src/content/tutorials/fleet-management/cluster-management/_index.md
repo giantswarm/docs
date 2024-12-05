@@ -1,7 +1,6 @@
 ---
 title: Cluster management
 description: Management of workload clusters across different regions and cloud providers.
-weight: 20
 menu:
   principal:
     parent: tutorials-fleet-management

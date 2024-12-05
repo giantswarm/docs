@@ -6,11 +6,6 @@ weight: 30
 menu:
   main:
     parent: platform-overview-security
-aliases:
-  - /platform-overview/security/platform-security
-  - /developer-platform/security/
-  - /app-platform/apps/security/
-#   - /guides/managed-security-stack/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 last_review_date: 2023-11-10
