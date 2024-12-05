@@ -7,10 +7,6 @@ menu:
   main:
     parent: platform-overview
     identifier: platform-overview-observability
-aliases:
-  - /platform-overview/observability
-  - /developer-platform/observability/
-  - /app-platform/apps/observability/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:

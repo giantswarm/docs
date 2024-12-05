@@ -10,10 +10,6 @@ menu:
 user_questions:
   - What are the recommended service limit/quotas for AWS accounts?
   - How prepare AWS account for the Cluster API clusters?
-aliases:
-  - /getting-started/cloud-provider-accounts/cluster-api/aws
-  - /guides/prepare-aws-account-for-tenant-clusters/
-  - /guides/prepare-aws-account/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2024-04-16

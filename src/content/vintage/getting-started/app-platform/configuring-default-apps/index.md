@@ -9,10 +9,6 @@ menu:
     identifier: getting-started-app-platform-app-default-apps
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-aliases:
-  - /getting-started/app-platform/configuring-default-apps
-  - /developer-platform/app-platform/configuring-default-apps
-  - /app-platform/configuring-default-apps
 user_questions:
   - How can I customize preinstalled apps configuration?
   - How can I customize default apps configuration?

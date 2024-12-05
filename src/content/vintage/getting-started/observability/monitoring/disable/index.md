@@ -12,10 +12,6 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-26
-aliases:
-  - /getting-started/observability/monitoring/disable
-  - /ui-api/observability/monitoring/disable
-  - /observability/monitoring/disable
 ---
 
 In this article you will learn how you can disable monitoring for your cluster.
