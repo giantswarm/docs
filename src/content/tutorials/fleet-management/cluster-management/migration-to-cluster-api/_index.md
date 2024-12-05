@@ -130,6 +130,7 @@ There are some fields in the cluster manifest that are only used during the migr
         - `/etc/kubernetes/pki/sa-old.pem`
 - `cluster.internal.advancedConfiguration.controlPlane.preKubeadmCommands`: everything except the following fields can be deleted
     - To be kept
+        - the two `iptables` commands
         - `/bin/sh /migration/add-vintage-service-account-key.sh`
 - `cluster.internal.advancedConfiguration.controlPlane.postKubeadmCommands`: can be completely removed
 - `internal.migration.irsaAdditionalDomain`: starting from release v25.1.1 this domain needs to be appended to `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`, and the `internal.migration.irsaAdditionalDomain` field can be removed
@@ -277,8 +278,8 @@ Diff:
                           path: /etc/kubernetes/pki/sa-old.pem
                           permissions: "0640"
                      preKubeadmCommands:
--                        - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
--                        - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
+                         - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
+                         - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
 -                        - /bin/sh /migration/join-existing-cluster.sh
                          - /bin/sh /migration/add-vintage-service-account-key.sh
 -                        - sleep 90
