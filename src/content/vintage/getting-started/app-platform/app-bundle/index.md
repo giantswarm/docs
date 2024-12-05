@@ -8,10 +8,6 @@ menu:
     identifier: getting-started-app-platform-app-bundle
 weight: 30
 last_review_date: 2024-01-18
-aliases:
-  - /getting-started/app-platform/app-bundle
-  - /developer-platform/app-platform/app-configuration
-  - /app-platform/app-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

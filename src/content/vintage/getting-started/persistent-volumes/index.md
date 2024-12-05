@@ -7,21 +7,6 @@ menu:
     identifier: gettingstarted-persistentvolumes
     parent: getting-started
 last_review_date: 2023-12-19
-aliases:
-  - /getting-started/persistent-volumes
-  - /getting-started/persistent-volumes/aws/
-  - /getting-started/persistent-volumes/azure/
-  - /getting-started/persistent-volumes/on-premises/
-  - /getting-started/persistent-volumes/vmware-cloud-director/
-  - /getting-started/persistent-volumes/vmware-vsphere/
-  - /guides/using-persistent-volumes-on-aws/
-  - /guides/using-persistent-volumes-on-azure/
-  - /guides/using-persistent-volumes-on-baremetal/
-  - /guides/using-persistent-volumes-on-vSphere/
-  - /ui-api/observability/prometheus/persistent-volumes/aws/
-  - /ui-api/observability/prometheus/persistent-volumes/azure
-  - /ui-api/observability/prometheus/persistent-volumes/on-premises
-  - /ui-api/observability/prometheus/persistent-volumes/vSphere/
 user_questions:
   - How can I use persistent volumes in my AWS clusters?
   - How can I use persistent volumes in my Azure clusters?
