@@ -12,10 +12,6 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-28
-aliases:
-  - /advanced/observability/logging/disable
-  - /ui-api/observability/logging/disable
-  - /observability/logging/disable
 ---
 
 In this article you will learn how you can disable managed logging for your cluster (i.e. logs of components to ensure the observability of the cluster).
@@ -24,9 +20,9 @@ In this article you will learn how you can disable managed logging for your clus
 
 The managed logging stack allows Giant Swarm to provide 24/7 support based on your workload cluster logs. Currently, this component is pre-installed on workload clusters for the following implementations:
 
-- {{% impl_title "vintage_aws" %}}, release [v19.2.0](https://docs.giantswarm.io/changes/workload-cluster-releases-aws/releases/aws-v19.2.0/) or newer
+- {{% impl_title "vintage_aws" %}}, release [v19.2.0](/changes/workload-cluster-releases-aws/releases/aws-v19.2.0/) or newer
 
-Logs of components deployed in the `kube-system` and `giantswarm` namespaces, as well as Kubernetes and node audit logs are collected by managed `promtail` pods and sent to a Loki instance running in your management cluster. You can access its logs by [accessing to the managed Grafana](https://docs.giantswarm.io/getting-started/observability/visualization/access).
+Logs of components deployed in the `kube-system` and `giantswarm` namespaces, as well as Kubernetes and node audit logs are collected by managed `promtail` pods and sent to a Loki instance running in your management cluster. You can access its logs by [accessing to the managed Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps" >}}).
 
 ## Why would I like to disable logging?
 

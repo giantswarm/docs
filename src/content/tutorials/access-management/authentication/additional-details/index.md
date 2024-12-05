@@ -4,10 +4,10 @@ title: Additional details on authentication for the platform API
 description: Here we provide additional information about single sign-on with the platform API.
 weight: 30
 menu:
-  main:
+  principal:
     identifier: tutorials-access-management-authentication-details
     parent: tutorials-access-management-authentication
-last_review_date: 2024-10-28
+last_review_date: 2024-11-29
 user_questions:
   - How long do ID tokens live?
   - How can I refresh my groups memberships for platform API authorization?

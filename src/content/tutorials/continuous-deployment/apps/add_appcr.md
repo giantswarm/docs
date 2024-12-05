@@ -62,7 +62,7 @@ export APP_CATALOG=APP_CATALOG
 export APP_NAMESPACE=APP_NAMESPACE
 ```
 
-Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [`App` resource](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+Go to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [`App` resource]({{< relref "/reference/kubectl-gs/template-app/" >}}):
 
 ```sh
 cd ${APP_NAME}/
@@ -84,7 +84,7 @@ Additionally you can provide a default configuration adding these flags to the p
 
 __Note__: Including `${cluster_name}` in the app name avoids collision between clusters running same apps within the same organization.
 
-Reference [the app configuration](https://docs.giantswarm.io/app-platform/app-configuration/) for more details on how to create respective `ConfigMaps` or secrets.
+Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) for more details on how to create respective `ConfigMaps` or secrets.
 
 As optional step, you can place the `ConfigMap` and `Secret` with values as the `configmap.yaml` and `secret.enc.yaml` files respectively:
 

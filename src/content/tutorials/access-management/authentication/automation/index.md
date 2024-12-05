@@ -4,10 +4,10 @@ title: Authentication for the platform API in automation
 description: Using the platform API from an automation requires a hands-free way to provide credentials to kubectl or any `kubernetes` client. This article explains how to obtain a service account token to use in such a scenario.
 weight: 20
 menu:
-  main:
+  principal:
     identifier: tutorials-access-management-authentication-automation
     parent: tutorials-access-management-authentication
-last_review_date: 2024-10-28
+last_review_date: 2024-11-29
 user_questions:
   - How can I use the platform API in a programmatic way?
 owner:

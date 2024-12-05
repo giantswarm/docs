@@ -1,14 +1,15 @@
 ---
 title: Create a first workload cluster
 description: Experience configuring and provisioning your first workload cluster using the platform API.
-weight: 40
-last_review_date: 2024-08-21
+weight: 30
+last_review_date: 2024-11-28
 menu:
   principal:
     parent: getting-started
     identifier: getting-started-provision-cluster
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-rocket
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How do I configure and provision my first workload cluster?
   - What do I need to do to configure and provision my first workload cluster?

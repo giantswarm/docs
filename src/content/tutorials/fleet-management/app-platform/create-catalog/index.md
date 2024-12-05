@@ -24,7 +24,7 @@ last_review_date: 2024-10-28
 An app catalog is a collection of apps that can be deployed using the Giant Swarm app platform.
 It's an extension of `helm` [chart repository](https://helm.sh/docs/topics/chart_repository/).
 
-Every app catalog has its own [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource defined in the platform API.
+Every app catalog has its own [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) custom resource defined in the platform API.
 
 The app catalog is a `Git` repository that contains:
 
@@ -38,7 +38,7 @@ You can search for `helm` charts from the community using [Artifact Hub](https:/
 When creating your own app catalog we recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/) tool to publish apps to your catalog. It adds additional metadata files that
 allows app platform to extend `helm`. Such as only allowing an app to be installed once in a cluster. You can learn more about the tool by reading its [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
 
-These metadata files and the `helm` `index.yaml` are used to generate app metadata that's stored in the platform  as an [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resource.
+These metadata files and the `helm` `index.yaml` are used to generate app metadata that's stored in the platform  as an [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resource.
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories) for serving the catalog over HTTP including GitHub pages or tools like `harbor` or `chartMuseum` which run in a `kubernetes` cluster. At Giant Swarm we use GitHub pages and this is what we will cover in this guide.
 
