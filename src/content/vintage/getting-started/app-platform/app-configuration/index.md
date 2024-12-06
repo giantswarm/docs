@@ -7,11 +7,6 @@ menu:
     parent: getting-started-app-platform
     identifier: getting-started-app-platform-app-config
 weight: 30
-aliases:
-  - /getting-started/app-platform/app-configuration
-  - /reference/app-configuration/
-  - /app-platform/app-configuration
-  - /developer-platform/app-platform/app-configuration
 last_review_date: 2024-01-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

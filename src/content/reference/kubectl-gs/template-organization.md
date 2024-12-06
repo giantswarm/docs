@@ -14,7 +14,7 @@ user_questions:
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-organization/
 ---
-The `template organization` command creates an [organization]({{< relref "/vintage/platform-overview/multi-tenancy/index.md" >}})
+The `template organization` command creates an [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}})
 manifest which can be applied to a management cluster, e. g. via `kubectl apply`.
 The manifest will define an [`Organization`]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}})
 resource (API group/version `security.giantswarm.io/v1alpha1`).

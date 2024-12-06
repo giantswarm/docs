@@ -7,12 +7,12 @@ changes_categories:
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/vsphere/v27.0.0
-  version: sphere-27.0.0
+  version: vsphere-27.0.0
   version_tag: vsphere-27.0.0
 date: '2024-08-12T12:00:00'
-description: Release notes for VSPHERE workload cluster release sphere-27.0.0, published
+description: Release notes for VSPHERE workload cluster release vsphere-27.0.0, published
   on 12 August 2024, 12:00.
-title: Workload cluster release sphere-27.0.0 for VSPHERE
+title: Workload cluster release vsphere-27.0.0 for VSPHERE
 ---
 
 We are happy to announce the first release for vSphere that uses the new release framework.

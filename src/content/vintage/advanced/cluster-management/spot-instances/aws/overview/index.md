@@ -12,10 +12,6 @@ user_questions:
   - As of which release are AWS EC2 spot instances supported?
   - What's the difference between spot instances and on-demand instances on AWS?
 last_review_date: 2023-11-07
-aliases:
-  - /advanced/cluster-management/spot-instances/aws/overview
-  - /advanced/spot-instances/aws/overview/
-  - /guides/spot-instances/aws/overview/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---

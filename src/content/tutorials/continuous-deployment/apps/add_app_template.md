@@ -45,7 +45,7 @@ cd bases/apps/
 mkdir ${APP_NAME}
 ```
 
-Now, navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [`App` resource](https://docs.giantswarm.io/ui-api/kubectl-gs/template-app/):
+Now, navigate to the newly created directory and use [the kubectl-gs plugin](https://github.com/giantswarm/kubectl-gs) to generate the [`App` resource]({{< relref "/reference/kubectl-gs/template-app" >}}):
 
 ```sh
 cd ${APP_NAME}/

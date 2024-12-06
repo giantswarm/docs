@@ -17,7 +17,7 @@ user_questions:
 last_review_date: 2024-10-28
 ---
 
-The Giant Swarm applications use a defaulting and validation logic for the [`App` custom resources]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}) to enhance the user experience and prevent common mistakes.
+The Giant Swarm applications use a defaulting and validation logic for the [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) to enhance the user experience and prevent common mistakes.
 
 This logic is provided by [`app-admission-controller`](https://github.com/giantswarm/app-admission-controller). When you create or update an `App` resource, the controller will ensure that the resource is correctly configured and will default some fields based on the cluster configuration.
 
@@ -91,7 +91,7 @@ Currently we validate:
 - The catalog has a matching `Catalog` custom resource.
 - There is no `App` resource with a conflicting annotation or label value for the [target namespace]({{< relref "/tutorials/fleet-management/app-platform/namespace-configuration" >}}).
 
-If app operator finds a matching [`AppCatalogEntry`]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resource, it will use this to run more validation checks.
+If app operator finds a matching [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) custom resource, it will use this to run more validation checks.
 
 - Cloud provider compatibility (For example you can’t install the `azure-ad-pod-identity` app in AWS cluster).
 - Namespace restriction (cluster singleton, namespace singleton, fixed namespace).

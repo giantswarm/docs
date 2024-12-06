@@ -4,13 +4,6 @@ title: App platform
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
 last_review_date: 2023-03-31
 weight: 50
-aliases:
-  - /platform-overview/app-platform
-  - /developer-platform/app-platform/
-  - /basics/app-platform/
-  - /app-platform
-  - /developer-platform/app-platform/overview
-  - /app-platform/overview
 menu:
   main:
     parent: platform-overview
