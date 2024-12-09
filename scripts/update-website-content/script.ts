@@ -3,10 +3,10 @@ import fs from "fs/promises";
 import path from "path";
 import https from "https";
 
-const websiteURL = "https://www.giantswarm.io/why-giant-swarm";
+const websiteURL = "https://www.giantswarm.io/privacy-policy";
 
-const headerElementSelector = ".header-container-wrapper";
-const footerElementSelector = ".footer-container-wrapper";
+const headerElementSelector = "header.header";
+const footerElementSelector = "footer.footer";
 const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation-inner";
 
 const sectionTemplatesPath = path.join(
