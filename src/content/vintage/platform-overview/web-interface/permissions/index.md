@@ -6,9 +6,6 @@ weight: 40
 menu:
   main:
     parent: platform-overview-web
-aliases:
-  - /platform-overview/web-interface/permissions
-  - /ui-api/web/permissions
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

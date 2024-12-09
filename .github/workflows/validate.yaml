@@ -24,7 +24,7 @@ jobs:
           if [ -s files.txt ]; then
             cat files.txt | python3 scripts/validate-front-matter/script.py
             # Print for debugging
-            echo "\nAnnotations JSON:"
+            printf "\nAnnotations JSON:\n"
             cat ./annotations.json
             # Save as environment variable for next step
             echo "found_front_matter_issues=true" >> $GITHUB_ENV
@@ -55,7 +55,7 @@ jobs:
             > markdownlint-annotations.json
           
           # Print for debugging
-          echo "\nAnnotations JSON:"
+          printf "\nAnnotations JSON:\n"
           cat ./markdownlint-annotations.json
           
           # Save as environment variable for next step
@@ -102,7 +102,7 @@ jobs:
             rm mvdel-annotations-lines.json
 
             # Print for debugging
-            echo "\nAnnotations JSON:"
+            printf "\nAnnotations JSON:\n"
             cat ./mvdel-annotations.json
 
             # Save as environment variable for next step
@@ -138,4 +138,45 @@ jobs:
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
         with:
           comment-tag: files-deleted-or-moved
+          mode: delete
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
+        with:
+          hugo-version: "0.125.5"
+          extended: true
+      
+      - id: hugobuild
+        name: Build Hugo site
+        run: |
+          hugo --source ./src --printPathWarnings --printUnusedTemplates --renderToMemory | tee hugo.out
+          grep "WARN" hugo.out > hugo-warnings.out || true
+          if [ -s hugo-warnings.out ]; then
+            echo "hugo_warnings=true" >> $GITHUB_ENV
+            {
+              echo 'hugo-warnings<<EOF'
+              cat hugo-warnings.out
+              echo EOF
+            } >> $GITHUB_OUTPUT
+          else
+            echo "hugo_warnings=false" >> $GITHUB_ENV
+          fi
+
+      - name: Add/update comment about Hugo warnings
+        if: ${{ env.hugo_warnings == 'true' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: hugo-warnings
+          message: |
+            Hugo yielded some warnings. Please [check](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) whether they require action.
+            
+            ```nohighlight
+            ${{ steps.hugobuild.outputs.hugo-warnings }}
+            ```
+  
+      - name: Delete comment about Hugo warnings
+        if: ${{ env.hugo_warnings == 'false' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: hugo-warnings
           mode: delete

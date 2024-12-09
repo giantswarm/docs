@@ -23,7 +23,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
   - /use-the-api/management-api/crd/organizations.security.giantswarm.io/
-  - /reference/cp-k8s-api/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/organization-operator
 source_repository_ref: v2.0.2

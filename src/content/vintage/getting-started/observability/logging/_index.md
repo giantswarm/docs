@@ -10,7 +10,4 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-03-21
-aliases:
-  - /getting-started/observability/logging
-  - /ui-api/observability/logs/
 ---

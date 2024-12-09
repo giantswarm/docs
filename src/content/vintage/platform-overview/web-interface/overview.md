@@ -14,9 +14,6 @@ user_questions:
   - Where can I find the web UI source code?
   - How can I give feedback on the web UI?
 last_review_date: 2024-01-18
-aliases:
-  - /platform-overview/web-interface
-  - /ui-api/web/overview
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
