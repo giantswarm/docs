@@ -42,7 +42,7 @@ jobs:
                    f'https://docs.giantswarm.io/{section}/',
                    '--check-extern',
                    '--threads', '1',
-                   '--recursion-level', '2',
+                   '--recursion-level', '3',
                    '--no-status',
                    '--file-output', f'html/utf8/{section}.html']
             
