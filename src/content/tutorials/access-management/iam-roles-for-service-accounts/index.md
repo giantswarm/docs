@@ -131,5 +131,8 @@ kubectl run aws-cli-test \
   --namespace=default \
   --command -- sh -c "aws s3 ls" \
   --overrides='{"spec": {"serviceAccountName": "default"}}'
+```
+
+**Note**: You may want to adjust the `namespace` and `serviceAccountName` to match your configuration.
 
 Learn more about the [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in the official AWS documentation.
