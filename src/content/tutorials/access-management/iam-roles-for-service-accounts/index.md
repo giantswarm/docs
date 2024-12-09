@@ -55,7 +55,7 @@ To use IAM roles for service accounts, you need to create an IAM role, which per
 
 ### IAM role
 
-You have to make sure the **trusted entity** of the IAM role needs to contain a condition like the `sub` service account name of a JSON Web token (JWT). You need to ensure one of those conditions match against the `JWT`, which is used by one of your applications.
+You have to make sure the **trusted entity** of the IAM role contains a condition like the `sub` service account name of a JSON Web token (JWT). You need to ensure one of those conditions match against the `JWT`, which is used by one of your applications.
 
 This is an example of `external-dns` role trust policy:
 
