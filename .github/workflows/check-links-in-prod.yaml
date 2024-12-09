@@ -41,10 +41,10 @@ jobs:
                    'ghcr.io/linkchecker/linkchecker:latest',
                    f'https://docs.giantswarm.io/{section}/',
                    '--check-extern',
-                   '--threads 1',
-                   '--recursion-level 2',
+                   '--threads', '1',
+                   '--recursion-level', '2',
                    '--no-status',
-                   '--file-output html/utf8/{section}.html']
+                   '--file-output', f'html/utf8/{section}.html']
             
             result = subprocess.run(cmd)
             if result.returncode > 0:
