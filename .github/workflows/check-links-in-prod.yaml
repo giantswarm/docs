@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: '39 0 20 * *' # every 20th of the month at 00:39
 
+env:
+  # space-separated list of the top-level sections to check in https://docs.giantswarm.io/{section}/
+  SECTIONS: 'getting-started overview reference support tutorials'
+
 jobs:
   check-links:
     runs-on: ubuntu-latest
@@ -22,20 +26,13 @@ jobs:
       - name: check-links-in-overview-pages
         shell: python {0}
         continue-on-error: true
+        
         run: |
-          # The different sections we are going to check
-          sections = [
-            'getting-started',
-            'overview',
-            'reference',
-            'support',
-            'tutorials',
-          ]
-
           import os
           import subprocess
 
           pwd = os.getcwd()
+          sections = os.getenv('SECTIONS').split()
 
           for i, section in enumerate(sections):
             # call docker run command
@@ -67,8 +64,10 @@ jobs:
         shell: python {0}
         run: |
           import sys
+          import os
 
           found_error = False
+          sections = os.getenv('SECTIONS').split()
 
           for i, section in enumerate(sections):
             failed = os.getenv(f"failed{i}")
