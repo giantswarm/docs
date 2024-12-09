@@ -8,7 +8,8 @@ on:
     - cron: '39 0 20 * *' # every 20th of the month at 00:39
 
 env:
-  # space-separated list of the top-level sections to check in https://docs.giantswarm.io/{section}/
+  # space-separated list of the top-level sections
+  # to check in https://docs.giantswarm.io/{section}/
   SECTIONS: 'getting-started overview reference support tutorials'
 
 jobs:
@@ -26,7 +27,6 @@ jobs:
       - name: check-links-in-overview-pages
         shell: python {0}
         continue-on-error: true
-        
         run: |
           import os
           import subprocess
