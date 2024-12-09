@@ -35,6 +35,7 @@ gsctl
 Honeybadger
 HTTP
 [Ii][Aa][Mm]
+impl_title
 IP[s]?
 IPAM
 JSON
@@ -70,6 +71,7 @@ separately
 Sigstore
 SLA[s]?
 Spotify
+SRE[s]?
 SSL
 subnet
 Trivy

@@ -10,10 +10,6 @@ user_questions:
   - What options are available for creating clusters through gsctl?
   - What are the defaults for the 'gsctl create cluster' flags?
   - How does an example call of 'gsctl create cluster' look like?
-aliases:
-  - /use-the-api/gsctl
-  - /reference/gsctl/create-cluster/
-  - /ui-api/gsctl/create-cluster/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2023-03-06

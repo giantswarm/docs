@@ -10,9 +10,6 @@ menu:
 user_questions:
   - How do I transfer my files from an EFS volume to an EBS volume?
   - How do I configure the AWS EFS provisioner in my Kubernetes cluster?
-aliases:
-  - /advanced/storage/efs
-  - /guides/using-persistent-volumes-on-aws-with-efs-csi-driver/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 last_review_date: 2024-01-18

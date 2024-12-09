@@ -6,7 +6,7 @@ weight: 50
 menu:
   principal:
     parent: tutorials-security
-    identifier: tutorials-security-tls
+    identifier: tutorials-security-ingresstls
 user_questions:
   - How do I obtain TLS certificates?
 last_review_date: 2024-12-03

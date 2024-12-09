@@ -20,9 +20,9 @@ jobs:
         command: |
           container_tag=$(architect project version)
           echo "$container_tag"
-          docker run -d --rm --name docs -p 8080:8080 gsoci.azurecr.io/giantswarm/docs:$container_tag
+          docker run -d --rm --name docs-app -p 8080:8080 gsoci.azurecr.io/giantswarm/docs:$container_tag
 
-          CURL_OUTPUT=$(docker run --link docs gsoci.azurecr.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs:8080)
+          CURL_OUTPUT=$(docker run --link docs-app gsoci.azurecr.io/giantswarm/curl:7.81.0 curl --no-buffer http://docs-app:8080)
           echo $CURL_OUTPUT | grep -q "Giant Swarm"
 
 workflows:
@@ -43,6 +43,7 @@ workflows:
             - master
     - architect/push-to-app-catalog:
         context: architect
+        executor: app-build-suite
         name: push-to-app-catalog
         app_catalog: giantswarm-operations-platform-catalog
         app_catalog_test: giantswarm-operations-platform-test-catalog
