@@ -39,15 +39,15 @@ jobs:
 
           for i, section in enumerate(sections):
             # call docker run command
-            cmd = f"docker run --name linkchecker \
-              --volume {pwd}/output:/workdir --workdir /workdir \
-              ghcr.io/linkchecker/linkchecker:latest \
-              https://docs.giantswarm.io/{section}/ \
-              --check-extern \
-              --threads 1 \
-              --recursion-level 2 \
-              --no-status \
-              --file-output html/utf8/{section}.html"
+            cmd = ['docker', 'run', '--name', 'linkchecker',
+                   '--volume', f'{pwd}/output:/workdir', '--workdir', '/workdir',
+                   'ghcr.io/linkchecker/linkchecker:latest',
+                   f'https://docs.giantswarm.io/{section}/',
+                   '--check-extern',
+                   '--threads 1',
+                   '--recursion-level 2',
+                   '--no-status',
+                   '--file-output html/utf8/{section}.html']
             
             result = subprocess.run(cmd)
             if result.returncode > 0:
