@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import https from "https";
 
-const websiteURL = "https://www.giantswarm.io/smarter-platform-engineering";
+const websiteURL = "https://www.giantswarm.io/privacy-policy";
 
 const headerElementSelector = "header.header";
 const footerElementSelector = "footer.footer";
