@@ -22,18 +22,18 @@ The official documentation from AWS: [IAM roles for service accounts](https://do
 
 ## IAM role permissions on `capa` controller
 
-The Cluster APi for AWs controller comes with an attached policy name `giantswarm-<INSTALLATION>-irsa-controller-policy` that contains permissions like:
+The Cluster API for AWS controller comes with an attached policy name `giantswarm-<INSTALLATION>-irsa-controller-policy` that contains permissions like:
 
 ```json
   {
       "Effect": "Allow",
       "Action": [
         "iam:CreateOpenIDConnectProvider",
-        ...
+        "...",
         "cloudfront:TagResource",
-        ...
+        "...",
         "acm:RequestCertificate",
-        ...
+        "...",
       ],
       "Resource": "*"
   },
@@ -41,41 +41,45 @@ The Cluster APi for AWs controller comes with an attached policy name `giantswar
       "Effect": "Allow",
       "Action": [
         "s3:CreateBucket",
-        ...
+        "...",
       ],
       "Resource": "arn:aws:s3:::*-g8s-*"
   }
 ```
 
-This policy allows the controller to create a Cloudfront distribution, ACM certificate, S3 bucket and OpenID Connect provider to enable the usage of the IRSA feature.
+Thanks to this policy, the controller can create a Cloudfront distribution, ACM certificate, S3 bucket and OpenID Connect provider to enable the usage of the IRSA feature.
 
 ## Using IAM roles for service accounts
 
+To use IAM roles for service accounts, you need to create an IAM role, which permissions you want to assign to your application, and a `Kubernetes` service account.
+
 ### IAM role
 
-#### IAM Role Trusted Entity
+You have to make sure the **trusted entity** of the IAM role needs to contain a condition like the `sub` service account name of a JSON Web token (JWT). You need to ensure one of those conditions match against the `JWT`, which is used by one of your applications.
 
-The **trusted entity** of a IAM role needs to contain a condition like the `sub` service account name of a JSON Web token (JWT). You need to ensure one of those conditions match against the `JWT`, which is used by one of your applications.
-
-This is a example `JWT` from `external-dns` which is verified against the `external-dns` IAM role.
+This is an example of `external-dns` role trust policy:
 
 ```json
 {
-  "aud": [
-    "sts.amazonaws.com"
-  ],
-  "kubernetes.io": {
-    "namespace": "kube-system",
-    "pod": {
-      "name": "external-dns-7dfdc97c55-v5spg",
-    },
-    "serviceaccount": {
-      "name": "external-dns",
-    }
-  },
-  "sub": "system:serviceaccount:kube-system:external-dns"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/irsa.$INSTALLATION.gaws.gigantic.io"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "irsa.golem.gaws.gigantic.io:sub": "system:serviceaccount:kube-system:external-dns"
+                }
+            }
+        }
+    ]
 }
 ```
+
+**Note**: In the above example, the federation is set to the `OIDC` provider of the cluster. You can rely on your own OIDC provider making sure the parameter is set correctly.
 
 ### Service account
 
@@ -117,5 +121,22 @@ Once your pod is running with the configured service account, you should see a f
 The pod should also automatically receive configured environment variables `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN`.
 
 Check the pod using command `kubectl -n NAMESPACE get pod POD_NAME -o yaml` and search for the environment variables or for the volume mounts.
+
+You can also use this example pod with `aws-cli` to verify the configuration:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aws-cli-test
+  namespace: default # Change this to your desired namespace
+spec:
+  containers:
+  - name: aws-cli
+    image: amazon/aws-cli:2.13.17 # Latest version as of the last update
+    command: ["sh", "-c", "aws s3 ls"]
+  restartPolicy: Never
+  serviceAccountName: "" # Replace with the name of the service account you created
+```
 
 Learn more about the [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in the official AWS documentation.
