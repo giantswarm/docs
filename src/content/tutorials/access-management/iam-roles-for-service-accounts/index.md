@@ -124,19 +124,12 @@ Check the pod using command `kubectl -n NAMESPACE get pod POD_NAME -o yaml` and 
 
 You can also use this example pod with `aws-cli` to verify the configuration:
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: aws-cli-test
-  namespace: default # Change this to your desired namespace
-spec:
-  containers:
-  - name: aws-cli
-    image: amazon/aws-cli:2.13.17 # Latest version as of the last update
-    command: ["sh", "-c", "aws s3 ls"]
-  restartPolicy: Never
-  serviceAccountName: "" # Replace with the name of the service account you created
-```
+```sh
+kubectl run aws-cli-test \
+  --image=amazon/aws-cli:2.13.17 \
+  --restart=Never \
+  --namespace=default \
+  --command -- sh -c "aws s3 ls" \
+  --overrides='{"spec": {"serviceAccountName": "default"}}'
 
 Learn more about the [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) in the official AWS documentation.
