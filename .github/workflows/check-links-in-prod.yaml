@@ -36,7 +36,7 @@ jobs:
 
           for i, section in enumerate(sections):
             # call docker run command
-            cmd = ['docker', 'run', '--name', 'linkchecker',
+            cmd = ['docker', 'run', '--rm', '--name', 'linkchecker',
                    '--volume', f'{pwd}/output:/workdir', '--workdir', '/workdir',
                    'ghcr.io/linkchecker/linkchecker:latest',
                    f'https://docs.giantswarm.io/{section}/',
