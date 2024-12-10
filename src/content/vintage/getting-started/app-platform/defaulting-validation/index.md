@@ -10,11 +10,6 @@ menu:
 last_review_date: 2023-06-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-aliases:
-  - /getting-started/app-platform/defaulting-validation
-  - /reference/app-defaulting-validation/
-  - /app-platform/defaulting-validation
-  - /developer-platform/app-platform/defaulting-validation
 user_questions:
   - Is App CR defaulting and validation logic enabled for my cluster?
   - How can I use App CR defaulting logic when installing Managed Apps?

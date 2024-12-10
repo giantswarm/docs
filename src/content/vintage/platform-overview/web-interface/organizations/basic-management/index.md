@@ -6,9 +6,6 @@ weight: 10
 menu:
   main:
     parent: platform-overview-web-orgs
-aliases:
-  - /platform-overview/web-interface/organizations/basic-management
-  - /ui-api/web/organisations/basic-management
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-18

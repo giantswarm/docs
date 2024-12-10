@@ -7,9 +7,6 @@ menu:
   main:
     identifier: platform-overview-web
     parent: platform-overview
-aliases:
-  - /platform-overview/web-interface
-  - /ui-api/web
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-18

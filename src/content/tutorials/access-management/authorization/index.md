@@ -81,7 +81,7 @@ We'll explain the effect of binding these roles in the next section on RBAC auto
 
 As explained previously, various resources reside in different scopes and namespaces, and in the case of the workload cluster namespaces, they even come and go as clusters are created and deleted. To simplify authorization under these circumstances, we've some automation in place, provided by [rbac-operator](https://github.com/giantswarm/rbac-operator) running in the management cluster. Here is what it does.
 
-- __Grant admin permissions to a default group__. Where customers own a Giant Swarm installation exclusively (which is the opposite case of using a [shared installation]({{< relref "/meta/shared-installation" >}})), they name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
+- __Grant admin permissions to a default group__. Customers name a group from their identity provider to gain admin permissions. This group will automatically be bound to the `cluster-admin` role in all namespaces and in the cluster scope.
 
 - __Provide service accounts with admin privileges__. Service accounts named `automation` are created in the `default` namespace and in all organization namespaces, bound to the pre-defined `cluster-admin` role.
 

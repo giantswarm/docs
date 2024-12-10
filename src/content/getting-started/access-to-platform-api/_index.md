@@ -21,10 +21,10 @@ You can have multiple management clusters, for example, if different cloud provi
 Usually, to interact with the platform API, you have three options:
 
 1. Use GitOps flavour using Flux
-2. Use the `kubectl` command-line tool with our custom plugin
-3. Use the [Giant Swarm Web UI](https://docs.giantswarm.io/ui-api/)
+2. Use the `kubectl` command-line tool with our [custom plugin]({{< relref "/reference/kubectl-gs" >}})
+3. Use the [Giant Swarm Web UI]({{< relref "/vintage/platform-overview/web-interface/overview" >}})
 
-This guide focuses on the second option, using the `kubectl` command-line tool. However, you can find more information about the other options in the [tutorials](https://docs.giantswarm.io/tutorials/).
+This guide focuses on the second option, using the `kubectl` command-line tool. However, you can find more information about the other options in the [tutorials]({{< relref "/tutorials" >}}).
 
 ## Requirements
 
