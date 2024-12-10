@@ -7,25 +7,26 @@ const websiteURL = "https://www.giantswarm.io/blog";
 
 const headerElementSelector = "header.header";
 const footerElementSelector = "footer.footer";
-const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation-inner";
+const consentBannerElementSelector = "#hs-eu-cookie-confirmation-inner";
 
-const sectionTemplatesPath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "src",
-  "layouts",
-  "partials"
-);
+const sectionTemplatesPath = path.join(__dirname, "..", "..", "src", "layouts", "partials");
+const stylesModulesPath    = path.join(__dirname, "..", "..", "src", "assets", "styles");
+
 const headerPath = path.join(sectionTemplatesPath, "gs_header.html");
 const footerPath = path.join(sectionTemplatesPath, "gs_footer.html");
-const stylesPath = path.join(sectionTemplatesPath, "gs_styles.html");
-const cookiesBannerStylesPath = path.join(sectionTemplatesPath, "gs_cookies_banner_styles.html");
+
+const headerStylesPath        = path.join(stylesModulesPath, "_gs_header.scss");
+const footerStylesPath        = path.join(stylesModulesPath, "_gs_footer.scss");
+const consentBannerStylesPath = path.join(stylesModulesPath, "_gs_consent_banner.scss");
 
 const cssOverridesPath = path.join(__dirname, "overrides.css");
 
-const generatedFileDisclaimer =
+const generatedHtmlFileDisclaimer =
   "<!-- !!! DO NOT EDIT !!! File generated with 'make update-website-content' -->";
+
+const generatedCssFileDisclaimer =
+  "/* File generated with 'make update-website-content' -- do not edit manually! */";
+
 
 (async () => {
   log("Templating website content started.\n");
@@ -34,7 +35,7 @@ const generatedFileDisclaimer =
 
   const browser = await chromium.launch();
   const context = await browser.newContext({
-    viewport: { width: 1920, height: 1080 },
+    viewport: { width: 1920, height: 1600 },
     deviceScaleFactor: 2,
   });
 
@@ -51,45 +52,45 @@ const generatedFileDisclaimer =
   await page.exposeFunction("fetchTextFile", fetchTextFile);
 
   // Header.
-  log("Extracting header HTML.");
+  log("Extracting header HTML");
   const header = await extractElementContents(page, headerElementSelector);
 
-  log("Writing header HTML.");
-  await writeGeneratedFile(headerPath, header.html.join(""));
+  log("Writing header HTML");
+  await writeHtmlFile(headerPath, header.html.join(""));
+
+  log("Writing header CSS file");
+  await writeCssFile(
+    headerStylesPath,
+    headerElementSelector,
+    header.css,
+  );
 
   // Footer.
   log("Extracting footer HTML.");
   const footer = await extractElementContents(page, footerElementSelector);
 
   log("Writing footer HTML.");
-  await writeGeneratedFile(footerPath, footer.html.join(""));
+  await writeHtmlFile(footerPath, footer.html.join(""));
 
-  // Remove duplicate CSS rules.
-  let commonCSS = Array.from(new Set([...header.css, ...footer.css]));
-
-  log("Applying custom CSS.");
-  commonCSS = await applyCSSOverrides(commonCSS);
-
-  log("Writing common CSS file.");
-  await writeGeneratedFile(
-    stylesPath,
-    `<style>\n${commonCSS.join("\n")}\n</style>`
+  log("Writing footer CSS file");
+  await writeCssFile(
+    footerStylesPath,
+    footerElementSelector,
+    footer.css,
   );
 
   // Cookie Consent Banner.
   log("Extracting cookies consent banner HTML.");
-  const cookiesBanner = await extractElementContents(page, cookiesBannerElementSelector);
+  const consentBanner = await extractElementContents(page, consentBannerElementSelector);
 
-  log("Applying custom CSS.");
-  commonCSS = await applyCSSOverrides(Array.from(new Set(cookiesBanner.css)));
-
-  log("Writing cookies consent banner CSS file.");
-  await writeGeneratedFile(
-    cookiesBannerStylesPath,
-    `<style>\n${commonCSS.join("\n")}\n</style>`
+  log("Writing footer CSS file");
+  await writeCssFile(
+    consentBannerStylesPath,
+    consentBannerElementSelector,
+    consentBanner.css,
   );
 
-  log("Closing browser.");
+  log("Closing browser");
   await browser.close();
 
   log("\nTemplating website content finished successfully.");
@@ -256,13 +257,25 @@ async function applyCSSOverrides(toContents: string[]): Promise<string[]> {
   return [...toContents, overrides.toString().trim()];
 }
 
-async function writeGeneratedFile(
+async function writeHtmlFile(
   toPath: string,
   contents: string
 ): Promise<void> {
-  const patchedContents = `${generatedFileDisclaimer}\n\n${contents}\n`;
+  await fs.writeFile(toPath, `${generatedHtmlFileDisclaimer}\n\n${contents}\n`);
+}
 
-  await fs.writeFile(toPath, patchedContents);
+async function writeCssFile(
+  toPath: string,
+  prefix: string,
+  styles: string[],
+): Promise<void> {
+  let out = generatedCssFileDisclaimer + "\n" + prefix + " {\n";
+  // deduplication
+  for (const style of Array.from(new Set(styles))) {
+    out += "    " + style + "\n";
+  }
+  out += "}\n";
+  await fs.writeFile(toPath, out);
 }
 
 async function fetchTextFile(fromURL: string): Promise<string> {
