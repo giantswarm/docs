@@ -1,0 +1,56 @@
+/* File generated with 'make update-website-content' -- do not edit manually! */
+#hs-eu-cookie-confirmation-inner {
+    *, ::after, ::before { box-sizing: border-box; }
+    a { cursor: pointer; text-decoration: none; }
+    a, a:hover { color: rgb(246, 89, 84); }
+    .p, blockquote, p { margin: 0px 0px 24px; }
+    div#hs-eu-cookie-confirmation * { box-sizing: border-box !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { background: rgb(255, 255, 255); margin: 0px auto; max-width: 1000px; padding: 20px; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a { text-decoration: none !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a:hover { color: rgb(0, 145, 174); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; background: none !important; border: none !important; box-shadow: none !important; font-weight: 400 !important; text-shadow: none !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a:hover { text-decoration: underline !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-policy-wording { margin-bottom: 12px; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cookie-confirmation-button-group { display: flex; flex-flow: row wrap; align-items: center; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { margin-right: 72px; justify-content: flex-end; align-items: center; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cookie-confirmation-button-group { justify-content: center; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-cookie-settings-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { margin: 6px !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { border-radius: 3px; display: inline-block; padding: 10px 16px !important; text-decoration: none !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button { color: rgb(255, 255, 255); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; background-color: rgb(66, 91, 118) !important; border: 1px solid rgb(66, 91, 118) !important; font-weight: 400 !important; text-shadow: none !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { color: rgb(66, 91, 118); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; border: 1px solid rgb(66, 91, 118) !important; font-weight: 400 !important; text-shadow: none !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-cookie-settings-button { color: rgb(66, 91, 118) !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 72px 12px; color: rgb(51, 71, 91); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; font-weight: 400 !important; text-shadow: none !important; }
+    #hs-eu-close-button-container { display: flex; justify-content: end; margin-top: 8px; margin-right: 8px; }
+    #hs-eu-close-button-container a#hs-eu-close-button[role="button"] { float: right; width: 1.5rem; cursor: pointer; font-size: 40px !important; text-align: center !important; color: rgb(139, 133, 137) !important; }
+    #hs-eu-close-button-container a#hs-eu-close-button[role="button"]:hover { color: rgb(0, 145, 174); font-family: inherit; font-size: inherit; line-height: inherit; text-align: left; background: none !important; border: none !important; box-shadow: none !important; font-weight: 400 !important; text-shadow: none !important; text-decoration: none !important; }
+    @media (max-width: 800px) {
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-en-cookie-confirmation-buttons-area { justify-content: center; margin-right: 0px; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { margin: 0px 20px 12px; }
+#hs-eu-close-button-container a#hs-eu-close-button[role="button"] { margin-right: 10px; font-size: 30px; line-height: 50px; }
+}
+    @media (min-width: 800px) {
+#hs-eu-close-button-container a#hs-eu-close-button[role="button"] { margin-bottom: 10px; }
+}
+    @media screen and (max-width: 480px) {
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { padding: 8px 14px 14px !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button { font-size: 12px !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { font-size: 12px !important; margin-bottom: 12px !important; line-height: 15px !important; }
+}
+    div#hs-eu-cookie-confirmation-inner { display: table; max-width: 1260px !important; padding: 20px 30px 10px !important; }
+    #hs-eu-policy-wording { display: table-cell; font-size: 14px; line-height: 24px; color: rgb(91, 108, 121); vertical-align: middle !important; }
+    #hs-en-cookie-confirmation-buttons-area { display: table-cell !important; vertical-align: middle !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a:hover { color: rgb(0, 159, 255) !important; font-weight: 500 !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button { background: rgb(232, 109, 0) !important; color: rgb(255, 255, 255) !important; font-size: 14px !important; font-weight: 600 !important; padding: 11px 23px !important; border: none !important; border-radius: 60px !important; min-width: 160px !important; text-align: center !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button:hover { transform: scale(1.15) !important; transition: all 0.2s ease-in-out 0s !important; }
+    div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-decline-button { font-size: 14px !important; color: rgb(111, 138, 159) !important; text-decoration: underline !important; border: none !important; padding: 0px !important; font-weight: 500 !important; }
+    div#hs-eu-cookie-confirmation-button-group { margin: 0px auto !important; }
+    @media (max-width: 767px) {
+div#hs-eu-cookie-confirmation-inner, #hs-eu-policy-wording, #hs-en-cookie-confirmation-buttons-area { display: block !important; }
+#hs-eu-policy-wording { font-size: 14px !important; line-height: 24px !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner a#hs-eu-confirmation-button { width: 100% !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { padding: 30px !important; }
+@media (max-width: 480px) {
+#hs-eu-policy-wording, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p { font-size: 14px !important; line-height: 24px !important; color: rgb(91, 108, 121) !important; }
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner { padding: 30px !important; }
+}
+}
+}
