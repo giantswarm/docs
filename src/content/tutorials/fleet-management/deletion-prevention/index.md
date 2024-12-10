@@ -23,7 +23,7 @@ owner:
 ---
 
 
-In Kubernetes environments, it can be quite easy to accidentally delete an important object with `kubectl delete`. To mitigate such risks, Giant Swarm clusters have Kyverno policy which safeguards against deletions of resources with the `giantswarm.io/prevent-deletion` label.
+In Kubernetes environments, it can be easy to unintentionally delete an important object with `kubectl delete`. To mitigate such risks, Giant Swarm clusters have Kyverno policy which safeguards against deletions of resources with the `giantswarm.io/prevent-deletion` label.
 
 ## How the label works
 
@@ -119,7 +119,7 @@ spec:
   version: ""
 ```
 
-After applying the config map change on the management cluster, you should see the deletion prevention label on certain resources such as the `Cluster` object.
+After applying the ConfigMap change on the management cluster, you should see the deletion prevention label on certain resources such as the `Cluster` object.
 
 ## Creating a managed app with deletion prevention
 
@@ -139,7 +139,7 @@ kubectl gs template app \
 
 ## Protecting an existing object
 
-In this example, the object `App/myapp` and its related user values config map receive deletion prevention:
+In this example, the object `App/myapp` and its related user values ConfigMap receive deletion prevention:
 
 ```sh
 kubectl label -n org-ORGANIZATION App myapp giantswarm.io/prevent-deletion=true
