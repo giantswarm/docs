@@ -61,7 +61,7 @@ To use this mechanism you have to do two things:
    ```
 
    If you want to extend this list of object types, please continue reading below about how to configure it.
-   
+
 2. Add the `giantswarm.io/prevent-deletion: "true"` label to the desired object (the `"true"` value does not matter). Below, we explain how to easily do this for clusters or managed apps.
 
 ## Creating a cluster with deletion prevention
