@@ -4,15 +4,16 @@ title: Prevent accidental deletion of resources
 description: Avoid accidental deletion of clusters, apps or other resources in Giant Swarm platform.
 weight: 110
 menu:
-  main:
-    parent: advanced-app-platform
+  principal:
+    identifier: tutorials-fleet-management-deletion-prevention
+    parent: tutorials-fleet-management
 user_questions:
   - How can I prevent the accidental deletion of resources?
   - How can I protect resources from accidental deletion?
   - How can I safeguard resources?
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
-last_review_date: 2023-11-07
+last_review_date: 2024-12-05
 aliases:
   - /advanced/app-platform/deletion-prevention
   - /guides/deletion-prevention/
@@ -60,6 +61,7 @@ To use this mechanism you have to do two things:
    ```
 
    If you want to extend this list of object types, please continue reading below about how to configure it.
+   
 2. Add the `giantswarm.io/prevent-deletion: "true"` label to the desired object (the `"true"` value does not matter). Below, we explain how to easily do this for clusters or managed apps.
 
 ## Creating a cluster with deletion prevention
@@ -68,7 +70,7 @@ In the `kubectl gs template cluster` command of the [Create a workload cluster](
 
 ## Adding deletion prevention to an existing cluster
 
-Our CAPI-based cluster charts allow setting the option `global.metadata.preventDeletion=true`. It can be toggled in the values of the chart:
+Our Cluster API (CAPI) based cluster charts allow setting the option `global.metadata.preventDeletion=true`. It can be toggled in the values of the chart:
 
 ```yaml
 ---
