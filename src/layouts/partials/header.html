@@ -24,12 +24,6 @@
     {{ with (getenv "HUGO_DOCS_VERSION") -}}
     <meta name="version" content="{{ . }}">
     {{ end -}}
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    {{ partial "gs_styles" . }}
     {{ partial "styles" . }}
     <script>
       window.GiantSwarmGoogleAnalyticsAccount = 'UA-52901087-2';
@@ -39,6 +33,5 @@
   </head>
   <body data-spy="scroll" data-target="#TableOfContents" class="{{if .IsPage}}{{ replace .RelPermalink "/" "_" }}{{end}}">
     {{ partial "gs_header" . }}
-    <div id="wrapper">
-    <section id="main">
+    <main id="docsmain">
       <div class="container">
