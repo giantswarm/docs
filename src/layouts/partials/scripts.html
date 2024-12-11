@@ -1,11 +1,11 @@
 {{ $aside := resources.Get "scripts/aside.js" }}
 {{ $base := resources.Get "scripts/base.js" }}
-{{ $js := slice $aside $base | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
+{{ $observer := resources.Get "scripts/IntersectionObserver.js" }}
+{{ $js := slice $aside $base $observer | resources.Concat "js/docs.js" | resources.Minify | fingerprint }}
 {{ $secureJS := $js | resources.Fingerprint "sha256" }}
 
 <script type="text/javascript" src="https://s.giantswarm.io/jquery/3.3.1/1/jquery.min.js"></script>
 <script type="text/javascript" src="https://s.giantswarm.io/giantswarmio/0.10.18/1/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/polyfill/IntersectionObserver.js"></script>
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ htmlUnescape $secureJS.Data.Integrity }}"></script>
 <!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/430224.js"></script>
