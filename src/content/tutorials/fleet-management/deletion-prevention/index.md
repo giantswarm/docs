@@ -151,5 +151,5 @@ Each label only protects a single object, not a hierarchy of objects such as see
 ## Configure targeted resources {#targeted-resource-configuration}
 
 If the [list of targeted resources](https://github.com/giantswarm/kyverno-policies-ux/blob/main/helm/kyverno-policies-ux/values.yaml)
-does not cover all resources that you want to protect, it is possible to configure them through the user config values of the `kyverno-policies-ux` app.
+does not cover all resources that you want to protect, it is possible to configure them through the user configuration values of the `kyverno-policies-ux` app.
 [Here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/" >}}) you can learn more about how to configure an app.
