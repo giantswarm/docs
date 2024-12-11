@@ -12,7 +12,6 @@ const consentBannerElementSelector = "#hs-eu-cookie-confirmation-inner";
 const sectionTemplatesPath = path.join(__dirname, "..", "..", "src", "layouts", "partials");
 const stylesModulesPath    = path.join(__dirname, "..", "..", "src", "assets", "styles");
 
-const headerPath = path.join(sectionTemplatesPath, "gs_header.html");
 const footerPath = path.join(sectionTemplatesPath, "gs_footer.html");
 
 const headerStylesPath        = path.join(stylesModulesPath, "_gs_header.scss");
@@ -54,9 +53,6 @@ const generatedCssFileDisclaimer =
   // Header.
   log("Extracting header HTML");
   const header = await extractElementContents(page, headerElementSelector);
-
-  log("Writing header HTML");
-  await writeHtmlFile(headerPath, header.html.join(""));
 
   log("Writing header CSS file");
   await writeCssFile(
