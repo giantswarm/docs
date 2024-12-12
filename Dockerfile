@@ -5,7 +5,7 @@ WORKDIR /docs
 COPY . /docs
 
 # Expose the release version in content
-ENV HUGO_DOCS_VERSION $CIRCLE_TAG
+ENV HUGO_DOCS_VERSION="$CIRCLE_TAG"
 
 RUN hugo \
       --logLevel info \
