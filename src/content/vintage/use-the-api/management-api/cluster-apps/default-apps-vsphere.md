@@ -4,9 +4,9 @@ linkTitle: default-apps-vsphere
 description:  A Helm chart which defines the pre-installed apps in all Giant Swarm vSphere clusters; Check here the different properties of the chart.
 weight: 100
 menu:
-  principal:
-    identifier: default-apps-vsphere
-    parent: reference-cluster-apps
+  main:
+    identifier: uiapi-cluster-apps-default-apps-vsphere
+    parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for default-apps-vsphere?
