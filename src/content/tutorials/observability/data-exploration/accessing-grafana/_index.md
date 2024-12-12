@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-data-exploration-accessing-grafana
     parent: tutorials-observability-data-exploration
 weight: 40
-last_review_date: 2024-07-17
+last_review_date: 2024-12-12
 user_questions:
   - How to access Grafana?
   - How to access metrics from my clusters?
@@ -50,6 +50,8 @@ Once you open the Grafana address for your installation, you will be able to log
 There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on the type of identity provider used for you as a customer, the label for the button to click can look slightly different.
 
 After selecting the right identity provider, you may run through an authentication workflow. However, if you are already authenticated within the current browser, this will be skipped and you should see the Home dashboard as a result.
+
+When you log in, you will be logged into the Shared Org. which contains a curated set of provided dashboards that we manage and that is accessible to everyone. If you want to learn more about organizations and multi-tenancy, we can only advise you to read the related [documentation]{{< relref "/tutorials/observability/multi-tenancy" >}}).
 
 ## Limitations
 

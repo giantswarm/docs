@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-observability
-last_review_date: 2024-06-06
+last_review_date: 2024-12-11
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
@@ -22,6 +22,8 @@ Observability is a fundamental aspect of modern cloud-native environments, provi
 - **Visualization**: At Giant Swarm we believe that the real power of observability comes from not only exploring isolated data but also "connecting the dots" - we aim to provide you not just with data, but knowledge. Our staff operates the observability platform using a wide battle-tested range of dashboards, visualizations and alerts to ensure continuous availability of the whole platform. Our customers can use those assets to monitor the system at the same time they can configure new metrics, design new dashboards or set workloads alerts.
 
 - **Alerting**: To not just look at dashboards all day it's crucial to be able to get notified about significant events or issues that require immediate attention. By making it easy to set up and configure alerting rules across apps and environments, our observability platform's alerting helps your teams avoid wasting time on repetitive tasks, thereby enhancing their efficiency and allowing them to focus on what matters.
+
+- **Multi-Tenancy**: To isolate your observability data between teams or internal organization, Giant Swarm provides you with multi-tenant storage of and access to your observability data.
 
 One of the key benefits using Giant Swarm is that we provide a set of reliable and highly integrated observability tools that our own teams already use on a daily basis and will help you have a comprehensive view of your applications and infrastructure.
 
