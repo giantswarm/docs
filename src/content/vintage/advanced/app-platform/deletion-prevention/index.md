@@ -13,12 +13,8 @@ user_questions:
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
 last_review_date: 2023-11-07
-aliases:
-  - /advanced/app-platform/deletion-prevention
-  - /guides/deletion-prevention/
-  - /advanced/deletion-prevention/
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
+  - https://github.com/orgs/giantswarm/teams/team-tenet
 ---
 
 
