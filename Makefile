@@ -19,10 +19,6 @@ export-csv:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/export-csv/script.py
 
-# Update content from external repositories that gets copied in here.
-update-external-repos:
-	./scripts/update-external-repos/main.sh
-
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
 	@if [ -z "${GITHUB_TOKEN}" ]; then echo "Please set the GITHUB_TOKEN environment variable"; exit 1; fi
