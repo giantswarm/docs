@@ -227,6 +227,21 @@ The command will create the folders and the files needed. If you already applied
 
 Alternatively, you can add the flag `--cluster-user-config` with the values you want to add to the cluster and it will generate a `ConfigMap` with the values.
 
+#### Upgrading workload clusters
+
+To upgrade a workload cluster, you need to change the `release.version` field in the user config file. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the semver version in the `release.version` field.
+
+Example: 
+
+`kubectl get releases`:
+
+```sh
+NAME         KUBERNETES VERSION   FLATCAR VERSION   AGE     STATE
+aws-29.4.0   1.29.10              3975.2.2          29d     active
+```
+
+You set the `release.version` in the `cluster-user-config` file to `29.4.0` and commit and push the changes.
+
 ### Installing managed apps
 
 Installing applications is easy now that you have the GitOps structure in place. In this tutorial you are going to install `Grafana` to understand the process.
