@@ -231,7 +231,7 @@ Alternatively, you can add the flag `--cluster-user-config` with the values you 
 
 To upgrade a workload cluster, you need to change the `release.version` field in the `cluster-user-config` file. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the version in the `release.version` field.
 
-Example: 
+Example:
 
 `kubectl get releases`:
 
