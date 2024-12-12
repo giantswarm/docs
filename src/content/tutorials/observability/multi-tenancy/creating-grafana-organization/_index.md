@@ -19,7 +19,7 @@ When you first access [your installations Grafana]({{< relref "/tutorials/observ
 
 ## Creating your own organization
 
-To create your own grafana organizatoin, you can create a [`GrafanaOrganization`](https://raw.githubusercontent.com/giantswarm/observability-operator/refs/heads/main/config/crd/observability.giantswarm.io_grafanaorganizations.yaml) custom resource in the management cluster containing the grafana organization specification. 
+To create your own grafana organization, you can create a [`GrafanaOrganization`](https://raw.githubusercontent.com/giantswarm/observability-operator/refs/heads/main/config/crd/observability.giantswarm.io_grafanaorganizations.yaml) custom resource in the management cluster containing the Grafana organization specification. 
 
 For example:
 
