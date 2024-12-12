@@ -31,7 +31,7 @@ RUN find /public \
   -name 'index.html' \
   -delete
 
-FROM gsoci.azurecr.io/giantswarm/nginx:1.25-alpine
+FROM gsoci.azurecr.io/giantswarm/nginx:1.27-alpine
 EXPOSE 8080
 USER 0
 
