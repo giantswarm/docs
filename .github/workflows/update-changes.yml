@@ -34,8 +34,9 @@ jobs:
       - name: Update CRD pages
         run: make update-crd-reference
 
-      - name: Update website header and footer
-        run: make update-website-content
+      # Disabled in Dec 2024 as it's not working afte rthe website update. (Marian)
+      #- name: Update website header and footer
+      #  run: make update-website-content
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1.9.4
