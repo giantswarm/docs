@@ -4,9 +4,9 @@ linkTitle: cluster
 description:  Giant Swarm cluster chart with provider-independent cluster resources; Check here the different properties of the chart.
 weight: 100
 menu:
-  principal:
-    identifier: cluster
-    parent: reference-cluster-apps
+  main:
+    identifier: uiapi-cluster-apps-cluster
+    parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for cluster?
