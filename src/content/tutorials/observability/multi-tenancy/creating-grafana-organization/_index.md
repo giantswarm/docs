@@ -41,6 +41,6 @@ spec:
   - giantswarm
 ```
 
-This Grafana organization will be created by our operators with the name *Giant Swarm*.
+This Grafana organization will be created by our operators with the name _Giant Swarm_.
 It will be equipped with a basic set of datasources for Loki, Mimir and Alertmanager giving you access to the *giantswarm* tenant.
 The RBAC section defines how to map your sso groups to grafana admin roles (Admin, Editor, Viewer). Note that only admins is mandatory in this section.
