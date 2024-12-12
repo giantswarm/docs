@@ -13,7 +13,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-11
+last_review_date: 2024-12-12
 ---
 
 Below you will learn how to manage infrastructure and applications in the Giant Swarm `Flux` setup.
@@ -229,7 +229,7 @@ Alternatively, you can add the flag `--cluster-user-config` with the values you 
 
 #### Upgrading workload clusters
 
-To upgrade a workload cluster, you need to change the `release.version` field in the user config file. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the semver version in the `release.version` field.
+To upgrade a workload cluster, you need to change the `release.version` field in the `cluster-user-config` file. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the version in the `release.version` field.
 
 Example: 
 
