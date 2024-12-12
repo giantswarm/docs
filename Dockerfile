@@ -1,11 +1,11 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:v0.125.5-full AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.139.3-full AS build
 
 WORKDIR /docs
 
 COPY . /docs
 
 # Expose the release version in content
-ENV HUGO_DOCS_VERSION $CIRCLE_TAG
+ENV HUGO_DOCS_VERSION="$CIRCLE_TAG"
 
 RUN hugo \
       --logLevel info \
