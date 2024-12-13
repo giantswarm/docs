@@ -14,10 +14,6 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-26
-aliases:
-  - /getting-started/observability/monitoring/prometheus/agent
-  - /ui-api/observability/monitoring/prometheus/agent
-  - /observability/monitoring/prometheus/agent
 ---
 
 In this article you will learn what is the Prometheus Agent running inside Giant Swarm clusters.

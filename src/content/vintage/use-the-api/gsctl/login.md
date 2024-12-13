@@ -7,13 +7,9 @@ menu:
   main:
     parent: uiapi-gsctl
 user_questions:
-- How can I authenticate against an API endpoint using gsctl?
-- How do I login with gsctl manually?
-- How do I login with gsctl in a script?
-aliases:
-  - /use-the-api/gsctl
-  - /reference/gsctl/login/
-  - /ui-api/gsctl/login/
+  - How can I authenticate against an API endpoint using gsctl?
+  - How do I login with gsctl manually?
+  - How do I login with gsctl in a script?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2023-03-06

@@ -6,10 +6,6 @@ weight: 140
 menu:
   main:
     parent: uiapi-gsctl
-aliases:
-  - /use-the-api/gsctl
-  - /reference/gsctl/list-keypairs/
-  - /ui-api/gsctl/list-keypairs/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

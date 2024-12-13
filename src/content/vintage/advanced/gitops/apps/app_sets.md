@@ -3,8 +3,6 @@ linkTitle: Creating and using App Sets
 title: Creating and using App Sets
 description: Learn how to create and use App Sets for applications deployed with GitOps.
 weight: 50
-aliases:
-  - /advanced/gitops/apps
 menu:
   main:
     identifier: advanced-gitops-apps-app-sets

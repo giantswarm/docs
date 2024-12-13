@@ -7,12 +7,12 @@ changes_categories:
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/vsphere/v27.0.0
-  version: sphere-27.0.0
+  version: vsphere-27.0.0
   version_tag: vsphere-27.0.0
 date: '2024-08-12T12:00:00'
-description: Release notes for VSPHERE workload cluster release sphere-27.0.0, published
+description: Release notes for VSPHERE workload cluster release vsphere-27.0.0, published
   on 12 August 2024, 12:00.
-title: Workload cluster release sphere-27.0.0 for VSPHERE
+title: Workload cluster release vsphere-27.0.0 for VSPHERE
 ---
 
 We are happy to announce the first release for vSphere that uses the new release framework.
@@ -21,11 +21,11 @@ We are happy to announce the first release for vSphere that uses the new release
 
 In order to consume the new flow, the following two fields need to be manually adapted:
 
-* In ConfigMap `<cluster name>-userconfig` set `.Values.global.release` to the release version, e.g. `27.0.0`.
+* In ConfigMap `<cluster name>-userconfig` set `.Values.global.release.version` to the release version, e.g. `27.0.0`.
 * In App `<cluster name>` remove the `spec.version` field. In case of GitOps, Flux might complain that the app manifest is invalid as the `spec.version` field is mandatory. In that case, edit the live App CR and set `spec.version` to an empty string. That will unblock Flux and allow it reconcile successfully.
 
 And if you want to use `kubectl-gs` to create a cluster, you'd need to now specify the release version, e.g.:
 
 ```bash
-kubectl-gs template cluster --provider vsphere --organization my_org --name cluster_name -vsphere-network-name network_name --release v27.0.0
+kubectl-gs template cluster --provider vsphere --organization my_org --name cluster_name -vsphere-network-name network_name --release 27.0.0
 ```

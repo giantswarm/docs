@@ -11,9 +11,6 @@ user_questions:
   - What are audit logs?
   - What is audit logging?
   - How can I access Kubernetes audit logs?
-aliases:
-  - /getting-started/observability/logging/audit-logs
-  - /ui-api/observability/logs/audit-logging
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-03-21

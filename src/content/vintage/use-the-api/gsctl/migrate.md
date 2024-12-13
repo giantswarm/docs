@@ -7,15 +7,11 @@ menu:
   main:
     parent: uiapi-gsctl
 user_questions:
-- What commands in kubectl-gs replace what gsctl commands?
-- How can I replace gsctl with kubectl-gs?
+  - What commands in kubectl-gs replace what gsctl commands?
+  - How can I replace gsctl with kubectl-gs?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-01-18
-aliases:
-  - /use-the-api/gsctl
-  - /reference/gsctl/migrate/
-  - /ui-api/gsctl/migrate/
 ---
 
 `gsctl` is a CLI for Giant Swarm's proprietary REST API, which is no longer developed. To make full use of clusters and apps with Giant Swarm, users have to migrate to the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
