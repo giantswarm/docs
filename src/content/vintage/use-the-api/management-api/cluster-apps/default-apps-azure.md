@@ -5,7 +5,7 @@ description:  A Helm chart defining the preinstalled apps running in all Giant S
 weight: 100
 menu:
   main:
-    identifier: default-apps-azure
+    identifier: uiapi-cluster-apps-default-apps-azure
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
