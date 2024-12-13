@@ -4,8 +4,8 @@ description: Organizations in the Giant Swarm platform allow isolation and logic
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-cluster-concepts
-    identifier: overview-fleet-management-cluster-concepts-organizations
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-organizations
 last_review_date: 2024-07-14
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs

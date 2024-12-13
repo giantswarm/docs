@@ -44,10 +44,10 @@ menu:
 
   # principal is the main menu since December 2024
   principal:
-  - identifier: overview
-    name: Overview
-    url: /overview/
-    weight: 10
+  # - identifier: overview
+  #   name: Overview
+  #   url: /overview/
+  #   weight: 10
   - identifier: getting-started
     name: Getting started
     url: /getting-started/
