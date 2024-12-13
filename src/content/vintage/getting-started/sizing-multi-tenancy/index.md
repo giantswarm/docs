@@ -5,12 +5,7 @@ description: Recommendations and best practices around cluster and node sizing a
 weight: 50
 menu:
   main:
-    parent: support-training
-aliases:
-  - /getting-started/sizing-multi-tenancy
-  - /getting-started/best-practices/
-  - /guides/recommendations-and-best-practices/
-  - /kubernetes/best-practices/
+    parent: getting-started
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 user_questions:
