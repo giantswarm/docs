@@ -26,9 +26,7 @@ The following examples assume the cluster you are trying to configure has an id 
 You will find the `cluster-autoscaler-user-values` `ConfigMap` on the organization namespace of your cluster:
 
 ```text
-$ export ORG=yourorg
-$ export CLUSTER=123ab
-$ kubectl -n $ORG get cm $CLUSTER-cluster-autoscaler-user-values
+$ kubectl -n org-company get cm 123ab-cluster-autoscaler-user-values
 NAME                                       DATA      AGE
 123ab-cluster-autoscaler-user-values         0         11m
 ```
