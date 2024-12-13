@@ -1,6 +1,6 @@
 ---
 linkTitle: Load balancer services
-title: services of type LoadBalancer
+title: Services of type LoadBalancer
 description: Learn how to expose services directly on cloud providers through services of type LoadBalancer.
 weight: 30
 menu:

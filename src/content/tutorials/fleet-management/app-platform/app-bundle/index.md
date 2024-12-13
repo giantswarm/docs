@@ -1,7 +1,7 @@
 ---
-linkTitle: App Bundle
-title: App Bundle reference
-description: Overview of the the App Bundle concept, how it works, and how to configure it.
+linkTitle: App bundles
+title: App bundle reference
+description: Overview of the the app bundle concept, how it works, and how to configure it.
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform

@@ -1,11 +1,12 @@
 ---
 title: Main cluster concepts
+linkTitle: Concepts
 description: Overview of the main concepts of cluster management in the Giant Swarm platform.
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-clusters
-    identifier: overview-fleet-management-cluster-concepts
+    parent: overview-fleetmanagement-clustermanagement
+    identifier: overview-fleetmanagement-clustermanagement-concepts
 last_review_date: 2024-06-26
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
