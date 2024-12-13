@@ -25,7 +25,7 @@ To extend the configuration, you need to override these defaults using a `Config
 
 The following examples assume the cluster you are trying to configure has an id of `myclustername`.
 
-You will find the `myclustername-cluster-autoscaler-user-values` `ConfigMap` on the organization namespace of your cluster using the platform API:
+You will find the `ConfigMap` named `myclustername-cluster-autoscaler-user-values` in the organization namespace of your cluster:
 
 ```text
 $ kubectl -n org-company get cm myclustername-cluster-autoscaler-user-values
@@ -33,11 +33,10 @@ NAME                                       DATA      AGE
 myclustername-cluster-autoscaler-user-values         0         11m
 ```
 
-On cluster creation the user values `ConfigMap` is empty (or might not exist yet) and the following defaults will be applied to the final `cluster-autoscaler` deployment. To customize any of the configuration options, you just need to add the respective lines in the data field of the user `ConfigMap`.
-
 ## How to set configuration options using the user values ConfigMap
 
-On the platform API, create or edit a `ConfigMap` named `myclustername-cluster-autoscaler-user-values` in the workload cluster namespace:
+On the platform API, create or edit a ConfigMap named `myclustername-cluster-autoscaler-user-values`
+in the workload cluster namespace:
 
 ```yaml
 apiVersion: v1
@@ -45,7 +44,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: cluster-autoscaler
-  name: abc12-cluster-autoscaler-user-values
+  name: myclustername-cluster-autoscaler-user-values
   namespace: myorg
 data:
   values: |
@@ -53,15 +52,15 @@ data:
       scaleDownUtilizationThreshold: 0.30
 ```
 
-## Configuration Reference
+## Configuration reference
 
-The following sections explain some of the configuration options and what their defaults are. They show only the `data` field of the `ConfigMap` for brevity.
+The following sections explain some of the configuration options and what their defaults are. They show only the `data` field of the ConfigMap for brevity.
 
 The most recent source of truth for these values can be found in the [values.yaml](https://github.com/giantswarm/cluster-autoscaler-app/blob/v1.30.3-gs1/helm/cluster-autoscaler-app/values.yaml) file of the `cluster-autoscaler-app`.
 
 ### Scale down utilization threshold
 
-The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity, which under the value `cluster-autoscaler` will trigger the scaling down action.
+The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity. Once utilization drops below this value, cluster autoscaler will consider a node as removable.
 
 Our default value is 70%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold. You can adjust this value to your needs as shown below:
 
@@ -72,9 +71,9 @@ data:
       scaleDownUtilizationThreshold: 0.65
 ```
 
-### Scan Interval
+### Scan interval
 
-Define what interval is used to review the state for taking a decision to scale up/down. Our default value is `30` seconds.
+Defines what interval is used to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
 
 ```yaml
 data:
@@ -85,7 +84,7 @@ data:
 
 ### Skip system pods
 
-By default, the `cluster-autoscaler` will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). It can be modified by setting following property to `"false"`.
+By default, the cluster autoscaler will never delete nodes which run pods of the `kube-system` namespace (except `daemonset` pods). This rule can be deactivated by setting the following property to false.
 
 ```yaml
 data:
@@ -96,7 +95,7 @@ data:
 
 ### Skip pods with local storage
 
-The `cluster-autoscaler` configuration by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to disable this action, you need to set the following property to `"true"`.
+The cluster autoscaler by default deletes nodes with pods using local storage (`hostPath` or `emptyDir`). In case you want to protect these nodes from removal, you can to set the following property to true.
 
 ```yaml
 data:
@@ -107,7 +106,7 @@ data:
 
 ### Balance similar node groups
 
-The `cluster-autoscaler` configuration by default doesn't differentiate between node groups when scaling. In case you want to enable this action, you need to set the following property to `"true"`.
+The cluster autoscaler by default doesn't differentiate between node groups when scaling. In case you want to enable considering node groups, you need to set the following property to true.
 
 ```yaml
 data:
@@ -116,4 +115,4 @@ data:
       balanceSimilarNodeGroups: "true"
 ```
 
-Read [the `Kubernetes` autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) to learn more about the `cluster-autoscaler` and its configuration options.
+Read [the Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) to learn more about the cluster autoscaler and its configuration options.
