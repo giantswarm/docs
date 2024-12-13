@@ -1,7 +1,7 @@
 ---
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the ingress nginx controller.
-weight: 10
+weight: 20
 menu:
   principal:
     parent: tutorials-connectivity-ingress

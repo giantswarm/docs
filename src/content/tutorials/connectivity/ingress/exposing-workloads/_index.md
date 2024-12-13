@@ -1,7 +1,7 @@
 ---
 title: Exposing workloads
 description: Expose your workloads to the public internet using an ingress controller.
-weight: 20
+weight: 10
 menu:
   principal:
     parent: tutorials-connectivity-ingress

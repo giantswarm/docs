@@ -130,7 +130,15 @@ docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
 dev:
-	hugo server -s src
+	hugo server \
+	  --source ./src \
+	  --ignoreCache \
+	  --disableFastRender \
+	  --cleanDestinationDir \
+	  --gc \
+	  --noBuildLock \
+	  --noHTTPCache \
+	  --renderToMemory
 
 clean:
 	rm -rf build

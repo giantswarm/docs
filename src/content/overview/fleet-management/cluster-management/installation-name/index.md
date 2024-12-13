@@ -1,12 +1,12 @@
 ---
-linkTitle: Installation names
+linkTitle: Installation name
 title: Picking an installation name
 description: Every Giant Swarm installation has a unique name. Learn the rules to select a proper name for a new installation.
 weight: 100
 menu:
   principal:
-    parent: overview-fleet-management-clusters
-    identifier: overview-fleet-management-clusters-installation-name
+    parent: overview-fleetmanagement-clustermanagement
+    identifier: overview-fleetmanagement-clustermanagement-installationname
 user_questions:
   - How do I determine the name for my Giant Swarm installation / management cluster?
 owner:
