@@ -56,10 +56,10 @@ menu:
   #   name: Tutorials
   #   url: /tutorials/
   #   weight: 30
-  - identifier: reference
-    name: Reference
-    url: /reference/
-    weight: 40
+  # - identifier: reference
+  #   name: Reference
+  #   url: /reference/
+  #   weight: 40
   - identifier: support
     name: Support
     url: /support/
