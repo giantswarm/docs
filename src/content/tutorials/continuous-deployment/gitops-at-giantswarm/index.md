@@ -1,5 +1,5 @@
 ---
-linkTitle: At Giant Swarm
+linkTitle: GitOps at Giant Swarm
 title: GitOps at Giant Swarm
 description: A brief explanation of how Giant Swarm supports the GitOps journey for our customers.
 weight: 10
@@ -24,4 +24,4 @@ Be conscious that you maintain the full ownership of your resources, our enginee
 
 Giant Swarm is committed to your success and understands that tracing issues at the beginning can be challenging. To assist, our platform provides you with tools to emulate the behavior of `Flux`, allowing to test against your repository before committing any change. If further assistance is needed, reaching out through the support system is encouraged.
 
-Read the next chapter, [`what's GitOps?`]({{< relref "/tutorials/continuous-deployment/what-is-gitops/" >}}).
+Read the next chapter, [what's GitOps?]({{< relref "/tutorials/continuous-deployment/what-is-gitops/" >}}).

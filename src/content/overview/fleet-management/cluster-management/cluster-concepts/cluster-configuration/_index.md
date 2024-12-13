@@ -4,8 +4,8 @@ description: Explanation of how cluster configuration works in Cluster API and h
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-cluster-concepts
-    identifier: overview-fleet-management-cluster-concepts-configuration
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-configuration
 last_review_date: 2024-08-28
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix

@@ -4,8 +4,8 @@ description: Learn the advantages of using multi-account clusters in the Giant S
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-cluster-concepts
-    identifier: overview-fleet-management-cluster-concepts-multi-account
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-multiaccount
 last_review_date: 2024-07-14
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
