@@ -5,8 +5,8 @@ description: The app platform allows to manage app catalogs and apps, for simple
 weight: 40
 menu:
   principal:
-    parent: overview-fleet-management
-    identifier: overview-fleet-management-app-platform
+    parent: overview-fleetmanagement
+    identifier: overview-fleetmanagement-appmanagement
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

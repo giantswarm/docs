@@ -3,8 +3,8 @@ description: A list of all external domains Giant Swarm clusters need access to 
 last_review_date: 2024-11-29
 linkTitle: Domain allowlist
 menu:
-  main:
-    parent: platform-overview-security-cluster
+  principal:
+    parent: overview-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 title: Domain allowlist
