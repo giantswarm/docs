@@ -9,7 +9,7 @@ user_questions:
   - List of questions that users might ask about this topic.
 ---
 
-Could you describe the area topic from an overview point of view? Don`t go too deep into the matter; we have tutorials or reference pages for that purpose. Here is just an introduction.
+Could you describe the area topic from an overview point of view? Don`t go too deep into the matter; use tutorials or reference pages for technical content. Here we explain our product for a high level person. Also, read the [contributing guideline](https://handbook.giantswarm.io/docs/content/docs-guide) before writing the content.
 
 Here, you can write an intro paragraph that responds to the question, "What do we mean by `TOPIC_TO_DEVELOP`"
 

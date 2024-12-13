@@ -5,7 +5,7 @@ description:  A Helm chart for default-apps-eks; Check here the different proper
 weight: 100
 menu:
   main:
-    identifier: default-apps-eks
+    identifier: uiapi-cluster-apps-default-apps-eks
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
