@@ -1,7 +1,7 @@
 ---
-linkTitle: Creating and using `App Sets`
-title: Creating and using `App Sets`
-description: Learn how to create and use `App Sets` for applications deployed with GitOps.
+linkTitle: Creating and using App Sets
+title: Creating and using App Sets
+description: Learn how to create and use App Sets for applications deployed with GitOps.
 weight: 50
 menu:
   principal:

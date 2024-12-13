@@ -52,10 +52,10 @@ menu:
   #   name: Getting started
   #   url: /getting-started/
   #  weight: 20
-  - identifier: tutorials
-    name: Tutorials
-    url: /tutorials/
-    weight: 30
+  # - identifier: tutorials
+  #   name: Tutorials
+  #   url: /tutorials/
+  #   weight: 30
   - identifier: reference
     name: Reference
     url: /reference/
