@@ -5,7 +5,7 @@ description:  A Helm chart which defines the pre-installed apps in all Giant Swa
 weight: 100
 menu:
   main:
-    identifier: default-apps-vsphere
+    identifier: uiapi-cluster-apps-default-apps-vsphere
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:

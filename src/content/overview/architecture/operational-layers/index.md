@@ -65,7 +65,7 @@ The Platform API is basically the Kubernetes API on every management cluster. It
 
 ##### Authorization
 
-With a valid *jwt* token, received from your chosen identity provider, customers can have two levels of access:
+With a valid *JWT* token, received from your chosen identity provider, customers can have two levels of access:
 
 - *view*
     - *get*/*list*/*watch* access to all resources in the management cluster, except for `configmaps` and `secrets`.
