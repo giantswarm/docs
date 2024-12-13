@@ -5,7 +5,7 @@ weight: 40
 menu:
   principal:
     parent: overview
-    identifier: overview-fleet-management
+    identifier: overview-fleetmanagement
 last_review_date: 2024-06-03
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product

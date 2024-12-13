@@ -1,12 +1,9 @@
 ---
-linkTitle: Logging architecture
-title: Logging architecture
+linkTitle: Logging
+title: Logging
 description: Documentation on the logging architecture deployed and maintained by Giant Swarm.
 weight: 80
 menu:
-  main:
-    identifier: getting-started-observability-logging-architecture
-    parent: getting-started-observability-logging
   principal:
     identifier: overview-observability-logging
     parent: overview-observability
