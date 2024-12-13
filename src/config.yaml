@@ -60,10 +60,10 @@ menu:
   #   name: Reference
   #   url: /reference/
   #   weight: 40
-  - identifier: support
-    name: Support
-    url: /support/
-    weight: 50
+  # - identifier: support
+  #   name: Support
+  #   url: /support/
+  #   weight: 50
   - identifier: changes
     name: Changes and releases
     url: /changes/
