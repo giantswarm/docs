@@ -26,7 +26,7 @@ autoscaling, monitoring, Cilium network policies, etc.
 
 We explain how to deploy apps in our [app platform docs]({{< relref "/tutorials/fleet-management/app-platform/deploy-app/#creating-an-app-resource" >}}).
 
-### Zot configuration
+## Zot configuration
 
 The Zot binary itself can be configured via `.configFiles.config.json` Helm value as JSON. The `.mountConfig` values must be set to `true` to enable mounting the configuration file.
 
@@ -40,7 +40,7 @@ configFiles:
 
 The Zot project provides a [full configuration reference](https://zotregistry.dev/latest/admin-guide/admin-configuration/) with more details.
 
-### Caching strategies
+## Caching strategies
 
 You can configure either active or on-demand replication via the Zot configuration file.
 
@@ -96,7 +96,7 @@ __Note:__ For Zot to be used on the cluster, you need to for example configure c
 
 For the full mirroring documentation, check the [upstream documentation](https://zotregistry.dev/latest/articles/mirroring/).
 
-### Restricting access to container images
+## Restricting access to container images
 
 If not configured specifically, access to the registry is public for anonymous users. This means that all workloads within the cluster can pull images from it.
 
@@ -168,7 +168,7 @@ Finally, enable it via the `"http"` key in the configuration file:
 
 Note how the `"policies"` key is used to define the access control for the repositories. The `"**"` key is a wildcard for all repositories. The `"actions"` key defines the allowed actions for the users.
 
-#### Exposing the registry
+### Exposing the registry
 
 In some use-cases you possibly want to expose Zot to be used by let's say workload clusters, so you manage only a single instance by sharing it across multiple workloads.
 
@@ -224,11 +224,11 @@ Then configure the `sync` extension to use that file as a source to authenticate
 }
 ```
 
-### Configuration recommendations
+## Configuration recommendations
 
 Depending on your use of Zot, please consider these additional recommendations for your deployment.
 
-#### Memory constraints
+### Memory constraints
 
 Zot can take up a lot of memory over time. In the Giant Swarm packaged app you can deploy it with a vertical pod autoscaler (VPA). You can set the resource constraints like shown here:
 
@@ -287,7 +287,7 @@ env:
 
 For more details on this approach, we recommend to read the [Guide to the Go Garbage Collector](https://tip.golang.org/doc/gc-guide).
 
-#### Deployment strategies
+### Deployment strategies
 
 Some extension, like `search` can create file locks on the data volume mount. With the `RollingUpdate` strategy,
 this will cause the new pods failing to stand up. In such scenarios it's recommended to set it to `Recreate`.
