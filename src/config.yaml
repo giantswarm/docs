@@ -22,6 +22,7 @@ markup:
     lineNos: false
 
 menu:
+  # main is our Vintage menu
   main:
   - identifier: platform-overview
     name: Platform Overview
@@ -39,14 +40,9 @@ menu:
     name: Use the API
     url: /vintage/use-the-api/
     weight: 40
-  - identifier: support
-    name: Support & Training
-    url: /support/
-    weight: 50
-  - identifier: changes
-    name: Changes and releases
-    url: /changes/
-    weight: 90
+
+
+  # principal is the main menu since December 2024
   principal:
   - identifier: overview
     name: Overview
