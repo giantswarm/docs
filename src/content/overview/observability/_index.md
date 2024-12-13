@@ -23,7 +23,7 @@ Observability is a fundamental aspect of modern cloud-native environments, provi
 
 - **Alerting**: To not just look at dashboards all day it's crucial to be able to get notified about significant events or issues that require immediate attention. By making it easy to set up and configure alerting rules across apps and environments, our observability platform's alerting helps your teams avoid wasting time on repetitive tasks, thereby enhancing their efficiency and allowing them to focus on what matters.
 
-- **Multi-Tenancy**: To isolate your observability data between teams or internal organization, Giant Swarm provides you with multi-tenant storage of and access to your observability data.
+- **Multi-Tenancy**: To isolate your observability data between teams or internal organizations, Giant Swarm provides you with multi-tenant storage of and access to your observability data.
 
 One of the key benefits using Giant Swarm is that we provide a set of reliable and highly integrated observability tools that our own teams already use on a daily basis and will help you have a comprehensive view of your applications and infrastructure.
 
