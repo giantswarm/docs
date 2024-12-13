@@ -31,7 +31,6 @@ NAME                                       DATA      AGE
 123ab-cluster-autoscaler-user-values         0         11m
 ```
 
-
 ## How to set configuration options using the user values ConfigMap
 
 On the platform API, create or edit a `ConfigMap` named `<CLUSTER_ID>-cluster-autoscaler-user-values`
