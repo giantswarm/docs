@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-In Giant Swarm platform, your workload clusters come with default autoscaling functionality. Today it's supported by {{/*% autoscaling_supported_versions */%}}, but our goal is bringing this feature to all supported providers.
+In Giant Swarm platform, your workload clusters come with default autoscaling functionality. Today, it's supported by {{/*% autoscaling_supported_versions*/%}}, but our goal is to bring this feature to all supported providers.
 
 The cluster autoscaler runs in the workload cluster and is responsible for scaling the number of nodes in the cluster. The configuration though is managed in the management cluster though. The autoscaling controller has a default configuration for the [cluster-autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler). To configure the `cluster-autoscaler` further, you need to access the platform API. [Learn how to access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
 
