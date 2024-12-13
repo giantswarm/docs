@@ -77,6 +77,31 @@ jobs:
             exit 1
           fi
 
+      - name: Check file names
+        shell: python {0}
+        continue-on-error: true
+        run: |
+          # Walk content folder, check file names to use only allowed characters
+          from pathlib import Path
+          import re
+
+          allowed_chars = re.compile(r'^[a-z0-9-]+$')
+          content_dir = 'src/content'
+          errors = []
+          for root, dirs, files in os.walk(content_dir):
+            for file in files:
+              full_path = Path(root, file)
+              if full_path.suffix.lower() !== '.md':
+                continue
+              if not allowed_chars.match(full_path.stem):
+                errors.append(f"- File name {full_path}' contains invalid characters. Only lowercase letters, digits, and hyphens are allowed.\n")
+          
+          if len(errors) > 0:
+            print("The following file names use invalid characters. Only lowercase letters, digits, and hyphens are allowed.\n\n")
+            for error in errors:
+              print(error)
+            sys.exit(1)
+
       - name: Check for moved or deleted files
         run: |
           git --no-pager diff --name-status --diff-filter=RD "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
