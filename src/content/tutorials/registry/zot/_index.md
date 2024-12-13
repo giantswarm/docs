@@ -24,7 +24,7 @@ A registry cache within the cluster can provide several benefits.
 Here we explain how to set up a registry, using the [Zot](https://zotregistry.dev/) app provided by Giant Swarm. Zot is an OCI-native container image registry. The [Giant Swarm packaged version](https://github.com/giantswarm/zot) extends it with opinionated components like
 autoscaling, monitoring, Cilium network policies, etc.
 
-We explain how to deploy apps in our [app platform docs]({{< relref "/vintage/getting-started/app-platform/deploy-app/#creating-an-app-cr" >}}).
+We explain how to deploy apps in our [app platform docs]({{< relref "/tutorials/fleet-management/app-platform/deploy-app/#creating-an-app-resource" >}}).
 
 ### Zot configuration
 
