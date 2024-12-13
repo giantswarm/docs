@@ -1,6 +1,6 @@
 ---
-linkTitle: GitOps
-title: GitOps
+linkTitle: What is GitOps
+title: What is GitOps
 description: Learn how to continuous deploy all your workloads thanks to GitOps and Kubernetes.
 weight: 20
 menu:

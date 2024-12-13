@@ -1,5 +1,5 @@
 ---
-linkTitle: Creating custom Grafana dashboards
+linkTitle: Custom dashboards
 title: Creating custom Grafana dashboards
 description: Guide explaining how to manage custom Grafana dashboards in the Observability Platform.
 menu:
