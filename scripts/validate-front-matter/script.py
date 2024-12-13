@@ -18,6 +18,7 @@ changes_path      = 'src/content/changes'
 crds_path         = 'src/content/reference/platform-api/crd'
 vintage_crds_path = 'src/content/vintage/use-the-api/management-api/crd'
 cluster_apps_path = 'src/content/reference/platform-api/cluster-apps'
+meta_path         = 'src/content/meta'
 docs_host         = 'https://github.com/giantswarm/docs/blob/main/'
 
 todays_date = datetime.date.today()
@@ -161,7 +162,7 @@ checks = (
     {
         'id': NO_LAST_REVIEW_DATE,
         'description': 'The page should have a last_review_date',
-        'ignore_paths': [crds_path, vintage_crds_path, changes_path, cluster_apps_path],
+        'ignore_paths': [crds_path, vintage_path, changes_path, cluster_apps_path, meta_path],
         'severity': SEVERITY_WARN,
     },
     {
