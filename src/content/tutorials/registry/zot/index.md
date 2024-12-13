@@ -285,7 +285,7 @@ env:
     value: 800MiB
 ```
 
-For more details on this approach, we recommend to read the [Guide to the Go Garbage Collector](https://tip.golang.org/doc/gc-guide).
+For more details on this approach, we recommend to read the [guide to the Go garbage collector](https://tip.golang.org/doc/gc-guide).
 
 ### Deployment strategies
 
