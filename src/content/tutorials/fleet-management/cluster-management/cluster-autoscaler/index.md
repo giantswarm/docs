@@ -31,7 +31,6 @@ NAME                                       DATA      AGE
 123ab-cluster-autoscaler-user-values         0         11m
 ```
 
-On cluster creation the user values `ConfigMap` is empty (or might not exist yet) and the following defaults will be applied to the final `cluster-autoscaler` deployment. To customize any of the configuration options, you just need to add the respective lines in the data field of the user `ConfigMap`.
 
 ## How to set configuration options using the user values ConfigMap
 
