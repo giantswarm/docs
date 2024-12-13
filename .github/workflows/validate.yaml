@@ -87,7 +87,7 @@ jobs:
           import os
           import sys
 
-          allowed_chars = re.compile(r'^[a-z0-9-]+$')
+          allowed_chars = re.compile(r'^[a-z0-9-\.+]+$')
           content_dir = 'src/content'
           errors = []
           for root, dirs, files in os.walk(content_dir):
@@ -95,11 +95,13 @@ jobs:
               full_path = Path(root, file)
               if full_path.suffix.lower() != '.md':
                 continue
+              if full_path.name == '_index.md':
+                continue
               if not allowed_chars.match(full_path.stem):
-                errors.append(f"- File name {full_path}' contains invalid characters. Only lowercase letters, digits, and hyphens are allowed.\n")
+                errors.append(f"- {full_path}'\n")
           
           if len(errors) > 0:
-            print("The following file names use invalid characters. Only lowercase letters, digits, and hyphens are allowed.\n\n")
+            print("The following file names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n\n")
             for error in errors:
               print(error)
             sys.exit(1)
