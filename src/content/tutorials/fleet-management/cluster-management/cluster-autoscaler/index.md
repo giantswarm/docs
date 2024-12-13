@@ -10,33 +10,34 @@ menu:
 user_questions:
   - Where can I find the ConfigMap to configure cluster-autoscaler?
   - What cluster-autoscaler options can I configure?
-last_review_date: 2024-11-29
+last_review_date: 2024-12-13
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-Your Giant Swarm installation comes with a default configuration for the [cluster-autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler). You need access to the platform API to configure the cluster-autoscaler. [Learn how to access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
+In Giant Swarm platform, your workload clusters come with default autoscaling functionality. Today it's supported by {{/*% autoscaling_supported_versions */%}}, but our goal is bringing this feature to all supported providers.
 
-You can override these defaults in a `ConfigMap` named `cluster-autoscaler-user-values`.
+The cluster autoscaler runs in the workload cluster and is responsible for scaling the number of nodes in the cluster. The configuration though is managed in the management cluster though. The autoscaling controller has a default configuration for the [cluster-autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler). To configure the `cluster-autoscaler` further, you need to access the platform API. [Learn how to access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
+
+To extend the configuration, you need to override these defaults using a `ConfigMap` with the convention name `cluster-autoscaler-user-values`.
 
 ## Where is the user values ConfigMap
 
-The following examples assume the cluster you are trying to configure has an id of `123ab`.
+The following examples assume the cluster you are trying to configure has an id of `myclustername`.
 
-You will find the `cluster-autoscaler-user-values` `ConfigMap` on the organization namespace of your cluster:
+You will find the `myclustername-cluster-autoscaler-user-values` `ConfigMap` on the organization namespace of your cluster using the platform API:
 
 ```text
-$ kubectl -n org-company get cm 123ab-cluster-autoscaler-user-values
+$ kubectl -n org-company get cm myclustername-cluster-autoscaler-user-values
 NAME                                       DATA      AGE
-123ab-cluster-autoscaler-user-values         0         11m
+myclustername-cluster-autoscaler-user-values         0         11m
 ```
 
 On cluster creation the user values `ConfigMap` is empty (or might not exist yet) and the following defaults will be applied to the final `cluster-autoscaler` deployment. To customize any of the configuration options, you just need to add the respective lines in the data field of the user `ConfigMap`.
 
 ## How to set configuration options using the user values ConfigMap
 
-On the platform API, create or edit a `ConfigMap` named `<CLUSTER_ID>-cluster-autoscaler-user-values`
-in the workload cluster namespace:
+On the platform API, create or edit a `ConfigMap` named `myclustername-cluster-autoscaler-user-values` in the workload cluster namespace:
 
 ```yaml
 apiVersion: v1
@@ -54,7 +55,7 @@ data:
 
 ## Configuration Reference
 
-The following sections explain some of the configuration options and what their defaults are. They show only the 'data' field of the ConfigMap for brevity.
+The following sections explain some of the configuration options and what their defaults are. They show only the `data` field of the `ConfigMap` for brevity.
 
 The most recent source of truth for these values can be found in the [values.yaml](https://github.com/giantswarm/cluster-autoscaler-app/blob/v1.30.3-gs1/helm/cluster-autoscaler-app/values.yaml) file of the `cluster-autoscaler-app`.
 
@@ -62,23 +63,18 @@ The most recent source of truth for these values can be found in the [values.yam
 
 The `scaleDownUtilizationThreshold` defines the proportion between requested resources and capacity, which under the value `cluster-autoscaler` will trigger the scaling down action.
 
-Our default value is 65%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold.
+Our default value is 70%, which means in order to scale down, one of the nodes has to have less utilization (CPU/memory) than this threshold. You can adjust this value to your needs as shown below:
 
 ```yaml
-# 9.0.1 and greater
 data:
   values: |
     configmap:
       scaleDownUtilizationThreshold: 0.65
-
-# 9.0.0 and below
-data:
-  scaleDownUtilizationThreshold: 0.65
 ```
 
 ### Scan Interval
 
-Define what interval is used to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
+Define what interval is used to review the state for taking a decision to scale up/down. Our default value is `30` seconds.
 
 ```yaml
 data:
