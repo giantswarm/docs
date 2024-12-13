@@ -79,7 +79,6 @@ jobs:
 
       - name: Check file and folder names in content
         shell: python {0}
-        continue-on-error: true
         run: |
           # Walk content folder, check file names to use only allowed characters
           from pathlib import Path
