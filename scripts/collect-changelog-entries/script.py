@@ -92,8 +92,7 @@ def main():
     app_repos = fetch_app_repositories()
 
     # Define the metadata
-    metadata = f"""
----
+    metadata = f"""---
 date: {d}T14:00:00
 title: Highlights for the week ending {d}
 changes_categories:

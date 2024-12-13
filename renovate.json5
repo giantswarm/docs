@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "github>giantswarm/renovate-presets:default.json5"
+  ],
+  customManagers: [
+    // Detect versions in shell scripts
+    {
+      customType: 'regex',
+      fileMatch: ['.*\\.sh'],
+      matchStrings: [
+        // for the version on the right part, ignoring the left
+        '# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s[A-Z_]+=(?<currentValue>\\S+)',
+      ],
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
+    },
+  ],
+}
