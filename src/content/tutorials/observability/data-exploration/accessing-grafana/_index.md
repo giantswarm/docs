@@ -51,7 +51,7 @@ There is one identity provider configured for Giant Swarm staff and one for you 
 
 After selecting the right identity provider, you may run through an authentication workflow. However, if you are already authenticated within the current browser, this will be skipped and you should see the Home dashboard as a result.
 
-When you log in, you will be logged into the Shared Org. which contains a curated set of provided dashboards that we manage and that is accessible to everyone. If you want to learn more about organizations and multi-tenancy, we can only advise you to read the related [documentation]{{< relref "/tutorials/observability/multi-tenancy" >}}).
+When you log in, you will be logged into the `Shared Org`, which contains a curated set of provided dashboards that are managed and accessible to everyone. If you want to learn more about organizations and multi-tenancy, we can only advise you to read the related [documentation]{{< relref "/tutorials/observability/multi-tenancy" >}}).
 
 ## Limitations
 
