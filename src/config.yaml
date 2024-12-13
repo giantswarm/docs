@@ -22,6 +22,7 @@ markup:
     lineNos: false
 
 menu:
+  # main is our Vintage menu
   main:
   - identifier: platform-overview
     name: Platform Overview
@@ -39,39 +40,12 @@ menu:
     name: Use the API
     url: /vintage/use-the-api/
     weight: 40
-  - identifier: support
-    name: Support & Training
-    url: /support/
-    weight: 50
-  - identifier: changes
-    name: Changes and releases
-    url: /changes/
-    weight: 90
-  principal:
-  - identifier: overview
-    name: Overview
-    url: /overview/
-    weight: 10
-  - identifier: getting-started
-    name: Getting started
-    url: /getting-started/
-    weight: 20
-  - identifier: tutorials
-    name: Tutorials
-    url: /tutorials/
-    weight: 30
-  - identifier: reference
-    name: Reference
-    url: /reference/
-    weight: 40
-  - identifier: support
-    name: Support
-    url: /support/
-    weight: 50
-  - identifier: changes
-    name: Changes and releases
-    url: /changes/
-    weight: 90
+
+
+  # principal is the main menu since December 2024.
+  # Entries are assigned via front-matter.
+  principal: []
+
 
 taxonomies:
   changes_category: changes_categories
