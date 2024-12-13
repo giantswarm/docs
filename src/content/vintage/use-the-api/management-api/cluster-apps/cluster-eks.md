@@ -4,9 +4,9 @@ linkTitle: cluster-eks
 description:  A helm chart for creating Cluster API EKS clusters with the AWS infrastructure provider (CAPA).; Check here the different properties of the chart.
 weight: 100
 menu:
-  principal:
-    identifier: cluster-eks
-    parent: reference-cluster-apps
+  main:
+    identifier: uiapi-cluster-apps-cluster-eks
+    parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for cluster-eks?

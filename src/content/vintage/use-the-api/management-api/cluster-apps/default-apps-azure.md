@@ -4,9 +4,9 @@ linkTitle: default-apps-azure
 description:  A Helm chart defining the preinstalled apps running in all Giant Swarm Azure clusters.; Check here the different properties of the chart.
 weight: 100
 menu:
-  principal:
-    identifier: default-apps-azure
-    parent: reference-cluster-apps
+  main:
+    identifier: uiapi-cluster-apps-default-apps-azure
+    parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for default-apps-azure?

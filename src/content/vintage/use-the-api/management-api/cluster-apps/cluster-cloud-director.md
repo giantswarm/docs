@@ -4,9 +4,9 @@ linkTitle: cluster-cloud-director
 description:  A helm chart for creating Cluster API clusters with the VMware Cloud Director (VCD) infrastructure provider (CAPVCD).; Check here the different properties of the chart.
 weight: 100
 menu:
-  principal:
-    identifier: cluster-cloud-director
-    parent: reference-cluster-apps
+  main:
+    identifier: uiapi-cluster-apps-cluster-cloud-director
+    parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
  - What properties can I configure for cluster-cloud-director?
