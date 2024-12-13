@@ -84,6 +84,8 @@ jobs:
           # Walk content folder, check file names to use only allowed characters
           from pathlib import Path
           import re
+          import os
+          import sys
 
           allowed_chars = re.compile(r'^[a-z0-9-]+$')
           content_dir = 'src/content'
