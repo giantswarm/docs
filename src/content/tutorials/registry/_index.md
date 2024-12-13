@@ -1,6 +1,7 @@
 ---
 linkTitle: Registry
 title: Registry guides
+description: How to reduce cost for container registries and improve performance and reliability.
 weight: 15
 aliases:
   - /tutorials/registry
