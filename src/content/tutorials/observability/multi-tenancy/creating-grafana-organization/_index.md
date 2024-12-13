@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-When you first access [your installations Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}), you will be accessing an organization named _Shared Org_ which gives you access to a set of curated dashboards. However, if you want to be able to provide multi-tenancy of your observability data (data isolation between tenants), the Observability Platform allows you to create your own organizations in self-service.
+When you first access [your installations `Grafana`]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}), you will be accessing an organization named _Shared Org_, which gives you access to a set of curated dashboards. However, if you want to provide multi-tenancy of your observability data (isolation between tenants), the observability platform allows you to create your own organizations in self-service.
 
 ## Creating your own organization
 
