@@ -48,10 +48,10 @@ menu:
   #   name: Overview
   #   url: /overview/
   #   weight: 10
-  - identifier: getting-started
-    name: Getting started
-    url: /getting-started/
-    weight: 20
+  # - identifier: getting-started
+  #   name: Getting started
+  #   url: /getting-started/
+  #  weight: 20
   - identifier: tutorials
     name: Tutorials
     url: /tutorials/
