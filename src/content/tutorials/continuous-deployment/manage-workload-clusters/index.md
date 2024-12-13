@@ -1,5 +1,5 @@
 ---
-linkTitle: Managing workload clusters
+linkTitle: Workload clusters
 title: Managing workload clusters with GitOps
 description: A guide to create workload clusters in Giant Swarm platform with Flux.
 weight: 50
@@ -13,7 +13,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-11
+last_review_date: 2024-12-12
 ---
 
 Below you will learn how to manage infrastructure and applications in the Giant Swarm `Flux` setup.
@@ -226,6 +226,21 @@ __Note__: The `--release` flag is optional. If you don't provide it, the latest 
 The command will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
 
 Alternatively, you can add the flag `--cluster-user-config` with the values you want to add to the cluster and it will generate a `ConfigMap` with the values.
+
+#### Upgrading workload clusters
+
+To upgrade a workload cluster, you need to change the `release.version` field in the `cluster-user-config` file. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the version in the `release.version` field.
+
+Example:
+
+`kubectl get releases`:
+
+```sh
+NAME         KUBERNETES VERSION   FLATCAR VERSION   AGE     STATE
+aws-29.4.0   1.29.10              3975.2.2          29d     active
+```
+
+You set the `release.version` in the `cluster-user-config` file to `29.4.0` and commit and push the changes.
 
 ### Installing managed apps
 

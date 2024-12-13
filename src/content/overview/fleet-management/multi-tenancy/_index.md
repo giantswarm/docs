@@ -4,8 +4,8 @@ description: Manage cluster and application resources across multiple organizati
 weight: 40
 menu:
   principal:
-    parent: overview-fleet-management
-    identifier: overview-fleet-management-multi-tenancy
+    parent: overview-fleetmanagement
+    identifier: overview-fleetmanagement-multitenancy
 last_review_date: 2024-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product

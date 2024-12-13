@@ -5,7 +5,7 @@ description:  A helm chart for creating Cluster API clusters with the Azure infr
 weight: 100
 menu:
   main:
-    identifier: cluster-azure
+    identifier: uiapi-cluster-apps-cluster-azure
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
