@@ -5,7 +5,7 @@ description:  A helm chart for creating Cluster API clusters with the vSphere pr
 weight: 100
 menu:
   main:
-    identifier: cluster-vsphere
+    identifier: uiapi-cluster-apps-cluster-vsphere
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
