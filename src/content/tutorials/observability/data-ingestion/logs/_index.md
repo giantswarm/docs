@@ -15,7 +15,7 @@ user_questions:
   - Why do my clusters run Alloy?
 ---
 
-By default, Giant Swarm clusters starting from CAPA v29.2.0, and CAPZ v29.1.0 are equipped with [Alloy](https://grafana.com/docs/alloy), an Observability data collector. It's configured to collect system logs from the cluster and forward them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster. See [Logging architecture]({{< relref "/overview/observability/logging/architecture" >}}) for more details.
+By default, Giant Swarm clusters starting from CAPA v29.2.0, and CAPZ v29.1.0 are equipped with [Alloy](https://grafana.com/docs/alloy), an Observability data collector. It's configured to collect system logs from the cluster and forward them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster. See [Logging]({{< relref "/overview/observability/logging" >}}) for more details.
 
 The observability platform allows to ingest logs from your workloads in a self-service way using [PodLogs][1] to select which pods to ingest logs.
 
