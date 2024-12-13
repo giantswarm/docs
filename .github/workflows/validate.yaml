@@ -91,7 +91,7 @@ jobs:
           for root, dirs, files in os.walk(content_dir):
             for file in files:
               full_path = Path(root, file)
-              if full_path.suffix.lower() !== '.md':
+              if full_path.suffix.lower() != '.md':
                 continue
               if not allowed_chars.match(full_path.stem):
                 errors.append(f"- File name {full_path}' contains invalid characters. Only lowercase letters, digits, and hyphens are allowed.\n")
