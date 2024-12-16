@@ -96,11 +96,11 @@ Please note the following in the example above:
 - One of the key benefits of App Sets is to be able to provide a specific set of app versions, that is known to make the apps work well together. Over here, we do that as a set of in-line patches, so it is immediately visible in the `kustomization.yaml` file which versions are used.
 - When using `App` CRs, we have two configuration slots available: `config` and `userConfig`. Since we always want to leave `userConfig` at the end users disposal, we're left with overriding the whole ConfigMap coming from the base application as the only option.
 - It is recommended to re-use App Templates to create App Set Templates. That's exactly what we do here: apps defined in the `resources:` block are App Templates, that, if needed, can be also used standalone.
-- The example above doesn't cover handling Secrets - we do that for brevity. Secrets can be created the same way as in normal [app templates]({{< relref "/tutorials/continuous-deployment/apps/add-app-template" >}}) and overrode the same as `ConfigMaps` or `Secrets` when creating [app from a template](/advanced/gitops/apps/add_appcr/#adding-app-using-app-template).
+- The example above doesn't cover handling Secrets - we do that for brevity. Secrets can be created the same way as in normal [app templates]({{< relref "/tutorials/continuous-deployment/apps/add-app-template" >}}) and overrode the same as `ConfigMaps` or `Secrets` when creating [app from a template]({{< relref "/vintage/advanced/gitops/apps/add-appcr#adding-app-using-app-template" >}}).
 
 ## Using an App Set
 
-Using an App Set Template is once again very similar to using a single [App Set](/advanced/gitops/apps/add_appcr/#adding-app-using-app-template). To create one, save a path that contains your desired App Set Template in the [gitops-template repository in "bases/app_sets"](https://github.com/giantswarm/gitops-template/tree/main/bases/app_sets/) directory. Then, create a new directory in the `app_sets` directory of your Working Cluster. In that directory, create a `kustomization.yaml` file based on the following pattern:
+Using an App Set Template is once again very similar to using a single [App Set]({{< relref "/vintage/advanced/gitops/apps/add-appcr#adding-app-using-app-template" >}}). To create one, save a path that contains your desired App Set Template in the [gitops-template repository in "bases/app_sets"](https://github.com/giantswarm/gitops-template/tree/main/bases/app_sets/) directory. Then, create a new directory in the `app_sets` directory of your Working Cluster. In that directory, create a `kustomization.yaml` file based on the following pattern:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -119,4 +119,4 @@ resources:
   - ../../../../../../../../../bases/app_sets/hello-web-app
 ```
 
-Over here, we are overriding the configuration of the `hello-world` app, which was already defined in the App Set Template. Since here we're using the `userConfig` property, we don't have to override the whole config, but only the YAML keys we need to change. One more important fact is that we're setting a custom Namespace for the whole deployment of an app. If you want to learn more about how config overrides work, please consult our [docs about creating apps](/advanced/gitops/apps/add_appcr/), as in general App Set is just a bundle of them.
+Over here, we are overriding the configuration of the `hello-world` app, which was already defined in the App Set Template. Since here we're using the `userConfig` property, we don't have to override the whole config, but only the YAML keys we need to change. One more important fact is that we're setting a custom Namespace for the whole deployment of an app. If you want to learn more about how config overrides work, please consult our [docs about creating apps]({{< relref "/vintage/advanced/gitops/apps/add-appcr" >}}), as in general App Set is just a bundle of them.
