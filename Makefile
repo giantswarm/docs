@@ -110,6 +110,16 @@ validate-front-matter:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
 
+# Validate front matter for last-reviewed date.
+validate-last-reviewed:
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+	  /workdir/scripts/validate-front-matter/script.py \
+		--validation last-reviewed \
+		--output json
+
 # Print a report of pages with a last_review_date that's
 # too long ago.
 validate-last-reviewed:
