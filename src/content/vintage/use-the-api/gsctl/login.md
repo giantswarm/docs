@@ -53,4 +53,4 @@ gsctl login <email> -e <endpoint> -p <password>
 
 ## Related
 
-- [API: Create auth token](/api/#operation/createAuthToken)
+- [API: Create auth token](https://giantswarm.github.io/api-spec/#operation/createAuthToken)

@@ -63,4 +63,4 @@ Providing a small part of the column name is also accepted: `d`/`del`/`deleting`
 - [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}})
 - [`gsctl scale cluster`]({{< relref "/vintage/use-the-api/gsctl/scale-cluster" >}})
 - [`gsctl delete cluster`]({{< relref "/vintage/use-the-api/gsctl/delete-cluster" >}})
-- [API: Get clusters](/api/#operation/getClusters)
+- [API: Get clusters](https://giantswarm.github.io/api-spec/#operation/getClusters)
