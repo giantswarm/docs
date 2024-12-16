@@ -1,7 +1,7 @@
 name: Generate review Issues weekly
 on:
   schedule:
-    # At 0:00 on Sundays
+    # At 0:05 on Sundays
     - cron:  '5 0 * * 0'
 
 
