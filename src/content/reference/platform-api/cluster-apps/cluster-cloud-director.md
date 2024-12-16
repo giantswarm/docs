@@ -16,7 +16,7 @@ source_repository: https://github.com/giantswarm/cluster-cloud-director
 source_repository_ref: v0.14.2
 ---
 
-The `default-apps-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
+The `cluster-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
