@@ -18,7 +18,7 @@ This document is part of the documentation to use GitOps with Giant Swarm app pl
 
 # Add a new app to a workload cluster
 
-You can add an `App` resource directly or based it on an [app template]({{< relref "/tutorials/continuous-deployment/apps/add_app_template/" >}}). The documentation below shows common steps as well as what's different in both cases.
+You can add an `App` resource directly or based it on an [app template]({{< relref "/tutorials/continuous-deployment/apps/add-app-template/" >}}). The documentation below shows common steps as well as what's different in both cases.
 
 ## Examples
 
@@ -119,7 +119,7 @@ At this point, if you have completed [the workload cluster configuration guide](
 
 ## Adding apps using a template
 
-When using templates you need to pick a directory where templates live, as example `bases/apps`. Follow the [template creation tutorial]({{< relref "/tutorials/continuous-deployment/apps/add_app_template/" >}}) to learn how. Export the path to the directory in an environment variable:
+When using templates you need to pick a directory where templates live, as example `bases/apps`. Follow the [template creation tutorial]({{< relref "/tutorials/continuous-deployment/apps/add-app-template/" >}}) to learn how. Export the path to the directory in an environment variable:
 
 ```sh
 export APP_TEMPLATE_DIR=<your_base_directory>
@@ -167,4 +167,4 @@ spec:
 
 __Note__: Alternatively, you can rely on [`Kustomize` patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) to extend the `App` resource configuration instead.
 
-At this point, everything is prepared and you can commit the changes to the branch to force `Flux` to apply the changes. Further you can learn how to [enable automatic updates for your apps]({{< relref "/tutorials/continuous-deployment/apps/automatic_updates_appcr/" >}}).
+At this point, everything is prepared and you can commit the changes to the branch to force `Flux` to apply the changes. Further you can learn how to [enable automatic updates for your apps]({{< relref "/tutorials/continuous-deployment/apps/automatic-updates-appcr" >}}).
