@@ -189,5 +189,5 @@ Please note, that the block marked "configuration override block" is needed only
 
 ## Recommended next steps
 
-- [Enable automatic updates of an existing App](/advanced/gitops/apps/automatic_updates_appcr/)
-- [Update an existing App](/advanced/gitops/apps/update_appcr/)
+- [Enable automatic updates of an existing App]({{< relref "/vintage/advanced/gitops/apps/automatic-updates-appcr" >}})
+- [Update an existing App]({{< relref "/vintage/advanced/gitops/apps/update-appcr" >}})
