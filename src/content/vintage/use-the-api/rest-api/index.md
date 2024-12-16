@@ -28,4 +28,4 @@ As of now, there is no termination date for the REST API. It is however **not av
 
 ## Further reading
 
-- [REST API documentation](/api/)
+- [REST API documentation](https://giantswarm.github.io/api-spec/)

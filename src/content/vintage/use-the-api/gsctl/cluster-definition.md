@@ -86,7 +86,7 @@ workers:
 - `owner`: Name of the owner organization.
 - `name`: Friendly name of the cluster. If not specified, a name will be generated.
 - `release_version`: Allows to select a specific release version. The value must be the semantic version number (SemVer) of an active release. To get information on all available releases, use the [`gsctl list releases`]({{< relref "/vintage/use-the-api/gsctl/list-releases" >}}) command.
-- `availability_zones`: Number of availability zones to use for worker nodes (on AWS and Azure only). Both the default value and the maximum can be obtained via the [Info endpoint](/api/#operation/getInfo) of the Giant Swarm REST API.
+- `availability_zones`: Number of availability zones to use for worker nodes (on AWS and Azure only). Both the default value and the maximum can be obtained via the [Info endpoint](https://giantswarm.github.io/api-spec/#operation/getInfo) of the Giant Swarm REST API.
 - `workers`: Array of node definition objects describing each worker node. See below for possible keys. If not specified, the default number of worker nodes with default settings will be created.
 
 #### Node definition keys {#node-keys}
@@ -218,6 +218,6 @@ Chances are that you already work with YAML in various places. If not, here are 
 - [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}): Create a cluster based on flags, or a definition file
 - [`gsctl create nodepool`]({{< relref "/vintage/use-the-api/gsctl/create-nodepool" >}})
 - [`gsctl list releases`]({{< relref "/vintage/use-the-api/gsctl/list-releases" >}}): Listing available releases
-- [API: Create cluster (v4)](/api/#operation/addCluster)
-- [API: Create cluster (v5)](/api/#operation/addClusterV5)
-- [API: Create node pool](/api/#operation/addNodePool)
+- [API: Create cluster (v4)](https://giantswarm.github.io/api-spec/#operation/addCluster)
+- [API: Create cluster (v5)](https://giantswarm.github.io/api-spec/#operation/addClusterV5)
+- [API: Create node pool](https://giantswarm.github.io/api-spec/#operation/addNodePool)

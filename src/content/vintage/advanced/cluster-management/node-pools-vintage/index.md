@@ -169,12 +169,12 @@ with homogeneous worker nodes. To account for this need, we introduced a new API
 
 Using the v5 API endpoints, you can
 
-- [Create a new cluster supporting node pools](/api/#operation/addClusterV5)
-- [Get node pools of a cluster](/api/#operation/getNodePools)
-- [Create a new node pool](/api/#operation/addNodePool)
-- [Modify a cluster](/api/#operation/modifyClusterV5)
-- [Modify a node pool](/api/#operation/modifyNodePool)
-- [Delete a node pool](/api/#operation/deleteNodePool)
+- [Create a new cluster supporting node pools](https://giantswarm.github.io/api-spec/#operation/addClusterV5)
+- [Get node pools of a cluster](https://giantswarm.github.io/api-spec/#operation/getNodePools)
+- [Create a new node pool](https://giantswarm.github.io/api-spec/#operation/addNodePool)
+- [Modify a cluster](https://giantswarm.github.io/api-spec/#operation/modifyClusterV5)
+- [Modify a node pool](https://giantswarm.github.io/api-spec/#operation/modifyNodePool)
+- [Delete a node pool](https://giantswarm.github.io/api-spec/#operation/deleteNodePool)
 
 ## Node pools and the cluster definition YAML format
 

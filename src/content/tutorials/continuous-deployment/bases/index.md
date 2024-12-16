@@ -80,7 +80,7 @@ In this example you create a custom version for AWS base:
     mkdir -p bases/clusters/capa/v0.21.0
     ```
 
-2. Use the [kubectl gs template cluster](/use-the-api/kubectl-gs/template-cluster/) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process:
+2. Use the [kubectl gs template cluster]({{< relref "/reference/kubectl-gs/template-cluster" >}}) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process:
 
     ```nohighlight
     kubectl gs template cluster \
