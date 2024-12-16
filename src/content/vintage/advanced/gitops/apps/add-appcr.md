@@ -131,7 +131,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
 
 ## Adding App using App Template
 
-1. First, you need to pick a directory with an App Template from the `bases/apps` dir created in the [template creation page](/advanced/gitops/apps/add_app_template/). Export the path to the directory in an env variable:
+1. First, you need to pick a directory with an App Template from the `bases/apps` dir created in the [template creation page]({{< relref "/vintage/advanced/gitops/apps/add-app-template" >}}). Export the path to the directory in an env variable:
 
     ```nohighlight
     export APP_TEMPLATE_DIR=[YOUR_BASE_PATH]
@@ -189,5 +189,5 @@ Please note, that the block marked "configuration override block" is needed only
 
 ## Recommended next steps
 
-- [Enable automatic updates of an existing App](/advanced/gitops/apps/automatic_updates_appcr/)
-- [Update an existing App](/advanced/gitops/apps/update_appcr/)
+- [Enable automatic updates of an existing App]({{< relref "/vintage/advanced/gitops/apps/automatic-updates-appcr" >}})
+- [Update an existing App]({{< relref "/vintage/advanced/gitops/apps/update-appcr" >}})
