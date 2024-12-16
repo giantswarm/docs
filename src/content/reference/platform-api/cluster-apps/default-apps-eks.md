@@ -16,7 +16,7 @@ source_repository: https://github.com/giantswarm/default-apps-eks
 source_repository_ref: v0.5.1
 ---
 
-The `default-apps-eks` chart templates all the components required for a Cluster API EKS cluster like External DNS or CoreDNS.
+The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS clusters, like External DNS and CoreDNS.
 
 <div class="crd-schema-version">
   <h2 class="headline-with-link">
