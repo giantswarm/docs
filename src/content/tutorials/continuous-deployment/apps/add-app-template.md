@@ -93,4 +93,4 @@ resources:
   # You can add here the configmap in case of generate it via kubectl gs command or manually
 ```
 
-At this point, you should have an app template ready. Now, you can [add a new app to a workload cluster using the template]({{< relref "/tutorials/continuous-deployment/apps/add_appcr" >}}).
+At this point, you should have an app template ready. Now, you can [add a new app to a workload cluster using the template]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}).
