@@ -45,7 +45,7 @@ An example showing how to use an App Set is available in the [gitops-template re
 
 ## Creating an App Set Template
 
-Creating an App Set Template is not much different than [creating an App Template](/advanced/gitops/apps/add_app_template/). Please make sure to read the documentation first.
+Creating an App Set Template is not much different than [creating an App Template]({{< relref "/vintage/advanced/gitops/apps/add-app-template" >}}). Please make sure to read the documentation first.
 
 To get started, go to the `bases` directory and create a subdirectory for your App Set Template. In this directory,
 create a `kustomization.yaml` similar to the one below:
