@@ -19,10 +19,6 @@ export-csv:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/export-csv/script.py
 
-# Update content from external repositories that gets copied in here.
-update-external-repos:
-	./scripts/update-external-repos/main.sh
-
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
 	@if [ -z "${GITHUB_TOKEN}" ]; then echo "Please set the GITHUB_TOKEN environment variable"; exit 1; fi
@@ -113,6 +109,16 @@ validate-front-matter:
 	  -w /workdir \
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
+
+# Validate front matter for last-reviewed date.
+validate-last-reviewed:
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+	  /workdir/scripts/validate-front-matter/script.py \
+		--validation last-reviewed \
+		--output json
 
 # Print a report of pages with a last_review_date that's
 # too long ago.
