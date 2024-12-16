@@ -414,8 +414,8 @@ access to the Management API. However, for the time being, our web interface mak
 By supplying a JSON body with the values you would like to set, the Giant Swarm REST API will
 create a ConfigMap or Secret in the right format and wire it up correctly for you.
 
-- [REST API App Configs reference](/api/#tag/app-configs) for adding configuration values
-- [REST API App Secrets reference](/api/#tag/app-secrets) for adding secret values
+- [REST API App Configs reference](https://giantswarm.github.io/api-spec/#tag/app-configs) for adding configuration values
+- [REST API App Secrets reference](https://giantswarm.github.io/api-spec/#tag/app-secrets) for adding secret values
 
 ### Using the Management API {#management-api}
 

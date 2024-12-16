@@ -71,7 +71,7 @@ Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-pl
 
 After running the `kubectl gs` command you can observe the output has an `App` resource together with the `ConfigMap`. Instead, you could rely on the `ConfigMap` generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources) to generate it on the fly.
 
-__Warning__: `Kustomize` can't be used for the secrets as they need to be encrypted before commit. Refer to our [adding an app](./add_appcr.md) docs to check how to do it.
+__Warning__: `Kustomize` can't be used for the secrets as they need to be encrypted before commit. Refer to our [adding an app]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}) docs to check how to do it.
 
 In the last step it's time to create the `kustomization.yaml` file, adding the optional `Secret` or `ConfigMap` as resources and/or using a `ConfigMap` generator to manage plain configuration:
 
@@ -93,4 +93,4 @@ resources:
   # You can add here the configmap in case of generate it via kubectl gs command or manually
 ```
 
-At this point, you should have an app template ready. Now, you can [add a new app to a workload cluster using the template]({{< relref "/tutorials/continuous-deployment/apps/add_appcr" >}}).
+At this point, you should have an app template ready. Now, you can [add a new app to a workload cluster using the template]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}).

@@ -128,7 +128,7 @@ Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get 
 
 For convenience, data from the in-cluster CRs is exported to Prometheus, where it can be queried, used for alerting, or included in dashboards.
 
-![Diagram illustrating the flow of data from Trivy Operator's scan through an exporter to Prometheus and Grafana](Starboard-Scanning-Monitoring.svg)
+![Diagram illustrating the flow of data from Trivy Operator's scan through an exporter to Prometheus and Grafana](starboard-scanning-monitoring.svg)
 
 Data flow:
 
