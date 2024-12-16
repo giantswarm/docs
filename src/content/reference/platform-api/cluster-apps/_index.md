@@ -1,7 +1,7 @@
 ---
 linkTitle: Cluster app charts
 title: Cluster app charts
-description: These charts are used to provision clusters in the Giant Swarm platform (here, even clusters are apps, in a way). 
+description: These charts are used to provision clusters in the Giant Swarm platform (here, even clusters are apps, in a way).
 weight: 100
 menu:
   principal:
