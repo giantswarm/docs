@@ -100,4 +100,4 @@ Maximum workers per cluster:  20
 ## Related
 
 - [`gsctl select endpoint`]({{< relref "/vintage/use-the-api/gsctl/select-endpoint" >}})
-- [API: Get information on the installation](/api/#operation/getInfo)
+- [API: Get information on the installation](https://giantswarm.github.io/api-spec/#operation/getInfo)
