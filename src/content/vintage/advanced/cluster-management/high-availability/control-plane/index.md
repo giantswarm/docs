@@ -109,7 +109,7 @@ Check the reference for the `--master-ha` flag.
 
 ### Via the REST API {#rest-api}
 
-Check the [v5 cluster modification API reference](/api/#operation/modifyClusterV5)
+Check the [v5 cluster modification API reference](https://giantswarm.github.io/api-spec/#operation/modifyClusterV5)
 to find out how to convert a cluster programmatically using the Giant Swarm REST API.
 
 ### Via the Management API {#management-api}

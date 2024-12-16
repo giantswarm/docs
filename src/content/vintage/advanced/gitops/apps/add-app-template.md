@@ -73,7 +73,7 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
 
     In case you used `kubectl gs` command you realized the output is an App Custom Resource plus the ConfigMap. In case you want to manage the values in plain YAML, you could rely on the ConfigMap generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources).
 
-    __Warning__: It can not be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an App](./add_appcr.md) docs to check how to add and encrypt a Secret.
+    __Warning__: It can not be used for the Secrets as they need to be encrypted before commit into the Git Repository. Refer to our [adding an App]({{< relref "/vintage/advanced/gitops/apps/add-appcr" >}}) docs to check how to add and encrypt a Secret.
 
 3. Now it is time to create the `kustomization.yaml` file, adding the optional Secret/ConfigMap as resources and/or using a ConfigMapGenerator to manage plain configuration:
 
@@ -95,9 +95,9 @@ export APP_USER_VALUES=CONFIGMAP_OR_SECRET_PATH
       # You can add here the config map in case of generate it via kubectl gs command or manually
     ```
 
-At this point, you should have a ready app template. You can use it to [add a new App to a Workload Cluster](/advanced/gitops/apps/add_appcr/).
+At this point, you should have a ready app template. You can use it to [add a new App to a Workload Cluster]({{< relref "/vintage/advanced/gitops/apps/add-appcr" >}}).
 
 ## Recommended next steps
 
-- [Add a new App to a Workload Cluster](/advanced/gitops/apps/add_appcr/)
-- [Creating and using App Sets](/advanced/gitops/apps/app_sets/)
+- [Add a new App to a Workload Cluster]({{< relref "/vintage/advanced/gitops/apps/add-appcr" >}})
+- [Creating and using App Sets]({{< relref "/vintage/advanced/gitops/apps/app-sets" >}})

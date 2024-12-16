@@ -101,8 +101,8 @@ This CR needs to be created only once for each AWS Account. It can be then refer
 ## Further reading
 
 - [Basics and Concepts: Multi Account Support]({{< relref "/vintage/advanced/infrastructure-management/multi-account" >}})
-- [API: Set credentials](/api/#operation/addCredentials)
+- [API: Set credentials](https://giantswarm.github.io/api-spec/#operation/addCredentials)
 - [Giant Swarm Architecture]({{< relref "/vintage/platform-overview/cluster-management/vintage/aws" >}})
-- [Giant Swarm REST API documentation](/api/)
+- [Giant Swarm REST API documentation](https://giantswarm.github.io/api-spec/)
 - [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [AWS Support Center](https://console.aws.amazon.com/support/home)

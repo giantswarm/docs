@@ -182,7 +182,7 @@ resources:
   - ../../../../../../../../bases/clusters/capa/v0.21.0/
 ```
 
-__Warning__: For the sake of simplicity both reference the same base template, but in some occasions where there are breaking changes you might need to link a different template. [Read more about bases here](/advanced/gitops/bases/).
+__Warning__: For the sake of simplicity both reference the same base template, but in some occasions where there are breaking changes you might need to link a different template. [Read more about bases here]({{< relref "/tutorials/continuous-deployment/bases" >}}).
 
 Now, you define the production configuration in a new file `cluster_config.yaml`. You can configure this time a completely different value set, even override new configurations from default.
 
