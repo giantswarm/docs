@@ -54,7 +54,6 @@ update-cluster-app-reference:
 # Generate the reference documentation for the custom resource
 # definitions (CRD) used in the Management API.
 update-crd-reference:
-	scripts/update-crd-reference/update_config.sh
 	scripts/update-crd-reference/main.sh
 
 lint: lint-markdown lint-prose validate-front-matter
