@@ -1,5 +1,3 @@
-# Adding a dummy change...
-
 template_path: ./crd.template
 # List of repositories containing CRDs.
 # Sequence is important here if several repos provide the same CRD (based on the full name).
