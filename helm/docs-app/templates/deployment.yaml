@@ -28,7 +28,7 @@ spec:
           - labelSelector:
               matchLabels:
                 app: {{ .Values.name }}
-              topologyKey: kubernetes.io/hostname
+            topologyKey: kubernetes.io/hostname
       securityContext:
         runAsUser: 1000
         seccompProfile:
