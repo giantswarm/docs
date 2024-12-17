@@ -13,5 +13,16 @@
       ],
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
     },
+    // Detect CRD source versions
+    {
+      customType: 'regex',
+      datasourceTemplate: 'github-tags',
+      fileMatch: ['^scripts/update-crd-reference/config\\.yaml$'],
+      matchStrings: [
+        'short_name:\\s*(?<depName>?)\\s+commit_reference:\\s*(?<currentValue>\\S+)',
+      ],
+      packageNameTemplate: 'giantswarm/{{{depName}}}',
+      versioningTemplate: 'semver-coerced',
+    },
   ],
 }
