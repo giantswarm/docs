@@ -71,7 +71,7 @@ Giant Swarm's cluster architecture is split into two logical parts. One encompas
 
 As explained previously, both the management cluster and the workload cluster(s) have the same structure and configuration. Giant Swarm also collaborates on [Cluster API](https://cluster-api.sigs.k8s.io/) to simplify the bootstrap and configuration of the cluster infrastructure and all the components needed for a cluster to function.
 
-![Cluster architecture image](CAPI_architecture.png)
+![Cluster architecture image](capi-architecture.png)
 
 By default, the machines are spread across three different failure domains, or zones, to ensure the availability of the API and workloads running on top. In our setup, three control plane machines hold the Kubernetes API and the other controllers, and a variable number of worker machines contain the workloads.
 

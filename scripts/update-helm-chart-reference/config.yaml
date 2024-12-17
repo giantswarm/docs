@@ -29,42 +29,18 @@ source_repositories:
   - url: https://github.com/giantswarm/cluster-vsphere
     organization: giantswarm
     introduction: |
-      The `default-apps-vsphere` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API vSphere cluster.
+      The `cluster-vsphere` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API vSphere cluster.
     name: cluster-vsphere
     commit_reference: v0.9.8
   - url: https://github.com/giantswarm/cluster-cloud-director
     organization: giantswarm
     introduction: |
-      The `default-apps-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
+      The `cluster-cloud-director` chart templates all the VMware infrastructure resources that are necessary to create a Cluster API VCD cluster.
     name: cluster-cloud-director
     commit_reference: v0.14.2
-  - url: https://github.com/giantswarm/default-apps-aws
-    organization: giantswarm
-    introduction: |
-      The `default-apps-aws` chart templates all the components required for a Cluster API AWS cluster like External DNS or CoreDNS.
-    name: default-apps-aws
-    commit_reference: v0.48.0
   - url: https://github.com/giantswarm/default-apps-eks
     organization: giantswarm
     introduction: |
-      The `default-apps-eks` chart templates all the components required for a Cluster API EKS cluster like External DNS or CoreDNS.
+      The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS clusters, like External DNS and CoreDNS.
     name: default-apps-eks
     commit_reference: v0.5.1
-  - url: https://github.com/giantswarm/default-apps-azure
-    organization: giantswarm
-    introduction: |
-      The `default-apps-azure` chart templates all the components required for a Cluster API Azure cluster like External DNS or CoreDNS.
-    name: default-apps-azure
-    commit_reference: v0.8.3
-  - url: https://github.com/giantswarm/default-apps-vsphere
-    organization: giantswarm
-    introduction: |
-      The `default-apps-vsphere` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
-    name: default-apps-vsphere
-    commit_reference: v0.12.1
-  - url: https://github.com/giantswarm/default-apps-cloud-director
-    organization: giantswarm
-    introduction: |
-      The `default-apps-cloud-director` chart templates all the components required for a Cluster API VMware cluster like External DNS or CoreDNS.
-    name: default-apps-cloud-director
-    commit_reference: v0.7.3

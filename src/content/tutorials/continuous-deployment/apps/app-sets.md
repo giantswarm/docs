@@ -46,7 +46,7 @@ An example showing how to use an `App Set` is available in the [gitops-template 
 
 ## Creating an app set template
 
-Creating an `App Set` template isn't much different than [creating an app template]({{< relref "/tutorials/continuous-deployment/apps/add_app_template" >}}). Please make sure to read the documentation first.
+Creating an `App Set` template isn't much different than [creating an app template]({{< relref "/tutorials/continuous-deployment/apps/add-app-template" >}}). Please make sure to read the documentation first.
 
 To get started, go to the `bases` directory and create a subdirectory for your `App Set` template. In the directory, create a `kustomization.yaml` similar to the one below:
 
@@ -96,11 +96,11 @@ Please note the following in the example above:
 - One of the key benefits of `App Sets` is to be able to provide a specific set of app versions, that's known to make the apps work well together. To achieve that you see a set of in-line patches exposing the versions of the apps.
 - When using `App` resources, you have three configuration slots available: `config`, `extraConfigs` and `userConfig`. Learn more about them in the [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) documentation.
 - It's recommended to re-use app templates to create `App Set` templates. You can observe the apps defined in the `resources:`  are `App` templates, that can be also used standalone.
-- Secrets can be created the same way as explained in the [app templates]({{< relref "/tutorials/continuous-deployment/apps/add_app_template" >}}) and override the same as `ConfigMaps` or secrets when creating [App from a Template]({{< relref "/tutorials/continuous-deployment/apps/add_appcr/#adding-app-using-app-template" >}}).
+- Secrets can be created the same way as explained in the [app templates]({{< relref "/tutorials/continuous-deployment/apps/add-app-template" >}}) and override the same as `ConfigMaps` or secrets when creating [App from a Template]({{< relref "/tutorials/continuous-deployment/apps/add-appcr/#adding-app-using-app-template" >}}).
 
 ## Use an app set
 
-Using an `App Set` template is similar to use a single [`App Set`]({{< relref "/tutorials/continuous-deployment/apps/add_appcr#adding-app-using-app-template" >}}). To create one, save a path that contains your desired `App Set` template in the [gitops-template repository in "bases/app_sets"](https://github.com/giantswarm/gitops-template/tree/main/bases/app_sets/) directory. Then, create a new directory in the `app_sets` directory of your working cluster. In that directory, create a `kustomization.yaml` file based on the following pattern:
+Using an `App Set` template is similar to use a single [`App Set`]({{< relref "/tutorials/continuous-deployment/apps/add-appcr#adding-app-using-app-template" >}}). To create one, save a path that contains your desired `App Set` template in the [gitops-template repository in "bases/app_sets"](https://github.com/giantswarm/gitops-template/tree/main/bases/app_sets/) directory. Then, create a new directory in the `app_sets` directory of your working cluster. In that directory, create a `kustomization.yaml` file based on the following pattern:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -119,4 +119,4 @@ resources:
   - ../../../../../../../../../bases/app_sets/hello-web-app
 ```
 
-Above you can see how it's override the configuration of the `hello-world` app from the original template. The configuration replaces the `extraConfigs` property using the values from `override_config_hello_world` YAML file. This modifies the keys that match from original template definition. Notice the example overwrites the `namespace` as well for the whole app deployment. If you want to learn more about how configuration overrides work, please read our [docs about creating apps]({{< relref "/tutorials/continuous-deployment/apps/add_appcr" >}}).
+Above you can see how it's override the configuration of the `hello-world` app from the original template. The configuration replaces the `extraConfigs` property using the values from `override_config_hello_world` YAML file. This modifies the keys that match from original template definition. Notice the example overwrites the `namespace` as well for the whole app deployment. If you want to learn more about how configuration overrides work, please read our [docs about creating apps]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}).
