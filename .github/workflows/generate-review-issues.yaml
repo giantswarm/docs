@@ -4,7 +4,6 @@ on:
     # At 0:05 on Sundays
     - cron:  '5 0 * * 0'
 
-
 jobs:
   front-matter:
     runs-on: ubuntu-latest
