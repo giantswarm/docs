@@ -14,7 +14,7 @@ user_questions:
   - How can I scale my workload clusters on Giant Swarm using Karpenter and cluster autoscaler?
 ---
 
-In Gs we combine cluster autoscaler and karpenter to have the better scaling possible in your workload clusters. This tutorial will guide you through the configuration and management of the scaling of your workload clusters on Giant Swarm.
+At Giant Swarm, we combine the [cluster autoscaler](https://github.com/kubernetes/autoscaler) and [karpenter](https://karpenter.sh/) to reach optimal scaling of your workload clusters. This tutorial will guide you through the configuration and management of both.
 
 
 
