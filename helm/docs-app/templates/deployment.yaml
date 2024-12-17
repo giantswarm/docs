@@ -8,6 +8,11 @@ metadata:
 spec:
   replicas: 2
   revisionHistoryLimit: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -19,13 +24,11 @@ spec:
     spec:
       affinity:
         podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app: {{ .Values.name }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: {{ .Values.name }}
               topologyKey: kubernetes.io/hostname
-            weight: 100
       securityContext:
         runAsUser: 1000
         seccompProfile:
@@ -33,7 +36,6 @@ spec:
 
       containers:
         - name: docs-app
-          # Public image required
           image: gsoci.azurecr.io/giantswarm/docs:{{ .Chart.Version }}
           securityContext:
             allowPrivilegeEscalation: false
