@@ -226,5 +226,5 @@ Passing flag `--output` with value `json` to `gsctl create kubeconfig` changes t
 - [Creating workload cluster key pairs via the Management API]({{< relref "/vintage/use-the-api/management-api/wc-key-pairs" >}})
 - [`gsctl create keypair`]({{< relref "/vintage/use-the-api/gsctl/create-keypair" >}}): Create and download a key pair
 - [kubectl reference](https://kubernetes.io/docs/reference/kubectl/overview/)
-- [API: Create key pair](/api/#operation/addKeyPair)
+- [API: Create key pair](https://giantswarm.github.io/api-spec/#operation/addKeyPair)
 - [Kubie](https://github.com/sbstp/kubie)
