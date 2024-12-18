@@ -12,6 +12,9 @@ owner:
 user_questions:
   - How do I prepare my AWS account for the cloud-native developer platform?
   - What do I need to do to prepare my AWS account for the cloud-native developer platform?
+aliases:
+  - /getting-started/cloud-provider-accounts/cluster-api/aws/
+  - /vintage/getting-started/cloud-provider-accounts/cluster-api/aws/
 ---
 
 This guide provides the necessary steps to prepare your AWS accounts to run our platform, including Cluster API Provider for AWS (CAPA).
