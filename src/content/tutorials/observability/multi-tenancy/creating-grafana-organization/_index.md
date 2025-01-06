@@ -32,11 +32,11 @@ spec:
   displayName: Giant Swarm
   rbac:
     admins:
-    - giantswarm-admins
+    - organization-admins
     editors:
-    - giantswarm-editors
+    - dashboards-maintainers
     viewers:
-    - giantswarm-viewers
+    - data-readers
   tenants:
   - giantswarm
 ```
