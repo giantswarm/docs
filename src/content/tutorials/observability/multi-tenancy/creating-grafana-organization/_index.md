@@ -42,4 +42,6 @@ spec:
 ```
 
 Our operators will create this `Grafana` organization named _Giant Swarm_. It will be equipped with a basic set of data sources for Loki, Mimir and Alertmanager, giving you access to the `giantswarm` tenant.
-The Role Base Access Control (RBAC) section defines how to map your groups from your identity provider to `Grafana` admin roles (`Admin`, `Editor`, `Viewer`). Note that only the `admins` field is mandatory in this section.
+
+The Role Base Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [predefined roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`). organization mapping, you can read the official Grafana [documentation](https://grafana.com/docs/grafana/next/setup-grafana/configure-security/configure-authentication/generic-oauth/#configure-role-mapping).
+Note that only the `admins` field is mandatory in this section.
