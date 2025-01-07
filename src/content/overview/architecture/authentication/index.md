@@ -27,7 +27,7 @@ Dex acts as a portal to other identity providers (idP) through connectors. The s
 
 We utilize Kubernetes-native RBAC to control access to resources in the platform API. Resources are segregated into organizations, each represented by a dedicated namespace, enabling improved access control. This approach allows for fine-grained permissions at both the organization and namespace levels. For more detailed information on this topic, you can refer to our comprehensive [multi-tenancy documentation]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
-### Observability Platform API
+### Observability
 
 The observability platform API operating on the management cluster provides you with read access (through the management cluster Grafana) to the observability data collected in managed clusters as well as any additional observability data you choose to ingest in the observability platform. For more detailed information on this topic, you can refer to our comprehensive [grafana organization documentation]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}).
 
