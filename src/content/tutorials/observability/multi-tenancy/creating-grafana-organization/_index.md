@@ -27,18 +27,18 @@ For example:
 apiVersion: observability.giantswarm.io/v1alpha1
 kind: GrafanaOrganization
 metadata:
-  name: giantswarm
+  name: myonlineshop
 spec:
-  displayName: Giant Swarm
+  displayName: MyOnlineShop
   rbac:
     admins:
-    - organization-admins
+    - platform-team
     editors:
-    - dashboards-maintainers
+    - development-team
     viewers:
-    - data-readers
+    - marketing-team
   tenants:
-  - giantswarm
+  - myonlineshop
 ```
 
 Our operators will create this `Grafana` organization named _Giant Swarm_. It will be equipped with a basic set of data sources for Loki, Mimir and Alertmanager, giving you access to the `giantswarm` tenant.
