@@ -32,10 +32,10 @@ To avoid collisions between both, the cluster autoscaler is configured to have a
 
 Our recommendation for the autoscaling configuration is to set two different profiles. One will target `Spot` compute and the other `On-Demand` instances. The `Spot` profile will have a higher weight to be prioritized over the `On-Demand` profile. And the `on-demand` profile will ensure that the cluster has a base capacity to handle the main workloads.
 
-First, let's dive in what is a `Provisioner` custom resource to understand how to configure it. There are a set of parameters to help you define how the nodes should be provisioned:
+First, let's dive into what a `Provisioner` custom resource is to understand how to configure it. There are a set of parameters to help you define how the nodes should be provisioned:
 
 - **labels**: Used to select which nodes should be managed by the provisioner.
-- **limits**: Define the resources limits for the nodes.
+- **limits**: Lets you set limits on the total CPU and Memory that can be used by the node pool, effectively stopping further node provisioning when those limits have been reached.
 - **provider**: Define the launch template, node pool and the AWS tags for the nodes.
 - **requirements**: An array of requirements defining the conditions to be met by the provisioner.
 
