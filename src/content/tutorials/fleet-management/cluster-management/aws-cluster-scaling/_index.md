@@ -6,7 +6,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-clusters-scaling
-last_review_date: 2024-12-13
+last_review_date: 2025-01-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -16,13 +16,13 @@ user_questions:
 
 At Giant Swarm, your workload clusters run with [cluster autoscaler](https://github.com/kubernetes/autoscaler) and [`Karpenter`](https://karpenter.sh/) to reach optimal scaling for your workloads and keeping the costs at minimum. This tutorial will guide you through the configuration and management of both.
 
-The cluster autoscaler is responsible for scaling the number of nodes on the different node pools of your workload cluster. It's triggered by not schedule pods, pods in `Pending` state, making the controller increase the number of desired nodes in the node pool. Indeed it modifies the `AutoScalingGroup` to reflect the new desired capacity.
+The cluster autoscaler is running by default in all your cluster and it is responsible for scaling the number of nodes on the different node pools. It's triggered by not schedule pods, pods in `Pending` state, making the controller increase the number of desired nodes in the node pool. Indeed it modifies the `AutoScalingGroup` to reflect the new desired capacity.
 
-Instead, `Karpenter` relies on the Kubernetes events to scale up or down the number of nodes in the cluster. It's select from a suite of instance types defined in a special `Provisioner` resources to match the workload requirements and can be configured to use spot instances to save costs. It's faster and more efficient than the cluster autoscaler, but does not operate well with base on-demand instances.
+Instead, `Karpenter` is a recommended addon that relies on the Kubernetes events to scale up or down the number of nodes in the cluster. It's select from a suite of instance types defined in a special `Provisioner` resources to match the workload requirements and can be configured to use spot instances to save costs. It's faster and more efficient than the cluster autoscaler, but does not operate well with base on-demand instances.
 
 ## How both work together
 
-The reason to have both cluster autoscaler and `Karpenter` is to be able to offer spot instances and faster scaling options, meanwhile cluster autoscaler manages a base on-demand capacity as fallback.
+In most of the cases the advise is to have both controllers, cluster autoscaler and `Karpenter`, to be able to offer spot instances and faster scaling options, meanwhile cluster autoscaler manages a base on-demand capacity as fallback.
 
 To avoid collisions between both, the cluster autoscaler is configured to have a lower priority than `Karpenter`, so it will react only after a pod is on `Pending` for a while (default 5 minutes).
 
