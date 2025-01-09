@@ -3,11 +3,11 @@ import fs from "fs/promises";
 import path from "path";
 import https from "https";
 
-const websiteURL = "https://www.giantswarm.io/why-giant-swarm";
+const websiteURL = "https://www.giantswarm.io/privacy-policy";
 
-const headerElementSelector = ".header-container-wrapper";
-const footerElementSelector = ".footer-container-wrapper";
-const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation-inner";
+const headerElementSelector = "header.header";
+const footerElementSelector = "footer.footer";
+const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation";
 
 const sectionTemplatesPath = path.join(
   __dirname,
@@ -18,8 +18,9 @@ const sectionTemplatesPath = path.join(
   "partials"
 );
 const headerPath = path.join(sectionTemplatesPath, "gs_header.html");
+const headerStylesPath = path.join(sectionTemplatesPath, "gs_header_styles.html");
 const footerPath = path.join(sectionTemplatesPath, "gs_footer.html");
-const stylesPath = path.join(sectionTemplatesPath, "gs_styles.html");
+const footerStylesPath = path.join(sectionTemplatesPath, "gs_footer_styles.html");
 const cookiesBannerStylesPath = path.join(sectionTemplatesPath, "gs_cookies_banner_styles.html");
 
 const cssOverridesPath = path.join(__dirname, "overrides.css");
@@ -51,42 +52,39 @@ const generatedFileDisclaimer =
   await page.exposeFunction("fetchTextFile", fetchTextFile);
 
   // Header.
-  log("Extracting header HTML.");
-  const header = await extractElementContents(page, headerElementSelector);
+  log("Extracting header contents.");
+  const headerElement = await extractElementContents(page, headerElementSelector);
+  const header = processHeaderContents(headerElement);
 
   log("Writing header HTML.");
   await writeGeneratedFile(headerPath, header.html.join(""));
 
+  log("Writing header CSS.");
+  const headerCSS = Array.from(new Set(header.css));
+  const headerCSSWithOverrides = await applyCSSOverrides(headerCSS);
+  await writeGeneratedFile(headerStylesPath, `<style>\n${headerCSSWithOverrides.join("\n")}\n</style>`);
+
   // Footer.
-  log("Extracting footer HTML.");
+  log("Extracting footer contents.");
   const footer = await extractElementContents(page, footerElementSelector);
 
   log("Writing footer HTML.");
   await writeGeneratedFile(footerPath, footer.html.join(""));
 
-  // Remove duplicate CSS rules.
-  let commonCSS = Array.from(new Set([...header.css, ...footer.css]));
-
-  log("Applying custom CSS.");
-  commonCSS = await applyCSSOverrides(commonCSS);
-
-  log("Writing common CSS file.");
-  await writeGeneratedFile(
-    stylesPath,
-    `<style>\n${commonCSS.join("\n")}\n</style>`
-  );
+  log("Writing footer CSS.");
+  const footerCSS = Array.from(new Set(footer.css));
+  await writeGeneratedFile(footerStylesPath, `<style>\n${footerCSS.join("\n")}\n</style>`);
 
   // Cookie Consent Banner.
-  log("Extracting cookies consent banner HTML.");
-  const cookiesBanner = await extractElementContents(page, cookiesBannerElementSelector);
-
-  log("Applying custom CSS.");
-  commonCSS = await applyCSSOverrides(Array.from(new Set(cookiesBanner.css)));
+  log("Extracting cookies consent banner contents.");
+  const cookiesBannerElement = await extractElementContents(page, cookiesBannerElementSelector);
+  const cookiesBanner = processCookiesBannerContents(cookiesBannerElement);
 
   log("Writing cookies consent banner CSS file.");
+  const cookiesBannerCSS = Array.from(new Set(cookiesBanner.css));
   await writeGeneratedFile(
     cookiesBannerStylesPath,
-    `<style>\n${commonCSS.join("\n")}\n</style>`
+    `<style>\n${cookiesBannerCSS.join("\n")}\n</style>`
   );
 
   log("Closing browser.");
@@ -280,4 +278,37 @@ async function fetchTextFile(fromURL: string): Promise<string> {
 
 function log(message: string) {
   console.log(message);
+}
+
+function processHeaderContents(header: ElementContents) {
+  const { html, css } = header;
+  const cleanHtml = html.map(function(str) {
+    return str
+      .replaceAll("nav__item--active-branch", "")
+      .replaceAll("nav__item--active", "")
+      .replaceAll("mnav__menu__item--active-branch", "")
+      .replaceAll("mnav__menu__item--active", "");
+  })
+
+  return {
+    html: cleanHtml,
+    css,
+  }
+}
+
+function processCookiesBannerContents(header: ElementContents) {
+  const { html, css } = header;
+  const cleanCSS = css.filter(function(str) {
+    return !(
+      str.startsWith("*, ::after, ::before {") ||
+      str.startsWith("a {") ||
+      str.startsWith("a, a:hover {") ||
+      str.startsWith(".p, blockquote, p {")
+    );
+  })
+
+  return {
+    html,
+    css: cleanCSS,
+  }
 }
