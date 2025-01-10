@@ -1,87 +1,111 @@
-html {
-  font-size: 100% !important;
-}
-
-a {
-  font-weight: unset;
-  color: #1c91d5;
-}
-
-*, ::before, ::after {
-  box-sizing: border-box;
-}
-
-.fa {
-  font-weight: inherit !important;
-  font-family: "GiantSwarmHappaAndDocs" !important;
-}
-
-.header-container-wrapper .fa,
-.footer-container-wrapper .fa {
-  font-weight: 900 !important;
-  font-family: "Font Awesome 5 Free" !important;
-}
-
-.header-container-wrapper,
-.footer-container-wrapper {
-  font-weight: 400;
-  font-family: inherit;
-  line-height: 1.7;
-}
-
-.header-container-wrapper .header-container.container-fluid,
-.footer-container-wrapper .footer-container.container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.header-container-wrapper {
-  background: #fff;
-  z-index: 999;
-  margin-bottom: 20px;
-}
-
-.header-container-wrapper .button {
-  display: inline-block;
-  position: relative;
-  max-width: 100%;
-  border: 2px solid transparent;
-  border-radius: 60px;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none !important;
-  text-shadow: none;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.header-container-wrapper .control-button.search {
-  display: none;
-}
-
-.header-container-wrapper .slide-menu-scroller .close,
-.header-container-wrapper .slide-menu-scroller .close:hover,
-.header-container-wrapper .slide-menu-scroller .close:focus {
-  color: #fff;
-  text-shadow: none;
-  float: none;
-  opacity: unset;
-}
-
-.footer-container-wrapper {
-  margin-top: 80px;
-}
-
-.footer-container-wrapper a:hover {
-  text-decoration: none;
-}
-
-@media (max-width: 1139px) {
-  .header-container-wrapper .control-button.menu.hidden.md-visible.sm-visible,
-  .header-container-wrapper .button.hidden.md-visible.sm-visible {
-    display: block !important;
-    visibility: visible !important;
+@keyframes sticky_header_active {
+  0% {
+      opacity: 0;
+      transform: scale(1.1) translateY(-50%)
   }
+
+  to {
+      opacity: 1;
+      transform: scale(1) translateY(0)
+  }
+}
+
+@keyframes sticky_header_inactive {
+  0% {
+      transform: translateY(20%)
+  }
+
+  to {
+      transform: translateY(0)
+  }
+}
+
+@keyframes navbarFlyout {
+  0% {
+      opacity: 0;
+      transform: scale(.95)
+  }
+
+  to {
+      opacity: 1;
+      transform: scale(1)
+  }
+}
+
+@keyframes mnavOverlay {
+  0% {
+      opacity: 0
+  }
+
+  to {
+      opacity: .5
+  }
+}
+
+@keyframes mnavPopup {
+  0% {
+      opacity: 0;
+      transform: translateX(100%)
+  }
+
+  to {
+      opacity: 1;
+      transform: translateX(0)
+  }
+}
+
+@keyframes mnavMenu {
+  0% {
+      opacity: 0;
+      transform: translateY(-10px) translateZ(0)
+  }
+
+  to {
+      opacity: 1;
+      transform: translateY(0) translateZ(0)
+  }
+}
+
+@keyframes uiPop {
+  0% {
+      opacity: 0;
+      transform: scale(.9) translateZ(0)
+  }
+
+  to {
+      opacity: 1;
+      transform: scale(1) translateZ(0)
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      visibility: hidden
+  }
+
+  to {
+      opacity: 1;
+      visibility: visible
+  }
+}
+
+@keyframes btn_ripple {
+  0% {
+      opacity: .3
+  }
+
+  30% {
+      opacity: .3
+  }
+
+  to {
+      opacity: 0;
+      transform: scale(4)
+  }
+}
+
+.btn {
+  transition-duration: .1s;
+  transition-timing-function: ease-in-out;
 }
