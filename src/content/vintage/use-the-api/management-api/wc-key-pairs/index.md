@@ -20,5 +20,4 @@ As of `kubectl gs` v1.44.0, the [`login`]({{< relref "/reference/kubectl-gs/logi
 
 **Note**: We recommend the use of OIDC authentication over client certificates. Please see our related documentation:
 
-- [Configure OpenID Connect (OIDC) with Dex to access your clusters]({{< relref "/vintage/advanced/access-management/configure-dex-in-your-cluster" >}})
 - [Authenticating with Microsoft Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}})
