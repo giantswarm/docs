@@ -29,7 +29,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {{ partial "gs_styles" . }}
     {{ partial "styles" . }}
     <script>
       window.GiantSwarmGoogleAnalyticsAccount = 'UA-52901087-2';
@@ -38,7 +37,12 @@
     <script type="module" src="https://unpkg.com/@inkeep/widgets-embed@0.2.235/dist/embed.js" defer></script>
   </head>
   <body data-spy="scroll" data-target="#TableOfContents" class="{{if .IsPage}}{{ replace .RelPermalink "/" "_" }}{{end}}">
-    {{ partial "gs_header" . }}
+    <div id="header">
+      <template shadowrootmode="open">
+        {{ partial "gs_header_styles" }}
+        {{ partial "gs_header" }}
+      </template>
+    </div>
     <div id="wrapper">
     <section id="main">
       <div class="container">

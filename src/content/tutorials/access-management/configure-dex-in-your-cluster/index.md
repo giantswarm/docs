@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2024-11-29
+last_review_date: 2025-01-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
@@ -37,57 +37,6 @@ The `Kubernetes` API allows users to authenticate using the `OIDC` protocol, mak
 You need to set values for the OpenID Connect (OIDC) issuer address and client ID. You can define those values in the cluster custom resource. These values will then be set as flags on the `Kubernetes` API server (specifically, `--oidc-issuer-url` and `--oidc-client-id`).
 
 {{< tabs >}}
-{{< tab title="Azure">}}
-
-```yaml
-apiVersion: cluster.x-k8s.io/v1alpha3
-kind: Cluster
-metadata:
-  annotations:
-    oidc.giantswarm.io/client-id: dex-k8s-authenticator
-    oidc.giantswarm.io/issuer-url: https://dex.CLUSTER_NAME.BASE_DOMAIN
-    oidc.giantswarm.io/group-claim: groups
-    oidc.giantswarm.io/username-claim: email
-  ...
-```
-
-{{< /tab >}}
-{{< tab title="AWS">}}
-
-```yaml
-apiVersion: infrastructure.giantswarm.io/v1alpha2
-kind: AWSCluster
-spec:
-  cluster:
-    ...
-    oidc:
-      claims:
-        groups: groups
-        username: email
-      clientID: dex-k8s-authenticator
-      issuerURL: https://dex.CLUSTER_NAME.BASE_DOMAIN
-```
-
-{{< /tab >}}
-{{< tab title="OpenStack">}}
-
-```yaml
-apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-kind: KubeadmControlPlaneTemplate
-spec:
-  template:
-    spec:
-      kubeadmConfigSpec:
-        clusterConfiguration:
-          apiServer:
-            extraArgs:
-              oidc-issuer-url: https://dex.CLUSTER_NAME.BASE_DOMAIN
-              oidc-client-id: dex-k8s-authenticator
-              oidc-username-claim: email
-              oidc-groups-claim: groups
-```
-
-{{< /tab >}}
 {{< tab title="Cluster API (any)">}}
 
 ```yaml
