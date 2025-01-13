@@ -77,7 +77,7 @@ Based on `Cluster API` and other operators, the Giant Swarm platform provides au
 
 ## Cluster scaling
 
-One of the key features of the Giant Swarm platform is the ability to scale clusters automatically. It allows for dynamic adjustment of resources based on demand, supporting both horizontal and vertical scaling, ensuring applications have the necessary resources to handle varying workloads. By automating the scaling process, the platform helps maintain performance and reliability while optimizing resource utilization and cost. Learn how to configure [cluster scaling]({{< relref "/tutorials/fleet-management/cluster-management/cluster-scaling/" >}}).
+One of the key features of the Giant Swarm platform is the ability to scale clusters automatically. It allows for dynamic adjustment of resources based on demand, supporting both horizontal and vertical scaling, ensuring applications have the necessary resources to handle varying workloads. By automating the scaling process, the platform helps maintain performance and reliability while optimizing resource utilization and cost. Learn how to configure [cluster scaling]({{< relref "/tutorials/fleet-management/cluster-management/aws-cluster-scaling/" >}}).
 
 ## Cloud resources provisioning
 

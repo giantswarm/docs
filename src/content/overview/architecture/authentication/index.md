@@ -35,7 +35,7 @@ The observability platform API operating on the management cluster provides you 
 
 ### Authentication: Workload Cluster
 
-For the workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters]({{< relref "/vintage/advanced/access-management/configure-dex-in-your-cluster/" >}}).
+For the workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters]({{< relref "/tutorials/access-management/configure-dex-in-your-cluster/" >}}).
 
 ### Authorization: Workload Cluster
 
