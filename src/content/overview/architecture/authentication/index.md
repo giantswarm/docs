@@ -29,7 +29,7 @@ We utilize Kubernetes-native RBAC to control access to resources in the platform
 
 ### Observability
 
-The platform API provides read access to the observability tools, like the Grafana instance running the management cluster, so that you can browse across the data collected in your managed clusters and any additional data you choose to push to the platform.  For more detailed information on this topic, you can refer to our comprehensive [grafana organization documentation]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}).
+The platform API provides read access to the observability tools, like the Grafana instance running the management cluster, so that you can browse across the data collected in your managed clusters and any additional data you choose to push to the platform. For more detailed information on this topic, you can refer to our comprehensive [grafana organization documentation]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}).
 
 ## Workload Cluster
 
