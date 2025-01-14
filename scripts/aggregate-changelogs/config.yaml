@@ -83,8 +83,6 @@ repositories:
     category: Observability Platform
   giantswarm/grafana-agent-app:
     category: Observability Platform
-  giantswarm/grafana-multi-tenant-proxy:
-    category: Observability Platform
   giantswarm/happa:
     category: Web UI
   giantswarm/hello-world-app:
