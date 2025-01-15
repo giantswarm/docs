@@ -14,6 +14,8 @@ repositories:
     category: Platform API
   giantswarm/alloy-app:
     category: Observability Platform
+  giantswarm/alloy-gateway-app:
+    category: Observability Platform
   giantswarm/aws-admission-controller:
     category: Platform API
   giantswarm/azure-admission-controller:
@@ -111,6 +113,8 @@ repositories:
     category: Platform API
   giantswarm/mimir-app:
     category: Observability Platform
+  giantswarm/observability-bundle:
+    category: Observability Platform
   giantswarm/prometheus-operator-app:
     category: Observability Platform
   giantswarm/promtail-app:
@@ -119,6 +123,10 @@ repositories:
     category: Managed Apps
   giantswarm/rook-operator-app:
     category: Managed Apps
+  giantswarm/silence-operator:
+    category: Observability Platform
+  giantswarm/sloth-app:
+    category: Observability Platform
   giantswarm/starboard-app:
     category: Managed Apps
   giantswarm/starboard-exporter:
@@ -158,6 +166,8 @@ categories:
     color: "#8081b2"
   - name: Managed Apps
     color: "#7ac271"
+  - name: Observability Platform
+    color: "#f69917"
   - name: Workload cluster releases for AWS
     color: "#ff9900"
   - name: Workload cluster releases for CAPA
