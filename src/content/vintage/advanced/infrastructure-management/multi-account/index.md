@@ -50,9 +50,9 @@ In both cases, customers benefit from simpler usage and cost allocation, plus a 
 
 Details of the implementation differ between AWS and Azure.
 
-- On AWS, Giant Swarms uses two separate IAM roles in order to act in the workload cluster account: one for use by automation, one for technical support staff. Details on the exact permissions required can be found in our guide on [preparing an AWS account to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}}).
+- On AWS, Giant Swarms uses two separate IAM roles in order to act in the workload cluster account: one for use by automation, one for technical support staff.
 
-- On Azure, one service principal is configured for Giant Swarm, used by automation and technical support staff. Details can be found in our guide on [preparing an Azure subscription to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}}).
+- On Azure, one service principal is configured for Giant Swarm, used by automation and technical support staff.
 
 ## Additional information {#details}
 
@@ -61,21 +61,6 @@ Details of the implementation differ between AWS and Azure.
 - Cloud provider credentials are **immutable**. Once specified on an organization, cloud provider credentials cannot be modified or deleted. In order to switch to new cloud provider credentials you'll have to create a new organization and migrate to new clusters owned by that organization.
 
 - If an organization does not yet have provider credentials configured but already has workload clusters, these clusters are run in the default workload cluster account. Setting credentials for this organization does not affect the workload clusters created already.
-
-## Get started
-
-To create clusters in a new cloud provider account, you first need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like. Organizations can be created in the Giant Swarm web UI.
-
-To prepare your credentials, either as AWS account roles or as an Azure service principle, please follow our specific guides:
-
-- [Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}})
-- [Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}})
-
-You can then assign the credentials to your organization in the Giant Swarm web UI via the organization details page.
-
-All workload clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
-
-When inspecting details of such a cluster, we display cloud provider details in the case the workload cluster does not reside in the default account.
 
 ## Further reading
 

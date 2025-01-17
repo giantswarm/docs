@@ -18,7 +18,7 @@ user_questions:
   - How can I set cloud provider credentials via the Management API?
 ---
 
-### Notice: This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm Clusters. For _CAPI_ Clusters, documentation is available for [CAPA]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/aws" >}}) and [CAPZ]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/azure" >}})
+### Notice: This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm installations. For _CAPI_ installations, documentation is available [in this section]({{< relref "/getting-started/prepare-your-provider-infrastructure/" >}}).
 
 In order to manage workload clusters in your cloud provider accounts/subscriptions, the Giant Swarm controllers require some configuration so they are able to act on your behalf.
 
@@ -68,8 +68,6 @@ In above AWS example, these are two fields which both indicate AWS IAM role iden
 
 The first of the two identifies the IAM role to be assumed by Giant Swarm staff for operations tasks. The second one is used by `aws-operator`, which is the software in charge of automatic cluster management. Easily visible, they include the numeric AWS account ID and also the IAM role name to be assumed.
 
-We provide [detailed documentation]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}}) regarding how to configure these roles in your AWS account.
-
 {{< /tab >}}
 {{< tab title="Azure" >}}
 
@@ -105,8 +103,6 @@ Decoded example:
 | `azure.azureoperator.clientsecret`   | `abcd-efghijklmnLOPQ1234567~89RStuvwx` |
 
 In order for `azure-operator` to manage workload clusters using these credentials, it will need access to your `Subscription` using a `Service Principal`.
-
-We provide a [detailed guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}}) prepare and obtain this data.
 
 {{< /tab >}}
 {{< /tabs >}}
