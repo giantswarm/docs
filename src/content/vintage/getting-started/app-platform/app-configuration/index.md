@@ -405,7 +405,6 @@ colors:
    secretColor: "blue"
 ```
 
-
 ### Using the Management API {#management-api}
 
 There are many approaches to managing resources in Kubernetes, which go beyond
