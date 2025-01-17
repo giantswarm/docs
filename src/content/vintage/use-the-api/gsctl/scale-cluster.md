@@ -58,4 +58,3 @@ Use `gsctl scale cluster --help` for a additional (global) arguments.
 - [`gsctl update nodepool`]({{< relref "/vintage/use-the-api/gsctl/update-nodepool" >}}): Among others, allows to scale a node pool
 - [`gsctl delete cluster`]({{< relref "/vintage/use-the-api/gsctl/delete-cluster" >}}): Delete a cluster
 - [Basics: Cluster Size and Autoscaling]({{< relref "/vintage/getting-started/operations/autoscaling/cluster-size" >}})
-- [API: Modify cluster](https://giantswarm.github.io/api-spec/#operation/modifyCluster)

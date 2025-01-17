@@ -50,7 +50,3 @@ syntax is as follows:
 ```nohighlight
 gsctl login <email> -e <endpoint> -p <password>
 ```
-
-## Related
-
-- [API: Create auth token](https://giantswarm.github.io/api-spec/#operation/createAuthToken)

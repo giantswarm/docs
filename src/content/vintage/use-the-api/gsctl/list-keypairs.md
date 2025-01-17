@@ -82,5 +82,4 @@ CREATED                 EXPIRES                 ID          DESCRIPTION         
 - [`gsctl create keypair`]({{< relref "/vintage/use-the-api/gsctl/create-keypair" >}})
 - [`gsctl create kubeconfig`]({{< relref "/vintage/use-the-api/gsctl/create-kubeconfig" >}})
 - [Securing your cluster with RBAC and PSP]({{< relref "/vintage/getting-started/security" >}})
-- [API: Get key pairs](https://giantswarm.github.io/api-spec/#operation/getKeyPairs)
 - [X.509 on Wikipedia](https://en.wikipedia.org/wiki/X.509)

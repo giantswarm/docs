@@ -79,4 +79,3 @@ The flags mean:
 - [Basics and Concepts: Multi-Account Support]({{< relref "/vintage/advanced/infrastructure-management/multi-account" >}})
 - [Guides: Prepare an AWS account to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}})
 - [Guides: Prepare an Azure subscription to run Giant Swarm workload clusters]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}})
-- [API: Set credentials](https://giantswarm.github.io/api-spec/#operation/addCredentials)

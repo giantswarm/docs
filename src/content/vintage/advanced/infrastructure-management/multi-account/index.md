@@ -64,7 +64,7 @@ Details of the implementation differ between AWS and Azure.
 
 ## Get started
 
-To create clusters in a new cloud provider account, you first need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like. Organizations can be created in the Giant Swarm web UI, or via the [Giant Swarm REST API](https://giantswarm.github.io/api-spec/#operation/addOrganization).
+To create clusters in a new cloud provider account, you first need to provide the credentials to the organization you'd like to use for this purpose. You are free to create a new organization for this purpose if you like. Organizations can be created in the Giant Swarm web UI.
 
 To prepare your credentials, either as AWS account roles or as an Azure service principle, please follow our specific guides:
 
@@ -75,7 +75,6 @@ You can then assign the credentials to your organization in several ways:
 
 - In the Giant Swarm web UI via the organization details page
 - In `gsctl` using the [`update organization set-credentials`]({{< relref "/vintage/use-the-api/gsctl/update-org-set-credentials" >}}) command
-- Via the [Giant Swarm REST API](https://giantswarm.github.io/api-spec/#operation/addCredentials)
 
 All workload clusters created for that organization will then use the credentials provided to the organization and will reside in the account/subscription associated with them.
 

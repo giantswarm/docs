@@ -25,7 +25,3 @@ Since its inception at Giant Swarm, we learned that there are always more use ca
 With this realization, we made the decision to **phase out the development of the REST API** in favor of providing access to the [Management API]({{< relref "/vintage/use-the-api/management-api" >}}) instead.
 
 As of now, there is no termination date for the REST API. It is however **not available anymore for [newer generations of the platform]({{< relref "/vintage/platform-overview/cluster-management/cloud-provider-implementations" >}})**.
-
-## Further reading
-
-- [REST API documentation](https://giantswarm.github.io/api-spec/)

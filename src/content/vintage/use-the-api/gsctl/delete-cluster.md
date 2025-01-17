@@ -82,4 +82,3 @@ Passing flag `--output` with value `json` to `gsctl delete cluster` changes the 
 
 - [`gsctl scale cluster`]({{< relref "/vintage/use-the-api/gsctl/scale-cluster" >}})
 - [`gsctl` reference overview]({{< relref "/vintage/use-the-api/gsctl" >}})
-- [API: Delete cluster](https://giantswarm.github.io/api-spec/#operation/deleteCluster)

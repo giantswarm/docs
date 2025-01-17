@@ -93,8 +93,4 @@ In workload clusters without autoscaling support, the number of Ingress Controll
 - [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}): Creating a cluster
 - [`gsctl scale cluster`]({{< relref "/vintage/use-the-api/gsctl/scale-cluster" >}}): Scaling a cluster
 - [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}): Inspecting a cluster
-- [API: Create cluster](https://giantswarm.github.io/api-spec/#operation/addCluster)
-- [API: Modify cluster](https://giantswarm.github.io/api-spec/#operation/modifyCluster)
-- [API: Get cluster details](https://giantswarm.github.io/api-spec/#operation/getCluster)
-- [API: Get cluster status](https://giantswarm.github.io/api-spec/#operation/getClusterStatus)
 - [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)
