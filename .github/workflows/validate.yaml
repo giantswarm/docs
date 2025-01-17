@@ -58,8 +58,9 @@ jobs:
           printf "\nAnnotations JSON:\n"
           cat ./markdownlint-annotations.json
           
-          # Save as environment variable for next step
-          echo "found_markdown_issues=true" >> $GITHUB_ENV
+          if [ $(jq length < ./markdownlint-annotations.json) -gt 0 ]; then
+            echo "found_markdown_issues=true" >> $GITHUB_ENV
+          fi
 
       - name: Send markdownlint annotations
         if: ${{ env.found_markdown_issues == 'true' }}
