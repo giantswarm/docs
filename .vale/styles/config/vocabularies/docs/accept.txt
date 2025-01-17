@@ -31,7 +31,6 @@ Falco
 firewalling
 freely
 Grafana
-gsctl
 Honeybadger
 HTTP
 [Ii][Aa][Mm]

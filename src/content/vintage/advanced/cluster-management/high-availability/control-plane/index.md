@@ -101,12 +101,6 @@ Next to these details you will find a button _Switch to high availability…_, u
 the cluster is currently undergoing an upgrade. Click this button and follow
 the instructions in the web UI.
 
-### Via `gsctl` {#gsctl}
-
-The `gsctl` CLI as of v0.23.1 provides the
-[gsctl update cluster]({{< relref "/vintage/use-the-api/gsctl/update-cluster" >}}) to change cluster details.
-Check the reference for the `--master-ha` flag.
-
 ### Via the Management API {#management-api}
 
 In order to convert a single node control plane to high availability, the cluster's
