@@ -18,7 +18,7 @@ user_questions:
   - How can I set cloud provider credentials via the Management API?
 ---
 
-### Notice: This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm installations. For _CAPI_ installations, documentation is available [in this section]({{< relref "/getting-started/prepare-your-provider-infrastructure/" >}}).
+__Note:__ This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm installations. For _CAPI_ installations, documentation is available [in this section]({{< relref "/getting-started/prepare-your-provider-infrastructure/" >}}).
 
 In order to manage workload clusters in your cloud provider accounts/subscriptions, the Giant Swarm controllers require some configuration so they are able to act on your behalf.
 
