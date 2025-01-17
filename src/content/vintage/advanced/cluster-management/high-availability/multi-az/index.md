@@ -113,7 +113,6 @@ You can create clusters in several ways:
 
 - In the [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}).
 - In `gsctl` using the [`create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition]({{< relref "/vintage/use-the-api/gsctl/cluster-definition" >}}).
-- Via the [Giant Swarm REST API](https://giantswarm.github.io/api-spec/#operation/addCluster).
 
 When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.
 

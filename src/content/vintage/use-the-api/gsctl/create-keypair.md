@@ -79,4 +79,3 @@ __Warning:__ Setting `system:masters` as an organization means the user who uses
 
 - [Creating workload cluster key pairs via the Management API]({{< relref "/vintage/use-the-api/management-api/wc-key-pairs" >}})
 - [`gsctl create kubeconfig`]({{< relref "/vintage/use-the-api/gsctl/create-kubeconfig" >}}): Create a key pair and prepare your kubectl configuration to access the cluster.
-- [Rest API: Create key pair](https://giantswarm.github.io/api-spec/#operation/addKeyPair)

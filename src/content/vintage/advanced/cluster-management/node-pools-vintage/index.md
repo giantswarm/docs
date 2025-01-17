@@ -162,20 +162,6 @@ Using multiple instance types in a node pool has some benefits:
 
 Instances that contain the same amount of CPU and RAM are considered similar. We provide more information regarding which instance types are considered similar in our [reference]({{< relref "/vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types" >}}).
 
-## Node pools and the Giant Swarm REST API {#restapi}
-
-Handling clusters with node pools requires an API schema different from the one used for clusters
-with homogeneous worker nodes. To account for this need, we introduced a new API version path `v5`.
-
-Using the v5 API endpoints, you can
-
-- [Create a new cluster supporting node pools](https://giantswarm.github.io/api-spec/#operation/addClusterV5)
-- [Get node pools of a cluster](https://giantswarm.github.io/api-spec/#operation/getNodePools)
-- [Create a new node pool](https://giantswarm.github.io/api-spec/#operation/addNodePool)
-- [Modify a cluster](https://giantswarm.github.io/api-spec/#operation/modifyClusterV5)
-- [Modify a node pool](https://giantswarm.github.io/api-spec/#operation/modifyNodePool)
-- [Delete a node pool](https://giantswarm.github.io/api-spec/#operation/deleteNodePool)
-
 ## Node pools and the cluster definition YAML format
 
 Just as the Giant Swarm REST API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the

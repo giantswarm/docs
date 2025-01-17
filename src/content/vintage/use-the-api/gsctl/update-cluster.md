@@ -71,7 +71,4 @@ To remove a label, set its key to an empty string (`labeltodelete=`).
 
 - [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}) - Add a node pool to a cluster
 - [`gsctl list clusters`]({{< relref "/vintage/use-the-api/gsctl/list-clusters" >}}) - List all node pools of a cluster
-- [API: Modify cluster (v4)](https://giantswarm.github.io/api-spec/#operation/modifyCluster)
-- [API: Modify cluster (v5)](https://giantswarm.github.io/api-spec/#operation/modifyClusterV5)
-- [API: Update cluster labels](https://giantswarm.github.io/api-spec/#operation/setClusterLabels)
 - [Labelling workload clusters]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters" >}})

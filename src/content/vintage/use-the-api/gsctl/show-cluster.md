@@ -109,4 +109,3 @@ Note that some dynamic pieces of information, like the current number of workers
 - [`gsctl list clusters`]({{< relref "/vintage/use-the-api/gsctl/list-clusters" >}})
 - [`gsctl scale cluster`]({{< relref "/vintage/use-the-api/gsctl/scale-cluster" >}})
 - [`gsctl delete cluster`]({{< relref "/vintage/use-the-api/gsctl/delete-cluster" >}})
-- [API: Get cluster details](https://giantswarm.github.io/api-spec/#operation/getCluster)

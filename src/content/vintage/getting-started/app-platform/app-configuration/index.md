@@ -405,17 +405,6 @@ colors:
    secretColor: "blue"
 ```
 
-### Using the REST API (deprecated) {#giant-swarm-api}
-
-The [Giant Swarm REST API]({{< relref "/vintage/use-the-api/rest-api" >}}) acts as an interface between you and the [Management
-API]({{< relref "/vintage/use-the-api/management-api" >}}). It is deprecated since we are currently in the process of allowing you direct
-access to the Management API. However, for the time being, our web interface makes use of the Giant Swarm REST API.
-
-By supplying a JSON body with the values you would like to set, the Giant Swarm REST API will
-create a ConfigMap or Secret in the right format and wire it up correctly for you.
-
-- [REST API App Configs reference](https://giantswarm.github.io/api-spec/#tag/app-configs) for adding configuration values
-- [REST API App Secrets reference](https://giantswarm.github.io/api-spec/#tag/app-secrets) for adding secret values
 
 ### Using the Management API {#management-api}
 

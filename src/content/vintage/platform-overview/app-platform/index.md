@@ -141,7 +141,6 @@ You can interact with the Giant Swarm App Platform through creating App custom r
 
 - [App CRD reference]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
 - [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/vintage/platform-overview/web-interface/app-platform" >}})
-- [Apps and App Configs in the API reference](https://giantswarm.github.io/api-spec/#tag/apps)
 
 Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 

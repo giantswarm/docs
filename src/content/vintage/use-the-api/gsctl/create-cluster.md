@@ -113,5 +113,3 @@ When requesting cluster creation with workload cluster release v{{% first_aws_no
 - [`gsctl create kubeconfig`]({{< relref "/vintage/use-the-api/gsctl/create-kubeconfig" >}}) - Getting a key pair and enabling `kubectl` to access a cluster
 - [`gsctl delete cluster`]({{< relref "/vintage/use-the-api/gsctl/delete-cluster" >}}) - Deleting a cluster
 - [Basics: Cluster Size and Autoscaling]({{< relref "/vintage/getting-started/operations/autoscaling/cluster-size" >}})
-- [API: Create cluster (v4)](https://giantswarm.github.io/api-spec/#operation/addCluster)
-- [API: Create cluster (v5)](https://giantswarm.github.io/api-spec/#operation/addClusterV5)
