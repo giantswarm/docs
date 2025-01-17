@@ -41,7 +41,7 @@ We access all machines, as well as the Kubernetes API of the management cluster,
 
 ![On-premises workload cluster architecture](architecture-onprem-tenant-cluster.png)
 
-Using the Giant Swarm REST API, our [CLI](https://github.com/giantswarm/gsctl), or our Web UI, you can start workload clusters of different sizes. You choose the amount of vCores and RAM you want per Node of your workload cluster and click “Create Cluster”. Moments later your cluster will be ready to use. It will be running on the worker nodes of the management cluster, within KVM VMs networked together through a Flannel network. Each workload cluster is separated from the other workload clusters by a Flannel VXLAN bridge. Inside of that bridge, containers are networked with Calico BGP.
+Using the Giant Swarm Web UI, you can start workload clusters of different sizes. You choose the amount of vCores and RAM you want per Node of your workload cluster and click “Create Cluster”. Moments later your cluster will be ready to use. It will be running on the worker nodes of the management cluster, within KVM VMs networked together through a Flannel network. Each workload cluster is separated from the other workload clusters by a Flannel VXLAN bridge. Inside of that bridge, containers are networked with Calico BGP.
 
 Access to the Kubernetes API goes through the management cluster. We can connect your load balancer for Ingress access. This load balancer can be either statically configured with health checks or controlled via an API. Depending on the data center setup, there may be multiple options which our engineers will evaluate with your infrastructure team.
 
