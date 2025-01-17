@@ -258,7 +258,7 @@ access to clusters. Only members of the owner organization have access to
 the management functions of a cluster.
 
 In case you are working with a Giant Swarm partner, you might not have
-access to the Giant Swarm REST API. In that case, please provide the role ARNs for
+access to the Giant Swarm management API. In that case, please provide the role ARNs for
 the `GiantSwarmAWSOperator` role and the `GiantSwarmAdmin` role to your partner
 contact.
 
