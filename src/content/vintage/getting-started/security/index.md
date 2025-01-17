@@ -24,7 +24,7 @@ last_review_date: 2023-11-27
 mermaid: true
 ---
 
-**Note:** This article explains user management for the Giant Swarm REST API and using `gsctl`, which are no longer available.
+__Note:__ This article explains user management for the Giant Swarm REST API and using `gsctl`, which are no longer available.
 
 Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Standards (PSS). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
 
