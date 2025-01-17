@@ -517,8 +517,6 @@ Note that bindings that come with the cluster by default like `system:masters` c
 - [Pod Security Standards][upstream-pss]
 - [Giant Swarm's farewell to PSP blog][farewell-psp-blog]
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-- [Creating a kubeconfig with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-kubeconfig" >}})
-- [Creating a key pair with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-keypair" >}})
 
 [farewell-psp-blog]: https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp
 [upstream-psa]: https://kubernetes.io/docs/concepts/security/pod-security-admission/
