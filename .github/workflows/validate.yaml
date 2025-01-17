@@ -26,8 +26,11 @@ jobs:
             # Print for debugging
             printf "\nAnnotations JSON:\n"
             cat ./annotations.json
+
             # Save as environment variable for next step
-            echo "found_front_matter_issues=true" >> $GITHUB_ENV
+            if [ $(jq length < ./annotations.json) -gt 0 ]; then
+              echo "found_front_matter_issues=true" >> $GITHUB_ENV
+            fi
           fi
           rm files.txt
 
