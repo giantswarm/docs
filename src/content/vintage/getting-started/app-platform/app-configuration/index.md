@@ -221,7 +221,7 @@ looking like the desired state. More information is available in our [general ov
 |||`.spec.userConfig.secret.name`|
 |||`.spec.userConfig.secret.namespace`|
 
-When setting user level configuration using the Giant Swarm REST API or our [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}),
+When setting user level configuration using the Giant Swarm management API or our [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}),
 the fields in the App CR are edited automatically for you while creating the `ConfigMap` or `Secret`.
 
 ## Extra configuration layers {#extra-configs}
@@ -335,8 +335,7 @@ The merge order for config maps (with P as the indicated or calculated priority)
 
 The `ConfigMap` and `Secret` must contain a `.data.values` key, under which all configuration
 values are kept, as a String of valid YAML. For Secrets, the string must be
-base64 encoded, as is required by Kubernetes. When uploading values via the
-Giant Swarm REST API, the base64 encoding is done for you.
+base64 encoded, as is required by Kubernetes.
 
 > In this context, the secret is used to populate the values file with secret information, it is not used to create secrets on the workload cluster.
 
@@ -371,7 +370,6 @@ data:
 There are three ways to provide configuration values:
 
 - via the web interface
-- via the Giant Swarm REST API
 - via the Management API
 
 ### Through the web interface
@@ -382,7 +380,7 @@ of just the keys and values you would like to set.
 
 For a general explanation on the web interface functionality related to Apps, check [our overview]({{< relref "/vintage/platform-overview/web-interface/app-platform" >}}).
 
-The web interface currently talks to the Giant Swarm REST API and will do the right
+The web interface talks to the Giant Swarm management API and will do the right
 calls to create a ConfigMap or Secret and will wire it up correctly in the App CR
 for you.
 

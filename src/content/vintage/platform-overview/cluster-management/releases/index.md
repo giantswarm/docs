@@ -117,8 +117,6 @@ You have several options to inspect workload cluster release details:
 
 - In the [web UI]({{< relref "/vintage/platform-overview/web-interface/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release.
 
-- The [Giant Swarm REST API]({{< relref "/vintage/use-the-api/rest-api" >}}) provides an endpoint to list all workload cluster releases with their details.
-
 ## Details about workload cluster releases and features {#release-details}
 
 ### Node pools {#nodepools}
