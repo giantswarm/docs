@@ -48,18 +48,12 @@ administrator.
 
 ## Lifecycle
 
-Node pools can be created when creating a cluster
+Node pools can be created when creating a cluster via the Giant Swarm web interface or any time after the cluster has been created
 
 - via the Giant Swarm web interface
-- via the CLI command [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}})
-
-or any time after the cluster has been created
-
-- via the Giant Swarm web interface
-- via the CLI command [`gsctl create nodepool`]({{< relref "/vintage/use-the-api/gsctl/create-nodepool" >}})
 - via `kubectl` with the help of the [`gs` plugin]({{< relref "/reference/kubectl-gs/template-nodepool" >}})
 
-Node pools can be modified and deleted using `gsctl` or the web interface.
+Node pools can be modified and deleted using the web interface.
 
 Once a node pool has been created, as soon as the workers are available, they will
 join the cluster and appear in your `kubectl get nodes` listing. You can identify the
@@ -82,8 +76,6 @@ Some details of a node pool can be modified after creation:
 - VM size (only on Azure)
 
 Other settings like the availability zone assignment cannot be changed after creation.
-
-See the [`gsctl update nodepool`]({{< relref "/vintage/use-the-api/gsctl/update-nodepool" >}}) reference for instructions how to scale and rename a node pool using the CLI.
 
 ## Assigning workloads to node pools {#assigning-workloads}
 
@@ -128,7 +120,7 @@ Another example: In a case where you have different node pools using different a
 
 ## Node pool deletion
 
-You can delete a node pool at any time using the Giant Swarm REST API and user interfaces. When a node pool gets deleted the following things will happen:
+You can delete a node pool at any time using the Giant Swarm management API and user interfaces. When a node pool gets deleted the following things will happen:
 
 - nodes in the pool will be marked as unschedulable and then drained, resulting in Pods being unassigned from the nodes
 and containers being stopped (only on AWS clusters).
@@ -141,8 +133,6 @@ If you are deleting a node pool running critical workloads, we recommend taking 
 - For maximum control, cordon all of the node pool's nodes and then drain them manually, one by one.
 
 Pay close attention to the workloads being rescheduled on other nodes once nodes are drained.
-
-See the [`gsctl delete nodepool`]({{< relref "/vintage/use-the-api/gsctl/delete-nodepool" >}}) reference for how to delete a node pool using the CLI.
 
 ## On-demand and spot instances {#on-demand-spot}
 
@@ -161,28 +151,6 @@ Using multiple instance types in a node pool has some benefits:
 - Even without spot instances, AWS has a limited number of instances per type in each Availability Zone. It can happen that your selected instance type is temporarily out of stock just in the moment you are in demand of more worker nodes. Allowing the node pool to use multiple instance types reduces this risk and increases the likelihood that your node pool can grow when in need.
 
 Instances that contain the same amount of CPU and RAM are considered similar. We provide more information regarding which instance types are considered similar in our [reference]({{< relref "/vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types" >}}).
-
-## Node pools and the Giant Swarm REST API {#restapi}
-
-Handling clusters with node pools requires an API schema different from the one used for clusters
-with homogeneous worker nodes. To account for this need, we introduced a new API version path `v5`.
-
-Using the v5 API endpoints, you can
-
-- [Create a new cluster supporting node pools](https://giantswarm.github.io/api-spec/#operation/addClusterV5)
-- [Get node pools of a cluster](https://giantswarm.github.io/api-spec/#operation/getNodePools)
-- [Create a new node pool](https://giantswarm.github.io/api-spec/#operation/addNodePool)
-- [Modify a cluster](https://giantswarm.github.io/api-spec/#operation/modifyClusterV5)
-- [Modify a node pool](https://giantswarm.github.io/api-spec/#operation/modifyNodePool)
-- [Delete a node pool](https://giantswarm.github.io/api-spec/#operation/deleteNodePool)
-
-## Node pools and the cluster definition YAML format
-
-Just as the Giant Swarm REST API schema for v4 (without node pools) and v5 (with node pools) clusters are different, the
-[cluster definition format]({{< relref "/vintage/use-the-api/gsctl/cluster-definition" >}}) is different between the two versions.
-
-The new definition schema for v5 allows for defining cluster and node pool details in one file,
-to be submitted for creation via the [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}) command.
 
 ## Node pools and autoscaling {#autoscaling}
 

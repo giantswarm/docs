@@ -109,15 +109,11 @@ Please be aware of some undesirable edge-cases and caveats. These might show up 
 
 ## Get started
 
-You can create clusters in several ways:
+You can create clusters using the [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}).
 
-- In the [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}).
-- In `gsctl` using the [`create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}) command with the appropriate details set in a [cluster definition]({{< relref "/vintage/use-the-api/gsctl/cluster-definition" >}}).
-- Via the [Giant Swarm REST API](https://giantswarm.github.io/api-spec/#operation/addCluster).
+When inspecting details of such a cluster, we display the list of availability zones used by the cluster.
 
-When inspecting details of such a cluster, or using the [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}) command, we display the list of availability zones used by the cluster.
-
-Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the CLI with the [`gsctl create nodepool`]({{< relref "/vintage/use-the-api/gsctl/create-nodepool" >}}) or [`kubectl gs template nodepool`]({{< relref "/reference/kubectl-gs/template-nodepool" >}}) command. For inspection, both the [`gsctl list nodepools`]({{< relref "/vintage/use-the-api/gsctl/list-nodepools" >}}) and [`kubectl gs get nodepools`]({{< relref "/reference/kubectl-gs/get-nodepools" >}}) commands provide AZ information.
+Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the [`kubectl gs template nodepool`]({{< relref "/reference/kubectl-gs/template-nodepool" >}}) command. For inspection, the [`kubectl gs get nodepools`]({{< relref "/reference/kubectl-gs/get-nodepools" >}}) commands provide AZ information.
 
 Also exclusively on AWS, for control plane nodes, the choice to use high-availability (three control plane nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single control plane node to high availability after cluster creation, but not vice versa.
 

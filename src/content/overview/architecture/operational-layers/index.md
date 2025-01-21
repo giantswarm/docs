@@ -15,8 +15,6 @@ user_questions:
   - Who has access to the infrastructure layer?
   - What is the Giant Swarm management cluster?
   - Who has access to the Giant Swarm management cluster?
-  - What is the Giant Swarm REST API?
-  - Who has access to the Giant Swarm REST API?
   - What is the Giant Swarm user space?
   - Who has access to the Giant Swarm user space?
   - How is the Giant Swarm infrastructure layer accessed?
