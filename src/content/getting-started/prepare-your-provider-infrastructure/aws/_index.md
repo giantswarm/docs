@@ -225,9 +225,7 @@ In the [next step]({{< relref "/getting-started/provision-your-first-workload-cl
 
 **Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
 
-## China
-
-If you AWS account is a China account, make sure to follow [the ICP Filing process](https://www.amazonaws.cn/en/support/icp/).
+**Warning**: If you AWS account is a China account, make sure to follow [the ICP Filing process](https://www.amazonaws.cn/en/support/icp/).
 
 ## Next steps
 
