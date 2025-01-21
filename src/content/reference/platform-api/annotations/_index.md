@@ -17,18 +17,18 @@ last_review_date: 2025-01-20
 
 ### network-topology.giantswarm.io/mode
 
-Found on the Cluster (cluster.x-k8s.io/v1beta1) resource for Cluster API provider AWS (CAPA) clusters. Specifies how transit gateways for the cluster will get set up in AWS. Possible values are: `None`, `GiantSwarmManaged`, `UserManaged`.
+Found on the AWSCluster resource for Cluster API provider AWS (CAPA) clusters. Specifies how transit gateways for the cluster will get set up in AWS. Possible values are: `None`, `GiantSwarmManaged`, `UserManaged`.
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/capa.go#L25-L27)
 
 ### network-topology.giantswarm.io/transit-gateway
 
-Found on the Cluster (cluster.x-k8s.io/v1beta1) resource for Cluster API provider AWS (CAPA) clusters. Specifies the ID of the transit gateway to use when the topology mode (`network-topology.giantswarm.io/mode`) is set to `UserManaged`.
+Found on the AWSCluster resource for Cluster API provider AWS (CAPA) clusters. Specifies the ID of the transit gateway to use when the topology mode (`network-topology.giantswarm.io/mode`) is set to `UserManaged`.
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/capa.go#L33-L35)
 
 ### network-topology.giantswarm.io/prefix-list
 
-Found on the Cluster (cluster.x-k8s.io/v1beta1) resource for Cluster API provider AWS (CAPA) clusters. Specifies the ID of the managed prefix list to use when the topology mode (`network-topology.giantswarm.io/mode`) is set to `UserManaged`.
+Found on the AWSCluster resource for Cluster API provider AWS (CAPA) clusters. Specifies the ID of the managed prefix list to use when the topology mode (`network-topology.giantswarm.io/mode`) is set to `UserManaged`.
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/capa.go#L37-L39)
