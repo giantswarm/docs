@@ -68,7 +68,7 @@ Please request an increase in the following quotas (grouped by type):
 
 You will be asked to describe your use case when requesting a service quota increase. Use this text for the following purposes:
 
-```text
+```nohighlight
 We intend to run multiple Kubernetes clusters in this account, potentially used
 by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
