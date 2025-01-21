@@ -4,6 +4,7 @@ linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
 last_review_date: 2024-11-28
+layout: single
 menu:
   principal:
     parent: getting-started-prepare-provider-infrastructure
@@ -40,39 +41,24 @@ Below is a screenshot of a service quota entry form.
 Please request an increase in the following quotas (grouped by type):
 
 - VPC
-
     - VPCs per region: **50**
     - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
     - IPv4 CIDR blocks per VPC: **50**
     - Routes per route table: **200**
-
 - Route 53 Resolver
-
     - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
-
 - Elastic IP
-
     - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
-
 - Elastic Load Balancers
-
     - Application and Classic Load Balancers per region: **100**
-
 - Auto Scaling
-
     - Auto Scaling Groups per region: **250**
     - Launch Configurations per region: **500**
-
 - S3
-
     - Buckets per Account: **1000**
-
 - EC2 Spot Instances
-
     - Set the limit according to your needs for every primary instance type you tend to use spot instances with.
-
 - EC2 Instances
-
     - m4.xlarge per region: **250**
     - m4.2xlarge per region: **250**
     - m5.2xlarge per region: **250**
@@ -82,7 +68,7 @@ Please request an increase in the following quotas (grouped by type):
 
 You will be asked to describe your use case when requesting a service quota increase. Use this text for the following purposes:
 
-```text
+```nohighlight
 We intend to run multiple Kubernetes clusters in this account, potentially used
 by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
