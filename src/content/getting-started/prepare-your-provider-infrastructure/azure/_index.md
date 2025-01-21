@@ -4,6 +4,7 @@ linkTitle: Azure
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
 last_review_date: 2024-11-28
+layout: single
 menu:
   principal:
     parent: getting-started-prepare-provider-infrastructure

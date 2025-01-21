@@ -4,6 +4,7 @@ linkTitle: VMware vSphere
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 40
 last_review_date: 2024-11-28
+layout: single
 menu:
   principal:
     parent: getting-started-prepare-provider-infrastructure
