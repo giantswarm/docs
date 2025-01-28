@@ -14,7 +14,7 @@ user_questions:
   - Which workload cluster releases introduced node pools?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2023-12-21
+last_review_date: 2025-01-28
 ---
 
 A node pool is a set of nodes within a `Kubernetes` cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
