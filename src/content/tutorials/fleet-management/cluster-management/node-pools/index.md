@@ -222,12 +222,9 @@ Nodes may also get replaced involuntarily, for example if the node becomes unhea
 {{< /tab >}}
 {{< tab id="nodepool-update-capa" for-impl="capa_ec2" >}}
 
-During a cluster upgrade, it can be necessary to create new EC2 instances (called "rolling nodes"). That only happens if anything changed in the node configuration, such as configuration files or the AMI image (newer version of Kubernetes or Flatcar Linux). For such planned node replacements, our product relies on [instance warmup settings](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) to ensure that AWS doesn't replace the old nodes too quickly all at once, but rather in steps so a human could still intervene if something goes wrong (for example roll back to previous version). For a small node pool, that would mean that one node would be replaced every 5 minutes. For bigger node pools, small groups of nodes would be replaced every 5 minutes.
+During a cluster upgrade, it can be necessary to create new EC2 instances (called "rolling nodes"). That only happens if anything changed in the node configuration, such as configuration files or the AMI image (newer version of Kubernetes or Flatcar Linux). For such planned node replacements, the default [instance warmup settings](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) to ensure that AWS doesn't replace the old nodes too quickly all at once, but rather in steps so a human could still intervene if something goes wrong (for example roll back to previous version). For a small node pool, this would mean that one node would be replaced every 10 minutes. For bigger node pools, small groups of nodes would be replaced every 10 minutes.
 
-When node pool instances need to be rolled, each instance receives a terminate signal from AWS.
-This is propagated as shutdown signal to the OS and then to each running process like the `kubelet`, which will send a `NodeShutDown` event to the pod.
-
-The `kubelet` process will wait up to 5 minutes for all pods to terminate and after that, it will terminate itself and the shutdown of the AWS EC2 instance will finally proceed. AWS may decide to force-terminate the instance before the 5 minutes.
+When node pool instances need to be rolled, each instance receives a terminate signal from AWS. With `aws-node-termination-handler` preinstalled on the cluster, affected nodes are first gracefully drained before allowing AWS to finally continue terminating the EC2 instance. By default, the timeout for draining is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools) (30 minutes). For nodes which could not be fully drained within that time, for example because a pod did not exit, the handler lets AWS continue termination of the instance.
 
 {{< /tab >}}
 {{< /tabs >}}
