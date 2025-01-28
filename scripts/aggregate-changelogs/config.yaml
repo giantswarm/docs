@@ -115,6 +115,8 @@ repositories:
     category: Observability Platform
   giantswarm/observability-bundle:
     category: Observability Platform
+  giantswarm/observability-platform-api:
+    category: Observability Platform
   giantswarm/prometheus-operator-app:
     category: Observability Platform
   giantswarm/promtail-app:
