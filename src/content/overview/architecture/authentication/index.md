@@ -27,11 +27,15 @@ Dex acts as a portal to other identity providers (idP) through connectors. The s
 
 We utilize Kubernetes-native RBAC to control access to resources in the platform API. Resources are segregated into organizations, each represented by a dedicated namespace, enabling improved access control. This approach allows for fine-grained permissions at both the organization and namespace levels. For more detailed information on this topic, you can refer to our comprehensive [multi-tenancy documentation]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
+### Observability
+
+The platform API provides read access to the observability tools, like the Grafana instance running the management cluster, so that you can browse across the data collected in your managed clusters and any additional data you choose to push to the platform. For more detailed information on this topic, you can refer to our comprehensive [grafana organization documentation]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}).
+
 ## Workload Cluster
 
 ### Authentication: Workload Cluster
 
-For the workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters]({{< relref "/vintage/advanced/access-management/configure-dex-in-your-cluster/" >}}).
+For the workload cluster - where you run your applications - we don't enforce any specific OpenID Connect (OIDC) tool to enable single sign-on (SSO). However, if you wish to implement SSO for accessing your workload cluster, we provide a detailed guide on how to configure Dex for this purpose, you can follow our comprehensive guide: [Configure OIDC using Dex to access your clusters]({{< relref "/tutorials/access-management/configure-dex-in-your-cluster/" >}}).
 
 ### Authorization: Workload Cluster
 

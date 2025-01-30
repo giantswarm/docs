@@ -4,6 +4,7 @@ linkTitle: VMware vSphere
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 40
 last_review_date: 2024-11-28
+layout: single
 menu:
   principal:
     parent: getting-started-prepare-provider-infrastructure
@@ -12,6 +13,9 @@ owner:
 user_questions:
   - How do I prepare my vSphere environment for the cloud-native developer platform?
   - What do I need to do to prepare my vSphere environment for the cloud-native developer platform?
+aliases:
+  - /getting-started/cloud-provider-accounts/vmware-vsphere
+  - /vintage/getting-started/cloud-provider-accounts/vmware-vsphere
 ---
 
 In order to run the Giant Swarm platform in your VMware vSphere environment, several prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).

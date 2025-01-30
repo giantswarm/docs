@@ -156,7 +156,3 @@ These domains are only required for on-premise installations.
     - domains:
         - `api.cloudflare.com`
     - cert-manager may create ACME challenge DNS records.
-- `api.mailgun.net`
-    - domains:
-        - `api.mailgun.net`
-    - This is the mail service we use to send the invites for our Rest API user accounts.

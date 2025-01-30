@@ -137,13 +137,12 @@ It’s possible to create your own App Catalog. This is useful if you want to cr
 
 ### How can I interact with the Giant Swarm App Platform
 
-You can interact with the Giant Swarm App Platform through creating App custom resources using the Management API, our web interface, and our REST API.
+You can interact with the Giant Swarm App Platform through creating App custom resources using the Management API, or our web interface.
 
 - [App CRD reference]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
 - [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/vintage/platform-overview/web-interface/app-platform" >}})
-- [Apps and App Configs in the API reference](https://giantswarm.github.io/api-spec/#tag/apps)
 
-Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
+Our web interface and the management API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 
 As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
 And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.

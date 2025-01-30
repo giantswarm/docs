@@ -12,6 +12,11 @@ owner:
 user_questions:
   - How do I prepare my provider infrastructure for the cloud-native developer platform?
   - What do I need to do to prepare my provider infrastructure for the cloud-native developer platform?
+aliases:
+  - /getting-started/cloud-provider-accounts
+  - /getting-started/cloud-provider-accounts/cluster-api/
+  - /vintage/getting-started/cloud-provider-accounts
+  - /vintage/getting-started/cloud-provider-accounts/cluster-api/
 ---
 
 <!-- Mention in the end of article that next step is provisioning a management cluster and it is done by Giant Swarm. Until it is done, the platform API is not accessible. -->
