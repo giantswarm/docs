@@ -90,11 +90,4 @@ In workload clusters without autoscaling support, the number of Ingress Controll
 
 - [Cluster Autoscaler advanced configuration]({{< relref "/vintage/advanced/cluster-management/cluster-autoscaler" >}})
 - [Recommendations and Best Practices regarding cluster size]({{< relref "/vintage/getting-started/sizing-multi-tenancy#cluster-sizing" >}})
-- [`gsctl create cluster`]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}}): Creating a cluster
-- [`gsctl scale cluster`]({{< relref "/vintage/use-the-api/gsctl/scale-cluster" >}}): Scaling a cluster
-- [`gsctl show cluster`]({{< relref "/vintage/use-the-api/gsctl/show-cluster" >}}): Inspecting a cluster
-- [API: Create cluster](/api/#operation/addCluster)
-- [API: Modify cluster](/api/#operation/modifyCluster)
-- [API: Get cluster details](/api/#operation/getCluster)
-- [API: Get cluster status](/api/#operation/getClusterStatus)
 - [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)

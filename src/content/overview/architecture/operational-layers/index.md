@@ -2,10 +2,11 @@
 linkTitle: Operational layers
 title: Giant Swarm operational layers
 description: Here you learn how the operational layers of Giant Swarm are defined and what the intended operational model is.
-weight: 20
+weight: 10
 menu:
-  main:
-    parent: platform-overview-security
+  principal:
+    parent: overview-architecture
+    identifier: overview-architecture-operational-layers
 last_review_date: 2024-12-04
 user_questions:
   - What are the Giant Swarm operational layers?
@@ -14,8 +15,6 @@ user_questions:
   - Who has access to the infrastructure layer?
   - What is the Giant Swarm management cluster?
   - Who has access to the Giant Swarm management cluster?
-  - What is the Giant Swarm REST API?
-  - Who has access to the Giant Swarm REST API?
   - What is the Giant Swarm user space?
   - Who has access to the Giant Swarm user space?
   - How is the Giant Swarm infrastructure layer accessed?
@@ -65,7 +64,7 @@ The Platform API is basically the Kubernetes API on every management cluster. It
 
 ##### Authorization
 
-With a valid *jwt* token, received from your chosen identity provider, customers can have two levels of access:
+With a valid *JWT* token, received from your chosen identity provider, customers can have two levels of access:
 
 - *view*
     - *get*/*list*/*watch* access to all resources in the management cluster, except for `configmaps` and `secrets`.

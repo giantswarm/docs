@@ -5,12 +5,7 @@ description: Recommendations and best practices around cluster and node sizing a
 weight: 50
 menu:
   main:
-    parent: support-training
-aliases:
-  - /getting-started/sizing-multi-tenancy
-  - /getting-started/best-practices/
-  - /guides/recommendations-and-best-practices/
-  - /kubernetes/best-practices/
+    parent: getting-started
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 user_questions:
@@ -110,7 +105,6 @@ The downside to the multi-tenant single cluster approach is that it, as mentione
 
 ## Further reading
 
-- [Creating clusters with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-cluster" >}})
 - [Cluster Size and Autoscaling]({{< relref "/vintage/getting-started/operations/autoscaling/cluster-size" >}})
 - [Preventing deletion of clusters]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}})
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)

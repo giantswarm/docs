@@ -4,8 +4,8 @@ description: Learn the advantages of using multi-account clusters in the Giant S
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-cluster-concepts
-    identifier: overview-fleet-management-cluster-concepts-multi-account
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-multiaccount
 last_review_date: 2024-07-14
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
@@ -33,7 +33,7 @@ This enables use cases such as
 
 - Several teams, business units, or profit centers sharing an installation, where many or all of them run workload clusters in their own cloud provider account, separate from each other.
 
-- An ISV, being the Giant Swarm customer, creating and giving access to workload clusters in the name of a third party, in the third party's cloud provider account. The third party in this scenario has no relationship with Giant Swarm and needs no access to the Giant Swarm REST API or management cluster.
+- An ISV, being the Giant Swarm customer, creating and giving access to workload clusters in the name of a third party, in the third party's cloud provider account. The third party in this scenario has no relationship with Giant Swarm and needs no access to the Giant Swarm platform API.
 
 In both cases, customers benefit from simpler usage and cost allocation, plus a higher level of security through isolation. It can also help to make use of credits available in certain accounts.
 

@@ -23,7 +23,7 @@ This guide outlines the migration path from our AWS vintage platform to the [Clu
 Before you begin the migration:
 
 1. Your cluster should be at least on a AWS vintage version [`20.0.0`](/changes/workload-cluster-releases-aws/releases/aws-v20.0.0/).
-2. The AWS IAM role, with the specific name `giantswarm-{CAPI_MC_NAME}-capa-controller`, must be created for the workload cluster's (WC) AWS account before starting the migration. [For more information please refer to this guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/aws/" >}}).
+2. The AWS IAM role, with the specific name `giantswarm-{CAPI_MC_NAME}-capa-controller`, must be created for the workload cluster's (WC) AWS account before starting the migration. [For more information please refer to this guide]({{< relref "/getting-started/prepare-your-provider-infrastructure/aws/" >}}).
 3. In case of using GitOps, Flux must be turned off during the migration since some of the cluster custom resources will be modified or removed by the migration scripts.
 
 __Note:__ The `CAPI_MC_NAME` is the name of the management cluster (MC) where the Cluster API controllers are installed.
@@ -130,6 +130,7 @@ There are some fields in the cluster manifest that are only used during the migr
         - `/etc/kubernetes/pki/sa-old.pem`
 - `cluster.internal.advancedConfiguration.controlPlane.preKubeadmCommands`: everything except the following fields can be deleted
     - To be kept
+        - the two `iptables` commands
         - `/bin/sh /migration/add-vintage-service-account-key.sh`
 - `cluster.internal.advancedConfiguration.controlPlane.postKubeadmCommands`: can be completely removed
 - `internal.migration.irsaAdditionalDomain`: starting from release v25.1.1 this domain needs to be appended to `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`, and the `internal.migration.irsaAdditionalDomain` field can be removed
@@ -277,8 +278,8 @@ Diff:
                           path: /etc/kubernetes/pki/sa-old.pem
                           permissions: "0640"
                      preKubeadmCommands:
--                        - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
--                        - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
+                         - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
+                         - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
 -                        - /bin/sh /migration/join-existing-cluster.sh
                          - /bin/sh /migration/add-vintage-service-account-key.sh
 -                        - sleep 90

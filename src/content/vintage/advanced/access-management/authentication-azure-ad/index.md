@@ -49,7 +49,7 @@ kubectl config \
 ```
 
 - `clustername` can be freely chosen, but must be unique within your local `kubeconfig`.
-- Kubernetes API Server endpoint and CA you can get from the web UI (Happa) or using `gsctl`.
+- Kubernetes API Server endpoint and CA you can get from the web UI (Happa).
 
 ### 3. Set up a context
 

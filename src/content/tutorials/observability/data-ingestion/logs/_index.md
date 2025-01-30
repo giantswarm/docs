@@ -15,13 +15,51 @@ user_questions:
   - Why do my clusters run Alloy?
 ---
 
-By default, Giant Swarm clusters starting from CAPA v29.2.0, and CAPZ v29.1.0 are equipped with [Alloy](https://grafana.com/docs/alloy), an Observability data collector. It's configured to collect system logs from the cluster and forward them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster. See [Logging architecture]({{< relref "/overview/observability/logging/architecture" >}}) for more details.
+By default, Giant Swarm clusters starting from CAPA v29.2.0, and CAPZ v29.1.0 are equipped with [Alloy](https://grafana.com/docs/alloy), an Observability data collector. It's configured to collect system logs from the cluster and forward them to a central [Loki](https://grafana.com/docs/loki) instance running on the management cluster. See [Logging]({{< relref "/overview/observability/logging" >}}) for more details.
 
 The observability platform allows to ingest logs from your workloads in a self-service way using [PodLogs][1] to select which pods to ingest logs.
 
+From release `v29.5.0` in CAPA and CAPZ, and `v29.2.0` in CAPV and CAPVCD, additional targets to collect logs from can be configured either with a pod label or a [PodLogs][1] resource.
+
+### Using pod labels
+
+The Observability Platform automatically ingest all logs for pods that are labelled with the `observability.giantswarm.io/tenant` label via PodLogs resources.
+
+Example:
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        # This is where the tenant label must be configured
+        observability.giantswarm.io/tenant: my-team
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+EOF
+```
+
+With this deployed manifest, Grafana Alloy will collect all logs for the `nginx` ingress pods and send the logs to the `my-team` tenant>.
+
 ### Using PodLogs
 
-From release `v30.0.0` additional targets to collect logs from can be configured using [PodLogs][1] resource. Those resources can be created in any namespace. [PodLogs][1] resources can be used to:
+[PodLogs][1] resources are more flexible than pod labels as they can be used to:
 
 - Filter pods targets using label selector
 - Filter pods' namespaces using label selector
@@ -45,19 +83,24 @@ spec:
     matchLabels:
       kubernetes.io/metadata.name: charlie
   relabelings:
+  # This configures the tenant name under which the data will be stored in the observability platform
+  - action: replace
+    targetLabel: giantswarm_observability_tenant
+    replacement: my-team
   - action: replace
     sourceLabels: [__meta_kubernetes_pod_node_name]
     targetLabel: node_name
 EOF
 ```
 
-This will select all pods with the `foo: bar` label in the namespace `charlie` and add the `node_name` label to the logs metadata. More examples can be found [here](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
+This will select all pods with the `foo: bar` label in the namespace `charlie` and add the `node_name` label to the logs metadata. It will send all the logs extracted by this PodLog under the `my-team` tenant.
+More examples can be found [here](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
 
 Logs lines can then be viewed in `Grafana`UI on the `Explore` page; learn more about this in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
 
 ### Technical considerations
 
-Per default log ingestion is enabled for the following namespaces:
+By default, log ingestion is enabled for the following namespaces:
 
 - `kube-system`
 - `giantswarm`

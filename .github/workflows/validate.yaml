@@ -26,8 +26,11 @@ jobs:
             # Print for debugging
             printf "\nAnnotations JSON:\n"
             cat ./annotations.json
+
             # Save as environment variable for next step
-            echo "found_front_matter_issues=true" >> $GITHUB_ENV
+            if [ $(jq length < ./annotations.json) -gt 0 ]; then
+              echo "found_front_matter_issues=true" >> $GITHUB_ENV
+            fi
           fi
           rm files.txt
 
@@ -58,8 +61,9 @@ jobs:
           printf "\nAnnotations JSON:\n"
           cat ./markdownlint-annotations.json
           
-          # Save as environment variable for next step
-          echo "found_markdown_issues=true" >> $GITHUB_ENV
+          if [ $(jq length < ./markdownlint-annotations.json) -gt 0 ]; then
+            echo "found_markdown_issues=true" >> $GITHUB_ENV
+          fi
 
       - name: Send markdownlint annotations
         if: ${{ env.found_markdown_issues == 'true' }}
@@ -70,12 +74,50 @@ jobs:
           input: ./markdownlint-annotations.json
 
       - name: Fail if markdownlint had findings
+        if: ${{ env.found_markdown_issues == 'true' }}
         run: |
-          # If there are non-empty lines, we had linting findings
-          if [ "$(awk 1 < markdownlint.out | wc -l | awk '{print $1}')" != 0 ]; then
-            echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
-            exit 1
-          fi
+          echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
+          exit 1
+
+      - name: Check file and folder names in content
+        shell: python {0}
+        run: |
+          # Walk content folder, check file names to use only allowed characters
+          from pathlib import Path
+          import re
+          import os
+          import sys
+
+          allowed_chars = re.compile(r'^[a-z0-9-\.+]+$')
+          allowed_chars_static = re.compile(r'^[a-z0-9-\._]+$') # images etc. may use the underscore
+
+          content_dir = 'src/content'
+          errors = []
+          for root, dirs, files in os.walk(content_dir):
+            for file in files:
+              full_path = Path(root, file)
+              if full_path.name == '_index.md':
+                continue
+              if full_path.name == '_template.md.tpl':
+                continue
+              
+              if full_path.suffix.lower() == '.md':
+                if not allowed_chars.match(full_path.stem):
+                  errors.append(f"- FILE {full_path}")
+              else:
+                # static files
+                if not allowed_chars_static.match(full_path.name):
+                  errors.append(f"- FILE {full_path}")
+
+            for dir in dirs:
+              if not allowed_chars.match(dir):
+                errors.append(f"- DIR {Path(root, dir)}")
+          
+          if len(errors) > 0:
+            sys.stderr.write("The following file/folder names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n")
+            for error in errors:
+              sys.stderr.write(error + "\n")
+            sys.exit(1)
 
       - name: Check for moved or deleted files
         run: |

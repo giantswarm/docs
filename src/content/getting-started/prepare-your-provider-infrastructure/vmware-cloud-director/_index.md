@@ -1,14 +1,21 @@
 ---
 title: Prepare your provider environment for VMware Cloud Director
-linkTitle: Prepare your VCD environment
-description: Prepare your VMware Cloud Director setup to start building your cloud-native developer platform with Giant Swarm.
+linkTitle: VMware Cloud Director
+description: Prepare your VMware Cloud Director (VCD) setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 30
 last_review_date: 2024-11-28
+layout: single
+menu:
+  principal:
+    parent: getting-started-prepare-provider-infrastructure
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
   - How do I prepare my VMware Cloud Director environment for the cloud-native developer platform?
   - What do I need to do to prepare my VCD environment for the cloud-native developer platform?
+aliases:
+  - /getting-started/cloud-provider-accounts/vmware-cloud-director
+  - /vintage/getting-started/cloud-provider-accounts/vmware-cloud-director
 ---
 
 In order to run the Giant Swarm platform in your VMware Cloud Director (VCD) environment, several prerequisites must be satisfied to support Cluster API Provider VMware Cloud Director (CAPVCD).

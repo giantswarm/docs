@@ -13,7 +13,13 @@
       </div>
     </div>
 
-    {{ partial "gs_footer"}}
+    <div id="footer">
+      <template shadowrootmode="open">
+        {{ partial "gs_footer_styles"}}
+        {{ partial "gs_footer"}}
+      </template>
+    </div>
+    
 
     {{ partial "scripts" . }}
 

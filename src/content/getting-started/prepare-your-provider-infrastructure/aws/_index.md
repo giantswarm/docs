@@ -1,13 +1,21 @@
 ---
 title: Prepare your AWS account
+linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
 last_review_date: 2024-11-28
+layout: single
+menu:
+  principal:
+    parent: getting-started-prepare-provider-infrastructure
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How do I prepare my AWS account for the cloud-native developer platform?
   - What do I need to do to prepare my AWS account for the cloud-native developer platform?
+aliases:
+  - /getting-started/cloud-provider-accounts/cluster-api/aws/
+  - /vintage/getting-started/cloud-provider-accounts/cluster-api/aws/
 ---
 
 This guide provides the necessary steps to prepare your AWS accounts to run our platform, including Cluster API Provider for AWS (CAPA).
@@ -33,39 +41,24 @@ Below is a screenshot of a service quota entry form.
 Please request an increase in the following quotas (grouped by type):
 
 - VPC
-
     - VPCs per region: **50**
     - NAT Gateway per Availability Zone per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
     - IPv4 CIDR blocks per VPC: **50**
     - Routes per route table: **200**
-
 - Route 53 Resolver
-
     - Endpoints per AWS region: **100** (needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
-
 - Elastic IP
-
     - New VPC Elastic IP Address Limit per region: **50** (not needed if you are creating a [private cluster]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/private-clusters" >}}))
-
 - Elastic Load Balancers
-
     - Application and Classic Load Balancers per region: **100**
-
 - Auto Scaling
-
     - Auto Scaling Groups per region: **250**
     - Launch Configurations per region: **500**
-
 - S3
-
     - Buckets per Account: **1000**
-
 - EC2 Spot Instances
-
     - Set the limit according to your needs for every primary instance type you tend to use spot instances with.
-
 - EC2 Instances
-
     - m4.xlarge per region: **250**
     - m4.2xlarge per region: **250**
     - m5.2xlarge per region: **250**
@@ -75,7 +68,7 @@ Please request an increase in the following quotas (grouped by type):
 
 You will be asked to describe your use case when requesting a service quota increase. Use this text for the following purposes:
 
-```text
+```nohighlight
 We intend to run multiple Kubernetes clusters in this account, potentially used
 by various globally distributed teams. We will be creating and deleting new
 clusters frequently.
@@ -217,6 +210,8 @@ The `<ACCOUNT_NAME>` is a short unique name referencing the AWS account (`develo
 In the [next step]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) you define which role the `AWSCluster` uses to provision the cluster adjusting the value `aws.awsClusterRoleIdentityName`.
 
 **Note**: In case you are working with a Giant Swarm partner, you might not have access to the platform API. In that case, please provide the role ARNs values, CAPA controller and staff to your partner contact.
+
+**Warning**: If you AWS account is a China account, make sure to follow [the ICP Filing process](https://www.amazonaws.cn/en/support/icp/).
 
 ## Next steps
 

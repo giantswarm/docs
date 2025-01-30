@@ -3,8 +3,8 @@ description: A list of all external domains Giant Swarm clusters need access to 
 last_review_date: 2024-11-29
 linkTitle: Domain allowlist
 menu:
-  main:
-    parent: platform-overview-security-cluster
+  principal:
+    parent: overview-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 title: Domain allowlist
@@ -156,7 +156,3 @@ These domains are only required for on-premise installations.
     - domains:
         - `api.cloudflare.com`
     - cert-manager may create ACME challenge DNS records.
-- `api.mailgun.net`
-    - domains:
-        - `api.mailgun.net`
-    - This is the mail service we use to send the invites for our Rest API user accounts.

@@ -4,8 +4,8 @@ description: How the Giant Swarm platform leverages the Cluster API standard for
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-clusters
-    identifier: overview-fleet-management-introduction-to-cluster-api
+    parent: overview-fleetmanagement-clustermanagement
+    identifier: overview-fleetmanagement-clustermanagement-capi
 last_review_date: 2024-05-02
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs

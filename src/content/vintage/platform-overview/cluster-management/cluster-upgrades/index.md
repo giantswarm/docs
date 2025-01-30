@@ -108,8 +108,6 @@ Note that by default, our user interfaces upgrade to the next active workload cl
 
 - In **kubectl-gs**, the [`update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}})) command provides an optional flag `--release-version` which allows to specify the version to upgrade to.
 
-- Alternatively, you can use the [Giant Swarm REST API](/api/#operation/modifyClusterV5) or the [Management API]({{< relref "/vintage/use-the-api/management-api" >}}) to trigger the upgrade. Please talk to your Account Engineer in case you have any questions regarding this.
-
 ## How upgrades work
 
 All levels of upgrades, patch, minor, or major, are happening at runtime.

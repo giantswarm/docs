@@ -5,7 +5,7 @@ description:  Giant Swarm cluster chart with provider-independent cluster resour
 weight: 100
 menu:
   main:
-    identifier: cluster
+    identifier: uiapi-cluster-apps-cluster
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:
