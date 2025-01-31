@@ -15,7 +15,7 @@ owner:
 
 ## Introduction
 
-Cluster upgraded, described in detail in our [cluster upgrades reference]({{< relref "/vintage/platform-overview/cluster-management/cluster-upgrades" >}})), can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
+Cluster upgrades, described in detail in our [cluster upgrades reference]({{< relref "/vintage/platform-overview/cluster-management/cluster-upgrades" >}})), can cause disruption on workloads, if the upgrade requires replacement of worker nodes.
 
 We provide two ways of limiting the amount of disruption:
 
