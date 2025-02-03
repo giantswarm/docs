@@ -83,7 +83,7 @@ Upgrades occur at runtime, maintaining workload functionality (with certain requ
 
 The control plane machines are rotated first, followed by worker nodes. The control plane nodes are replaced one by one, ensuring the cluster remains operational.
 
-The Cluster API for AWS controller manages clusters using EC2 instances. The default configuration of [instance warmup](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) ensures AWS doesn't replace all nodes at once but in steps, allowing human intervention if needed. For a small node pool, one node is replaced every 10 minutes. For larger pools, small sets of nodes are replaced every 10 minutes.
+The Cluster API for AWS controller manages the cluster control plane using EC2 instances. The default configuration of [instance warmup](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) ensures AWS doesn't replace all nodes at once but in steps, allowing human intervention if needed. For a small node pool, one node is replaced every 10 minutes. For larger pools, small sets of nodes are replaced every 10 minutes.
 
 Once the worker nodes are rolled, each instance receives a terminate signal from AWS. Thanks to [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) the machines are drained gracefully before being terminated. By default, the timeout configure to complete the draining operation is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools). Customers can adjust this value to fit their needs in case they have specific requirements.
 
