@@ -28,7 +28,7 @@ The workload cluster stack includes third-party components such as:
 - [Kubernetes](https://kubernetes.io/) with its sub-components
 - [Flatcar Container Linux](https://www.flatcar-linux.org/docs/latest/) as the node's operating system
 - [Containerd](https://github.com/containerd/containerd) as a container runtime environment
-- [etcd](https://etcd.io/) for distributed storage
+- [Etcd](https://etcd.io/) for distributed storage
 - [Cilium](https://cilium.io/) for networking and security
 - [An observability bundle](https://github.com/giantswarm/observability-bundle)
 - [A security bundle](https://github.com/giantswarm/security-bundle)
@@ -45,7 +45,7 @@ The stack is **immutable** once deployed, ensuring consistency with the tested s
 Workload cluster release versioning allows for three upgrade levels:
 
 - _Patch upgrade_: Increases the patch version for bug fixes and stability improvements.
-- _Minor upgrade_: Introduces non-disruptive features, generally less impactful than patches unless features are enabled.
+- _Minor upgrade_: Introduces non-disruptive features that are typically less significant than major updates, unless the features are actively enabled.
 - _Major upgrade_: Includes new Kubernetes minor releases, third-party components, and significant new features.
 
 Major releases are aligned with Kubernetes upstream minor releases and include comprehensive release notes to aid preparation.
@@ -125,11 +125,11 @@ Before upgrading, complete the following checks and best practices:
 
 ### Ensure redundancy for workloads {#checklist-ensure-redundancy}
 
-Ensure **two or more replicas** for all critical deployments, with higher counts for production environments. Adjust based on environment needs, ensuring Horizontal Pod Autoscaler settings reflect minimum replica requirements.
+Ensure **two or more replicas** for all critical deployments, with higher counts for production environments. Adjust based on environment needs, ensuring `Horizontal Pod Autoscaler` settings reflect minimum replica requirements.
 
 ### Distribute workloads across nodes {#checklist-distribute-workloads}
 
-Use [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity) to distribute replicas across nodes, avoiding simultaneous unavailability. Consider using the [descheduler](https://github.com/kubernetes-sigs/descheduler) to rebalance workloads.
+Use [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity) to distribute replicas across nodes, avoiding simultaneous unavailability. Consider using the [descheduler](https://github.com/kubernetes-sigs/descheduler) to balance workloads.
 
 ### Use liveness and readiness probes {#checklist-liveness-readiness}
 
@@ -137,7 +137,7 @@ Implement [liveness and readiness probes](https://kubernetes.io/docs/tasks/confi
 
 ### Handle termination signals in Pods {#checklist-termination-signals}
 
-Pods receive a termination signal (`TERM`) during node draining. Ensure they handle this signal gracefully. Configure `terminationGracePeriodSeconds` for longer shutdowns if necessary. See [Pod Termination](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination).
+Pods receive a termination signal (`TERM`) during node draining. Ensure they handle this signal gracefully. Configure `terminationGracePeriodSeconds` for longer shutdowns if necessary. See [`Pod Termination`](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination).
 
 ### Manage disruption budgets {#checklist-disruption-budgets}
 

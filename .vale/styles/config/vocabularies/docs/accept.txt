@@ -15,10 +15,11 @@ CLI
 CR[D]?[s]?
 [cC]loud
 cluster-vsphere
-containerd
+[Cc]ontainerd
 [Cc]rossplane
 CRs
 declaratively
+descheduler
 [Dd]ex
 [Dd][Nn][Ss]
 easily
@@ -31,6 +32,7 @@ Falco
 firewalling
 freely
 Grafana
+gracefully
 Honeybadger
 HTTP
 [Ii][Aa][Mm]
@@ -49,6 +51,7 @@ kubectl
 kubelet
 kube-vip
 Kyverno
+liveness
 namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
