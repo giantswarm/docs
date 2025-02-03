@@ -88,7 +88,7 @@ For more information, please read the [Deletion Prevention]({{< relref "/vintage
 
 Depending on the method you use to create a cluster, you can specify labels when creating your cluster.
 
-If you use [`kubectl gs template cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}) to create a cluster manifest, you can apply the `--label` flag with your initial command, as often as required. You are also free to modify the created manifest before applying it. Example:
+If you use [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/template-cluster" >}}) to create a cluster manifest, you can apply the `--label` flag with your initial command, as often as required. You are also free to modify the created manifest before applying it. Example:
 
 ```nohighlight
 kubectl gs template cluster \

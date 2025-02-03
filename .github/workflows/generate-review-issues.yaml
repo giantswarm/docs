@@ -1,27 +1,27 @@
 name: Generate review Issues weekly
 on:
   schedule:
-    # At 0:00 on Sundays
-    - cron:  '0 0 * * 0' 
-
+    # At 0:05 on Sundays
+    - cron:  '5 0 * * 0'
 
 jobs:
   front-matter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Install dependencies
         run: pip3 install click colored PyYAML
 
       - name: Validate front matter and last review date
-        run: |
-          echo "ISSUES=$(python3 scripts/validate-front-matter/script.py --validation last-reviewed --output json)" >> $GITHUB_ENV
-      
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: make validate-last-reviewed
+
       - name: Generate issues of out of date docs
-        uses: giantswarm/open-issue@0.3.0
-        with: 
+        uses: giantswarm/open-issue@7774937e31b23a52257a34462a753b0a28a4d1f1 # 0.3.0
+        with:
           token: ${{ secrets.ISSUE_AUTOMATION }}
           org: giantswarm
           repo: giantswarm

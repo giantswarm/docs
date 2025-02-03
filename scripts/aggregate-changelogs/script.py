@@ -8,7 +8,7 @@ import tempfile
 from dateutil.parser import parse
 import git
 from github import Github
-from github.GithubException import UnknownObjectException
+from github.GithubException import UnknownObjectException, GithubException
 from yaml import load, dump, CLoader, CDumper
 
 CONFIG_PATH = sys.argv[1]
@@ -55,7 +55,7 @@ def get_changelog_file(client, repo_shortname):
     try:
         remote_file = repo.get_contents('CHANGELOG.md')
         return remote_file.decoded_content.decode('utf-8')
-    except UnknownObjectException:
+    except (UnknownObjectException, GithubException) as e:
         return None
 
 def parse_changelog(body, repo_shortname):
@@ -191,9 +191,9 @@ def get_cluster_releases(repo_shortname):
 
 def normalize_version(v):
     """
-    Removes a 'v' prefix from the version string
+    Removes a 'v' prefix from the version string when it is followd by a number
     """
-    if v.startswith('v'):
+    if bool(re.match(r'^v\d', v)):
         return v[1:]
     return v
 

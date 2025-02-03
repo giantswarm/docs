@@ -8,10 +8,6 @@ menu:
     identifier: getting-started-app-platform-app-bundle
 weight: 30
 last_review_date: 2024-01-18
-aliases:
-  - /getting-started/app-platform/app-bundle
-  - /developer-platform/app-platform/app-configuration
-  - /app-platform/app-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -158,7 +154,7 @@ spec:
 
 These two settings ensure this App CR is picked up and reconciled by the unique App Operator. Fortunately, when
 the `kubectl-gs` is used then both of these fields are set correctly when templating an app, when the
-`--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}}),
+`--in-cluster` flag is used, see [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}}),
 so that there is no need to remember about it.
 
 <div class="feedback well">
@@ -242,7 +238,7 @@ metadata:
 ```
 
 Please refer to [App Configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}) to understand how
-the user configuration works, and to the [kubectl gs template app]({{< relref "/vintage/use-the-api/kubectl-gs/template-app.md" >}})
+the user configuration works, and to the [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}})
 reference to understand how you can automate this process.
 
 At this point, the bundle's App CR carries all the information to be successfully installed.

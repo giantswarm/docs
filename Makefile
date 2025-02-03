@@ -19,10 +19,6 @@ export-csv:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/export-csv/script.py
 
-# Update content from external repositories that gets copied in here.
-update-external-repos:
-	./scripts/update-external-repos/main.sh
-
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
 	@if [ -z "${GITHUB_TOKEN}" ]; then echo "Please set the GITHUB_TOKEN environment variable"; exit 1; fi
@@ -75,6 +71,7 @@ lint-markdown:
 	  --ignore README.md \
 	  --ignore ./src/content/changes \
 	  --ignore ./src/content/vintage/use-the-api/management-api/crd \
+	  --ignore ./src/content/reference/platform-api/crd \
 	  $$(if [ "$(RUNNING_IN_CI)" = "true" ]; then echo "--output markdownlint.out"; fi) \
 	  ./src
 
@@ -112,6 +109,16 @@ validate-front-matter:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/scripts/validate-front-matter/script.py
 
+# Validate front matter for last-reviewed date.
+validate-last-reviewed:
+	docker run --rm \
+	  --volume=${PWD}:/workdir:ro \
+	  -w /workdir \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+	  /workdir/scripts/validate-front-matter/script.py \
+		--validation last-reviewed \
+		--output json
+
 # Print a report of pages with a last_review_date that's
 # too long ago.
 validate-last-reviewed:
@@ -128,7 +135,15 @@ docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
 dev:
-	hugo server -s src
+	hugo server \
+	  --source ./src \
+	  --ignoreCache \
+	  --disableFastRender \
+	  --cleanDestinationDir \
+	  --gc \
+	  --noBuildLock \
+	  --noHTTPCache \
+	  --renderToMemory
 
 clean:
 	rm -rf build

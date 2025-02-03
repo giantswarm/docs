@@ -7,11 +7,6 @@ menu:
   main:
     parent: cluster-management-vintage
 last_review_date: 2023-12-11
-aliases:
-  - /azure
-  - /basics/azure-architecture/
-  - /general/architcture/azure/
-  - /general/architecture/azure/
 user_questions:
   - What's the high level architecture of a Giant Swarm installation on Azure?
 owner:
@@ -36,7 +31,7 @@ Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/
 
 Giant Swarm's Azure operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on Azure. This operator runs in the management cluster, conveniently in separate subscription, and needs to reach the Azure API within subscription where you want to deploy your clusters. Thanks to our [Multi-Account]({{< relref "/vintage/advanced/infrastructure-management/multi-account" >}}) support, customers can add different Azure subscriptions to our platform and our operator will assume a Service Principle to operate the resources accordingly and spawn clusters into these subscriptions respectively.
 
-In order to help Customers getting started with our platform, we have crafted an [introductory guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}}) on how to configure your Azure subscription. It is important to review and request Resources Quotas and [Service Limits](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) on Azure subscription level in order to be able to spawn machines when creating clusters through our platform. Additionally, we continuously monitor the relevant limits when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
+We continuously monitor the relevant service limits and quotas when you are running our platform. We will notify you if a cluster approaches one of these limits, so you can focus on building your applications.
 
 Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the Azure resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in Azure APIs and we have recently started utilizing the [Azure Lighthouse](https://azure.microsoft.com/en-us/services/azure-lighthouse/) that enables to delegate resources to a different account, making it easier to manage support team from both sides.
 
@@ -116,6 +111,6 @@ Please note, while this document went into extensive details with regards to how
 ## Further reading
 
 - [Giant Swarm support model]({{< relref "/support" >}})
-- [Giant Swarm operational layers]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
+- [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})
 - [Giant Swarm App Catalog]({{< relref "/vintage/platform-overview/app-platform" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access" >}})

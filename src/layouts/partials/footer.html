@@ -4,14 +4,22 @@
 
     <div id="vintage-disclaimer">
       <div id="vintage-disclaimer-inner">
-        <div id="vintage-disclaimer-wording"><p>This part of our documentation may not be accurate as we are migrating away from our vintage product. Currently we are working actively to provide up-to-date documentation on the latest generation of our product, using the Kubernetes Cluster API.</p></div>
+        <div id="vintage-disclaimer-wording"><p>This part of our documentation refers to our vintage product. The content may be not valid anymore for our current product. Please check our <a href="/">new documentation hub</a> for the latest state of our docs.
+
+        </p></div>
         <div id="vintage-disclaimer-button-area">
           <a href="javascript:void(0);" id="vintage-disclaimer-button" role="button">Close</a>
         </div>
       </div>
     </div>
 
-    {{ partial "gs_footer"}}
+    <div id="footer">
+      <template shadowrootmode="open">
+        {{ partial "gs_footer_styles"}}
+        {{ partial "gs_footer"}}
+      </template>
+    </div>
+    
 
     {{ partial "scripts" . }}
 

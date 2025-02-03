@@ -4,8 +4,8 @@ description: Definition of what do we mean by private clusters in the Giant Swar
 weight: 10
 menu:
   principal:
-    parent: overview-fleet-management-cluster-concepts
-    identifier: overview-fleet-management-cluster-concepts-private
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-private
 last_review_date: 2024-06-14
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs

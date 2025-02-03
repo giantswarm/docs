@@ -12,10 +12,6 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2024-02-26
-aliases:
-  - /getting-started/observability/monitoring/disable
-  - /ui-api/observability/monitoring/disable
-  - /observability/monitoring/disable
 ---
 
 In this article you will learn how you can disable monitoring for your cluster.
@@ -25,7 +21,7 @@ In this article you will learn how you can disable monitoring for your cluster.
 Each cluster created on the Giant Swarm platform benefits from our monitoring which allow us to provide you with 24/7 support to ensure best quality of service.
 
 Each cluster is monitored by a dedicated Prometheus instance.
-This comes by default and storage is reserved for data retention, storage size can be adjusted via [Prometheus Volume Sizing](https://docs.giantswarm.io/getting-started/observability/prometheus/volume-size/) feature.
+This comes by default and storage is reserved for data retention, storage size can be adjusted via [Prometheus Volume Sizing]({{< relref "/vintage/getting-started/observability/monitoring/prometheus/volume-size" >}}) feature.
 
 ## Why would I like to disable monitoring?
 

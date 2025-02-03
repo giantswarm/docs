@@ -18,7 +18,7 @@ user_questions:
   - How can I set cloud provider credentials via the Management API?
 ---
 
-### Notice: This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm Clusters. For _CAPI_ Clusters, documentation is available for [CAPA]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/aws" >}}) and [CAPZ]({{< relref "/vintage/getting-started/cloud-provider-accounts/cluster-api/azure" >}})
+**Note:** This document describes how to configure cloud provider credentials for _vintage_ Giant Swarm installations. For _CAPI_ installations, documentation is available [in this section]({{< relref "/getting-started/prepare-your-provider-infrastructure/" >}}).
 
 In order to manage workload clusters in your cloud provider accounts/subscriptions, the Giant Swarm controllers require some configuration so they are able to act on your behalf.
 
@@ -68,8 +68,6 @@ In above AWS example, these are two fields which both indicate AWS IAM role iden
 
 The first of the two identifies the IAM role to be assumed by Giant Swarm staff for operations tasks. The second one is used by `aws-operator`, which is the software in charge of automatic cluster management. Easily visible, they include the numeric AWS account ID and also the IAM role name to be assumed.
 
-We provide [detailed documentation]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}}) regarding how to configure these roles in your AWS account.
-
 {{< /tab >}}
 {{< tab title="Azure" >}}
 
@@ -106,8 +104,6 @@ Decoded example:
 
 In order for `azure-operator` to manage workload clusters using these credentials, it will need access to your `Subscription` using a `Service Principal`.
 
-We provide a [detailed guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/azure" >}}) prepare and obtain this data.
-
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -115,7 +111,7 @@ We provide a [detailed guide]({{< relref "/vintage/getting-started/cloud-provide
 
 When creating a workload cluster, depending on the cloud provider, there will be an [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) or [`AzureCluster`]({{< relref "/vintage/use-the-api/management-api/crd/azureclusters.infrastructure.cluster.x-k8s.io.md" >}}) resource created, containing the provider-specific configuration of your workload cluster.
 
-If you create your cluster manifest manually or via the [`kubectl gs template cluster`]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}}) command, you are free to adapt the provider cluster resource to match your exact requirements before submitting the manifest to the API (e. g. via `kubectl apply`).
+If you create your cluster manifest manually or via the [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/template-cluster" >}}) command, you are free to adapt the provider cluster resource to match your exact requirements before submitting the manifest to the API (e. g. via `kubectl apply`).
 
 In **AWS**, it is possible to reference your credential secret directly. The custom resource definition (CRD) provides an attribute [`.spec.provider.credentialSecret`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md#v1alpha3-.spec.provider.credentialSecret" >}}). The two sub-attributes `name` has to match the credential secret's resource name. The `namespace` sub-attribute accordingly must match the secret's namespace.
 

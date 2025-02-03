@@ -5,7 +5,7 @@ description:  A Helm chart for default-apps-aws; Check here the different proper
 weight: 100
 menu:
   main:
-    identifier: default-apps-aws
+    identifier: uiapi-cluster-apps-default-apps-aws
     parent: uiapi-cluster-apps
 layout: cluster-app
 user_questions:

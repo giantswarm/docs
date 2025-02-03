@@ -40,20 +40,11 @@ Access to Giant Swarm clusters can be split into two parts.
 
 2. Admin Access - designated for Giant Swarm staff for management/development/support purposes.
 
-If you would like to know more about the different parts of the Giant Swarm infrastructure, please see our [operational layers article]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
+If you would like to know more about the different parts of the Giant Swarm infrastructure, please see our [operational layers article]({{< relref "/overview/architecture/operational-layers" >}})
 
 ## User access
 
-User access is provided via two APIs for interaction with your clusters.
-
-### Giant Swarm REST API (deprecated)
-
-High-level cluster management access is provided to you via the Giant Swarm REST API. This includes creating, scaling, and deleting your clusters, as well as other organization and user management functions.
-Network access to the API endpoint is typically permitted only to a certain range of IP addresses. It can also be configured to work over a virtual private network (VPN) following the general VPN connection schema shown below under [admin access](#admin-access). In this case, the connection to the API residing in the cluster can be established only via your configured VPN.
-
-### Kubernetes API
-
-The Kubernetes API of each workload cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API, or by provisioning them directly through the Giant Swarm REST API. In either case, you retain full control over user management.
+The Kubernetes API of each workload cluster is exposed to customers. Authorized users of the cluster can be managed by connecting an external identity provider to the Kubernetes API.
 
 ## Admin access via Teleport
 
@@ -124,6 +115,5 @@ Access to etcd or the Kubernetes API is secured based on certificates signed by 
 
 - [GitHub Vault authentication](https://www.vaultproject.io/docs/auth/github)
 - [Vault SSH certificate](https://www.vaultproject.io/docs/secrets/ssh/signed-ssh-certificates)
-- [Giant Swarm Operational Layers]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
-- [Giant Swarm REST API]({{< relref "/vintage/platform-overview/security/operational-layers#giant-swarm-api" >}})
-- [Giant Swarm User Space]({{< relref "/vintage/platform-overview/security/operational-layers#userspace" >}})
+- [Giant Swarm Operational Layers]({{< relref "/overview/architecture/operational-layers" >}})
+- [Giant Swarm User Space]({{< relref "/overview/architecture/operational-layers#userspace" >}})

@@ -21,11 +21,6 @@ user_questions:
   - Will my AWS clusters autoscale?
   - How are workloads secured on AWS clusters?
   - Why does Giant Swarm run a monitoring stack on my AWS management cluster?
-aliases:
-  - /aws
-  - /basics/aws-architecture/
-  - /general/architcture/aws/
-  - /general/architecture/aws/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
@@ -48,7 +43,7 @@ Giant Swarm leverages the concept of [“Operators"](https://kubernetes.io/docs/
 
 Giant Swarm's AWS operator is the product of years of work and we continue to apply our learnings and new functionality to it, as they become available. It is in charge of the provisioning and configuration of all resources needed to make a Kubernetes cluster functional on AWS. This operator runs in the management cluster, conveniently in separate accounts, and needs to reach the AWS API where you want to deploy your clusters. Thanks to our [Multi-Account]({{< relref "/vintage/advanced/infrastructure-management/multi-account" >}}) support, customers can add different AWS accounts to our platform and our operator will assume an IAM Role to operate the resources accordingly and spawn clusters into these accounts respectively.
 
-Most of our customers rely on additional AWS services like Control Tower, Organizations or Config to help them with the landing, configuration, and audit of their applications on cloud provider resources. Based on our experience, we have crafted an [introductory guide]({{< relref "/vintage/getting-started/cloud-provider-accounts/vintage/aws" >}}) on how to configure your AWS accounts, to prepare them for our platform. These include good defaults, which will prevent you from hitting [AWS limits (service quotas)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) when creating clusters through our platform. Additionally, we continuously monitor the relevant limits. We will notify you, if a cluster approaches one of these limits, so you can focus on building your applications.
+We continuously monitor the relevant service limits in your cloud provider. We will notify you, if a cluster approaches one of these limits, so you can focus on building your applications.
 
 Following the principle of least privilege, we continuously refine the permissions needed for our automation to manage the AWS resources and the permissions given to our support engineers to assist when there is a problem. This is an ongoing process, as this is subject to change. We are constantly tweaking this based on our experience and changes introduced in AWS APIs as well as upstream changes in Kubernetes and other community projects. That being said, as infrastructure providers, we need a certain level of access to the cloud providers APIs in order to ensure the smooth operation and support of our platform. In some cases, we recommend creating accounts solely for Giant Swarm related resources and keeping other resources in separate accounts. These accounts are only accessed on demand.
 
@@ -97,7 +92,7 @@ CNI used until AWS release 18.
 
 #### Cilium CNI
 
-CNI used until AWS release [19](https://docs.giantswarm.io/advanced/cluster-management/upgrades/aws-19-release/).
+CNI used until AWS release [19]({{< relref "/vintage/advanced/cluster-management/upgrades/aws-19-release" >}}).
 
 [Cilium CNI](https://docs.cilium.io/en/stable/overview/intro/) offers advanced [eBPF](https://ebpf.io/) networking without overlay.
 
@@ -150,6 +145,6 @@ Please note, while this document went into extensive details with regards to how
 ## Further reading
 
 - [Giant Swarm support model]({{< relref "/support" >}})
-- [Giant Swarm operational layers]({{< relref "/vintage/platform-overview/security/operational-layers" >}})
+- [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})
 - [Giant Swarm App Catalog]({{< relref "/vintage/platform-overview/app-platform" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access" >}})

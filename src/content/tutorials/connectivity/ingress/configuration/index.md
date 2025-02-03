@@ -1,7 +1,7 @@
 ---
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the ingress nginx controller.
-weight: 10
+weight: 20
 menu:
   principal:
     parent: tutorials-connectivity-ingress
@@ -340,7 +340,7 @@ Ingress nginx controller allows you to define the timeout that waits to close a 
 
 Many other timeouts can be customized when configuring an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer/index.md" >}}#other-aws-elb-configuration-options).
+__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer#other-aws-elb-configuration-options" >}}).
 
 ### Session affinity
 

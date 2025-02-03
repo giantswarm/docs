@@ -9,6 +9,45 @@
 @import crd.css
 @import vintage.css
 
+#wrapper
+  padding: 60px 0 48px
+
+@media (min-width: 768px)
+  #wrapper
+    padding: 60px 0 96px
+
+#header, #footer
+  font-size: 1rem
+  font-style: normal
+  font-weight: 400
+  line-height: 1.56
+  color: #6a6d77
+  -moz-text-size-adjust: none
+  -ms-text-size-adjust: none
+  -webkit-text-size-adjust: none
+  text-size-adjust: none
+  -webkit-tap-highlight-color: transparent
+  tap-highlight-color: transparent
+  -webkit-text-rendering: antialiased
+  -moz-text-rendering: antialiased
+  -ms-text-rendering: antialiased
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  -ms-font-smoothing: antialiased
+  font-smoothing: antialiased
+  hyphens: none
+  overflow-wrap: normal
+
+html
+  font-size: 18px
+
+@media (max-width: 1139px)
+  body.mnav-active
+    overflow: hidden
+
+
 h1, h2, h3, h4, h5, h6
   text-align: left
   line-height: 1.3em
@@ -76,22 +115,25 @@ abbr[title]
 #sidebarSearchForm
   font-size: 14px
   margin: 28px 0 28px auto
+  // match Inkeep's dimensions to avoid visible reflow
+  width: 262.5px
+  height: 40px
 
-  input
-    width: 160px
-    font-size: 14px
-    padding: 2px
-    padding-bottom: 2px
-    padding-top: 2px
-    padding-left: 4px
-    padding-right: 2px
-    line-height: 17px
-    height: 32px
+  //input
+  //  width: 160px
+  //  font-size: 14px
+  //  padding: 2px
+  //  padding-bottom: 2px
+  //  padding-top: 2px
+  //  padding-left: 4px
+  //  padding-right: 2px
+  //  line-height: 17px
+  //  height: 32px
 
-  button
-    height: 32px
-    border: none
-    padding: 0px 4px
+  //button
+  //  height: 32px
+  //  border: none
+  //  padding: 0px 4px
 
   .form-group
     display: inline-block

@@ -25,9 +25,6 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-aliases:
-  - /use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io/
-  - /reference/cp-k8s-api/awsclusters.infrastructure.giantswarm.io/
 technical_name: awsclusters.infrastructure.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0
@@ -1682,6 +1679,5 @@ spec:
 
 
 </div>
-
 
 

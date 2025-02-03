@@ -1,11 +1,11 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:v0.125.5-full AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.139.3-full AS build
 
 WORKDIR /docs
 
 COPY . /docs
 
 # Expose the release version in content
-ENV HUGO_DOCS_VERSION $CIRCLE_TAG
+ENV HUGO_DOCS_VERSION="$CIRCLE_TAG"
 
 RUN hugo \
       --logLevel info \
@@ -31,16 +31,20 @@ RUN find /public \
   -name 'index.html' \
   -delete
 
-FROM gsoci.azurecr.io/giantswarm/nginx:1.25-alpine
+FROM gsoci.azurecr.io/giantswarm/nginx:1.27-alpine
+EXPOSE 8080
+USER 0
 
 # Delete default config (which we have no control over)
 RUN rm -r /etc/nginx/conf.d && rm /etc/nginx/nginx.conf
-
 COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN nginx -t -c /etc/nginx/nginx.conf && \
-    rm -rf /tmp/nginx.pid
+# Ensure tmp dir exists and has right ownership
+RUN mkdir -p /tmp/nginx && chown -R 101 /tmp/nginx
 
-EXPOSE 8080
+RUN nginx -t -c /etc/nginx/nginx.conf && \
+    rm -rf /tmp/nginx/nginx.pid
 
 COPY --from=build --chown=101 /public /usr/share/nginx/html
+
+USER 101

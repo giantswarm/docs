@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-data-exploration-accessing-grafana
     parent: tutorials-observability-data-exploration
 weight: 40
-last_review_date: 2024-07-17
+last_review_date: 2024-12-12
 user_questions:
   - How to access Grafana?
   - How to access metrics from my clusters?
@@ -31,17 +31,17 @@ We aim to provide a useful set of dashboards for you to quickly explore all obse
 
 ## Accessing dashboards
 
-If you have access to the Giant Swarm [web interface]({{< relref "/vintage/platform-overview/web-interface" >}}), the easiest way to get to Grafana is to click the **Monitoring** link in the top menu when logged in.
+The address for your installation's `grafana` instance is composed of the base domain plus the `grafana` subdomain.
 
-In case you don't have access to the Giant Swarm web interface, you can ask your Giant Swarm support contact for the address. In general the address follows the same pattern of any managed service, having the `grafana` subdomain on your installations base URI.
+If you don't know the base domain for your installation, you can ask your Giant Swarm support contact for the address.
 
 ## Authentication and authorization
 
-Access to Grafana is controlled via **single sign-on** (SSO), using the same identity provider you use for the [Management API]({{< relref "/vintage/use-the-api/management-api/authentication" >}}).
+Access to `grafana` is controlled via `single sign-on` (SSO), using the same identity provider you use for the [platform API]({{< relref "/tutorials/access-management/authentication" >}}).
 
 In order to access Grafana as a customer, you must be a member of the admin group. Specifically, that's a group in your identity provider selected to specify which users have admin permissions in the Giant Swarm installation.
 
-**Note**: If you don't have SSO configured yet or have any questions regarding the admin group, please contact your Account Engineer.
+__Note__: If you don't have `single sign-on` (SSO) configured yet or have any questions regarding the admin group, please contact your Account engineer.
 
 Once you open the Grafana address for your installation, you will be able to login via the Giant Swarm SSO. The screenshot below shows an example.
 
@@ -50,6 +50,8 @@ Once you open the Grafana address for your installation, you will be able to log
 There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on the type of identity provider used for you as a customer, the label for the button to click can look slightly different.
 
 After selecting the right identity provider, you may run through an authentication workflow. However, if you are already authenticated within the current browser, this will be skipped and you should see the Home dashboard as a result.
+
+At the initial log in the preselected Grafana organization is the so called `Shared Org`. This shared organization contains a curated set of managed dashboards that are accessible to everyone with access to Grafana. If you want to learn more about organizations and multi-tenancy, we can only advise you to read the related [documentation]{{< relref "/tutorials/observability/multi-tenancy" >}}).
 
 ## Limitations
 

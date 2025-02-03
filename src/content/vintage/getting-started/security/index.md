@@ -24,6 +24,8 @@ last_review_date: 2023-11-27
 mermaid: true
 ---
 
+__Note:__ This article explains user management for the Giant Swarm REST API and using `gsctl`, which are no longer available.
+
 Two of the most central mechanisms to secure your cluster in Kubernetes are Role Based Access Control (RBAC) and Pod Security Standards (PSS). Together, they allow you to create fine-grained roles and policies to manage access control for users and software running on your cluster. Both are enabled by default on Giant Swarm clusters.
 
 ## Role based access control
@@ -234,11 +236,11 @@ roleRef:
 
 ##### A super-user role binding
 
-One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials (e.g. by [creating a key pair with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-keypair" >}}) or the Giant Swarm Web UI) that include that group.
+One of the most important default Role Bindings is for the "cluster-admin" role, which depicts a super-user in the cluster. By default it is bound to the `system:masters` group. Thus, if you need cluster admin access to your Kubernetes cluster, you need to create user credentials that include that group.
 
 For a complete overview of default roles and bindings we defer to the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, [common name and organization would be those respectively]({{< relref "/vintage/use-the-api/gsctl/create-keypair#rbac-cn-org" >}}). If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
+__Warning:__ Be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. As an analogy, it is like you giving root access to every user in a Linux system. Consequently think twice which role your users will have in the system. For Kubernetes, it translates in selecting a username and group name properly. In case you use authentication based on certs, common name and organization would be those respectively. If you are using an external authentication system then be sure it returns the correct user and group name to the Kubernetes API.
 
 ### Verifying if you Have Access
 
@@ -310,8 +312,6 @@ Cluster administrators have complete flexibility and control over their policy e
 [A detailed guide to working with Kyverno PSS Policies and PolicyExceptions][policy-enforcement-guide] is available as a standalone resource.
 
 ## User management with Giant Swarm
-
-If you are managing users through the Giant Swarm REST API or its clients, `gsctl` or the Web UI, you can specify a Common Name Prefix and Organizations when you create key-pairs of kubeconfigs.
 
 ### Using common name as username in Kubernetes
 
@@ -517,8 +517,6 @@ Note that bindings that come with the cluster by default like `system:masters` c
 - [Pod Security Standards][upstream-pss]
 - [Giant Swarm's farewell to PSP blog][farewell-psp-blog]
 - [Configuring Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/)
-- [Creating a kubeconfig with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-kubeconfig" >}})
-- [Creating a key pair with gsctl]({{< relref "/vintage/use-the-api/gsctl/create-keypair" >}})
 
 [farewell-psp-blog]: https://www.giantswarm.io/blog/giant-swarms-farewell-to-psp
 [upstream-psa]: https://kubernetes.io/docs/concepts/security/pod-security-admission/

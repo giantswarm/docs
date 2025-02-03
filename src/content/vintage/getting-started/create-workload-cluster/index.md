@@ -21,7 +21,7 @@ user_questions:
 last_review_date: 2023-12-12
 ---
 
-In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/vintage/use-the-api/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/vintage/getting-started/management-cluster" >}}), is used to create such clusters.
+In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/reference/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/vintage/getting-started/management-cluster" >}}), is used to create such clusters.
 
 ## Step 1: Log in to the management cluster
 
@@ -67,12 +67,12 @@ First, please choose a name for the new workload cluster. We recommend you choos
 
 You will now create resources with `kubectl gs`. In particular, this tutorial uses the `kubectl gs template` command to create valid YAML for each resource. The templating commands do not immediately create the cluster – the resulting YAML manifest must be applied to the management cluster API or committed to the GitOps repository in order to create the cluster. Alternatively, the Web UI provides a visual way to create clusters.
 
-You can template a cluster ([command reference]({{< relref "/vintage/use-the-api/kubectl-gs/template-cluster" >}})) as follows:
+You can template a cluster ([command reference]({{< relref "/reference/kubectl-gs/template-cluster" >}})) as follows:
 
 {{< tabs >}}
 {{< tab id="cluster-vintage-aws" for-impl="vintage_aws">}}
 
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
+[Choose a release version here](/changes/workload-cluster-releases-for-aws), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -88,7 +88,7 @@ For backward compatibility, vintage cluster templating does not require the `--n
 {{< /tab >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-capa/), or use `kubectl gs get releases`, and fill it into this example command:
+[Choose a release version here](/changes/workload-cluster-releases-for-capa/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -144,7 +144,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-[Choose a release version here](https://docs.giantswarm.io/changes/workload-cluster-releases-for-azure/), or use `kubectl gs get releases`, and fill it into this example command:
+[Choose a release version here](/changes/workload-cluster-releases-for-azure/), or use `kubectl gs get releases`, and fill it into this example command:
 
 ```sh
 kubectl gs template cluster \
@@ -198,7 +198,7 @@ This is not needed for CAPI. The `nodePools` value in the cluster app has a defa
 {{< /tab >}}
 {{< /tabs >}}
 
-Templating these and other resources as YAML files is reasonable if you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository) or want to develop/deploy using scripts or the command line, without manual steps in the web interface. We recommend running `kubectl gs template [...] --help` and the online [reference]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
+Templating these and other resources as YAML files is reasonable if you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository) or want to develop/deploy using scripts or the command line, without manual steps in the web interface. We recommend running `kubectl gs template [...] --help` and the online [reference]({{< relref "/reference/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
 
 To _actually_ create the resources – the workload cluster and (only for vintage product family) worker node pool – you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
 
@@ -379,4 +379,4 @@ kubectl gs update app \
 
 Cluster updates can be easily performed straight away or scheduled for a specific moment in time. The latter is a feature that many customers find very useful because it allows them to schedule updates without the need to physically be there to "press the button".
 
-More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/vintage/use-the-api/kubectl-gs/update-cluster" >}}).
+More information on updating a cluster can be found [in the kubectl-gs reference]({{< relref "/reference/kubectl-gs/update-cluster" >}}).

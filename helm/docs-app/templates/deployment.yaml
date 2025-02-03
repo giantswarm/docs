@@ -8,6 +8,11 @@ metadata:
 spec:
   replicas: 2
   revisionHistoryLimit: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: {{ .Values.name }}
@@ -19,25 +24,23 @@ spec:
     spec:
       affinity:
         podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app: {{ .Values.name }}
-              topologyKey: kubernetes.io/hostname
-            weight: 100
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: {{ .Values.name }}
+            topologyKey: kubernetes.io/hostname
       securityContext:
         runAsUser: 1000
         seccompProfile:
           type: RuntimeDefault
 
       containers:
-        - name: {{ .Values.image.name }}
-          # Public image required
-          image: {{ .Values.image.registry }}/giantswarm/{{ .Values.image.name }}:{{ .Values.image.tag }}
+        - name: docs-app
+          image: gsoci.azurecr.io/giantswarm/docs:{{ .Chart.Version }}
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
+            readOnlyRootFilesystem: true
             seccompProfile:
               type: RuntimeDefault
             capabilities:
@@ -62,5 +65,11 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 30
             timeoutSeconds: 2
+          volumeMounts:
+            - mountPath: /tmp/nginx
+              name: nginx-tmp
+      volumes:
+        - name: nginx-tmp
+          emptyDir: { }
       serviceAccount: {{ .Values.name }}
       serviceAccountName: {{ .Values.name }}

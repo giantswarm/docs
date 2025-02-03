@@ -2,8 +2,10 @@
 
 set -e
 
-CRD_DOCS_GENERATOR_VERSION=0.11.0
-DESTINATION=src/content/vintage/use-the-api/management-api/crd
+# renovate: datasource=docker depName=gsoci.azurecr.io/giantswarm/crd-docs-generator versioning=loose
+CRD_DOCS_GENERATOR_VERSION=0.11.2
+
+DESTINATION=src/content/reference/platform-api/crd
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs -I '{}' rm '{}'

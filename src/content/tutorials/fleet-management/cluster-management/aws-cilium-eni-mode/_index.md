@@ -3,7 +3,11 @@ title: Separate the pod network on AWS using Cilium ENI IPAM mode
 linkTitle: Cilium ENI IPAM mode
 description: Allocate pod IPs directly on the AWS network using a second VPC CIDR with separate security group and subnets.
 weight: 10
-last_review_date: 2024-06-26
+menu:
+  principal:
+    identifier: tutorials-fleet-management-clusters-eni-mode
+    parent: tutorials-fleet-management-clusters
+last_review_date: 2024-11-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -11,9 +15,9 @@ user_questions:
   - How do I change the pod network CIDR?
 ---
 
-By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium container network interface. This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. **We therefore recommend using this default mode unless you have specific requirements, as listed below.**
+By default, AWS workload clusters on the Giant Swarm platform use the [`ipam: kubernetes` mode](https://docs.cilium.io/en/latest/network/concepts/ipam/kubernetes/) of the Cilium container network interface. This mode allocates pod IPs from the single range `100.64.0.0/12` across nodes (configurable with [`global.connectivity.network.pods.cidrBlocks`](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#connectivity)). In this way, pod IPs aren't visible on the AWS network. The number of pods can be high, since no limits apart from the CIDR size apply. We therefore recommend using this default mode unless you have specific requirements, as listed below.
 
-A workload cluster can be configured to deviate from this default and choose pod IPs from an AWS-allocated IP range (CIDR). **The [Cilium ENI IPAM mode](https://docs.cilium.io/en/latest/network/concepts/ipam/eni/) creates ENIs (Elastic Network Interfaces) and allocates pod IPs directly on those interfaces.**
+A workload cluster can be configured to deviate from this default and choose pod IPs from an AWS-allocated IP range (CIDR). The [Cilium ENI IPAM mode](https://docs.cilium.io/en/latest/network/concepts/ipam/eni/) creates ENIs (Elastic Network Interfaces) and allocates pod IPs directly on those interfaces.
 
 ## Advantages of Cilium ENI IPAM mode
 
@@ -29,7 +33,7 @@ A workload cluster can be configured to deviate from this default and choose pod
 
 The IPAM mode must be set at cluster creation time and can't be changed for a running cluster. Below, you will create a cluster template and adjust the required values before actually creating the cluster.
 
-First, template a regular cluster (refer to [Creating a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}})):
+First, template a regular cluster (refer to [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}})):
 
 ```sh
 kubectl gs template cluster \

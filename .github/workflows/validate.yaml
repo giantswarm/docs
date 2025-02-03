@@ -1,4 +1,7 @@
 name: Validate
+
+# This is supposed to run on all pull requests to ensure
+# formal sanity of content, formatting, front matter, and structure.
 on:
   pull_request:
     branches:
@@ -9,22 +12,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Install dependencies
-        run: pip3 install click colored==1.4.4
+        run: pip3 install click colored
 
       - name: Validate front matter for changed files
         run: |
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
-          cat files.txt | python3 scripts/validate-front-matter/script.py
+          if [ -s files.txt ]; then
+            cat files.txt | python3 scripts/validate-front-matter/script.py
+            # Print for debugging
+            printf "\nAnnotations JSON:\n"
+            cat ./annotations.json
 
-      - name: Print front matter annotations
-        run: cat ./annotations.json
+            # Save as environment variable for next step
+            if [ $(jq length < ./annotations.json) -gt 0 ]; then
+              echo "found_front_matter_issues=true" >> $GITHUB_ENV
+            fi
+          fi
+          rm files.txt
 
       - name: Send front matter annotations
-        uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
+        if: ${{ env.found_front_matter_issues == 'true' }}
+        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: Front matter problems
@@ -32,7 +44,7 @@ jobs:
 
       - name: markdownlint
         run: |
-          make RUNNING_IN_CI=true lint || true
+          make RUNNING_IN_CI=true lint-markdown || true
 
           # Only fail if the run didn't work for technical reasons
           if [ ! -e markdownlint.out ]; then
@@ -44,21 +56,169 @@ jobs:
           cat markdownlint.out \
             | jq -nR '[inputs | (. | capture("(?<filename>[^:]+):(?<line>[0-9]+)(:(?<col>[0-9]+))?\\s+(?<description>.+)") | {"file": .filename, "line": (.line | tonumber), "end_line": (.line | tonumber), "title": "markdownlint problem", "message": .description, "annotation_level": "error"})]' \
             > markdownlint-annotations.json
-
-      - name: Print markdownlint annotations
-        run: cat ./markdownlint-annotations.json
+          
+          # Print for debugging
+          printf "\nAnnotations JSON:\n"
+          cat ./markdownlint-annotations.json
+          
+          if [ $(jq length < ./markdownlint-annotations.json) -gt 0 ]; then
+            echo "found_markdown_issues=true" >> $GITHUB_ENV
+          fi
 
       - name: Send markdownlint annotations
-        uses: giantswarm/annotations-action@8028d6604d2db401d4dcd30c21a99fa26e662544
+        if: ${{ env.found_markdown_issues == 'true' }}
+        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: markdownlint problems
           input: ./markdownlint-annotations.json
 
       - name: Fail if markdownlint had findings
+        if: ${{ env.found_markdown_issues == 'true' }}
         run: |
-          # If there are non-empty lines, we had linting findings
-          if [ "$(awk 1 < markdownlint.out | wc -l | awk '{print $1}')" != 0 ]; then
-            echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
-            exit 1
+          echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
+          exit 1
+
+      - name: Check file and folder names in content
+        shell: python {0}
+        run: |
+          # Walk content folder, check file names to use only allowed characters
+          from pathlib import Path
+          import re
+          import os
+          import sys
+
+          allowed_chars = re.compile(r'^[a-z0-9-\.+]+$')
+          allowed_chars_static = re.compile(r'^[a-z0-9-\._]+$') # images etc. may use the underscore
+
+          content_dir = 'src/content'
+          errors = []
+          for root, dirs, files in os.walk(content_dir):
+            for file in files:
+              full_path = Path(root, file)
+              if full_path.name == '_index.md':
+                continue
+              if full_path.name == '_template.md.tpl':
+                continue
+              
+              if full_path.suffix.lower() == '.md':
+                if not allowed_chars.match(full_path.stem):
+                  errors.append(f"- FILE {full_path}")
+              else:
+                # static files
+                if not allowed_chars_static.match(full_path.name):
+                  errors.append(f"- FILE {full_path}")
+
+            for dir in dirs:
+              if not allowed_chars.match(dir):
+                errors.append(f"- DIR {Path(root, dir)}")
+          
+          if len(errors) > 0:
+            sys.stderr.write("The following file/folder names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n")
+            for error in errors:
+              sys.stderr.write(error + "\n")
+            sys.exit(1)
+
+      - name: Check for moved or deleted files
+        run: |
+          git --no-pager diff --name-status --diff-filter=RD "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
+
+          if [ -s files.txt ]; then
+
+            # Creat annotations JSON, as one object per line first
+            while read line; do
+              parts=($line)
+              mode=${parts[0]}
+              filename=${parts[1]}
+              
+              if [ "$mode" == "D" ]; then
+                echo "{\"file\": \"$filename\", \"line\": 1, \"end_line\": 1, \"title\": \"File deleted\", \"message\": \"File deleted\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
+              else
+                newFilename=${parts[2]}
+                echo "{\"file\": \"$newFilename\", \"line\": 1, \"end_line\": 1, \"title\": \"File moved\", \"message\": \"File moved/renamed\", \"annotation_level\": \"warning\"}" >> mvdel-annotations-lines.json
+              fi
+            done <files.txt
+
+            # Convert JSON lines to array
+            jq --slurp '.' mvdel-annotations-lines.json > mvdel-annotations.json
+            rm mvdel-annotations-lines.json
+
+            # Print for debugging
+            printf "\nAnnotations JSON:\n"
+            cat ./mvdel-annotations.json
+
+            # Save as environment variable for next step
+            echo "deletes_or_moves_files=true" >> $GITHUB_ENV
+          else
+            echo "deletes_or_moves_files=false" >> $GITHUB_ENV
           fi
+
+          rm files.txt
+
+      - name: Send annotations for moved or deleted files
+        if: ${{ env.deletes_or_moves_files == 'true' }}
+        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          input: ./mvdel-annotations.json
+          title: "Files moved or deleted"
+
+
+      - name: Add/update comment about moved/deleted files
+        if: ${{ env.deletes_or_moves_files == 'true' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: files-deleted-or-moved
+          message: |
+            This PR moves/renames or deletes some files. Please make sure to
+            
+            - maintain references (also important for images)
+            - Maintain `aliases` in the front matter of moved markdown files
+
+      - name: Delete comment about moved/deleted files
+        if: ${{ env.deletes_or_moves_files == 'false' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: files-deleted-or-moved
+          mode: delete
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
+        with:
+          hugo-version: "0.125.5"
+          extended: true
+      
+      - id: hugobuild
+        name: Build Hugo site
+        run: |
+          hugo --source ./src --printPathWarnings --printUnusedTemplates --renderToMemory | tee hugo.out
+          grep "WARN" hugo.out > hugo-warnings.out || true
+          if [ -s hugo-warnings.out ]; then
+            echo "hugo_warnings=true" >> $GITHUB_ENV
+            {
+              echo 'hugo-warnings<<EOF'
+              cat hugo-warnings.out
+              echo EOF
+            } >> $GITHUB_OUTPUT
+          else
+            echo "hugo_warnings=false" >> $GITHUB_ENV
+          fi
+
+      - name: Add/update comment about Hugo warnings
+        if: ${{ env.hugo_warnings == 'true' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: hugo-warnings
+          message: |
+            Hugo yielded some warnings. Please [check](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) whether they require action.
+            
+            ```nohighlight
+            ${{ steps.hugobuild.outputs.hugo-warnings }}
+            ```
+  
+      - name: Delete comment about Hugo warnings
+        if: ${{ env.hugo_warnings == 'false' }}
+        uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
+        with:
+          comment-tag: hugo-warnings
+          mode: delete

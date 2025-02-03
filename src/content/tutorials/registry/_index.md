@@ -1,8 +1,8 @@
 ---
-linkTitle: Registry
-title: Registry Guides
-description: Take a look at the list of guides that delve into configuring registries.
-weight: 15
+linkTitle: Container registries
+title: Container registries
+description: How to reduce cost for container registries and improve performance and reliability.
+weight: 70
 aliases:
   - /tutorials/registry
 menu:
@@ -11,5 +11,5 @@ menu:
     identifier: tutorials-registry
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-07-12
+last_review_date: 2024-12-13
 ---

@@ -4,8 +4,8 @@ description: Manage cluster and application resources across multiple organizati
 weight: 40
 menu:
   principal:
-    parent: overview-fleet-management
-    identifier: overview-fleet-management-multi-tenancy
+    parent: overview-fleetmanagement
+    identifier: overview-fleetmanagement-multitenancy
 last_review_date: 2024-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
@@ -37,7 +37,7 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 If the concept of custom resources (CR) and custom resource definitions (CRD) is new to you, Kubernetes allows you to define [arbitrary objects](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) handled via the Kubernetes API. A custom resource definition specifies the schema of such an object. The actual objects are called the custom resources.
 
-Giant Swarm management clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`, [schema documentation]({{< relref "/vintage/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}})). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
+Giant Swarm management clusters provide a CRD named `Organization` (long form: `organizations.security.giantswarm.io`, [schema documentation]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}})). An organization is defined simply by a custom resource using that CRD, which we'll call an "organization CR" here for brevity.
 
 The single most crucial aspect of an organization's CR is its name. Therefore, the CR looks as simple as this:
 

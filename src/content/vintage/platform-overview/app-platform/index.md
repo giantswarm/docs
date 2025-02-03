@@ -4,13 +4,6 @@ title: App platform
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
 last_review_date: 2023-03-31
 weight: 50
-aliases:
-  - /platform-overview/app-platform
-  - /developer-platform/app-platform/
-  - /basics/app-platform/
-  - /app-platform
-  - /developer-platform/app-platform/overview
-  - /app-platform/overview
 menu:
   main:
     parent: platform-overview
@@ -144,13 +137,12 @@ It’s possible to create your own App Catalog. This is useful if you want to cr
 
 ### How can I interact with the Giant Swarm App Platform
 
-You can interact with the Giant Swarm App Platform through creating App custom resources using the Management API, our web interface, and our REST API.
+You can interact with the Giant Swarm App Platform through creating App custom resources using the Management API, or our web interface.
 
 - [App CRD reference]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
 - [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/vintage/platform-overview/web-interface/app-platform" >}})
-- [Apps and App Configs in the API reference](/api/#tag/apps)
 
-Both our web interface and REST API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
+Our web interface and the management API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 
 As we are giving you direct access to the Management API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack.
-And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/vintage/use-the-api/kubectl-gs" >}}) to help you with that.
+And as Kubernetes resources and especially some CRDs require lots of boilerplate and conventions, we built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.

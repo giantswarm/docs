@@ -11,13 +11,15 @@ repositories:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
   giantswarm/apiextensions:
-    category: Management API
+    category: Platform API
   giantswarm/alloy-app:
     category: Observability Platform
+  giantswarm/alloy-gateway-app:
+    category: Observability Platform
   giantswarm/aws-admission-controller:
-    category: Management API
+    category: Platform API
   giantswarm/azure-admission-controller:
-    category: Management API
+    category: Platform API
   giantswarm/athena:
     category: Managed Apps
   giantswarm/auth-bundle:
@@ -104,12 +106,16 @@ repositories:
   giantswarm/kyverno-app:
     category: Managed Apps
   giantswarm/kyverno-policies:
-    category: Management API
+    category: Platform API
   giantswarm/loki-app:
     category: Observability Platform
   giantswarm/management-cluster-admission:
-    category: Management API
+    category: Platform API
   giantswarm/mimir-app:
+    category: Observability Platform
+  giantswarm/observability-bundle:
+    category: Observability Platform
+  giantswarm/observability-platform-api:
     category: Observability Platform
   giantswarm/prometheus-operator-app:
     category: Observability Platform
@@ -119,6 +125,10 @@ repositories:
     category: Managed Apps
   giantswarm/rook-operator-app:
     category: Managed Apps
+  giantswarm/silence-operator:
+    category: Observability Platform
+  giantswarm/sloth-app:
+    category: Observability Platform
   giantswarm/starboard-app:
     category: Managed Apps
   giantswarm/starboard-exporter:
@@ -126,9 +136,9 @@ repositories:
   giantswarm/trivy-app:
     category: Managed Apps
   giantswarm/organization-operator:
-    category: Management API
+    category: Platform API
   giantswarm/rbac-operator:
-    category: Management API
+    category: Platform API
   giantswarm/strimzi-kafka-operator-app:
     category: Managed Apps
   giantswarm/teleport-kube-agent-app:
@@ -146,7 +156,7 @@ repositories:
 
 # Here we define the colors for categories.
 categories:
-  - name: Management API
+  - name: Platform API
     color: "#b47fb0"
   - name: Dashboards
     color: "#e461a9"
@@ -158,6 +168,8 @@ categories:
     color: "#8081b2"
   - name: Managed Apps
     color: "#7ac271"
+  - name: Observability Platform
+    color: "#f69917"
   - name: Workload cluster releases for AWS
     color: "#ff9900"
   - name: Workload cluster releases for CAPA
