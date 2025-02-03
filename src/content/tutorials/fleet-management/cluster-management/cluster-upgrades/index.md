@@ -1,6 +1,6 @@
 ---
 title: Cluster upgrades deep dive
-description: General information about cluster upgrades and how to tune them.
+description: General information about how cluster upgrades work and how to tune them.
 weight: 10
 menu:
   principal:
