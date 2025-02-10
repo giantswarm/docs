@@ -79,14 +79,14 @@ data:
 kind: ConfigMap
 metadata:
   annotations:
-    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/customer
+    observability.giantswarm.io/organization: Customer
   labels:
     app.giantswarm.io/kind: dashboard
   name: my-grafana-dashboard
   namespace: my-namespace
 ```
 
-It's important to have an annotation with the key `k8s-sidecar-target-directory` pointing to the location where the dashboard will be stored in the `Grafana UI`. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
+It's important to have an annotation with the key `observability.giantswarm.io/organization` pointing to the organization where the dashboard will be stored in Grafana. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
 
 The easiest way to build a dashboard is using the Grafana UI. There, you can create panels with the desired visualizations and then export them by selecting `Share > Export`` in the dashboard context menu or by accessing the JSON Model in the dashboard settings.
 

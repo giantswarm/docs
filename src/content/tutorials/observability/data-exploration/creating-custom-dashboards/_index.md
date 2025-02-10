@@ -29,8 +29,8 @@ data:
 kind: ConfigMap
 metadata:
   annotations:
-    ## Define the directory in grafana where the dashboard will be added to the grafana container
-    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/customer
+    ## Define the organization in grafana where the dashboard will be added
+    observability.giantswarm.io/organization: Customer
   labels:
     ## Tell grafana to load this configmap as a dashboard
     app.giantswarm.io/kind: dashboard
