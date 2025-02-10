@@ -25,14 +25,14 @@ To create your own dashboard, you can create a `configmap` resource in the manag
 apiVersion: v1
 data:
   my-dashboard.json: |-
-    { ... my dashboard in json format }
+    { ... my dashboard in JSON format }
 kind: ConfigMap
 metadata:
   annotations:
-    ## Define the organization in grafana where the dashboard will be added
+    ## Define the organization in Grafana where the dashboard will be added
     observability.giantswarm.io/organization: Customer
   labels:
-    ## Tell grafana to load this configmap as a dashboard
+    ## Tell Grafana to load this configmap as a dashboard
     app.giantswarm.io/kind: dashboard
   name: my-grafana-dashboard
   namespace: my-namespace
@@ -40,5 +40,5 @@ metadata:
 
 ### Limitations
 
-* the dashboard's json must contain an `uid` otherwise it won't be provisioned.
-* the dashboard name and uid must be unique in each grafana organization.
+* the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
+* the dashboard name and UID must be unique in each Grafana organization.
