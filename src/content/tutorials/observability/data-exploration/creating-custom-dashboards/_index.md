@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-data-exploration-create-custom-dashboards
     parent: tutorials-observability-data-exploration
 weight: 40
-last_review_date: 2024-07-17
+last_review_date: 2025-02-10
 user_questions:
   - How to customize dashboards?
   - How to create my own dashboards?
@@ -40,4 +40,5 @@ metadata:
 
 ### Limitations
 
-__Beware__ that the dashboard name must be unique so don't override one of your own.
+* the dashboard's json must contain an `uid` otherwise it won't be provisioned.
+* the dashboard name and uid must be unique in each grafana organization.

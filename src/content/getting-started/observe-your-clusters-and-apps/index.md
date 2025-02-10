@@ -2,7 +2,7 @@
 title: Observe your clusters and apps
 description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
 weight: 60
-last_review_date: 2024-11-28
+last_review_date: 2025-02-10
 menu:
   principal:
     parent: getting-started
@@ -104,7 +104,7 @@ Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the mi
 kubectl apply -f config-map.yaml
 ```
 
-After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and find your custom dashboard in the `Customer` folder.
+After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and, switch to the organization you selected, and find your custom dashboard.
 
 ![custom-dashboard](custom-dashboard.png)
 
