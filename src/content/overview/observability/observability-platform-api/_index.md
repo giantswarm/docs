@@ -33,11 +33,11 @@ The following page describes the concept of the Observability Platform API
 
 The observability platform allows customers to ingest their observability data (metrics and logs) from inside the clusters into our platform by default.
 
-The `observability platform API` is an additional component that is a part of the platform, and it allows customers to ingest their logs (for now) from outside their clusters into our observability platform. Moreover, it also allows them to access our own observability data through their own grafana running on their premises.
+The `observability platform API` is an additional component that is a part of the platform, and it allows customers to ingest their logs (for now) from outside their clusters into our observability platform. Moreover, it also allows them to access our own observability data through their own Grafana running on their premises.
 
 Its main objectives are to be able to:
 
-* provide a secure access to our observabily platform and reduce the attack surface.
+* provide a secure access to our observability platform and reduce the attack surface.
 * allow customers to access our observability data and to send their own.
 * sanitize (sampling, relabelling, ...) observability data before it reaches our backends.
 * support OTLP (OpenTelemetry).
@@ -64,7 +64,7 @@ There, depending on the path the requests is trying to access (i.e either trying
 
 Upon reaching the correct ingress, the request will need to be authenticated before being forwarded. This is done through a nginx annotation : `nginx.ingress.kubernetes.io/auth-url` which value is the customer OIDC provider ingress' url. As the requests coming from Grafana forwards the user's OAuth identity through the use of a token, the Giant Swarm ingress only make sure that the incoming request's token matches an allowed user in the OIDC provider.
 
-Moreover, the ingressess will verify that the incoming requests are using the `X-Scope-OrgId` http headers (tenant information). If not, the request will be denied.
+Moreover, the ingress will verify that the incoming requests are using the `X-Scope-OrgId` HTTP headers (tenant information). If not, the request will be denied.
 
 Upon authentication, the request is then forwarded to either the `loki-gateway` or `mimir-gateway` (depending if the query is looking for logs or metrics) components which are nginx servers respectively fronting the loki and mimir clusters. Those gateway components then finally forward the request to the read components.
 
@@ -82,7 +82,7 @@ This additional step was added to ensure that we support OTLP.
 
 ## Adding datasources
 
-In order for one to use the observability-platform API's read path, the most straight-forward way is to add a datasource in one's grafana pointing towards it. Here is a step-by-step guide on how to do it :
+In order for one to use the observability-platform API's read path, the most straight-forward way is to add a datasource in one's Grafana pointing towards it. Here is a step-by-step guide on how to do it :
 
 * in the `Connection` section, write the observability-platform API url which always be `https://observability.<domain_name>`. Replace the `<domain_name>` placeholder with the actual domain name of your installation.
 
