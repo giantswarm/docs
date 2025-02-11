@@ -11,11 +11,9 @@ user_questions:
   - What is the observability-platform API architecture?
   - What is the use of observability-platform API?
   - How may I use the observability-platform API?
-aliases:
-  - /getting-started/observability/logging/obserbality-platform-api
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-02-11s
+last_review_date: 2025-02-10
 ---
 
 The following page describes the concept of the Observability Platform API
