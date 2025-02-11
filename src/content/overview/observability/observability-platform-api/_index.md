@@ -100,7 +100,7 @@ Please note that if you're adding a Mimir or Prometheus datasource, you will hav
 
 ![datasource headers](./datasource-headers.png)
 
-The header will always be `X-Scope-OrgID` but the value will differ depending on whether you are adding a Loki or Mimir/Prometheus datasource. AS of now, for loki the value will be `anonymous` whereas for Mimir/Prometheus it will be `giantswarm`.
+The header will always be `X-Scope-OrgID` but the value will differ depending on whether you are adding a Loki or Mimir/Prometheus datasource. The default value to access Giant Swarm managed logs should be `giantswarm` and metrics should be `anynomous`. The value of the header for the data you ingest depends on what you configured as a tenant upon ingestion.
 
 ## Limitations
 
