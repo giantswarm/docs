@@ -1,3 +1,4 @@
+```markdown
 ---
 linkTitle: Authorization
 title: Authorization in the platform API
@@ -103,24 +104,87 @@ If a matcher is defined, the `RoleBinding` will be applied within the organizati
 If no matcher is defined, the `RoleBinding` will be maintained across all organization scopes.
 An organization scope refers to the organization namespace as well as namespaces associated with clusters within the organization.
 
+## Debugging Giantswarm Management API Cluster Name Resolution
+
+This guide outlines a debugging issue where the Giantswarm management API doesn't properly resolve the cluster name. The issue seems to be related to the API permissions.
+
+### Login Command
+
+Try using the command given below, replacing the placeholders with your actual data.
+
+```shell
+kubectl gs login <https://api>.<YOUR_CLUSTER>.<egg.gigantic.io> --workload-cluster <YOUR_WORKLOAD_CLUSTER> --organization <YOUR_ORGANIZATION> --certificate-group system:masters --certificate-ttl 8h
+```
+
+### Checking RBAC
+
+If the issue persists after the previous step, check if the Role-Based Access Control (RBAC) is present:
+
+```shell
+kg rolebinding write-all-customer-group -n <YOUR_ORGANIZATIONAL_NAMESPACE> -o yaml
+```
+
+This command should return a YAML output similar to the one shown below:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: "2024-07-10T15:20:16Z"
+  labels:
+    giantswarm.io/managed-by: rbac-operator
+  name: write-all-customer-group
+  namespace: org-egger
+  resourceVersion: "372731412"
+  uid: 115e3e43-9c78-4d77-a0c6-85bf4758c772
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: customer:giantswarm:Employees
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: customer:eagle_admin
+```
+
+### Changing the OIDC Group ID
+
+If your OIDC group ID has been changed, this could be the source of the problem.
+
+You may need to decrypt the appropriate secret (in this case 'egger dex-app' secret in 'egger-configs') and under `oidc.customer.connectors`, replace `customer-developer` with `customer`.
+
+```shell
+#Change this:
+id: customer-developers
+
+#To this:
+id: customer
+```
+After making these changes, you might need to create a pull request in your configurations repository and merge the changes.
+
+Finally, you should open an issue to track this hardcoding work if it proves successful. This serves as a record, helping us remember where the hardcoding was implemented.
+
 ## Typical use cases {#typical-use-cases}
 
 For the purpose of this documentation article we'll introduce a few example cases and then explain how to configure access for them, starting with the least permissions and ending with the highest privileges. Chances are that you can use them as a starting point for your own requirements.
 
 1. __Read-only user__: allowed to "browse" most resources in specific organizations.
 
-2. __Developer__: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discovers clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
+2. __Developer__: allowed to install, configure, upgrade and uninstall certain apps in/from workload clusters of a certain organization. In order to discover clusters and navigate the web UI, users of this type also require read permission to various resources like clusters, node pools, releases, and app catalogs.
 
 3. __Organization admin__: users who have full permissions to resources belonging to a specific [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
 4. __Admin__: a type of user that has permission to create, modify, and delete most types of resources in the management cluster.
 
-Next we show how to configure access for these example cases. Please take into account these remarks for all example manifests:
+Next, we show how to configure access for these example cases. Please take into account these remarks for all example manifests:
 
 - You can set the resource names (for `RoleBinding` and `ClusterRoleBinding` resources) to whatever suits you and is available.
 - Make sure to replace `GROUPNAME` with the exact name of your group as defined in your identity provider.
 - Replace `ORGANIZATION` with the name of your organization (without `org-` prefix).
-- To assign a user instead of a group, replace `kind: Group` with `kind: User` in the subject entry and set `name` the exact email address of the users as set in your identity provider.
+- To assign a user instead of a group, replace `kind: Group` with `kind: User` in the subject entry and set `name` to the exact email address of the users as set in your identity provider.
 
 ### Configure access for read-only users {#configure-read-only}
 
@@ -286,7 +350,7 @@ spec:
         add-additional-admins: true
 ```
 
-Alternatively, the following scopes will result the role binding to be applied in namespaces belonging to organizations which __not__ carry the `add-additional-admins=false` label.
+Alternatively, the following scopes will result in the role binding to be applied in namespaces belonging to organizations which __not__ carry the `add-additional-admins=false` label.
 
 ```yaml
 ...
@@ -300,3 +364,4 @@ Alternatively, the following scopes will result the role binding to be applied i
 ```
 
 `matchExpressions` supports `In`, `NotIn`, `Exists` and `DoesNotExist` as operators for advanced selectors.
+```
