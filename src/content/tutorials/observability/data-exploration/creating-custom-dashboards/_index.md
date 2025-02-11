@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-data-exploration-create-custom-dashboards
     parent: tutorials-observability-data-exploration
 weight: 40
-last_review_date: 2024-07-17
+last_review_date: 2025-02-10
 user_questions:
   - How to customize dashboards?
   - How to create my own dashboards?
@@ -25,14 +25,14 @@ To create your own dashboard, you can create a `configmap` resource in the manag
 apiVersion: v1
 data:
   my-dashboard.json: |-
-    { ... my dashboard in json format }
+    { ... my dashboard in JSON format }
 kind: ConfigMap
 metadata:
   annotations:
-    ## Define the directory in grafana where the dashboard will be added to the grafana container
-    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/customer
+    ## Define the organization in Grafana where the dashboard will be added
+    observability.giantswarm.io/organization: Customer
   labels:
-    ## Tell grafana to load this configmap as a dashboard
+    ## Tell Grafana to load this configmap as a dashboard
     app.giantswarm.io/kind: dashboard
   name: my-grafana-dashboard
   namespace: my-namespace
@@ -40,4 +40,5 @@ metadata:
 
 ### Limitations
 
-__Beware__ that the dashboard name must be unique so don't override one of your own.
+* the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
+* the dashboard name and UID must be unique in each Grafana organization.

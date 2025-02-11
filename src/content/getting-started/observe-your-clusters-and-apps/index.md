@@ -2,7 +2,7 @@
 title: Observe your clusters and apps
 description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
 weight: 60
-last_review_date: 2024-11-28
+last_review_date: 2025-02-10
 menu:
   principal:
     parent: getting-started
@@ -79,14 +79,14 @@ data:
 kind: ConfigMap
 metadata:
   annotations:
-    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/customer
+    observability.giantswarm.io/organization: Customer
   labels:
     app.giantswarm.io/kind: dashboard
   name: my-grafana-dashboard
   namespace: my-namespace
 ```
 
-It's important to have an annotation with the key `k8s-sidecar-target-directory` pointing to the location where the dashboard will be stored in the `Grafana UI`. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
+It's important to have an annotation with the key `observability.giantswarm.io/organization` pointing to the organization where the dashboard will be stored in Grafana. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
 
 The easiest way to build a dashboard is using the Grafana UI. There, you can create panels with the desired visualizations and then export them by selecting `Share > Export`` in the dashboard context menu or by accessing the JSON Model in the dashboard settings.
 
@@ -104,7 +104,7 @@ Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the mi
 kubectl apply -f config-map.yaml
 ```
 
-After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and find your custom dashboard in the `Customer` folder.
+After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and, switch to the organization you selected, and find your custom dashboard.
 
 ![custom-dashboard](custom-dashboard.png)
 
