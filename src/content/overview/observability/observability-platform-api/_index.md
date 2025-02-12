@@ -8,9 +8,9 @@ menu:
     identifier: overview-observability-platform-api
     parent: overview-observability
 user_questions:
-  - What is the observability-platform API architecture?
-  - What is the use of observability-platform API?
-  - How may I use the observability-platform API?
+  - What is the observability-platform API?
+  - What is the observability-platform API for?
+  - How to use the observability-platform API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2025-02-10
@@ -29,20 +29,24 @@ The following page describes the concept of the Observability Platform API
 * [Adding datasources](#adding-datasources)
 * [Limitations](#limitations)
 
-## Context
+## What it is
 
-The observability platform allows customers to ingest their observability data (metrics and logs) from inside the clusters into our platform by default.
+The observability platform already ingests and allows to explore system and application observability data from inside Giant Swarm managed clusters by default.
 
-The `observability platform API` is an additional component that is a part of the platform, and it allows customers to ingest their logs (for now) from outside their clusters into our observability platform. Moreover, it also allows them to access our own observability data through their own Grafana running on their premises.
+The `observability platform API` opens up the observability platform to be used from the outside - which means any resource not managed by Giant Swarm. You can ingest observability data from any source by sending them to the `observability platform API`. Additionally the API allows to query observability data from wherever you want. 
 
-Its main objectives are to be able to:
+This allows you to for example ingest observability data from a SaaS-Database that might be a dependency of one of your workloads on a Giant Swarm managed cluster. Or you could explore the observability platforms data from your own, remote Grafana instance or any other observability tooling.
 
-* provide a secure access to our observability platform and reduce the attack surface.
-* allow customers to access our observability data and to send their own.
-* sanitize (sampling, relabelling, ...) observability data before it reaches our backends.
-* support OTLP (OpenTelemetry).
+**Note:** At this point the `observability platform API` only allows the ingestion of logs and events. The ingestion of metrics will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes/observability-platform/" >}}) or this document for updates.
 
-## Architecture
+The `observability platform API`s main objectives are to:
+
+* provide a secure access to our observability platform from outside of Giant Swarm managed clusters.
+* enable you to ingest and access observability data from anywhere.
+* sanitize (sampling, relabelling, ...) observability data to align with our general data standards in the observability platform.
+* support for the OpenTelemetry Protocol (OTLP).
+
+## How it works
 
 ### Global overview
 
@@ -80,21 +84,23 @@ Once authenticated, the request will thus go through the `alloy-gateway` which w
 
 This additional step was added to ensure that we support OTLP.
 
-## Adding datasources
+## The observability platform API as Grafana datasource
 
-In order for one to use the observability-platform API's read path, the most straight-forward way is to add a datasource in one's Grafana pointing towards it. Here is a step-by-step guide on how to do it :
+One use case for the `observability platform API` is to explore the observability platforms data in a self-managed Grafana. Our recommended way of connecting a Grafana instance to the `observability platform API` is to add a datasource in the Grafana instance pointing towards the API.
 
-* in the `Connection` section, write the observability-platform API url which always be `https://observability.<domain_name>`. Replace the `<domain_name>` placeholder with the actual domain name of your installation.
+Here is a step-by-step guide on how to do it :
+
+1. in the `Connection` section, set the `observability-platform API` domain as URL. The API follows the pattern of adding the `observability`-subdomain to your installations base domain. This looks like `https://observability.<domain_name>` while you need to replace the `<domain_name>` placeholder with the actual domain name of your installation. **Please note**: if you're adding a Mimir or Prometheus datasource, you will have to add the `/prometheus` suffix to the url, making it: `https://observability.<domain_name>/prometheus`.
 
 ![datasource url](./datasource-url.png)
 
 Please note that if you're adding a Mimir or Prometheus datasource, you will have to add the `/prometheus` suffix to the url (i.e the final url will be of the following form : `https://observability.<domain_name>/prometheus`).
 
-* In the `Authentication` section, select the `Forward OAuth Identity` option.
+2. In the `Authentication` section, select the `Forward OAuth Identity` option.
 
 ![datasource authentication](./datasource-authentication.png)
 
-* Sill in the `Authentication` section, add a HTTP header :
+3. Fill in the `Authentication` section, add the required `X-Scope-OrgID`. Make sure the value of the `X-Scope-OrgID` header is an existing tenant that actually holds the data you're interested in. For example, to access Giant Swarm managed logs the value of this  header should be `giantswarm`, for metrics it should be `anynomous`. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 ![datasource headers](./datasource-headers.png)
 
