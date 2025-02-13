@@ -76,20 +76,20 @@ kind: PodLogs
 metadata:
   name: example-podlogs
 spec:
-  selector:
-    matchLabels:
-      foo: bar
   namespaceSelector:
     matchLabels:
       kubernetes.io/metadata.name: charlie
   relabelings:
   # This configures the tenant name under which the data will be stored in the observability platform
   - action: replace
-    targetLabel: giantswarm_observability_tenant
     replacement: my-team
+    targetLabel: giantswarm_observability_tenant
   - action: replace
     sourceLabels: [__meta_kubernetes_pod_node_name]
     targetLabel: node_name
+  selector:
+    matchLabels:
+      foo: bar
 EOF
 ```
 
