@@ -1,3 +1,6 @@
+Certainly! Here is the updated document with your new content incorporated, maintaining the structure and style of the original document:
+
+```markdown
 ---
 linkTitle: Operational layers
 title: Giant Swarm operational layers
@@ -62,6 +65,48 @@ A customer has *tenant admin* and *view* access via OpenID Connect (OIDC), integ
 
 The Platform API is basically the Kubernetes API on every management cluster. It has [dex](https://github.com/dexidp/dex) installed as an OIDC issuer. Dex is configured with an identity provider chosen by the customer. A list of supported providers can be found in the [dex GitHub repository](https://github.com/dexidp/dex/tree/master/connector).
 
+##### Troubleshooting cluster name resolution issues in the Management API
+
+In certain instances, you might encounter issues where the management API is not able to properly resolve the cluster name. Here are some troubleshooting steps you can follow:
+
+1. Start with checking the RBAC (Role-Based Access Control). Make sure it is set up correctly. Here is an example of what your 'RoleBinding' could look like:
+``` 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: "2024-07-10T15:20:16Z"
+  labels:
+    giantswarm.io/managed-by: rbac-operator
+  name: write-all-customer-group
+  namespace: org-egger
+  resourceVersion: "372731412"
+  uid: 115e3e43-9c78-4d77-a0c6-85bf4758c772
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: customer:giantswarm:Employees
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: customer:eagle_admin
+```
+2. Check the API permissions. The problem could be due to incorrect permissions settings in the API.
+
+3. If the RBAC and the API permissions check out and there are still issues, it's possible that the problem lies within the MC's (Management Cluster's) API.
+
+4. Check the OIDC (OpenID Connect) group id in the subjects part of the role binding. If it was updated, it might be causing issues. The correct id is 'customer', not 'customer-developer'.
+
+5. You may need to decrypt the dex-app secret to find the oidc customer connectors.
+
+6. If you see two entries, one with id 'customer-developer' and another with 'customer-azure', replace 'customer-developer' with 'customer'. This change should resolve the issue.
+
+Please note that a permanent solution would be to remove the hardcoding of oidc group id: 'customer' and 'customer-developer'. We recommend opening an issue for this.
+
+It's always helpful to solicit the assistance of another team member to verify your changes. Make sure you test and verify that your changes have resolved the issue.
+
 ##### Authorization
 
 With a valid *JWT* token, received from your chosen identity provider, customers can have two levels of access:
@@ -97,3 +142,5 @@ This enables the customer to individually set up their user management according
 
 - [Securing your Cluster with RBAC and PSP]({{< relref "/vintage/getting-started/security" >}})
 - [Creating a client certificate for workload cluster access]({{< relref "/reference/kubectl-gs/login/#workload-cluster-client-certificate" >}})
+
+```
