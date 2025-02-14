@@ -7,7 +7,7 @@ menu:
   principal:
     identifier: tutorials-access-management-authentication-details
     parent: tutorials-access-management-authentication
-last_review_date: 2024-11-29
+last_review_date: 2023-10-10
 user_questions:
   - How long do ID tokens live?
   - How can I refresh my groups memberships for platform API authorization?
@@ -16,6 +16,45 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
+
+## Resolving the Cluster Name with Management API
+
+### Problem Statement
+
+At times, you may encounter a scenario where the management API is not properly resolving the cluster name. If you are unsure what's causing the issue, it might be a situation with the RBAC, or it could rest with the API permissions. Below is a step-by-step workaround to tackle this problem.
+
+### Instructions
+
+To handle this potential hiccup:
+
+1. First, you're advised to use the API address with `kubectl`. Here is an example: 
+```bash
+kubectl gs login <https://api.enigma.egg.gigantic.io> --workload-cluster w5o2x --organization egger --certificate-group system:masters --certificate-ttl 8h
+```
+
+2. In case this doesn't resolve the issue, check if the RBAC is present. To do this, you can run the command `kg rolebinding write-all-customer-group -n org-egger -o yaml`.
+
+3. If the above steps don't seem to solve the issue, the problem could likely lie with the MC's api or the OIDC group id which might be hard coded or configured in multiple places.
+
+### Detailed Workaround
+
+1. Decrypt `egger dex-app` secret in `egger-configs`.
+
+2. Under `oidc.customer.connectors` you'll see 2 entries. One with id `customer-developer` and one with `customer-azure`.
+
+3. Replace `customer-developer` with just `customer`.
+
+   As a reference, consider these examples: 
+    ```bash
+    id: customer-developers
+    ```
+   Modified to: 
+    ```bash
+    id: customer
+    ```
+4. After making the necessary changes, validate that the issue is resolved.
+
+Remember, the existence of hard coding in the system could lead to such problems. In such scenarios, you are recommended to open an issue and communicate this to the team for further investigation and removal of hardcoded values.
 
 ## Details of the id token {#id-token-details}
 
