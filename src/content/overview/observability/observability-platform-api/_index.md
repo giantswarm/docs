@@ -58,6 +58,10 @@ You can see the overall architecture of the API in the following diagram:
 
 ![api architecture](./observability-platform-api-graph.png)
 
+**Important:** As the `observability platform API` uses an OIDC provider to authenticate requests against it you first need to provide the details of an OIDC provider to use for the APIs authentication. We will then setup the `observability platform API` accordingly. 
+
+Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header. Any data send to the API with non-existent tenants IDs will be dropped and not ingested into the platform. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+
 ### How it works
 
 Let's explore the 2 main workflows from the customer's perspective.
