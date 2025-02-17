@@ -18,17 +18,6 @@ last_review_date: 2025-02-10
 
 The following page describes the concept of the Observability Platform API
 
-## Table of contents
-
-* [Context](#context)
-* [Architecture](#architecture)
-* [Global overview](#global-overview)
-  * [How it works](#how-it-works)
-    * [Read path](#read-path)
-    * [Write path](#write-path)
-* [Adding datasources](#adding-datasources)
-* [Limitations](#limitations)
-
 ## What it is
 
 The observability platform ingests and allows to explore system and application observability data from inside Giant Swarm managed clusters by default.
