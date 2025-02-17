@@ -7,7 +7,7 @@ menu:
   main:
     parent: platform-overview-connectivity
 user_questions:
-  - Why
+  - How does Giant Swarm configure Cilium on clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 last_review_date: 2025-02-17
@@ -26,10 +26,10 @@ To ensure smooth operation, some deviations from the default configuration of Ci
 - [Local redirect policies](https://docs.cilium.io/en/stable/network/kubernetes/local-redirect-policy/) are enabled
 - Ignore common, high cardinality labels from identity computation of pods and services. This means, it is not possible to use these labels in network policies.
   In addition to the [default exclusions](https://docs.cilium.io/en/stable/operations/performance/scalability/identity-relevant-labels/#identity-relevant-labels), the following labels are ignored:
-  - Flux labels (`.*fluxcd\.io/.*`)
-  - PSS labels (`.*/enforce`)
-  - `.*kubernetes\.io/managed-by.*`
-  - `job-name`
+    - Flux labels (`.*fluxcd\.io/.*`)
+    - PSS labels (`.*/enforce`)
+    - `.*kubernetes\.io/managed-by.*`
+    - `job-name`
 - Install a PodDisruptionPolicy
 - Disable built in Envoy Proxy Daemonset
 - Disable `kube-proxy` usage. See [Kubernetes Without kube-proxy](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/)
