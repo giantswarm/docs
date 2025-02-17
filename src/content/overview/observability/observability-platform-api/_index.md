@@ -31,7 +31,7 @@ The following page describes the concept of the Observability Platform API
 
 ## What it is
 
-The observability platform already ingests and allows to explore system and application observability data from inside Giant Swarm managed clusters by default.
+The observability platform ingests and allows to explore system and application observability data from inside Giant Swarm managed clusters by default.
 
 The `observability platform API` opens up the observability platform to be used from the outside - which means any resource not managed by Giant Swarm. You can ingest observability data from any source by sending them to the `observability platform API`. Additionally the API allows to query observability data from wherever you want. 
 
@@ -41,9 +41,9 @@ This allows you to for example ingest observability data from a SaaS-Database th
 
 The `observability platform API`s main objectives are to:
 
-* provide a secure access to our observability platform from outside of Giant Swarm managed clusters.
+* provide secure access to our observability platform from outside of Giant Swarm managed clusters.
 * enable you to ingest and access observability data from anywhere.
-* sanitize (sampling, relabelling, ...) observability data to align with our general data standards in the observability platform.
+* sanitize (sampling, relabelling, etc.) observability data to align with our general data standards in the observability platform.
 * support for the OpenTelemetry Protocol (OTLP).
 
 ## How it works
@@ -62,15 +62,15 @@ Let's explore the 2 main workflows from the customer's perspective.
 
 Let's consider the following situation : a customer wants to access Giant Swarm observability data from his own Grafana running on his premises.
 
-To do so, the customer will first log into the Grafana instance using the OIDC provider hosted on his premises. Once authenticated, he will perform a query from the "Explore" panel or simply use dashboards which in any case will trigger a request sent to the Observability Platform API url.
+To do so, the customer will first log into the Grafana instance using the OIDC provider hosted on his premises. Once authenticated, he will perform a query from the "Explore" panel or use dashboards, which, in any case, will trigger a request sent to the Observability Platform API address.
 
-There, depending on the path the requests is trying to access (i.e either trying to access logs or metrics) it will go through one of 2 ingresses sharing the same host : one in the loki namespace and the other in the mimir one. Note that we decided to have 2 ingresses sharing the same host instead of having 1 ingress handling all paths because usually, ingresses only forward requests in the same namespace they are deployed in. There are ways to go around this, but those are a bit tricky and definitely not straight forward.
+There, depending on the path the request is trying to access (i.e. either trying to access logs or metrics), it will go through one of two ingresses sharing the same host: one in the Loki namespace and the other in the Mimir one. Note that we decided to have two ingresses sharing the same host instead of having one ingress handling all paths because, usually, ingresses only forward requests in the same namespace in which they are deployed. There are ways to go around this, but those are a bit tricky and not straightforward.
 
-Upon reaching the correct ingress, the request will need to be authenticated before being forwarded. This is done through a nginx annotation : `nginx.ingress.kubernetes.io/auth-url` which value is the customer OIDC provider ingress' url. As the requests coming from Grafana forwards the user's OAuth identity through the use of a token, the Giant Swarm ingress only make sure that the incoming request's token matches an allowed user in the OIDC provider.
+Upon reaching the correct ingress, the request must be authenticated before being forwarded. This is done through an nginx annotation: `nginx.ingress.kubernetes.io/auth-url` whose value is the customer OIDC provider ingress' url. As the requests coming from Grafana forward the user's OAuth identity through the use of a token, the Giant Swarm ingress only makes sure that the incoming request's token matches an allowed user in the OIDC provider.
 
 Moreover, the ingress will verify that the incoming requests are using the `X-Scope-OrgId` HTTP headers (tenant information). If not, the request will be denied.
 
-Upon authentication, the request is then forwarded to either the `loki-gateway` or `mimir-gateway` (depending if the query is looking for logs or metrics) components which are nginx servers respectively fronting the loki and mimir clusters. Those gateway components then finally forward the request to the read components.
+Upon authentication, the request is forwarded to either the `loki-gateway` or `mimir-gateway` components (depending on whether the query is looking for logs or metrics), which are nginx servers fronting the Loki and Mimir clusters. Those gateway components then finally forward the request to the read components.
 
 That's it, the user now has access to the query's output.
 
