@@ -35,9 +35,7 @@ The `observability platform API`s main objectives are to:
 * sanitize (sampling, relabelling, etc.) observability data to align with our general data standards in the observability platform.
 * support for the OpenTelemetry Protocol (OTLP).
 
-## How it works
-
-### Global overview
+## How it works : a global overview
 
 The `observability platform API` generally consists of different ingress components that use a shared host based on your Giant Swarm Installation's base domain and an OIDC provider to allow secure read or write access to the observability platform.
 
@@ -51,47 +49,15 @@ You can see the overall architecture of the API in the following diagram:
 
 Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header. Any data send to the API with non-existent tenants IDs will be dropped and not ingested into the platform. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
-### How it works
-
-Let's explore the 2 main workflows from the customer's perspective.
-
-#### Read path
-
-Let's consider the following situation : a customer wants to access Giant Swarm observability data from his own Grafana running on his premises.
-
-To do so, the customer will first log into the Grafana instance using the OIDC provider hosted on his premises. Once authenticated, he will perform a query from the "Explore" panel or use dashboards, which, in any case, will trigger a request sent to the Observability Platform API address.
-
-There, depending on the path the request is trying to access (i.e. either trying to access logs or metrics), it will go through one of two ingresses sharing the same host: one in the Loki namespace and the other in the Mimir one. Note that we decided to have two ingresses sharing the same host instead of having one ingress handling all paths because, usually, ingresses only forward requests in the same namespace in which they are deployed. There are ways to go around this, but those are a bit tricky and not straightforward.
-
-Upon reaching the correct ingress, the request must be authenticated before being forwarded. This is done through an nginx annotation: `nginx.ingress.kubernetes.io/auth-url` whose value is the customer OIDC provider ingress' url. As the requests coming from Grafana forward the user's OAuth identity through the use of a token, the Giant Swarm ingress only makes sure that the incoming request's token matches an allowed user in the OIDC provider.
-
-Moreover, the ingress will verify that the incoming requests are using the `X-Scope-OrgId` HTTP headers (tenant information). If not, the request will be denied.
-
-Upon authentication, the request is forwarded to either the `loki-gateway` or `mimir-gateway` components (depending on whether the query is looking for logs or metrics), which are nginx servers fronting the Loki and Mimir clusters. Those gateway components then finally forward the request to the read components.
-
-That's it, the user now has access to the query's output.
-
-#### Write path
-
-Let's consider the following situation : a customer's logging agent running on his premises want to send its data to the Giant Swarm Observability Platform.
-
-The workflow is quite similar as the one described for the read path. The main difference is in the fact that the requests will go through another ingress in the monitoring namespace which fronts a specifically tuned alloy instance, deployed via the [alloy-gateway-app](https://github.com/giantswarm/alloy-gateway-app).
-
-Once authenticated, the request will thus go through the `alloy-gateway` which will forward it to the `loki-gateway` and then in turn the `loki-write` components.
-
-This additional step was added to ensure that we support OTLP.
-
 ## The observability platform API as Grafana datasource
 
 One use case for the `observability platform API` is to explore the observability platforms data in a self-managed Grafana. Our recommended way of connecting a Grafana instance to the `observability platform API` is to add a datasource in the Grafana instance pointing towards the API.
 
 Here is a step-by-step guide on how to do it :
 
-1. in the `Connection` section, set the `observability-platform API` domain as URL. The API follows the pattern of adding the `observability`-subdomain to your installations base domain. This looks like `https://observability.<domain_name>` while you need to replace the `<domain_name>` placeholder with the actual domain name of your installation. **Please note**: if you're adding a Mimir or Prometheus datasource, you will have to add the `/prometheus` suffix to the url, making it: `https://observability.<domain_name>/prometheus`.
+1. in the `Connection` section, set the `observability-platform API` domain as URL. The API follows the pattern of adding the `observability`-subdomain to your installations base domain. This looks like `https://observability.<domain_name>` while you need to replace the `<domain_name>` placeholder with the actual domain name of your installation. **Please note**: if you're adding a Mimir or Prometheus datasource, you will have to add the `/prometheus` suffix to the url, making it: `https://observability.<domain_name>/prometheus`. Please note that if you're adding a Mimir or Prometheus datasource, you will have to add the `/prometheus` suffix to the url (i.e the final url will be of the following form : `https://observability.<domain_name>/prometheus`).
 
 ![datasource url](./datasource-url.png)
-
-Please note that if you're adding a Mimir or Prometheus datasource, you will have to add the `/prometheus` suffix to the url (i.e the final url will be of the following form : `https://observability.<domain_name>/prometheus`).
 
 2. In the `Authentication` section, select the `Forward OAuth Identity` option.
 
@@ -102,7 +68,3 @@ Please note that if you're adding a Mimir or Prometheus datasource, you will hav
 ![datasource headers](./datasource-headers.png)
 
 The header will always be `X-Scope-OrgID` but the value will differ depending on whether you are adding a Loki or Mimir/Prometheus datasource. The default value to access Giant Swarm managed logs should be `giantswarm` and metrics should be `anynomous`. The value of the header for the data you ingest depends on what you configured as a tenant upon ingestion.
-
-## Limitations
-
-We currently only support logs in the write path.
