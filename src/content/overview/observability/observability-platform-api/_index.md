@@ -50,7 +50,11 @@ The `observability platform API`s main objectives are to:
 
 ### Global overview
 
-Here is a graph showing the general architecture for the API :
+The `observability platform API` generally consists of different ingress components that use a shared host based on your Giant Swarm Installation's base domain and an OIDC provider to allow secure read or write access to the observability platform.
+
+Additionally for the write path of the API we use a specifically tuned [Grafana Alloy](https://grafana.com/docs/alloy/latest/) instance, ensuring the use of OLTP.
+
+You can see the overall architecture of the API in the following diagram:
 
 ![api architecture](./observability-platform-api-graph.png)
 
