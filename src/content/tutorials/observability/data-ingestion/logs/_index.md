@@ -97,7 +97,7 @@ EOF
 
 This will select all pods with the `foo: bar` label in the namespace `charlie` and add the `node_name` label to the logs metadata. It will send all the logs extracted by this PodLog under the `my-team` tenant.
 
-**Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `giantswarm_observability_tenant`-label references an existing Grafana Organization. Any logs and events that are sent to a non-existing tenant (speak: Grafana Organization) will be dropped by Loki. If you want the logs and events to be ingested into the `Shared Organization` you have to set the label to `giantswarm`. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+**Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `giantswarm_observability_tenant` label references an existing Grafana Organization. Any logs and events that are sent to a non-existing tenant (speak: Grafana Organization) will be dropped by Loki. If you want the logs and events to be ingested into the `Shared Org` you have to set the label to `giantswarm`. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 More examples can be found [here](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
 
