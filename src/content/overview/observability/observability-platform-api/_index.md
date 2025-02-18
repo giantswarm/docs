@@ -30,8 +30,7 @@ With this you can ingest observability data from, for example, a SaaS-Database t
 
 The `observability platform API`s main objectives are to:
 
-* provide secure access to our observability platform from outside of Giant Swarm managed clusters.
-* enable you to ingest and access observability data from anywhere - also from outside of Giant Swarm managed clusters.
+* enable you to securely ingest and access observability data in our observability platform from anywhere - also from outside of Giant Swarm managed clusters.
 * sanitize (sampling, relabelling, etc.) observability data to align with our general data standards in the observability platform.
 * support for the OpenTelemetry Protocol (OTLP).
 
