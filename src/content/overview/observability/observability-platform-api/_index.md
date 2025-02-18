@@ -22,30 +22,30 @@ The following page describes the concept of the Observability Platform API
 
 The observability platform ingests and allows to explore system and application observability data from inside Giant Swarm managed clusters by default.
 
-The `observability platform API` opens up the observability platform to be used from the outside - which means any resource not managed by Giant Swarm. You can ingest observability data from any source by sending them to the `observability platform API`. Additionally the API allows to query observability data from wherever you want. 
+The `observability platform API` opens up the observability platform to be used from the outside - which means any resource not managed by Giant Swarm. You can ingest observability data from any source by sending them to the `observability platform API`. Additionally the API allows to query observability data from wherever you want.
 
-This allows you to for example ingest observability data from a SaaS-Database that might be a dependency of one of your workloads on a Giant Swarm managed cluster. Or you could explore the observability platforms data from your own, remote Grafana instance or any other observability tooling.
+With this you can ingest observability data from, for example, a SaaS-Database that might be a dependency of one of your workloads on a Giant Swarm managed cluster. Or you could explore the observability platforms data from your own, remote Grafana instance or any other observability tooling.
 
 **Note:** At this point the `observability platform API` only allows the ingestion of logs and events. The ingestion of metrics will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes/observability-platform/" >}}) or this document for updates.
 
 The `observability platform API`s main objectives are to:
 
 * provide secure access to our observability platform from outside of Giant Swarm managed clusters.
-* enable you to ingest and access observability data from anywhere.
+* enable you to ingest and access observability data from anywhere - also from outside of Giant Swarm managed clusters.
 * sanitize (sampling, relabelling, etc.) observability data to align with our general data standards in the observability platform.
 * support for the OpenTelemetry Protocol (OTLP).
 
-## How it works : a global overview
+## How it works -  Global Overview
 
-The `observability platform API` generally consists of different ingress components that use a shared host based on your Giant Swarm Installation's base domain and an OIDC provider to allow secure read or write access to the observability platform.
+The `observability platform API` consists of different ingress components that use a shared host based on your Giant Swarm Installation's base domain and an OIDC provider to allow secure read or write access to the observability platform.
 
-Additionally for the write path of the API we use a specifically tuned [Grafana Alloy](https://grafana.com/docs/alloy/latest/) instance, ensuring the use of OLTP.
+Additionally, the write path of the API uses a specifically tuned [Grafana Alloy](https://grafana.com/docs/alloy/latest/) instance, ensuring the use of OLTP.
 
 You can see the overall architecture of the API in the following diagram:
 
 ![api architecture](./observability-platform-api-graph.png)
 
-**Important:** As the `observability platform API` uses an OIDC provider to authenticate requests against it you first need to provide the details of an OIDC provider to use for the APIs authentication. We will then setup the `observability platform API` accordingly. 
+**Important:** As the `observability platform API` uses an OIDC provider to authenticate requests against it you first need to provide the details of an OIDC provider to use for the APIs authentication. We will then setup the `observability platform API` accordingly.
 
 Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header. Any data send to the API with non-existent tenants IDs will be dropped and not ingested into the platform. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
