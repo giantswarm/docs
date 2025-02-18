@@ -57,7 +57,7 @@ EOF
 
 With this deployed manifest, Grafana Alloy will collect all logs for the `nginx` ingress pods and send the logs to the `my-team` tenant.
 
-**Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant`-label references an existing Grafana Organization. Any logs and events that are sent to a non-existing tenant (speak: Grafana Organization) will be dropped by Loki. If you want the logs and events to be ingested into the `Shared Organization` you have to set the label to `giantswarm`. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+**Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label references an existing Grafana Organization. Any logs and events that are sent to a non-existing tenant (speak: Grafana Organization) will be dropped by Loki. If you want the logs and events to be ingested into the `Shared Org` you have to set the label to `giantswarm`. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 ### Using PodLogs
 
