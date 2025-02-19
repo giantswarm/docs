@@ -1,7 +1,7 @@
 ---
 linkTitle: Connectivity
-title: Developer Platform Connectivity Features (ingress, api gateways)
-description: Overview of the connectivity related platform features, which includes ingress controllers and API gateways.
+title: Developer Platform Connectivity Features (ingress, api gateways, cni)
+description: Overview of the connectivity related platform features, which includes ingress controllers, API gateways and CNI.
 weight: 80
 aliases:
   - /platform-overview/connectivity
@@ -14,5 +14,6 @@ owner:
 user_questions:
   - What app do you recommend for ingress?
   - What app do you recommend for api gateway?
-last_review_date: 2024-07-17
+  - Which CNI is used in Giant Swarm clusters?
+last_review_date: 2025-02-18
 ---
