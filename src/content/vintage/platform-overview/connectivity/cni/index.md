@@ -13,13 +13,13 @@ owner:
 last_review_date: 2025-02-17
 ---
 
-Every Giant Swarm kubernetes cluster use [Cilium](https://cilium.io) as container networking interface (CNI). This ensures proper connnectivity between nodes, services and pods in the cluster.
+Every Giant Swarm kubernetes cluster uses [Cilium](https://cilium.io) as a container networking interface (CNI). This ensures proper connectivity between nodes, services and pods in the cluster.
 
 ## Configuration
 
 Since the CNI is an important component when bootstrapping a cluster, Cilium is installed ahead of the [Giant Swarm App Platform]({{< relref "/vintage/platform-overview/app-platform" >}}).
 
-To ensure smooth operation, some deviations from the default configuration of Cilium are taken. Among these are
+To ensure smooth operation, some deviations from the default configuration of Cilium are taken. Among these are:
 
 - Increased policy BPF map size (`bpf-policy-map-max: 65536`)
 - [Hubble](https://docs.cilium.io/en/stable/observability/hubble/#hubble-intro) is enabled by default
