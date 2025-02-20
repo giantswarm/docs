@@ -13,7 +13,7 @@ owner:
 last_review_date: 2025-02-17
 ---
 
-Every Giant Swarm kubernetes cluster uses [Cilium](https://cilium.io) as a container networking interface (CNI). This ensures proper connectivity between nodes, services and pods in the cluster.
+Every Giant Swarm Kubernetes cluster uses [Cilium](https://cilium.io) as a container networking interface (CNI). This ensures proper connectivity between nodes, services and pods in the cluster.
 
 ## Configuration
 
@@ -31,7 +31,7 @@ To ensure smooth operation, some deviations from the default configuration of Ci
     - `.*kubernetes\.io/managed-by.*`
     - `job-name`
 - Install a PodDisruptionPolicy
-- Disable built in Envoy Proxy Daemonset
+- Disable built in Envoy Proxy DaemonSet
 - Disable `kube-proxy` usage. See [Kubernetes Without kube-proxy](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/)
 
 All changes to the official Helm chart are recorded in [https://github.com/giantswarm/cilium-app/tree/main/diffs](https://github.com/giantswarm/cilium-app/tree/main/diffs).
