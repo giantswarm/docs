@@ -154,7 +154,7 @@ Since our earliest releases, Giant Swarm has set up a secure baseline in all our
 
 In addition to the security policies, [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces, forcing each workload to define which communications are allowed. This [guide]({{< relref "/vintage/getting-started/connectivity/network-policies" >}}) helps to demonstrate how such a dynamic firewall works.
 
-Currently, we run [Cilium](https://cilium.io/) as CNI in all our clusters which brings powerful new features to increase the security of our setups. Cilium extends Kubernetes network policies to allow us filter out based on domains and offers additional features for visibility and policy enforcement. More information on the usage of Cilium can be found on the [container networking interface]({{< relref "/vintage/platform-overview/connectivity/cni" >}}) page.
+Currently, we run [Cilium](https://cilium.io/) as CNI in all our clusters which brings powerful new features to increase the security of our setups. Cilium extends Kubernetes network policies to allow us filter out based on domains and offers additional features for visibility and policy enforcement.
 
 #### Monitoring Features of the Platform
 
