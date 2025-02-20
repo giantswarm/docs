@@ -19,7 +19,7 @@
       datasourceTemplate: 'github-tags',
       fileMatch: ['^scripts/update-crd-reference/config\\.yaml$'],
       matchStrings: [
-        'short_name:\\s*(?<depName>?)\\s+commit_reference:\\s*(?<currentValue>\\S+)',
+        'short_name:\\s*(?<depName>\\S+)\\s+commit_reference:\\s*(?<currentValue>\\S+)',
       ],
       packageNameTemplate: 'giantswarm/{{{depName}}}',
       versioningTemplate: 'semver-coerced',

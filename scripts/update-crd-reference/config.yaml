@@ -255,7 +255,7 @@ source_repositories:
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.0.8
+    commit_reference: v0.1.4
     crd_paths:
       - helm
     metadata:
@@ -265,7 +265,7 @@ source_repositories:
   - url: https://github.com/giantswarm/exception-recommender
     organization: giantswarm
     short_name: exception-recommender
-    commit_reference: v0.1.1
+    commit_reference: v0.2.0
     crd_paths:
       - helm
     metadata:
