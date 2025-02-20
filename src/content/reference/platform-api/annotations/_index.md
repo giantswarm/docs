@@ -15,6 +15,11 @@ last_review_date: 2025-01-20
 
 **Notice:** Annotations on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of annotations, and which values or value format is expected. If you are missing information, please consult upstream documentation from Kubernetes etc., or ask a Giant Swarm contact for more information. Also check our corresponding [labels]({{< relref "/reference/platform-api/labels" >}}) reference page.
 
+
+### cluster.giantswarm.io/description
+
+Used on the Cluster resource to provide a human-readable description of the cluster. This description is shown in Giant Swarm web interfaces.
+
 ### network-topology.giantswarm.io/mode
 
 Found on the AWSCluster resource for Cluster API provider AWS (CAPA) clusters. Specifies how transit gateways for the cluster will get set up in AWS. Possible values are: `None`, `GiantSwarmManaged`, `UserManaged`.
