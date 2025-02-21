@@ -33,6 +33,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  namespace: example-namespace
   labels:
     app: nginx
 spec:
@@ -58,6 +59,14 @@ EOF
 With this deployed manifest, Grafana Alloy will collect all logs for the `nginx` ingress pods and send the logs to the `my-team` tenant.
 
 **Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label references an existing Grafana Organization. Any logs and events that are sent to a non-existing tenant (speak: Grafana Organization) will be dropped by Loki. If you want the logs and events to be ingested into the `Shared Org` you have to set the label to `giantswarm`. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+
+The following LogQL query can be used in `Grafana > Explore` UI to show all logs ingested for the `Deployment`, in our example:
+
+```logql
+{namespace="example-namespace", pod=~"nginx-deployment.+"}
+```
+
+Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
 
 ### Using PodLogs
 
@@ -102,7 +111,7 @@ This will select all pods with the `foo: bar` label in the namespace `example-na
 
 More examples can be found [here](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
 
-The following LogQL query can be used in `Grafana > Explore` UI to show all logs ingested by the `PodLogs` resource, in our example:
+The following LogQL query can be used in `Grafana > Explore` UI to show all logs ingested for the `PodLogs` resource, in our example:
 
 ```logql
 {job="example-namespace/example-podlog"}
