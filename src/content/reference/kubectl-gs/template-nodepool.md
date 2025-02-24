@@ -7,7 +7,7 @@ menu:
   principal:
     parent: reference-kubectlgs
 user_questions:
-  - How can I create a node pool manifest for the Management API?
+  - How can I create a node pool manifest for the platform API?
 last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger

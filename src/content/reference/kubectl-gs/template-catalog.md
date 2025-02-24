@@ -10,7 +10,7 @@ last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How can I create an catalog manifest for the Management API?
+  - How can I create an catalog manifest for the platform API?
   - How can I add catalog level values or secrets for the apps deployed from this catalog?
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-catalog/

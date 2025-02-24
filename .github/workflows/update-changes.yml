@@ -1,7 +1,7 @@
 # This workflow, when done, is supposed to update automatically
 # generated content in these sections:
 # - Changes and releases
-# - CRDs (Management API)
+# - CRDs (platform API)
 # - Cluster Apps
 # - CLI versions
 # - Website header and footer

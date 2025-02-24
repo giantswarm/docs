@@ -15,7 +15,7 @@ user_questions:
   - Can kubectl-gs work without kubectl?
   - Do you provide a container image for kubectl-gs?
   - What commands replace my old gsctl command?
-  - How can I find out my Management API endpoint for 'kubectl gs login'?
+  - How can I find out my platform API endpoint for 'kubectl gs login'?
   - "What does 'Error: Token renewal failed' mean?"
   - Why does the command connect to a service called "athena"?
 aliases:
@@ -58,4 +58,4 @@ It means that `kubectl gs login` tried to get a fresh ID-token to authenticate w
 
 ### Why does the command connect to a service called 'athena'
 
-The Management API uses a TLS certificate signed by a custom certificate authority (CA). In order to communicate with the API, a client (here: `kubectl`) must trust that CA, it must have the CA's certificate. Athena is a public service providing that CA certificate, plus some information on the installation, to the client.
+The platform API uses a TLS certificate signed by a custom certificate authority (CA). In order to communicate with the API, a client (here: `kubectl`) must trust that CA, it must have the CA's certificate. Athena is a public service providing that CA certificate, plus some information on the installation, to the client.

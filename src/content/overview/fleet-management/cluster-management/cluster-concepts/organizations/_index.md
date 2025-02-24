@@ -15,7 +15,7 @@ user_questions:
 
 _Organizations_ are a means to organize resources like clusters and apps in a way that different entities are isolated from each other. You can use organizations to separate resources for different projects, business units, teams, etc., within the same Giant Swarm management cluster.
 
-The organization concept makes use of some well-known building blocks of Kubernetes in the [Management API]({{< relref "/overview/architecture" >}}), such as:
+The organization concept makes use of some well-known building blocks of Kubernetes in the [platform API]({{< relref "/overview/architecture" >}}), such as:
 
 - Namespaces
 - Role based access control (RBAC)
@@ -32,7 +32,7 @@ At Giant Swarm, for example, we run several shared installations where we allow 
 
 ### Visual overview {#intro-visual}
 
-[![Organizations in the Management API, visualized](organizations-management-api.svg)](organizations-management-api.svg)
+[![Organizations in the platform API, visualized](organizations-management-api.svg)](organizations-management-api.svg)
 
 <!-- Source for above image: https://docs.google.com/drawings/d/1PDve3HoE7br_6npe0RSCw8ddt-H7pFztPlSDiQbNabs/edit -->
 
