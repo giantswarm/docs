@@ -52,7 +52,7 @@ update-cluster-app-reference:
 	scripts/update-helm-chart-reference/main.sh
 
 # Generate the reference documentation for the custom resource
-# definitions (CRD) used in the Management API.
+# definitions (CRD) used in the platform API.
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
 

@@ -10,7 +10,7 @@ last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How can I create an app manifest for the Management API?
+  - How can I create an app manifest for the platform API?
   - How can I add labels and annotations to the target namespace of an app?
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-app/
