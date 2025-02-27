@@ -1,4 +1,3 @@
-```yaml
 ---
 linkTitle: Cluster access control
 title: Cluster access control with RBAC and Pod Security Standards
