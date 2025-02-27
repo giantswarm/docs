@@ -509,5 +509,3 @@ __Warning:__ certificates with bindings to built-in groups like `system:masters`
 Learn more about [policies]({{< relref "/tutorials/security/policy-enforcement" >}}) and how to enforce security them through the platform.
 
 [platform-access-management]: {{< relref "/tutorials/access-management" >}}
-
-```
