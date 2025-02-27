@@ -1,3 +1,4 @@
+```yaml
 ---
 linkTitle: Cluster access control
 title: Cluster access control with RBAC and Pod Security Standards
@@ -13,7 +14,7 @@ user_questions:
   - Why are my containers failing to access some resources?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2024-11-28
+last_review_date: 2025-02-27
 mermaid: true
 ---
 
@@ -178,6 +179,38 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
+### Resolving Crossplane Access Issues
+
+#### Crossplane in Clusterrolebindings
+
+If you encounter unseen `clusterrolebindings` with Crossplane references, these typically stem from the Management Cluster Base (MCB) as defaults. For MCB settings, refer to the [Crossplane settings](https://github.com/giantswarm/management-cluster-bases/tree/main/extras/crossplane).
+
+When access issues occur for some users regarding these resources, consider manually creating necessary `clusterrolebindings`. Ensure to limit permissions appropriately. For a temporary manual fix, use:
+
+```sh
+kubectl create clusterrolebinding [group-name]-crossplane-admin --clusterrole crossplane-admin --group "[group-name]"
+```
+
+Replace `[group-name]` with the actual group name. Note that `crossplane-admin` permissions might be too broad, given they allow reading secrets. A custom role with targeted permissions could be more suitable.
+
+#### Checking Audit Logs
+
+Always verify audit logs to understand access changes or discrepancies. Use:
+
+```sh
+tsh apps login [app-name]
+```
+
+to access Grafana via Teleport.
+
+#### Implement Persistent Fixes
+
+Preferably, implement these configurations in your environment via the gitops repository instead of manual setups for consistent settings application.
+
+#### Security Considerations
+
+Maintain oversight of `clusterrolebindings` and access rights to prevent unauthorized access. Consult current Crossplane documentation as roles may evolve over time.
+
 #### ClusterRoleBinding
 
 Finally, a `ClusterRoleBinding` may be used to grant permission at the cluster level and in all namespaces. The following `ClusterRoleBinding` allows any user in the group “manager” to read secrets in any namespace.
@@ -199,9 +232,9 @@ roleRef:
 
 #### Referring to subjects
 
-Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access (and with `PSPs` also `Pod` privileges) to certain `Pods`, for example monitoring and logging agents.
+Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access (and with `PSPs` also `Pod` privileges) to certain `Pods`, for example, monitoring and logging agents.
 
-For a detailed explanation of how to refer to subjects in bindings you can read the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
+For a detailed explanation of how to refer to subjects in bindings, you can read the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
 
 #### Default role bindings {#default-roles-bindings}
 
@@ -477,3 +510,5 @@ __Warning:__ certificates with bindings to built-in groups like `system:masters`
 Learn more about [policies]({{< relref "/tutorials/security/policy-enforcement" >}}) and how to enforce security them through the platform.
 
 [platform-access-management]: {{< relref "/tutorials/access-management" >}}
+
+```
