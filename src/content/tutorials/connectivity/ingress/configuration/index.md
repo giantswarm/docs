@@ -1,3 +1,4 @@
+```yaml
 ---
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the ingress nginx controller.
@@ -21,12 +22,12 @@ user_questions:
   - How can I enable TLS passthrough in ingress?
   - How can I let the ingress controller do TLS termination?
   - How can I rate-limit ingress requests?
-  - How can I confgiure a different connection timeout for my ingress?
-  - How can I change the ingress nginx controller configmap?
+  - How can I configure a different connection timeout for my ingress?
+  - How can I change the ingress nginx controller ConfigMap?
   - How can I use ingress nginx controller as a Web Application Firewall?
   - How can I protect my workload from malicious requests?
   - How can I enable & configure ModSecurity inside of the ingress nginx controller?
-last_review_date: 2024-08-26
+last_review_date: 2025-02-27
 aliases:
   - /advanced/connectivity/ingress/configuration
   - /guides/advanced-ingress-configuration/
@@ -43,6 +44,36 @@ The [ingress nginx controller](https://github.com/kubernetes/ingress-nginx) has 
 __Note__: Giant Swarm clusters don't come with an ingress controller pre-installed. See our [guide on how to install an ingress controller from the Giant Swarm catalog]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}}).
 
 ## Per-Service options {#yaml}
+
+### IP Whitelist
+
+To configure IP whitelisting in Nginx via ingress rules, utilize the `nginx.ingress.kubernetes.io/whitelist-source-range` annotation. This allows specific IP ranges to access your endpoints.
+
+Here's an example:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.1.0/24,10.0.0.0/8"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: YOUR_DOMAIN
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: your-service
+            port:
+              number: 80
+```
+
+Replace the IPs in the example with the ranges you wish to allow.
 
 ### Aggregating ingresses
 
@@ -243,7 +274,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-type: basic
     # Name of the secret that contains the user/password definitions
     nginx.ingress.kubernetes.io/auth-secret: AUTH_SECRET
-    # Message to display with an appropiate context why the authentication is required
+    # Message to display with an appropriate context why the authentication is required
     nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - foo"
 spec:
   ingressClassName: nginx
@@ -638,3 +669,6 @@ This section of the documentation is based on an article by Daniel Jimenez Garci
 - [Official Kubernetes documentation for the ingress Resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Configuration documentation for the ingress nginx controller](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
 - [Official ingress nginx controller configuration snippets example](https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/configuration-snippets)
+
+---
+```
