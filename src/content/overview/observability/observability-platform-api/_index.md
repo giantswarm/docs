@@ -13,7 +13,7 @@ user_questions:
   - How to use the observability-platform API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-02-20
+last_review_date: 2025-03-05
 ---
 
 
@@ -44,7 +44,9 @@ You can see the overall architecture of the API in the following diagram:
 
 **Important:** As the `observability platform API` uses an OIDC provider to authenticate requests against it you first need to provide the details of an OIDC provider to use for the APIs authentication. We will then setup the `observability platform API` accordingly.
 
-Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header. Any data send to the API with non-existent tenants IDs will be dropped and not ingested into the platform. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header.
+
+**Warning:** Any data sent to the API with non-existent tenants IDs will be dropped and not ingested into the platform. These tenants are defined in the Grafana Organization resources. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 ## The observability platform API as Grafana data source
 

@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-multitenancy-create-grafana-organization
     parent: tutorials-observability-multitenancy
 weight: 40
-last_review_date: 2024-12-12
+last_review_date: 2025-03-05
 user_questions:
   - How to create a grafana organization?
   - How to access multi-tenant observability data?
@@ -45,3 +45,5 @@ Our operators will create this `Grafana` organization named _Giant Swarm_. It wi
 
 The Role Base Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [available roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`). For organization mapping, you can read the official Grafana [documentation](https://grafana.com/docs/grafana/next/setup-grafana/configure-security/configure-authentication/generic-oauth/#configure-role-mapping).
 Note that only the `admins` field is mandatory in this section.
+
+Thanks to our Tenant Governance, you can define any number of tenants in a Grafana Organization and update those at any time later on (i.e adding or removing tenants to an existing Grafana Organization). This also mean that deleting a Grafana Organization which tenants are also listed in other organizations won't delete those.
