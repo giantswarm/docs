@@ -46,6 +46,6 @@ Our operators will create this `Grafana` organization named _Giant Swarm_. It wi
 The Role Base Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [available roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`). For organization mapping, you can read the official Grafana [documentation](https://grafana.com/docs/grafana/next/setup-grafana/configure-security/configure-authentication/generic-oauth/#configure-role-mapping).
 Note that only the `admins` field is mandatory in this section.
 
-The tenant field is used to grant access to the specified tenants, but also serves as tenant governance. This means that only tenants listed in **at least one** Grafana Organisation CRD are accepted targets in the write path and can receive data. Data sent to a tenant that is not listed in any Grafana Organisation CRDs tenant field will just be dropped. 
+The tenant field is used to grant access to the specified tenants, but also serves as tenant governance. This means that only tenants listed in **at least one** Grafana Organisation CRD are accepted targets in the write path and can receive data. Data sent to a tenant that is not listed in any Grafana Organisation CRDs tenant field will just be dropped.
 
-**Warning:** Removing a tenant from **all** Grafana Organisation CRDs tenant fields also means, that you can no longer send data to that tenant! 
+**Warning:** Removing a tenant from **all** Grafana Organisation CRDs tenant fields also means, that you can no longer send data to that tenant!
