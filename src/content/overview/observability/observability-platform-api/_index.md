@@ -46,7 +46,7 @@ You can see the overall architecture of the API in the following diagram:
 
 Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header.
 
-**Warning:** Any data sent to the API with non-existent tenants IDs will be dropped and not ingested into the platform. These tenants are defined in the Grafana Organization resources. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+**Warning:** Any data sent to the API with non-existent tenant IDs will be dropped and not ingested into the platform. These tenants are defined in the Grafana Organization resources. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 ## The observability platform API as Grafana data source
 
