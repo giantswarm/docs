@@ -239,7 +239,7 @@ def generate_release_file(repo_shortname, repo_config, release, delete):
         provider_label = release['provider'].upper()
         if provider_label == 'AZURE':
             provider_label = 'Azure'
-        categories = [f'Workload cluster releases for {provider_label}']
+        categories = [f'{provider_label} releases']
         # CAPI releases already have provider
         if release['provider'] in ['azure', 'capa', 'vsphere', 'cloud-director']:
             filename = f"{release['version_tag']}.md"
