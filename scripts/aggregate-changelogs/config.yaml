@@ -11,45 +11,45 @@ repositories:
     # The repo 'giantswarm/releases' gets special treatment, so no
     # config needed
   giantswarm/apiextensions:
-    category: Platform API
+    category: Fleet Management
   giantswarm/alloy-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/alloy-gateway-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/aws-admission-controller:
-    category: Platform API
+    category: Fleet Management
   giantswarm/azure-admission-controller:
-    category: Platform API
+    category: Fleet Management
   giantswarm/athena:
-    category: Managed Apps
+    category: Security
   giantswarm/auth-bundle:
-    category: Managed Apps
+    category: Security
   giantswarm/aws-efs-csi-driver:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/aws-load-balancer-controller-app:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/aws-node-termination-handler-app:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/backstage:
-    category: Web UI
+    category: Developer Portal
   giantswarm/capa-karpenter-taint-remover:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/cert-manager-app:
-    category: Managed Apps
+    category: Security
   giantswarm/cilium-healthcheck:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/cilium-prerequisites:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/cloudflared-app:
-    category: Managed Apps
+    category: Security
   giantswarm/cloudnative-pg-app:
-    category: Managed Apps
+    category: Security
   giantswarm/coredns-app:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/dashboards:
-    category: Dashboards
+    category: Observability
   giantswarm/dex-app:
-    category: Managed Apps
+    category: Security
   giantswarm/docs:
     category: Documentation
     # Don't create useless PRs only for empty changelogs in `docs`
@@ -58,105 +58,103 @@ repositories:
       - '- Update generated content'
       - '- Update changes and releases'
   giantswarm/exception-recommender:
-    category: Managed Apps
+    category: Security
   giantswarm/external-dns-app:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/external-dns-bundle:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/external-dns-crossplane-resources:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/external-secrets:
-    category: Managed Apps
+    category: Security
   giantswarm/falco-app:
-    category: Managed Apps
+    category: Security
   giantswarm/fluent-logshipping-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/flux-app:
-    category: Managed Apps
+    category: Continuous Deployment
   giantswarm/gateway-api-app:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/gitops-server-app:
-    category: Managed Apps
-  giantswarm/goldilocks-app:
-    category: Managed Apps
+    category: Continuous Deployment
   giantswarm/grafana-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/grafana-agent-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/happa:
-    category: Web UI
+    category: Developer Portal
   giantswarm/hello-world-app:
-    category: Managed Apps
+    category: Others
   giantswarm/ingress-nginx-app:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/jiralert-app:
-    category: Managed Apps
+    category: Others
   giantswarm/k8s-dns-node-cache-app:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/karpenter-bundle:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/keda-app:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/kong-app:
-    category: Managed Apps
+    category: Connectivity
   giantswarm/kube-prometheus-stack-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/kubectl-gs:
-    category: kubectl gs
+    category: Fleet Management
   giantswarm/kyverno-app:
-    category: Managed Apps
+    category: Security
   giantswarm/kyverno-policies:
-    category: Platform API
+    category: Security
   giantswarm/loki-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/management-cluster-admission:
     category: Platform API
   giantswarm/mimir-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/observability-bundle:
-    category: Observability Platform
+    category: Observability
   giantswarm/observability-platform-api:
-    category: Observability Platform
+    category: Observability
   giantswarm/prometheus-operator-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/promtail-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/rbac-bootstrap-app:
-    category: Managed Apps
+    category: Security
   giantswarm/rook-operator-app:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/silence-operator:
-    category: Observability Platform
+    category: Observability
   giantswarm/sloth-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/starboard-app:
-    category: Managed Apps
+    category: Security
   giantswarm/starboard-exporter:
-    category: Managed Apps
+    category: Security
   giantswarm/trivy-app:
-    category: Managed Apps
+    category: Security
   giantswarm/organization-operator:
-    category: Platform API
+    category: Security
   giantswarm/rbac-operator:
-    category: Platform API
+    category: Security
   giantswarm/strimzi-kafka-operator-app:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/teleport-kube-agent-app:
-    category: Managed Apps
+    category: Security
   giantswarm/teleport-tbot:
-    category: Managed Apps
+    category: Security
   giantswarm/tempo-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/pyroscope-app:
-    category: Observability Platform
+    category: Observability
   giantswarm/vertical-pod-autoscaler-app:
-    category: Managed Apps
+    category: Fleet Management
   giantswarm/zot:
-    category: Managed Apps
+    category: Fleet Management
 
 # Here we define the colors for categories.
 categories:
-  - name: Platform API
+  - name: Fleet Management
     color: "#b47fb0"
   - name: Dashboards
     color: "#e461a9"
@@ -164,21 +162,23 @@ categories:
     color: "#9aa48e"
   - name: Highlights
     color: "#f1dd55"
-  - name: kubectl gs
+  - name: Security
     color: "#8081b2"
-  - name: Managed Apps
+  - name: Connectivity
     color: "#7ac271"
-  - name: Observability Platform
+  - name: Observability
     color: "#f69917"
-  - name: Workload cluster releases for AWS
-    color: "#ff9900"
-  - name: Workload cluster releases for CAPA
-    color: "#ff9900"
-  - name: Workload cluster releases for CAPZ
-    color: "#ff9900"
-  - name: Workload cluster releases for CAPV
-    color: "#ff9900"
-  - name: Workload cluster releases for CAPVCD
-    color: "#ff9900"
-  - name: Web UI
+  - name: Continuous Deployment
+    color: "#f22917"
+  - name: Developer Portal
     color: "#8098b2"
+  - name: CAPA releases
+    color: "#ff9900"
+  - name: CAPZ releases
+    color: "#ff9933"
+  - name: CAPV releases
+    color: "#ff9966"
+  - name: CAPVCD releases
+    color: "#ff9999"
+  - name: Others
+    color: "#ee0099"
