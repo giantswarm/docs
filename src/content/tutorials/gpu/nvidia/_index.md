@@ -96,16 +96,16 @@ nodePools:
 
 2. Apply the updated configuration to your cluster.
 
-### Installing the NVIDIA GPU Operator
+### Installing the `GPU Operator` app
 
-The recommended way to enable NVIDIA GPU support in your cluster is to use the NVIDIA GPU Operator, which is needed for scheduling and running GPU workloads.
+The recommended way to enable NVIDIA GPU support in your cluster is to use the `GPU Operator` app, which is needed for scheduling and running GPU workloads.
 
-2. Install the NVIDIA GPU Operator from the Giant Swarm Catalog in the `kube-system` namespace.
+2. Install the `GPU Operator` app from the Giant Swarm Catalog in the `kube-system` namespace.
 
-The GPU Operator installs several components:
+The GPU Operator app installs several components:
 
 - NVIDIA Device Plugin
-- NVIDIA MIG Manager (for A100 GPUs)
+- NVIDIA MIG Manager (for A100 `GPUs`)
 - Node Feature Discovery
 - GPU Feature Discovery
 
@@ -159,15 +159,15 @@ spec:
 
 ### Resource management
 
-GPUs are only available through limits, not requests. The number specified in limits determines how many GPU's will be allocated to the pod.
+`GPUs` are only available through limits, not requests. The number specified in limits determines how many `GPUs` will be allocated to the pod.
 
 ## Best practices
 
-1. **Taints and tolerations**: Use taints on GPU nodes to prevent non-GPU workloads from being scheduled on expensive GPU resources.
+1. **Taints and tolerations**: Use Kubernetes taints on GPU nodes and corresponding tolerations in pod specifications to prevent non-GPU workloads from being scheduled on expensive GPU resources.
 
 2. **Resource quotas**: Implement resource quotas to control GPU allocation in multi-tenant environments.
 
-3. **Node auto-provisioning**: Consider using `Karpenter` or cluster autoscaling with GPU node pools to automatically scale GPU resources based on demand.
+3. **Node auto provisioning**: Consider using `Karpenter` or cluster autoscaling with GPU node pools to automatically scale GPU resources based on demand.
 
 ### Getting support
 
