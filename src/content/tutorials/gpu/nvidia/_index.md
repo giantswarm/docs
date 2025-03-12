@@ -15,7 +15,7 @@ owner:
 last_review_date: 2025-03-12
 ---
 
-# Running NVIDIA Graphics Processing Unit (GPU) workloads in Cluster API workload clusters
+# Running NVIDIA `GPU` workloads in Cluster API workload clusters
 
 This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads.
 GPU support is available starting with release v30.1.0.
@@ -29,7 +29,7 @@ GPU-accelerated computing can significantly enhance performance for specific wor
 - A running CAPI workload cluster
 - `kubectl` configured to access your workload cluster
 
-## Supported cloud providers and Graphics Processing Unit (GPU) types
+## Supported cloud providers and `GPU` types
 
 ### AWS
 
@@ -69,9 +69,9 @@ Giant Swarm CAPI clusters on Azure support the following GPU VM families and ser
 - `NVv3` series: NVIDIA Tesla M60
 - `NVadsA10_v5` series: NVIDIA A10
 
-## Adding Graphics Processing Unit (GPU) nodes to your Cluster API workload cluster
+## Adding `GPU` nodes to your Cluster API workload cluster
 
-### Configuring a Graphics Processing Unit (GPU) node pool
+### Configuring a `GPU` node pool
 
 To add GPU nodes to your CAPI workload cluster, you need to create a new node pool with the appropriate GPU instance type. The following example shows how to add GPU nodes to an AWS (CAPA) workload cluster.
 
@@ -97,7 +97,7 @@ nodePools:
 
 Apply the updated configuration to your cluster.
 
-### Installing the Graphics Processing Unit (GPU) Operator app
+### Installing the `GPU` Operator app
 
 The recommended way to enable NVIDIA GPU support in your cluster is to use the `GPU Operator` app, which is needed for scheduling and running GPU workloads.
 
@@ -132,9 +132,9 @@ nvidia-device-plugin-daemonset-rr49p                                 1/1     Run
 nvidia-operator-validator-vjhxh                                      1/1     Running     0          7s
 ```
 
-## Running Graphics Processing Unit (GPU) workloads
+## Running `GPU` workloads
 
-To run workloads on GPU nodes, you need to request GPU resources and the runtimeClassName `nvidia` needs to be specified in your pod specification:
+To run workloads on `GPU` nodes, you need to request `GPU` resources and the runtimeClassName `nvidia` needs to be specified in your pod specification:
 
 ```yaml
 apiVersion: v1
