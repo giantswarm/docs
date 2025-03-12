@@ -15,7 +15,7 @@ owner:
 last_review_date: 2025-03-12
 ---
 
-# Running NVIDIA GPU workloads in CAPI workload clusters
+# Running NVIDIA GPU workloads in Cluster API (CAPI) workload clusters
 
 This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads.
 GPU support is available starting with release v30.1.0.
@@ -50,7 +50,7 @@ Giant Swarm CAPI clusters on AWS support the following GPU instance types:
 
 Giant Swarm CAPI clusters on Azure support the following GPU VM families and series:
 
-#### NC-family (Compute-intensive, Graphics-intensive)
+#### `NC-family` (Compute-intensive, Graphics-intensive)
 
 - `NC` series: NVIDIA K80 GPU
 - `NCv2` series and `NCv3` series: NVIDIA P100 and V100
@@ -58,12 +58,12 @@ Giant Swarm CAPI clusters on Azure support the following GPU VM families and ser
 - `NC_A100_v4` series: NVIDIA A100
 - `NCads_H100_v5` series and `NCCads_H100_v5` series: NVIDIA H100
 
-#### ND-family (Large memory compute-intensive workloads)
+#### `ND-family` (Large memory compute-intensive workloads)
 
 - `ND_A100_v4` series and `NDm_A100_v4` series: NVIDIA A100
 - `ND-H100-v5` series: NVIDIA H100
 
-#### NV-family (Visualization and rendering)
+#### `NV-family` (Visualization and rendering)
 
 - `NV` series: NVIDIA M60
 - `NVv3` series: NVIDIA Tesla M60
