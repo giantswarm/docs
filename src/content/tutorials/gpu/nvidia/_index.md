@@ -164,7 +164,7 @@ GPUs are only available through limits, not requests. The number specified in li
 
 2. **Resource quotas**: Implement resource quotas to control GPU allocation in multi-tenant environments.
 
-3. **Node auto-provisioning**: Consider using cluster autoscaling or Karpenter with GPU node pools to automatically scale GPU resources based on demand.
+3. **Node auto-provisioning**: Consider using Karpenter or cluster autoscaling with GPU node pools to automatically scale GPU resources based on demand.
 
 ### Getting support
 
