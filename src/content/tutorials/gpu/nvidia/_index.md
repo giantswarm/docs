@@ -1,5 +1,6 @@
 ---
-title: Running GPU workloads in CAPI workload clusters with NVIDIA
+linkTitle: NVIDIA GPU
+title: Running NVIDIA GPU workloads in CAPI workload clusters
 description: This guide explains how to run NVIDIA GPU-accelerated workloads in CAPI workload clusters.
 weight: 110
 menu:
@@ -163,7 +164,7 @@ spec:
 
 ## Best practices
 
-1. **Taints and tolerations**: Use Kubernetes taints on GPU nodes and corresponding tolerations in pod specifications to prevent non-GPU workloads from being scheduled on expensive GPU resources.
+1. **Taints and `tolerations`**: Use Kubernetes taints on GPU nodes and corresponding `tolerations` in pod specifications to prevent non-GPU workloads from being scheduled on expensive GPU resources.
 
 2. **Resource quotas**: Implement resource quotas to control GPU allocation in multi-tenant environments.
 
