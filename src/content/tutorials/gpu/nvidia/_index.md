@@ -75,7 +75,7 @@ Giant Swarm CAPI clusters on Azure support the following GPU VM families and ser
 
 To add GPU nodes to your CAPI workload cluster, you need to create a new node pool with the appropriate GPU instance type. The following example shows how to add GPU nodes to an AWS (CAPA) workload cluster.
 
-1. Update your cluster app's values to add a new node pool with GPU instances:
+Update your cluster app's values to add a new node pool with GPU instances:
 
 ```yaml
 nodePools:
@@ -95,13 +95,13 @@ nodePools:
       effect: "NoSchedule"
 ```
 
-2. Apply the updated configuration to your cluster.
+Apply the updated configuration to your cluster.
 
 ### Installing the `GPU Operator` app
 
 The recommended way to enable NVIDIA GPU support in your cluster is to use the `GPU Operator` app, which is needed for scheduling and running GPU workloads.
 
-2. Install the `GPU Operator` app from the Giant Swarm Catalog in the `kube-system` namespace.
+Install the `GPU Operator` app from the Giant Swarm Catalog in the `kube-system` namespace.
 
 The GPU Operator app installs several components:
 
