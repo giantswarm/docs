@@ -1,5 +1,4 @@
 ---
-linkTitle: GPU workloads in CAPI clusters with NVIDIA
 title: Running GPU workloads in CAPI workload clusters with NVIDIA
 description: This guide explains how to run NVIDIA GPU-accelerated workloads in CAPI workload clusters.
 weight: 110
@@ -35,16 +34,16 @@ GPU-accelerated computing can significantly enhance performance for specific wor
 
 Giant Swarm CAPI clusters on AWS support the following GPU instance types:
 
-- `p2` family: Cost-effective GPU instances with NVIDIA K80 GPU
-- `p3` family: High-performance instances with NVIDIA V100 GPU
-- `p4` family: Latest generation with NVIDIA A100 GPU
-- `p5` family: Advanced performance with NVIDIA H100 GPU
-- `p5e` family: Enhanced performance with NVIDIA H200 GPU
-- `g3` family: Graphics-optimized with NVIDIA Tesla M60 GPU
-- `g4dn` family: Balanced GPU compute with NVIDIA T4 GPU
-- `g5` family: Latest generation graphics-optimized with NVIDIA A10G GPU
-- `g6` family: Next-generation GPU instances with NVIDIA L4 GPU
-- `g6e` family: Enhanced performance with NVIDIA L40S Tensor Core GPU
+- `p2` family: Cost-effective GPU instances with NVIDIA K80
+- `p3` family: High-performance instances with NVIDIA V100
+- `p4` family: Latest generation with NVIDIA A100
+- `p5` family: Advanced performance with NVIDIA H100
+- `p5e` family: Enhanced performance with NVIDIA H200
+- `g3` family: Graphics-optimized with NVIDIA Tesla M60
+- `g4dn` family: Balanced GPU compute with NVIDIA T4
+- `g5` family: Latest generation graphics-optimized with NVIDIA A10G
+- `g6` family: Next-generation GPU instances with NVIDIA L4
+- `g6e` family: Enhanced performance with NVIDIA L40S Tensor Core
 
 ### Azure
 
@@ -53,25 +52,25 @@ Giant Swarm CAPI clusters on Azure support the following GPU VM families and ser
 #### NC-family (Compute-intensive, Graphics-intensive)
 
 - `NC` series: NVIDIA K80 GPU
-- `NCv2` series and `NCv3` series: NVIDIA P100 and V100 GPU
-- `NCasT4_v3` series: NVIDIA T4 GPU
-- `NC_A100_v4` series: NVIDIA A100 GPU
-- `NCads_H100_v5` series and `NCCads_H100_v5` series: NVIDIA H100 GPU
+- `NCv2` series and `NCv3` series: NVIDIA P100 and V100
+- `NCasT4_v3` series: NVIDIA T4
+- `NC_A100_v4` series: NVIDIA A100
+- `NCads_H100_v5` series and `NCCads_H100_v5` series: NVIDIA H100
 
 #### ND-family (Large memory compute-intensive workloads)
 
-- `ND_A100_v4` series and `NDm_A100_v4` series: NVIDIA A100 GPU
-- `ND-H100-v5` series: NVIDIA H100 GPU
+- `ND_A100_v4` series and `NDm_A100_v4` series: NVIDIA A100
+- `ND-H100-v5` series: NVIDIA H100
 
 #### NV-family (Visualization and rendering)
 
-- `NV` series: NVIDIA M60 GPU
-- `NVv3` series: NVIDIA Tesla M60 GPU
-- `NVadsA10_v5` series: NVIDIA A10 GPU
+- `NV` series: NVIDIA M60
+- `NVv3` series: NVIDIA Tesla M60
+- `NVadsA10_v5` series: NVIDIA A10
 
-## Adding GPU nodes to your CAPI workload cluster
+## Adding GPU nodes to your Cluster API (CAPI) workload cluster
 
-### Configuring a GPU-enabled machine deployment
+### Configuring a GPU node pool
 
 To add GPU nodes to your CAPI workload cluster, you need to create a new node pool with the appropriate GPU instance type. The following example shows how to add GPU nodes to an AWS (CAPA) workload cluster.
 
@@ -117,8 +116,8 @@ We don't install the NVIDIA driver and toolkit by the GPU Operator, because it's
 To verify that the GPU operator is installed and works correctly and wait for all the pods to be running:
 
 ```bash
-gpu-feature-discovery-tjj65                                          0/1     Init:0/2    0          6s
-gpu-operator-6d5b78c78f-f7dg8                                        0/1     Running     0          15s
+gpu-feature-discovery-tjj65                                          1/1     Running     0          6s
+gpu-operator-6d5b78c78f-f7dg8                                        1/1     Running     0          15s
 gpu-operator-node-feature-discovery-gc-554ccf9b5-vzwd2               1/1     Running     0          15s
 gpu-operator-node-feature-discovery-master-567bf66c77-xvsbz          1/1     Running     0          15s
 gpu-operator-node-feature-discovery-worker-2lhks                     1/1     Running     0          15s
@@ -127,9 +126,9 @@ gpu-operator-node-feature-discovery-worker-mvq4t                     1/1     Run
 gpu-operator-node-feature-discovery-worker-pxtxq                     1/1     Running     0          15s
 gpu-operator-node-feature-discovery-worker-s5zr6                     1/1     Running     0          15s
 gpu-operator-node-feature-discovery-worker-xfbl7                     1/1     Running     0          15s
-nvidia-dcgm-exporter-6l8vx                                           0/1     Init:0/1    0          6s
-nvidia-device-plugin-daemonset-rr49p                                 0/1     Init:0/1    0          6s
-nvidia-operator-validator-vjhxh                                      0/1     Init:0/4    0          7s
+nvidia-dcgm-exporter-6l8vx                                           1/1     Running     0          6s
+nvidia-device-plugin-daemonset-rr49p                                 1/1     Running     0          6s
+nvidia-operator-validator-vjhxh                                      1/1     Running     0          7s
 ```
 
 ## Running GPU workloads
@@ -160,7 +159,7 @@ spec:
 
 ### Resource management
 
-GPUs are only available through limits, not requests. The number specified in limits determines how many GPUs will be allocated to the pod.
+GPUs are only available through limits, not requests. The number specified in limits determines how many GPU's will be allocated to the pod.
 
 ## Best practices
 
@@ -168,7 +167,7 @@ GPUs are only available through limits, not requests. The number specified in li
 
 2. **Resource quotas**: Implement resource quotas to control GPU allocation in multi-tenant environments.
 
-3. **Node auto-provisioning**: Consider using Karpenter or cluster autoscaling with GPU node pools to automatically scale GPU resources based on demand.
+3. **Node auto-provisioning**: Consider using `Karpenter` or cluster autoscaling with GPU node pools to automatically scale GPU resources based on demand.
 
 ### Getting support
 
@@ -181,7 +180,7 @@ If you encounter issues that cannot be resolved using the troubleshooting steps 
 ## Limitations
 
 - GPU memory overcommitment is not supported by default
-- Dynamic allocation of GPUs is not supported (GPUs are allocated at container start time)
+- Dynamic allocation of GPU is not supported (GPU is allocated at container start time)
 - Specific GPU driver versions may be required for certain CUDA applications
 
 ## Further reading
