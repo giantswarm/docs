@@ -35,36 +35,39 @@ GPU-accelerated computing can significantly enhance performance for specific wor
 
 Giant Swarm CAPI clusters on AWS support the following GPU instance types:
 
-- `p2` family: Cost-effective GPU instances with NVIDIA K80 GPUs
-- `p3` family: High-performance instances with NVIDIA V100 GPUs
-- `p4` family: Latest generation with NVIDIA A100 GPUs
-- `p5` family: Advanced performance with NVIDIA H100 GPUs
-- `p5e` family: Enhanced performance with NVIDIA H200 GPUs
-- `g3` family: Graphics-optimized with NVIDIA Tesla M60 GPUs
-- `g4dn` family: Balanced GPU compute with NVIDIA T4 GPUs
-- `g5` family: Latest generation graphics-optimized with NVIDIA A10G GPUs
-- `g6` family: Next-generation GPU instances with NVIDIA L4 GPUs
-- `g6e` family: Enhanced performance with NVIDIA L40S Tensor Core GPUs
+- `p2` family: Cost-effective GPU instances with NVIDIA K80 GPU
+- `p3` family: High-performance instances with NVIDIA V100 GPU
+- `p4` family: Latest generation with NVIDIA A100 GPU
+- `p5` family: Advanced performance with NVIDIA H100 GPU
+- `p5e` family: Enhanced performance with NVIDIA H200 GPU
+- `g3` family: Graphics-optimized with NVIDIA Tesla M60 GPU
+- `g4dn` family: Balanced GPU compute with NVIDIA T4 GPU
+- `g5` family: Latest generation graphics-optimized with NVIDIA A10G GPU
+- `g6` family: Next-generation GPU instances with NVIDIA L4 GPU
+- `g6e` family: Enhanced performance with NVIDIA L40S Tensor Core GPU
 
 ### Azure
 
 Giant Swarm CAPI clusters on Azure support the following GPU VM families and series:
 
 #### NC-family (Compute-intensive, Graphics-intensive)
-- `NC` series: NVIDIA K80 GPUs
-- `NCv2` series and `NCv3` series: NVIDIA P100 and V100 GPUs
-- `NCasT4_v3` series: NVIDIA T4 GPUs
-- `NC_A100_v4` series: NVIDIA A100 GPUs
-- `NCads_H100_v5` series and `NCCads_H100_v5` series: NVIDIA H100 GPUs
+
+- `NC` series: NVIDIA K80 GPU
+- `NCv2` series and `NCv3` series: NVIDIA P100 and V100 GPU
+- `NCasT4_v3` series: NVIDIA T4 GPU
+- `NC_A100_v4` series: NVIDIA A100 GPU
+- `NCads_H100_v5` series and `NCCads_H100_v5` series: NVIDIA H100 GPU
 
 #### ND-family (Large memory compute-intensive workloads)
-- `ND_A100_v4` series and `NDm_A100_v4` series: NVIDIA A100 GPUs
-- `ND-H100-v5` series: NVIDIA H100 GPUs
+
+- `ND_A100_v4` series and `NDm_A100_v4` series: NVIDIA A100 GPU
+- `ND-H100-v5` series: NVIDIA H100 GPU
 
 #### NV-family (Visualization and rendering)
-- `NV` series: NVIDIA M60 GPUs
-- `NVv3` series: NVIDIA Tesla M60 GPUs
-- `NVadsA10_v5` series: NVIDIA A10 GPUs
+
+- `NV` series: NVIDIA M60 GPU
+- `NVv3` series: NVIDIA Tesla M60 GPU
+- `NVadsA10_v5` series: NVIDIA A10 GPU
 
 ## Adding GPU nodes to your CAPI workload cluster
 
@@ -101,6 +104,7 @@ The recommended way to enable NVIDIA GPU support in your cluster is to use the N
 2. Install the NVIDIA GPU Operator from the Giant Swarm Catalog in the `kube-system` namespace.
 
 The GPU Operator installs several components:
+
 - NVIDIA Device Plugin
 - NVIDIA MIG Manager (for A100 GPUs)
 - Node Feature Discovery
@@ -184,4 +188,4 @@ If you encounter issues that cannot be resolved using the troubleshooting steps 
 
 - [NVIDIA GPU Operator Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html)
 - [Kubernetes Device Plugins](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/)
-- [NVIDIA Tesla Driver Documentation](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html) 
+- [NVIDIA Tesla Driver Documentation](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
