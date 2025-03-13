@@ -27,7 +27,7 @@
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn --cwd scripts/update-website-content install && make dev"
+	"postCreateCommand": "make dev"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
