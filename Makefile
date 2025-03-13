@@ -171,8 +171,9 @@ linkcheck-internal:
 
 update-website-content:
 	cd ./scripts/update-website-content && \
-		npm ci && \
-		npm start
+		yarn install && \
+		yarn playwright install && \
+		yarn start
 
 # Verify internal and external links
 # based on the currently deployed docs website.
