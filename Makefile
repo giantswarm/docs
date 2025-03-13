@@ -173,6 +173,7 @@ update-website-content:
 	cd ./scripts/update-website-content && \
 		yarn install && \
 		yarn playwright install && \
+		yarn playwright install-deps && \
 		yarn start
 
 # Verify internal and external links
