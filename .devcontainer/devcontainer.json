@@ -39,6 +39,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"budparr.language-hugo-vscode",
 				"chrischinchilla.vale-vscode",
 				"DavidAnson.vscode-markdownlint"
 			],
