@@ -5,6 +5,11 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
 
+	"runArgs": [
+		// Delete the container after the session ends.
+		"--rm"
+	],
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/hugo:1": {
@@ -26,12 +31,23 @@
 		}
 	},
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "make dev"
+	//// Use 'postCreateCommand' to run commands after the container is created.
+	// 'make dev' runs Hugo to preview the site
+	"postCreateCommand": "make dev",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"budparr.language-hugo-vscode",
+				"chrischinchilla.vale-vscode",
+				"DavidAnson.vscode-markdownlint"
+			],
+			"settings": {
+				"markdownlint.configFile": "/workspaces/docs/.markdownlint.yaml",
+				"vale.valeCLI.config": "/workspaces/docs/.vale.ini",
+				"vale.valeCLI.path": "/usr/bin/vale"
+			}
+		}
+	}
 }
