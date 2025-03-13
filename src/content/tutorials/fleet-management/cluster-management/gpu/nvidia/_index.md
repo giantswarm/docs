@@ -114,7 +114,7 @@ We don't install the NVIDIA driver and toolkit by the GPU Operator, because it's
 
 ### Verifying the installation
 
-To verify that the GPU operator is installed and works correctly and wait for all the pods to be running:
+Verify that the GPU operator is installed and works correctly and wait for all the pods to be running:
 
 ```bash
 gpu-feature-discovery-tjj65                                          1/1     Running     0          6s
