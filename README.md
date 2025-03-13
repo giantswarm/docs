@@ -44,6 +44,7 @@ This repository provides a [dev container](https://containers.dev/) configuratio
 
 - IDE with dev container support (e.g. Visual Studio Code with the "Dev Containers" (`ms-vscode-remote.remote-containers`) extension.
 - Docker
+- at least 4 GiB of memory dedicated to Docker
 
 ### Front matter
 
