@@ -1,14 +1,14 @@
 {
   "name": "update-website-content",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pulls header and footer content and CSS from www.giantswarm.io and adapts our copy for the docs website.",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node script.ts"
   },
   "author": "giantswarm",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "playwright": "1.51.0"
   },
