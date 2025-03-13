@@ -43,8 +43,8 @@
 				"DavidAnson.vscode-markdownlint"
 			],
 			"settings": {
-				"markdownlint.configFile": "${workspaceFolder}/.markdownlint.yaml",
-				"vale.valeCLI.config": "${workspaceFolder}/.vale.ini",
+				"markdownlint.configFile": "/workspaces/docs/.markdownlint.yaml",
+				"vale.valeCLI.config": "/workspaces/docs/.vale.ini",
 				"vale.valeCLI.path": "/usr/bin/vale"
 			}
 		}
