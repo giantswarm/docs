@@ -5,8 +5,8 @@ description: This guide explains how to run NVIDIA GPU-accelerated workloads in 
 weight: 110
 menu:
   principal:
-    parent: tutorials-gpu
-    identifier: tutorials-gpu-nvidia
+    parent: tutorials-fleet-management-clusters-gpu
+    identifier: tutorials-fleet-management-clusters-gpu-nvidia
 user_questions:
   - How can I run NVIDIA GPU workloads in CAPI clusters?
   - How can I configure NVIDIA GPU-enabled nodes in CAPI clusters?

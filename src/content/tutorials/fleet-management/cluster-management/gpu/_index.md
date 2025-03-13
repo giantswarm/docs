@@ -5,8 +5,8 @@ description: Guides explaining how to configure and use GPU nodes in Cluster API
 weight: 70
 menu:
   principal:
-    parent: tutorials
-    identifier: tutorials-gpu
+    parent: tutorials-fleet-management-clusters
+    identifier: tutorials-fleet-management-clusters-gpu
 owner:
   - https://github.com/orgs/giantswarm/teams/team-tenet
 user_questions:
