@@ -33,7 +33,7 @@ GPU-accelerated computing can significantly enhance performance for specific wor
 
 ### AWS
 
-Giant Swarm CAPI clusters on AWS support the following Graphics Processing Unit instance types:
+Giant Swarm CAPI clusters on AWS support the following Graphics Processing Unit instance types (incl. upcoming series):
 
 - `p2` family: Cost-effective GPU instances with NVIDIA K80
 - `p3` family: High-performance instances with NVIDIA V100
@@ -48,7 +48,7 @@ Giant Swarm CAPI clusters on AWS support the following Graphics Processing Unit 
 
 ### Azure
 
-Giant Swarm CAPI clusters on Azure support the following GPU VM families and series:
+Giant Swarm CAPI clusters on Azure support the following GPU VM families and series (incl. upcoming series):
 
 #### `NC-family` (Compute-intensive, Graphics-intensive)
 
