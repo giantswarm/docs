@@ -31,9 +31,8 @@
 		}
 	},
 
-	//// Use 'postCreateCommand' to run commands after the container is created.
 	// 'make dev' runs Hugo to preview the site
-	"postCreateCommand": "make dev",
+	"postStartCommand": "make dev",
 
 	// Configure tool-specific properties.
 	"customizations": {
