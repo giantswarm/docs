@@ -1,6 +1,6 @@
 ---
 linkTitle: GPU
-title: GPU workloads in Cluster API (CAPI) workload clusters
+title: GPU workloads in Cluster API workload clusters
 description: Guides explaining how to configure and use GPU nodes in Cluster API (CAPI) workload clusters for running GPU-accelerated workloads.
 weight: 70
 menu:
