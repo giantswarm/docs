@@ -1,17 +1,18 @@
 ---
-linkTitle: NVIDIA GPU
-title: Running NVIDIA GPU workloads in CAPI workload clusters
-description: This guide explains how to run NVIDIA GPU-accelerated workloads in CAPI workload clusters.
-weight: 110
+linkTitle: GPU
+title: GPU workloads in Cluster API (CAPI) workload clusters
+description: Guides explaining how to configure and use GPU nodes in Cluster API (CAPI) workload clusters for running GPU-accelerated workloads.
+weight: 70
 menu:
   principal:
-    parent: tutorials-fleet-management-clusters-gpu
-    identifier: tutorials-fleet-management-clusters-gpu-nvidia
-user_questions:
-  - How can I run NVIDIA GPU workloads in CAPI clusters?
-  - How can I configure NVIDIA GPU-enabled nodes in CAPI clusters?
+    parent: tutorials-fleet-management-clusters
+    identifier: tutorials-fleet-management-clusters-gpu
 owner:
   - https://github.com/orgs/giantswarm/teams/team-tenet
+user_questions:
+  - How can I use GPUs with my CAPI workload clusters?
+  - How do I add GPU nodes to my CAPI cluster?
+  - How do I configure GPU support in my workload cluster?
 last_review_date: 2025-03-12
 ---
 
