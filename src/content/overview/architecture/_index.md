@@ -3,6 +3,7 @@ title: Architecture of the Giant Swarm cloud-native developer platform
 linkTitle: Architecture
 description: Components, capabilities, supported cloud providers, and the platform API.
 weight: 20
+layout: single
 menu:
   principal:
     parent: overview

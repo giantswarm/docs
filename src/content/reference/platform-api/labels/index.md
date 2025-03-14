@@ -2,7 +2,6 @@
 linkTitle: Labels
 title: Kubernetes resource labels reference
 description: Overview of Kubernetes resource labels used by Giant Swarm, and their meaning.
-layout: single
 menu:
   principal:
     parent: reference-platform-api
