@@ -16,9 +16,7 @@ user_questions:
 last_review_date: 2025-03-12
 ---
 
-# Running NVIDIA `GPU` workloads in Cluster API workload clusters
-
-This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads.
+This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads, focusing on NVIDIA GPUs.
 GPU support is available starting with release v30.1.0.
 
 ## Overview
