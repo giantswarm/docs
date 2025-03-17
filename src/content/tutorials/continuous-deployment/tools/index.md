@@ -58,7 +58,7 @@ Learn more in the [Flux documentation](https://fluxcd.io/flux/cmd/flux_build_kus
 Using `kustomize build` is more complex than `flux build kustomization`. It doesn't replace variables automatically. You need to:
 
 1. Export environment variables
-2. Build the manifest 
+2. Build the manifest
 3. Use `envsubst` in a pipe
 
 You can do this with `fake-flux` using the `--use-kustomize` flag.
