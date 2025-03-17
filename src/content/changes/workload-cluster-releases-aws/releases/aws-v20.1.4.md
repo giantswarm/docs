@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-aws/releases/aws-v20.1.4/
 changes_categories:
-- Workload cluster releases for AWS
+- AWS releases
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/aws/v20.1.4

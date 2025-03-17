@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-azure/releases/azure-azure-25.0.0/
 changes_categories:
-- Workload cluster releases for Azure
+- Azure releases
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/azure/v25.0.0

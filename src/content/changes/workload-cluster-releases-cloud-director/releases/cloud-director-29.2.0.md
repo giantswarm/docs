@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-cloud-director/releases/cloud-director-cloud-director-29.2.0/
 changes_categories:
-- Workload cluster releases for CLOUD-DIRECTOR
+- CLOUD-DIRECTOR releases
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/cloud-director/v29.2.0

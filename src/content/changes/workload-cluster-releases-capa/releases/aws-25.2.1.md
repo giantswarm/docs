@@ -3,7 +3,7 @@
 aliases:
 - /changes/tenant-cluster-releases-capa/releases/capa-aws-25.2.1/
 changes_categories:
-- Workload cluster releases for CAPA
+- CAPA releases
 changes_entry:
   repository: giantswarm/releases
   url: https://github.com/giantswarm/releases/tree/master/capa/v25.2.1
