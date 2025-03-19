@@ -23,6 +23,12 @@ On an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/app.go#L14-L16)
 
+### app-operator.giantswarm.io/cordon-until
+
+On an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) or [Chart]({{< relref "/reference/platform-api/crd/charts.application.giantswarm.io.md" >}}) resource, this annotation indicates a date until which app-operator should currently not reconcile this app. If specified, the `app-operator.giantswarm.io/cordon-reason` annotation should also be set.
+
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/app.go#L18-L20)
+
 ### cluster.giantswarm.io/description
 
 Used on the Cluster resource to provide a human-readable description of the cluster. This description is shown in Giant Swarm web interfaces.
