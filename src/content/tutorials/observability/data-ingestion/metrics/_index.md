@@ -70,6 +70,8 @@ No matter if you are using Helm Charts or GitOps and Kustomize, just put the Ser
 
 __Warning:__ The ServiceMonitor needs to be labeled with `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` for the metrics agent to be able to discover it and start collecting metrics. Also, please make sure that the tenant you're setting with the label does actually exist in one of the [Grafana organization CRs](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/).
 
+If you also want to collect logs in a similar manner, you can use [PodLogs](https://docs.giantswarm.io/tutorials/observability/data-ingestion/logs/#using-podlogs) which are the equivalent resource for log ingestion.
+
 ## ServiceMonitor vs. PodMonitor
 
 In most cases, a ServiceMonitor should cover most of your monitoring use cases but it can happen on rare occasions that a container doesn't need a service to run and it doesn't make sense to create one just for the sake of monitoring it. That's when the PodMonitor comes into action. You can find a few other examples where PodMonitor makes sense [in this discussion](https://github.com/prometheus-operator/prometheus-operator/issues/3119) in the Prometheus Operator Project.
