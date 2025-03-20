@@ -17,7 +17,7 @@ user_questions:
   - Why do my clusters run the Prometheus Operator?
 ---
 
-By default, all Giant Swarm CAPI clusters are equiped with [Prometheus Operator](https://prometheus-operator.dev/) and a set of [Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/) shards that serve the same purpose as prometheuses in agent mode.These shards are monitoring agents that collect and forward critical cluster and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
+By default, all Giant Swarm clusters are equiped with [Prometheus Operator](https://prometheus-operator.dev/) and a set of [Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/) monitoring agents. They are used that collect and forward critical cluster and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
 
 No workload is the same, especially in the way it exposes its metrics, so the Observability Platform's monitoring configuration needs to be flexible. That's why it's based on the ServiceMonitor and PodMonitor Custom Resource Definitions (CRD) provided by the Prometheus Operator.
 
@@ -40,7 +40,7 @@ You can check the resource usage related to your ServiceMonitor and PodMonitor i
 
 Here is an example showing how to create a [ServiceMonitor](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml).
 
-This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to the `my-tenant` tenant. The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
+This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to the `my-tenant` tenant in Mimir. The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
 
 The bare minimum for a ServiceMonitor looks like this:
 
@@ -50,7 +50,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     ## This label is important as it is required for the metrics agent to discover it.
-    ## The team name should be the name of your internal team.
+    ## The tenant name should be the name of your internal team.
     observability.giantswarm.io/tenant: my-tenant
     app.kubernetes.io/instance: my-service
   name: my-service
