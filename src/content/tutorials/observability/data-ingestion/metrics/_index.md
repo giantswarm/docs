@@ -68,7 +68,7 @@ spec:
 
 No matter if you are using Helm Charts or GitOps and Kustomize, just put the ServiceMonitor CR next to your app and apply it in the same way. Once it's applied you can check either the _ServiceMonitors Overview_ or _ServiceMonitors Details_ dashboards, or just search for the new metrics ingested in your installation's Grafana to make sure that your containers are being scraped by the new monitoring agents.
 
-__Warning:__ The ServiceMonitor needs to be labeled with `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` for the metrics agent to be able to discover it and start collecting metrics. Also, please make sure that the tenant you're setting with the label does actually exist in one of the [grafana organization CRs](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/).
+__Warning:__ The ServiceMonitor needs to be labeled with `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` for the metrics agent to be able to discover it and start collecting metrics. Also, please make sure that the tenant you're setting with the label does actually exist in one of the [Grafana organization CRs](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/).
 
 ## ServiceMonitor vs. PodMonitor
 
