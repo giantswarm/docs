@@ -17,7 +17,7 @@ user_questions:
   - Why do my clusters run the Prometheus Operator?
 ---
 
-By default, all Giant Swarm clusters are equiped with [Prometheus Operator](https://prometheus-operator.dev/) and a set of [Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/) monitoring agents. They are used that collect and forward critical cluster and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
+By default, all Giant Swarm clusters are equiped with [Prometheus Operator](https://prometheus-operator.dev/) and a set of [Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/) monitoring agents. They are used to collect and forward critical cluster and workload metrics to a central [Grafana Mimir](https://grafana.com/oss/mimir/) instance running on the management cluster.
 
 No workload is the same, especially in the way it exposes its metrics, so the Observability Platform's monitoring configuration needs to be flexible. That's why it's based on the ServiceMonitor and PodMonitor Custom Resource Definitions (CRD) provided by the Prometheus Operator.
 
