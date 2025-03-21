@@ -156,8 +156,6 @@ repositories:
 categories:
   - name: Fleet Management
     color: "#b47fb0"
-  - name: Dashboards
-    color: "#e461a9"
   - name: Documentation
     color: "#9aa48e"
   - name: Highlights

@@ -44,7 +44,7 @@ collect-changelog-entries:
 	  --volume=${PWD}:/workdir \
 	  -w /workdir \
 		-e GITHUB_TOKEN \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+	  quay.io/giantswarm/docs-scriptrunner:fer01 \
 	  /workdir/scripts/collect-changelog-entries/script.py
 
 # Generate the reference documentation for the cluster apps.
