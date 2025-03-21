@@ -10,7 +10,7 @@ changes_entry:
   version: aws-26.4.2
   version_tag: aws-26.4.2
 date: '2025-03-07T12:00:00'
-description: Release notes for capa workload cluster release aws-26.4.2, published
+description: Release notes for CAPA workload cluster release aws-26.4.2, published
   on 07 March 2025, 12:00.
 title: Workload cluster release aws-26.4.2 for CAPA
 ---

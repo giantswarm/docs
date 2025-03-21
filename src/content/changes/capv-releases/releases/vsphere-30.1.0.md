@@ -10,7 +10,7 @@ changes_entry:
   version: vsphere-30.1.0
   version_tag: vsphere-30.1.0
 date: '2025-03-18T12:00:00'
-description: Release notes for capv workload cluster release vsphere-30.1.0, published
+description: Release notes for CAPV workload cluster release vsphere-30.1.0, published
   on 18 March 2025, 12:00.
 title: Workload cluster release vsphere-30.1.0 for CAPV
 ---

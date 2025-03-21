@@ -10,7 +10,7 @@ changes_entry:
   version: aws-28.5.2
   version_tag: aws-28.5.2
 date: '2025-02-06T12:00:00'
-description: Release notes for capa workload cluster release aws-28.5.2, published
+description: Release notes for CAPA workload cluster release aws-28.5.2, published
   on 06 February 2025, 12:00.
 title: Workload cluster release aws-28.5.2 for CAPA
 ---

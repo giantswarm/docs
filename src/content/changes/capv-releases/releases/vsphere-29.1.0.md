@@ -10,7 +10,7 @@ changes_entry:
   version: vsphere-29.1.0
   version_tag: vsphere-29.1.0
 date: '2024-11-13T12:00:00'
-description: Release notes for capv workload cluster release vsphere-29.1.0, published
+description: Release notes for CAPV workload cluster release vsphere-29.1.0, published
   on 13 November 2024, 12:00.
 title: Workload cluster release vsphere-29.1.0 for CAPV
 ---

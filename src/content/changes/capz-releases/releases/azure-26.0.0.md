@@ -10,7 +10,7 @@ changes_entry:
   version: azure-26.0.0
   version_tag: azure-26.0.0
 date: '2024-06-27T18:00:00'
-description: Release notes for capz workload cluster release azure-26.0.0, published
+description: Release notes for CAPZ workload cluster release azure-26.0.0, published
   on 27 June 2024, 18:00.
 title: Workload cluster release azure-26.0.0 for CAPZ
 ---

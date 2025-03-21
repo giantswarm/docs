@@ -10,7 +10,7 @@ changes_entry:
   version: aws-25.2.0
   version_tag: aws-25.2.0
 date: '2024-07-30T09:00:00'
-description: Release notes for capa workload cluster release aws-25.2.0, published
+description: Release notes for CAPA workload cluster release aws-25.2.0, published
   on 30 July 2024, 09:00.
 title: Workload cluster release aws-25.2.0 for CAPA
 ---

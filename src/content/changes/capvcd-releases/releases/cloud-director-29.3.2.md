@@ -10,7 +10,7 @@ changes_entry:
   version: cloud-director-29.3.2
   version_tag: cloud-director-29.3.2
 date: '2025-02-10T12:00:00'
-description: Release notes for capvcd workload cluster release cloud-director-29.3.2,
+description: Release notes for CAPVCD workload cluster release cloud-director-29.3.2,
   published on 10 February 2025, 12:00.
 title: Workload cluster release cloud-director-29.3.2 for CAPVCD
 ---

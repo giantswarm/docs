@@ -10,7 +10,7 @@ changes_entry:
   version: azure-29.3.0
   version_tag: azure-29.3.0
 date: '2024-11-13T12:00:00'
-description: Release notes for capz workload cluster release azure-29.3.0, published
+description: Release notes for CAPZ workload cluster release azure-29.3.0, published
   on 13 November 2024, 12:00.
 title: Workload cluster release azure-29.3.0 for CAPZ
 ---

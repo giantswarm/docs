@@ -251,7 +251,7 @@ def generate_release_file(repo_shortname, repo_config, release, delete):
 
         filename = f"{release['version_tag']}.md"
         title = f'Workload cluster release {version} for {provider_label.upper()}'
-        description = f'Release notes for {provider_label} workload cluster release {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
+        description = f'Release notes for {provider_label.upper()} workload cluster release {version}, published on {release["date"].strftime("%d %B %Y, %H:%M")}.'
         category_path = f"{provider_label}-releases"
         aliases = [f"/changes/tenant-cluster-releases-{provider_label}/releases/{provider_label}-{release['version_tag']}/"]
     else:

@@ -10,7 +10,7 @@ changes_entry:
   version: aws-30.0.0
   version_tag: aws-30.0.0
 date: '2025-02-20T12:00:00'
-description: Release notes for capa workload cluster release aws-30.0.0, published
+description: Release notes for CAPA workload cluster release aws-30.0.0, published
   on 20 February 2025, 12:00.
 title: Workload cluster release aws-30.0.0 for CAPA
 ---
