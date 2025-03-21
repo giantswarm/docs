@@ -1,0 +1,52 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Docs",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+
+	"runArgs": [
+		// Delete the container after the session ends.
+		"--rm"
+	],
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"extended": true,
+			"version": "latest"
+		},
+		"ghcr.io/shinepukur/devcontainer-features/vale:1": {
+            "version": "latest"
+        }
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [1313],
+
+	"portsAttributes":{
+		"1313": {
+			"label": "Docs",
+			"onAutoForward": "openBrowser"
+		}
+	},
+
+	// 'make dev' runs Hugo to preview the site
+	"postStartCommand": "make dev",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"budparr.language-hugo-vscode",
+				"chrischinchilla.vale-vscode",
+				"DavidAnson.vscode-markdownlint"
+			],
+			"settings": {
+				"markdownlint.configFile": "/workspaces/docs/.markdownlint.yaml",
+				"vale.valeCLI.config": "/workspaces/docs/.vale.ini",
+				"vale.valeCLI.path": "/usr/bin/vale"
+			}
+		}
+	}
+}

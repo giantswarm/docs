@@ -38,6 +38,14 @@ make dev
 
 to render the results. This serves the web content on http://localhost:1313/ by default. Please check if your changes display correctly before opening a pull request.
 
+### Dev container (experimental)
+
+This repository provides a [dev container](https://containers.dev/) configuration. When making changes to documentation content, we encourage you to use the container and give feedback to SIG docs. Prerequisites:
+
+- IDE with dev container support (e.g. Visual Studio Code with the "Dev Containers" (`ms-vscode-remote.remote-containers`) extension.
+- Docker
+- at least 4 GiB of memory dedicated to Docker
+
 ### Front matter
 
 Each documentation page consists of a markdown file that starts with some metadata called [front matter](https://gohugo.io/content-management/front-matter/). Some hints:
