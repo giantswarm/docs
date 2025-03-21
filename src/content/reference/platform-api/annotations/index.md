@@ -11,9 +11,23 @@ weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2025-02-20
+user_questions:
+  - What annotations are used in Kubernetes resources by Giant Swarm?
 ---
 
 **Notice:** Annotations on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of annotations, and which values or value format is expected. If you are missing information, please consult upstream documentation from Kubernetes etc., or ask a Giant Swarm contact for more information. Also check our corresponding [labels]({{< relref "/reference/platform-api/labels" >}}) reference page.
+
+### app-operator.giantswarm.io/cordon-reason
+
+On an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) or [Chart]({{< relref "/reference/platform-api/crd/charts.application.giantswarm.io.md" >}}) resource, this annotation indicates the reason why app-operator should currently not reconcile this app, until the `app-operator.giantswarm.io/cordon-until` date has passed.
+
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/app.go#L14-L16)
+
+### app-operator.giantswarm.io/cordon-until
+
+On an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) or [Chart]({{< relref "/reference/platform-api/crd/charts.application.giantswarm.io.md" >}}) resource, this annotation indicates a date until which app-operator should currently not reconcile this app. If specified, the `app-operator.giantswarm.io/cordon-reason` annotation should also be set.
+
+More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/app.go#L18-L20)
 
 ### cluster.giantswarm.io/description
 
