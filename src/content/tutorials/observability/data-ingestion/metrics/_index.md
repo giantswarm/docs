@@ -78,6 +78,6 @@ In most cases, a ServiceMonitor should cover most of your monitoring use cases b
 
 ## Deprecated team label
 
-As we now support multi-tenancy for metrics, you __need__ to attribute a tenant name to your servicemonitors and podmonitors to have those routed to the adequate tenant. This means that you will have to replace the `application.giantswarm.io/team: <YOUR-TEAM-NAME>` label by the `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` one.
+As we now support multi-tenancy for metrics, you __need__ to attribute a tenant name to your ServiceMonitors and PodMonitors to have those routed to the adequate tenant. This means that you will have to replace the `application.giantswarm.io/team: <YOUR-TEAM-NAME>` label by the `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` one.
 
-For now, servicemonitors and podmonitors that only have the `application.giantswarm.io/team` label are routed to the "Giant Swarm" tenant by default.
+For now, ServiceMonitors and PodMonitors that only have the `application.giantswarm.io/team` label are routed to the "Giant Swarm" tenant by default.
