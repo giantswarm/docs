@@ -68,7 +68,7 @@ export APP_NAME=APP_NAME
     ```sh
     eval $(op signin)
     gpg --import \
-    <(op item get --vault 'Dev Common' "Shared-Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)" --reveal --fields notesPlain)
+    <(op item get --vault 'Dev Common' "GPG private key (${MC_NAME}, ${WC_NAME}, Flux)" --reveal --fields notesPlain)
     ```
 
 3. Decrypt the `secret.enc.yaml` file with SOPS:
