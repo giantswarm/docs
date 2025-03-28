@@ -8,6 +8,7 @@ menu:
     identifier: default-apps-eks
     parent: reference-cluster-apps
 layout: cluster-app
+last_review_date: 2024-03-05
 user_questions:
  - What properties can I configure for default-apps-eks?
 owner:
@@ -32,9 +33,170 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.externalDns.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
         <a class="header-link" href="#apps-capi-node-labeler">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler</h3>
+        </a>.userConfig.certManager</h3>
     </div>
     <div class="property-body">
       <div class="property-meta"><span class="property-type">object</span>&nbsp;
@@ -45,48 +207,9 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-appName">
+        <a class="header-link" href="#userConfig-certManager-configMap">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.appName</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-catalog">
-          <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.catalog</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-chartName">
-          <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.chartName</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-clusterValues">
-          <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.clusterValues</h3>
+        </a>.userConfig.certManager.configMap</h3>
     </div>
     <div class="property-body">
       <div class="property-meta"><span class="property-type">object</span>&nbsp;
@@ -97,12 +220,12 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-clusterValues-configMap">
+        <a class="header-link" href="#userConfig-certManager-configMap-values">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.clusterValues.configMap</h3>
+        </a>.userConfig.certManager.configMap.values</h3>
     </div>
     <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
       </div>
       <div class="property-description"></div>
     </div>
@@ -110,12 +233,12 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-clusterValues-secret">
+        <a class="header-link" href="#userConfig-externalDns">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.clusterValues.secret</h3>
+        </a>.userConfig.externalDns</h3>
     </div>
     <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
       </div>
       <div class="property-description"></div>
     </div>
@@ -123,12 +246,12 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-enabled">
+        <a class="header-link" href="#userConfig-externalDns-configMap">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.enabled</h3>
+        </a>.userConfig.externalDns.configMap</h3>
     </div>
     <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
       </div>
       <div class="property-description"></div>
     </div>
@@ -136,12 +259,12 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-forceUpgrade">
+        <a class="header-link" href="#userConfig-externalDns-configMap-values">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.forceUpgrade</h3>
+        </a>.userConfig.externalDns.configMap.values</h3>
     </div>
     <div class="property-body">
-      <div class="property-meta"><span class="property-type">boolean</span>&nbsp;
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
       </div>
       <div class="property-description"></div>
     </div>
@@ -149,9 +272,118 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-namespace">
+        <a class="header-link" href="#userConfig-metricsServer">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.namespace</h3>
+        </a>.userConfig.metricsServer</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.metricsServer.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-netExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.netExporter.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#apps-capi-node-labeler">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-certManager-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.certManager.configMap.values</h3>
     </div>
     <div class="property-body">
       <div class="property-meta"><span class="property-type">string</span>&nbsp;
@@ -162,9 +394,35 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#apps-capi-node-labeler-version">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter">
           <i class="fa fa-link"></i>
-        </a>.apps.capi-node-labeler.version</h3>
+        </a>.userConfig.etcdKubernetesResourceCountExporter</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-etcdKubernetesResourceCountExporter-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.etcdKubernetesResourceCountExporter.configMap.values</h3>
     </div>
     <div class="property-body">
       <div class="property-meta"><span class="property-type">string</span>&nbsp;
@@ -172,6 +430,50 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
       <div class="property-description"></div>
     </div>
   </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-external-dns">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.external-dns</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-external-dns-configMap">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.external-dns.configMap</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">object</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <div class="property depth-0">
+    <div class="property-header">
+      <h3 class="property-path headline-with-link">
+        <a class="header-link" href="#userConfig-external-dns-configMap-values">
+          <i class="fa fa-link"></i>
+        </a>.userConfig.external-dns.configMap.values</h3>
+    </div>
+    <div class="property-body">
+      <div class="property-meta"><span class="property-type">string</span>&nbsp;
+      </div>
+      <div class="property-description"></div>
+    </div>
+  </div>
+  <h3 class="headline-with-link">
+    <a class="header-link" href="#">
+      <i class="fa fa-link"></i>
+    </a>
+  </h3>
   <div class="property depth-0">
     <div class="property-header">
       <h3 class="property-path headline-with-link">
@@ -1507,167 +1809,6 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
     </div>
     <div class="property-body">
       <div class="property-meta"><span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <h3 class="headline-with-link">
-    <a class="header-link" href="#">
-      <i class="fa fa-link"></i>
-    </a>
-  </h3>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-certManager-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.certManager.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-externalDns-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.externalDns.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-metricsServer-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.metricsServer.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>&nbsp;
-      </div>
-      <div class="property-description"></div>
-    </div>
-  </div>
-  <div class="property depth-0">
-    <div class="property-header">
-      <h3 class="property-path headline-with-link">
-        <a class="header-link" href="#userConfig-netExporter-configMap-values">
-          <i class="fa fa-link"></i>
-        </a>.userConfig.netExporter.configMap.values</h3>
-    </div>
-    <div class="property-body">
-      <div class="property-meta"><span class="property-type">object</span>, <span class="property-type">string</span>&nbsp;
       </div>
       <div class="property-description"></div>
     </div>
