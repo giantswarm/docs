@@ -112,10 +112,10 @@ validate-front-matter:
 # Validate front matter for last-reviewed date.
 validate-last-reviewed-json:
 	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py \
+		--volume=${PWD}:/workdir:ro \
+		-w /workdir \
+		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+		/workdir/scripts/validate-front-matter/script.py \
 		--validation last-reviewed \
 		--output json
 
