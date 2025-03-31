@@ -58,7 +58,7 @@ Import the workload cluster private `GPG` key from your keychain tool. In our ex
 ```sh
 eval $(op signin)
 gpg --import \
-<(op item get --vault 'Dev Common' "GPG private key (${MC_NAME}, ${WC_NAME}, Flux)" --reveal --fields notesPlain)
+<(op read "Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)/notesPlain")
 ```
 
 Then you can decrypt the `secret.enc.yaml` file and decode the `values` field:
