@@ -110,7 +110,7 @@ validate-front-matter:
 	  /workdir/scripts/validate-front-matter/script.py
 
 # Validate front matter for last-reviewed date.
-validate-last-reviewed:
+validate-last-reviewed-json:
 	docker run --rm \
 	  --volume=${PWD}:/workdir:ro \
 	  -w /workdir \
