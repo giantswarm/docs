@@ -18,7 +18,9 @@ jobs:
       - name: Validate front matter and last review date
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: echo "ISSUES=$(make validate-last-reviewed-json)" >> $GITHUB_ENV
+        run: |
+          ISSUES=$(make validate-last-reviewed-json)
+          echo "ISSUES=$(echo "$ISSUES" | jq -c '.')" >> $GITHUB_ENV
 
       - name: Generate issues of out of date docs
         uses: giantswarm/open-issue@7774937e31b23a52257a34462a753b0a28a4d1f1 # 0.3.0
