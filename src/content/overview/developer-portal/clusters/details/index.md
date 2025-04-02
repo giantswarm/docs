@@ -40,7 +40,7 @@ The tools panel in the top right provides direct links to the following tools:
 
 2. **Alerts** is a direct link into the alerting section of this installation's Grafana instance.
 
-3. **Web UI** is a link to the cluster details page in the legacy Giant Swarm web UI (a.k.a Happa).
+3. **Web UI** is a link to the cluster details page in the legacy Giant Swarm web UI.
 
 ### GitOps info
 

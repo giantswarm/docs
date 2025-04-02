@@ -26,7 +26,7 @@ By default, the URL is set to `https://backstage.BASE_DOMAIN/`. However, this UR
 
 ## Single sign-on
 
-The developer portal uses the same sign-in mechanism as the Giant Swarm management clusters and other web UIs provided by Giant Swarm, like Grafana. As an end user, you log in with your corporate identity provider (IdP) credentials.
+The developer portal uses the same sign-in mechanism as the Giant Swarm management clusters and other web user interfaces provided by Giant Swarm, like Grafana. As an end user, you log in with your corporate identity provider (IdP) credentials.
 
 ## Logging in
 
@@ -34,7 +34,7 @@ When accessing the developer portal URL for the first time, you should find a lo
 
 ![Developer portal login screen](./sign-in-prompt.png)
 
-Once you click the SIGN IN button, a popup window will apear. See example below.
+Once you click the SIGN IN button, a popup window will appear. See example below.
 
 ![Selection of dex connectors to choose from](./dex-connectors-popup.png)
 

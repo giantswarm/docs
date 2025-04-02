@@ -69,13 +69,13 @@ status:
 In order to provide links which end users can use to navigate to the source of a GitOps resource, we need two things:
 
 1. Understand the URL found in the GitRepository resource. This is configured using the `gitRepositoryUrlPattern` field.
-2. The URL pattern used by the source code management system UI (e.g., GitHub, GitLab, Bitbucket) that we want to link to. To be configured via the `targetUrl` field.
+2. The URL pattern used by the source code management system UI (for example GitHub, GitLab, Bitbucket) that we want to link to. To be configured via the `targetUrl` field.
 
 The Giant Swarm Backstage plugin allows you to specify any number of combinations of the two above in the `app-config.yaml` file under the `gs.gitopsRepositories` section, to handle a variety of different cases.
 
 ### gitRepositoryUrlPattern
 
-With this field, you specify a regular expression (ECMAScript/JavaScript flavour) used to extract values from the GitRepository's `.spec.url` property. The names of the capturing groups (e.g., `HOSTNAME`, `PROJECT_NAME`) allow to reference the matched substrings when creating a link URL via the according `targetUrl` template.
+With this field, you specify a regular expression (ECMAScript/JavaScript flavour) used to extract values from the GitRepository's `.spec.url` property. The names of the capturing groups (for example: `HOSTNAME`, `PROJECT_NAME`) allow to reference the matched parts when creating a link URL via the according `targetUrl` template.
 
 For example, to parse the URL `ssh://git@github.com/demotechinc/demotech-gitops`, you could configure the following regex:
 
@@ -134,7 +134,7 @@ gs:
       targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
 ```
 
-Note that with mutltiple entries, the first matching entry is used to create a link, so the order of the entries is important.
+Note that with multiple entries, the first matching entry is used to create a link, so the order of the entries is important.
 
 See below how this applies to different repository URLs.
 

@@ -28,4 +28,4 @@ We expect you to want to extend the catalog with your own software components, t
 
 ## Further reading
 
-- [The Bacsktage software catalog](https://backstage.io/docs/features/software-catalog/)
+- [The Backstage software catalog](https://backstage.io/docs/features/software-catalog/)
