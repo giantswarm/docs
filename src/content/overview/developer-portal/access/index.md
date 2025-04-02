@@ -1,7 +1,7 @@
 ---
 title: Accessing the developer portal
 linkTitle: Access
-description: How to access your Giant Swarm developer portal.
+description: How to find your Giant Swarm developer portal URL and how to log in.
 weight: 10
 menu:
   principal:
@@ -30,11 +30,11 @@ The developer portal uses the same sign-in mechanism as the Giant Swarm manageme
 
 ## Logging in
 
-When accessing the developer portal URL for the first time, you should find a login prompt like the one below.
+When accessing the developer portal for the first time, you should find a login prompt like the one below.
 
 ![Developer portal login screen](./sign-in-prompt.png)
 
-Once you click the SIGN IN button, a popup window will appear. See example below.
+Once you click the sign in button, a popup window will appear. See example below.
 
 ![Selection of dex connectors to choose from](./dex-connectors-popup.png)
 
