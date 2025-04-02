@@ -19,10 +19,10 @@ user_questions:
 For each cluster, regardless whether workload or management cluster, you find a details page in the developer portal. The URI path of this page has the following schema:
 
 ```nohighlight
-/clusters/{MC_NAME}/{MC_NAMESPACE}/{CLUSTER_NAME}
+/clusters/{MC_NAME}/{ORG_NAMESPACE}/{CLUSTER_NAME}
 ```
 
-Here, `MC_NAME` is the name of the management cluster, `MC_NAMESPACE` is the namespace in the management cluster holding the cluster resources, and `CLUSTER_NAME` is the name of the cluster.
+Here, `MC_NAME` is the name of the management cluster, `ORG_NAMESPACE` is the namespace in the management cluster holding the cluster resources, and `CLUSTER_NAME` is the name of the cluster.
 
 ## Details
 
