@@ -73,7 +73,7 @@ In order to provide links which end users can use to navigate to the source of a
 
 The Giant Swarm Backstage plugin allows you to specify any number of combinations of the two above in the `app-config.yaml` file under the `gs.gitopsRepositories` section, to handle a variety of different cases.
 
-### gitRepositoryUrlPattern
+### `gitRepositoryUrlPattern`
 
 With this field, you specify a regular expression (ECMAScript/JavaScript flavour) used to extract values from the GitRepository's `.spec.url` property. The names of the capturing groups (for example: `HOSTNAME`, `PROJECT_NAME`) allow to reference the matched parts when creating a link URL via the according `targetUrl` template.
 
@@ -87,7 +87,7 @@ For example, to parse the URL `ssh://git@github.com/demotechinc/demotech-gitops`
 
 As a result, the `HOSTNAME` group will contain `github.com`, and the `REPO_PATH` group will contain `demotechinc/demotech-gitops`.
 
-### targetUrl
+### `targetUrl`
 
 With the `targetUrl` field you specify how to create a link URL based on the parts captured via the regex `gitRepositoryUrlPattern` (see above) and additional details (path and revision).
 

@@ -1,7 +1,7 @@
 ---
 title: Using your own URL for the developer portal
 linkTitle: URL
-description: How to set up a custom URL for your Giant Swarm developer portal
+description: How to set up a custom URL for your Giant Swarm developer portal.
 weight: 10
 menu:
   principal:
