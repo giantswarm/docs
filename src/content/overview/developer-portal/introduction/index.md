@@ -1,16 +1,17 @@
 ---
-title: Developer portal
+title: Developer portal introduction
+linkTitle: Introduction
 description: Our Backstage-based developer portal is your engineer's front end to the platform. We provide our self-service user interface as plugins for Backstage, so engineers using your platform find all the information they need in the right place.
-weight: 30
+weight: 1
 menu:
   principal:
-    parent: overview
-    identifier: overview-developer-portal
-last_review_date: 2024-07-01
+    parent: overview-developer-portal
+    identifier: overview-developer-portal-introduction
+last_review_date: 2025-04-01
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - What is the developer portal?
+  - What is the Giant Swarm developer portal?
   - What is Backstage?
 ---
 
