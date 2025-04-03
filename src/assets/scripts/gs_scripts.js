@@ -64,9 +64,6 @@ const site_search_element = root.querySelector(".site-search__open");
 if (site_search_element) {
   site_search_element.addEventListener("click", function(event) {
     event.preventDefault();
-    window.inkeepWidget.render({
-      ...window.inkeepConfig,
-      isOpen: true,
-    });
+    window.inkeepWidget.update({ modalSettings: { isOpen: true } });
   });
 }
