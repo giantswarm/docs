@@ -16,7 +16,7 @@ user_questions:
 
 The URL of the developer portal is set to `https://backstage.BASE_DOMAIN/` by default, where `BASE_DOMAIN` is the base domain of the management cluster is deployed in.
 
-We are happy to customize the URL according to your needs. All we need is a CNAME record pointing to the current portal host name. Once you have this CNAME configured, please inform your account engineer.
+We are happy to customize the URL according to your needs. All we need is a CNAME record pointing to the current portal host name. Once you have this CNAME configured, please inform your account engineer so we can update your portal configuration.
 
 ## Example
 
