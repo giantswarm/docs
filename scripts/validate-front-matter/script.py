@@ -118,7 +118,7 @@ checks = (
     },
     {
         'id': SHORT_DESCRIPTION,
-        'description': 'The description should be longer than 70 characters',
+        'description': 'The description should be longer than 50 characters',
         'ignore_paths': [crds_path, vintage_crds_path, changes_path],
         'severity': SEVERITY_FAIL,
         'has_value': True,
@@ -522,7 +522,7 @@ def validate(content, fpath, validation):
                         'check': INVALID_DESCRIPTION,
                         'value': fm['description'],
                     })
-            elif len(fm['description']) < 70:
+            elif len(fm['description']) < 50:
                 if not ignored_path(fpath, SHORT_DESCRIPTION):
                     result['checks'].append({
                         'check': SHORT_DESCRIPTION,
