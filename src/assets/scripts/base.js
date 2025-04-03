@@ -39,6 +39,9 @@ var inkeepBaseSettings = {
         key: "custom-theme",
         type: "style",
         value: `
+          #sidebarSearchForm {
+            margin-bottom: 20px;
+          }
           .ikp-search-bar__text{
             font-size: 14px;
           }
