@@ -24,6 +24,8 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
+aliases:
+  - /use-the-api/management-api/crd/kvmclusterconfigs.core.giantswarm.io/
 technical_name: kvmclusterconfigs.core.giantswarm.io
 source_repository: https://github.com/giantswarm/apiextensions
 source_repository_ref: v5.0.0

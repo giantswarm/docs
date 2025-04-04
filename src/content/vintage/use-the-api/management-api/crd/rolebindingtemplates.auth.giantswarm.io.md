@@ -20,6 +20,8 @@ crd:
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
+aliases:
+  - /use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io/
 technical_name: rolebindingtemplates.auth.giantswarm.io
 source_repository: https://github.com/giantswarm/rbac-operator
 source_repository_ref: v0.39.0
