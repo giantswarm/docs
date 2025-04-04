@@ -38,7 +38,7 @@ Available columns are:
 - **Status**: deployment condition. "Ready" (App) or "Reconciled" (HelmRelease) for a successfully deployed application. "Failed" or else for a failed deployment.
 - **Type**: type of deployment resource, either App or HelmRelease.
 - **Updated**: when this deployment was last updated. Place your pointer on the value to see an accurate date and time.
-- **Version**: the version of the application deployed. Note that each version is displayed in a different color, to highlight version differences between deployments of the same app.
+- **Version**: the version of the application deployed. Note that each version is displayed in a different color, to highlight version differences between deployments of the same app. If the last attempted version is different from the last applied version, there will be a yellow warning icon next to the version number.
 
 ## Filters
 
