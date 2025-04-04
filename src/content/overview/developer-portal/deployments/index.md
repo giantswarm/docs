@@ -20,7 +20,7 @@ Select the **Deployment** item in the left-hand navigation to access the app dep
 
 ## List view
 
-![App deployments list view](./deployments.png)
+![App deployments list view](deployments.png)
 
 The list shows key details about each app deployed to any of your clusters, either via an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) or a [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) in a management cluster.
 
@@ -54,7 +54,11 @@ You can filter the deployments list by a combination of these filters:
 
 ## Details panel
 
-The details panel shows all details that are also available in table columns of the list view, plus some additional information. Particularly important here:
+The details panel shows all details that are also available in table columns of the list view, plus some additional information.
+
+![App deployments details panel](deployment-details-failed.png)
+
+Particularly important here:
 
 - **Revision last applied** and **Revision last attempted**: for a healthy deployment, these two values should be the same. In a failed deployment, this can help you understand which version failed, and which one is still running instead.
 - Deployment time: tells you when the current version has been deployed.
