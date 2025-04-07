@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-data-exploration-create-custom-dashboards
     parent: tutorials-observability-data-exploration
 weight: 40
-last_review_date: 2025-02-10
+last_review_date: 2025-04-07
 user_questions:
   - How to customize dashboards?
   - How to create my own dashboards?
@@ -19,24 +19,7 @@ You can find in [your installations Grafana]({{< relref "/tutorials/observabilit
 
 ## Creating your own dashboard
 
-To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
-
-```yaml
-apiVersion: v1
-data:
-  my-dashboard.json: |-
-    { ... my dashboard in JSON format }
-kind: ConfigMap
-metadata:
-  annotations:
-    ## Define the organization in Grafana where the dashboard will be added
-    observability.giantswarm.io/organization: Customer
-  labels:
-    ## Tell Grafana to load this configmap as a dashboard
-    app.giantswarm.io/kind: dashboard
-  name: my-grafana-dashboard
-  namespace: my-namespace
-```
+To create your own dashboard, you can directly use the Grafana UI and save it there. As we are operating a database to save grafana data, dashboards created and saved directly from the UI will be accessible even in case of disaster as long as a database backup has been made bewteen the dashboard creation and the said disaster. For more information on this, please check the related grafana backup [documentation page](https://docs.giantswarm.io/tutorials/observability/data-exploration/grafana-backups/)
 
 ### Limitations
 
