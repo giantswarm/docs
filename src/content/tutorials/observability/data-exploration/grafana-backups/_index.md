@@ -21,7 +21,7 @@ We are operating a postgresql cluster as a grafana database on which is stored a
 
 There are 2 ways to create backups for the grafana postgresql database :
 
-- __Scheduled backups__ : you can define a `ScheduledBackup` resource in the k8S cluster in which you will define when will backup be created. This is the preffered approach as this allows you to automate backups and have those done on a regular basis. Here is an example of such a resource :
+- __Scheduled backups__ : you can define a `ScheduledBackup` resource in the k8S cluster in which you will define when will backup be created. This is the preferred approach as it allows you to automate backups and have those done on a regular basis. Here is an example of such a resource :
 
 ```yaml
 apiVersion: postgresql.cnpg.io/v1
@@ -38,7 +38,7 @@ spec:
 The `schedule` field is a cron schedule specification so you can define it the same way you would for a cronjob.
 The `cluster.name` field designates the postgresql cluster you want to create a backup from.
 
-- __Manual backups__ : if for any reason you need to create a backup outside of the scheduled time from the ScheduledBackups resources, you can create a `Backup` resource. This will create a backup from the targetted postgresql cluster as soon as it gets deployed and reconciled by the postgresql operator. here is an example of such a resouce :
+- __Manual backups__ : if for any reason you need to create a backup outside of the scheduled time from the ScheduledBackups resources, you can create a `Backup` resource. This will create a backup from the targeted postgresql cluster as soon as it gets deployed and reconciled by the postgresql operator. here is an example of such a resource :
 
 ```yaml
 apiVersion: postgresql.cnpg.io/v1

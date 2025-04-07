@@ -19,7 +19,7 @@ You can find in [your installations Grafana]({{< relref "/tutorials/observabilit
 
 ## Creating your own dashboard
 
-To create your own dashboard, you can directly use the Grafana UI and save it there. As we are operating a database to save grafana data, dashboards created and saved directly from the UI will be accessible even in case of disaster as long as a database backup has been made bewteen the dashboard creation and the said disaster. For more information on this, please check the related grafana backup [documentation page](https://docs.giantswarm.io/tutorials/observability/data-exploration/grafana-backups/)
+To create your own dashboard, you can directly use the Grafana UI and save it there. As we are operating a database for Grafana, dashboards created and saved directly from the UI will be accessible even in case of disaster as long as a backup has been made after the dashboard creation and before the said disaster. For more information on this, please check the related grafana backup [documentation page](https://docs.giantswarm.io/tutorials/observability/data-exploration/grafana-backups/)
 
 ### Limitations
 
