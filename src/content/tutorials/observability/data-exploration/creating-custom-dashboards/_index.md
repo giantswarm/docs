@@ -44,5 +44,5 @@ metadata:
 
 ### Limitations
 
-* the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
-* the dashboard name and UID must be unique in each Grafana organization.
+- the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
+- the dashboard name and UID must be unique in each Grafana organization.
