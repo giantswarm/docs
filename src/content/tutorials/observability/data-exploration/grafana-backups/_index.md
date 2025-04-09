@@ -15,13 +15,13 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-We are operating a postgresql cluster as a grafana database on which is stored all grafana data. In order to ensure the availability of this stored data, especially in case of disaster, backups need to be created so that the data can be retrieved afterwards. We are already creating backups by default but if you want to add your own, you will find here how to do it.
+We operate a PostgreSQL cluster as a Grafana database storing your data. To ensure the availability of this stored data, especially in a disaster, backups need to be created to retrieve the data afterward. We are already creating backups by default, but if you want to add your own, you will find here how to do it.
 
 ## Creating grafana backups
 
-There are 2 ways to create backups for the grafana postgresql database :
+There are two ways to create backups for the PostgreSQL database :
 
-- __Scheduled backups__ : you can define a `ScheduledBackup` resource in the k8S cluster in which you will define when will backup be created. This is the preferred approach as it allows you to automate backups and have those done on a regular basis. Here is an example of such a resource :
+- __Scheduled backups__ : You can define a `ScheduledBackup` resource in the management cluster. This is the preferred approach as it allows you to automate backups and have those done regularly. Here is an example of such a resource :
 
 ```yaml
 apiVersion: postgresql.cnpg.io/v1
@@ -35,10 +35,9 @@ spec:
     name: my-pg-cluster
 ```
 
-The `schedule` field is a cron schedule specification so you can define it the same way you would for a cronjob.
-The `cluster.name` field designates the postgresql cluster you want to create a backup from.
+The `schedule` field is a cron schedule specification, so you can define it the same way you would for a cronjob. The `cluster.name` field designates the PostgreSQL cluster from which you want to create a backup.
 
-- __Manual backups__ : if for any reason you need to create a backup outside of the scheduled time from the ScheduledBackups resources, you can create a `Backup` resource. This will create a backup from the targeted postgresql cluster as soon as it gets deployed and reconciled by the postgresql operator. here is an example of such a resource :
+- __Manual backups__ : If you need to create a backup outside of the scheduled time from the `ScheduledBackup` resources, you can create a `Backup` resource. This will create a backup from the targeted PostgreSQL cluster as soon as it gets deployed and reconciled by the PostgreSQL operator. Check the example of such a resource :
 
 ```yaml
 apiVersion: postgresql.cnpg.io/v1
@@ -52,4 +51,4 @@ spec:
 
 ## Disaster recovery
 
-The whole disaster recovery process is handled by Giant Swarm engineers as soon as they get notified.
+Our engineers handle the disaster recovery process as soon as they are notified.
