@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-data-exploration-create-custom-dashboards
     parent: tutorials-observability-data-exploration
 weight: 40
-last_review_date: 2025-02-10
+last_review_date: 2025-04-07
 user_questions:
   - How to customize dashboards?
   - How to create my own dashboards?
@@ -19,7 +19,9 @@ You can find in [your installations Grafana]({{< relref "/tutorials/observabilit
 
 ## Creating your own dashboard
 
-To create your own dashboard, you can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
+There are two possible ways to create your own dashboard :
+
+- You can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
 
 ```yaml
 apiVersion: v1
@@ -38,7 +40,9 @@ metadata:
   namespace: my-namespace
 ```
 
+- You can directly use the Grafana UI and save it there. As we are operating a database for Grafana, dashboards created and saved directly from the UI will be accessible even in case of disaster as long as a backup has been made after the dashboard creation and before the said disaster.
+
 ### Limitations
 
-* the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
-* the dashboard name and UID must be unique in each Grafana organization.
+- the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
+- the dashboard name and UID must be unique in each Grafana organization.
