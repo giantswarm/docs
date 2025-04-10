@@ -68,7 +68,7 @@ Particularly important here:
 
 ## Matching deployments and apps in the catalog {#component-matching}
 
-To provide a link to the app details page, several requirements have to be met:
+To provide a link to the app details page, the system must fulfill several requirements:
 
 - The app must be found in the portal catalog as an entity of kind `Component`.
-- The entity found must provide an annotaion `giantswarm.io/deployment-names` with possible deployment names as a comma-separated string. The chart name of the deployment must match one value of the names provided in the annotation.
+- The entity found must provide an annotation `giantswarm.io/deployment-names` with possible deployment names as a comma-separated string. The chart name of the deployment must match one value of the names provided in the annotation.
