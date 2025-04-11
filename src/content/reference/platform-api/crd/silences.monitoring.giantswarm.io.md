@@ -12,7 +12,7 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.12.0
+  source_repository_ref: v0.14.0
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /use-the-api/management-api/crd/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.12.0
+source_repository_ref: v0.14.0
 ---
 
 # Silence
@@ -67,7 +67,10 @@ source_repository_ref: v0.12.0
 </div>
 
 <div class="property-description">
-<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+<p>APIVersion defines the versioned schema of this representation of an object.
+Servers should convert recognized schemas to the latest internal value, and
+may reject unrecognized values.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
 
 </div>
 
@@ -85,7 +88,11 @@ source_repository_ref: v0.12.0
 </div>
 
 <div class="property-description">
-<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>Kind is a string value representing the REST resource this object represents.
+Servers may infer this from the endpoint the client submits requests to.
+Cannot be updated.
+In CamelCase.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
 
@@ -182,7 +189,7 @@ source_repository_ref: v0.12.0
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">boolean</span>
-<span class="property-required">Required</span>
+
 </div>
 
 </div>
@@ -243,7 +250,8 @@ source_repository_ref: v0.12.0
 </div>
 
 <div class="property-description">
-<p>PostmortemURL is a link to a document describing the problem. Deprecated: Use IssueURL instead.</p>
+<p>PostmortemURL is a link to a document describing the problem.
+Deprecated: Use IssueURL instead.</p>
 
 </div>
 
