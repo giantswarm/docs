@@ -7,7 +7,7 @@ menu:
   main:
     identifier: advanced-gitops-apps-app-update
     parent: advanced-gitops-apps
-last_review_date: 2024-02-16
+last_review_date: 2025-03-25
 user_questions:
   - How can I update an existent app deployed with GitOps?
 owner:
@@ -63,11 +63,12 @@ export APP_NAME=APP_NAME
     cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps/${APP_NAME}
     ```
 
-2. Import the WC's regular GPG private key from your safe storage into your keychain. In our example, we're gonna use `LastPass` for that:
+2. Import the WC's regular GPG private key from your safe storage into your keychain. In our example, we use 1Password's `op` CLI for that:
 
     ```sh
+    eval $(op signin)
     gpg --import \
-    <(lpass show --notes "Shared-Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)")
+    <(op read "Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)/notesPlain")
     ```
 
 3. Decrypt the `secret.enc.yaml` file with SOPS:

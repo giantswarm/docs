@@ -1,7 +1,7 @@
 ---
 linkTitle: Tooling
-title: Tooling to support the GitOps journey
-description: A description of the tools availble and how to use them to augment the GitOps journey.
+title: Tools for your GitOps workflow
+description: Helpful tools for your GitOps workflow and how to use them.
 weight: 80
 menu:
   principal:
@@ -9,81 +9,85 @@ menu:
     identifier: tutorials-continuous-deployment-tools
 user_questions:
 - What tools should I use to validate my gitops manifests?
-- How can I trace resources that flux controls?
+- How can I trace resources that Flux controls?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-07
+last_review_date: 2025-03-14
 ---
 
-The following scripts and tools may be used to support you in understanding issues which may arise during the deployment of resources managed by flux. Some of these tools are introduced by us here at Giant Swarm, whilst others are provided as part of the upstream package or from the community.
+These tools can help you solve issues when deploying resources with Flux. Some are created by Giant Swarm, while others come from Flux or the wider community.
 
-This is a selection of the tools we ourselves find to be the most beneficial in understanding where and how `Flux` controlled resources may fail.
+We've selected tools that we find most helpful for troubleshooting Flux-controlled resources.
 
-### Flux script
+## Flux script
 
-Giant Swarm created a script to emulate the behaviour of `Flux` CLI in a local environment.
+Giant Swarm created a script that mimics the `flux` CLI locally.
 
-The purpose of this script is to ensure that all resources are generated correctly, patches are applied and variables substituted.
+This script ensures your resources are correctly generated with patches applied and variables filled in.
 
-The script can be found as part of our [gitops-template tooling](https://github.com/giantswarm/gitops-template/tree/main/tools)
+Find it in our [gitops-template tooling](https://github.com/giantswarm/gitops-template/tree/main/tools)
 
-For advanced usage and examples, please run `fake-flux usage` or see the examples provided in the repository.
+For help, run `fake-flux usage` or check the examples in the repository.
 
-### Test all with flux custom script
+## Test all with a custom script
 
-This script has the most benefit when tied in with a GitHub action but may also be run locally either independently or as part of a git pre-commit hook.
+This script works best in a GitHub action but can also run locally or in a git pre-commit hook.
 
-The purpose of the script is to check all generated manifests for linting and validation errors. It achieves this by using both [`yamllint`](https://github.com/adrienverge/yamllint) and [`kubeconform`](https://github.com/yannh/kubeconform) to verify a compiled version of all manifests discovered from a flux `kustomization`
-`spec.path`.
+It checks all manifests for errors using [`yamllint`](https://github.com/adrienverge/yamllint) and [`kubeconform`](https://github.com/yannh/kubeconform). These tools verify manifests built from Flux kustomization paths.
 
-Usage of the script is simple; from the root of your GitOps repository run `test-all-ff validate`. The script will then find all Flux `kustomization` files, execute `fake-flux` to build a monolithic manifest for each `kustomization` found, and then parse that manifest with `yamllint` and `kubeconform`.
+To use it, run `test-all-ff validate` from your GitOps repository root. The script finds all Flux `kustomization` files, builds manifests with `fake-flux`, and checks them with `yamllint` and `kubeconform`.
 
-The script can be found as part of our [gitops-template tooling](https://github.com/giantswarm/gitops-template/tree/main/tools).
+Find this script in our [gitops-template tooling](https://github.com/giantswarm/gitops-template/tree/main/tools).
 
-### Flux validation
+## Flux validation
 
-Similar to `test-all-ff`, validation script `validate.sh` also parses your manifests with `kubeconform`, however it does this slightly differently and whilst it doesn't execute `yamllint` over your generated manifests for you, it instead parses your manifests against the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).
+The `validate.sh` script works like `test-all-ff` but uses `kubeconform` differently. Instead of running `yamllint`, it checks manifests against the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).
 
-Validation script isn't provided by Giant Swarm directly but instead can be found as part of the [`Kustomize`
-examples](https://github.com/fluxcd/flux2-kustomize-helm-example/tree/main/scripts).
+This script isn't from Giant Swarm - find it in the [kustomize examples](https://github.com/fluxcd/flux2-kustomize-helm-example/tree/main/scripts).
 
-### Flux build
+## Flux build
 
-When none of the above tools give you the output you are looking for, it's possible to call `flux build kustomization` in `--dry-run` mode. In fact when using `fake-flux` in its default mode, this is exactly what it does under the hood.
+When other tools don't help, try `flux build kustomization` with `--dry-run`. This is what `fake-flux` uses by default.
 
-When using dry-run mode, it's important to note that variable substitutions from `Secrets` or `ConfigMaps` are skipped so your manifests may not be exactly what's parsed by flux on the server but it will give you a close enough approximation to allow you to verify your manifests are likely build and succeed when deployed to the cluster.
+Note that in dry-run mode, secret and configmap variables aren't replaced. Your manifests won't exactly match what Flux uses on the server, but they'll be close enough to spot problems.
 
-Documentation on `flux build kustomization` can be found in the [`Flux` documentation here](https://fluxcd.io/flux/cmd/flux_build_kustomization/).
+Learn more in the [Flux documentation](https://fluxcd.io/flux/cmd/flux_build_kustomization/).
 
-### Kustomize build
+## Kustomize build
 
-This is slightly more complex than using `flux build kustomization` as by default, `kustomize` won't carry out any substitutions for you. These should instead be carried out at the end of the process by first exporting them as environment variables, building the manifest and then finally calling `envsubst` as part of a chained pipe.
+Using `kustomize build` is more complex than `flux build kustomization`. It doesn't replace variables automatically. You need to:
 
-This behaviour is also integrated into `fake-flux` for you and can be activated with the `--use-kustomize` flag to the script.
+1. Export environment variables
+2. Build the manifest
+3. Use `envsubst` in a pipe
 
-Whilst there aren't many benefits to using `kustomize build` over `flux build kustomization` it can, in certain instances offer a quick visual check to ensure your secrets have all been encrypted correctly.
+You can do this with `fake-flux` using the `--use-kustomize` flag.
 
-The difference here is `flux build kustomization` replaces the contents of your secret with the type of encryption used such as `**SOPS**` whilst `kustomize build` will display instead the entire encrypted secret.
+While similar to `flux build kustomization`, `kustomize build` shows encrypted secrets differently. Flux shows only the encryption type (like SOPS), while kustomize shows the entire encrypted secret.
 
-__Note__: As a quick visual guide, this may be preferable to ensure your secrets are all encrypted and gives you the opportunity to visually compare key fingerprints.
+This helps you quickly check if all secrets are encrypted and compare key fingerprints.
 
-Documentation on `kustomize build` can be found in the [`Kustomize` documentation here](https://kubectl.docs.kubernetes.io/references/kustomize/cmd/build/).
+Find more details in the [Kustomize documentation](https://kubectl.docs.kubernetes.io/references/kustomize/cmd/build/).
 
-### flux
+## flux CLI
 
-There are many useful commands in flux and to understand this as a tool we recommend you browse their comprehensive CLI documentation which can be found at [https://fluxcd.io/flux/cmd/](https://fluxcd.io/flux/cmd/). However, when understanding resources on the cluster, there are two commands in particular that should be brought to your attention as these offer a great deal of benefit in determining if a resource is controlled by flux and whether it has the latest changes.
+The `flux` CLI has many useful commands. Check their [CLI documentation](https://fluxcd.io/flux/cmd/) to learn more.
 
-#### flux tree
+Two commands are especially helpful for checking resources on your cluster:
 
-The `flux tree`command will show you a list of resources a `kustomization` manages.
+1. `flux tree`
+2. `flux trace`
 
-This command can't be used against local manifests but is instead run against the server and will print out
-a tree of all resources organized by sub-kustomization and sorted by type.
+### flux tree
 
-#### flux trace
+`flux tree` shows resources managed by a kustomization.
 
-When looking at any given resource on a cluster, it's not always easy to understand if that resource is controlled via `Flux`, and if so, which `kustomization` controls it.
+This command only works on a cluster, not with local files. It displays a tree of resources organized by sub-kustomization and type.
 
-Occasionally you might find a resource has been duplicated in your repository so it's now being controlled by multiple `kustomizations` which are fighting for control, other times you may create a child `kustomization` but the child directory is actually controlled at a higher level.
+### flux trace
 
-`Flux` trace helps identify the `kustomization` controlling the resource you're looking interested in and will show you the source revision for that resource, additionally helping you determine if it's received the latest changes.
+When looking at a cluster resource, it can be hard to know if Flux controls it and which kustomization manages it.
+
+Sometimes resources are duplicated in your repository, causing multiple kustomizations to fight for control. Or you might create a child kustomization while the parent already controls those files.
+
+`flux trace` helps identify which kustomization controls a resource and shows its source revision, helping you check if it has the latest changes.

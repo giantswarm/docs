@@ -3,7 +3,7 @@ title: Prepare your provider environment for VMware vSphere
 linkTitle: VMware vSphere
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 40
-last_review_date: 2024-11-28
+last_review_date: 2025-04-09
 layout: single
 menu:
   principal:
@@ -96,7 +96,7 @@ Create the user role browsing to `Administration > Access Control > Roles`and cl
 | `Resource` | `Assign virtual machine to resource pool` |
 | `Sessions` | `Message`<br>`Validate session` |
 | `Profile driven storage` _(vSphere 7)_<br>`VM storage policies` _(vSphere 8)_ | `Profile-driven storage view`<br>`View VM storage policies` |
-| `vApp` | `Import` |
+| `vApp` | `Import`<br>`Pull from URL` |
 | `vSphere Tagging` | `Assign or Unassign vSphere Tag`<br>`Assign or Unassign vSphere Tag on Object` |
 | `Virtual machine` | `Change Configuration`<br>`- Add existing disk`<br>`- Add new disk`<br>`- Add or remove device`<br>`- Advanced configuration`<br>`- Change CPU count`<br>`- Change Memory`<br>`- Change Settings`<br>`- Configure Raw device`<br>`- Extend virtual disk`<br>`- Modify device settings`<br>`- Remove disk`<br>`-Rename`<br>`Edit inventory`<br>`- Create from existing`<br>`- Create new`<br>`- Remove`<br>`Interaction`<br>`- Console interaction`<br>`- Power off`<br>`- Power on`<br>`Provisioning`<br>`- Clone template`<br>`- Customize guest`<br>`- Deploy template`<br>`- Mark as template`<br>`- Mark as virtual machine` |
 

@@ -3,7 +3,7 @@ COMPANY=giantswarm
 REGISTRY=gsoci.azurecr.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.35.0@sha256:22cf4699a448a7bbc311a940e0600019423d7671cbedae9c35cd32b51f560350
-VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.4.0@sha256:fe9c173ef6dcd782cefa53cad69d1684bc317b12188b03299b0d29aecf265a59
+VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.4.0@sha256:6374c8a4c6c61b5d73987ff707208da73042cd5985851bd8a63037f956247d7b
 APPLICATION=docs-app
 RUNNING_IN_CI ?= false
 
@@ -104,29 +104,23 @@ lint-prose-update:
 # Validate front matter in all pages.
 validate-front-matter:
 	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py
+		--volume=${PWD}:/workdir:ro \
+		-w /workdir \
+		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+		/workdir/scripts/validate-front-matter/script.py
 
 # Validate front matter for last-reviewed date.
-validate-last-reviewed:
-	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py \
-		--validation last-reviewed \
-		--output json
+validate-last-reviewed-json:
+	@docker run --rm --volume=${PWD}:/workdir:ro -w /workdir $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest /workdir/scripts/validate-front-matter/script.py --validation last-reviewed --output json
 
 # Print a report of pages with a last_review_date that's
 # too long ago.
 validate-last-reviewed:
 	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py --validation last-reviewed
+		--volume=${PWD}:/workdir:ro \
+		-w /workdir \
+		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+		/workdir/scripts/validate-front-matter/script.py --validation last-reviewed
 
 docker-build:
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
@@ -171,8 +165,10 @@ linkcheck-internal:
 
 update-website-content:
 	cd ./scripts/update-website-content && \
-		npm ci && \
-		npm start
+		yarn install && \
+		yarn playwright install && \
+		yarn playwright install-deps && \
+		yarn start
 
 # Verify internal and external links
 # based on the currently deployed docs website.
