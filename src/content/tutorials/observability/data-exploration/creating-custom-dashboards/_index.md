@@ -40,7 +40,7 @@ metadata:
   namespace: my-namespace
 ```
 
-- You can directly use the Grafana UI and save it there. As we are operating a database for Grafana, dashboards created and saved directly from the UI will be accessible even in case of disaster as long as a backup has been made after the dashboard creation and before the said disaster.
+- You can also create your dashboards directly through the Grafana UI. Grafana data is stored in a postgresql database which is backed up hourly so we can recover the state of grafana in case of a disaster.
 
 ### Limitations
 
