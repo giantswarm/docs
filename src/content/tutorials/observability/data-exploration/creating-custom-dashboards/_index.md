@@ -19,9 +19,11 @@ You can find in [your installations Grafana]({{< relref "/tutorials/observabilit
 
 ## Creating your own dashboard
 
-There are two possible ways to create your own dashboard :
+There are two possible ways to create your own dashboard:
 
-- You can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
+### GitOps
+
+You can create a `configmap` resource in the management cluster in any namespace you want containing the dashboard. For example:
 
 ```yaml
 apiVersion: v1
@@ -40,9 +42,15 @@ metadata:
   namespace: my-namespace
 ```
 
-- You can also create your dashboards directly through the Grafana UI. Grafana data is stored in a postgresql database which is backed up hourly so we can recover the state of grafana in case of a disaster.
+__warning__: the `observability.giantswarm.io/organization` annotation's value must be equal to an existing GrafanaOrganization CR's display name. For more information on grafana organizations, check the [related page](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/).
 
-### Limitations
+This is the preferred approach as it allows shared dashboards across all installations (if you have multiple ones) and comes with a linting job in the CI pipeline to ensure the dahboard is valid.
+
+### Grafana UI
+
+You can also create your dashboards directly through the Grafana UI. Grafana data is stored in a postgresql database which is backed up hourly so we can recover the state of grafana in case of a disaster.
+
+## Limitations
 
 - the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
 - the dashboard name and UID must be unique in each Grafana organization.
