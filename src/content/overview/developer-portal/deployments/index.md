@@ -29,6 +29,7 @@ Note that **some available columns are hidden by default.** The three rectangles
 Available columns are:
 
 - **Name**: name of the App or HelmRelease resource. Click the name to open the details panel.
+- **App**: name of the app deployed, if found in the portal catalog. This is a link to the details page of the app in the portal catalog. See [matching deployments and apps in the catalog](#component-matching) below for more details.
 - **Chart name**: name of the app/helm chart deployed.
 - **Cluster type**: type of cluster the workload is deployed to, either `M` for management cluster or `W` for workload cluster.
 - **Cluster**: name of the cluster deployed to.
@@ -45,6 +46,7 @@ Available columns are:
 You can filter the deployments list by a combination of these filters:
 
 - **Installation**: Specify which installation/management cluster to query for resources. For fastest results, select only the installations you are interested in.
+- **App**: Limit the deployments shown to only those matching a specific app. This requires [matching](#component-matching) to work for the app, as explained below.
 - **Version**: Specify the application versions to display.
 - **Clusters**: Specify the cluster to display applications for. Note that in this context, this specifies the target cluster of the deployed workload, not the management cluster the deployment is defined in. For differentiation, the management cluster name is given as a prefix here.
 - **Cluster type**: Allows to narrow down deployments only to management or only to workload clusters. Again, since all deployment resources are defined in management clusters, this filter applies to the target cluster of the deployed workload.
@@ -63,3 +65,10 @@ Particularly important here:
 - **Revision last applied** and **Revision last attempted**: for a healthy deployment, these two values should be the same. In a failed deployment, this can help you understand which version failed, and which one is still running instead.
 - Deployment time: tells you when the current version has been deployed.
 - Errors details in case of a failed deployment: help to save time when troubleshooting a failed deployment. Note that these panels can be expanded and may be collapsed by default.
+
+## Matching deployments and apps in the catalog {#component-matching}
+
+To provide a link to the app details page, the system must fulfill several requirements:
+
+- The app must be found in the portal catalog as an entity of kind `Component`.
+- The entity found must provide an annotation `giantswarm.io/deployment-names` with possible deployment names as a comma-separated string. The chart name of the deployment must match one value of the names provided in the annotation.
