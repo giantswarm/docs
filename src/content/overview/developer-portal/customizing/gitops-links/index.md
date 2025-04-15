@@ -108,11 +108,33 @@ The resulting URL would look like this:
 https://github.com/demotechinc/demotech-gitops/blob/299de19645659b14421992d059b6c2435486694d/management-clusters/gazelle
 ```
 
+## Default Configuration
+
+By default, the system is pre-configured with two GitHub repository patterns. These defaults are hardcoded into the system and are always applied, even if no `gitopsRepositories` configuration is provided in the `app-config.yaml` file. The default entries are:
+
+- **Default GitHub (SSH):**
+
+  ```yaml
+  gitRepositoryUrlPattern: '^ssh:\/\/git@(ssh\.)?(?<HOSTNAME>github.+?)(:443)?\/(?<REPO_PATH>.+?)(\.git)?$'
+  targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
+  ```
+
+- **Default GitHub (HTTPS):**
+
+  ```yaml
+  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)$'
+  targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
+  ```
+
+These default patterns ensure that links to GitHub repositories can be generated out of the box without requiring any additional configuration.
+
+When custom `gitopsRepositories` entries are provided in the `app-config.yaml` file, they are appended to the default GitHub configurations. The system evaluates all entries (default and custom) in the order they are defined, and the first matching entry is used to generate the link.
+
 ## Full example
 
 In this section we demonstrate how a complete configuration could look like, covering a variety of cases and different source code management systems.
 
-Backstage `app-config.yaml` snippet, configuring five pairs of `gitRepositoryUrlPattern` and `targetUrl`:
+Backstage `app-config.yaml` snippet, configuring two additional pairs of `gitRepositoryUrlPattern` and `targetUrl`:
 
 ```yaml
 gs:
@@ -124,17 +146,9 @@ gs:
     # GitLab
     - gitRepositoryUrlPattern: '^ssh:\/\/git@(?<HOSTNAME>gitlab.+?)\/(?<REPO_PATH>.+?)(\.git)?$'
       targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/-/tree/${{REVISION}}/${{PATH}}'
-
-    # GitHub (SSH)
-    - gitRepositoryUrlPattern: '^ssh:\/\/git@(ssh\.)?(?<HOSTNAME>github.+?)(:443)?\/(?<REPO_PATH>.+?)(\.git)?$'
-      targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
-
-    # GitHub (HTTPS)
-    - gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)$'
-      targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
 ```
 
-Note that with multiple entries, the first matching entry is used to create a link, so the order of the entries is important.
+Note that with multiple entries, the first matching entry is used to create a link, so the order of the entries is important. In this case, the system will first evaluate the default GitHub configurations, followed by the custom Bitbucket and GitLab configurations.
 
 See below how this applies to different repository URLs.
 
