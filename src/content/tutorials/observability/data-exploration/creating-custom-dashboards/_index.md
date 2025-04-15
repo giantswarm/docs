@@ -44,7 +44,7 @@ metadata:
 
 __warning__: the `observability.giantswarm.io/organization` annotation's value must be equal to an existing GrafanaOrganization CR's display name. For more information on grafana organizations, check the [related page](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/).
 
-This is the preferred approach as it allows shared dashboards across all installations (if you have multiple ones) and comes with a linting job in the CI pipeline to ensure the dahboard is valid.
+This is the preferred approach as it allows shared dashboards across all installations (if you have multiple ones) and comes with a linting job in the CI pipeline to ensure the dashboard is valid.
 
 ### Grafana UI
 
