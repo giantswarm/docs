@@ -2,7 +2,7 @@
 title: Observe your clusters and apps
 description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
 weight: 60
-last_review_date: 2025-02-10
+last_review_date: 2025-04-15
 menu:
   principal:
     parent: getting-started
