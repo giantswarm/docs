@@ -42,15 +42,10 @@ metadata:
   namespace: my-namespace
 ```
 
-__warning__: the `observability.giantswarm.io/organization` annotation's value must be equal to an existing GrafanaOrganization CR's display name. For more information on Grafana organizations, check the [related page](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/).
+__warning__: the `observability.giantswarm.io/organization` annotation's value must be equal to an existing GrafanaOrganization CR's display name. For more information on Grafana organizations, check the [related page](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/). Also, the dashboard's JSON must contain a unique `uid` and name (for a given organization) otherwise it won't be provisioned.
 
 This is the preferred approach as it allows shared dashboards across all installations (if you have multiple ones) and comes with a linting job in the CI pipeline to ensure the dashboard is valid.
 
 ### Grafana UI
 
 You can also create your dashboards directly through the Grafana UI. Grafana data is stored in a Postgresql database which is backed up hourly so we can recover the state of Grafana in case of a disaster.
-
-## Limitations
-
-- the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
-- the dashboard name and UID must be unique in each Grafana organization.
