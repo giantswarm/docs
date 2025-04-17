@@ -17,6 +17,7 @@ crd:
     - v1alpha1
   topics:
     - managementcluster
+    - observability
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
