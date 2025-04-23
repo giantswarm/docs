@@ -1,4 +1,5 @@
 ---
+linkTitle: Alerting
 title: Alerting on the ingested observability data
 description: Guides explaining how to configure alertmanager and alerts based on the existing observability data (metrics and logs) from the Observability Platform.
 weight: 20
