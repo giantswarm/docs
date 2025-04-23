@@ -1,5 +1,5 @@
 ---
-title: "Alerting with the Observability Plaform"
+title: "Alerting with the Observability Platform"
 linkTitle: Alerting
 description: Documentation on the observability-platform alerting concept and architecture deployed and maintained by Giant Swarm.
 weight: 80
