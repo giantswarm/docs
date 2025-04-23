@@ -82,7 +82,7 @@ spec:
           severity: page
 ```
 
-## Differenciate between metric vs Log-based rules
+## Differentiate between metric vs Log-based rules
 
 Metric-based rules are evaluated by the Mimir ruler and are written using PromQL while Log-based rules are evaluated by the Loki ruler and are written using LogQL.
 
