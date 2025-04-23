@@ -101,6 +101,7 @@ To avoid conflicts when loading rules from multiple clusters in the same tenant 
 Any rule deployed in workload clusters is by default cluster-scoped (e.g only target metrics belonging to this cluster) while a rule deployed in management clusters is scoped to the installation (e.g. target all metrics of all clusters).
 
 In practice, this means that:
+
 - If you deploy a rule with the expression `up{job="good"} > 0` in the workload cluster named `alpha1`, then the loaded rules will have the expression `up{cluster_id="alpha1", job="good"} > 0`.
 - If you deploy a rule with the expression `up{job="good"} > 0` in the _management cluster_ named `alpha1`, then the loaded rules will have the expression `up{job="good"} > 0`.
 
