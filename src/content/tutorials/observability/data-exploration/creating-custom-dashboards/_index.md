@@ -19,7 +19,7 @@ You can find in [your installations Grafana]({{< relref "/tutorials/observabilit
 
 ## Creating your own dashboard
 
-You can create a dashboard either with our recommended GitOps approach, or through the Grafana UI. Following you can learn more about both ways. 
+You can create a dashboard either with our recommended GitOps approach, or through the Grafana UI. Following you can learn more about both ways.
 
 ### GitOps
 
@@ -48,11 +48,11 @@ This is the preferred approach as it allows shared dashboards across all install
 
 ### Grafana UI
 
-You can also create your dashboards directly through the Grafana UI. You can learn more about [how to create a dashboard](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/create-dashboard/) through Grafana in the official documentation. 
+You can also create your dashboards directly through the Grafana UI. You can learn more about [how to create a dashboard](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/create-dashboard/) through Grafana in the official documentation.
 
 Data in the Observability Platforms Grafana is stored in a [PostgreSQL](https://www.postgresql.org/) database which is backed up hourly so we can recover the state of Grafana in case of a disaster.
 
 ## Limitations
 
 - the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
-- the dashboard name and UID must be unique in each Grafana organization.
+- the dashboard name and `UID` must be unique in each Grafana organization.
