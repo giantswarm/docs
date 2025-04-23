@@ -57,10 +57,4 @@ When configuring Alertmanager for your tenant, please ensure that the defined co
 
 **Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label references an existing tenant defined in a Grafana Organization. Any Alertmanager configuration that references an non-existing tenant will be rejected by a validating webhook. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
-## Visualize my Alertmanager configuration
-
-To be able to visualize the Alermanager configuration for your tenant, you should [access your installation's grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}) and visit the Alerting section.
-
-![grafana-alerting](grafana-alerting.png)
-
-The `Contact Points` section describes the configured alermanager receivers while the `Notification policies` shows the configured routes.
+If you want to see your configured alertmanager pipeline, you should definitely check out our guides explaining [how to visualize your alerting pipeline in Grafana]({{< relref "/tutorials/observability/alerting/visualization" >}}). More information in the [access `Grafana` page]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
