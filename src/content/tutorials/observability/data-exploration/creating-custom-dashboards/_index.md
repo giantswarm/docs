@@ -50,9 +50,9 @@ This is the preferred approach as it allows shared dashboards across all install
 
 You can also create your dashboards directly through the Grafana UI. You can learn more about [how to create a dashboard](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/create-dashboard/) through Grafana in the official documentation.
 
-Data in the Observability Platforms Grafana is stored in a [PostgreSQL](https://www.postgresql.org/) database which is backed up hourly so we can recover the state of Grafana in case of a disaster.
+The Observability Platforms Grafana stores its data in a [PostgreSQL](https://www.postgresql.org/) database which creates backups hourly so we can recover the state of Grafana in case of a disaster.
 
 ## Limitations
 
-- the dashboard's JSON must contain an `uid` otherwise it won't be provisioned.
-- the dashboard name and `UID` must be unique in each Grafana organization.
+- The dashboard's JSON must contain an `UID` otherwise it won't be provisioned.
+- The dashboard name and `UID` must be unique in each Grafana organization.
