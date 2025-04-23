@@ -47,7 +47,7 @@ If you want to see how your alerting pipeline and your rules are configured for 
 
 In this section, you have access to various features such as:
 
-- __Alerts rules__: all (alerts and recording) rules currently available, which can be filtered by state (e.g. firing, pending). When unfolding an alert rule you can use the *see graph* link to jump to an explore page with the alert’s expression pre-filled.
+- __Alerts rules__: all (alerts and recording) rules currently available, which can be filtered by state like firing or pending. When unfolding an alert rule you can use the *see graph* link to jump to an explore page with the alert’s expression pre-filled.
 - __Contact points__: configured integrations (e.g. opsgenie, slack) to send alerts to, along with notification templates used to format alerts when sent out.
 - __Notification policies__: alerts routing which defines how alerts are sent to contact points based on matching criteria (e.g. severity=page).
 - __Silences__: silences currently loaded and their state along with the affected alerts.
