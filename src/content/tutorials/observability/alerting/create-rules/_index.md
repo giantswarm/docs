@@ -71,7 +71,7 @@ spec:
         annotations:
           # See https://grafana.com/docs/grafana/latest/alerting/alerting-rules/templates/#template-annotations for useful annotations used by Grafana.
           __dashboardUid__: my-dashboard-uid
-          summary: 'Component is done.'
+          summary: 'Component is down.'
           description: 'Component {{ $labels.service }} is down.'
           runbook_url: https://my-pretty-runbook
         expr: count(up{job=~"component/.*"} == 0) by (cluster_id) > 0
