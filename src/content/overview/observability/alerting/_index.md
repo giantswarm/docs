@@ -43,7 +43,7 @@ If you want to learn how to configure your own alerts, please, refer to our [ded
 
 If you want to see how your alerting pipeline and your rules are configured for a tenant, you should access the *Alerting* section of your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
 
-![grafana-alerting](./grafana-alerting.png)
+![Grafana alerting section](./grafana-alerting.png)
 
 In this section, you have access to various features such as:
 
