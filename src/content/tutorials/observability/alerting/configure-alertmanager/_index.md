@@ -54,6 +54,6 @@ data:
 type: Opaque
 ```
 
-When configuring Alertmanager for your tenant, please ensure that the defined configuration under `alertmanager.yaml` is valid or it will be rejected by a validating webhook. To that end, we advise you to use [`mimirtool`](https://grafana.com/docs/mimir/latest/manage/tools/mimirtool/#validate-alertmanager-configuration), the mimir cli too in your CI pipeline.
+When configuring Alertmanager for your tenant, please ensure that the defined configuration under `alertmanager.yaml` is valid or it will be rejected by a validating webhook. To that end, we advise you to use [`mimirtool`](https://grafana.com/docs/mimir/latest/manage/tools/mimirtool/#validate-alertmanager-configuration), the Mimir CLI too in your CI pipeline.
 
 **Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label references an existing tenant defined in a Grafana Organization. Any Alertmanager configuration that references an non-existing tenant will be rejected by a validating webhook. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
