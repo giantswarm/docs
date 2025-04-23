@@ -53,6 +53,32 @@ source_repository_ref: v0.24.0
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
 
+<h3 id="crd-example-v1alpha1">Example CR</h3>
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha1
+kind: GrafanaOrganization
+metadata:
+  labels:
+    app.kubernetes.io/name: observability-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: grafanaorganization-sample
+spec:
+  displayName: Giant Swarm
+  rbac:
+    admins:
+    - my-awesome-admins
+    - other-admins
+    editors:
+    - my-awesome-editors
+    - other-editors
+    viewers:
+    - my-awesome-viewers
+    - other-viewers
+  tenants:
+  - myawesometenants
+```
+
 
 <h3 id="property-details-v1alpha1">Properties</h3>
 

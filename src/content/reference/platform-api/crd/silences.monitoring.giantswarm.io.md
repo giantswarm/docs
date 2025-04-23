@@ -12,7 +12,7 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.14.0
+  source_repository_ref: v0.14.1
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.14.0
+source_repository_ref: v0.14.1
 ---
 
 # Silence
@@ -52,6 +52,24 @@ source_repository_ref: v0.14.0
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
+
+<h3 id="crd-example-v1alpha1">Example CR</h3>
+
+```yaml
+apiVersion: monitoring.giantswarm.io/v1alpha1
+kind: Silence
+metadata:
+  name: my-sample-silence
+spec:
+  matchers:
+  - isRegex: false
+    name: alertname
+    value: MyPagingAlert
+  - isEqual: false
+    isRegex: false
+    name: alertname
+    value: Heartbeat
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
