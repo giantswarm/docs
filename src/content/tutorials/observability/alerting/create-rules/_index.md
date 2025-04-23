@@ -107,4 +107,4 @@ In practice, this means that:
 ### Limitations
 
 - Cluster-scope is only available to metric-based alerts today due to upstream limitations
-- Scoping can only be used when teams deploy the same rule __once__ accross multiple clusters. If you need to deploy it per app in different namespaces, you will need to manage the conflict yourself.
+- Scoping can only be used when teams deploy the same rule **once** accross multiple clusters. If you need to deploy it per app in different namespaces, you will need to manage the conflict yourself.
