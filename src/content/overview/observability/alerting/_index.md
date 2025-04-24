@@ -39,7 +39,7 @@ Alerting and recording rules can be loaded from both management cluster and work
 
 If you want to learn how to configure your own alerts, please, refer to our [dedicated documentation]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
 
-## Access to the alerting pipeline
+## Alerting Overview in Grafana
 
 If you want to want to learn more about the configuration of the alerting pipeline and the alerting rules for a tenant, you can find this information in the *Alerting* section of your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
 
