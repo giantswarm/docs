@@ -19,6 +19,8 @@ Alerting is an important concept of any observability solution and it's thus onl
 
 ## How alerting works
 
+Alerting is usually divided into two distinct concepts: the alerting pipeline (how to send alerts, to whom and what to send) and alerting/recording rules (what to alert on). This documentation will cover how those two topics work in the Observability Platform.
+
 As our alerting pipeline supports multi-tenancy, we strongly advocate that you first familiarize yourself with our [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy/" >}}) concept.
 
 ### The alerting pipeline
