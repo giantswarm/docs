@@ -97,9 +97,9 @@ observability.giantswarm.io/rule-type: logs
 
 ## Cluster vs installation scoping of rules
 
-To avoid conflicts when loading rules from multiple clusters in the same tenant (for instance, if your teams define a PrometheusRule in their application template deployed in a dev, staging and prod clusters), the Observability Platform support some level of scoping.
+The Observability Platform supports some level of scoping to avoid conflicts when loading rules from multiple clusters in the same tenant (for instance, if your teams define a PrometheusRule in their application template deployed in dev, staging, and prod clusters).
 
-Any rule deployed in workload clusters is by default cluster-scoped (only targets metrics coming from this cluster) while a rule deployed in management clusters is scoped to the installation (targets all metrics of all clusters).
+Any rule deployed in workload clusters is, by default, cluster-scoped (it only targets metrics coming from this cluster), while a rule deployed in management clusters is scoped to the installation (it targets all metrics of all clusters).
 
 In practice, this means that:
 
