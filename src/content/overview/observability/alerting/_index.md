@@ -51,5 +51,5 @@ In this section, you have access to various features such as:
 - __Contact points__: configured integrations (for example opsgenie or slack) to send alerts to, along with notification templates used to format alerts when sent out.
 - __Notification policies__: alerts routing which defines how alerts are sent to contact points based on matching criteria.
 - __Silences__: silences currently loaded and their state along with the affected alerts.
-- __Active notifications__: currently firing alerts. It might be confusing with the *Alerts rules* page at first, but this page differs in the fact that it only shows alert currently firing, along with this it shows the notification state.
+- __Active notifications__: currently firing alerts. It might be confused with the *Alerts rules* page at first, but this page differs in the fact that it only shows alert currently firing along with the notification state.
 - __Settings__: general settings for the Alertmanager instance, also show the currently loaded configuration
