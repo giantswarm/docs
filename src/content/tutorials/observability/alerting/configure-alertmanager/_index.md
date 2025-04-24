@@ -23,7 +23,7 @@ The Observability Platform uses Mimir Alertmanager as the central tool to provid
 
 Once you have [configured your list of tenants]({{< relref "/tutorials/observability/multi-tenancy/" >}}, you can easily create an Alertmanager configuration for that tenant by creating the following secret on your management cluster.
 
-Here is an example
+Here is an example of the `my-alertmanager-config`-configuration for the `my-team`-tenant
 
 ```yaml
 apiVersion: v1
