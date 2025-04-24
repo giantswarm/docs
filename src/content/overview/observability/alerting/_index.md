@@ -40,7 +40,7 @@ The Observability Platform allows you to create and load both alerting and recor
 - the Loki ruler (*log-based alerts)
 Alerting and recording rules can be loaded from both management cluster and workload clusters alike via our Grafana Alloy agents.
 
-If you want to learn how to configure your own alerts, please, refer to our [dedicated documentation]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
+If you want to learn how to configure your own, please, refer to our [dedicated documentation]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
 
 ## Alerting Overview in Grafana
 
