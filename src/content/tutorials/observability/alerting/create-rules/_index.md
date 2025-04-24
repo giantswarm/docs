@@ -12,6 +12,7 @@ user_questions:
   - How to create alerts?
   - How to create recording rules?
   - What is log-based alerting?
+  - How to get alerts?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
