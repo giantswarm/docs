@@ -1,7 +1,7 @@
 ---
 linkTitle: Creating alerting rules
 title: How to create alerting and recording rules
-description: Guide explaining how to create alerts and recording rules in the Observability Platform.
+description: Guide explaining how to create alerting and recording rules in the Observability Platform.
 menu:
   principal:
     identifier: tutorials-observability-alerting-alerts
