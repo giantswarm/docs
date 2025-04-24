@@ -16,7 +16,6 @@ last_review_date: 2025-04-24
 
 Alerting is an important concept of any observability solution and it's thus only natural that it is available as part of the Giant Swarm Observability Platform. For more details and information on alerting please visit the [official Grafana documentation page](https://grafana.com/docs/grafana/latest/alerting/).
 
-
 ## How alerting works
 
 Alerting is usually divided into two distinct concepts: the alerting pipeline (how to send alerts, to whom and what to send) and alerting/recording rules (what to alert on). This documentation will cover how those two topics work in the Observability Platform.
