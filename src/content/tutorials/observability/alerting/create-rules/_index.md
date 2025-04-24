@@ -23,32 +23,6 @@ As Giant Swarm embraces GitOps, alerting and recording rules needs to be defined
 
 **Warning**: As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label defined on your rules references an existing tenant defined in a Grafana Organization. Any PrometheusRules that references a non-existing tenant will be ignored. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
-## How to define a recording rule
-
-[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) allow you to precompute frequently needed or computationally expensive expressions and save their result as a new set of time series.
-
-To load a recording rule into your tenant, you should apply the following manifest:
-
-```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  labels:
-    # This lets Alloy know to which tenant this alert belongs to
-    observability.giantswarm.io/tenant: my-team
-  name: cluster-resource-usage
-  namespace: my-namespace
-spec:
-  groups:
-  - name: cluster-resource-usage
-    rules:
-      - expr: |
-          avg by (cluster_id) (
-            node:node_cpu_utilization:ratio_rate5m
-          )
-        record: cluster:node_cpu:ratio_rate5m
-```
-
 ## How to define an alerting rule
 
 [Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) allow you to define alert conditions based on Prometheus (or Loki) expression language expressions and to send notifications about firing alerts to an external service.
@@ -81,6 +55,32 @@ spec:
         labels:
           # This is a paging alert that need to wake my team up
           severity: page
+```
+
+## How to define a recording rule
+
+[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) allow you to precompute frequently needed or computationally expensive expressions and save their result as a new set of time series.
+
+To load a recording rule into your tenant, you should apply the following manifest:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    # This lets Alloy know to which tenant this alert belongs to
+    observability.giantswarm.io/tenant: my-team
+  name: cluster-resource-usage
+  namespace: my-namespace
+spec:
+  groups:
+  - name: cluster-resource-usage
+    rules:
+      - expr: |
+          avg by (cluster_id) (
+            node:node_cpu_utilization:ratio_rate5m
+          )
+        record: cluster:node_cpu:ratio_rate5m
 ```
 
 ## Differentiate between metric vs Log-based rules
