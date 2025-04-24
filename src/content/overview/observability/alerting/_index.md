@@ -35,7 +35,10 @@ If you want to learn how to configure Alertmanager for your tenants, please, ref
 
 ![loading recording and alerting rules](./alerting-loading-rules.png)
 
-The Observability Platform allows you to create and load both alerting and recording rules into the rules. It supports both *metric-based* alerts via the Mimir ruler and *log-based* alerts via the Loki ruler.
+The Observability Platform allows you to create and load both alerting and recording rules into:
+
+- the Mimir ruler (*metric-based* alerts)
+- the Loki ruler (*log-based alerts)
 Alerting and recording rules can be loaded from both management cluster and workload clusters alike via our Grafana Alloy agents.
 
 If you want to learn how to configure your own alerts, please, refer to our [dedicated documentation]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
