@@ -21,7 +21,7 @@ The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relre
 
 As Giant Swarm embraces GitOps, alerting and recording rules needs to be defined via [Prometheus Operator](https://prometheus-operator.dev/) PrometheusRules. Those rules can be defined in both your management cluster and workload clusters alike.
 
-**Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label defined on your rules references an existing tenant defined in a Grafana Organization. Any PrometheusRules that references an non-existing tenant will be ignored. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+**Warning**: As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label defined on your rules references an existing tenant defined in a Grafana Organization. Any PrometheusRules that references a non-existing tenant will be ignored. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 ## How to define a recording rule
 
