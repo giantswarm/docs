@@ -26,7 +26,7 @@ As Giant Swarm embraces GitOps, alerting and recording rules needs to be defined
 
 [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) allow you to precompute frequently needed or computationally expensive expressions and save their result as a new set of time series.
 
-To load a recording rule into your tenant, you should use apply the following manifest:
+To load a recording rule into your tenant, you should apply the following manifest:
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
