@@ -15,7 +15,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can configure per tenant. This tutorial will guide you on this process.
+The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can configure per tenant. This tutorial will guide you through this process.
 
 ## Configure Alertmanager
 
