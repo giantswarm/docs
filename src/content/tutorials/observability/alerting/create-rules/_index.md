@@ -9,7 +9,7 @@ menu:
 weight: 40
 last_review_date: 2025-04-24
 user_questions:
-  - How to create alerts?
+  - How to create alerting rules?
   - How to create recording rules?
   - What is log-based alerting?
   - How to get alerts?
