@@ -26,9 +26,9 @@ As our alerting pipeline supports multi-tenancy, we strongly advocate that you f
 
 ![alerting pipeline](./alerting-pipeline.png)
 
-As you can see on the image above, the alerting pipeline is quite straightforward. The Loki and Mimir rulers evaluates alerting rules and send alerts to the Mimir Alertmanager. The Mimir Alertmanager (a multi-tenant aware Alertmanager) routes those alerts to configured receivers.
+As you can see in the image above, the alerting pipeline is quite straightforward. The Loki and Mimir rulers evaluate alerting rules and send alerts to the Mimir Alertmanager. The Mimir Alertmanager (a multi-tenant aware Alertmanager) routes those alerts to configured receivers.
 
-If you want to learn how to configure Alertmanager for your tenants, please, refer to our [dedicated documentation]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
+If you want to learn how to configure Alertmanager for your tenants, please refer to our [dedicated documentation]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
 
 ### Loading alerting and recording rules
 
