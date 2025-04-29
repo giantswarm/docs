@@ -524,7 +524,7 @@ spec:
   - name: nginx
     image: nginx:1.14.2
     securityContext:
-      `SELinux`Options:
+      SELinuxOptions:
         type: container_t
 ```
 
@@ -540,7 +540,7 @@ spec:
   - name: nginx
     image: nginx:1.14.2
     securityContext:
-      `SELinux`Options:
+      SELinuxOptions:
         user: root
 ```
 
