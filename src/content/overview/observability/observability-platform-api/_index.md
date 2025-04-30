@@ -31,7 +31,7 @@ The `observability platform API`s main objectives are to:
 * sanitize (sampling, relabelling, etc.) observability data to align with our general data standards in the observability platform.
 * support for the OpenTelemetry Protocol (OTLP).
 
-## How it works -  Global Overview
+## How it works - Global Overview
 
 The `observability platform API` consists of different ingress components. They use a shared host based on your Giant Swarm Installation's base domain and an OIDC provider to allow secure read or write access to the observability platform.
 
