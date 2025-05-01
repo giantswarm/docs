@@ -89,6 +89,8 @@ This will create the dashboard in the organization you are currently logged in:
 
 As you can see in the image above, the dashboard shows some information about the `hello-world` application. You see the number of errors, the number of success requests, and the number of requests by code. Feel free to poke around and create your own panels.
 
+Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [related doc]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/#gitops" >}}).
+
 ## Next step
 
 After knowing how your application behaves let's explore how security is handled in the platform. Learn more [in the security overview]({{< relref "/overview/security" >}}).
