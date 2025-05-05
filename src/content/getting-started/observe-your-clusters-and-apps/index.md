@@ -73,7 +73,11 @@ In some occasions, you may want to create a custom dashboard to visualize the me
 
 Grafana data is stored in a PostGreSQL cluster with regular backups so your dashboard is persisted even if you upgrade it later on or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation tutorial]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}).
 
-In our example, you can find the dashboard JSON [here](./dashboard.json). Download the dashboard content and import it into the Grafana UI:
+In our example, you can find the dashboard JSON [here](./dashboard.json).
+
+Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [related doc]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/#gitops" >}}).
+
+For the UI approach, download the dashboard content and import it into the Grafana UI:
 
 - Open the `Dashboards` view in the `Grafana` UI, click on the `New` button on the top right part of the view and then on the `import`one:
 
@@ -88,8 +92,6 @@ This will create the dashboard in the organization you are currently logged in:
 ![custom-dashboard](custom-dashboard.png)
 
 As you can see in the image above, the dashboard shows some information about the `hello-world` application. You see the number of errors, the number of success requests, and the number of requests by code. Feel free to poke around and create your own panels.
-
-Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [related doc]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/#gitops" >}}).
 
 ## Next step
 
