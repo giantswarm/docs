@@ -71,7 +71,7 @@ Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux
 
 On some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}), you can start using the Grafana UI and create your very first dashboard. There, you can create panels with the desired visualizations and then export your dashboard by selecting `Share > Export` in the dashboard context menu, or by accessing the JSON Model in the dashboard settings.
 
-Grafana data is stored in a PostgreSQL cluster with regular backups, so your dashboard persists even if you upgrade it later or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation tutorial]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}).
+Grafana stores its data in a PostgreSQL cluster with regular backups, so your dashboard persists even if you upgrade it later or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation tutorial]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}).
 
 In our example, you can find the dashboard JSON [here](./dashboard.json).
 
