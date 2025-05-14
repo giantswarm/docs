@@ -37,6 +37,6 @@ One of the key benefits using Giant Swarm is that we provide a set of reliable a
 
 - **Alertmanager** is part of the Grafana ecosystem and is responsible for handling all alerts. It manages the routing, grouping, and silencing of alerts, ensuring that the right people are notified at the right time. At the same time, it supports various notification methods, including email, Slack, and PagerDuty.
 
-- **Various agents** like Grafana-Agent (now renamed Alloy), Fluent-bit and others help the observability platform collect and integrate relevant data from Workload Clusters, making the process to add new data as simple as just setting up a new service monitor or add the right labels.
+- **Various agents** like Grafana Alloy, Fluent-bit and others help the observability platform collect and integrate relevant data from Workload Clusters, making the process to add new data as simple as just setting up a new service monitor or add the right labels.
 
 Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}).

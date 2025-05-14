@@ -2,7 +2,7 @@
 title: Observe your clusters and apps
 description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
 weight: 60
-last_review_date: 2025-02-10
+last_review_date: 2025-05-08
 menu:
   principal:
     parent: getting-started
@@ -69,42 +69,25 @@ Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux
 
 ## Step 3: Create your own dashboard
 
-In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
+On some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}), you can start using the Grafana UI and create your very first dashboard. There, you can create panels with the desired visualizations. Then, export your dashboard by selecting `Share > Export` in the dashboard context menu, or by accessing the JSON Model in the dashboard settings.
 
-```yaml
-apiVersion: v1
-data:
-  my-dashboard.json: |-
-    __DASHBOARD_JSON__
-kind: ConfigMap
-metadata:
-  annotations:
-    observability.giantswarm.io/organization: Customer
-  labels:
-    app.giantswarm.io/kind: dashboard
-  name: my-grafana-dashboard
-  namespace: my-namespace
-```
+Grafana stores its data in a PostgreSQL cluster with regular backups, so your dashboard persists even if you upgrade it later or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation tutorial]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}).
 
-It's important to have an annotation with the key `observability.giantswarm.io/organization` pointing to the organization where the dashboard will be stored in Grafana. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
+In our example, you can find the dashboard JSON [here](./dashboard.json).
 
-The easiest way to build a dashboard is using the Grafana UI. There, you can create panels with the desired visualizations and then export them by selecting `Share > Export`` in the dashboard context menu or by accessing the JSON Model in the dashboard settings.
+Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [related doc]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/#gitops" >}}).
 
-__Warning__: The dashboards served in the platform are all created from a GitOps repository or created by users through `ConfigMap` resources; there is no persistent storage for `Grafana`, which means dashboards aren't persisted if the system restarts or are upgraded.
+For the UI approach, download the dashboard content and import it into the Grafana UI:
 
-In our example, you can find the dashboard JSON [here](./dashboard.json). Download the dashboard content and use `jq` to minify it:
+- Open the `Dashboards` view in the `Grafana` UI, click on the `New` button on the top right part of the view and then on the `import`one:
 
-```sh
-jq -c . dashboard.json
-```
+![dashboard-import-new](dashboard-import.png)
 
-Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the minified JSON content. After that, apply the `ConfigMap` to the platform API:
+- Upload the dashboard JSON file and click on `Load`:
 
-```sh
-kubectl apply -f config-map.yaml
-```
+![dashboard-import-panel](dashboard-import-json.png)
 
-After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and, switch to the organization you selected, and find your custom dashboard.
+This will create the dashboard in the organization you are currently logged in:
 
 ![custom-dashboard](custom-dashboard.png)
 

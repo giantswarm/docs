@@ -99,6 +99,8 @@ repositories:
     category: Connectivity
   giantswarm/kube-prometheus-stack-app:
     category: Observability
+  giantswarm/kube-state-metrics-app:
+    category: Observability
   giantswarm/kubectl-gs:
     category: Fleet Management
   giantswarm/kyverno-app:
