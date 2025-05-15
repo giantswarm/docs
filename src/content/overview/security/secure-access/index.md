@@ -64,7 +64,7 @@ Here's what we secure with Teleport:
 
 - **SSH** - We protect SSH access with the Teleport Node Agent.
 
-- **Kubernetes API** - We also secure the Kubernetes API on both management and workload clusters with the Teleport Kube Agent.
+- **Kubernetes API** - We also secure the Kubernetes API on both management and workload clusters with the Teleport (Kube Agent).
 
 - **Apps** - The Apps API on the management cluster gets the same Teleport protection.
 
