@@ -56,13 +56,13 @@ Here's why Teleport is awesome:
 
 ### Teleport at Giant Swarm
 
-We've made Teleport our go-to solution for accessing the infrastructure we manage. It gives us better audit and access logs than we had before. The best part? Teleport's identity-aware reverse proxy with TLS routing makes everything simpler and more secure. You don't need a VPN anymore, and you don't have to open extra ports in your network. It works smoothly behind corporate firewalls - all you need is outbound HTTPS traffic to our Teleport cluster.
+We've made Teleport our go-to solution for accessing the infrastructure we manage. It gives us better audit and access logs than we had before. The best part? Teleport identity-aware reverse proxy with TLS routing makes everything more straightforward and secure. You don't need a VPN anymore, and you don't have to open extra ports in your network. It works smoothly behind corporate firewalls—all you need is outbound HTTPS traffic to our Teleport cluster.
 
 ### Teleport secured access points
 
 Here's what we secure with Teleport:
 
-- **SSH** - We protect SSH access with the Teleport Node Agent.
+- **SSH** - We protect SSH access with the Teleport (Node Agent).
 
 - **Kubernetes API** - We also secure the Kubernetes API on both management and workload clusters with the Teleport (Kube Agent).
 
