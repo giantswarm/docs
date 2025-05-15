@@ -62,9 +62,9 @@ We've made Teleport our go-to solution for accessing the infrastructure we manag
 
 Here's what we secure with Teleport:
 
-- **SSH** - We protect SSH access with the Teleport (Node Agent).
+- **SSH** - We protect SSH access with the Teleport Agent.
 
-- **Kubernetes API** - We also secure the Kubernetes API on both management and workload clusters with the Teleport (Kube Agent).
+- **Kubernetes API** - We also secure the Kubernetes API on both management and workload clusters with the Teleport Agent.
 
 - **Apps** - The Apps API on the management cluster gets the same Teleport protection.
 
@@ -80,4 +80,4 @@ We've built our Teleport cluster to be super reliable, and we keep detailed acce
 
 You'll need to grant our operators admin rights to your infrastructure provider. Why? So we can manage your cluster's lifecycle - creating, configuring, and cleaning up resources like machines, networks, and security groups.
 
-Don't worry about security though - we encrypt all authentication secrets in etcd, and we protect access to etcd and the Kubernetes API with certificates signed by Teleport following strict policies.
+Don't worry about security, though - we encrypt all authentication secrets in Etcd and protect access to etcd and the Kubernetes API with certificates signed by Teleport following strict policies.
