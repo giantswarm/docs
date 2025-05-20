@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How can I cache container images within the cluster?
   - How can I have a backup registry for container images?
-last_review_date: 2024-10-31
+last_review_date: 2025-05-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
@@ -24,7 +24,7 @@ A registry cache within the cluster can provide several benefits.
 Here we explain how to set up a registry, using the [Zot](https://zotregistry.dev/) app provided by Giant Swarm. Zot is an OCI-native container image registry. The [Giant Swarm packaged version](https://github.com/giantswarm/zot) extends it with opinionated components like
 autoscaling, monitoring, Cilium network policies, etc.
 
-We explain how to deploy apps in our [app platform docs]({{< relref "/tutorials/fleet-management/app-platform/deploy-app/#creating-an-app-resource" >}}).
+In our platform, only the management cluster is created with default Zot installation for Giant Swarm images. When you want to have same functionality within your workload clusters, you need deploy the Zot app. We explain how to deploy apps in our [app platform docs]({{< relref "/tutorials/fleet-management/app-platform/deploy-app/#creating-an-app-resource" >}}).
 
 ## Zot configuration
 
@@ -296,3 +296,57 @@ this will cause the new pods failing to stand up. In such scenarios it's recomme
 strategy:
   type: Recreate
 ```
+
+### Default Giant Swarm configuration
+
+In the management clusters, Giant Swarm uses the following default settings for the Zot to cache images from the upstream registries making the bootstrapping process faster. The settings are set in the `config.json` file.
+
+```yaml
+  configFiles:
+    config.json: |-
+      {
+        "storage":
+        {
+          "rootDirectory": "/var/lib/registry",
+          "dedupe": true,
+          "gc": true,
+          "gcDelay": "1h",
+          "gcInterval": "24h"
+        },
+        "extensions": {
+          "sync": {
+            "enable": true,
+            "registries": [
+              {
+                "urls": [
+                  "https://giantswarm-registry.cn-shanghai.cr.aliyuncs.com",
+                  "https://gsoci.azurecr.io"
+                ],
+                "onDemand": true,
+                "tlsVerify": true,
+                "maxRetries": 3,
+                "retryDelay": "5m"
+              }
+            ]
+          },
+          "metrics": {
+            "enable": true,
+            "prometheus": {
+              "path": "/metrics"
+            }
+          }
+        }
+      }
+```
+
+This configuration sets up Zot as an on-demand cache for the Giant Swarm registries in China and Azure. It stores images locally with deduplication enabled, performs garbage collection every 24 hours (with a 1-hour delay before removing images), and only pulls images when they're requested rather than syncing everything upfront. It also includes Prometheus metrics to monitor the registry's performance.
+
+Giant Swarm by default only caches images for managed applications. When you pull a different image, here's the flow:
+
+- `containerd` looks on the registries configured as mirrors of the default `docker.io`
+- First mirror is the local Zot registry
+    - Zot looks for this image on its configured urls but can't find it
+- `containerd` checks other mirrors (Giant Swarm registries again) but can't find the image
+- `containerd` finally goes to `docker.io` to fetch the image
+
+For that reason, in case you want to cache images from other registries, you need to configure the `sync` extension in the configuration file like [shown above](#caching-strategies).
