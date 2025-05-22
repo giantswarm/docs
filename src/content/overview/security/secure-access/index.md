@@ -78,4 +78,3 @@ We've built our Teleport cluster to be super reliable, and we keep detailed acce
 
 You'll need to grant our operators admin rights to your infrastructure provider. Why? So we can manage your cluster's lifecycle - creating, configuring, and cleaning up resources like machines, networks, and security groups.
 
-Don't worry about security, though - we encrypt all authentication secrets in Etcd, and protect access to Etcd and the Kubernetes API with certificates signed by Teleport following strict policies.
