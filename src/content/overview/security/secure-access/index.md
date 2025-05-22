@@ -54,10 +54,6 @@ Teleport is awesome because it:
 - Uses short-lived, tightly scoped credentials
 - Provides detailed audit logging to us and to our customers
 
-### Teleport at Giant Swarm
-
-We've made Teleport our go-to solution for accessing the infrastructure we manage. It gives us better audit and access logs than we had before. The best part? Teleport identity-aware reverse proxy with TLS routing makes everything more straightforward and secure. You don't need a VPN anymore, and you don't have to open extra ports in your network. It works smoothly behind corporate firewalls—all you need is outbound HTTPS traffic to our Teleport cluster.
-
 ### Teleport secured access points
 
 We use Teleport to securely access:
