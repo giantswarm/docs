@@ -76,5 +76,5 @@ We've built our Teleport cluster to be super reliable, and we keep detailed acce
 
 ### Infrastructure provider access
 
-You'll need to grant our operators admin rights to your infrastructure provider. Why? So we can manage your cluster's lifecycle - creating, configuring, and cleaning up resources like machines, networks, and security groups.
+You'll also need to grant our operators admin rights to your infrastructure provider so that we can manage your cluster's lifecycle - creating, configuring, and cleaning up resources like machines, networks, and security groups.
 
