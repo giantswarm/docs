@@ -44,7 +44,7 @@ We expose the Kubernetes API of each workload cluster to you. You can [manage wh
 
 ### What is Teleport?
 
-[Teleport](https://goteleport.com/) is an open-source tool that helps us manage secure access to your infrastructure. It uses identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This makes your clusters more secure and helps us follow regulations and work with different network setups.
+[Teleport](https://goteleport.com/) is an open-source tool that helps us manage secure access to your infrastructure. It uses an identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This makes your clusters more secure and helps us follow regulations and work with different network setups.
 
 Here's why Teleport is awesome:
 
