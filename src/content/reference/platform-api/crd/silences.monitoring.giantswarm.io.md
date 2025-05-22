@@ -2,7 +2,7 @@
 title: Silence CRD schema reference (group monitoring.giantswarm.io)
 linkTitle: Silence
 description: |
-  Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.
+  Silence is the Schema for the silences API.
 weight: 100
 crd:
   name_camelcase: Silence
@@ -12,7 +12,7 @@ crd:
   technical_name: silences.monitoring.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.14.1
+  source_repository_ref: v0.15.0
   versions:
     - v1alpha1
   topics:
@@ -25,13 +25,13 @@ aliases:
   - /use-the-api/management-api/crd/silences.monitoring.giantswarm.io/
 technical_name: silences.monitoring.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.14.1
+source_repository_ref: v0.15.0
 ---
 
 # Silence
 
 
-<p class="crd-description">Silence represents schema for managed silences in Alertmanager. Reconciled by silence-operator.</p>
+<p class="crd-description">Silence is the Schema for the silences API.</p>
 <dl class="crd-meta">
 <dt class="fullname">Full name:</dt>
 <dd class="fullname">silences.monitoring.giantswarm.io</dd>
@@ -52,24 +52,6 @@ source_repository_ref: v0.14.1
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
-
-<h3 id="crd-example-v1alpha1">Example CR</h3>
-
-```yaml
-apiVersion: monitoring.giantswarm.io/v1alpha1
-kind: Silence
-metadata:
-  name: my-sample-silence
-spec:
-  matchers:
-  - isRegex: false
-    name: alertname
-    value: MyPagingAlert
-  - isEqual: false
-    isRegex: false
-    name: alertname
-    value: Heartbeat
-```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
@@ -139,6 +121,11 @@ More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architec
 <div class="property-meta">
 <span class="property-type">object</span>
 <span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>SilenceSpec defines the desired state of Silence.</p>
+
 </div>
 
 </div>
