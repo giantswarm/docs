@@ -38,7 +38,7 @@ Want to learn more about how our infrastructure works? Check out our [operationa
 
 ## User access
 
-We expose the Kubernetes API of each workload cluster to you. You can manage who gets access by connecting your external identity provider to the Kubernetes API.
+We expose the Kubernetes API of each workload cluster to you. You can [manage who gets access by connecting your external identity provider]({{< relref "/overview/architecture/authentication" >}}) to the Kubernetes API.
 
 ## Admin access via Teleport
 
