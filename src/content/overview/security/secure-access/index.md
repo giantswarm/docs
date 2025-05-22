@@ -48,7 +48,7 @@ We expose the Kubernetes API of each workload cluster to you. You can [manage wh
 
 Teleport is awesome because it:
 
-- Requires no open ports, publicly routable machines, or privileged bastion hosts
+- Requires no open ports, publicly accessible machines, or privileged bastion hosts
 - Works flexibly with our range of different customer network layouts
 - Requires only outbound HTTPS traffic
 - Uses short-lived, tightly scoped credentials
@@ -58,15 +58,15 @@ Teleport is awesome because it:
 
 We use Teleport to securely access:
 
-- **SSH** - Node access is proxied through Teleport, which authenticates the user and records the session without requiring personal SSH keys on customer machines.
+- **SSH** - Node access is exposed through Teleport, which authenticates the user and records the session without requiring personal SSH keys on customer machines.
 - **Kubernetes API** - Management cluster and workload cluster Kubernetes API server access is auditable and can be fully private.
-- **Apps** - User interfaces for Giant Swarm apps are also proxied and protected by Teleport, minimizing the number of components that require public endpoints.
+- **Apps** - User interfaces for Giant Swarm apps are also exposed and protected by Teleport, minimizing the number of components that require public endpoints.
 
 Here's a diagram that shows how our Teleport setup works:
 
 ![Teleport Architecture](teleport.png)
 
-We secure Teleport access with GitHub SSO and multi-factor authentication. Only people in our GitHub organization can log in.
+We secure Teleport access with GitHub Single Sign-On (SSO) and multi-factor authentication. Only people in our GitHub organization can log in.
 
 We've built our Teleport cluster to be super reliable, and we keep detailed access and audit logs for every session.
 
