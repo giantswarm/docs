@@ -48,11 +48,11 @@ We expose the Kubernetes API of each workload cluster to you. You can [manage wh
 
 Teleport is awesome because it:
 
-- Makes VPN architecture obsolete
-- Works with more network layouts and gets around CIDR range limitations
-- Boosts security
-- Gives us detailed audit logs
-- Lets you see the audit logs too
+- Requires no open ports, publicly routable machines, or privileged bastion hosts
+- Works flexibly with our range of different customer network layouts
+- Requires only outbound HTTPS traffic
+- Uses short-lived, tightly scoped credentials
+- Provides detailed audit logging to us and to our customers
 
 ### Teleport at Giant Swarm
 
