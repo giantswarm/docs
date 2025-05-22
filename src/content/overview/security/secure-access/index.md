@@ -60,13 +60,11 @@ We've made Teleport our go-to solution for accessing the infrastructure we manag
 
 ### Teleport secured access points
 
-Here's what we secure with Teleport:
+We use Teleport to securely access:
 
-- **SSH** - We protect SSH access with the Teleport Agent.
-
-- **Kubernetes API** - We also secure the Kubernetes API on both management and workload clusters with the Teleport Agent.
-
-- **Apps** - The Apps API on the management cluster gets the same Teleport protection.
+- **SSH** - Node access is proxied through Teleport, which authenticates the user and records the session without requiring personal SSH keys on customer machines.
+- **Kubernetes API** - Management cluster and workload cluster Kubernetes API server access is auditable and can be fully private.
+- **Apps** - User interfaces for Giant Swarm apps are also proxied and protected by Teleport, minimizing the number of components that require public endpoints.
 
 Here's a diagram that shows how our Teleport setup works:
 
