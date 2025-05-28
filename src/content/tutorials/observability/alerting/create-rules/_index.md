@@ -79,7 +79,7 @@ For guidance on writing effective PromQL queries, refer to the [Prometheus query
 
 ## Create recording rules
 
-[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) allow you to precompute frequently needed or computationally expensive expressions and save their results as new time series. This improves query performance and enables the creation of custom metrics for dashboards and alerts.
+[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) allow you to pre-compute frequently needed or computationally expensive expressions and save their results as new time series. This improves query performance and enables the creation of custom metrics for dashboards and alerts.
 
 ### When to use recording rules
 
