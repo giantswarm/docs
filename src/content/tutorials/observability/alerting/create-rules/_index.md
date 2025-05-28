@@ -1,13 +1,13 @@
 ---
 linkTitle: Creating alerting rules
 title: How to create alerting and recording rules
-description: Guide explaining how to create alerting and recording rules in the Observability Platform.
+description: Learn how to create alerting and recording rules in the Giant Swarm Observability Platform using PrometheusRule resources.
 menu:
   principal:
     identifier: tutorials-observability-alerting-alerts
     parent: tutorials-observability-alerting
 weight: 40
-last_review_date: 2025-04-24
+last_review_date: 2025-05-28
 user_questions:
   - How to create alerting rules?
   - How to create recording rules?
@@ -17,26 +17,30 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that [you can configure per tenant]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) as well as allow you to create your own alerting and recording rules per tenant.
+The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can [configure per tenant]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}). This platform allows you to create your own alerting and recording rules per tenant.
 
-As Giant Swarm embraces GitOps, alerting and recording rules needs to be defined via [Prometheus Operator](https://prometheus-operator.dev/) PrometheusRules. Those rules can be defined in both your management cluster and workload clusters alike.
+Following Giant Swarm's GitOps approach, alerting and recording rules must be defined using [Prometheus Operator](https://prometheus-operator.dev/) `PrometheusRule` resources. You can deploy these rules to both management clusters and workload clusters.
 
-**Warning**: As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label defined on your rules references an existing tenant defined in a Grafana Organization. Any PrometheusRules that references a non-existing tenant will be ignored. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+{{< admonition type="warning" title="Multi-tenancy requirement" >}}
+The `observability.giantswarm.io/tenant` label on your rules must reference an existing tenant defined in a [Grafana Organization]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization/" >}}). Any `PrometheusRule` that references a non-existing tenant will be ignored. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
+{{< /admonition >}}
 
-## How to define an alerting rule
+## Create alerting rules
 
-[Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) allow you to define alert conditions based on Prometheus (or Loki) expression language expressions and to send notifications about firing alerts to an external service.
+[Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) define conditions that trigger notifications when specific issues occur in your infrastructure or applications. These rules use Prometheus (PromQL) or Loki (LogQL) expressions to evaluate conditions.
 
-Here is how you would define your alerting rule:
+### Basic alerting rule structure
+
+Here's a basic example of an alerting rule:
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   labels:
-    # This lets Alloy know to which tenant this alert belongs to
+    # Required: specifies which tenant this alert belongs to
     observability.giantswarm.io/tenant: my-team
-  name: cluster-resource-usage-too-high
+  name: component-availability
   namespace: my-namespace
 spec:
   groups:
@@ -44,31 +48,55 @@ spec:
     rules:
       - alert: ComponentDown
         annotations:
-          # See https://grafana.com/docs/grafana/latest/alerting/alerting-rules/templates/#template-annotations for useful annotations used by Grafana.
+          # Human-readable summary
+          summary: 'Component {{ $labels.service }} is down'
+          # Detailed description with context
+          description: 'Component {{ $labels.service }} has been down for more than 5 minutes.'
+          # Optional: link to relevant dashboard
           __dashboardUid__: my-dashboard-uid
-          summary: 'Component is down.'
-          description: 'Component {{ $labels.service }} is down.'
-          runbook_url: https://my-pretty-runbook
-        expr: count(up{job=~"component/.*"} == 0) by (cluster_id) > 0
-        # Alert if the expression returns results for more than 5 minutes
+          # Optional: link to troubleshooting documentation
+          runbook_url: https://my-runbook-url
+        # PromQL expression that defines the alert condition
+        expr: up{job=~"component/.*"} == 0
+        # Duration the condition must be true before firing
         for: 5m
         labels:
-          # This is a paging alert that need to wake my team up
-          severity: page
+          # Severity level for routing and prioritization
+          severity: critical
 ```
 
-## How to define a recording rule
+### Key components
 
-[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) allow you to precompute frequently needed or computationally expensive expressions and save their result as a new set of time series.
+- **`alert`**: unique name for the alert rule
+- **`expr`**: PromQL or LogQL expression that defines when the alert should fire
+- **`for`**: duration the condition must be true before the alert fires
+- **`labels`**: key-value pairs for routing and grouping alerts
+- **`annotations`**: human-readable information about the alert
 
-To load a recording rule into your tenant, you should apply the following manifest:
+{{< admonition type="tip" title="PromQL Resources" >}}
+For guidance on writing effective PromQL queries, refer to the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/). You can also explore queries in your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) explore interface.
+{{< /admonition >}}
+
+## Create recording rules
+
+[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) allow you to precompute frequently needed or computationally expensive expressions and save their results as new time series. This improves query performance and enables the creation of custom metrics for dashboards and alerts.
+
+### When to use recording rules
+
+Recording rules are useful when you need to:
+
+- Improve performance by pre-calculating expensive aggregations used frequently
+- Create custom metrics by combining multiple metrics into business-specific indicators
+- Simplify complex queries by breaking them into manageable components
+
+### Basic recording rule structure
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   labels:
-    # This lets Alloy know to which tenant this alert belongs to
+    # Required: specifies which tenant this rule belongs to
     observability.giantswarm.io/tenant: my-team
   name: cluster-resource-usage
   namespace: my-namespace
@@ -83,37 +111,73 @@ spec:
         record: cluster:node_cpu:ratio_rate5m
 ```
 
-## Differentiate between metric vs Log-based rules
+## Log-based alerting
 
-Metric-based rules are evaluated by the Mimir ruler and are written using PromQL while Log-based rules are evaluated by the Loki ruler and are written using LogQL.
+Log-based alerting allows you to monitor application logs for specific patterns, errors, or anomalies using LogQL queries. These alerts are evaluated by the Loki ruler and provide powerful capabilities for application-level monitoring.
 
-To be able to differentiate if your alert is a log-based alert, you should label you alert with those labels:
+### Configure log-based rules
+
+To create log-based alerts, include specific labels to indicate evaluation by Loki:
 
 ```yaml
-# This label is marked as deprecated but still needs to be configured.
-application.giantswarm.io/prometheus-rule-kind: loki
-observability.giantswarm.io/rule-type: logs
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    observability.giantswarm.io/tenant: my-team
+    # Required: indicates this is a log-based rule
+    observability.giantswarm.io/rule-type: logs
+    # Deprecated but still required for compatibility
+    application.giantswarm.io/prometheus-rule-kind: loki
+  name: application-log-alerts
+  namespace: my-namespace
+spec:
+  groups:
+  - name: log-monitoring
+    rules:
+      - alert: HighErrorLogRate
+        annotations:
+          summary: 'High error rate in application logs'
+          description: 'Application {{ $labels.app }} is producing {{ $value }} errors per minute'
+        # LogQL expression to count error logs
+        expr: |
+          sum(rate({app="my-app"} |= "ERROR" [5m])) by (app) > 10
+        for: 2m
+        labels:
+          severity: warning
 ```
 
-## Cluster vs installation scoping of rules
+For more information about writing LogQL queries, refer to the [Loki LogQL documentation](https://grafana.com/docs/loki/latest/logql/).
 
-The Observability Platform supports some level of scoping to avoid conflicts when loading rules from multiple clusters in the same tenant (for instance, if your teams define a PrometheusRule in their application template deployed in dev, staging, and prod clusters).
+## Rule scoping
 
-Any rule deployed in workload clusters is, by default, cluster-scoped (it only targets metrics coming from this cluster), while a rule deployed in management clusters is scoped to the installation (it targets all metrics of all clusters).
+The Observability Platform provides scoping mechanisms to prevent conflicts when deploying the same rules across multiple clusters within a tenant.
 
-In practice, this means that:
+### Scoping behavior
 
-- If you deploy a rule with the expression `up{job="good"} > 0` in the workload cluster named `alpha1`, then the loaded rules will have the expression `up{cluster_id="alpha1", job="good"} > 0`.
-- If you deploy a rule with the expression `up{job="good"} > 0` in the _management cluster_ named `alpha1`, then the loaded rules will have the expression `up{job="good"} > 0`.
+**Workload cluster deployment (cluster-scoped)**
+
+When you deploy a `PrometheusRule` in a workload cluster, the rules are automatically scoped to that specific cluster. For example, deploying a rule with expression `up{job="good"} > 0` in workload cluster `alpha1` results in the loaded expression: `up{cluster_id="alpha1", job="good"} > 0`.
+
+**Management cluster deployment (installation-scoped)**
+
+When you deploy a `PrometheusRule` in a management cluster, the rules target all clusters in the installation without modification.
 
 ### Limitations
 
-- Cluster-scope is only available to metric-based alerts today due to upstream limitations.
-- Scoping can only be used when teams deploy the same rule **once** accross multiple clusters. If you need to deploy it per app in different namespaces, you will need to manage the conflict yourself.
+- Cluster scoping is only available for metric-based alerts due to upstream limitations
+- Scoping applies when teams deploy the same rule across multiple clusters
+- For rules deployed per application in different namespaces, you must manage conflicts manually
+
+For multi-environment deployments, consider using unique naming or namespace-specific labeling to avoid conflicts.
 
 ## Using tenant federation for system data alerts
 
-With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities that allow customers to create alerting rules based on system data without duplicating data intake. This feature enables you to reference metrics and logs from the `giantswarm` tenant directly in your own tenant's alerting rules using the `monitoring.grafana.com/source_tenants` label.
+With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities that allow you to create alerting rules based on system data without duplicating data intake. This feature enables you to reference metrics and logs from the `giantswarm` tenant directly in your own tenant's alerting rules using the `monitoring.grafana.com/source_tenants` label.
+
+{{< admonition type="info" title="Tenant Federation" >}}
+For more information about multi-tenancy and tenant management, see our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
+{{< /admonition >}}
 
 ### Example: Alerting on system metrics
 
@@ -137,8 +201,7 @@ spec:
           # Reference the system metrics data source in Grafana
           __dashboardUid__: system-metrics-dashboard
         # Query system metrics from the giantswarm tenant
-        expr: |
-          up{job="node-exporter"} == 0
+        expr: up{job="node-exporter"} == 0
         for: 5m
         labels:
           severity: critical
