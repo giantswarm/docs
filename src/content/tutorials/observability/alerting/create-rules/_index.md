@@ -113,7 +113,7 @@ spec:
 
 ## Log-based alerting
 
-Log-based alerting allows you to monitor application logs for specific patterns, errors, or anomalies using LogQL queries. These alerts are evaluated by the Loki ruler and provide powerful capabilities for application-level monitoring.
+Log-based alerting allows you to monitor application logs for specific patterns, errors, or anomalies using LogQL queries. The Loki ruler evaluates those alerts and provide powerful capabilities for application-level monitoring.
 
 ### Configure log-based rules
 
