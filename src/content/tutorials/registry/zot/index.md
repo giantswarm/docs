@@ -24,7 +24,7 @@ A registry cache within the cluster can provide several benefits.
 Here we explain how to set up a registry, using the [Zot](https://zotregistry.dev/) app provided by Giant Swarm. Zot is an OCI-native container image registry. The [Giant Swarm packaged version](https://github.com/giantswarm/zot) extends it with opinionated components like
 autoscaling, monitoring, Cilium network policies, etc.
 
-The Giant Swarm platform creates only the management cluster with a default Zot installation for managed component images. The cache comes configured as `on-demand`, so it only stores images when they're requested. The management cluster component includes an ingress, letting workload clusters use it as a registry mirror too (for Giant Swarm images). Want to keep your own images cached in your workload clusters? Here's how to set up a Zot registry cache there.
+The Giant Swarm platform creates only the management cluster with a [default Zot installation](https://github.com/giantswarm/management-cluster-bases/blob/main/extras/zot-cache/values.yaml#L52-L171) for managed component images. The cache comes configured as `on-demand`, so it only stores images when they're requested. The management cluster component includes an ingress, letting workload clusters use it as a registry mirror too (for Giant Swarm images). Want to keep your own images cached in your workload clusters? Here's how to set up a Zot registry cache there.
 
 ## Zot configuration
 
@@ -170,7 +170,7 @@ Note how the `"policies"` key is used to define the access control for the repos
 
 ### Exposing the registry
 
-In some use-cases you possibly want to expose Zot to be used by let's say workload clusters, so you manage only a single instance by sharing it across multiple workloads.
+In some use-cases you possibly want to expose Zot to be used by multiple workload clusters, so you manage only a single instance by sharing it across multiple workloads.
 
 To enable the ingress in the Giant Swarm managed chart, use these settings matching your cluster:
 
@@ -297,56 +297,76 @@ strategy:
   type: Recreate
 ```
 
-### Default Giant Swarm configuration
+## Example configuration
 
-In the management clusters, Giant Swarm uses the following default settings for the Zot to cache images from the upstream registries making the bootstrapping process faster. The settings are set in the `config.json` file.
+To show how to set up a Zot registry cache, here is an example configuration that you can use as a starting point. It includes the caching strategies, authentication, and other settings discussed above.
 
 ```yaml
-  configFiles:
-    config.json: |-
-      {
-        "storage":
+data:
+  values: |
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    persistence: true
+    strategy:
+      type: Recreate
+    pvc:
+      create: true
+      accessMode: ReadWriteOnce
+      storage: 64Gi
+      policyException:
+        namespace: giantswarm
+    service:
+      type: NodePort
+      port: 5000
+      nodePort: 32767
+    configFiles:
+      config.json: |-
         {
-          "rootDirectory": "/var/lib/registry",
-          "dedupe": true,
-          "gc": true,
-          "gcDelay": "1h",
-          "gcInterval": "24h"
-        },
-        "extensions": {
-          "sync": {
-            "enable": true,
-            "registries": [
-              {
-                "urls": [
-                  "https://giantswarm-registry.cn-shanghai.cr.aliyuncs.com",
-                  "https://gsoci.azurecr.io"
-                ],
-                "onDemand": true,
-                "tlsVerify": true,
-                "maxRetries": 3,
-                "retryDelay": "5m"
-              }
-            ]
+          "storage":
+          {
+            "rootDirectory": "/var/lib/registry",
+            "dedupe": true,
+            "gc": true,
+            "gcDelay": "1h",
+            "gcInterval": "24h"
           },
-          "metrics": {
-            "enable": true,
-            "prometheus": {
-              "path": "/metrics"
+          "http":
+          {
+            "address": "0.0.0.0",
+            "port": "5000"
+          },
+          "log":
+          {
+            "level": "debug"
+          },
+          "extensions": {
+            "sync": {
+              "enable": true,
+              "registries": [
+                {
+                  "urls": [
+                    "myregistry.azurecr.io"
+                  ],
+                  "onDemand": true,
+                  "tlsVerify": true,
+                  "maxRetries": 3,
+                  "retryDelay": "5m"
+                }
+              ]
+            },
+            "scrub": {
+              "enable": true
+            },
+            "metrics": {
+              "enable": true,
+              "prometheus": {
+                "path": "/metrics"
+              }
             }
           }
         }
-      }
 ```
 
-This configuration sets up Zot as an on-demand cache for the Giant Swarm registries across different zones. It stores images locally to avoid duplication, performs garbage collection every 24 hours (with a 1-hour delay before removing images), and only pulls images when they're requested rather than syncing everything upfront. It also includes Prometheus metrics to monitor the registry's performance.
-
-Giant Swarm by default only caches images for managed applications. When you pull a different image, here's the flow:
-
-- `containerd` looks on the registries configured as mirrors of the default `docker.io`
-- First mirror is the local Zot registry
-    - Zot looks for this image on its configured registry addresses but can't find it
-- `containerd` checks other mirrors (Giant Swarm registries again) but can't find the image
-- `containerd` finally goes to `docker.io` to fetch the image
-
-For that reason, in case you want to cache images from other registries, you need to configure the `sync` extension in the configuration file like [shown above](#caching-strategies).
+This configuration sets up Zot as an on-demand cache for `myregistry.azurecr.io` registries across different zones. It stores images locally to avoid duplication, performs garbage collection every 24 hours (with a 1-hour delay before removing images), and only pulls images when they're requested rather than syncing everything upfront. It also includes Prometheus metrics to monitor the registry's performance.
