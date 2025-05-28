@@ -155,7 +155,7 @@ The Observability Platform provides scoping mechanisms to prevent conflicts when
 
 ### Scoping behavior
 
-**Workload cluster deployment (cluster-scoped)**
+#### Workload cluster deployment (cluster-scoped)
 
 When you deploy a `PrometheusRule` in a workload cluster, the rules are automatically scoped to that specific cluster. For example, deploying a rule with expression `up{job="good"} > 0` in workload cluster `alpha1` results in the loaded expression: `up{cluster_id="alpha1", job="good"} > 0`.
 
