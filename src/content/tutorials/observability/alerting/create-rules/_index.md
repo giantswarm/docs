@@ -110,3 +110,36 @@ In practice, this means that:
 
 - Cluster-scope is only available to metric-based alerts today due to upstream limitations.
 - Scoping can only be used when teams deploy the same rule **once** accross multiple clusters. If you need to deploy it per app in different namespaces, you will need to manage the conflict yourself.
+
+## Using tenant federation for system data alerts
+
+With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities that allow customers to create alerting rules based on system data without duplicating data intake. This feature enables you to reference metrics and logs from the `giantswarm` tenant directly in your own tenant's alerting rules using the `monitoring.grafana.com/source_tenants` label.
+
+### Example: Alerting on system metrics
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    observability.giantswarm.io/tenant: my-team
+    monitoring.grafana.com/source_tenants: giantswarm
+  name: system-node-alerts
+  namespace: my-namespace
+spec:
+  groups:
+  - name: system-monitoring
+    rules:
+      - alert: NodeDown
+        annotations:
+          summary: 'Cluster node is down'
+          description: 'Node {{ $labels.instance }} in cluster {{ $labels.cluster_id }} has been down for more than 5 minutes.'
+          # Reference the system metrics data source in Grafana
+          __dashboardUid__: system-metrics-dashboard
+        # Query system metrics from the giantswarm tenant
+        expr: |
+          up{job="node-exporter"} == 0
+        for: 5m
+        labels:
+          severity: critical
+```
