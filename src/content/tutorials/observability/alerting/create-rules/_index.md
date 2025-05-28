@@ -21,9 +21,7 @@ The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relre
 
 Following Giant Swarm's GitOps approach, alerting and recording rules must be defined using [Prometheus Operator](https://prometheus-operator.dev/) `PrometheusRule` resources. You can deploy these rules to both management clusters and workload clusters.
 
-{{< admonition type="warning" title="Multi-tenancy requirement" >}}
 The `observability.giantswarm.io/tenant` label on your rules must reference an existing tenant defined in a [Grafana Organization]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization/" >}}). Any `PrometheusRule` that references a non-existing tenant will be ignored. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
-{{< /admonition >}}
 
 ## Create alerting rules
 
@@ -73,9 +71,7 @@ spec:
 - **`labels`**: key-value pairs for routing and grouping alerts
 - **`annotations`**: human-readable information about the alert
 
-{{< admonition type="tip" title="PromQL Resources" >}}
 For guidance on writing effective PromQL queries, refer to the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/). You can also explore queries in your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) explore interface.
-{{< /admonition >}}
 
 ## Create recording rules
 
@@ -175,9 +171,7 @@ For multi-environment deployments, consider using unique naming or namespace-spe
 
 With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities that allow you to create alerting rules based on system data without duplicating data intake. This feature enables you to reference metrics and logs from the `giantswarm` tenant directly in your own tenant's alerting rules using the `monitoring.grafana.com/source_tenants` label.
 
-{{< admonition type="info" title="Tenant Federation" >}}
 For more information about multi-tenancy and tenant management, see our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
-{{< /admonition >}}
 
 ### Example: Alerting on system metrics
 
