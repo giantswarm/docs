@@ -169,11 +169,11 @@ For multi-environment deployments, consider using unique naming or namespace-spe
 
 ## Using tenant federation for system data alerts
 
-With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities. These capabilities let you create alerting rules based on system data without duplicating data intake. This feature enables you to reference metrics and logs from the `giantswarm` tenant directly in your own tenant's alerting rules. You use the `monitoring.grafana.com/source_tenants` label for this purpose.
+With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities. These capabilities let you create alerting and recording rules based on other tenants data without duplicating data intake. To use this feature, add the `monitoring.grafana.com/source_tenants` label on your `PrometheusRule`
 
 For more information about multi-tenancy and tenant management, see our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
 
-### Example: Alerting on system metrics
+### Example: Alerting on Giant Swarm system metrics
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -181,6 +181,7 @@ kind: PrometheusRule
 metadata:
   labels:
     observability.giantswarm.io/tenant: my-team
+    # Define on the source tenant for the metrics used in the alert
     monitoring.grafana.com/source_tenants: giantswarm
   name: system-node-alerts
   namespace: my-namespace
