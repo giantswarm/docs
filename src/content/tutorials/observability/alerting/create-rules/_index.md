@@ -79,7 +79,7 @@ For guidance on writing effective PromQL queries, refer to the [Prometheus query
 
 ### When to use recording rules
 
-Recording rules are useful when you need to:
+[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) are useful when you need to:
 
 - Improve performance by pre-calculating expensive aggregations used frequently
 - Create custom metrics by combining multiple metrics into business-specific indicators
