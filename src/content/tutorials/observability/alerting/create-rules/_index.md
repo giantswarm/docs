@@ -17,7 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can [configure per tenant]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}). This platform allows you to create your own alerting and recording rules per tenant.
+The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can [configure per tenant]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}). This enables you to create your own alerting and recording rules per tenant.
 
 Following Giant Swarm's GitOps approach, you define alerting and recording rules using [Prometheus Operator](https://prometheus-operator.dev/) `PrometheusRule` resources. You can deploy these rules to both management clusters and workload clusters.
 
