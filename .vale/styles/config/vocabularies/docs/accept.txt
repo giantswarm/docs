@@ -19,6 +19,7 @@ configmap[s]?
 containerd
 [Cc]rossplane
 CRs
+[Dd]atasource[s]?
 declaratively
 [Dd]ex
 [Dd][Nn][Ss]
