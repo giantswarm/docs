@@ -38,9 +38,9 @@ The data flow works as follows:
 1. **User Access**: RBAC groups from your identity provider are mapped to organization roles (Admin, Editor, Viewer)
 
 This architecture allows you to:
-- Isolate data between different teams or environments
-- Control who can view, edit, or manage specific datasets
-- Share data across multiple organizations when needed
+ - Isolate data between different teams or environments
+ - Control who can view, edit, or manage specific datasets
+ - Share data across multiple organizations when needed
 
 ## Creating your own organization
 
