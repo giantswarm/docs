@@ -34,7 +34,7 @@ Before creating your organization, it's important to understand the relationship
   Examples:
 
     - `frontend`, `backend`, `myonlineshop` are valid ✓
-     - `Frontend`, `my-team`, `team_1` will fail ✗
+    - `Frontend`, `my-team`, `team_1` will fail ✗
 
 - **Grafana Organization**: A Grafana construct that groups users and provides access to specific datasources and dashboards. Each organization acts as a separate workspace within Grafana.
 
