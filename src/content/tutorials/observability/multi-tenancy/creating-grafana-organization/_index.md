@@ -17,7 +17,7 @@ owner:
 
 When you first log in to [your installation's `Grafana`]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}), you see the preselected `Grafana` organization called `_Shared Org_`. This shared organization contains a curated set of managed dashboards available to everyone with `Grafana` access.
 
-If multiple teams access the observability platform, you should utilize multi-tenancy to isolate data and dashboards. The observability platform lets you create new organizations in self-service for this use case.
+If multiple teams access the observability platform, you should take advantage of multi-tenancy to isolate data and dashboards. The observability platform lets you create new organizations in self-service for this use case.
 
 ## Creating your own organization
 
