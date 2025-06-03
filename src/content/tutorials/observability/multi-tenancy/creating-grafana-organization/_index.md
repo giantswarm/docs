@@ -50,7 +50,7 @@ Our operators will create this `Grafana` organization named _MyOnlineShop_. The 
 
 ## Role Based Access Control (RBAC) configuration
 
-The Role Based Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`). 
+The Role Based Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`).
 
 ### Dex Connector Format
 
