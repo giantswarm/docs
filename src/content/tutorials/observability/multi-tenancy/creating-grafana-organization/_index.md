@@ -63,7 +63,7 @@ You can find your Dex connector ID in your cluster's Dex configuration. Only the
 
 For more details about organization mapping, see the official Grafana [OAuth documentation](https://grafana.com/docs/grafana/next/setup-grafana/configure-security/configure-authentication/generic-oauth/#configure-role-mapping).
 
-## Tenant Governance
+## Tenant governance
 
 The tenant field grants access to specified tenants and serves as tenant governance. The system only accepts tenants listed in **at least one** Grafana Organisation CRD as valid targets in the write path. 
 
