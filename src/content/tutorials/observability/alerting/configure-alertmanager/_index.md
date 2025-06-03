@@ -78,6 +78,6 @@ Validate your Alertmanager configuration before applying it. A validating webhoo
 
 ### Configuration limitations
 
-The Observability Platform uses Mimir Alertmanager, which may not support all the latest Alertmanager features available in the upstream Prometheus Alertmanager. Some configuration options might not work as expected or may not be available.
+The Observability Platform uses [Mimir Alertmanager](https://grafana.com/docs/mimir/latest/references/architecture/components/alertmanager/), which may not support all the latest Alertmanager features available in the upstream Prometheus Alertmanager. Some configuration options might not work as expected or may not be available.
 
 While the validating webhook ensures basic configuration correctness, we recommend testing your Alertmanager configuration in a non-production environment first. The webhook validates syntax and structure but cannot guarantee that all configuration options work as expected with Mimir Alertmanager.
