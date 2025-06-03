@@ -106,4 +106,4 @@ The observability platform implements tenant governance by only accepting data f
 - **Data rejection**: The system drops data sent to tenants not listed in any `GrafanaOrganization` resource
 - **Shared access**: Multiple organizations can reference the same tenant, allowing shared access to the same dataset
 
-**Warning:** Removing a tenant from **all** `GrafanaOrganization` resources means you can no longer send data to that tenant. Ensure at least one organization references any tenant you want to keep active.
+**Warning:** Removing a tenant from **all** `GrafanaOrganization` resources means you can no longer send data to that tenant. Make sure at least one organization references any tenant you want to keep active.
