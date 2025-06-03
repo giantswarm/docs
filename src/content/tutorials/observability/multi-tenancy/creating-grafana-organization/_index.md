@@ -72,7 +72,7 @@ spec:
 This configuration creates:
 
 - **Grafana Organization**: A new organization named "MyOnlineShop" in Grafana
-- **Data Access**: Access to observability data tagged with the `myonlineshop` tenant
+- **Data Access**: Access to observability data stored within the `myonlineshop` tenant
 - **User Permissions**: Role assignments based on your identity provider groups
 - **Datasources**: Automatic provisioning of Loki, Mimir, and Alertmanager datasources filtered to the `myonlineshop` tenant
 
