@@ -48,7 +48,7 @@ spec:
 
 Our operators will create this `Grafana` organization named _MyOnlineShop_. The system equips it with a basic set of data sources for Loki, Mimir and Alertmanager, giving you access to the `myonlineshop` tenant.
 
-## RBAC configuration
+## Role Based Access Control (RBAC) configuration
 
 The Role Based Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`). 
 
