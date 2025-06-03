@@ -35,7 +35,7 @@ The data flow works as follows:
 
 1. **Data Collection**: Your clusters collect metrics and logs through applications and telemetry agents. These agents then send data to backend systems (Mimir, Loki) with a specific tenant identifier
 2. **Organization Mapping**: Grafana organizations provide access specific tenants
-3. **User Access**: RBAC groups from your identity provider grant users grafana roles (Admin, Editor, Viewer)
+3. **User Access**: RBAC groups from your identity provider grant users Grafana roles (Admin, Editor, Viewer)
 
 This architecture does:
 
