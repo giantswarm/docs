@@ -25,6 +25,13 @@ Before creating your organization, it's important to understand the relationship
 
 - **Tenant**: A logical namespace that isolates observability data (metrics, logs) in the backend storage systems (Mimir and Loki). When applications send data or telemetry agents collect data, they include a tenant label that determines which data partition the information goes to.
 
+  **Tenant naming requirements**: Tenant names must follow specific formatting rules:
+  - Only lowercase letters (a-z) are allowed
+  - Must be between 1 and 63 characters
+  - No special characters, numbers, hyphens, or underscores permitted
+  
+  Examples: `frontend`, `backend`, `myonlineshop` ✓ | `Frontend`, `my-team`, `team_1` ✗
+
 - **Grafana Organization**: A Grafana construct that groups users and provides access to specific datasources and dashboards. Each organization acts as a separate workspace within Grafana.
 
 - **RBAC Groups**: Identity provider groups (like those from your company's Active Directory or OAuth provider) that define user permissions and roles.
