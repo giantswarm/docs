@@ -100,7 +100,7 @@ The `tenants` field in your `GrafanaOrganization` serves two purposes:
 
 ### How tenant governance works
 
-The observability platform implements tenant governance by only accepting data for tenants that are listed in **at least one** `GrafanaOrganization` resource. This means:
+The observability platform implements tenant governance by only accepting data for tenants that belong to **at least one** `GrafanaOrganization` resource. This means:
 
 - **Valid tenants**: Only tenants referenced in existing `GrafanaOrganization` resources can receive data
 - **Data rejection**: The system drops data sent to tenants not listed in any `GrafanaOrganization` resource
