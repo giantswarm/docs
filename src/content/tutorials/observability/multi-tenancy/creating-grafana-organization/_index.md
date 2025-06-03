@@ -32,6 +32,7 @@ Before creating your organization, it's important to understand the relationship
     - No special characters, numbers, hyphens, or underscores permitted
   
   Examples:
+
      - `frontend`, `backend`, `myonlineshop` are valid ✓
      - `Frontend`, `my-team`, `team_1` will fail ✗
 
