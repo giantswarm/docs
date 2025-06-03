@@ -96,7 +96,7 @@ For more details about organization mapping, see the official Grafana [OAuth doc
 The `tenants` field in your `GrafanaOrganization` serves two purposes:
 
 1. **Access Control**: Grants the organization access to data from the specified tenants
-2. **Tenant Governance**: Acts as a safeguard mechanism in the observability platform
+2. **Tenant Governance**: Acts as a safeguard mechanism in the observability platform, preventing collectors from pushing to an invalid tenant.
 
 ### How tenant governance works
 
