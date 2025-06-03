@@ -26,7 +26,7 @@ Before creating your organization, it's important to understand the relationship
 - **Tenant**: A logical namespace that isolates observability data (metrics, logs) in the backend storage systems (Mimir and Loki). When applications send data or telemetry agents collect data, they include a tenant label that determines which data partition the information goes to.
 
   **Tenant naming requirements**: Tenant names must follow specific formatting rules:
-  - Only lowercase letters (a-z) are allowed
+    - Only lowercase letters (a-z) are allowed
   - Must be between 1 and 63 characters
   - No special characters, numbers, hyphens, or underscores permitted
   
