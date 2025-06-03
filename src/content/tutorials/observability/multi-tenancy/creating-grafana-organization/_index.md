@@ -70,7 +70,7 @@ The tenant field grants access to specified tenants and serves as a mechanism fo
 Key points about tenant governance:
 
 - Tenants must exist in at least one `GrafanaOrganization` to receive data
-- The system drops data sent to tenants not listed in any `GrafanaOrganization` CRD
+- The system drops data sent to tenants not listed in any `GrafanaOrganization` resource
 - Multiple organizations can reference the same tenant for shared access
 
 **Warning:** Removing a tenant from **all** Grafana Organisation CRDs also means you can no longer send data to that tenant!
