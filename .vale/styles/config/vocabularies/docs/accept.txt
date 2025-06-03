@@ -56,6 +56,7 @@ namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
 NLB[s]?
+OAuth
 onboarding
 passthrough
 perfectly
@@ -64,6 +65,7 @@ Promtail
 quickly
 randomly
 rapidly
+RBAC
 really
 relref
 rulesets
