@@ -27,7 +27,7 @@ Before creating your organization, it's important to understand the relationship
 
   **Tenant naming requirements**: Tenant names must follow specific formatting rules:
 
-    - Only lowercase letters (a-z) are allowed
+    - Must contain only lower-case letters (a-z)
     - Must be between 1 and 63 characters
     - No special characters, numbers, hyphens, or underscores permitted
   
