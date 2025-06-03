@@ -33,7 +33,7 @@ Before creating your organization, it's important to understand the relationship
 
 The data flow works as follows:
 
-1. **Data Collection**: Your clusters collect metrics and logs through applications and telemetry agents. This data is sent to backend systems (Mimir, Loki) with a specific tenant identifier
+1. **Data Collection**: Your clusters collect metrics and logs through applications and telemetry agents. These agents then send data to backend systems (Mimir, Loki) with a specific tenant identifier
 3. **Organization Mapping**: Grafana organizations are configured to access specific tenants
 4. **User Access**: RBAC groups from your identity provider are mapped to organization roles (Admin, Editor, Viewer)
 
