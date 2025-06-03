@@ -52,7 +52,7 @@ Our operators will create this `Grafana` organization named _MyOnlineShop_. The 
 
 The Role Based Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`).
 
-### Dex Connector Format
+### Dex connector format
 
 Most Giant Swarm installations use Dex as the identity provider. When using Dex, specify groups using the format `{dex-connector-id}:{group-name}`. For example:
 
