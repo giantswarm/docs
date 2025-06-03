@@ -65,7 +65,7 @@ For more details about organization mapping, see the official Grafana [OAuth doc
 
 ## Tenant governance
 
-The tenant field grants access to specified tenants and serves as tenant governance. The system only accepts tenants listed in **at least one** Grafana Organisation CRD as valid targets in the write path. 
+The tenant field grants access to specified tenants and serves as tenant governance. The system only accepts tenants listed in **at least one** Grafana Organisation CRD as valid targets in the write path.
 
 Key points about tenant governance:
 
