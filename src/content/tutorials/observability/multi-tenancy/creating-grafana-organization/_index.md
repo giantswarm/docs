@@ -41,7 +41,7 @@ This architecture does:
 
 - Isolate data between different teams or environments
 - Control who can view, edit, or manage specific datasets
- - Share data across multiple organizations when needed
+- Share data across multiple organizations when needed
 
 ## Creating your own organization
 
