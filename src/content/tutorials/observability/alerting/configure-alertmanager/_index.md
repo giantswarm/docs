@@ -32,7 +32,7 @@ To configure Alertmanager for your tenant, create a secret on your management cl
 
 ### Example configuration
 
-The following example shows an Alertmanager configuration for the `my-team` tenant:
+The following example shows an Alertmanager configuration for the `myteam` tenant:
 
 ```yaml
 apiVersion: v1
@@ -42,7 +42,7 @@ metadata:
     # This label marks this secret as an Alertmanager configuration
     observability.giantswarm.io/kind: alertmanager-config
     # This label specifies the tenant for this configuration
-    observability.giantswarm.io/tenant: my-team
+    observability.giantswarm.io/tenant: myteam
   name: my-alertmanager-config
   namespace: default
 stringData:
