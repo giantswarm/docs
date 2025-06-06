@@ -1,6 +1,6 @@
 ---
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
-last_review_date: 2024-11-29
+last_review_date: 2025-06-04
 linkTitle: Domain allowlist
 menu:
   principal:
@@ -37,10 +37,6 @@ List of the external domains we require access to for our clusters to function.
         - `.blob.core.windows.net`
         - `azure.microsoft.com`
     - Container images and app catalogs are hosted on Azure container registry.
-- `auth0.com`
-    - domains:
-        - `giantswarm.eu.auth0.com`
-    - Used to secure access to `Grafana` and `Prometheus`.
 - `cloudfront.net`
     - domains:
         - `*.cloudfront.net`

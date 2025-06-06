@@ -19,6 +19,7 @@ configmap[s]?
 containerd
 [Cc]rossplane
 CRs
+[Dd]atasource[s]?
 declaratively
 [Dd]ex
 [Dd][Nn][Ss]
@@ -56,6 +57,7 @@ namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
 NLB[s]?
+OAuth
 onboarding
 passthrough
 perfectly
@@ -64,6 +66,7 @@ Promtail
 quickly
 randomly
 rapidly
+RBAC
 really
 relref
 rulesets
