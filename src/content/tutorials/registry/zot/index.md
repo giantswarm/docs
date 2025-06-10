@@ -24,7 +24,7 @@ A registry cache within the cluster can provide several benefits.
 Here we explain how to set up a registry, using the [Zot](https://zotregistry.dev/) app provided by Giant Swarm. Zot is an OCI-native container image registry. The [Giant Swarm packaged version](https://github.com/giantswarm/zot) extends it with opinionated components like
 autoscaling, monitoring, Cilium network policies, etc.
 
-The Giant Swarm Management cluster includes a [default Zot installation](https://github.com/giantswarm/management-cluster-bases/blob/main/extras/zot-cache/values.yaml#L52-L171) for managed component images. The cache comes configured as `on-demand`, so it only stores images when they're requested. The Zot instance running in the management cluster includes an ingress so the workload clusters can use it as a registry mirror too (for Giant Swarm images). 
+The Giant Swarm Management cluster includes a [default Zot installation](https://github.com/giantswarm/management-cluster-bases/blob/main/extras/zot-cache/values.yaml#L52-L171) for managed component images. The cache comes configured as `on-demand`, so it only stores images when they're requested. The Zot instance running in the management cluster includes an ingress so the workload clusters can use it as a registry mirror too (for Giant Swarm images).
 
 It is also possible to cache your own images in the workload clusters itself? Here is how to set up a Zot registry cache there:
 
