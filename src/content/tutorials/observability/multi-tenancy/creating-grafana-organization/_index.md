@@ -1,7 +1,7 @@
 ---
 linkTitle: Creating a Grafana organization
 title: Creating a Grafana organization
-description: Guide explaining how to manage Grafana organizations in the Observability Platform.
+description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
     identifier: tutorials-observability-multitenancy-create-grafana-organization
@@ -9,66 +9,29 @@ menu:
 weight: 40
 last_review_date: 2025-06-11
 user_questions:
-  - How to create a grafana organization?
-  - How to access multi-tenant observability data?
+  - How to create a Grafana organization?
+  - How to configure RBAC for Grafana organizations?
+  - How to assign tenants to organizations?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-When you first log in to [your installation's `Grafana`]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}), you see the preselected `Grafana` organization called `_Shared Org_`. This shared organization contains a curated set of managed dashboards available to everyone with `Grafana` access.
+This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}}) in your observability platform.
 
-If multiple teams access the observability platform, you should take advantage of multi-tenancy to isolate data and dashboards. The observability platform lets you create new organizations in self-service for this use case.
+## Prerequisites
 
-## Understanding tenants and organizations
+Before creating your organization, make sure you have:
+- Access to the management cluster where you can create custom resources
+- Identified the [tenant names]({{< relref "/tutorials/observability/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
+- Configured identity provider groups for RBAC
 
-Before creating your organization, it's important to understand the relationship between **tenants**, **organizations**, and **RBAC groups**:
+## Creating a Grafana organization
 
-- **Tenant**: A logical namespace that isolates observability data (metrics, logs) in the backend storage systems (Mimir and Loki). When applications send data or telemetry agents collect data, they include a tenant label that determines which data partition the information goes to.
+Create a [`GrafanaOrganization`]({{< relref "/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}) custom resource in the management cluster:
 
-  **Tenant naming requirements**: Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/):
+### Basic example
 
-    - Must contain only alphanumeric characters (a-z, A-Z, 0-9) and special characters (!, -, _, ., *, ', (, ))
-    - Must be between 1 and 150 characters
-    - Forbidden values: `.`, `..`, `__mimir_cluster` (enforced by validation webhook)
-  
-  Examples:
-
-    **Valid tenant names:** ✓
-    - `frontend`, `backend`, `myonlineshop`
-    - `My-Team`, `team_1`, `app-2024`
-    - `prod-cluster`, `staging.env`, `app_v2`
-    - `Service-A`, `microservice123`, `logs-2024`
-
-    **Invalid tenant names:** ✗
-    - `.`, `..`, `__mimir_cluster` (forbidden values)
-    - `team@company`, `app#1`, `service%test` (unsupported special characters)
-    - `my tenant`, `prod cluster` (spaces not allowed)
-    - `service/api`, `app+feature` (unsupported characters)
-    - `team~1`, `app|prod`, `test&dev` (unsupported special characters)
-
-- **Grafana Organization**: A Grafana construct that groups users and provides access to specific datasources and dashboards. Each organization acts as a separate workspace within Grafana.
-
-- **RBAC Groups**: Identity provider groups (like those from your company's Active Directory or OAuth provider) that define user permissions and roles.
-
-### How they work together
-
-The data flow works as follows:
-
-1. **Data Collection**: Your clusters collect metrics and logs through applications and telemetry agents. These agents then send data to backend systems (Mimir, Loki) with a specific tenant identifier
-2. **Organization Mapping**: Grafana organizations provide access specific tenants
-3. **User Access**: RBAC groups from your identity provider grant users Grafana roles (Admin, Editor, Viewer)
-
-This architecture does:
-
-- Isolate data between different teams or environments
-- Control who can view, edit, or manage specific datasets
-- Share data across multiple organizations when needed
-
-## Creating your own organization
-
-To add a new `Grafana` organization, create a [`GrafanaOrganization`](https://raw.githubusercontent.com/giantswarm/observability-operator/refs/heads/main/config/crd/observability.giantswarm.io_grafanaorganizations.yaml) custom resource in the management cluster.
-
-For example:
+This example shows a simple organization for a single application with role-based access for different teams:
 
 ```yaml
 apiVersion: observability.giantswarm.io/v1alpha1
@@ -91,41 +54,121 @@ spec:
   - myonlineshop
 ```
 
-This configuration creates:
+### Configuration options
 
-- **Grafana Organization**: A new organization named "MyOnlineShop" in Grafana
-- **Data Access**: Access to observability data stored within the `myonlineshop` tenant
-- **User Permissions**: Role assignments based on your identity provider groups
-- **Datasources**: Automatic provisioning of Loki, Mimir, and Alertmanager datasources filtered to the `myonlineshop` tenant
+| Field | Description | Required |
+|-------|-------------|----------|
+| `metadata.name` | Kubernetes resource name (follows DNS naming rules) | Yes |
+| `spec.displayName` | Human-readable name shown in Grafana UI | Yes |
+| `spec.rbac.admins` | Groups with full organization access | Yes |
+| `spec.rbac.editors` | Groups that can create/edit dashboards and alerts | No |
+| `spec.rbac.viewers` | Groups with read-only access | No |
+| `spec.tenants` | List of tenant names this organization can access | Yes |
+
+### Advanced examples
+
+**Multi-environment organization:**
+
+This example demonstrates an organization that manages multiple environments with hierarchical access control:
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha1
+kind: GrafanaOrganization
+metadata:
+  name: engineering-team
+spec:
+  displayName: Engineering Team
+  rbac:
+    admins:
+    - customer:engineering-leads
+    editors:
+    - customer:senior-engineers
+    - customer:devops-team
+    viewers:
+    - customer:junior-engineers
+    - customer:qa-team
+  tenants:
+  - prod-frontend
+  - prod-backend
+  - staging-frontend
+  - staging-backend
+```
+
+**Production-only organization:**
+
+This example shows a restricted organization with access only to production data:
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha1
+kind: GrafanaOrganization
+metadata:
+  name: production-monitoring
+spec:
+  displayName: Production Monitoring
+  rbac:
+    admins:
+    - customer:sre-team
+    - customer:platform-admin
+    viewers:
+    - customer:engineering-team
+    - customer:support-team
+  tenants:
+  - production
+```
 
 ## RBAC configuration
 
-The Role Based Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`).
+The RBAC section maps identity provider groups to [Grafana organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles):
 
-### Dex connector format
+| Role | Permissions |
+|------|-------------|
+| **Admin** | Full organization access: manage users, datasources, dashboards, and settings |
+| **Editor** | Create and edit dashboards, alerts, and folders (cannot manage users) |
+| **Viewer** | Read-only access to dashboards and data |
 
-Most Giant Swarm installations use Dex as the identity provider. When using Dex, specify groups using the format `{dex-connector-id}:{group-name}`. For example:
+### Group format
 
-- `customer:platform-admin` - Maps the `platform-admin` group from the `customer` Dex connector to Grafana Admin role
-- `customer:development-team` - Maps the `development-team` group from the `customer` Dex connector to Grafana Editor role
+Most Giant Swarm installations use Dex as the identity provider. Specify groups using the format `{dex-connector-id}:{group-name}`:
 
-You can find your Dex connector ID in your cluster's Dex configuration. Only the `admins` field is mandatory in the RBAC section.
+```yaml
+rbac:
+  admins:
+  - customer:platform-admin        # Maps 'platform-admin' group from 'customer' connector
+  - customer:ops-team
+  editors:
+  - customer:development-team
+  viewers:
+  - customer:support-team
+```
 
-For more details about organization mapping, see the official Grafana [OAuth documentation](https://grafana.com/docs/grafana/next/setup-grafana/configure-security/configure-authentication/generic-oauth/#configure-role-mapping).
+**Finding your connector ID:** Check your cluster's Dex configuration for the connector ID (usually `customer`).
 
-## Tenant governance
+**Required fields:** Only `admins` is required; `editors` and `viewers` are optional.
 
-The `tenants` field in your `GrafanaOrganization` serves two purposes:
+## What happens when you create an organization
 
-1. **Access Control**: Grants the organization access to data from the specified tenants
-2. **Tenant Governance**: Acts as a safeguard mechanism in the observability platform, preventing collectors from pushing to an invalid tenant.
+Creating a `GrafanaOrganization` resource automatically provisions:
 
-### How tenant governance works
+1. **New Grafana organization** with your specified display name
+2. **Tenant-scoped datasources** for Loki, Mimir, and Alertmanager
+3. **User role assignments** based on your RBAC configuration
+4. **Tenant validation** so only defined tenants can receive data (see [tenant governance]({{< relref "/tutorials/observability/multi-tenancy#tenant-governance" >}}))
 
-The observability platform implements tenant governance by only accepting data for tenants that belong to **at least one** `GrafanaOrganization` resource. This means:
+## Verification steps
 
-- **Valid tenants**: Only tenants referenced in existing `GrafanaOrganization` resources can receive data
-- **Data rejection**: The system drops data sent to tenants not listed in any `GrafanaOrganization` resource
-- **Shared access**: Multiple organizations can reference the same tenant, allowing shared access to the same dataset
+After creating your organization:
 
-**Warning:** Removing a tenant from **all** `GrafanaOrganization` resources means you can no longer send data to that tenant. Make sure at least one organization references any tenant you want to keep active.
+1. **Check organization status:**
+   ```bash
+   kubectl get grafanaorganization myonlineshop -o yaml
+   ```
+
+2. **Log in to Grafana** and verify:
+   - New organization appears in the organization dropdown
+   - Datasources are configured for your tenants
+   - Users have appropriate role assignments
+
+3. **Test data access:**
+   - Switch to your new organization in Grafana
+   - Query data using the provisioned datasources
+   - Verify only your tenant's data is visible
