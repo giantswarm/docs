@@ -7,7 +7,7 @@ menu:
     identifier: tutorials-observability-multitenancy-create-grafana-organization
     parent: tutorials-observability-multitenancy
 weight: 40
-last_review_date: 2025-06-03
+last_review_date: 2025-06-11
 user_questions:
   - How to create a grafana organization?
   - How to access multi-tenant observability data?
@@ -25,16 +25,26 @@ Before creating your organization, it's important to understand the relationship
 
 - **Tenant**: A logical namespace that isolates observability data (metrics, logs) in the backend storage systems (Mimir and Loki). When applications send data or telemetry agents collect data, they include a tenant label that determines which data partition the information goes to.
 
-  **Tenant naming requirements**: Tenant names must follow specific formatting rules:
+  **Tenant naming requirements**: Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/):
 
-    - Must contain only lower-case letters (a-z)
-    - Must be between 1 and 63 characters
-    - No special characters, numbers, hyphens, or underscores permitted
+    - Must contain only alphanumeric characters (a-z, A-Z, 0-9) and special characters (!, -, _, ., *, ', (, ))
+    - Must be between 1 and 150 characters
+    - Forbidden values: `.`, `..`, `__mimir_cluster` (enforced by validation webhook)
   
   Examples:
 
-    - `frontend`, `backend`, `myonlineshop` are valid ✓
-    - `Frontend`, `my-team`, `team_1` will fail ✗
+    **Valid tenant names:** ✓
+    - `frontend`, `backend`, `myonlineshop`
+    - `My-Team`, `team_1`, `app-2024`
+    - `prod-cluster`, `staging.env`, `app_v2`
+    - `Service-A`, `microservice123`, `logs-2024`
+
+    **Invalid tenant names:** ✗
+    - `.`, `..`, `__mimir_cluster` (forbidden values)
+    - `team@company`, `app#1`, `service%test` (unsupported special characters)
+    - `my tenant`, `prod cluster` (spaces not allowed)
+    - `service/api`, `app+feature` (unsupported characters)
+    - `team~1`, `app|prod`, `test&dev` (unsupported special characters)
 
 - **Grafana Organization**: A Grafana construct that groups users and provides access to specific datasources and dashboards. Each organization acts as a separate workspace within Grafana.
 
