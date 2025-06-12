@@ -132,6 +132,7 @@ Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.
 Map Grafana organizations to tenants based on your access needs:
 
 #### One-to-one mapping
+
 ```yaml
 # Platform Team Organization
 tenants:
