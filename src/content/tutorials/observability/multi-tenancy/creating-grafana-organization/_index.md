@@ -160,6 +160,7 @@ Creating a `GrafanaOrganization` resource automatically provisions:
 After creating your organization:
 
 1. **Check organization status:**
+
    ```bash
    kubectl get grafanaorganization myonlineshop -o yaml
    ```
