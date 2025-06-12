@@ -43,7 +43,7 @@ gs:
 
 In the user interface, in the context of a cluster, the labels may appear like this:
 
-![Screenshot shows two labels with a blue background, one "App version" and one "App name"](./screenshot.png)
+![Screenshot shows two labels with a blue background, one "App version" and one "App name"](./screenshot_ex1.png)
 
 ## Order
 
@@ -70,11 +70,55 @@ The wildcard can be used several times. It matches any character, even an empty 
 
 ### Value matching
 
+To apply a display configuration to a label only in case it bears a certain value, the `label` directive must be used with a combination of key and value, separated by the colon `:` sign. Example:
+
+```yaml
+gs:
+  friendlyLabels:
+    - label: 'giantswarm.io/service-priority:highest'
+      variant: red
+    - label: 'giantswarm.io/service-priority:medium'
+      variant: orange
+```
+
+The above configuration will color the `giantswarm.io/service-priority` label red if the value is `highest` and orange if the value is `medium`.
+
+**Note:** Value matching cannot be combined with wildcard use.
+
 ## Text displayed
 
 Both the label's key and the value displayed can be customized. In the [example](#example1) above, the label's display key is configured using the `key` directive.
 
-I case you have to o
+To specify the label name shown, use the `key` directive. For specifying the values to display, the `valueMap` directive is used. Here is an example combining both:
+
+```yaml
+gs:
+  friendlyLabels:
+    - label: 'foo.io/env'
+      key: Environment
+      valueMap:
+        DEV: Development
+        PROD: Production
+        STG: Staging
+```
+
+For a label like `foo.io/env=PROD`, the following would be displayed:
+
+![Screenshot shows a label where display name and value have been overwritten](./screenshot_valuemap.png)
+
 
 ## Color
 
+Labels can be highlighted in one of nine colors, to make it easier to spot them among others. The directive to use here is `variant`. The available color values are: 
+
+- `blue`
+- `brown`
+- `green`
+- `orange`
+- `pink`
+- `purple`
+- `red`
+- `teal`
+- `yellow`
+
+The actual color value displayed depends on the theme (light or dark) selected and is optimized for contrast in comparison to the displayed text.
