@@ -24,7 +24,7 @@ Currently, the display of labels is limited to clusters only. In the future, thi
 
 All customization applies as long as the user has the _friendly labels_ toggle set to active. Once this is deactivated, all labels are displayed without any customization.
 
-The customization is done in the Backstage app configuration. Giant Swarm staff will happily assist you with the implementation.
+The customization is done in the Backstage app configuration. Giant Swarm staff will assist you with the implementation.
 
 ## Example {#example1}
 
