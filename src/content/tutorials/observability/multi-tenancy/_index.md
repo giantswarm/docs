@@ -110,6 +110,7 @@ Follow these guidelines when choosing tenant names:
 ### Naming requirements
 
 Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/):
+
 - Alphanumeric characters (a-z, A-Z, 0-9) and special characters (!, -, _, ., *, ', (, ))
 - Between 1 and 150 characters
 - Can't use: `.`, `..`, `__mimir_cluster`
