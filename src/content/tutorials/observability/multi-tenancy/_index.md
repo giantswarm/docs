@@ -34,6 +34,7 @@ A **tenant** is a logical namespace that isolates observability data (metrics, l
 ### Grafana organizations
 
 A **Grafana organization** gives you access to specific tenants through dedicated datasources and dashboards. Each organization is a separate workspace in Grafana with its own:
+
 - User roles and permissions
 - Dashboards and folders
 - Datasource configurations
