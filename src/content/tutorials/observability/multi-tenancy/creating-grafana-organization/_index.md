@@ -21,7 +21,8 @@ This guide walks you through creating and configuring Grafana organizations to i
 ## Prerequisites
 
 Before creating your organization, make sure you have:
-- Access to the management cluster where you can create custom resources
+
+- Access to the management cluster, where you can create custom resources
 - Identified the [tenant names]({{< relref "/tutorials/observability/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
 - Configured identity provider groups for RBAC
 
