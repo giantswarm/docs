@@ -181,7 +181,8 @@ The platform automatically enforces tenant governance to control data ingestion:
 ### Tenant lifecycle management
 
 **Creating tenants:**
-1. Define tenant in `GrafanaOrganization` resource
+
+1. Define the tenant in `GrafanaOrganization` resource
 2. Configure data collection to use tenant label
 3. Verify data appears in organization dashboards
 
