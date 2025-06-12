@@ -142,6 +142,7 @@ tenants:
 **Best for:** Complete team isolation, clear ownership.
 
 #### One-to-many mapping
+
 ```yaml
 # Engineering Organization
 tenants:
