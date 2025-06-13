@@ -66,11 +66,11 @@ gs:
       variant: pink
 ```
 
-The wildcard can be used several times. It matches any character, even an empty string. For example, the pattern `*kubernetes.io/*` would also match a label key `kubernetes.io/foo`.
+You can use the wildcard several times within one `label` directive. It matches any character, even an empty string. For example, the pattern `*kubernetes.io/*` would also match a label key `kubernetes.io/foo`.
 
 ### Value matching
 
-To apply a display configuration to a label only in case it bears a certain value, the `label` directive must be used with a combination of key and value, separated by the colon `:` sign. Example:
+To apply a display configuration to a label only in case it bears a certain value, use the `label` directive with a combination of key and value. Use the colon `:` sign as a separator. Example:
 
 ```yaml
 gs:
@@ -81,13 +81,13 @@ gs:
       variant: orange
 ```
 
-The above configuration will color the `giantswarm.io/service-priority` label red if the value is `highest` and orange if the value is `medium`.
+This configuration will color the `giantswarm.io/service-priority` label red if the value is `highest` and orange if the value is `medium`.
 
-**Note:** Value matching cannot be combined with wildcard use.
+**Note:** You cannot combine value matching with wildcard use.
 
 ## Text displayed
 
-Both the label's key and the value displayed can be customized. In the [example](#example1) above, the label's display key is configured using the `key` directive.
+Both the label's key and the value displayed can be customized. In our [first example](#example1), we already show how to configure the label's display name using the `key` directive.
 
 To specify the label name shown, use the `key` directive. For specifying the values to display, the `valueMap` directive is used. Here is an example combining both:
 
