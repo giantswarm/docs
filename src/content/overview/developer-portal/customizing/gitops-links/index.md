@@ -77,7 +77,7 @@ The Giant Swarm Backstage plugin lets you specify multiple combinations of these
 
 With this field, you specify a regular expression (ECMAScript/JavaScript flavour) to capture values from the GitRepository's `.spec.url` property. The capturing group names (like `HOSTNAME`, `PROJECT_NAME`) let you reference these parts when creating links with the `targetUrl` template.
 
-For example, to parse the URL `ssh://git@github.com/demotechinc/demotech-gitops`, you could configure the following regex:
+For example, to parse the repository address `ssh://git@github.com/demotechinc/demotech-gitops`, you could configure the following regex:
 
 ```nohighlight
 ^ssh:\/\/git@(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)(\.git)?$
@@ -89,14 +89,14 @@ As a result, the `HOSTNAME` group will contain `github.com`, and the `REPO_PATH`
 
 ### `targetUrl`
 
-With the `targetUrl` field you specify how to create a link URL based on the parts captured via the regex `gitRepositoryUrlPattern` and additional details (path and revision).
+Use the `targetUrl` field to create a link address based on the parts captured by the regex `gitRepositoryUrlPattern` and additional details (path and revision).
 
 Using the example regex above, you could use `${{HOSTNAME}}` and `${{REPO_PATH}}` in your URL template. You can also use the following details independent of the regex:
 
 - `${{PATH}}`: Directory path in the source repository. This comes from the `.spec.path` field of the corresponding Kustomization resource.
 - `${{REVISION}}`: Revision reference. This comes from the `.status.artifact.revision` field of the corresponding GitRepository resource.
 
-As an example, given the `gitRepositoryUrlPattern` regex example above, the following `targetUrl` could be used to create a link to the GitHub UI:
+As an example, given the `gitRepositoryUrlPattern` regex example, the following `targetUrl` creates a link to the GitHub UI:
 
 ```nohighlight
 https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}
@@ -126,9 +126,9 @@ By default, the system includes two pre-configured GitHub repository patterns. T
   targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
   ```
 
-These default patterns ensure that links to GitHub repositories can be generated out of the box without requiring any additional configuration.
+These default patterns ensure that links to GitHub repositories work out of the box without requiring any additional configuration.
 
-When custom `gitopsRepositories` entries are provided in the `app-config.yaml` file, they are appended to the default GitHub configurations. The system evaluates all entries (default and custom) in the order they are defined, and the first matching entry is used to generate the link.
+When you add custom `gitopsRepositories` entries to the `app-config.yaml` file, the system adds them after the default GitHub configurations. The system checks all entries (default and custom) in their defined order and uses the first match to create the link.
 
 ## Full example
 
@@ -154,7 +154,7 @@ See below how this applies to different repository URLs.
 
 ### Bitbucket
 
-Given a repository URL of `https://bitbucket.example.net/scm/some-project/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
+Given a repository address of `https://bitbucket.example.net/scm/some-project/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
 
 ```nohighlight
 https://bitbucket.example.net/projects/some-project/repos/gitops-repo/browse/dir/subdir?at=1234567890
@@ -162,9 +162,9 @@ https://bitbucket.example.net/projects/some-project/repos/gitops-repo/browse/dir
              HOSTNAME                  PROJECT_NAME        REPO_NAME           PATH        REVISION
 ```
 
-### Gitlab
+### GitLab
 
-With a repository URL `ssh://git@gitlab.example.com/myorg/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
+With a repository address `ssh://git@gitlab.example.com/myorg/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
 
 ```nohighlight
 https://gitlab.example.com/myorg/gitops-repo/-/tree/1234567890/dir/subdir
@@ -172,9 +172,9 @@ https://gitlab.example.com/myorg/gitops-repo/-/tree/1234567890/dir/subdir
              HOSTNAME          REPO_PATH             REVISION     PATH
 ```
 
-### Github
+### GitHub
 
-With repository URLs such as
+With repository addresses such as
 
 - `ssh://git@github.example.com:443/myorg/gitops-repo.git`
 - `ssh://git@github.example.com/myorg/gitops-repo`
