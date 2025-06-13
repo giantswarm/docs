@@ -22,7 +22,7 @@ The use of labels on Kubernetes resources like Cluster API clusters is highly in
 
 Currently, we only display resource labels in the context of clusters. In the future, we will expand this to other resource types.
 
-All customization applies as long as the user has the _friendly labels_ toggle set to active. Once you deactivate this switch, the UI displa all labels in their raw form.
+All customization applies as long as the user has the _friendly labels_ toggle set to active. Once you deactivate this switch, the UI displays all labels in their raw form.
 
 You customize labels via the Backstage app configuration. Giant Swarm staff will assist you with the implementation.
 
