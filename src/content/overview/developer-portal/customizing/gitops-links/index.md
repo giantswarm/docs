@@ -14,23 +14,23 @@ user_questions:
   - How can I have links to GitOps sources in the developer portal?
 ---
 
-The developer portal can be configured to show links to the GitOps source code for resources managed by [Flux](https://fluxcd.io/). This is useful for users who want to quickly jump to the source code of a resource, and who want to check which revision of the source code is currently applied in the cluster.
+You can set up the developer portal to display links to GitOps source code for resources that [Flux](https://fluxcd.io/) manages. This helps users quickly jump to a resource's source code and check which code version is currently running in their cluster.
 
 ![Screenshot showing a GitOps indicator with link](./gitops-link.png)
 
-The screenshot above shows an example of how the GitOps indicator may appear in the developer portal. The source link is only shown if the developer portal is configured like explained below to provide according links.
+The screenshot shows how the GitOps indicator appears in the developer portal. You'll only see the source link if you configure the developer portal as explained in this guide.
 
 ## How the developer portal detects GitOps resources
 
-To detect that a cluster, for example, is managed by Flux, the developer portal looks for `kustomize.toolkit.fluxcd.io/name` and `kustomize.toolkit.fluxcd.io/namespace` labels in the cluster's defining App resource. This information is already sufficient to show the GitOps indicator in the developer portal, however it is not enough to provide a link to the source code.
+To detect that a cluster is managed by Flux, the developer portal looks for `kustomize.toolkit.fluxcd.io/name` and `kustomize.toolkit.fluxcd.io/namespace` labels in the cluster's defining App resource. This information shows the GitOps indicator in the developer portal, but it doesn't provide enough details for a source code link.
 
 ## How the developer portal finds the GitOps source
 
-The name and namespace combination found in the App resource (see above) points to a Kustomization (`kustomize.toolkit.fluxcd.io/v1`) resource in the cluster. This Kustomization usually has a `.spec.sourceRef` pointing to a GitRepository (`source.toolkit.fluxcd.io/v1`) resource. Also a `.spec.path` field is set to indicate the path in the Git repository for which this Kustomization is responsible.
+The name and namespace combination found in the App resource points to a Kustomization (`kustomize.toolkit.fluxcd.io/v1`) resource in the cluster. This Kustomization typically has a `.spec.sourceRef` pointing to a GitRepository (`source.toolkit.fluxcd.io/v1`) resource. The Kustomization also includes a `.spec.path` field showing which part of the Git repository this Kustomization manages.
 
-This GitRepository resource has a `.spec.url` field that contains the URL of the Git repository where the source code is stored. In addition, the GitRepository provides a commit reference (or similar, e. g. a branch or tag) in the `.status.artifact.revision` field.
+This GitRepository resource has a `.spec.url` field with the repository address where the source code lives. The GitRepository also provides a commit reference (or a branch or tag) in the `.status.artifact.revision` field.
 
-The combination of these details (URL, path, and commit/tag/branch reference), can be used to create a link displayed in the user interface, if the configuration is set up correctly as explained below.
+These details (repository address, path, and commit reference) create a link in the user interface when you set up the configuration correctly.
 
 ### Example
 
@@ -66,16 +66,16 @@ status:
 
 ## Configuration
 
-In order to provide links which end users can use to navigate to the source of a GitOps resource, we need two things:
+To provide links that help users navigate to GitOps source code, we need two things:
 
-1. Understand the URL found in the GitRepository resource. This is configured using the `gitRepositoryUrlPattern` field.
-2. The URL pattern used by the source code management system UI (for example GitHub, GitLab, Bitbucket) that we want to link to. To be configured via the `targetUrl` field.
+1. Understand the repository address found in the GitRepository resource. Configure this with the `gitRepositoryUrlPattern` field.
+2. Define the address pattern for your source code system UI (like GitHub, GitLab, Bitbucket). Configure this with the `targetUrl` field.
 
-The Giant Swarm Backstage plugin allows you to specify any number of combinations of the two above in the `app-config.yaml` file under the `gs.gitopsRepositories` section, to handle a variety of different cases.
+The Giant Swarm Backstage plugin lets you specify multiple combinations of these settings in the `app-config.yaml` file under the `gs.gitopsRepositories` section.
 
 ### `gitRepositoryUrlPattern`
 
-With this field, you specify a regular expression (ECMAScript/JavaScript flavour) used to extract values from the GitRepository's `.spec.url` property. The names of the capturing groups (for example: `HOSTNAME`, `PROJECT_NAME`) allow to reference the matched parts when creating a link URL via the according `targetUrl` template.
+With this field, you specify a regular expression (ECMAScript/JavaScript flavour) to capture values from the GitRepository's `.spec.url` property. The capturing group names (like `HOSTNAME`, `PROJECT_NAME`) let you reference these parts when creating links with the `targetUrl` template.
 
 For example, to parse the URL `ssh://git@github.com/demotechinc/demotech-gitops`, you could configure the following regex:
 
@@ -89,12 +89,12 @@ As a result, the `HOSTNAME` group will contain `github.com`, and the `REPO_PATH`
 
 ### `targetUrl`
 
-With the `targetUrl` field you specify how to create a link URL based on the parts captured via the regex `gitRepositoryUrlPattern` (see above) and additional details (path and revision).
+With the `targetUrl` field you specify how to create a link URL based on the parts captured via the regex `gitRepositoryUrlPattern` and additional details (path and revision).
 
-Using the example regex above, you could use `${{HOSTNAME}}` and `${{REPO_PATH}}` in your URL template. In addition, you can use the following details independent of the regex:
+Using the example regex above, you could use `${{HOSTNAME}}` and `${{REPO_PATH}}` in your URL template. You can also use the following details independent of the regex:
 
-- `${{PATH}}`: Directory path in the source repository. The value is taken from `.spec.path` field of the corresponding Kustomization resource.
-- `${{REVISION}}`: Revision reference. The value is taken from the `.status.artifact.revision` field of the corresponding GitRepository resource.
+- `${{PATH}}`: Directory path in the source repository. This comes from the `.spec.path` field of the corresponding Kustomization resource.
+- `${{REVISION}}`: Revision reference. This comes from the `.status.artifact.revision` field of the corresponding GitRepository resource.
 
 As an example, given the `gitRepositoryUrlPattern` regex example above, the following `targetUrl` could be used to create a link to the GitHub UI:
 
@@ -108,9 +108,9 @@ The resulting URL would look like this:
 https://github.com/demotechinc/demotech-gitops/blob/299de19645659b14421992d059b6c2435486694d/management-clusters/gazelle
 ```
 
-## Default Configuration
+## Default configuration
 
-By default, the system is pre-configured with two GitHub repository patterns. These defaults are hardcoded into the system and are always applied, even if no `gitopsRepositories` configuration is provided in the `app-config.yaml` file. The default entries are:
+By default, the system includes two pre-configured GitHub repository patterns. These defaults are built into the system and always apply, even if you don't provide any `gitopsRepositories` configuration in the `app-config.yaml` file. The default entries are:
 
 - **Default GitHub (SSH):**
 
@@ -152,7 +152,7 @@ Note that with multiple entries, the first matching entry is used to create a li
 
 See below how this applies to different repository URLs.
 
-### BitBucket
+### Bitbucket
 
 Given a repository URL of `https://bitbucket.example.net/scm/some-project/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
 
@@ -162,7 +162,7 @@ https://bitbucket.example.net/projects/some-project/repos/gitops-repo/browse/dir
              HOSTNAME                  PROJECT_NAME        REPO_NAME           PATH        REVISION
 ```
 
-### GitLab
+### Gitlab
 
 With a repository URL `ssh://git@gitlab.example.com/myorg/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
 
@@ -172,7 +172,7 @@ https://gitlab.example.com/myorg/gitops-repo/-/tree/1234567890/dir/subdir
              HOSTNAME          REPO_PATH             REVISION     PATH
 ```
 
-### GitHub
+### Github
 
 With repository URLs such as
 
