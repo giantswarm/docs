@@ -36,7 +36,7 @@ As consequence, the cluster configuration leverages the [app platform configurat
 - The cluster template has a default configuration via `App` `config` field.
 - User can add additional custom configuration via `App` `extraConfig` field, which is overlaid on top of the default `config`. The file set with higher priority will prevail in case of colliding configuration values.
 
-__Note__: [Here](https://github.com/giantswarm/rfc/tree/main/merging-configmaps-gitops) you can find more information why this approach was chosen.
+__Note__: [In the according RFC article](https://github.com/giantswarm/rfc/tree/main/merging-configmaps-gitops) you can find more information why this approach was chosen.
 
 In order to avoid code duplication, the [bases and overlays](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#bases-and-overlays) use Kustomize to enhance the cluster configuration.
 

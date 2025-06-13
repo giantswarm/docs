@@ -77,7 +77,7 @@ The pod CIDR space needs to be split into separate, contiguous CIDR space, one f
 
 In v19 and further releases the default pod CIDR is 192.168.0.0/16. The default can be changed by setting a field in the AWSCluster CR as it was the case so far.
 
-*WARNING*: If pods need to talk directly with private IP addresses reachable through the VPC (for example peered resources) then those target private IP addresses must be on a separate IP space.
+_WARNING_: If pods need to talk directly with private IP addresses reachable through the VPC (for example peered resources) then those target private IP addresses must be on a separate IP space.
 
 This CIDR is used across the whole cluster, regardless of AZs and all addresses from the range can be used. In the default setting, each node gets assigned a /25 subnet for pods running in it. Meaning we can have as many as 65k pods in a cluster (~ 595 nodes in theory) but that can be increased by providing a larger pod cidr space to begin with.
 
