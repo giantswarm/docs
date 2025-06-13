@@ -27,7 +27,7 @@ A **tenant** is a logical namespace that isolates observability data (metrics, l
 
 **Key characteristics:**
 
-- Complete data isolation at the storage level
+- Data isolation at the storage level
 - Independent retention policies and limits
 - Separate query scope for dashboards and alerts
 
