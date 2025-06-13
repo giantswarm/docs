@@ -182,9 +182,9 @@ The platform automatically enforces tenant governance to control data ingestion:
 
 **Creating tenants:**
 
-1. Define the tenant in `GrafanaOrganization` resource
-2. Configure data collection to use tenant label
-3. Verify data appears in organization dashboards
+1. Define the tenant in `GrafanaOrganization` resource (see [documentation]({{< relref "creating-grafana-organization" >}}))
+2. Configure data collection to use tenant label (see [Data Ingestion documentation]({{< relref "/tutorials/observability/data-ingestion" >}}))
+3. Verify data appears in organization dashboards (see [Data Exploration documentation]({{< relref "/tutorials/observability/data-exploration" >}}))
 
 **Removing tenants:**
 
