@@ -1,7 +1,7 @@
 ---
 title: Friendly display of labels
 linkTitle: Labels
-description: The developer portal allows to customize which labels get displayed as friendly labels, and how they are displayed.
+description: You can customize which labels get displayed in the developer portal, and how they appear in the portal user interface.
 weight: 30
 menu:
   principal:
@@ -120,4 +120,4 @@ You can highlight labels in one of nine colors, to make it easier to spot them a
 - `teal`
 - `yellow`
 
-The actual color value displayed depends on the theme (light or dark) selected, to ensure good contrast between text and background in both modes.
+The actual color value displayed depends on the theme (light or dark) selected, to guarantee good readability in both modes.
