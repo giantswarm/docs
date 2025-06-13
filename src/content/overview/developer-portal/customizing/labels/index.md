@@ -47,13 +47,13 @@ In the user interface, in the context of a cluster, the labels may appear like t
 
 ## Order
 
-The `gs.friendlyLabels` configuration item is an array. The order of labels displayed depends on the order of the according label's configuration. To have a certain label displayed first, bring it's configuration to the top of the array.
+The `gs.friendlyLabels` configuration item is an array. The order of labels displayed depends on the order of the according label's configuration. To have a certain label displayed first, bring its configuration to the top of the array.
 
 In the [example](#example1), the order of the two configuration items reverses the order that would otherwise be alphabetical.
 
 ## Label key and value matching
 
-The `label` directive specifies the label to apply to. The [example](#example1) shows how the configuration matches an exact label key. However, you can also make the matching more general by using wildcards. And you can also make it more specific, by including certain label values.
+The `label` directive specifies the label to apply to. The [example](#example1) shows how the configuration matches an exact label key. You can make the matching more general by using wildcards or make it more specific by including certain label values.
 
 ### Wildcards
 
