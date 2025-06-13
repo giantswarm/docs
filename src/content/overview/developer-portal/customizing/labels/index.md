@@ -106,10 +106,9 @@ For a label like `foo.io/env=PROD`, the following would be displayed:
 
 ![Screenshot shows a label where display name and value have been overwritten](./screenshot_valuemap.png)
 
-
 ## Color
 
-Labels can be highlighted in one of nine colors, to make it easier to spot them among others. The directive to use here is `variant`. The available color values are: 
+Labels can be highlighted in one of nine colors, to make it easier to spot them among others. The directive to use here is `variant`. The available color values are:
 
 - `blue`
 - `brown`
