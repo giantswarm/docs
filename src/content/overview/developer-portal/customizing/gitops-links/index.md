@@ -162,7 +162,7 @@ https://bitbucket.example.net/projects/some-project/repos/gitops-repo/browse/dir
              HOSTNAME                  PROJECT_NAME        REPO_NAME           PATH        REVISION
 ```
 
-### GitLab
+### Using GitLab
 
 With a repository address `ssh://git@gitlab.example.com/myorg/gitops-repo.git`, a path `dir/subdir`, and a revision of `1234567890`, the resulting link is:
 
@@ -172,7 +172,7 @@ https://gitlab.example.com/myorg/gitops-repo/-/tree/1234567890/dir/subdir
              HOSTNAME          REPO_PATH             REVISION     PATH
 ```
 
-### GitHub
+### Using GitHub
 
 With repository addresses such as
 
