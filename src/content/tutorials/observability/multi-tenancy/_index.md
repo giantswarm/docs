@@ -38,7 +38,6 @@ A **Grafana organization** gives you access to specific tenants through dedicate
 - User roles and permissions
 - Dashboards and folders
 - Datasource configurations
-- Alert rules and notification channels
 
 ### RBAC groups
 
