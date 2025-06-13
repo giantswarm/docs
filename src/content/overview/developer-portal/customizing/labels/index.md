@@ -87,9 +87,9 @@ This configuration will color the `giantswarm.io/service-priority` label red if 
 
 ## Text displayed
 
-Both the label's key and the value displayed can be customized. In our [first example](#example1), we already show how to configure the label's display name using the `key` directive.
+You can customize both the label's key and the value that appears in the user interface. In our [first example](#example1), we already show how to configure the label's display name using the `key` directive.
 
-To specify the label name shown, use the `key` directive. For specifying the values to display, the `valueMap` directive is used. Here is an example combining both:
+To specify the label name shown, use the `key` directive. For specifying the values to display, use the `valueMap` directive. You can use each independently. However, here is an example combining both:
 
 ```yaml
 gs:
@@ -102,13 +102,13 @@ gs:
         STG: Staging
 ```
 
-For a label like `foo.io/env=PROD`, the following would be displayed:
+For a label like `foo.io/env=PROD`, the user interface will display the following:
 
 ![Screenshot shows a label where display name and value have been overwritten](./screenshot_valuemap.png)
 
 ## Color
 
-Labels can be highlighted in one of nine colors, to make it easier to spot them among others. The directive to use here is `variant`. The available color values are:
+You can highlight labels in one of nine colors, to make it easier to spot them among others. The directive to use here is `variant`. The available color values are:
 
 - `blue`
 - `brown`
@@ -120,4 +120,4 @@ Labels can be highlighted in one of nine colors, to make it easier to spot them 
 - `teal`
 - `yellow`
 
-The actual color value displayed depends on the theme (light or dark) selected and is optimized for contrast in comparison to the displayed text.
+The actual color value displayed depends on the theme (light or dark) selected, to ensure good contrast between text and background in both modes.
