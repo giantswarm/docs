@@ -37,7 +37,7 @@ A **Grafana organization** gives you access to specific tenants through dedicate
 
 - User roles and permissions
 - Dashboards and folders
-- Datasource configurations
+- Datasource configurations for alerts, metrics and logs
 
 ### RBAC groups
 
