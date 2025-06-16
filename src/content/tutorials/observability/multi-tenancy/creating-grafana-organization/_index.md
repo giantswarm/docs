@@ -22,9 +22,9 @@ This guide walks you through creating and configuring Grafana organizations to i
 
 Before creating your organization, make sure you have:
 
-- Access to the management cluster, where you can create custom resources
+- [Access to the management cluster]({{< relref "/tutorials/access-management" >}}), where you can create custom resources
 - Identified the [tenant names]({{< relref "/tutorials/observability/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
-- Configured identity provider groups for RBAC
+- Configured groups for RBAC in your identity provider
 
 ## Creating a Grafana organization
 
@@ -153,7 +153,7 @@ Creating a `GrafanaOrganization` resource automatically provisions:
 1. **New Grafana organization** with your specified display name
 2. **Tenant-scoped datasources** for Loki, Mimir, and Alertmanager
 3. **User role assignments** based on your RBAC configuration
-4. **Data collection** so telemetry collectors start collecting data from configured tenants
+4. **Data collection** of alerts, metrics and logs
 
 ## Verification steps
 
@@ -161,16 +161,15 @@ After creating your organization:
 
 1. **Check organization status:**
 
-   ```bash
-   kubectl get grafanaorganization myonlineshop -o yaml
-   ```
+```bash
+kubectl get grafanaorganization myonlineshop -o yaml
+```
 
-2. **Log in to Grafana** and verify:
-   - The organization dropdown menu shows all expected organization
-   - You can explore and query data for each of your tenants
-   - Users have appropriate role assignments
+2. [**Log in to Grafana**]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and verify:
 
-3. **Test data access:**
-   - Switch to your new organization in Grafana
-   - Query data using the provisioned datasources
-   - Verify only your tenant's data is visible
+- The organization dropdown menu on the top-left corner shows all expected organizations
+
+![Switching organization](./organization%20switching.png)
+
+- You can [explore and query data]({{< relref "/tutorials/observability/data-exploration" >}}) for each of your tenants
+- Logged-in users have appropriate role assignments under the `Administration / Users and access / Users` section

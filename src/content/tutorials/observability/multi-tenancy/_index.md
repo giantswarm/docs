@@ -52,7 +52,6 @@ Choose the right strategy based on your needs:
 Separate tenants by deployment environment:
 
 ```yaml
-tenants:
 - production
 - staging  
 - development
@@ -65,7 +64,6 @@ tenants:
 Organize tenants around teams:
 
 ```yaml
-tenants:
 - platform-team
 - frontend-team
 - backend-team
@@ -79,7 +77,6 @@ tenants:
 Create separation at the service level:
 
 ```yaml
-tenants:
 - user-service
 - payment-service
 - notification-service
@@ -93,7 +90,6 @@ tenants:
 Combine strategies using consistent naming:
 
 ```yaml
-tenants:
 - prod-frontend
 - prod-backend
 - staging-frontend
@@ -101,6 +97,16 @@ tenants:
 ```
 
 **Use case:** Balance granular control with manageable complexity.
+
+### Finding the right balance
+
+Getting the number of tenants right is tricky - too few and you lose isolation benefits, too many and management becomes a headache and it is hard to see the full picture (e.g. can't easily correlate customer requests with CPU usage across services)
+
+**Finding balance:**
+- Start with broad tenants like `production`, `staging`, `development`
+- Split only when teams actually step on each other's toes
+- Ask "will this split help me solve a real problem I have today?"
+- You can always add more tenants later - start simple
 
 ## Tenant naming best practices
 
@@ -123,48 +129,6 @@ Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.
 **Service-based:** `user-service`, `payment-service`, `notification-service`
 
 **Hybrid:** `prod-frontend`, `stage-backend`, `dev-notifications`
-
-## Access control patterns
-
-### Organization-to-tenant mapping
-
-Map Grafana organizations to tenants based on your access needs:
-
-#### One-to-one mapping
-
-```yaml
-# Platform Team Organization
-tenants:
-- platform-team
-```
-
-**Best for:** Complete team isolation, clear ownership.
-
-#### One-to-many mapping
-
-```yaml
-# Engineering Organization
-tenants:
-- frontend-team
-- backend-team
-- platform-team
-```
-
-**Best for:** Cross-team collaboration, shared dashboards.
-
-### RBAC role assignment
-
-Assign roles based on user needs:
-
-```yaml
-rbac:
-  admins:
-  - customer:platform-admin      # Full access to organization
-  editors:
-  - customer:senior-engineer     # Can create/edit dashboards and alerts
-  viewers:
-  - customer:junior-engineer     # Read-only access to dashboards
-```
 
 ## Data governance
 
