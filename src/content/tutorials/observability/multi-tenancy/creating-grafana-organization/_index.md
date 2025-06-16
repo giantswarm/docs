@@ -153,7 +153,7 @@ Creating a `GrafanaOrganization` resource automatically provisions:
 1. **New Grafana organization** with your specified display name
 2. **Tenant-scoped datasources** for Loki, Mimir, and Alertmanager
 3. **User role assignments** based on your RBAC configuration
-4. **Tenant validation** so only defined tenants can receive data (see [tenant governance]({{< relref "/tutorials/observability/multi-tenancy#tenant-governance" >}}))
+4. **Data collection** so telemetry collectors start collecting data from configured tenants
 
 ## Verification steps
 
