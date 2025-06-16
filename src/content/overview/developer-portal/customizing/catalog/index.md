@@ -2,7 +2,7 @@
 title: Adding your own catalog
 linkTitle: Catalog
 description: How to add your own catalog entities to the developer portal provided by Giant Swarm, for your own users, groups, components, and more.
-weight: 30
+weight: 40
 menu:
   principal:
     parent: overview-developer-portal-customizing
