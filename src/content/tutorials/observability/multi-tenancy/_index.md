@@ -1,6 +1,6 @@
 ---
 title: Multi-tenancy
-description: Understanding multi-tenancy concepts and best practices for the Observability Platform.
+description: How multi-tenancy works in the Observability Platform and best practices.
 weight: 20
 menu:
   principal:
