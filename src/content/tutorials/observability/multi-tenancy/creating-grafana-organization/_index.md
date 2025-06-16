@@ -166,8 +166,8 @@ After creating your organization:
    ```
 
 2. **Log in to Grafana** and verify:
-   - New organization appears in the organization dropdown
-   - Datasources are configured for your tenants
+   - The organization dropdown menu shows all expected organization
+   - You can explore and query data for each of your tenants
    - Users have appropriate role assignments
 
 3. **Test data access:**
