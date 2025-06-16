@@ -168,7 +168,7 @@ kubectl get grafanaorganization myonlineshop -o yaml
 
 - The organization dropdown menu on the top-left corner shows all expected organizations
 
-![Switching organization](./organization%20switching.png)
+![Switching organization](./organization_switching.png)
 
 - You can [explore and query data]({{< relref "/tutorials/observability/data-exploration" >}}) for each of your tenants
 - Logged-in users have appropriate role assignments under the `Administration / Users and access / Users` section
