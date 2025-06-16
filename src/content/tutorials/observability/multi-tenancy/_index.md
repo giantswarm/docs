@@ -103,10 +103,10 @@ Combine strategies using consistent naming:
 Getting the number of tenants right is tricky - too few and you lose isolation benefits, too many and management becomes a headache and it is hard to see the full picture (e.g. can't easily correlate customer requests with CPU usage across services)
 
 **Finding balance:**
-- Start with broad tenants like `production`, `staging`, `development`
-- Split only when teams actually step on each other's toes
-- Ask "will this split help me solve a real problem I have today?"
-- You can always add more tenants later - start simple
+ - Start with broad tenants like `production`, `staging`, `development`
+ - Split only when teams actually step on each other's toes
+ - Ask "will this split help solve a real problem we have today?"
+ - You can always add more tenants later - start simple
 
 ## Tenant naming best practices
 
