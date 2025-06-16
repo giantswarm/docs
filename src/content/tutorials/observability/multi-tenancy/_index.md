@@ -106,7 +106,6 @@ Getting the number of tenants right is tricky:
 - too many and management becomes a headache and it is hard to see the full picture (for instance it may be harder to correlation customer requests with CPU usage across services).
 
 **Finding balance:**
- - Split only when teams actually step on each other's toes
  - Ask "will this split help solve a real problem we have today?"
 - Start with broad tenants like `production`, `staging`, `development`
 - Split only when teams actually step on each other's toes
