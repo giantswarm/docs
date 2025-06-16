@@ -100,7 +100,9 @@ Combine strategies using consistent naming:
 
 ### Finding the right balance
 
-Getting the number of tenants right is tricky - too few and you lose isolation benefits, too many and management becomes a headache and it is hard to see the full picture (e.g. can't easily correlate customer requests with CPU usage across services)
+Getting the number of tenants right is tricky:
+ - too few and you lose isolation benefits.
+ - too many and management becomes a headache and it is hard to see the full picture (for instance it may be harder to correlation customer requests with CPU usage across services).
 
 **Finding balance:**
  - Start with broad tenants like `production`, `staging`, `development`
