@@ -109,7 +109,10 @@ Getting the number of tenants right is tricky:
  - Start with broad tenants like `production`, `staging`, `development`
  - Split only when teams actually step on each other's toes
  - Ask "will this split help solve a real problem we have today?"
- - You can always add more tenants later - start simple
+- Start with broad tenants like `production`, `staging`, `development`
+- Split only when teams actually step on each other's toes
+- Ask "will this split help solve a real problem we have today?"
+- You can always add more tenants later - start simple
 
 ## Tenant naming best practices
 
