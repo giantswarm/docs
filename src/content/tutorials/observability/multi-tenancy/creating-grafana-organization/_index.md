@@ -144,7 +144,7 @@ rbac:
 
 **Finding your connector ID:** Check your cluster's Dex configuration for the connector ID (usually `customer`).
 
-**Required fields:** Only `admins` is required; `editors` and `viewers` are optional.
+**Required fields:** `admins` is mandatory; `editors` and `viewers` are optional.
 
 ## What happens when you create an organization
 
