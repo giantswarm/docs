@@ -166,6 +166,7 @@ kubectl get grafanaorganization myonlineshop -o yaml
 ```
 2. [**Log in to Grafana**]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and verify:
 
+
 - The organization dropdown menu on the top-left corner shows all expected organizations
 
 ![Switching organization](./organization%20switching.png)
