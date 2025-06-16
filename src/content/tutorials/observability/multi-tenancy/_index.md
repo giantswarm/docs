@@ -189,8 +189,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 **Removing tenants:**
 
 1. Stop sending data to the tenant
-2. Wait for retention period to expire
-3. Remove tenant from all `GrafanaOrganization` resources
+2. Remove tenant from all `GrafanaOrganization` resources (data will be kept until the end of the retention period)
 
 ## Next steps
 
