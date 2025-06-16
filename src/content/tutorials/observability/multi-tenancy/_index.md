@@ -23,7 +23,7 @@ Multi-tenancy works through three key components:
 
 ### Tenants
 
-A **tenant** is a logical namespace that isolates observability data (metrics, logs) in the backend storage systems (Mimir and Loki). When applications send data, they include a tenant label that determines where the information goes.
+A **tenant** is a logical namespace that isolates observability data (metrics, logs) in the backend storage systems (Mimir and Loki). When applications send (or retrieve) data, they include a tenant label that determines where the information goes (or is fetched from).
 
 **Key characteristics:**
 
