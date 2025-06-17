@@ -144,7 +144,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 - **Data rejection:** Data sent to unlisted tenants gets dropped automatically
 - **Shared access:** Multiple organizations can reference the same tenant for shared datasets
 
-⚠️ **Important:** Removing a tenant from all organizations immediately stops data ingestion for that tenant. Data is stored until it expires.
+⚠️ **Important:** Removing a tenant from all organizations immediately stops data ingestion for that tenant. Data is stored until the retention period expires.
 
 ### Tenant lifecycle management
 
