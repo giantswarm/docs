@@ -26,6 +26,15 @@ Before creating your organization, make sure you have:
 - Identified the [tenant names]({{< relref "/tutorials/observability/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
 - Configured groups for RBAC in your identity provider
 
+## Understanding default organizations
+
+Before creating your own organizations, it's helpful to know about the two that already exist:
+
+- **Shared Org**: Your starting point with system dashboards and platform metrics (uses `giantswarm` tenant)
+- **Giant Swarm**: Internal organization for platform operations (Giant Swarm staff only)
+
+Your organizations will appear alongside the **Shared Org** in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/tutorials/observability/multi-tenancy#default-organizations" >}}).
+
 ## Creating a Grafana organization
 
 Create a [`GrafanaOrganization`]({{< relref "/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}) custom resource in the management cluster:
