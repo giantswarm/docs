@@ -73,7 +73,7 @@ On some occasions, you may want to create a custom dashboard to visualize the me
 
 Grafana stores its data in a PostgreSQL cluster with regular backups, so your dashboard persists even if you upgrade it later or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation tutorial]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}).
 
-In our example, you can find the dashboard JSON [here](./dashboard.json).
+You can [download our example dashboard](./dashboard.json).
 
 Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [related doc]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/#gitops" >}}).
 
