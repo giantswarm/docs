@@ -2,8 +2,8 @@ PROJECT=docs
 COMPANY=giantswarm
 REGISTRY=gsoci.azurecr.io
 SHELL=bash
-MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.35.0@sha256:22cf4699a448a7bbc311a940e0600019423d7671cbedae9c35cd32b51f560350
-VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.4.0@sha256:6374c8a4c6c61b5d73987ff707208da73042cd5985851bd8a63037f956247d7b
+MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.45.0@sha256:27eadb7b23b79b4b01b9220e18467d041804e632f41cf69b9c1613b48ed72749
+VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.11.2@sha256:27aab968708850a6cc7369dc1325f1812e2c3de0741327fa0aed832e328357d7
 APPLICATION=docs-app
 RUNNING_IN_CI ?= false
 
@@ -70,7 +70,7 @@ lint-markdown:
 	  --config .markdownlint.yaml \
 	  --ignore README.md \
 	  --ignore ./src/content/changes \
-	  --ignore ./src/content/vintage/use-the-api/management-api/crd \
+	  --ignore ./src/content/vintage \
 	  --ignore ./src/content/reference/platform-api/crd \
 	  $$(if [ "$(RUNNING_IN_CI)" = "true" ]; then echo "--output markdownlint.out"; fi) \
 	  ./src

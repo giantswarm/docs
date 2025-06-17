@@ -44,9 +44,9 @@ Since the availability of spot instances is volatile, there are a few things you
 
 The following table shows four examples to illustrate how different settings of spot instance percentage and on-demand base capacity influence the outcome.
 
-| On-demand base capacity | Spot instance percentage | Total Instances  | On-Demand Instances| Spot Instances
+| On-demand base capacity | Spot instance percentage | Total Instances  | On-Demand Instances| Spot Instances |
 |:-:|:-:|:-:|:-:|:-:|
-| 0 | 0 % | 50 | 50 | 0
-| 0 | 100 % | 50 | 0 | 50
-| 10 | 50 % | 50 | 30 | 20
-| 10 | 100 % | 50 | 10 | 40
+| 0 | 0 % | 50 | 50 | 0 |
+| 0 | 100 % | 50 | 0 | 50 |
+| 10 | 50 % | 50 | 30 | 20 |
+| 10 | 100 % | 50 | 10 | 40 |

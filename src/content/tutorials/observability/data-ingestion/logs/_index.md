@@ -109,7 +109,7 @@ This will select all pods with the `foo: bar` label in the namespace `example-na
 
 **Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations, please make sure that the `giantswarm_observability_tenant` label references an existing Grafana Organization. Any logs and events that are sent to a non-existent tenant (speak: Grafana Organization) will be dropped by Loki. If you want the logs and events to be ingested into the **Shared Org**, you have to set the label to `giantswarm`. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
-More examples can be found [here](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
+More examples can be found [in a separate repository](https://github.com/giantswarm/alloy-app/blob/main/helm/alloy/examples/logs/podlogs.yaml).
 
 The following LogQL query can be used in `Grafana > Explore` UI to show all logs ingested for the `PodLogs` resource, in our example:
 
