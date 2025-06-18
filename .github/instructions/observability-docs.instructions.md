@@ -15,7 +15,7 @@ Remember to keep the user in mind, focusing on their needs and how they can effe
 The content should be written in Markdown format, using appropriate formatting for headings, lists, and code snippets.
 
 ## Prerequisites for Writing Observability Documentation
-Make yourself familiar with the following resources before writing documentation:
+Read the following resources before writing documentation:
 - [Giant Swarm Public Documentation](https://docs.giantswarm.io/)
 - [Giant Swarm Internal Documentation](https://intranet.giantswarm.io/docs/)
 - [Giant Swarm GitHub Repositories](https://github.com/giantswarm)
@@ -41,7 +41,7 @@ The observability documentation should have the following hierarchy:
       - Silences
     - Configuration
       - Initial Platform Setup
-			- Multi-Tenancy
+      - Multi-Tenancy
         - Creating Grafana Organisations
 - Getting Started
   - Observe your clusters and apps
