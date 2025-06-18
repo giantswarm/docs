@@ -51,6 +51,6 @@ There is one identity provider configured for Giant Swarm staff and one for you 
 
 After selecting the right identity provider, you may run through an authentication workflow. However, if you are already authenticated within the current browser, this will be skipped and you should see the Home dashboard as a result.
 
-When you first log in, you'll see the **Shared Org** selected by default. This organization contains curated dashboards and system metrics that are accessible to everyone with Grafana access.
+When you first log in, you'll see the `Shared Org` selected by default. This organization contains curated dashboards and system metrics that are accessible to everyone with Grafana access.
 
 Learn more about these default organizations and how to create your own in our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy" >}}).
