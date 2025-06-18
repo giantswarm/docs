@@ -43,6 +43,7 @@ A **Grafana organization** gives you access to specific tenants through dedicate
 
 **RBAC groups** from your identity provider (like Active Directory or OAuth) define which users get access to specific Grafana organizations and their permission levels.
 
+<<<<<<< document-extra-shared-org-restrictions
 ## Default organizations
 
 Every Giant Swarm installation comes with two built-in Grafana organizations:
@@ -65,6 +66,8 @@ When you first log into Grafana, you'll see the Shared Org selected by default. 
 
 **Note**: You won't see the Giant Swarm organization in the dropdown as a customer - it's only visible to Giant Swarm staff for our internal operations.
 
+=======
+>>>>>>> main
 ## Tenant separation strategies
 
 Choose the right strategy based on your needs:
@@ -166,7 +169,11 @@ The platform automatically enforces tenant governance to control data ingestion:
 - **Data rejection:** Data sent to unlisted tenants gets dropped automatically
 - **Shared access:** Multiple organizations can reference the same tenant for shared datasets
 
+<<<<<<< document-extra-shared-org-restrictions
 ⚠️ **Important:** Removing a tenant from all organizations immediately stops data ingestion for that tenant. Data is stored until it expires.
+=======
+⚠️ **Important:** Removing a tenant from all organizations immediately stops data ingestion for that tenant. Data is stored until the retention period expires.
+>>>>>>> main
 
 ### Tenant lifecycle management
 
@@ -179,7 +186,11 @@ The platform automatically enforces tenant governance to control data ingestion:
 **Removing tenants:**
 
 1. Stop sending data to the tenant
+<<<<<<< document-extra-shared-org-restrictions
 2. Remove tenant from all `GrafanaOrganization` resources (data will be kept until the end of the retention period)
+=======
+2. Remove tenant from all `GrafanaOrganization` resources (data will be kept until the retention period expires)
+>>>>>>> main
 
 ## Next steps
 
