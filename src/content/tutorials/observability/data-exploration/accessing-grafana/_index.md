@@ -47,7 +47,7 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and 
 ## How to use Explore and Drilldown in Grafana
 
 1. **Access the Explore tab:**
-   - In the left-hand menu, click the compass icon labeled **Explore**. This opens the Explore view, where you can run ad-hoc queries against your data sources.
+   - In the left-hand menu, click the compass icon labeled **Explore**. This opens the Explore view, where you can run ad-hoc queries on your data sources.
    - Learn more in the [Grafana Explore documentation](https://grafana.com/docs/grafana/latest/explore/).
 
 2. **Select your data source:**
