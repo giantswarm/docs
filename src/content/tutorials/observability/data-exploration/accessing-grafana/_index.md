@@ -33,7 +33,7 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and 
 
 2. **Log in with single sign-on (SSO):**
    - Access to Grafana is controlled via SSO, using the same identity provider you use for the [platform API]({{< relref "/tutorials/access-management/authentication" >}}).
-   - To access Grafana as a customer, you must be a member of the admin group in your identity provider. This group specifies which users have admin permissions in the Giant Swarm installation.
+   - To access Grafana as a customer, you must have an account in your companies connected identity provider. For further restrictions see the [multi-tenancy guide]({{< relref "/tutorials/observability/multi-tenancy" >}}).
    - **Note:** If you don't have SSO configured yet or have questions about the admin group, please contact your Account engineer.
 
 3. **Authenticate and select your identity provider:**
