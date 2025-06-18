@@ -166,11 +166,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 - **Data rejection:** Data sent to unlisted tenants gets dropped automatically
 - **Shared access:** Multiple organizations can reference the same tenant for shared datasets
 
-<<<<<<< document-extra-shared-org-restrictions
-⚠️ **Important:** Removing a tenant from all organizations immediately stops data ingestion for that tenant. Data is stored until it expires.
-=======
 ⚠️ **Important:** Removing a tenant from all organizations immediately stops data ingestion for that tenant. Data is stored until the retention period expires.
->>>>>>> main
 
 ### Tenant lifecycle management
 
@@ -183,11 +179,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 **Removing tenants:**
 
 1. Stop sending data to the tenant
-<<<<<<< document-extra-shared-org-restrictions
-2. Remove tenant from all `GrafanaOrganization` resources (data will be kept until the end of the retention period)
-=======
 2. Remove tenant from all `GrafanaOrganization` resources (data will be kept until the retention period expires)
->>>>>>> main
 
 ## Next steps
 
