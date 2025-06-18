@@ -41,7 +41,7 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and 
 
 ![Selecting an OIDC provider](access.png)
 
-   - There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on your identity provider, the label for the button to click may look slightly different.
+- There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on your identity provider, the label for the button to click may look slightly different.
 - After selecting the right identity provider, you may go through an authentication workflow. If you're already authenticated in your browser, this step will be skipped and you'll see the Home dashboard.
 
 ## How to use Explore and Drilldown in Grafana
