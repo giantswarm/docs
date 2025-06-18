@@ -75,5 +75,6 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and 
 ---
 
 **Next steps:**
+
 - Try out the Explore and DrillDown features to get hands-on with your data.
 - For more on creating dashboards or ingesting new data, see our [data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}) or [multi-tenancy guide]({{< relref "/tutorials/observability/multi-tenancy" >}}).
