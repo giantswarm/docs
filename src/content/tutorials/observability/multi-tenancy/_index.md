@@ -43,7 +43,6 @@ A **Grafana organization** gives you access to specific tenants through dedicate
 
 **RBAC groups** from your identity provider (like Active Directory or OAuth) define which users get access to specific Grafana organizations and their permission levels.
 
-<<<<<<< document-extra-shared-org-restrictions
 ## Default organizations
 
 Every Giant Swarm installation comes with two built-in Grafana organizations:
@@ -66,8 +65,6 @@ When you first log into Grafana, you'll see the Shared Org selected by default. 
 
 **Note**: You won't see the Giant Swarm organization in the dropdown as a customer - it's only visible to Giant Swarm staff for our internal operations.
 
-=======
->>>>>>> main
 ## Tenant separation strategies
 
 Choose the right strategy based on your needs:
