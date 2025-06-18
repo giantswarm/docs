@@ -51,7 +51,7 @@ metadata:
   labels:
     ## This label is important as it is required for the metrics agent to discover it.
     ## The tenant name should be the name of your internal team.
-    observability.giantswarm.io/tenant: mytenant
+    observability.giantswarm.io/tenant: my_tenant
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: monitoring

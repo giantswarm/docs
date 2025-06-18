@@ -45,7 +45,7 @@ spec:
     metadata:
       labels:
         # This is where the tenant label must be configured
-        observability.giantswarm.io/tenant: myteam
+        observability.giantswarm.io/tenant: my_team
         app: nginx
     spec:
       containers:
