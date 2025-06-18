@@ -33,7 +33,7 @@ Before creating your own organizations, it's helpful to know about the two that 
 - **Shared Org**: Your starting point with system dashboards and platform metrics (uses `giantswarm` tenant)
 - **Giant Swarm**: Internal organization for platform operations (Giant Swarm staff only)
 
-Your organizations will appear alongside the **Shared Org** in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/tutorials/observability/multi-tenancy#default-organizations" >}}).
+Your organizations will appear alongside the `Shared Org` in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/tutorials/observability/multi-tenancy#default-organizations" >}}).
 
 ## Creating a Grafana organization
 
