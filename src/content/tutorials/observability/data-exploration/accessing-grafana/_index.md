@@ -29,7 +29,7 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and 
 
 1. **Open Grafana:**
    - Go to your installation's Grafana instance (for example, `https://grafana.my-company.gigantic.io/.com`).
-   - The address for your installation’s grafana instance is composed of the base domain plus the grafana subdomain. If you don't know the address, ask your Giant Swarm support contact.
+   - The address for your installation’s Grafana instance is composed of the base domain plus the `grafana` subdomain. If you don't know the address, ask your Giant Swarm support contact.
 
 2. **Log in with single sign-on (SSO):**
    - Access to Grafana is controlled via SSO, using the same identity provider you use for the [platform API]({{< relref "/tutorials/access-management/authentication" >}}).
