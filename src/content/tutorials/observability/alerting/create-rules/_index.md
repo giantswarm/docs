@@ -37,7 +37,7 @@ kind: PrometheusRule
 metadata:
   labels:
     # Required: specifies which tenant this alert belongs to
-    observability.giantswarm.io/tenant: myteam
+    observability.giantswarm.io/tenant: my_team
   name: component-availability
   namespace: my-namespace
 spec:
@@ -93,7 +93,7 @@ kind: PrometheusRule
 metadata:
   labels:
     # Required: specifies which tenant this rule belongs to
-    observability.giantswarm.io/tenant: myteam
+    observability.giantswarm.io/tenant: my_team
   name: cluster-resource-usage
   namespace: my-namespace
 spec:
@@ -120,7 +120,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   labels:
-    observability.giantswarm.io/tenant: myteam
+    observability.giantswarm.io/tenant: my_team
     # Required: indicates this is a log-based rule
     observability.giantswarm.io/rule-type: logs
     # Deprecated but still required for compatibility
@@ -180,7 +180,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   labels:
-    observability.giantswarm.io/tenant: myteam
+    observability.giantswarm.io/tenant: my_team
     # Define on the source tenant for the metrics used in the alert
     monitoring.grafana.com/source_tenants: giantswarm
   name: system-node-alerts

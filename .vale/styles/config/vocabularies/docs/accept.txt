@@ -23,12 +23,14 @@ CRs
 declaratively
 [Dd]ex
 [Dd][Nn][Ss]
+Drilldown
 easily
 effectively
 ELB[s]?
 ENI[s]?
 ESXi
 Etcd
+Explore
 Falco
 firewalling
 freely
@@ -58,6 +60,7 @@ node[pP]ool[s]?
 [Nn]ginx
 NLB[s]?
 OAuth
+OIDC
 onboarding
 passthrough
 perfectly
@@ -78,6 +81,7 @@ SLA[s]?
 Spotify
 SRE[s]?
 SSL
+SSO
 subnet
 Trivy
 TLS
