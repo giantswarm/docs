@@ -42,7 +42,7 @@ metadata:
     # This label marks this secret as an Alertmanager configuration
     observability.giantswarm.io/kind: alertmanager-config
     # This label specifies the tenant for this configuration
-    observability.giantswarm.io/tenant: myteam
+    observability.giantswarm.io/tenant: my_team
   name: my-alertmanager-config
   namespace: default
 stringData:
