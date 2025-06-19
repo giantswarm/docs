@@ -43,6 +43,28 @@ A **Grafana organization** gives you access to specific tenants through dedicate
 
 **RBAC groups** from your identity provider (like Active Directory or OAuth) define which users get access to specific Grafana organizations and their permission levels.
 
+## Default organizations
+
+Every Giant Swarm installation comes with two built-in Grafana organizations:
+
+### Shared Org
+
+- **Purpose**: Contains curated dashboards and system-wide observability data
+- **Access**: Available to all users with Grafana access in read-only mode
+- **Content**: Managed dashboards for platform monitoring, cluster health, and system metrics
+
+When you first log into Grafana, you'll see the Shared Org selected by default. This gives you immediate access to platform monitoring without needing to create your own organization first.
+
+**Need different access?** If you want to restrict Shared Org access to specific groups or give certain users editor permissions, contact your account engineer. They can help configure custom access controls.
+
+### Giant Swarm
+
+- **Purpose**: Internal organization for Giant Swarm operations and platform management
+- **Access**: Restricted to Giant Swarm staff only
+- **Content**: Operational dashboards and internal monitoring tools
+
+**Note**: You won't see the Giant Swarm organization in the dropdown as a customer - it's only visible to Giant Swarm staff for our internal operations.
+
 ## Tenant separation strategies
 
 Choose the right strategy based on your needs:
