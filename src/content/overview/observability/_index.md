@@ -1,6 +1,6 @@
 ---
 title: Observability
-description: The observability platform provides you with visibility into the Giant Swarm platform, your cluster fleet and application workloads.
+description: The observability platform provides you with visibility into the Giant Swarm platform, your cluster fleet, and application workloads.
 weight: 70
 menu:
   principal:
@@ -11,32 +11,36 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-Observability is a fundamental aspect of modern cloud-native environments, providing the insights needed to understand and improve the performance, reliability, and overall health of applications and infrastructure. At Giant Swarm, we prioritize observability to ensure our customers can maintain visibility into their systems, quickly identify and resolve issues, and continuously optimize their operations. With our observability platform we aim to empower you to fulfill all of your observability needs from data exploration, over visualization to alerting in a self-service fashion, while providing you useful and battle-proven out-of-the-box defaults.
+# What is observability?
 
-## Capabilities
+Observability is all about understanding what's happening in your systems—so you can keep things running smoothly, spot issues early, and make smart improvements. At Giant Swarm, we make observability a priority. Our platform gives you the tools to see what's going on in your clusters and applications, fix problems fast, and keep everything healthy. You'll get everything you need for data exploration, visualization, and alerting, all in a self-service way. Plus, we provide proven defaults to help you get started quickly and confidently.
 
-- **Monitoring**: The heart of our observability platform is the continuous collection and analysis of metrics to assess the performance and health of applications and infrastructure. Effective monitoring across all environments allows teams to detect anomalies, understand usage patterns, and make data-driven decisions to optimize their systems.
+## What you can do with Giant Swarm observability
 
-- **Logging**: Our observability platform also captures detailed records of system and application events, providing crucial information for troubleshooting and auditing. Centralized logging, a powerful tool that empowers teams, enables them to search and analyze log data, helping them identify issues, track changes, and ensure compliance with security and regulatory requirements, thereby giving them greater control over their system's health.
+- **Monitor your systems:** Continuously collect and analyze metrics to check the performance and health of your applications and infrastructure. Effective monitoring helps you spot anomalies, understand usage patterns, and make data-driven decisions.
 
-- **Visualization**: At Giant Swarm we believe that the real power of observability comes from not only exploring isolated data but also "connecting the dots" - we aim to provide you not just with data, but knowledge. Our staff operates the observability platform using a wide battle-tested range of dashboards, visualizations and alerts to ensure continuous availability of the whole platform. Our customers can use those assets to monitor the system at the same time they can configure new metrics, design new dashboards or set workloads alerts.
+- **Centralize your logs:** Capture detailed records of system and application events. Centralized logging makes troubleshooting and auditing easier. Search and analyze logs to find issues, track changes, and meet compliance needs—all in one place.
 
-- **Alerting**: To not just look at dashboards all day it's crucial to be able to get notified about significant events or issues that require immediate attention. By making it easy to set up and configure alerting rules across apps and environments, our observability platform's alerting helps your teams avoid wasting time on repetitive tasks, thereby enhancing their efficiency and allowing them to focus on what matters.
+- **Visualize your data:** Connect the dots between different data sources. Use dashboards, visualizations, and alerts to get a clear picture of your platform. Start with our ready-made dashboards or create your own to track what matters most to you.
 
-- **Multi-Tenancy**: When working with large amounts of data there is a high chance it includes sensitive information that should only be available for a specific audience. In order to protect this sensitive information our observability platform offers a multi-tenant solution. This enables you to store your data in an isolated tenant that is only accessible for the right team, department or other organisational structure.
+- **Get notified with alerts:** Don’t spend your day staring at dashboards. Set up alerting rules to get notified about important events or issues that need your attention. Our alerting features help your team avoid repetitive checks and focus on what matters.
 
-One of the key benefits using Giant Swarm is that we provide a set of reliable and highly integrated observability tools that our own teams already use on a daily basis and will help you have a comprehensive view of your applications and infrastructure.
+- **Work securely with multi-tenancy:** Keep sensitive data safe by isolating it for the right teams, departments, or organizational structures. Our multi-tenant solution ensures only the right people have access to the right data.
 
-## Cloud-native technologies
+One of the biggest benefits of using Giant Swarm is that you get the same reliable, integrated observability tools our own teams use every day. This gives you a comprehensive view of your applications and infrastructure, right out of the box.
 
-- **Mimir** is an open source, horizontally scalable, highly available, multi-tenant time series database for long-term storage for metrics and serves as central core component for storing and analyzing metrics on all our managed clusters. Think of it as Prometheus on Steroids. Like Prometheus, it integrates seamlessly with Kubernetes and collects, but also stores metrics for a longer period of time as time series data, enabling powerful querying and alerting capabilities.
+## The technology behind our platform
 
-- **Loki** is an open source, horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It's designed to be very efficient and cost effective and integrates all sorts of logs in any format from any source, covering everything from app and system events to audit logs. With LogQL, Loki also offers a simple Query Language to query logs. Additionally the language facilitates the generation of metrics from log data, a powerful feature that goes well beyond log aggregation.
+- **Mimir:** An open-source, horizontally scalable, highly available, multi-tenant time series database for long-term metric storage. Mimir is at the core of our metrics system. It integrates with Kubernetes, collects and stores metrics as time series data, and enables powerful querying and alerting.
 
-- **Grafana** is a popular open-source visualization tool for exploring metrics and logs and creating dashboards and graphs for all observability needs. It perfectly integrates Mimir and Loki but also supports various other data sources, including Prometheus, Elasticsearch, InfluxDB, and others, making it versatile for visualizing all observability data in just one single place.
+- **Loki:** An open-source, horizontally scalable, highly available log aggregation system. Loki collects logs from any source and in any format, covering everything from app and system events to audit logs. With LogQL, you can query logs and even generate metrics from log data.
 
-- **Alertmanager** is part of the Grafana ecosystem and is responsible for handling all alerts. It manages the routing, grouping, and silencing of alerts, ensuring that the right people are notified at the right time. At the same time, it supports various notification methods, including email, Slack, and PagerDuty.
+- **Grafana:** A popular open-source visualization tool for exploring metrics and logs. Grafana lets you create dashboards and graphs for all your observability needs. It integrates seamlessly with Mimir and Loki, and supports other data sources like Prometheus, Elasticsearch, and InfluxDB.
 
-- **Various agents** like Grafana Alloy, Fluent-bit and others help the observability platform collect and integrate relevant data from Workload Clusters, making the process to add new data as simple as just setting up a new service monitor or add the right labels.
+- **Alertmanager:** Part of the Grafana ecosystem, Alertmanager handles all your alerts. It manages routing, grouping, and silencing, so the right people get notified at the right time. It supports notifications via email, Slack, PagerDuty, and more.
 
-Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}).
+- **Alloy:** As an OpenTelemetry collector, Grafana Alloy makes it easy to collect, process, and forward metrics, logs, and events from your workload clusters. Adding new data is as simple as setting up a new service monitor or adding the right labels.
+
+---
+
+Ready to get started? Check out our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}) to begin your journey.
