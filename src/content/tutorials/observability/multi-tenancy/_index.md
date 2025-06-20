@@ -75,7 +75,7 @@ Separate tenants by deployment environment:
 
 ```yaml
 - production
-- staging  
+- staging
 - development
 ```
 
@@ -86,10 +86,10 @@ Separate tenants by deployment environment:
 Organize tenants around teams:
 
 ```yaml
-- platform-team
-- frontend-team
-- backend-team
-- data-team
+- platform_team
+- frontend_team
+- backend_team
+- data_team
 ```
 
 **Use case:** Give teams ownership of their data, enable self-service monitoring.
@@ -99,10 +99,10 @@ Organize tenants around teams:
 Create separation at the service level:
 
 ```yaml
-- user-service
-- payment-service
-- notification-service
-- analytics-service
+- user_service
+- payment_service
+- notification_service
+- analytics_service
 ```
 
 **Use case:** Microservices where each service team manages their own monitoring.
@@ -112,10 +112,10 @@ Create separation at the service level:
 Combine strategies using consistent naming:
 
 ```yaml
-- prod-frontend
-- prod-backend
-- staging-frontend
-- staging-backend
+- prod_frontend
+- prod_backend
+- staging_frontend
+- staging_backend
 ```
 
 **Use case:** Balance granular control with manageable complexity.
@@ -140,21 +140,23 @@ Follow these guidelines when choosing tenant names:
 
 ### Naming requirements
 
-Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/):
+Tenant names must follow [Grafana Alloy identifier rules](https://github.com/grafana/alloy/blob/main/syntax/scanner/identifier.go):
 
-- Alphanumeric characters (a-z, A-Z, 0-9) and special characters (!, -, _, ., *, ', (, ))
+- Must start with a letter (a-z, A-Z) or underscore (_)
+- After the first character, can contain letters (a-z, A-Z), digits (0-9), or underscores (_)
+- Cannot contain spaces or special characters (other than underscore)
 - Between 1 and 150 characters
-- Can't use: `.`, `..`, `__mimir_cluster`
+- Cannot use `__mimir_cluster` (reserved by the platform)
 
 ### Recommended patterns
 
 **Environment-based:** `production`, `staging`, `development`
 
-**Team-based:** `platform-team`, `frontend-team`, `backend-team`
+**Team-based:** `platform_team`, `frontend_team`, `backend_team`
 
-**Service-based:** `user-service`, `payment-service`, `notification-service`
+**Service-based:** `user_service`, `payment_service`, `notification_service`
 
-**Hybrid:** `prod-frontend`, `stage-backend`, `dev-notifications`
+**Hybrid:** `prod_frontend`, `stage_backend`, `dev_notifications`
 
 ## Data governance
 
