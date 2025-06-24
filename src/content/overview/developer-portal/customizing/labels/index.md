@@ -33,10 +33,10 @@ Let's start with an example. The following YAML snippet shows a valid configurat
 ```yaml
 gs:
   friendlyLabels:
-    - label: app.kubernetes.io/version
+    - selector: app.kubernetes.io/version
       key: App version
       variant: blue
-    - label: app.kubernetes.io/name
+    - selector: app.kubernetes.io/name
       key: App name
       variant: blue
 ```
@@ -53,31 +53,31 @@ In the [example](#example1), the order of the two configuration items reverses t
 
 ## Label key and value matching
 
-The `label` directive specifies the label to apply to. The [example](#example1) shows how the configuration matches an exact label key. You can make the matching more general by using wildcards or make it more specific by including certain label values.
+The `selector` directive specifies the label to apply to. The [example](#example1) shows how the configuration matches an exact label key. You can make the matching more general by using wildcards or make it more specific by including certain label values.
 
 ### Wildcards
 
-Using the asterisk `*` as a wildcard, the `label` directive supports matching a group of labels. Here we provide an example that would result in coloring pink all labels that contain `kubernetes.io/` in the key:
+Using the asterisk `*` as a wildcard, the `selector` directive supports matching a group of labels. Here we provide an example that would result in coloring pink all labels that contain `kubernetes.io/` in the key:
 
 ```yaml
 gs:
   friendlyLabels:
-    - label: '*kubernetes.io/*'
+    - selector: '*kubernetes.io/*'
       variant: pink
 ```
 
-You can use the wildcard several times within one `label` directive. It matches any character, even an empty string. For example, the pattern `*kubernetes.io/*` would also match a label key `kubernetes.io/foo`.
+You can use the wildcard several times within one `selector` directive. It matches any character, even an empty string. For example, the pattern `*kubernetes.io/*` would also match a label key `kubernetes.io/foo`.
 
 ### Value matching
 
-To apply a display configuration to a label only in case it bears a certain value, use the `label` directive with a combination of key and value. Use the colon `:` sign as a separator. Example:
+To apply a display configuration to a label only in case it bears a certain value, use the `selector` directive with a combination of key and value. Use the colon `:` sign as a separator. Example:
 
 ```yaml
 gs:
   friendlyLabels:
-    - label: 'giantswarm.io/service-priority:highest'
+    - selector: 'giantswarm.io/service-priority:highest'
       variant: red
-    - label: 'giantswarm.io/service-priority:medium'
+    - selector: 'giantswarm.io/service-priority:medium'
       variant: orange
 ```
 
@@ -94,7 +94,7 @@ To specify the label name shown, use the `key` directive. For specifying the val
 ```yaml
 gs:
   friendlyLabels:
-    - label: 'foo.io/env'
+    - selector: 'foo.io/env'
       key: Environment
       valueMap:
         DEV: Development
