@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/release-operator
-source_repository_ref: v4.2.0
+source_repository_ref: v4.2.1
 ---
 
 # Release
