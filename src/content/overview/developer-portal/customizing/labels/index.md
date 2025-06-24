@@ -7,14 +7,14 @@ menu:
   principal:
     parent: overview-developer-portal-customizing
     identifier: overview-developer-portal-customizing-labels
-last_review_date: 2025-06-12
+last_review_date: 2025-06-24
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I configure and customize the display of labels in the developer portal?
 ---
 
-The use of labels on Kubernetes resources like Cluster API clusters is highly individual. With the Giant Swarm developer portal, you can configure which labels get displayed by default as _friendly labels_, and how they get displayed. You can customize:
+The use of labels and [annotations]({{< relref "/overview/developer-portal/customizing/annotations" >}}) on Kubernetes resources like Cluster API clusters is highly individual. With the Giant Swarm developer portal, you can configure which labels get displayed by default as _friendly labels_, and how they get displayed. You can customize:
 
 - Order of labels displayed
 - Text displayed for the key and for values
@@ -121,3 +121,7 @@ You can highlight labels in one of nine colors, to make it easier to spot them a
 - `yellow`
 
 The actual color value displayed depends on the theme (light or dark) selected, to guarantee good readability in both modes.
+
+## Related
+
+- [Friendly display of annotations]({{< relref "/overview/developer-portal/customizing/annotations" >}})
