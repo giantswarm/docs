@@ -21,7 +21,7 @@ This guide shows you how to use the Explore and Drilldown features in Grafana to
 
 Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics and [Grafana Loki](https://grafana.com/oss/loki/) for logs. The platform collects data from the system and apps managed by Giant Swarm, as well as any source of data you configure according to [the data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}).
 
-You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and DrillDown features in your [Grafana](https://grafana.com/) instance to query, visualize, and analyze your data interactively.
+You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and Drilldown features in your [Grafana](https://grafana.com/) instance to query, visualize, and analyze your data interactively.
 
 ![Grafana Explore tab](explore-tab.png)
 
