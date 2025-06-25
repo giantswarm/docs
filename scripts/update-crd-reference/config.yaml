@@ -86,7 +86,7 @@ source_repositories:
   - url: https://github.com/giantswarm/release-operator
     organization: giantswarm
     short_name: release-operator
-    commit_reference: v4.2.0
+    commit_reference: v4.2.1
     crd_paths:
       - config/crd
     cr_paths:
