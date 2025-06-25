@@ -43,6 +43,28 @@ A **Grafana organization** gives you access to specific tenants through dedicate
 
 **RBAC groups** from your identity provider (like Active Directory or OAuth) define which users get access to specific Grafana organizations and their permission levels.
 
+## Default organizations
+
+Every Giant Swarm installation comes with two built-in Grafana organizations:
+
+### Shared Org
+
+- **Purpose**: Contains curated dashboards and system-wide observability data
+- **Access**: Available to all users with Grafana access in read-only mode
+- **Content**: Managed dashboards for platform monitoring, cluster health, and system metrics
+
+When you first log into Grafana, you'll see the Shared Org selected by default. This gives you immediate access to platform monitoring without needing to create your own organization first.
+
+**Need different access?** If you want to restrict Shared Org access to specific groups or give certain users editor permissions, contact your account engineer. They can help configure custom access controls.
+
+### Giant Swarm
+
+- **Purpose**: Internal organization for Giant Swarm operations and platform management
+- **Access**: Restricted to Giant Swarm staff only
+- **Content**: Operational dashboards and internal monitoring tools
+
+**Note**: You won't see the Giant Swarm organization in the dropdown as a customer - it's only visible to Giant Swarm staff for our internal operations.
+
 ## Tenant separation strategies
 
 Choose the right strategy based on your needs:
@@ -53,7 +75,7 @@ Separate tenants by deployment environment:
 
 ```yaml
 - production
-- staging  
+- staging
 - development
 ```
 
@@ -64,10 +86,10 @@ Separate tenants by deployment environment:
 Organize tenants around teams:
 
 ```yaml
-- platform-team
-- frontend-team
-- backend-team
-- data-team
+- platform_team
+- frontend_team
+- backend_team
+- data_team
 ```
 
 **Use case:** Give teams ownership of their data, enable self-service monitoring.
@@ -77,10 +99,10 @@ Organize tenants around teams:
 Create separation at the service level:
 
 ```yaml
-- user-service
-- payment-service
-- notification-service
-- analytics-service
+- user_service
+- payment_service
+- notification_service
+- analytics_service
 ```
 
 **Use case:** Microservices where each service team manages their own monitoring.
@@ -90,10 +112,10 @@ Create separation at the service level:
 Combine strategies using consistent naming:
 
 ```yaml
-- prod-frontend
-- prod-backend
-- staging-frontend
-- staging-backend
+- prod_frontend
+- prod_backend
+- staging_frontend
+- staging_backend
 ```
 
 **Use case:** Balance granular control with manageable complexity.
@@ -118,21 +140,23 @@ Follow these guidelines when choosing tenant names:
 
 ### Naming requirements
 
-Tenant names must follow [Grafana Mimir tenant ID restrictions](https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/):
+Tenant names must follow [Grafana Alloy identifier rules](https://github.com/grafana/alloy/blob/main/syntax/scanner/identifier.go):
 
-- Alphanumeric characters (a-z, A-Z, 0-9) and special characters (!, -, _, ., *, ', (, ))
+- Must start with a letter (a-z, A-Z) or underscore (_)
+- After the first character, can contain letters (a-z, A-Z), digits (0-9), or underscores (_)
+- Cannot contain spaces or special characters (other than underscore)
 - Between 1 and 150 characters
-- Can't use: `.`, `..`, `__mimir_cluster`
+- Cannot use `__mimir_cluster` (reserved by the platform)
 
 ### Recommended patterns
 
 **Environment-based:** `production`, `staging`, `development`
 
-**Team-based:** `platform-team`, `frontend-team`, `backend-team`
+**Team-based:** `platform_team`, `frontend_team`, `backend_team`
 
-**Service-based:** `user-service`, `payment-service`, `notification-service`
+**Service-based:** `user_service`, `payment_service`, `notification_service`
 
-**Hybrid:** `prod-frontend`, `stage-backend`, `dev-notifications`
+**Hybrid:** `prod_frontend`, `stage_backend`, `dev_notifications`
 
 ## Data governance
 
