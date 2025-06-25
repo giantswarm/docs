@@ -44,8 +44,8 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and 
 - There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on your identity provider, the label for the button to click may look slightly different.
 - After selecting the right identity provider, you may go through an authentication workflow. If you're already authenticated in your browser, this step will be skipped and you'll see the Home dashboard.
 
-
 ## How to use Explore and Drilldown in Grafana
+
 When you first log in, you'll see the `Shared Org` selected by default. This organization contains curated dashboards and system metrics that are accessible to everyone with Grafana access.
 Learn more about these default organizations and how to create your own in our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy" >}}).
 
