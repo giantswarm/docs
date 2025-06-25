@@ -71,7 +71,7 @@ source_repositories:
   - url: https://github.com/giantswarm/observability-operator
     organization: giantswarm
     short_name: observability-operator
-    commit_reference: v0.33.0
+    commit_reference: v0.33.1
     crd_paths:
       - config/crd/bases
     cr_paths:
