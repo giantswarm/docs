@@ -17,7 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-This guide shows you how to use the Explore and DrillDown features in Grafana to query and analyze the metrics and logs collected by the Giant Swarm Observability Platform. It also explains how to authenticate and access your Grafana instance securely.
+This guide shows you how to use the Explore and Drilldown features in Grafana to query and analyze the metrics and logs collected by the Giant Swarm Observability Platform. It also explains how to authenticate and access your Grafana instance securely.
 
 Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics and [Grafana Loki](https://grafana.com/oss/loki/) for logs. The platform collects data from the system and apps managed by Giant Swarm, as well as any source of data you configure according to [the data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}).
 
