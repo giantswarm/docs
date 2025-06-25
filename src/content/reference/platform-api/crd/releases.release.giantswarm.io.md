@@ -12,7 +12,7 @@ crd:
   technical_name: releases.release.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/release-operator
-  source_repository_ref: v4.2.0
+  source_repository_ref: v4.2.1
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/release-operator
-source_repository_ref: v4.2.0
+source_repository_ref: v4.2.1
 ---
 
 # Release
@@ -60,7 +60,7 @@ apiVersion: release.giantswarm.io/v1alpha1
 kind: Release
 metadata:
   annotations:
-    giantswarm.io/docs: https://docs.giantswarm.io/ui-api/management-api/crd/releases.release.giantswarm.io/
+    giantswarm.io/docs: https://docs.giantswarm.io/reference/platform-api/crd/releases.release.giantswarm.io/
     giantswarm.io/release-notes: https://docs.giantswarm.io/changes/workload-cluster-releases-aws/releases/aws-v11.2.0/
   creationTimestamp: null
   name: v11.2.0
