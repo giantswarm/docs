@@ -79,5 +79,5 @@ Learn more about these default organizations and how to create your own in our [
 
 **Next steps:**
 
-- Try out the Explore and DrillDown features to get hands-on with your data.
+- Try out the Explore and Drilldown features to get hands-on with your data.
 - For more on creating dashboards or ingesting new data, see our [data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}) or [multi-tenancy guide]({{< relref "/tutorials/observability/multi-tenancy" >}}).
