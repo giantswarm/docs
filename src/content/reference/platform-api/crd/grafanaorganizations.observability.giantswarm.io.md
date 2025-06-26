@@ -12,7 +12,7 @@ crd:
   technical_name: grafanaorganizations.observability.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/observability-operator
-  source_repository_ref: v0.33.0
+  source_repository_ref: v0.33.1
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
 technical_name: grafanaorganizations.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/observability-operator
-source_repository_ref: v0.33.0
+source_repository_ref: v0.33.1
 ---
 
 # GrafanaOrganization
@@ -315,10 +315,13 @@ More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architec
 </div>
 
 <div class="property-description">
-<p>TenantID is a unique identifier for a tenant. Must follow Grafana Mimir tenant ID restrictions.
+<p>TenantID is a unique identifier for a tenant. Must follow both Grafana Mimir tenant ID restrictions
+and Alloy component naming restrictions.
 See: <a href="https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/">https://grafana.com/docs/mimir/latest/configure/about-tenant-ids/</a>
-Allowed characters: alphanumeric (a-z, A-Z, 0-9) and special characters (!, -, _, ., *, &lsquo;, (, ))
-Forbidden values: &ldquo;.&rdquo;, &ldquo;..&rdquo;, &ldquo;__mimir_cluster&rdquo; (enforced by validating webhook)</p>
+See: <a href="https://grafana.com/docs/alloy/latest/get-started/configuration-syntax/syntax/#identifiers">https://grafana.com/docs/alloy/latest/get-started/configuration-syntax/syntax/#identifiers</a>
+Allowed characters: alphanumeric (a-z, A-Z, 0-9) and underscore (_)
+Must start with a letter or underscore, max 150 characters (Mimir tenant limit)
+Forbidden value: &ldquo;__mimir_cluster&rdquo; (enforced by validating webhook)</p>
 
 </div>
 
