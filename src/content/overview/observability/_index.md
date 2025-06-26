@@ -11,15 +11,15 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
 
-# What is observability?
+# What is observability
 
-Observability is all about understanding what's happening in your systems—so you can keep things running smoothly, spot issues early, and make smart improvements. At Giant Swarm, we make observability a priority. Our platform gives you the tools to see what's going on in your clusters and applications, fix problems fast, and keep everything healthy. You'll get everything you need for data exploration, visualization, and alerting, all in a self-service way. Plus, we provide proven defaults to help you get started quickly and confidently.
+Observability is all about understanding what's happening in your systems, so you can keep things running smoothly, spot issues early, and make smart improvements. At Giant Swarm, we make observability a priority. Our platform gives you the tools to see what's going on in your clusters and applications, fix problems fast, and keep everything healthy. You'll get everything you need for data exploration, visualization, and alerting, all in a self-service way. Plus, we provide proven defaults to help you get started quickly and confidently.
 
-## What you can do with Giant Swarm observability
+## What you can do with observability
 
 - **Monitor your systems:** Continuously collect and analyze metrics to check the performance and health of your applications and infrastructure. Effective monitoring helps you spot anomalies, understand usage patterns, and make data-driven decisions.
 
-- **Centralize your logs:** Capture detailed records of system and application events. Centralized logging makes troubleshooting and auditing easier. Search and analyze logs to find issues, track changes, and meet compliance needs—all in one place.
+- **Centralize your logs:** Capture detailed records of system and application events. Centralized logging makes troubleshooting and auditing easier. Search and analyze logs to find issues, track changes, and meet compliance needs, all in one place.
 
 - **Visualize your data:** Connect the dots between different data sources. Use dashboards, visualizations, and alerts to get a clear picture of your platform. Start with our ready-made dashboards or create your own to track what matters most to you.
 
@@ -44,3 +44,4 @@ One of the biggest benefits of using Giant Swarm is that you get the same reliab
 ---
 
 Ready to get started? Check out our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}) to begin your journey.
+
