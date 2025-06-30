@@ -34,7 +34,7 @@ Work with Giant Swarm to configure core platform components:
 
 ## Multi-tenancy and access control
 
-**[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})** forms the foundation of platform configuration, enabling you to:
+**Multi-tenancy** forms the foundation of platform configuration, enabling you to:
 
 - **Isolate data** between teams, environments, or projects through tenant separation
 - **Control access** by mapping Grafana organizations to specific tenants and user groups
@@ -52,7 +52,7 @@ Manage your observability platform's organizational structure through **[`Grafan
 - **Define tenant access**: Control which data tenants each organization can access
 - **Provision datasources**: Automatically configure tenant-scoped access to metrics, logs, and alerting
 
-Effective organization management provides teams with secure, isolated access to their observability data while maintaining proper governance and data separation. Learn how to [create and configure Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) with practical examples and step-by-step instructions.
+Effective organization management provides teams with secure, isolated access to their observability data while maintaining proper governance and data separation. Contact your Giant Swarm account engineer for guidance on creating and configuring Grafana organizations with practical examples and step-by-step instructions.
 
 ## Data ingestion configuration
 
@@ -90,7 +90,7 @@ Customize how you view and visualize your observability data:
 
 ### Grafana organizations
 
-Once you've [created Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) as part of your multi-tenancy setup, you can leverage them for powerful visualization capabilities:
+Once you've created Grafana organizations as part of your multi-tenancy setup, you can leverage them for powerful visualization capabilities:
 
 - **Isolated workspaces**: Each organization provides a dedicated environment for team-specific dashboards and visualizations
 - **Tenant-scoped data access**: Automatically provisioned datasources provide teams with access only to their authorized data
@@ -161,8 +161,8 @@ Establish patterns and standards across your configuration:
 
 To begin configuring your observability platform:
 
-1. **Understand multi-tenancy**: Review [multi-tenancy concepts]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) to plan your data organization
-2. **Set up organizations**: [Create Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) for your teams
+1. **Understand multi-tenancy**: Work with your Giant Swarm account engineer to plan your data organization strategy
+2. **Set up organizations**: Create Grafana organizations for your teams with assistance from Giant Swarm
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for critical system health
 5. **Build dashboards**: Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}) for your specific monitoring needs
