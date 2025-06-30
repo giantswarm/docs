@@ -28,10 +28,10 @@ Learn the core concepts behind multi-tenancy in the observability platform:
 
 Put multi-tenancy into practice:
 
-- **[Creating Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}})**: Step-by-step guide to create and configure Grafana organizations for your teams
+- **[Creating Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}})**: Step-by-step guide to create and configure Grafana organizations for your teams
 
 ## Getting started
 
 1. **Understand the concepts**: Start with [multi-tenancy concepts]({{< relref "/overview/observability/configuration/multi-tenancy/concepts" >}}) to plan your tenant strategy
-2. **Create organizations**: Follow the [Grafana organization creation guide]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) to implement your strategy
+2. **Create organizations**: Follow the [Grafana organization creation guide]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}) to implement your strategy
 3. **Configure data ingestion**: Set up [data collection]({{< relref "/tutorials/observability/data-ingestion" >}}) to send data to your tenants
