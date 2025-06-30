@@ -197,7 +197,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 
 **Creating tenants:**
 
-1. Define the tenant in `GrafanaOrganization` resource (see [creating Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}))
+1. Define the tenant in `GrafanaOrganization` resource (see [creating Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}))
 2. Configure data collection to use tenant label (see [Data Ingestion documentation]({{< relref "/tutorials/observability/data-ingestion" >}}))
 3. Verify data appears in organization dashboards (see [Data Exploration documentation]({{< relref "/tutorials/observability/data-exploration" >}}))
 
@@ -210,7 +210,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 
 **Next steps to implement multi-tenancy:**
 
-- **Organization creation**: [Create Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}) to implement your tenant strategy
+- **Organization creation**: [Create Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) to implement your tenant strategy
 - **Data ingestion**: Configure [data collection]({{< relref "/tutorials/observability/data-ingestion" >}}) to send data to your tenants
 - **Data exploration**: [Explore your data]({{< relref "/tutorials/observability/data-exploration" >}}) using Grafana dashboards and queries
 - **Alerting**: Set up [tenant-specific alerting]({{< relref "/tutorials/observability/alerting" >}}) rules and notifications
