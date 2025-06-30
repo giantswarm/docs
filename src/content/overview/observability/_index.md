@@ -39,4 +39,8 @@ One of the key benefits using Giant Swarm is that we provide a set of reliable a
 
 - **Various agents** like Grafana Alloy, Fluent-bit and others help the observability platform collect and integrate relevant data from Workload Clusters, making the process to add new data as simple as just setting up a new service monitor or add the right labels.
 
+## Data management
+
+The observability platform provides comprehensive [data management capabilities]({{< relref "/overview/observability/data-management" >}}) that handle the complete lifecycle of your observability data - from collection and storage to analysis and export. Our integrated approach ensures efficient data flow while maintaining security, performance, and multi-tenancy across all data types.
+
 Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}).
