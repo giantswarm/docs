@@ -1,5 +1,6 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
+[Aa]lert
 [Aa]gent
 API[s]?
 ARN[s]?
