@@ -30,7 +30,7 @@ ELB[s]?
 ENI[s]?
 ESXi
 Etcd
-Explore
+[Ee]xplore
 Falco
 firewalling
 freely
