@@ -1,5 +1,6 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
+[Aa]lert
 [Aa]gent
 API[s]?
 ARN[s]?
@@ -30,7 +31,7 @@ ELB[s]?
 ENI[s]?
 ESXi
 Etcd
-Explore
+[Ee]xplore
 Falco
 firewalling
 freely
