@@ -52,7 +52,7 @@ Manage your observability platform's organizational structure through **[`Grafan
 - **Define tenant access**: Control which data tenants each organization can access
 - **Provision datasources**: Automatically configure tenant-scoped access to metrics, logs, and alerting
 
-Effective organization management ensures teams have secure, isolated access to their observability data while maintaining proper governance and data separation. Learn how to [create and configure Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) with practical examples and step-by-step instructions.
+Effective organization management provides teams have secure, isolated access to their observability data while maintaining proper governance and data separation. Learn how to [create and configure Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) with practical examples and step-by-step instructions.
 
 ## Data ingestion configuration
 
@@ -93,7 +93,7 @@ Customize how you explore and visualize your observability data:
 Once you've [created Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) as part of your multi-tenancy setup, you can leverage them for powerful visualization capabilities:
 
 - **Isolated workspaces**: Each organization provides a dedicated environment for team-specific dashboards and visualizations
-- **Tenant-scoped data access**: Automatically provisioned datasources ensure teams only see their authorized data
+- **Tenant-scoped data access**: Automatically provisioned datasources provide teams with access only to their authorized data
 - **Collaborative visualization**: Share dashboards and insights within organization boundaries
 - **Custom dashboard organization**: Organize monitoring assets by team, environment, or service ownership
 
@@ -108,7 +108,7 @@ Once you've [created Grafana organizations]({{< relref "/overview/observability/
 
 ## Alerting and notification configuration
 
-Set up comprehensive alerting to ensure timely notification of issues:
+Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert rules
 
