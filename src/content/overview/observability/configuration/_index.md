@@ -52,7 +52,7 @@ Manage your observability platform's organizational structure through **[`Grafan
 - **Define tenant access**: Control which data tenants each organization can access
 - **Provision datasources**: Automatically configure tenant-scoped access to metrics, logs, and alerting
 
-Effective organization management ensures teams have secure, isolated access to their observability data while maintaining proper governance and data separation. Learn how to [create and configure Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) with practical examples and step-by-step instructions.
+Effective organization management ensures teams have secure, isolated access to their observability data while maintaining proper governance and data separation. Learn how to create and configure Grafana organizations with practical examples and step-by-step instructions.
 
 ## Data ingestion configuration
 
@@ -90,7 +90,7 @@ Customize how you explore and visualize your observability data:
 
 ### Grafana organizations
 
-Once you've [created Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) as part of your multi-tenancy setup, you can leverage them for powerful visualization capabilities:
+Once you've created Grafana organizations as part of your multi-tenancy setup, you can leverage them for powerful visualization capabilities:
 
 - **Isolated workspaces**: Each organization provides a dedicated environment for team-specific dashboards and visualizations
 - **Tenant-scoped data access**: Automatically provisioned datasources ensure teams only see their authorized data
@@ -162,7 +162,7 @@ Establish patterns and standards across your configuration:
 To begin configuring your observability platform:
 
 1. **Understand multi-tenancy**: Review [multi-tenancy concepts]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) to plan your data organization
-2. **Set up organizations**: [Create Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) for your teams
+2. **Set up organizations**: Create Grafana organizations for your teams
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for critical system health
 5. **Build dashboards**: Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}) for your specific monitoring needs
