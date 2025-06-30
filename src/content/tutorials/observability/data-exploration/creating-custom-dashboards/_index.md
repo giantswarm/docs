@@ -42,7 +42,7 @@ metadata:
   namespace: my-namespace
 ```
 
-__warning__: the `observability.giantswarm.io/organization` annotation's value must be equal to an existing GrafanaOrganization CR's display name. For more information on Grafana organizations, check [our documentation on multi-tenancy](https://docs.giantswarm.io/overview/observability/configuration/multi-tenancy/). Also, the dashboard's JSON must contain a unique `UID` in a given organization otherwise it won't be provisioned.
+__warning__: the `observability.giantswarm.io/organization` annotation's value must be equal to an existing GrafanaOrganization CR's display name. For more information on Grafana organizations, check [our documentation on multi-tenancy](https://docs.giantswarm.io/overview/observability/configuration/multi-tenancy/). Also, the dashboard's JSON must contain a unique `UID` in a given organization otherwise the system will not provision it.
 
 This is the preferred approach as it allows shared dashboards across all installations (if you have multiple ones) and comes with a linting job in the CI pipeline to ensure the dashboard is valid.
 
