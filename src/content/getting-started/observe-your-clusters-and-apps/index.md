@@ -51,9 +51,9 @@ An important bit to notice is the `application.giantswarm.io/team` label. This l
 
 Reading the manifest, the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application, so it should match the application label.
 
-After applying the service monitor, you can open the `Explore` view in the `Grafana` UI and start querying the metrics from your application.
+After applying the service monitor, you can open the `Drilldown` view in the `Grafana` UI and start querying the metrics from your application.
 
-![Explore application metrics](explore-application-metrics.png)
+![Drilldown application metrics](explore-application-metrics.png)
 
 __Note__: The `Grafana` UI is accessible via ingress. To find the address, you can check the ingress resource in the `monitoring` namespace of the platform API. More information in the [access `Grafana` page]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
 
