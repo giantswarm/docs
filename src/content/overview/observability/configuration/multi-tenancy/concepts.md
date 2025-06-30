@@ -23,13 +23,13 @@ user_questions:
 
 Multi-tenancy in the Giant Swarm observability platform provides secure data isolation and access controls, enabling multiple teams, environments, or projects to share the same observability infrastructure while maintaining clear boundaries around their data and access permissions.
 
-This architectural approach ensures that sensitive observability data remains accessible only to authorized users while providing the operational efficiency of a shared platform.
+This architectural approach provides secure data access controls for authorized users. It also delivers the operational efficiency of a shared platform.
 
 ## Core concepts
 
 Multi-tenancy works through three key components:
 
-### What is a tenant?
+### What is a tenant
 
 A **tenant** is a logical namespace that isolates observability data at the storage level in both Mimir (metrics) and Loki (logs). Think of it as a secure container for your data that ensures complete separation from other tenants' information.
 
@@ -40,7 +40,7 @@ Key characteristics of tenants:
 - **Query boundaries**: Dashboards and alerts can only access data within authorized tenants
 - **Flexible organization**: Tenants can represent teams, environments, services, or any logical grouping
 
-### What is a Grafana organization?
+### What is a Grafana organization
 
 A **Grafana organization** is your workspace within the observability platform that provides access to specific tenants through dedicated datasources. Each organization functions as an independent environment with its own users, dashboards, and configurations.
 
@@ -170,7 +170,7 @@ Every Giant Swarm installation includes two pre-configured organizations:
 
 Provides immediate access to platform monitoring with curated dashboards and system-wide observability data. All users receive read-only access by default, enabling instant visibility into cluster health and system metrics.
 
-### Giant Swarm organization
+### Giant Swarm Organization
 
 Reserved for Giant Swarm operations team to monitor platform health and provide customer support. This organization is not visible to customers and contains internal operational dashboards.
 
@@ -197,7 +197,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 
 **Creating tenants:**
 
-1. Define the tenant in `GrafanaOrganization` resource (see [creating Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}))
+1. Define the tenant in `GrafanaOrganization` resource (see [creating Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}))
 2. Configure data collection to use tenant label (see [Data Ingestion documentation]({{< relref "/tutorials/observability/data-ingestion" >}}))
 3. Verify data appears in organization dashboards (see [Data Exploration documentation]({{< relref "/tutorials/observability/data-exploration" >}}))
 
@@ -210,7 +210,7 @@ The platform automatically enforces tenant governance to control data ingestion:
 
 **Next steps to implement multi-tenancy:**
 
-- **Organization creation**: [Create Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}}) to implement your tenant strategy
+- **Organization creation**: [Create Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}}) to implement your tenant strategy
 - **Data ingestion**: Configure [data collection]({{< relref "/tutorials/observability/data-ingestion" >}}) to send data to your tenants
 - **Data exploration**: [Explore your data]({{< relref "/tutorials/observability/data-exploration" >}}) using Grafana dashboards and queries
 - **Alerting**: Set up [tenant-specific alerting]({{< relref "/tutorials/observability/alerting" >}}) rules and notifications
