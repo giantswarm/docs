@@ -108,7 +108,7 @@ Once you've [created Grafana organizations]({{< relref "/tutorials/observability
 
 ## Alerting and notification configuration
 
-Set up comprehensive alerting to ensure timely notification of issues:
+Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert rules
 
