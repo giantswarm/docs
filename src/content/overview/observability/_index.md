@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-observability
-last_review_date: 2024-12-11
+last_review_date: 2025-06-30
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
@@ -39,4 +39,4 @@ One of the key benefits using Giant Swarm is that we provide a set of reliable a
 
 - **Various agents** like Grafana Alloy, Fluent-bit and others help the observability platform collect and integrate relevant data from Workload Clusters, making the process to add new data as simple as just setting up a new service monitor or add the right labels.
 
-Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}).
+Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).

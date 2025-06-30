@@ -46,7 +46,7 @@ You can see the overall architecture of the API in the following diagram:
 
 Any request against the API needs to include a **valid OIDC token**.  Additionally you need to add an **existing tenant** in the `X-Scope-OrgId` HTTP header.
 
-**Warning:** Any data sent to the API with non-existent tenant IDs will be dropped and not ingested into the platform. These tenants are defined in the Grafana Organization resources. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+**Warning:** Any data sent to the API with non-existent tenant IDs will be dropped and not ingested into the platform. These tenants are defined in the Grafana Organization resources. Every tenant receives dedicated datasources to ensure proper data isolation, thus, you can only retrieve data for tenants where you have the proper authorization. To learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/overview/observability/configuration/multi-tenancy/concepts" >}})
 
 ## The observability platform API as Grafana data source
 
@@ -62,7 +62,7 @@ Here is a step-by-step guide on how to do it:
 
 ![data source authentication](./datasource-authentication.png)
 
-1. Fill in the `Authentication` section, add the required `X-Scope-OrgID`. Make sure the value of the `X-Scope-OrgID` header is an existing tenant that actually holds the data you're interested in. For example, to access Giant Swarm managed logs the value of this  header should be `giantswarm`, for metrics it should be `anynomous`. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+1. Fill in the `Authentication` section, add the required `X-Scope-OrgID`. Make sure the value of the `X-Scope-OrgID` header is an existing tenant that actually holds the data you're interested in. For example, to access Giant Swarm managed logs the value of this  header should be `giantswarm`, for metrics it should be `anynomous`. You can learn more about our tenant concept in [multi-tenancy in the observability platform.]({{< relref "/overview/observability/configuration/multi-tenancy/concepts" >}})
 
 ![data source headers](./datasource-headers.png)
 
