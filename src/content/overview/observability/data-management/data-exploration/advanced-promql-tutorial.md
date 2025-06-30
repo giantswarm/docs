@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-exploration
     identifier: overview-observability-advanced-promql
-last_review_date: 2024-12-11
+last_review_date: 2025-06-30
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -23,75 +23,101 @@ For PromQL fundamentals and complete syntax reference, refer to the [official Pr
 ## Prerequisites
 
 - Access to your installation's Grafana interface (see [accessing Grafana tutorial]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}))
-- Basic understanding of metrics, labels, and time-series concepts
+- Familiarity with basic PromQL syntax and concepts
+- Understanding of Prometheus metrics and labels
 
-## Advanced metric selection and filtering
+## Essential PromQL building blocks
 
-### Cluster and workload targeting
+This section covers key concepts you'll use throughout advanced monitoring scenarios.
 
-Target specific clusters and components using label combinations:
+### Query construction methodology
+
+Build effective queries systematically:
+
+1. **Define the question**: What exactly are you measuring?
+2. **Identify metrics**: Which time series contain the data?
+3. **Progressive construction**: Start simple, add complexity step by step
+4. **Test and optimize**: Validate results and performance
+
+#### Example: service error rate
 
 ```promql
-# CPU usage for management cluster nodes
-node_cpu_seconds_total{cluster_id="installation", cluster_type="management_cluster", mode="idle"}
+# Step 1: Basic selection
+http_requests_total{service="web-api"}
 
-# Memory usage for workload cluster applications
-container_memory_usage_bytes{cluster_id="cluster", cluster_type="workload_cluster", namespace="production", container!="POD"}
+# Step 2: Add rate calculation  
+rate(http_requests_total{service="web-api"}[5m])
 
-# API server request rates across clusters
-rate(apiserver_request_total{cluster_id=~".*", verb="GET"}[5m])
+# Step 3: Calculate error percentage
+sum(rate(http_requests_total{service="web-api", status=~"5.."}[5m])) / 
+sum(rate(http_requests_total{service="web-api"}[5m])) * 100
 ```
 
-These queries demonstrate how to use Giant Swarm's labeling conventions to target specific infrastructure components.
+### Key functions and patterns
+
+**Rate calculations**: `rate(metric[5m])` for per-second rates from counters
+**Aggregations**: `sum by (label) (metric)` or `sum without (label) (metric)`
+**Percentiles**: `histogram_quantile(0.95, rate(metric_bucket[5m]))`
+**Time shifting**: `metric offset 1h` for historical comparison
+**Predictions**: `predict_linear(metric[1h], 3600)` for forecasting
+
+**Performance tip**: Use `without()` instead of `by()` when keeping most labels - it's more efficient.
+
+### Giant Swarm label structure
+
+Every metric includes contextual labels:
+
+- `cluster_id`: Specific cluster identifier
+- `cluster_type`: "management_cluster" or "workload_cluster"
+- `installation`: Your Giant Swarm installation ID
+- `namespace`: Kubernetes namespace
+- `job`: Prometheus scrape job name
+
+Use these for precise targeting: `{cluster_type="workload_cluster", namespace="production"}`
+
+## Advanced metric selection and filtering
 
 ### Label-based filtering patterns
 
 Use sophisticated label matching for precise metric selection:
 
 ```promql
+# Target specific infrastructure components
+node_cpu_seconds_total{cluster_type="management_cluster", mode="idle"}
+container_memory_usage_bytes{cluster_type="workload_cluster", namespace="production"}
+
 # High-priority pods only
 kube_pod_info{priority_class=~"system-.*|critical-.*"}
 
-# Exclude system namespaces
+# Exclude system namespaces  
 container_cpu_usage_seconds_total{namespace!~"kube-system|giantswarm|kube-.*"}
 
 # Multi-dimensional filtering
 up{job=~"kubernetes-.*", instance=~".*:443"} == 1
 ```
 
-Regular expressions in label selectors allow you to create flexible filters that adapt to your naming conventions and exclude noise from system components.
+**Regex vs exact matching**: Use exact matching (`=`, `!=`) when possible for better performance. Use regex (`=~`, `!~`) for patterns or exclusions. See [RE2 syntax documentation](https://github.com/google/re2/wiki/Syntax) for complex patterns.
 
 ## Resource monitoring and capacity planning
 
-### Node-level resource analysis
+Monitor infrastructure at three levels: **node** (physical resources), **container** (application consumption), and **application** (business impact).
 
-Monitor infrastructure health and capacity:
+### Infrastructure monitoring
 
 ```promql
 # Node CPU utilization percentage
 (1 - avg by (instance, cluster_id) (rate(node_cpu_seconds_total{mode="idle"}[5m]))) * 100
 
-# Node memory utilization with buffers/cache excluded
+# Node memory utilization (excludes buffers/cache)
 (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100
 
 # Disk space utilization by mount point
 (1 - (node_filesystem_avail_bytes{fstype!~"tmpfs|fuse.lxcfs"} / node_filesystem_size_bytes)) * 100
 
-# Network I/O rates
-rate(node_network_receive_bytes_total{device!~"lo|veth.*|docker.*|flannel.*|cali.*"}[5m])
-```
-
-These fundamental infrastructure metrics help you understand resource consumption patterns and identify capacity constraints before they impact workloads.
-
-### Pod and container resource tracking
-
-Analyze application resource consumption:
-
-```promql
 # Top CPU consuming pods
 topk(10, sum by (namespace, pod) (rate(container_cpu_usage_seconds_total{container!="POD"}[5m])))
 
-# Memory usage by namespace with limits
+# Memory usage vs limits by namespace
 sum by (namespace) (container_memory_usage_bytes{container!="POD"}) / 
 sum by (namespace) (container_spec_memory_limit_bytes{container!="POD"}) * 100
 
@@ -99,48 +125,41 @@ sum by (namespace) (container_spec_memory_limit_bytes{container!="POD"}) * 100
 rate(container_cpu_cfs_throttled_seconds_total[5m]) > 0
 ```
 
-Container-level metrics reveal which applications consume the most resources and help identify performance bottlenecks caused by resource limits.
+**Key insights**: CPU throttling indicates limit constraints even when nodes aren't fully utilized. MemAvailable provides more accurate memory usage than MemFree. See [node exporter documentation](https://github.com/prometheus/node_exporter#enabled-by-default) for metric details.
 
 ## Application performance monitoring
 
-### HTTP request analysis
-
-Monitor application endpoints and performance:
+### HTTP services
 
 ```promql
-# Request rate by status code
-sum by (method, status) (rate(http_requests_total[5m]))
+# Request rate by service and status
+sum by (service, status) (rate(http_requests_total[5m]))
+
+# Error rate percentage
+sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) * 100
 
 # 95th percentile response time
-histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))
+histogram_quantile(0.95, sum by (le, service) (rate(http_request_duration_seconds_bucket[5m])))
 
-# Error rate calculation
-sum(rate(http_requests_total{status=~"5.."}[5m])) / 
-sum(rate(http_requests_total[5m])) * 100
-
-# Requests per second growth over time
-increase(http_requests_total[1h]) / 3600
+# Top slowest endpoints
+topk(10, histogram_quantile(0.95, sum by (le, endpoint) (rate(http_request_duration_seconds_bucket[5m]))))
 ```
-
-HTTP metrics provide insights into user experience and application health, helping you track both performance trends and error patterns.
 
 ### Database and queue monitoring
 
-Track data persistence and message processing:
-
 ```promql
 # Database connection pool utilization
-database_connections_active / database_connections_max * 100
+mysql_global_status_threads_connected / mysql_global_variables_max_connections * 100
 
-# Queue depth and processing rates
-queue_depth{queue_name="critical-tasks"} and
-rate(queue_processed_total{queue_name="critical-tasks"}[5m])
+# Queue depth and processing rate
+queue_depth_total{queue="critical-jobs"}
+rate(queue_messages_processed_total[5m])
 
-# Cache hit ratio
-rate(cache_hits_total[5m]) / (rate(cache_hits_total[5m]) + rate(cache_misses_total[5m])) * 100
+# Average processing time
+rate(queue_processing_time_seconds_sum[5m]) / rate(queue_processing_time_seconds_count[5m])
 ```
 
-Backend service metrics help identify bottlenecks in data storage and processing pipelines, crucial for maintaining application responsiveness.
+**Performance patterns**: Use `histogram_quantile()` for latency percentiles, `topk()` for identifying problematic endpoints, and ratio calculations for error rates. See [histogram documentation](https://prometheus.io/docs/practices/histograms/) for best practices.
 
 ## Kubernetes-specific monitoring
 
@@ -206,7 +225,7 @@ sum by (cluster_id) (rate(container_cpu_usage_seconds_total[5m])) /
 sum by (cluster_id) (container_spec_cpu_quota / container_spec_cpu_period)
 ```
 
-Complex aggregations allow you to analyze data across multiple dimensions simultaneously, revealing patterns that simple queries might miss.
+Complex aggregations enable you to analyze data across multiple dimensions simultaneously, revealing patterns that simple queries might miss.
 
 ### Time-based calculations
 
@@ -228,9 +247,9 @@ predict_linear(node_filesystem_avail_bytes[1h], 24*3600) < 0
 
 Time-based analysis helps identify trends, seasonal patterns, and predict future resource needs for proactive capacity management.
 
-## Alerting and SLI/SLO monitoring
+## Alerting and service level monitoring
 
-### Service Level Indicators
+### Service level indicators
 
 Define and monitor key reliability metrics:
 
@@ -250,138 +269,63 @@ sum(rate(http_request_duration_seconds_count[5m])) * 100
 )) / 0.001  # 99.9% SLO
 ```
 
-SLI metrics form the foundation of reliability engineering, providing objective measures of service quality that align with user experience.
+Service level indicator (SLI) metrics form the foundation of reliability engineering, providing objective measures of service quality that align with user experience.
 
 ### Anomaly detection patterns
 
 Identify unusual behavior and potential issues:
 
 ```promql
-# Detect traffic spikes (current vs historical average)
-sum(rate(http_requests_total[5m])) / 
-avg_over_time(sum(rate(http_requests_total[5m]))[1h:5m]) > 2
-
-# Memory leak detection (sustained growth)
-increase(container_memory_usage_bytes[1h]) > 100*1024*1024  # 100MB increase
-
-# Unusual error rate increase
-rate(http_requests_total{status=~"5.."}[5m]) > 
-avg_over_time(rate(http_requests_total{status=~"5.."}[5m])[1h]) * 5
+# Traffic spike detection
+sum(rate(http_requests_total[5m])) / avg_over_time(sum(rate(http_requests_total[5m]))[1h:5m]) > 2
 ```
 
-Anomaly detection queries help you catch unusual patterns that might indicate problems, allowing for proactive intervention before user impact occurs.
+**Anomaly detection**: Compare current vs historical patterns
 
-## Performance optimization techniques
-
-### Query efficiency best practices
-
-Write performant PromQL queries for large-scale monitoring:
+**Capacity planning**: Predict resource exhaustion
 
 ```promql
-# Efficient: Pre-aggregate at recording rule level
-cluster:cpu_usage_rate5m = 
-  sum by (cluster_id) (rate(container_cpu_usage_seconds_total[5m]))
-
-# Use recording rules for complex calculations
-instance:network_throughput:rate5m = 
-  sum by (instance) (rate(node_network_transmit_bytes_total[5m])) +
-  sum by (instance) (rate(node_network_receive_bytes_total[5m]))
-
-# Efficient dashboard queries using pre-computed metrics
-cluster:cpu_usage_rate5m{cluster_id="production"}
+predict_linear(node_filesystem_avail_bytes[1h], 4*3600) < 0
 ```
 
-Recording rules pre-compute expensive queries, reducing dashboard load times and enabling more responsive monitoring. Learn how to implement these in our [alerting and recording rules guide]({{< relref "/tutorials/observability/alerting/create-rules" >}}).
-
-### Resource-aware querying
-
-Balance query precision with resource consumption:
+**Performance troubleshooting**: Systematic diagnosis
 
 ```promql
-# Use appropriate time ranges - avoid overly long lookbacks
-rate(metric_name[5m])  # Good for real-time monitoring
-rate(metric_name[1h])  # Good for trend analysis
-
-# Limit cardinality with topk/bottomk
-topk(20, sum by (service) (rate(http_requests_total[5m])))
-
-# Use efficient aggregations
-sum without (instance) (up)  # More efficient than sum by (job, cluster_id, ...)
-```
-
-Query optimization techniques ensure your monitoring remains performant even as your infrastructure scales, preventing monitoring overhead from impacting system performance.
-
-## Practical troubleshooting scenarios
-
-### Diagnosing performance issues
-
-Common troubleshooting workflows using PromQL:
-
-```promql
-# Step 1: Identify high CPU usage containers
+# Step 1: Find resource bottlenecks
 topk(5, rate(container_cpu_usage_seconds_total{container!="POD"}[5m]))
 
-# Step 2: Check if they're hitting CPU limits
+# Step 2: Check for throttling
 rate(container_cpu_cfs_throttled_seconds_total[5m]) > 0
-
-# Step 3: Correlate with memory pressure
-container_memory_usage_bytes / container_spec_memory_limit_bytes > 0.8
 ```
 
-Step-by-step diagnostic approaches help you quickly identify root causes during incidents, reducing mean time to resolution.
+## Performance optimization
 
-### Capacity planning queries
+### Best practices
 
-Monitor resource trends for proactive scaling:
+- **Use recording rules** for complex, frequently executed queries
+- **Limit time ranges** to actual analysis needs (avoid excessive historical queries)
+- **Prefer `without()`** over `by()` when keeping most labels
+- **Use exact matches** (`=`) instead of regex (`=~`) when possible
+
+### Efficient query patterns
 
 ```promql
-# Predict node CPU exhaustion
-predict_linear(
-  (1 - avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1h])))[24h:1h], 
-  7*24*3600
-) > 0.8
+# Efficient: Pre-aggregated via recording rule
+cluster:cpu_usage:rate5m{cluster_id="production"}
 
-# Identify underutilized resources
-avg by (cluster_id) (rate(container_cpu_usage_seconds_total[1h])) < 0.1
+# Efficient: Limited cardinality
+topk(10, sum by (service) (rate(http_requests_total[5m])))
+
+# Avoid: High cardinality aggregation
+sum by (instance, pod, container) (rate(container_cpu_usage_seconds_total[5m]))
 ```
 
-Predictive queries enable proactive capacity management, helping you scale infrastructure before resource constraints impact performance.
-
-## Giant Swarm platform integration
-
-### Platform-specific monitoring
-
-Leverage Giant Swarm's observability capabilities:
-
-```promql
-# Monitor cluster health across installations
-up{job="cluster-operator"} == 0
-
-# Track app deployment status
-sum by (cluster_id, app_name) (app_operator_app_info{status!="deployed"})
-
-# Observe platform version distribution
-count by (version) (cluster_release_version)
-```
-
-Platform-specific metrics provide insights into Giant Swarm's operational components, helping you monitor the health of the management layer itself.
-
-## Performance considerations
-
-When writing PromQL queries, follow these best practices:
-
-- **Use recording rules** for frequently executed complex queries
-- **Limit time ranges** to what's actually needed for the analysis
-- **Prefer efficient aggregations** using `without` instead of `by` when possible
-- **Avoid high-cardinality operations** on metrics with many series
-- **Use appropriate rate intervals** (typically 4x scrape interval minimum)
-
-For dashboard optimization and complex alerting scenarios, consider creating [recording rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) to pre-compute expensive calculations.
+Learn more about [recording rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) and [aggregation operators](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators).
 
 ## Next steps
 
-- Apply your PromQL queries in [custom dashboard creation]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}})
-- Set up [intelligent alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) based on your metric analysis
-- Explore [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}}) for organizing your metrics data
+- Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}) with your PromQL queries
+- Set up [alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for proactive monitoring
+- Explore [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}}) for organizing metrics data
 
-For comprehensive PromQL syntax, functions, and operators reference, consult the [official Prometheus PromQL documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+For comprehensive PromQL reference, see the [official Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
