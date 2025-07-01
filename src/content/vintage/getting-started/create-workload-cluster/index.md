@@ -21,11 +21,11 @@ user_questions:
 last_review_date: 2023-12-12
 ---
 
-In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/reference/kubectl-gs" >}})), as already installed in the [previous tutorial]({{< relref "/vintage/getting-started/management-cluster" >}}), is used to create such clusters.
+In a Giant Swarm installation, to run your business applications on Kubernetes, you need a workload cluster. The `kubectl-gs` tool ([reference]({{< relref "/reference/kubectl-gs" >}})), as already installed in the previous tutorial, is used to create such clusters.
 
 ## Step 1: Log in to the management cluster
 
-Please follow the article [Access to the management cluster (MC)]({{< relref "/vintage/getting-started/management-cluster" >}}). In short, you need to point kubectl to the management cluster:
+Please follow the article "Access to the management cluster (MC)". In short, you need to point kubectl to the management cluster:
 
 ```sh
 kubectl gs login "https://api.<management cluster domain>/"

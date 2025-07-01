@@ -146,7 +146,7 @@ Usage:
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2" >}}
 
-First of all, please [log into the management cluster]({{< relref "/vintage/getting-started/management-cluster" >}}).
+First of all, please log into the management cluster.
 
 As part of our guide [Create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}) to template the cluster manifest, you will be instructed to run the command `kubectl gs template cluster [...]`. Please add the parameter `--management-cluster NAME_OF_MC` and, one or multiple times, `--control-plane-load-balancer-ingress-allow-cidr-block CIDR` to specify IP ranges (CIDRs) that should be allowed to access the Kubernetes API.
 
