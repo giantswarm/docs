@@ -16,6 +16,9 @@ user_questions:
 last_review_date: 2024-11-25
 aliases:
   - /vintage/use-the-api/kubectl-gs/login/
+  - /vintage/use-the-api/management-api/wc-key-pairs/
+  - /use-the-api/management-api/wc-key-pairs/
+  - /ui-api/management-api/wc-key-pairs/
 ---
 
 Use this command to set up a kubectl context to work with:
