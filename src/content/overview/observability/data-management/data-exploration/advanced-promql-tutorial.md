@@ -328,4 +328,5 @@ Learn more about [recording rules]({{< relref "/tutorials/observability/alerting
 - Set up [alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for proactive monitoring
 - Explore [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}}) for organizing metrics data
 
-For comprehensive PromQL reference, see the [official Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+For a comprehensive PromQL reference, see the [official Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+
