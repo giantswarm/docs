@@ -46,4 +46,4 @@ For creating a cluster using Cluster API, you would need to define a set of reso
 
 On top the chart, we've got the [`App` concept]({{< relref "vintage/getting-started/app-platform/app-bundle" >}}), a custom resource which helps us to select a chart to be installed in the management cluster allowing extended configuration capabilities that enhance the fleet management experience.
 
-Learn more by reading how to [create your first workload cluster]({{< relref "vintage/getting-started/create-workload-cluster" >}}) or check the cluster apps we offer in our [catalog]({{< relref "vintage/use-the-api/management-api/cluster-apps" >}}).
+Learn more by reading how to [create your first workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) or check the cluster apps we offer in our [catalog]({{< relref "/vintage/use-the-api/management-api/cluster-apps" >}}).

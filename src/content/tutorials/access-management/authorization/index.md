@@ -13,6 +13,11 @@ user_questions:
   - How can I set up access to resources in the management cluster?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/use-the-api/management-api/authorization/
+  - /use-the-api/management-api/authorization
+  - /reference/management-api/authorization/
+  - /ui-api/management-api/authorization/
 ---
 
 Once your users are [authenticated]({{< relref "/tutorials/access-management/authentication" >}}) for the platform API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.
