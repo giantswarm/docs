@@ -39,7 +39,7 @@ Build effective queries systematically:
 3. **Progressive construction**: Start simple, add complexity step by step
 4. **Test and optimize**: Validate results and performance
 
-#### Example: service error rate
+#### Example: Service error rate
 
 ```promql
 # Step 1: Basic selection
