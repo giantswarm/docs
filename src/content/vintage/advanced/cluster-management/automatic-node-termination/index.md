@@ -95,7 +95,7 @@ spec:
 
 ### Azure
 
-To enable automatic termination of unhealthy nodes, edit the [`Cluster`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api" >}}).
+To enable automatic termination of unhealthy nodes, edit the [`Cluster`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api" >}}).
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as just the presence of that annotation is checked. Here is an example:
 
@@ -111,7 +111,7 @@ spec:
   ...
 ```
 
-If you want to disable the feature you must remove the annotation from the [`Cluster`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) custom resource.
+If you want to disable the feature you must remove the annotation from the [`Cluster`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) custom resource.
 
 ### KVM
 

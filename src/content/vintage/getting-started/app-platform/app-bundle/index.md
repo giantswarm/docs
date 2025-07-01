@@ -22,7 +22,7 @@ user_questions:
 As stated in the [App Platform overview]({{< relref "/vintage/platform-overview/app-platform/index.md" >}}) all managed apps are
 packaged, maintained and offered as Helm Charts and it is no different for the app bundles. What makes them
 special in comparison to solitary apps is that the bundle Helm Chart, instead of carrying a regular resources
-composing the actual application, carries [App CRs]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
+composing the actual application, carries [App CRs]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}})
 which, once delivered and consumed by the App Platform, install the expected applications and their resources.
 
 In other words, an app bundle can be thought of a middleman or meta package, not installing anything in the Workload
@@ -61,7 +61,7 @@ figure, like pulling the tarball archive, have been omitted for brevity.
 When App CR for the bundle is created within the Management Cluster, it is first picked up by the Management
 Cluster's App Operator which we call, by convention, `unique`. It lives under the protected `giantwarm` namespace,
 but in principle operates the same way the Workload Clusters App Operators do. Essentially, it reconciles the App CR by
-creating a corresponding [Chart CR]({{< relref "/vintage/use-the-api/management-api/crd/charts.application.giantswarm.io.md" >}})
+creating a corresponding [Chart CR]({{< relref "/reference/platform-api/crd/charts.application.giantswarm.io.md" >}})
 in the `giantswarm` namespace, which is then picked up by the Management Cluster's Chart Operator also living in that
 namespace. The Chart Operator then installs the app resources, which in this case are nested App CRs to be created in
 the Workload Cluster namespace. Once delivered, the nested App CRs are picked up by the Workload Cluster's App Operator
