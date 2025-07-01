@@ -52,7 +52,7 @@ We have a few provider-specific hints:
 {{< tabs >}}
 {{< tab id="private-cluster-capa-ec2-proxy" for-impl="capa_ec2" title-suffix=" (private, with proxy)" >}}
 
-A proxy-private CAPA cluster uses a proxy to connect to the internet via HTTP/HTTPS. The cluster runs in a private VPC. The VPC CIDR (range of IPs) should be chosen such that it does not overlap with other VPCs that need to communicate with it. Please follow [Create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}), adding certain parameters when running the cluster templating command:
+A proxy-private CAPA cluster uses a proxy to connect to the internet via HTTP/HTTPS. The cluster runs in a private VPC. The VPC CIDR (range of IPs) should be chosen such that it does not overlap with other VPCs that need to communicate with it. Please follow "Create a workload cluster", adding certain parameters when running the cluster templating command:
 
 ```sh
 kubectl gs template cluster \
@@ -148,7 +148,7 @@ Usage:
 
 First of all, please log into the management cluster.
 
-As part of our guide [Create a workload cluster]({{< relref "/vintage/getting-started/create-workload-cluster" >}}) to template the cluster manifest, you will be instructed to run the command `kubectl gs template cluster [...]`. Please add the parameter `--management-cluster NAME_OF_MC` and, one or multiple times, `--control-plane-load-balancer-ingress-allow-cidr-block CIDR` to specify IP ranges (CIDRs) that should be allowed to access the Kubernetes API.
+As part of our guide "Create a workload cluster" to template the cluster manifest, you will be instructed to run the command `kubectl gs template cluster [...]`. Please add the parameter `--management-cluster NAME_OF_MC` and, one or multiple times, `--control-plane-load-balancer-ingress-allow-cidr-block CIDR` to specify IP ranges (CIDRs) that should be allowed to access the Kubernetes API.
 
 For example:
 
