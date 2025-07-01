@@ -81,7 +81,7 @@ Filter logs for specific error patterns across a cluster:
 100.64.106.205 - - [01/Jul/2025:14:38:15 +0000]  499 "GET /loki/api/v1/query_range?direction=backward&end=1751380692390000000&query=xxxxxxxxxx&start=1751359080000000000&step=60000ms HTTP/1.1" 0 "-" "Grafana/12.0.0+security-01" "-"
 ```
 
-This query uses a **regex** to match log lines containing "error", "failed", or "warning". The `(?i)` makes the regex case-insensitive. See the [Grafana - Line filter expression](https://grafana.com/docs/loki/next/query/log_queries/#line-filter-expression) for more details.
+This query uses a **regex** to match log lines containing `error`, `failed`, or `warning`. The `(?i)` makes the regex case-insensitive. See the [Grafana - Line filter expression](https://grafana.com/docs/loki/next/query/log_queries/#line-filter-expression) for more details.
 
 ### Log volume metrics
 
@@ -113,7 +113,7 @@ Parse and filter on any pattern structures found in application logs, here Nginx
 
 **Sample Results:**
 
-```
+```text
 100.12.345.67 - - [01/Jul/2025:15:11:16 +0000]  400 "GET /nonexistent HTTP/1.1" 58 "-" "curl/8.14.1" "-"
 100.12.345.67 - - [01/Jul/2025:15:11:14 +0000]  400 "GET /dummy HTTP/1.1" 58 "-" "curl/8.14.1" "-"
 100.12.345.67 - - [01/Jul/2025:15:08:35 +0000]  101 "GET /loki/api/v1/tail?query=%7Bstream%3D%22stdout%22%2Cpod%3D%22loki-canary-86b869b45c-2t68n%22%7D+ HTTP/1.1" 959409 "-" "Go-http-client/1.1" "-"
@@ -137,7 +137,7 @@ Extract specific fields and create custom log output formats:
 
 **Sample Results:**
 
-```
+```text
 2025-07-01T14:02:29Z [info] monitoring/myInstallation: alloy-service - ensured alloy is configured
 2025-07-01T14:02:29Z [info] monitoring/myInstallation: alloy-service - current number of shards
 2025-07-01T14:02:29Z [info] monitoring/myInstallation: alloy-service - ensuring alloy is configured
@@ -200,7 +200,7 @@ Analyze system logs for resource pressure indicators:
 
 **Sample Results:**
 
-```
+```text
 ip-10-0-204-71 - kube-state-metr invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=994
 ip-10-0-204-71 - Memory cgroup out of memory: Killed process 105294 (kube-state-metr) total-vm:1159412kB, anon-rss:429324kB, file-rss:27104kB, shmem-rss:0kB, UID:65534 pgtables:996kB oom_score_adj:994
 ```
@@ -208,7 +208,7 @@ ip-10-0-204-71 - Memory cgroup out of memory: Killed process 105294 (kube-state-
 ## Best practices for advanced LogQL
 
 - **Use specific label selectors** to reduce query scope and improve performance
-- **Leverage regex prefiltering** with `|~` before applying expensive operations like `json`
+- **Leverage regex filtering** with `|~` before applying expensive operations like `json`
 - **Combine log stream selectors** strategically to balance specificity and coverage
 - **Apply time ranges** appropriate to your use case to optimize query performance
 - **Use line formatting** to create readable output for complex queries
@@ -220,6 +220,6 @@ For comprehensive LogQL syntax and additional functions, refer to:
 - [Log queries](https://grafana.com/docs/loki/next/query/log_queries/)
 - [LogQL: Log query language](https://grafana.com/docs/loki/latest/query/)
 
-To enhance your observability skills further, explore:
+Enhance your observability skills further:
 
 - [Dashboard creation guide]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/" >}}) for visualizing your log queries
