@@ -389,4 +389,3 @@ and [aggregation operators](https://prometheus.io/docs/prometheus/latest/queryin
 
 For a comprehensive PromQL reference, see the
 [official Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
-
