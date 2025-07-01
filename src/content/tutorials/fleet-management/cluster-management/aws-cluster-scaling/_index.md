@@ -2,6 +2,8 @@
 title: AWS Cluster scaling
 description: How to configure and manage the scaling of your AWS workload clusters on Giant Swarm.
 weight: 20
+aliases:
+  - /vintage/getting-started/sizing-multi-tenancy
 menu:
   principal:
     parent: tutorials-fleet-management-clusters

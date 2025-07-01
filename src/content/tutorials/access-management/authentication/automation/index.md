@@ -12,6 +12,8 @@ user_questions:
   - How can I use the platform API in a programmatic way?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/use-the-api/management-api/authentication/automation/
 ---
 
 Using the platform API from an automation requires a hands-free way to provide credentials to kubectl or any Kubernetes client. This article explains how to make use of a service account and create a self-contained `kubeconfig` file to use in such a scenario.
