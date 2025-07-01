@@ -21,7 +21,7 @@ owner:
 
 ## Introduction
 
-Cluster upgraded, described in detail in oour cluster upgrade reference, can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
+Cluster upgraded, described in detail in our cluster upgrade reference, can cause disruption on workloads, if the upgrade requires upgrading worker nodes.
 
 We provide two ways of limiting the amount of disruption:
 
