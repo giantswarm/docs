@@ -269,7 +269,7 @@ sum(rate(http_request_duration_seconds_count[5m])) * 100
 )) / 0.001  # 99.9% SLO
 ```
 
-Service level indicator (SLI) metrics form the foundation of reliability engineering, providing objective measures of service quality that align with user experience.
+Service Level Indicator (SLI) metrics form the foundation of reliability engineering, providing objective measures of service quality that align with user experience.
 
 ### Anomaly detection patterns
 
