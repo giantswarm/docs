@@ -6,13 +6,16 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-cluster-upgrades
+aliases:
+  - /platform-overview/cluster-management/cluster-upgrades/
+  - /reference/cluster-upgrades/
+last_review_date: 2025-01-31
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How do cluster upgrades work?
   - How can I prepare my workloads to tolerate a cluster upgrade?
   - How can I limit the disruption caused by cluster upgrades?
-last_review_date: 2025-01-31
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 This guide is focus on explaining the details on how workload cluster upgrades work and how to prepare your workloads to remain operational during a workload cluster upgrade. A workload cluster in a Giant Swarm platform is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm. In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, the platform provides upgrades for the entire software stack in workload clusters.
