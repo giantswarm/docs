@@ -35,6 +35,7 @@ Falco
 firewalling
 freely
 Grafana
+Giant Swarm
 gracefully
 Honeybadger
 HTTP
