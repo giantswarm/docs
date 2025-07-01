@@ -187,7 +187,7 @@ increase(kube_pod_container_status_restarts_total[1h]) > 0
 kube_node_status_condition{condition="Ready", status!="true"} == 1
 ```
 
-**Kubernetes foundation monitoring**: Track the health of cluster control plane components that everything depends on. API server latency affects all kubectl operations, etcd performance impacts cluster state storage, pod restarts indicate application issues, and node readiness ensures workload placement capacity.
+**Kubernetes foundation monitoring**: Track the health of cluster control plane components that everything depends on. API server latency affects all kubectl operations, Etcd performance impacts cluster state storage, pod restarts indicate application issues, and node readiness ensures workload placement capacity.
 
 ### Workload scaling and health
 
