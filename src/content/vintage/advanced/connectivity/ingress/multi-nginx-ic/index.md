@@ -61,7 +61,7 @@ spec:
 
 Not specifying the `ingressClassName` will lead to no Ingress Controller claiming your Ingress. Specifying a value which does not match the class of any existing Ingress Controller will result in all Ingress Controllers ignoring the Ingress.
 
-Additionally, please ensure the IngressClass of each of your Ingress Controllers does not collide with each other and with the [preinstalled Ingress Controllers in legacy clusters]({{< relref "/vintage/platform-overview/cluster-management/releases/index.md#apps" >}}). For the community supported Ingress NGINX Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
+Additionally, please ensure the IngressClass of each of your Ingress Controllers does not collide with each other and with the preinstalled Ingress Controllers in legacy clusters. For the community supported Ingress NGINX Controller this is described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/).
 
 ## Separating public from internal ingress traffic
 

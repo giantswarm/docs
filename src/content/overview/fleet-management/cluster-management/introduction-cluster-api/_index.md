@@ -6,6 +6,8 @@ menu:
   principal:
     parent: overview-fleetmanagement-clustermanagement
     identifier: overview-fleetmanagement-clustermanagement-capi
+aliases:
+  - /platform-overview/cluster-management/cloud-provider-implementations
 last_review_date: 2024-05-02
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs

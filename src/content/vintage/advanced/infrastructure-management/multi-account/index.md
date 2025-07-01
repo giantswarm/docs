@@ -61,8 +61,3 @@ Details of the implementation differ between AWS and Azure.
 - Cloud provider credentials are **immutable**. Once specified on an organization, cloud provider credentials cannot be modified or deleted. In order to switch to new cloud provider credentials you'll have to create a new organization and migrate to new clusters owned by that organization.
 
 - If an organization does not yet have provider credentials configured but already has workload clusters, these clusters are run in the default workload cluster account. Setting credentials for this organization does not affect the workload clusters created already.
-
-## Further reading
-
-- [The Giant Swarm AWS Architecture]({{< relref "/vintage/platform-overview/cluster-management/vintage/aws" >}}) explains the setup of Giant Swarm on AWS, in more detail.
-- [The Giant Swarm Azure Architecture]({{< relref "/vintage/platform-overview/cluster-management/vintage/azure" >}}) explains the setup of Giant Swarm on Azure, in more detail.

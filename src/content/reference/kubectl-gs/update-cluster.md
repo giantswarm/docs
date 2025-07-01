@@ -17,7 +17,7 @@ aliases:
   - /vintage/use-the-api/kubectl-gs/update-cluster/
 ---
 
-This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/vintage/platform-overview/cluster-management/releases" >}}).
+This command's purpose is to modify details of a workload cluster. Currently it allows to upgrade a workload cluster to a newer [release]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/releases" >}}).
 
 ## Usage
 
@@ -43,8 +43,8 @@ To schedule a workload cluster upgrade in the future, the `--scheduled-time` fla
 kubectl-gs update cluster \
   --provider capa \
   --name a1b2c \
-  --namespace org-acme \ 
-  --release-version 29.0.0 
+  --namespace org-acme \
+  --release-version 29.0.0
   --scheduled-time "2024-08-28 12:10"
 ```
 
@@ -86,4 +86,4 @@ kubectl gs update cluster \
 ## Related
 
 - [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}) - Ensure an authenticated kubectl context.
-- [`cluster-upgrades`]({{< relref "/vintage/platform-overview/cluster-management/cluster-upgrades" >}}) - Cluster upgrades.
+- [`cluster-upgrades`]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/cluster-upgrades" >}}) - Cluster upgrades.
