@@ -30,7 +30,7 @@ The concept of [Multi-tenancy]({{<relref "/vintage/platform-overview/multi-tenan
 
 ## Access to the Management API
 
-Access to the Giant Swarm Management API is secured using OIDC. Our [authentication]({{< relref "/vintage/use-the-api/management-api/authentication" >}}) section provides additional information both for admins and end users. Please contact your Account Engineer to sort out the details.
+Access to the Giant Swarm Management API is secured using OIDC. Our [authentication]({{< relref "/tutorials/access-management/authentication" >}}) section provides additional information both for admins and end users. Please contact your Account Engineer to sort out the details.
 
 ## Usage of the Management API
 
