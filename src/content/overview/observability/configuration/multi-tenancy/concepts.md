@@ -175,7 +175,7 @@ Every Giant Swarm installation includes two pre-configured organizations:
 
 Provides immediate access to platform monitoring with curated dashboards and system-wide observability data. All users receive read-only access by default, enabling instant visibility into cluster health and system metrics.
 
-### Giant Swarm Organization
+### Giant Swarm organization
 
 Reserved for Giant Swarm operations team to monitor platform health and provide customer support. This organization is not visible to customers and contains internal operational dashboards.
 
