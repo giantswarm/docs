@@ -55,6 +55,7 @@ kubelet
 kube-vip
 [Kk]ustomization[s]?
 Kyverno
+LogQL
 namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
@@ -65,6 +66,7 @@ onboarding
 passthrough
 perfectly
 Planeteers
+PromQL
 Promtail
 quickly
 randomly
