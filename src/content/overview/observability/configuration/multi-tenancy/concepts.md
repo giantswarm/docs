@@ -29,6 +29,11 @@ This architectural approach provides secure data access controls for authorized 
 
 Multi-tenancy works through three key components:
 
+- Tenants
+- Grafana organizations
+- RBAC groups
+
+
 ### What is a tenant
 
 A **tenant** is a logical namespace that isolates observability data at the storage level in both Mimir (metrics) and Loki (logs). Think of it as a secure container for your data that ensures complete separation from other tenants' information.
