@@ -1,6 +1,6 @@
 ---
 title: Cluster upgrades deep dive
-description: General information about how cluster upgrades work and how to tune them.
+description: How workload cluster release versions work and how they relate to Kubernetes versions and breaking changes. Safety and automation considerations for upgrades.
 weight: 10
 menu:
   principal:
