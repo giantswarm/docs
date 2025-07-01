@@ -44,7 +44,7 @@ _Organizations_ help keeping resources for different entities (e.g. teams) separ
 
 ### Which custom resources are used for what purpose
 
-For the Vintage generation, please follow the guide [creating workload clusters via the Management API]({{< relref "/vintage/use-the-api/management-api/creating-workload-clusters" >}}) explains step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
+For the Vintage generation, please follow the guide "creating workload clusters via the Management API" explaining step by step how you can create a cluster and node pools via the Management API. Here you learn about all the custom resources a cluster comprises.
 
 In the newer CAPI-based cluster management generation, it is even simpler:
 
