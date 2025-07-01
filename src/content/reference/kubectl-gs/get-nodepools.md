@@ -79,7 +79,7 @@ Similar to other `get` subcommands, you can specify the output format of `kubect
 
 To inspect a node pool's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/MachineDeployment/v1beta1) resource printed. On Azure, it would return the [MachinePool]({{< relref "/vintage/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource.
+The following example command would print the main resource for node pool `ab12c`. On AWS that would be the [MachineDeployment](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/MachineDeployment/v1beta1) resource printed. On Azure, it would return the MachinePool resource.
 
 ```nohighlight
 kubectl gs get nodepool ab12c --output yaml

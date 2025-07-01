@@ -46,7 +46,7 @@ This section explains how you can enable the feature for each supported provider
 
 #### Workload cluster releases v12.6.x to v14.x.x
 
-To enable the feature, edit the [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To enable the feature, edit the AWSCluster resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -66,11 +66,11 @@ spec:
   ...
 ```
 
-If you want to disable the feature you must remove the annotation from the [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) custom resource.
+If you want to disable the feature you must remove the annotation from the AWSCluster custom resource.
 
 ### Workload cluster releases v15.x.x and newer
 
-To disable automatic termination of unhealthy nodes, edit the [`AWSCluster`]({{< relref "/vintage/use-the-api/management-api/crd/awsclusters.infrastructure.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To disable automatic termination of unhealthy nodes, edit the AWSCluster resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
 
 Make sure the resource has the annotation
 
@@ -112,23 +112,3 @@ spec:
 ```
 
 If you want to disable the feature you must remove the annotation from the [`Cluster`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) custom resource.
-
-### KVM
-
-To enable it, you have to edit the [`KVMConfig`]({{< relref "/vintage/use-the-api/management-api/crd/kvmconfigs.provider.giantswarm.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
-
-Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
-
-```yaml
-apiVersion: provider.giantswarm.io/v1alpha1
-kind: KVMConfig
-metadata:
-  annotations:
-    alpha.node.giantswarm.io/terminate-unhealthy: "true"
-  name: fn7t8
-  namespace: default
-spec:
-  ...
-```
-
-If you want to disable the feature you must remove the annotation from the [`KVMConfig`]({{< relref "/vintage/use-the-api/management-api/crd/kvmconfigs.provider.giantswarm.io.md" >}}) custom resource.
