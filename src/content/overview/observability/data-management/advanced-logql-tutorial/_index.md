@@ -56,7 +56,7 @@ Query logs from a specific cluster and service:
 
 **Sample Result:**
 
-```
+```text
 100.64.193.223 - - [01/Jul/2025:15:30:06 +0000]  400 "POST /loki/api/v1/push HTTP/1.1" 2459 "-" "Alloy/v1.9.0 (linux; helm)" "3.9.58.214"
 100.64.193.223 - - [01/Jul/2025:15:30:05 +0000]  400 "POST /loki/api/v1/push HTTP/1.1" 2458 "-" "Alloy/v1.9.0 (linux; helm)" "3.9.58.214"
 100.64.192.119 - - [01/Jul/2025:15:30:05 +0000]  400 "POST /loki/api/v1/push HTTP/1.1" 2458 "-" "Alloy/v1.9.0 (linux; helm)" "3.9.58.214"
@@ -76,7 +76,7 @@ Filter logs for specific error patterns across a cluster:
 
 **Sample Results:**
 
-```
+```text
 100.64.106.205 - - [01/Jul/2025:14:38:17 +0000]  499 "GET /loki/api/v1/query_range?direction=backward&end=1751380695823000000&query=xxxxxxxxxx&start=1751380395000000000&step=1000ms HTTP/1.1" 0 "-" "Grafana/12.0.0+security-01" "-"
 100.64.106.205 - - [01/Jul/2025:14:38:15 +0000]  499 "GET /loki/api/v1/query_range?direction=backward&end=1751380692390000000&query=xxxxxxxxxx&start=1751359080000000000&step=60000ms HTTP/1.1" 0 "-" "Grafana/12.0.0+security-01" "-"
 ```
