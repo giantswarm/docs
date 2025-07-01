@@ -3,6 +3,9 @@ linkTitle: Creating an app catalog
 title: Creating an app catalog
 description: How to create a custom app catalog for use with app platform and push helm charts to it.
 weight: 50
+aliases:
+  - /getting-started/app-platform/create-catalog
+  - /vintage/getting-started/app-platform/create-catalog
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform
