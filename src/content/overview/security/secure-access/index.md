@@ -24,7 +24,7 @@ owner:
 
 You've got secure access to your workload clusters by default. To provide you with the best support, our team at Giant Swarm also needs access to these clusters.
 
-We'll walk you through how this access works and the security measures we've put in place to make sure your clusters are managed securely and responsibly.
+This guide walks you through how this access works and the security measures implemented to ensure your clusters are managed securely and responsibly.
 
 ## Intro
 
