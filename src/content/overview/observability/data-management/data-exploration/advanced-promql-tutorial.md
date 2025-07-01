@@ -68,7 +68,7 @@ sum(rate(http_requests_total{service="web-api"}[5m])) * 100
 Every metric includes contextual labels:
 
 - `cluster_id`: Specific cluster identifier
-- `cluster_type`: "management_cluster" or "workload_cluster"
+- `cluster_type`: `management_cluster` or `workload_cluster`
 - `installation`: Your Giant Swarm installation ID
 - `namespace`: Kubernetes namespace
 - `job`: Prometheus scrape job name
