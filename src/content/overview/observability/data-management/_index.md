@@ -1,7 +1,7 @@
 ---
 title: Data Management
 description: Documentation on how data is managed in the Giant Swarm Observability Platform.
-weight: 80
+weight: 40
 menu:
   principal:
     identifier: overview-observability-data-management
