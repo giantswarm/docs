@@ -38,6 +38,7 @@ Grafana
 Giant Swarm
 gracefully
 Honeybadger
+HPA
 HTTP
 [Ii][Aa][Mm]
 impl_title
