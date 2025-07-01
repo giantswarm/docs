@@ -37,8 +37,8 @@ Once you have [access to your management cluster's Grafana]({{< relref "/tutoria
 ![Loki data source](loki-datasource-query.png)
 
 3. Choose how you prefer to build your queries:
-   * `builder` and use the dropdown-menus to build your query
-   * `code` to write your query using [LogQL](https://grafana.com/docs/loki/latest/logql/)
+   - `builder` and use the dropdown-menus to build your query
+   - `code` to write your query using [LogQL](https://grafana.com/docs/loki/latest/logql/)
 
 ## Query examples with results
 
@@ -49,11 +49,13 @@ Here are real LogQL queries executed against a Giant Swarm cluster with their ac
 Query logs from a specific cluster and service:
 
 **Query:**
+
 ```promql
 {cluster_id="myCluster", scrape_job="kubernetes-pods", service_name="nginx"}
 ```
 
 **Sample Result:**
+
 ```
 100.64.193.223 - - [01/Jul/2025:15:30:06 +0000]  400 "POST /loki/api/v1/push HTTP/1.1" 2459 "-" "Alloy/v1.9.0 (linux; helm)" "3.9.58.214"
 100.64.193.223 - - [01/Jul/2025:15:30:05 +0000]  400 "POST /loki/api/v1/push HTTP/1.1" 2458 "-" "Alloy/v1.9.0 (linux; helm)" "3.9.58.214"
@@ -67,11 +69,13 @@ This is also called a **log stream selector**, regex can also be used to match l
 Filter logs for specific error patterns across a cluster:
 
 **Query:**
+
 ```promql
 {cluster_id="myCluster", scrape_job="kubernetes-pods", service_name="nginx"} |~ `(?i)error|failed|warning`
 ```
 
 **Sample Results:**
+
 ```
 100.64.106.205 - - [01/Jul/2025:14:38:17 +0000]  499 "GET /loki/api/v1/query_range?direction=backward&end=1751380695823000000&query=xxxxxxxxxx&start=1751380395000000000&step=1000ms HTTP/1.1" 0 "-" "Grafana/12.0.0+security-01" "-"
 100.64.106.205 - - [01/Jul/2025:14:38:15 +0000]  499 "GET /loki/api/v1/query_range?direction=backward&end=1751380692390000000&query=xxxxxxxxxx&start=1751359080000000000&step=60000ms HTTP/1.1" 0 "-" "Grafana/12.0.0+security-01" "-"
@@ -82,6 +86,7 @@ This query uses a **regex** to match log lines containing "error", "failed", or 
 ### Log volume metrics
 
 **Query:**
+
 ```promql
 sum(count_over_time({cluster_id="myCluster", scrape_job="kubernetes-pods", service_name="nginx"}[1h]))
 ```
@@ -99,6 +104,7 @@ This shows the volume of logs per hour helping identify spikes or drops in log a
 Parse and filter on any pattern structures found in application logs, here Nginx access logs:
 
 **Query:**
+
 ```promql
 {cluster_id="myInstallation", scrape_job="kubernetes-pods", container="nginx"}
 | pattern `<ip> - - [<_>]  <status> "<method> <uri> <_>" <size> <_> "<agent>" <_>`
@@ -106,6 +112,7 @@ Parse and filter on any pattern structures found in application logs, here Nginx
 ```
 
 **Sample Results:**
+
 ```
 100.12.345.67 - - [01/Jul/2025:15:11:16 +0000]  400 "GET /nonexistent HTTP/1.1" 58 "-" "curl/8.14.1" "-"
 100.12.345.67 - - [01/Jul/2025:15:11:14 +0000]  400 "GET /dummy HTTP/1.1" 58 "-" "curl/8.14.1" "-"
@@ -120,6 +127,7 @@ Different **parsers** can be used to extract structured data from logs, such as 
 Extract specific fields and create custom log output formats:
 
 **Query:**
+
 ```promql
 {cluster_id="myCluster", pod=~"observability-operator-.*"}
 | json
@@ -128,6 +136,7 @@ Extract specific fields and create custom log output formats:
 ```
 
 **Sample Results:**
+
 ```
 2025-07-01T14:02:29Z [info] monitoring/myInstallation: alloy-service - ensured alloy is configured
 2025-07-01T14:02:29Z [info] monitoring/myInstallation: alloy-service - current number of shards
@@ -145,6 +154,7 @@ This allows you to **format log lines** for better readability and focus on rele
 Generate metrics to track error rates across services:
 
 **Query:**
+
 ```promql
 sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"}[5m] |~ `(?i)error|exception|failed`)) by (service, namespace)
 /
@@ -159,6 +169,7 @@ sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"}[5m])) by (
 Extract latency metrics from application access logs:
 
 **Query:**
+
 ```promql
 quantile_over_time(0.95,
   {cluster_id="myInstallation", pod=~"kube-apiserver-.+"}
@@ -178,6 +189,7 @@ quantile_over_time(0.95,
 Analyze system logs for resource pressure indicators:
 
 **Query:**
+
 ```promql
 {cluster_id="myCluster", scrape_job="system-logs"}
 | json
@@ -187,6 +199,7 @@ Analyze system logs for resource pressure indicators:
 ```
 
 **Sample Results:**
+
 ```
 ip-10-0-204-71 - kube-state-metr invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=994
 ip-10-0-204-71 - Memory cgroup out of memory: Killed process 105294 (kube-state-metr) total-vm:1159412kB, anon-rss:429324kB, file-rss:27104kB, shmem-rss:0kB, UID:65534 pgtables:996kB oom_score_adj:994
@@ -203,8 +216,10 @@ ip-10-0-204-71 - Memory cgroup out of memory: Killed process 105294 (kube-state-
 ## Next steps
 
 For comprehensive LogQL syntax and additional functions, refer to:
+
 - [Log queries](https://grafana.com/docs/loki/next/query/log_queries/)
 - [LogQL: Log query language](https://grafana.com/docs/loki/latest/query/)
 
 To enhance your observability skills further, explore:
+
 - [Dashboard creation guide]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/" >}}) for visualizing your log queries
