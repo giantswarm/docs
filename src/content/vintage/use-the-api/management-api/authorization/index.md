@@ -19,7 +19,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bigmac
 ---
 
-Once your users are [authenticated]({{< relref "/vintage/use-the-api/management-api/authentication" >}}) for the Management API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.
+Once your users are [authenticated]({{< relref "/tutorials/access-management/authentication" >}}) for the Management API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.
 
 Some remarks before we dive in:
 

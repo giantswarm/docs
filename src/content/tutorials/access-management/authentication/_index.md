@@ -12,4 +12,6 @@ user_questions:
   - How does authentication for the platform API work?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/use-the-api/management-api/authentication/
 ---
