@@ -25,7 +25,7 @@ Dex acts as a portal to other identity providers (idP) through connectors. The s
 
 ### Authorization: Platform API
 
-We utilize Kubernetes-native RBAC to control access to resources in the platform API. Resources are segregated into organizations. Each organization has a dedicated namespace for improved access control. This approach enables fine-grained permissions at both organization and namespace levels. For more detailed information on this topic, you can refer to our comprehensive [multi-tenancy documentation]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
+We use Kubernetes-native RBAC to control access to resources in the platform API. Resources are segregated into organizations. Each organization has a dedicated namespace for improved access control. This approach enables fine-grained permissions at both organization and namespace levels. For more detailed information on this topic, you can refer to our comprehensive [multi-tenancy documentation]({{< relref "/overview/fleet-management/multi-tenancy" >}}).
 
 ### Observability
 
