@@ -82,6 +82,8 @@ SemVer
 separately
 Sigstore
 SLA[s]?
+SLI[s]?
+SLO[s]?
 Spotify
 SRE[s]?
 SSL
