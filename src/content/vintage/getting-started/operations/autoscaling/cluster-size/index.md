@@ -89,5 +89,5 @@ In workload clusters without autoscaling support, the number of Ingress Controll
 ## See also
 
 - [Cluster Autoscaler advanced configuration]({{< relref "/vintage/advanced/cluster-management/cluster-autoscaler" >}})
-- [Recommendations and Best Practices regarding cluster size]({{< relref "/vintage/getting-started/sizing-multi-tenancy#cluster-sizing" >}})
+- Recommendations and Best Practices regarding cluster size
 - [Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)
