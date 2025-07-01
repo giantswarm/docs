@@ -23,7 +23,7 @@ owner:
 
 ## Details of an ID token {#id-token-details}
 
-Regardless of which login method is used, once this is done, the user's client (web UI, kubectl etc.) will send an ID token with every request to the Management API. The ID token contains information about the user which can then be used in [authorization]({{< relref "/vintage/use-the-api/management-api/authorization/index.md" >}}) to decide which permissions the user should be granted.
+Regardless of which login method is used, once this is done, the user's client (web UI, kubectl etc.) will send an ID token with every request to the Management API. The ID token contains information about the user which can then be used in [authorization]({{< relref "/tutorials/access-management/authorization" >}}) to decide which permissions the user should be granted.
 
 The ID token is a [JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519) (JWT). The payload part of an ID token issued for the Management API can look like in the following example. Note that we omit some parts that are not relevant for the purpose of this article.
 
@@ -77,4 +77,4 @@ Giant Swarm assists all customers with setting up single sign-on (SSO) for the M
 ## Further reading
 
 - [Authentication for programmatic access]({{< relref "/vintage/use-the-api/management-api/authentication/automation" >}}) explains how to authenticate in an automation context
-- [Authorization in the Management API]({{< relref "/vintage/use-the-api/management-api/authorization" >}}) explains how to assign permissions to authenticated users
+- [Authorization in the Management API]({{< relref "/tutorials/access-management/authorization" >}}) explains how to assign permissions to authenticated users

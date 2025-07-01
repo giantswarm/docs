@@ -77,4 +77,4 @@ In the future, we expect the list of use case definitions to evolve, based on ou
 
 ## Further reading
 
-- [Authorization for the Management API]({{< relref "/vintage/use-the-api/management-api/authorization" >}}) explains how permissions are granted to Management API users and service accounts.
+- [Authorization for the Management API]({{< relref "/tutorials/access-management/authorization" >}}) explains how permissions are granted to Management API users and service accounts.
