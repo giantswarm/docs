@@ -72,4 +72,4 @@ Our Web UI provides a simple single sign-on mechanism that will send each user t
 
 - [Authentication for programmatic access]({{< relref "/vintage/use-the-api/management-api/authentication/automation" >}}) explains how to authenticate in an automation context
 - [Technical details]({{< relref "/vintage/use-the-api/management-api/authentication/additional-details" >}}) on authentication and single sign-on (SSO) for the Management API
-- [Authorization in the Management API]({{< relref "/vintage/use-the-api/management-api/authorization" >}}) explains how to assign permissions to authenticated users
+- [Authorization in the Management API]({{< relref "/tutorials/access-management/authorization" >}}) explains how to assign permissions to authenticated users

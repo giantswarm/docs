@@ -152,4 +152,4 @@ kubectl --kubeconfig ./<cluster-id>.yaml get nodes
 
 - [Management API access for automation]({{< relref "/vintage/use-the-api/management-api/authentication/automation" >}}) explains how to authenticate in the Management API as an automation tool
 - [Authentication as a user]({{< relref "/vintage/use-the-api/management-api/authentication/user" >}}) explains how to authenticate in the Management API as an interactive user
-- [Authorization in the Management API]({{< relref "/vintage/use-the-api/management-api/authorization" >}}) explains how to assign permissions in the Management API to authenticated users
+- [Authorization in the Management API]({{< relref "/tutorials/access-management/authorization" >}}) explains how to assign permissions in the Management API to authenticated users

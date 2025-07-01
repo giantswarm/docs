@@ -164,4 +164,4 @@ kubectl --kubeconfig kubeconfig_$INSTALLATION.yaml config use-context gs-$INSTAL
 ## Further reading
 
 - [Authentication as a user]({{< relref "/vintage/use-the-api/management-api/authentication/user" >}}) explains how to authenticate as an interactive user
-- [Authorization in the Management API]({{< relref "/vintage/use-the-api/management-api/authorization" >}}) explains how to assign permissions to authenticated users
+- [Authorization in the Management API]({{< relref "/tutorials/access-management/authorization" >}}) explains how to assign permissions to authenticated users
