@@ -206,7 +206,7 @@ kube_horizontalpodautoscaler_spec_max_replicas * 100
 kubelet_volume_stats_capacity_bytes * 100
 ```
 
-**Application scaling insights**: Monitor how well your applications adapt to demand and maintain availability. Replica availability shows deployment health, HPA metrics reveal auto-scaling behavior and capacity limits, while persistent volume usage prevents storage-related outages.
+**Application scaling insights**: Monitor how well your applications adapt to demand and maintain availability. Replica availability shows deployment health, HPA metrics reveal autoscaling behavior and capacity limits, while persistent volume usage prevents storage-related outages.
 
 ## Advanced aggregation patterns
 
