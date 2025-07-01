@@ -2,6 +2,9 @@
 title: Access to the platform API
 description: How engineers can access the platform API to provision new workload clusters or deploy applications.
 weight: 20
+aliases:
+  - /getting-started/management-cluster
+  - /vintage/getting-started/management-cluster/
 last_review_date: 2024-07-17
 menu:
   principal:

@@ -13,6 +13,8 @@ user_questions:
   - How can I authenticate to the platform API without kubectl-gs?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/use-the-api/management-api/authentication/user/
 ---
 
 As a user of the platform API for any given installation, you need:
