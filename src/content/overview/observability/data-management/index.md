@@ -1,6 +1,5 @@
 ---
 title: Data Management
-linkTitle: Data Management
 description: Documentation on how data is managed in the Giant Swarm Observability Platform.
 weight: 80
 menu:

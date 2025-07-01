@@ -66,7 +66,7 @@ The following LogQL query can be used in `Grafana > Explore` UI to show all logs
 {namespace="example-namespace", pod=~"nginx-deployment.+"}
 ```
 
-Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
+Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/overview/observability/data-management/advanced-logql-tutorial" >}}).
 
 ### Using PodLogs
 
@@ -117,7 +117,7 @@ The following LogQL query can be used in `Grafana > Explore` UI to show all logs
 {job="example-namespace/example-podlog"}
 ```
 
-Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
+Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/overview/observability/data-management/advanced-logql-tutorial" >}}).
 
 ### Technical considerations
 
