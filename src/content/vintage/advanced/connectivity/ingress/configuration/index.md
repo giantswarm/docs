@@ -352,7 +352,7 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The Ingress NGINX Controller creates an NGINX configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any Ingress manifest. These snippets will be added to the NGINX configuration.
 
-The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}).
+The _configuration snippets_ through Ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you'll need to set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}).
 
 Warning: We recommend enabling this option only if you TRUST users with permission to create Ingress objects, as this may allow a user to add restricted configurations to the final `nginx.conf` file.
 
@@ -391,7 +391,7 @@ Your Giant Swarm installation comes with a default configuration for the Ingress
 
 You can override these defaults by setting your per cluster configuration in the form of a ConfigMap named `ingress-nginx-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) contains more information how to set user defined configuration for the Ingress NGINX Controller.
+The page [App configuration reference]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) contains more information how to set user defined configuration for the Ingress NGINX Controller.
 
 ### Where is the user values ConfigMap
 
