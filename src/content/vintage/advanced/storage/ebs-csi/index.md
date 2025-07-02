@@ -27,7 +27,7 @@ The aws-ebs-csi-driver-app, offered via our [App Platform]({{< relref "/vintage/
 
 To install the EBS CSI driver you will need to follow these steps:
 
-1. Access the [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}) and select the cluster on which you want to install the EBS CSI driver.
+1. Access the web interface and select the cluster on which you want to install the EBS CSI driver.
 2. Open the Apps tab.
 3. Click the Install App button
 4. Select the Giant Swarm Playground catalog.

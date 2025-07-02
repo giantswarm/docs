@@ -43,7 +43,7 @@ We leverage Kubernetes and its extension capabilities to expose the main functio
 
 Beyond the Management API, we recommend a [GitOps](https://www.giantswarm.io/blog/what-is-gitops)-based approach to ensure customers use solid principles for managing their workloads. Virtually all features of our platform can be described, configured, and stored in your repositories, maintaining a unified, declarative source of truth.
 
-Along with GitOps we have a [Web Interface]({{< relref "/vintage/platform-overview/web-interface" >}}), that helps Platform Engineering teams by visualizing infrastructure, apps, and permissions across the entire platform in a single UI.
+Along with GitOps we have a Web Interface, that helps Platform Engineering teams by visualizing infrastructure, apps, and permissions across the entire platform in a single UI.
 
 In addition, we offer a set of [templates](https://github.com/giantswarm/gitops-template) to start with the platform and a [documentation hub]({{< relref "/vintage/getting-started" >}}) including a step-by-step guide to completing a Dev Platform Journey.
 

@@ -221,7 +221,7 @@ looking like the desired state. More information is available in our [general ov
 |||`.spec.userConfig.secret.name`|
 |||`.spec.userConfig.secret.namespace`|
 
-When setting user level configuration using the Giant Swarm management API or our [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}),
+When setting user level configuration using the Giant Swarm management API or our web interface,
 the fields in the App CR are edited automatically for you while creating the `ConfigMap` or `Secret`.
 
 ## Extra configuration layers {#extra-configs}
@@ -374,11 +374,9 @@ There are three ways to provide configuration values:
 
 ### Through the web interface
 
-Our [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}) allows you to upload configuration and secret values for the
+Our web interface allows you to upload configuration and secret values for the
 user configuration level. You can do this by uploading a YAML file consisting
 of just the keys and values you would like to set.
-
-For a general explanation on the web interface functionality related to Apps, check [our overview]({{< relref "/vintage/platform-overview/web-interface/app-platform" >}}).
 
 The web interface talks to the Giant Swarm management API and will do the right
 calls to create a ConfigMap or Secret and will wire it up correctly in the App CR
