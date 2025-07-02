@@ -16,7 +16,7 @@ user_questions:
   - How can I see which apps are available using the Management API?
 ---
 
-The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the [Management API]({{< relref "/vintage/platform-overview/management-api" >}}).
+The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by App Custom Resources (CRs) for multiple clusters, from a single place: the Management API.
 
 In this guide, we will install the Ingress NGINX Controller app. We will do this by using kubectl, to create
 an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR using the Kubernetes API of your management cluster.

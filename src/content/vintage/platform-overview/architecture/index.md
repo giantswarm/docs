@@ -39,7 +39,7 @@ Starting from this premise we have built a solution that consists of various dis
 
 There are several entrypoints to the platform via our largely Kubernetes-based interfaces.
 
-We leverage Kubernetes and its extension capabilities to expose the main functionality. The [Management API]({{< relref "/vintage/platform-overview/management-api" >}}) is just a Kubernetes API enriched to enable to serve complete golden paths for developers.
+We leverage Kubernetes and its extension capabilities to expose the main functionality. The Management API is just a Kubernetes API enriched to enable to serve complete golden paths for developers.
 
 Beyond the Management API, we recommend a [GitOps](https://www.giantswarm.io/blog/what-is-gitops)-based approach to ensure customers use solid principles for managing their workloads. Virtually all features of our platform can be described, configured, and stored in your repositories, maintaining a unified, declarative source of truth.
 
@@ -172,6 +172,5 @@ To support customers in their use of Flux and the CI/CD features available to th
 
 ## Further Reading
 
-- [Giant Swarm Management API]({{< relref "/vintage/platform-overview/management-api" >}})
 - [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})
