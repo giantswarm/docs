@@ -9,6 +9,8 @@ menu:
 last_review_date: 2024-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
+aliases:
+  - /vintage/platform-overview/multi-tenancy
 ---
 
 In Giant Swarm, the concept of organization empowers you to enable multi-tenancy. Organizations serve as a flexible means of organizing resources like clusters and apps, ensuring isolation between different entities. You have the freedom to use organizations to separate resources for various projects, business units, teams, etc., all within the same Giant Swarm management cluster.
