@@ -25,7 +25,7 @@ user_questions:
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm App Platform.
 We extend Helm and an app catalog is also a Helm [chart repository](https://helm.sh/docs/topics/chart_repository/).
-Each app catalog has its own [`Catalog`]({{< relref "/vintage/use-the-api/management-api/crd/catalogs.application.giantswarm.io.md" >}})
+Each app catalog has its own [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}})
 CR in the management cluster.
 
 The app catalog is a Git repository that contains
@@ -50,7 +50,7 @@ installed once in a cluster. You can learn more about the tool by reading its
 [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
 
 These metadata files and the Helm `index.yaml` are used to generate app metadata
-that is stored in the management cluster in [App Catalog Entry]({{< relref "/vintage/use-the-api/management-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
+that is stored in the management cluster in [App Catalog Entry]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs.
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories)
