@@ -18,8 +18,10 @@ repositories:
     category: Observability
   giantswarm/aws-admission-controller:
     category: Fleet Management
+    delete: true
   giantswarm/azure-admission-controller:
     category: Fleet Management
+    delete: true
   giantswarm/athena:
     category: Security
   giantswarm/auth-bundle:
@@ -111,6 +113,7 @@ repositories:
     category: Observability
   giantswarm/management-cluster-admission:
     category: Platform API
+    delete: true
   giantswarm/mimir-app:
     category: Observability
   giantswarm/observability-bundle:
