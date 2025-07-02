@@ -208,7 +208,7 @@ kubectl create -f management-clusters/MC_NAME/MC_NAME.yaml
 
 ### Managing organizations
 
-The highest level Giant Swarm custom resource you can create is an [Organization]({{< relref "/vintage/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}).
+The highest level Giant Swarm custom resource you can create is an [Organization]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}}).
 
 In order to create the files in the repository, run the command (in the root of the repo):
 
