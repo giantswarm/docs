@@ -17,7 +17,7 @@ Every Giant Swarm Kubernetes cluster uses [Cilium](https://cilium.io) as a conta
 
 ## Configuration
 
-Since the CNI is an important component when bootstrapping a cluster, Cilium is installed ahead of the [Giant Swarm App Platform]({{< relref "/vintage/platform-overview/app-platform" >}}).
+Since the CNI is an important component when bootstrapping a cluster, Cilium is installed ahead of the [Giant Swarm App Platform]({{< relref "/overview/fleet-management/app-management" >}}).
 
 To ensure smooth operation, some deviations from the default configuration of Cilium are taken. Among these are:
 
