@@ -360,7 +360,7 @@ if __name__ == "__main__":
                         print("WARNING: %s version %s entry in CHANGELOG.md is empty" % (repo_short, v))
 
         for release in releases:
-            delete = False
+            delete = repo_conf.get('delete', False)
             if repo_conf.get('skip_if_body_is_one_of', ()) and release['body'].strip() in repo_conf['skip_if_body_is_one_of']:
                 delete = True
 
