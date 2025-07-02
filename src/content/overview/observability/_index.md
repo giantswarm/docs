@@ -47,4 +47,3 @@ Here are the most important tools we rely on:
 ---
 
 Ready to get started? Check out our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}) to begin your journey.
-
