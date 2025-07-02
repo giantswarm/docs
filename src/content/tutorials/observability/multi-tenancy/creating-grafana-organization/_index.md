@@ -1,27 +1,47 @@
 ---
 linkTitle: Creating a Grafana organization
 title: Creating a Grafana organization
-description: Guide explaining how to manage Grafana organizations in the Observability Platform.
+description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
     identifier: tutorials-observability-multitenancy-create-grafana-organization
     parent: tutorials-observability-multitenancy
 weight: 40
-last_review_date: 2025-03-05
+last_review_date: 2025-06-11
 user_questions:
-  - How to create a grafana organization?
-  - How to access multi-tenant observability data?
+  - How to create a Grafana organization?
+  - How to configure RBAC for Grafana organizations?
+  - How to assign tenants to organizations?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-At the initial log in to [your installation's `Grafana`]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) the preselected `Grafana` organization is the so called `_Shared Org_`. This shared organization contains a curated set of managed dashboards that are accessible to everyone with access to `Grafana`. If multiple teams access the observability platform we recommend to work with multi-tenancy and the resulting isolation of data and dashboards. For this use case the observability platform allows you to create new organizations in self-service.
+This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}}) in your observability platform.
 
-## Creating your own organization
+## Prerequisites
 
-To add a new `Grafana` organization, create a [`GrafanaOrganization`](https://raw.githubusercontent.com/giantswarm/observability-operator/refs/heads/main/config/crd/observability.giantswarm.io_grafanaorganizations.yaml) custom resource in the management cluster.
+Before creating your organization, make sure you have:
 
-For example:
+- [Access to the management cluster]({{< relref "/tutorials/access-management" >}}), where you can create custom resources
+- Identified the [tenant names]({{< relref "/tutorials/observability/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
+- Configured groups for RBAC in your identity provider
+
+## Understanding default organizations
+
+Before creating your own organizations, it's helpful to know about the two that already exist:
+
+- **Shared Org**: Your starting point with system dashboards and platform metrics (uses `giantswarm` tenant)
+- **Giant Swarm**: Internal organization for platform operations (Giant Swarm staff only)
+
+Your organizations will appear alongside the `Shared Org` in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/tutorials/observability/multi-tenancy#default-organizations" >}}).
+
+## Creating a Grafana organization
+
+Create a [`GrafanaOrganization`]({{< relref "/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}) custom resource in the management cluster:
+
+### Basic example
+
+This example shows a simple organization for a single application with role-based access for different teams:
 
 ```yaml
 apiVersion: observability.giantswarm.io/v1alpha1
@@ -32,20 +52,132 @@ spec:
   displayName: MyOnlineShop
   rbac:
     admins:
-    - platform-team
+    - customer:platform-admin
+    - customer:ops-team
     editors:
-    - development-team
+    - customer:development-team
+    - customer:devops-team
     viewers:
-    - marketing-team
+    - customer:marketing-team
+    - customer:business-analysts
   tenants:
   - myonlineshop
 ```
 
-Our operators will create this `Grafana` organization named _Giant Swarm_. It will be equipped with a basic set of data sources for Loki, Mimir and Alertmanager, allowing you access to the `myonlineshop` tenant.
+### Configuration options
 
-The Role Base Access Control (RBAC) section defines how to assign groups from your configured identity provider to `Grafana` [available roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles) (`Admin`, `Editor`, `Viewer`). For organization mapping, you can read the official Grafana [documentation](https://grafana.com/docs/grafana/next/setup-grafana/configure-security/configure-authentication/generic-oauth/#configure-role-mapping).
-Note that only the `admins` field is mandatory in this section.
+| Field | Description | Required |
+|-------|-------------|----------|
+| `metadata.name` | Kubernetes resource name (follows DNS naming rules) | Yes |
+| `spec.displayName` | Human-readable name shown in Grafana UI | Yes |
+| `spec.rbac.admins` | Groups with full organization access | Yes |
+| `spec.rbac.editors` | Groups that can create/edit dashboards and alerts | No |
+| `spec.rbac.viewers` | Groups with read-only access | No |
+| `spec.tenants` | List of tenant names this organization can access | Yes |
 
-The tenant field is used to grant access to the specified tenants, but also serves as tenant governance. This means that only tenants listed in **at least one** Grafana Organisation CRD are accepted targets in the write path and can receive data. Data sent to a tenant that is not listed in any Grafana Organisation CRDs tenant field will just be dropped.
+### Advanced examples
 
-**Warning:** Removing a tenant from **all** Grafana Organisation CRDs tenant fields also means, that you can no longer send data to that tenant!
+**Multi-environment organization:**
+
+This example demonstrates an organization that manages multiple environments with hierarchical access control:
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha1
+kind: GrafanaOrganization
+metadata:
+  name: engineering-team
+spec:
+  displayName: Engineering Team
+  rbac:
+    admins:
+    - customer:engineering-leads
+    editors:
+    - customer:senior-engineers
+    - customer:devops-team
+    viewers:
+    - customer:junior-engineers
+    - customer:qa-team
+  tenants:
+  - prod-frontend
+  - prod-backend
+  - staging-frontend
+  - staging-backend
+```
+
+**Production-only organization:**
+
+This example shows a restricted organization with access only to production data:
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha1
+kind: GrafanaOrganization
+metadata:
+  name: production-monitoring
+spec:
+  displayName: Production Monitoring
+  rbac:
+    admins:
+    - customer:sre-team
+    - customer:platform-admin
+    viewers:
+    - customer:engineering-team
+    - customer:support-team
+  tenants:
+  - production
+```
+
+## RBAC configuration
+
+The RBAC section maps identity provider groups to [Grafana organization roles](https://grafana.com/docs/grafana/latest/administration/roles-and-permissions/#organization-roles):
+
+| Role | Permissions |
+|------|-------------|
+| **Admin** | Full organization access: manage users, datasources, dashboards, and settings |
+| **Editor** | Create and edit dashboards, alerts, and folders (cannot manage users) |
+| **Viewer** | Read-only access to dashboards and data |
+
+### Group format
+
+Most Giant Swarm installations use Dex as the identity provider. Specify groups using the format `{dex-connector-id}:{group-name}`:
+
+```yaml
+rbac:
+  admins:
+  - customer:platform-admin        # Maps 'platform-admin' group from 'customer' connector
+  - customer:ops-team
+  editors:
+  - customer:development-team
+  viewers:
+  - customer:support-team
+```
+
+**Finding your connector ID:** Check your cluster's Dex configuration for the connector ID (usually `customer`).
+
+**Required fields:** `admins` is mandatory; `editors` and `viewers` are optional.
+
+## What happens when you create an organization
+
+Creating a `GrafanaOrganization` resource automatically provisions:
+
+1. **New Grafana organization** with your specified display name
+2. **Tenant-scoped datasources** for Loki, Mimir, and Alertmanager
+3. **User role assignments** based on your RBAC configuration
+4. **Data collection** of alerts, metrics and logs
+
+## Verification steps
+
+After creating your organization:
+
+1. **Check organization status:**
+
+```bash
+kubectl get grafanaorganization myonlineshop -o yaml
+2. [**Log in to Grafana**]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and verify:
+
+
+- The organization dropdown menu on the top-left corner shows all expected organizations
+
+![Switching organization](./organization_switching.png)
+
+- You can [explore and query data]({{< relref "/tutorials/observability/data-exploration" >}}) for each of your tenants
+- Logged-in users have appropriate role assignments under the `Administration / Users and access / Users` section

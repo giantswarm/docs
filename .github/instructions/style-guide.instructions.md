@@ -138,3 +138,4 @@ Technical Writing One covered the following basic lessons of technical writing:
     Determine what your audience needs to learn.
     Fit documentation to your audience.
     Establish your document's key points at the start of the document.
+

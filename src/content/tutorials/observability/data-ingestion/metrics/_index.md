@@ -40,7 +40,7 @@ You can check the resource usage related to your ServiceMonitor and PodMonitor i
 
 Here is an example showing how to create a [ServiceMonitor](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml).
 
-This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to the `my-tenant` tenant in Mimir. The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
+This one targets a service named `my-service` in the `monitoring` namespace, and will route alerts to the `mytenant` tenant in Mimir. The manifests should be similar with any workload as long as you have a service that exposes the app's metrics.
 
 The bare minimum for a ServiceMonitor looks like this:
 
@@ -51,7 +51,7 @@ metadata:
   labels:
     ## This label is important as it is required for the metrics agent to discover it.
     ## The tenant name should be the name of your internal team.
-    observability.giantswarm.io/tenant: my-tenant
+    observability.giantswarm.io/tenant: my_tenant
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: monitoring

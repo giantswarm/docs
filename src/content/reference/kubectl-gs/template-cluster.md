@@ -30,16 +30,6 @@ For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
 - `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which default apps chart is used, depending on the cloud provider.
 
 {{< /tab >}}
-{{< tab id="flags-aws" for-impl="vintage_aws">}}
-
-For {{% impl_title "vintage_aws" %}} (`--provider aws`):
-
-- [`Cluster`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- `AWSCluster` (`awsclusters.infrastructure.giantswarm.io` API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
-- [`G8sControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
-- [`AWSControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
-
-{{< /tab >}}
 {{< /tabs >}}
 
 ## General CLI flags
@@ -188,25 +178,6 @@ It supports the following flags:
 ## Examples
 
 {{< tabs >}}
-{{< tab id="command-examples-aws" for-impl="vintage_aws">}}
-
-Example command for an AWS cluster:
-
-```nohighlight
-kubectl gs template cluster \
-  --provider aws \
-  --control-plane-az eu-central-1a \
-  --external-snat true \
-  --description "Cluster #2" \
-  --pods-cidr 10.2.0.0/16 \
-  --organization acme \
-  --release 17.0.0 \
-  --label environment=testing \
-  --label team=upstate \
-  --service-priority lowest
-```
-
-{{< /tab >}}
 {{< tab id="command-examples-aws-capi" for-impl="capa_ec2">}}
 
 Example command for an AWS CAPI cluster:

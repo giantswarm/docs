@@ -84,4 +84,4 @@ directly unless they too bear the label.
 
 If the [list of targeted resources](https://github.com/giantswarm/kyverno-policies-ux/blob/main/helm/kyverno-policies-ux/values.yaml)
 does not cover all resources that you want to protect, it is possible to configure them through the user config values of the `kyverno-policies-ux` app.
-[Here]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}) you can learn more about how to configure an app.
+[Here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) you can learn more about how to configure an app.

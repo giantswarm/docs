@@ -1,43 +1,52 @@
 ---
-linkTitle: Configuring alerting
-title: How to configure alerting
-description: Guide explaining how to configure alerting in the Observability Platform.
+linkTitle: Configure alerting
+title: Configure alerting
+description: Learn how to configure alerting in the Observability Platform.
 menu:
   principal:
     identifier: tutorials-observability-alerting-configuration
     parent: tutorials-observability-alerting
 weight: 40
-last_review_date: 2025-04-24
+last_review_date: 2025-06-03
 user_questions:
-  - How to configure Alertmanager?
-  - How to visualize the existing alerting configuration?
+  - How do I configure Alertmanager?
+  - How do I visualize the existing alerting configuration?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can configure per tenant. This tutorial will guide you through this process.
+The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relref "/overview/observability/alerting/" >}}) that you can configure per tenant. This tutorial explains how to configure alerting for your tenant.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Access to your management cluster
+- A tenant defined in a [Grafana Organization]({{< relref "/tutorials/observability/multi-tenancy/" >}})
 
 ## Configure Alertmanager
 
-The Observability Platform uses Mimir Alertmanager as the central tool to provide its alerting capabilities.
+The Observability Platform uses Mimir Alertmanager for alerting capabilities.
 
-Once you have [listed a tenant in a Grafana Organisation]({{< relref "/tutorials/observability/multi-tenancy/" >}}, you can easily create an Alertmanager configuration for that tenant by creating the following secret on your management cluster.
+To configure Alertmanager for your tenant, create a secret on your management cluster with the required labels and configuration data.
 
-Here is an example of the `my-alertmanager-config`-configuration for the `my-team`-tenant
+### Example configuration
+
+The following example shows an Alertmanager configuration for the `myteam` tenant:
 
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
   labels:
-    # This marks this secret as an Alertmanager configuration
+    # This label marks this secret as an Alertmanager configuration
     observability.giantswarm.io/kind: alertmanager-config
-    # This is where the tenant label must be configured
-    observability.giantswarm.io/tenant: my-team
+    # This label specifies the tenant for this configuration
+    observability.giantswarm.io/tenant: my_team
   name: my-alertmanager-config
   namespace: default
-data:
-  # This is mandatory and contains the actual Alertmanager configuration.
+stringData:
+  # This field is mandatory and contains the Alertmanager configuration
   alertmanager.yaml: |
     route:
       receiver: "example_receiver"
@@ -46,7 +55,8 @@ data:
       - name: "example_receiver"
     templates:
       - example_template.tmpl
-  # The secret can also contain any number of [reusable template files](https://prometheus.io/docs/alerting/latest/notification_examples/#defining-reusable-templates) that must be in the form `filename.tmpl`. Any other entry will be ignored.
+  # Optional: Include reusable template files with .tmpl extension
+  # See: https://prometheus.io/docs/alerting/latest/notification_examples/#defining-reusable-templates
   example_template.tmpl: |
     {{ define "alert_customer_env_message" }}
     [{{ .CommonLabels.alertname }} | {{ .CommonLabels.customer }} | {{ .CommonLabels.environment }}]
@@ -54,6 +64,20 @@ data:
 type: Opaque
 ```
 
-When configuring Alertmanager for your tenant, please ensure that the defined configuration under `alertmanager.yaml` is valid or it will be rejected by a validating webhook. To that end, we advise you to use [`mimirtool`](https://grafana.com/docs/mimir/latest/manage/tools/mimirtool/#validate-alertmanager-configuration), the Mimir CLI too in your CI pipeline.
+### Configuration validation
 
-**Warning:** As our multi-tenancy aligns tenants across our platform on Grafana Organizations please make sure that the `observability.giantswarm.io/tenant` label references an existing tenant defined in a Grafana Organization. Any Alertmanager configuration that references an non-existing tenant will be rejected by a validating webhook. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+Validate your Alertmanager configuration before applying it. A validating webhook rejects invalid configurations.
+
+**Recommendation**: Use [`mimirtool`](https://grafana.com/docs/mimir/latest/manage/tools/mimirtool/#validate-alertmanager-configuration) in your CI pipeline to validate configurations before deployment.
+
+### Important considerations
+
+- **Tenant validation**: The `observability.giantswarm.io/tenant` label must reference a tenant defined in an existing Grafana Organization
+- **Template files**: The platform processes only files with the `.tmpl` extension as templates
+- **Webhook validation**: The platform automatically rejects invalid configurations or non-existent tenants
+
+### Configuration limitations
+
+The Observability Platform uses [Mimir Alertmanager](https://grafana.com/docs/mimir/latest/references/architecture/components/alertmanager/), which may not support all the latest Alertmanager features available in the upstream Prometheus Alertmanager. Some configuration options might not work as expected or may not be available.
+
+While the validating webhook ensures basic configuration correctness, we recommend testing your Alertmanager configuration in a non-production environment first. The webhook validates syntax and structure but cannot guarantee that all configuration options work as expected with Mimir Alertmanager.

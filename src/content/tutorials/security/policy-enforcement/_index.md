@@ -19,6 +19,7 @@ user_questions:
  -  Why is my container lacking permission to use a persistent volume?
 last_review_date: 2024-11-29
 mermaid: true
+layout: single
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---

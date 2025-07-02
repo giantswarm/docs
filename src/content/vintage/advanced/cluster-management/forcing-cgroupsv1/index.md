@@ -27,7 +27,7 @@ To ensure a smooth transition, in case you need time to modify applications to m
 
 ### AWS
 
-To enable cgroups v1, you have to edit the [`MachineDeployment`]({{< relref "/vintage/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the [`MachineDeployment`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/MachineDeployment/v1beta1) resource of your cluster using the Management API.
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -60,11 +60,11 @@ In order to apply the changes, rolling of the nodes in the modified node pool is
 
 We recommend to set the proper annotation on the node pool before upgrading to release `v17.0.0` or later.
 
-If you want to disable the feature you must remove the annotation from the [`MachineDeployment`]({{< relref "/vintage/use-the-api/management-api/crd/machinedeployments.cluster.x-k8s.io.md" >}}) resource.
+If you want to disable the feature you must remove the annotation from the [`MachineDeployment`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/MachineDeployment/v1beta1) resource.
 
 ### Azure
 
-To enable cgroups v1, you have to edit the [`MachinePool`]({{< relref "/vintage/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the MachinePool resource of your cluster using the Management API.
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -99,4 +99,4 @@ In order to apply the changes, rolling of the nodes in the modified node pool is
 
 We recommend to set the proper annotation on the node pool before updating to the release `17.0.0` or later.
 
-If you want to disable the feature you must remove the annotation from the [`MachinePool`]({{< relref "/vintage/use-the-api/management-api/crd/machinepools.exp.cluster.x-k8s.io.md" >}}) custom resource.
+If you want to disable the feature you must remove the annotation from the MachinePool custom resource.

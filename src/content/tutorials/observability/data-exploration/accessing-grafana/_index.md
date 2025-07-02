@@ -1,58 +1,83 @@
 ---
 linkTitle: Accessing Grafana
-title: How to access Grafana dashboards
-description: Guide explaining how to get access to the data collected and stored by the Observability Platform.
+title: How to explore data in Grafana
 menu:
   principal:
     identifier: tutorials-observability-data-exploration-accessing-grafana
     parent: tutorials-observability-data-exploration
 weight: 40
 last_review_date: 2024-12-12
+description: Learn how to access your Grafana instance, authenticate securely, and use the Explore and Drilldown features to query and analyze metrics and logs in the Giant Swarm Observability Platform.
 user_questions:
-  - How to access Grafana?
-  - How to access metrics from my clusters?
-  - How to access logs from my clusters?
-  - Where to find cluster metrics?
-  - Where to find cluster logs?
-  - Which dashboards exists?
-  - Which metrics are gathered from my clusters?
-  - Which logs are gathered from my clusters?
+  - How do I log in to Grafana?
+  - How do I explore metrics and logs?
+  - What is the Drilldown app in Grafana?
+  - How do I run queries in Explore?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics, and [Grafana Loki](https://grafana.com/oss/loki/) for logs, collecting data from the system and apps managed by Giant Swarm, as well as any source of data you configure according to [the data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}).
+This guide shows you how to use the Explore and Drilldown features in Grafana to query and analyze the metrics and logs collected by the Giant Swarm Observability Platform. It also explains how to authenticate and access your Grafana instance securely.
 
-These metrics and logs are available to be explored in your [Grafana](https://grafana.com/) instance on the installation.
+Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics and [Grafana Loki](https://grafana.com/oss/loki/) for logs. The platform collects data from the system and apps managed by Giant Swarm, as well as any source of data you configure according to [the data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}).
 
-![Home dashboard](home-dashboard.png)
+You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and Drilldown features in your [Grafana](https://grafana.com/) instance to query, visualize, and analyze your data interactively.
 
-We aim to provide a useful set of dashboards for you to quickly explore all observability data relevant to you, giving you access to the same information that we use for operations, support, and billing.
+![Grafana Explore tab](explore-tab.png)
 
-## Accessing dashboards
+## How to access and authenticate in Grafana
 
-The address for your installation's `grafana` instance is composed of the base domain plus the `grafana` subdomain.
+1. **Open Grafana:**
+   - Go to your installation's Grafana instance (for example, `https://grafana.my-company.gigantic.io/.com`).
+   - The address for your installation’s Grafana instance is composed of the base domain plus the `grafana` subdomain. If you don't know the address, ask your Giant Swarm support contact.
 
-If you don't know the base domain for your installation, you can ask your Giant Swarm support contact for the address.
+2. **Log in with single sign-on (SSO):**
+   - Access to Grafana is controlled via SSO, using the same identity provider you use for the [platform API]({{< relref "/tutorials/access-management/authentication" >}}).
+   - To access Grafana as a customer, you must have an account in your companies connected identity provider. For further restrictions see the [multi-tenancy guide]({{< relref "/tutorials/observability/multi-tenancy" >}}).
+   - **Note:** If you don't have SSO configured yet or have questions about the admin group, please contact your Account engineer.
 
-## Authentication and authorization
-
-Access to `grafana` is controlled via `single sign-on` (SSO), using the same identity provider you use for the [platform API]({{< relref "/tutorials/access-management/authentication" >}}).
-
-In order to access Grafana as a customer, you must be a member of the admin group. Specifically, that's a group in your identity provider selected to specify which users have admin permissions in the Giant Swarm installation.
-
-__Note__: If you don't have `single sign-on` (SSO) configured yet or have any questions regarding the admin group, please contact your Account engineer.
-
-Once you open the Grafana address for your installation, you will be able to login via the Giant Swarm SSO. The screenshot below shows an example.
+3. **Authenticate and select your identity provider:**
+   - When you open the Grafana address, you'll be able to log in via Giant Swarm SSO. The screenshot below shows an example.
 
 ![Selecting an OIDC provider](access.png)
 
-There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on the type of identity provider used for you as a customer, the label for the button to click can look slightly different.
+- There is one identity provider configured for Giant Swarm staff and one for you as a customer admin. Depending on your identity provider, the label for the button to click may look slightly different.
+- After selecting the right identity provider, you may go through an authentication workflow. If you're already authenticated in your browser, this step will be skipped and you'll see the Home dashboard.
 
-After selecting the right identity provider, you may run through an authentication workflow. However, if you are already authenticated within the current browser, this will be skipped and you should see the Home dashboard as a result.
+## How to use Explore and Drilldown in Grafana
 
-At the initial log in the preselected Grafana organization is the so called `Shared Org`. This shared organization contains a curated set of managed dashboards that are accessible to everyone with access to Grafana. If you want to learn more about organizations and multi-tenancy, we can only advise you to read the related [documentation]{{< relref "/tutorials/observability/multi-tenancy" >}}).
+When you first log in, you'll see the `Shared Org` selected by default. This organization contains curated dashboards and system metrics that are accessible to everyone with Grafana access.
+Learn more about these default organizations and how to create your own in our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy" >}}).
 
-## Limitations
+1. **Access the Explore tab:**
+   - In the left-hand menu, click the compass icon labeled **Explore**. This opens the Explore view, where you can run ad-hoc queries on your data sources.
+   - Learn more in the [Grafana Explore documentation](https://grafana.com/docs/grafana/latest/explore/).
 
-Grafana access is currently not available in shared installations, where several customer's observability data would be available from the same Grafana instance.
+2. **Select your data source:**
+   - At the top of the Explore view, choose either **Mimir** (for metrics) or **Loki** (for logs) as your data source.
+
+3. **Query your data:**
+   - For metrics, use [PromQL](https://grafana.com/docs/grafana/latest/datasources/prometheus/querying/).
+   - For logs, use [LogQL](https://grafana.com/docs/loki/latest/logql/).
+   - Start typing in the query field. Grafana provides autocomplete and suggestions to help you build queries.
+   - You can visualize results as graphs, tables, or logs directly in the Explore view.
+
+4. **Access the Drilldown tab:**
+   - In the left-hand menu, click the tab labeled **Drilldown** (next to Explore). This opens the Drilldown app, which lets you quickly investigate metrics and logs side by side.
+   - The Drilldown app is designed for simplified exploration, making it easy to move between metrics and logs, filter by time ranges, and dig deeper into your data.
+   - Learn more about [Drilldown in Grafana](https://grafana.com/docs/grafana/latest/explore/simplified-exploration/).
+
+![Grafana Drilldown tab](drilldown-tab.png)
+
+## Tips for exploring data
+
+- Use filters and time range selectors to narrow down your results.
+- Save useful queries as [library panels](https://grafana.com/docs/grafana/latest/panels/library-panels/) or bookmarks for quick access later.
+- Check out the [Grafana documentation](https://grafana.com/docs/grafana/latest/) for more tips and advanced features.
+
+---
+
+**Next steps:**
+
+- Try out the Explore and Drilldown features to get hands-on with your data.
+- For more on creating dashboards or ingesting new data, see our [data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}) or [multi-tenancy guide]({{< relref "/tutorials/observability/multi-tenancy" >}}).

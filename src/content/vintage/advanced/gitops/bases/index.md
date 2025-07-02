@@ -20,7 +20,7 @@ Our CAPx (CAPI provider-specific clusters) are delivered by Giant Swarm as a set
 
 Adding definitions can be done on two levels: shared cluster template and version-specific template, see [create shared template base](#create-shared-template-base) and [create versioned base](#create-versioned-base-optional).
 
-**IMPORTANT**, CAPx configuration utilizes the [App Platform Configuration Levels]({{< relref "/vintage/getting-started/app-platform/app-configuration#levels" >}}), in the following manner:
+**IMPORTANT**, CAPx configuration utilizes the App Platform Configuration Levels, in the following manner:
 
 - cluster templates provide default configuration via App' `config` field,
 - cluster instances provide custom configuration via App' `extraConfig` field, which is overlaid on top of `config`. The file set with higher priority will prevail in case of colliding config values.
