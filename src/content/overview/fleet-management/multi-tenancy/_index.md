@@ -75,4 +75,4 @@ For example, for an organization `acme`, there is the defining organization CR n
 
 We recommend placing all resources belonging to an organization into the organization's namespace. Our user interfaces and admission controllers support this as a default.
 
-Learn how to control organizations by taking a look at [platform API access page]({{< relref "getting-started/access-to-platform-api/" >}}).
+Learn how to control organizations by taking a look at [platform API access page]({{< relref "/getting-started/access-to-platform-api/" >}}).
