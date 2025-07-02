@@ -18,7 +18,7 @@ user_questions:
 ## Overview
 
 At some point, you might want to add specific labels or annotations to an app's target namespace to enable other tools such as `kiam`. To tell it you do allow Loki to get logs from pods running in this namespace.
-This feature enables you to add labels and annotations to the app's target namespace via its [App CR]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}}).
+This feature enables you to add labels and annotations to the app's target namespace via its [App CR]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
 This is simpler and easier than using other solutions such as triggering a Kubernetes job via a Helm hook.
 
 ## Configuring labels / annotations
