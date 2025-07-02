@@ -22,7 +22,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-You've got secure access to your workload clusters by default. To provide you with the best support, our team at Giant Swarm also needs access to these clusters.
+You get secure access to your workload clusters by default. Our team at Giant Swarm also needs access to these clusters in order to provide you with the best support.
 
 This guide walks you through how this access works and the security measures implemented to ensure your clusters are managed securely and responsibly.
 
