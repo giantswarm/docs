@@ -2,6 +2,9 @@
 title: Security
 description: Guides explaining how security works and which tools you have available on the Giant Swarm platform.
 weight: 20
+aliases:
+  - /getting-started/security
+  - /getting-started/securing-your-cluster
 menu:
   principal:
     parent: tutorials
