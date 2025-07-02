@@ -9,6 +9,12 @@ menu:
 last_review_date: 2024-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
+aliases:
+  - /vintage/platform-overview/multi-tenancy
+user_questions:
+  - What is an organization?
+  - Do I have to use organizations?
+  - What's the benefit of using organizations?
 ---
 
 In Giant Swarm, the concept of organization empowers you to enable multi-tenancy. Organizations serve as a flexible means of organizing resources like clusters and apps, ensuring isolation between different entities. You have the freedom to use organizations to separate resources for various projects, business units, teams, etc., all within the same Giant Swarm management cluster.
@@ -73,4 +79,4 @@ For example, for an organization `acme`, there is the defining organization CR n
 
 We recommend placing all resources belonging to an organization into the organization's namespace. Our user interfaces and admission controllers support this as a default.
 
-Learn how to control organizations by taking a look at [platform API access page]({{< relref "getting-started/access-to-platform-api/" >}}).
+Learn how to control organizations by taking a look at [platform API access page]({{< relref "/getting-started/access-to-platform-api/" >}}).
