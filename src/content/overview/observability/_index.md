@@ -31,6 +31,10 @@ One of the biggest benefits of using Giant Swarm is that you get the same reliab
 
 ## The technology behind our platform
 
+We rely exclusively on open source tools, so you have complete ownership of the software that we run for you.
+Here are the most important tools we rely on:
+
+
 - **Mimir:** An open-source, horizontally scalable, highly available, multi-tenant time series database for long-term metric storage. Mimir is at the core of our metrics system. It integrates with Kubernetes, collects and stores metrics as time series data, and enables powerful querying and alerting.
 
 - **Loki:** An open-source, horizontally scalable, highly available log aggregation system. Loki collects logs from any source and in any format, covering everything from app and system events to audit logs. With LogQL, you can query logs and even generate metrics from log data.
