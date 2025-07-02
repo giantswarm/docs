@@ -32,7 +32,7 @@ As worker [node pools]({{< relref "/vintage/advanced/cluster-management/node-poo
 
 Configurability of these details has been introduced with workload cluster release v12.7.0 for AWS. The feature is currently in an early stage and its behaviour may change in the near future.
 
-Adjustments to these settings require using the [Management API]({{< relref "/vintage/use-the-api/management-api" >}}) to edit the AWSCluster resource of the cluster (for cluster-wide settings) or the AWSMachineDeployment of an individual node pool.
+Adjustments to these settings require using the Management API to edit the AWSCluster resource of the cluster (for cluster-wide settings) or the AWSMachineDeployment of an individual node pool.
 
 ## Maximum batch size {#maximum-batch-size}
 
@@ -145,4 +145,3 @@ metadata:
 
 - [Cluster upgrades reference]({{< relref "/vintage/platform-overview/cluster-management/cluster-upgrades" >}})
 - [Node pools]({{< relref "/vintage/advanced/cluster-management/node-pools-vintage" >}})
-- [Management API]({{< relref "/vintage/use-the-api/management-api" >}})
