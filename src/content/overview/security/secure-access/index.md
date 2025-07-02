@@ -24,7 +24,7 @@ owner:
 
 You get secure access to your workload clusters by default. Our team at Giant Swarm also needs access to these clusters in order to provide you with the best support.
 
-This guide walks you through how this access works and the security measures implemented to ensure your clusters are managed securely and responsibly.
+This guide walks you through how this access works and the security measures we have implemented to ensure your clusters are managed securely and responsibly.
 
 ## Intro
 
@@ -46,7 +46,7 @@ We expose the Kubernetes API of each workload cluster to you. You can [manage wh
 
 [Teleport](https://goteleport.com/) is an open-source tool that helps us manage secure access to your infrastructure. It uses an identity-aware reverse proxy and short-lived certificates instead of passwords or long-lived keys. This makes your clusters more secure and helps us follow regulations and work with different network setups.
 
-Teleport is awesome because it:
+Teleport is powerful because it:
 
 - Requires no open ports, publicly accessible machines, or privileged bastion hosts
 - Works flexibly with our range of different customer network layouts
@@ -68,7 +68,7 @@ Here's a diagram that shows how our Teleport setup works:
 
 We secure Teleport access with GitHub Single Sign-On (SSO) and multi-factor authentication. Only people in our GitHub organization can log in.
 
-We've built our Teleport cluster to be super reliable, and we keep detailed access and audit logs for every session.
+We've built our Teleport cluster to be highly dependable, we also keep detailed access and audit logs for every session.
 
 ### Infrastructure provider access
 
