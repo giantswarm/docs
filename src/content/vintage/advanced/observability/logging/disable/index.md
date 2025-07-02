@@ -20,7 +20,7 @@ In this article you will learn how you can disable managed logging for your clus
 
 The managed logging stack allows Giant Swarm to provide 24/7 support based on your workload cluster logs. Currently, this component is pre-installed on workload clusters for the following implementations:
 
-- {{% impl_title "vintage_aws" %}}, release [v19.2.0](/changes/workload-cluster-releases-aws/releases/aws-v19.2.0/) or newer
+- {{% impl_title "vintage_aws" %}}, release v19.2.0 or newer
 
 Logs of components deployed in the `kube-system` and `giantswarm` namespaces, as well as Kubernetes and node audit logs are collected by managed `promtail` pods and sent to a Loki instance running in your management cluster. You can access its logs by [accessing to the managed Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps" >}}).
 
