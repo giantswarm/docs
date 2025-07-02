@@ -92,7 +92,7 @@ Vintage implementations still have a historical difference: resources belonging 
 
 Organizations can be managed in several ways.
 
-- The [web user interface]({{< relref "/vintage/platform-overview/web-interface/organizations/_index.md" >}}) allows creating and deleting organizations interactively.
+- The web user interface allows creating and deleting organizations interactively.
 
 - The [Management API]({{< relref "/vintage/use-the-api/management-api/_index.md" >}}) provides full, native support for managing all organization-related resources.
 

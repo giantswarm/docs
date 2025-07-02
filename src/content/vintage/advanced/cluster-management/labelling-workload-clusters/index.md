@@ -101,7 +101,7 @@ kubectl gs template cluster \
 
 To modify labels on a cluster, several methods are supported:
 
-- Our [web UI]({{< relref "/vintage/platform-overview/web-interface" >}}) allows adding, modifying, and deleting labels interactively.
+- Our web UI allows adding, modifying, and deleting labels interactively.
 - The `kubectl label` command can be used with the cluster resource. See below for details.
 
 ### Modify cluster labels using `kubectl` {#modify-using-kubectl}

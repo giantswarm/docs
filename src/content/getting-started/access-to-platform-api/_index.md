@@ -26,7 +26,7 @@ Usually, to interact with the platform API, you have three options:
 
 1. Use GitOps flavour using Flux
 2. Use the `kubectl` command-line tool with our [custom plugin]({{< relref "/reference/kubectl-gs" >}})
-3. Use the [Giant Swarm Web UI]({{< relref "/vintage/platform-overview/web-interface/overview" >}})
+3. Use the [developer portal]({{< relref "/overview/developer-portal" >}})
 
 This guide focuses on the second option, using the `kubectl` command-line tool. However, you can find more information about the other options in the [tutorials]({{< relref "/tutorials" >}}).
 

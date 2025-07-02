@@ -115,7 +115,7 @@ You have several options to inspect workload cluster release details:
 
 - We announce new workload cluster releases in your Slack support channel. In each announcement, you will find a link to the corresponding release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site, where you can also find comprehensive release notes.
 
-- In the [web UI]({{< relref "/vintage/platform-overview/web-interface/" >}}), the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release.
+- In the web UI, the cluster overview and the cluster details page show the release version number of the workload cluster. In the cluster details page you can click the release version number to get more information about a workload cluster release.
 
 ## Details about workload cluster releases and features {#release-details}
 

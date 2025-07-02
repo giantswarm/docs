@@ -72,7 +72,7 @@ installed in your workload cluster.
 
 ## Finding the ingress controller version
 
-You can browse the apps in our catalog using our [web UI]({{< relref "/vintage/platform-overview/web-interface" >}})
+You can browse the apps in our catalog using our web UI
 but this information is also available in the management cluster. We create
 [AppCatalogEntry]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}})
 CRs for the apps that are available.
