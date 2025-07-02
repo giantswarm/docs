@@ -2,6 +2,9 @@
 title: Exploring data
 description: Guides explaining how to explore observability data (metrics and logs) from the Observability Platform.
 weight: 20
+aliases:
+  - /getting-started/observability/metrics
+  - /vintage/getting-started/observability/metrics
 menu:
   principal:
     parent: tutorials-observability

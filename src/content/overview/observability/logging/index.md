@@ -60,11 +60,10 @@ The logging agents that we've deployed on management and workload clusters curre
 
 - Kubernetes Pod logs from the `kube-system` and `giantswarm` namespaces.
 - Kubernetes Events created in the `kube-system` and `giantswarm` namespaces.
-- [Kubernetes audit logs]({{< relref "/vintage/getting-started/observability/logging/audit-logs#kubernetes-audit-logs" >}})
+- [Audit logs]({{< relref "/tutorials/observability/data-exploration/exploring-logs/_index.md#audit-logs" >}})
 
 In the future, we will also store the following logs:
 
-- [Machine (Node) audit logs]({{< relref "/vintage/getting-started/observability/logging/audit-logs#machine-audit-logs" >}})
 - Teleport audit logs, tracked in https://github.com/giantswarm/roadmap/issues/3250
 - Giant Swarm customer workload logs as part of our observability platform, tracked in https://github.com/giantswarm/roadmap/issues/2771
 
