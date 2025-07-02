@@ -189,7 +189,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [net-pols]: {{< relref "/vintage/getting-started/connectivity/network-policies" >}}
 [policy-enforcement]: {{< relref "/vintage/advanced/security/security-policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
-[observability-bundle]: {{< relref "/vintage/platform-overview/observability" >}}
+[observability-bundle]: {{< relref "/overview/observability" >}}
 [rbac-psp]: {{< relref "/vintage/getting-started/security" >}}
 [security]: {{< relref "/vintage/platform-overview/security/" >}}
 [starboard-exporter]: https://github.com/giantswarm/starboard-exporter/
