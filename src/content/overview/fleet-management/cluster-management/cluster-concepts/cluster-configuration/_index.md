@@ -14,7 +14,7 @@ user_questions:
   - How can I customize the configuration of a cluster in the Giant Swarm platform?
 ---
 
-The cluster configuration is managed thanks to the [app platform]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}) configuration options.
+The cluster configuration is managed thanks to the [app platform]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) configuration options.
 
 In the cluster, there are 3 main configuration sources:
 

@@ -3,6 +3,9 @@ linkTitle: Configuring installation process
 title: Configure helm execution
 description: Which options for the helm execution are currently supported by the App Platform.
 weight: 60
+aliases:
+  - /getting-started/app-platform/installation-configuration
+  - /vintage/getting-started/app-platform/installation-configuration
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform

@@ -30,17 +30,17 @@ The _Giant Swarm App Platform_ refers to a set of features and concepts that all
 you to browse, install and manage the configurations of apps (such as Prometheus)
 from a single place; the management cluster API.
 
-We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended [app configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}) which you can override to meet your needs.
+We fully support [Helm](https://helm.sh/) as a general tool to deploy your applications as well as for our general App Catalog. Apps are packaged as Helm charts and can be configured with _values_. We provide a recommended [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) which you can override to meet your needs.
 
 The App Platform then, underneath, installs these Helm Charts whenever an app installation is requested by you.
 The Helm execution is mostly not configurable for you, with the exception to the options presented in
-[installation configuration]({{< relref "/vintage/getting-started/app-platform/installation-configuration" >}}).
+installation configuration.
 
 This feature of the platform provides a collection of curated _Managed Apps_. These _Managed Apps_ are grouped into _App Catalogs_, which can be browsed through our web interface. may also install their own catalogs using the Management Cluster API. Finally, it's worth noting that Giant Swarm uses the App Platform to install the apps that are pre-installed in your clusters, such as CoreDNS or cluster-autoscaler.
 
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an _App Catalog_ is a collection of _Apps_.
 
-We provide a Giant Swarm _App Catalog_ with our offered set of Cloud Native Applications which are operated and pre-configured by us. You are able to set up your own [additional catalog(s)]({{< relref "/vintage/getting-started/app-platform/create-catalog" >}}) to provide for any needs you have at the enterprise level.
+We provide a Giant Swarm _App Catalog_ with our offered set of Cloud Native Applications which are operated and pre-configured by us. You are able to set up your own additional catalog(s) to provide for any needs you have at the enterprise level.
 
 ### What makes up the Giant Swarm App Platform {#what-makes-up-the-app-platform}
 
@@ -50,7 +50,7 @@ Custom Resources, some created by us, and others created by you. Together, they 
 the desired state of the App Platform.
 
 For example, this "App" Custom Resource indicates that you want Kong installed
-on a specific workload cluster. We [default]({{< relref "/vintage/getting-started/app-platform/defaulting-validation" >}}) some additional values for the workload cluster you select.
+on a specific workload cluster. We [default]({{< relref "/tutorials/fleet-management/app-platform/defaulting-validation" >}}) some additional values for the workload cluster you select.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -139,8 +139,7 @@ It’s possible to create your own App Catalog. This is useful if you want to cr
 
 You can interact with the Giant Swarm App Platform through creating App custom resources using the Management API, or our web interface.
 
-- [App CRD reference]({{< relref "/vintage/use-the-api/management-api/crd/apps.application.giantswarm.io.md" >}})
-- [Web Interface Reference: The Giant Swarm App Platform]({{< relref "/vintage/platform-overview/web-interface/app-platform" >}})
+- [App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}})
 
 Our web interface and the management API are used to create (or update) a set of App Custom Resources on your Kubernetes management cluster.
 

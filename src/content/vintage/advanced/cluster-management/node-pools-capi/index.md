@@ -41,7 +41,7 @@ common configuration. You can combine any type of node pool within one cluster. 
 
 ## Configuration
 
-Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using [`kubectl-gs`]({{< relref "/vintage/getting-started/create-workload-cluster" >}})
+Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using `kubectl-gs`
 
 {{< tabs >}}
 {{< tab id="nodepool-capa-config" for-impl="capa_ec2" >}}

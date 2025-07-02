@@ -16,6 +16,9 @@ user_questions:
 last_review_date: 2024-11-25
 aliases:
   - /vintage/use-the-api/kubectl-gs/login/
+  - /vintage/use-the-api/management-api/wc-key-pairs/
+  - /use-the-api/management-api/wc-key-pairs/
+  - /ui-api/management-api/wc-key-pairs/
 ---
 
 Use this command to set up a kubectl context to work with:
@@ -24,7 +27,7 @@ Use this command to set up a kubectl context to work with:
 
 2. a workload cluster, using OIDC authentication
 
-3. a workload cluster, using client certificate auth (Not supported on KVM)
+3. a workload cluster, using client certificate authentication
 
 Note that `3` implies `1`. When setting up workload cluster access via client certificate, management cluster access will be set up as well, if that is not yet done.
 
@@ -238,7 +241,7 @@ Creating a client certificate for a workload cluster requires access to the mana
 
 In an automation context, an interactive login with a personal authentication, potential using multiple authentication factors, is not possible. In this case, a **service account token** can be used to authenticate against the management cluster.
 
-Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions. The [access control]({{< relref "/vintage/platform-overview/web-interface/organizations/access-control" >}}) user interface makes this simple.
+Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions.
 
 Finally, this example shows how to execute the command using a service account token via the `--token` flag to authenticate:
 

@@ -2,6 +2,12 @@
 title: Create a first workload cluster
 description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 30
+aliases:
+  - /getting-started/capa-wlcluster-creation/
+  - /getting-started/capz-cluster-creation/
+  - /getting-started/create-workload-cluster
+  - /getting-started/kubectl-gs/
+  - /vintage/getting-started/create-workload-cluster
 last_review_date: 2024-11-28
 menu:
   principal:
@@ -131,7 +137,7 @@ kubectl gs template cluster \
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
-You will notice that clusters are templated exactly like [managed apps]({{< relref "vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" >}}) (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. Using an `App` custom resource for cluster templating allow us to keep consistency and simplicity using the platform API.
+You will notice that clusters are templated exactly like [managed apps]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io/" >}}) (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. Using an `App` custom resource for cluster templating allow us to keep consistency and simplicity using the platform API.
 
 In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product.
 

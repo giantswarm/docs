@@ -95,5 +95,5 @@ This enables the customer to individually set up their user management according
 
 ## Further reading
 
-- [Securing your Cluster with RBAC and PSP]({{< relref "/vintage/getting-started/security" >}})
+- [Securing your Cluster with RBAC and PSP]({{< relref "/tutorials/security/rbac" >}})
 - [Creating a client certificate for workload cluster access]({{< relref "/reference/kubectl-gs/login/#workload-cluster-client-certificate" >}})
