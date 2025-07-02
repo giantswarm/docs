@@ -46,7 +46,7 @@ This section explains how you can enable the feature for each supported provider
 
 #### Workload cluster releases v12.6.x to v14.x.x
 
-To enable the feature, edit the AWSCluster resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To enable the feature, edit the AWSCluster resource of your cluster using the Management API.
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -70,7 +70,7 @@ If you want to disable the feature you must remove the annotation from the AWSCl
 
 ### Workload cluster releases v15.x.x and newer
 
-To disable automatic termination of unhealthy nodes, edit the AWSCluster resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To disable automatic termination of unhealthy nodes, edit the AWSCluster resource of your cluster using the Management API.
 
 Make sure the resource has the annotation
 
@@ -95,7 +95,7 @@ spec:
 
 ### Azure
 
-To enable automatic termination of unhealthy nodes, edit the [`Cluster`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api" >}}).
+To enable automatic termination of unhealthy nodes, edit the [`Cluster`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) resource of your cluster using the Management API.
 
 Make sure the resource has the `alpha.node.giantswarm.io/terminate-unhealthy` annotation. The value can be anything you like, as just the presence of that annotation is checked. Here is an example:
 

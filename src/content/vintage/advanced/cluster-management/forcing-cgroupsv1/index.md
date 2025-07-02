@@ -27,7 +27,7 @@ To ensure a smooth transition, in case you need time to modify applications to m
 
 ### AWS
 
-To enable cgroups v1, you have to edit the [`MachineDeployment`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/MachineDeployment/v1beta1) resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the [`MachineDeployment`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/MachineDeployment/v1beta1) resource of your cluster using the Management API.
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
@@ -64,7 +64,7 @@ If you want to disable the feature you must remove the annotation from the [`Mac
 
 ### Azure
 
-To enable cgroups v1, you have to edit the MachinePool resource of your cluster using the [Management API]({{< relref "/vintage/use-the-api/management-api/" >}}).
+To enable cgroups v1, you have to edit the MachinePool resource of your cluster using the Management API.
 
 Make sure the resource has the `node.giantswarm.io/cgroupv1` annotation. The value can be anything you like, as only the presence of that annotation is checked. Here is an example:
 
