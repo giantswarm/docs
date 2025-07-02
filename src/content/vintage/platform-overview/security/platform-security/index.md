@@ -20,7 +20,7 @@ user_questions:
 
 ## Overview
 
-Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our RBAC and PSS tutorial, [Network Policy tutorial][net-pols], and [Security Guide][security] and help you gain deeper observability and control over your developer platform.
+Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our RBAC and PSS tutorial, Network Policy tutorial, and [Security Guide][security] and help you gain deeper observability and control over your developer platform.
 
 The stack consists of multiple distinct components which are independently installable and configurable based on the user's security requirements.
 
@@ -186,7 +186,6 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
 [lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [loki-app]: https://github.com/giantswarm/loki-app
-[net-pols]: {{< relref "/vintage/getting-started/connectivity/network-policies" >}}
 [policy-enforcement]: {{< relref "/vintage/advanced/security/security-policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/overview/observability" >}}
