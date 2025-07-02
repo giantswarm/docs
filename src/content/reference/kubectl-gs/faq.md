@@ -30,7 +30,7 @@ aliases:
 
 ### How can I install an app in a workload cluster
 
-Check the [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/vintage/getting-started/app-platform/deploy-app/" >}}).
+Check the [kubectl gs template app]({{< relref "/reference/kubectl-gs/template-app.md" >}}) command. It helps you create an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resource manifest, which is what you need to express the desired state "I want app X installed in cluster Y". For more context, we provide an article to help you [get started with apps]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}).
 
 ### Can kubectl-gs work without kubectl
 

@@ -28,7 +28,7 @@ We will be using [Flux CLI](https://fluxcd.io/docs/cmd/) and [kubectl-gs](https:
 
 ## Restrictions in the web UI {#web-ui-restrictions}
 
-The [Giant Swarm web UI]({{<relref "/vintage/platform-overview/web-interface">}}) allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
+The Giant Swarm web UI allows editing and deleting resources like clusters and apps in an interactive way. However, for resources managed through GitOps, these capabilities are restricted. Otherwise changes and even deletions would get reverted through FluxCD.
 
 The UI will indicate this by showing something like this:
 
@@ -62,7 +62,7 @@ If you wish to proceed by creating the resources in one of the Organization name
 - `write-organizations-customer`
 - `write-silences-customer`
 
-To learn how to view and assign roles, please refer to [Access control for organizations in the web user interface]({{< relref "/vintage/platform-overview/web-interface/organizations/access-control/index.md" >}}).
+To learn how to view and assign roles, please refer to "Access control for organizations in the web user interface".
 
 ## GiantSwarm Management Cluster security policies
 
@@ -208,7 +208,7 @@ kubectl create -f management-clusters/MC_NAME/MC_NAME.yaml
 
 ### Managing organizations
 
-The highest level Giant Swarm custom resource you can create is an [Organization]({{< relref "/vintage/use-the-api/management-api/crd/organizations.security.giantswarm.io.md" >}}).
+The highest level Giant Swarm custom resource you can create is an [Organization]({{< relref "/reference/platform-api/crd/organizations.security.giantswarm.io.md" >}}).
 
 In order to create the files in the repository, run the command (in the root of the repo):
 
