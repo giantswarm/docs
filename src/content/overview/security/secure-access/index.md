@@ -28,7 +28,7 @@ This guide walks you through how this access works and the security measures we 
 
 ## Intro
 
-Let's talk about the two types of access to your Giant Swarm clusters:
+There are two broad types of access to your Giant Swarm clusters:
 
 1. User access - this is for you and your team to interact with your services.
 
@@ -41,6 +41,8 @@ Want to learn more about how our infrastructure works? Check out our [operationa
 We expose the Kubernetes API of each workload cluster to you. You can [manage who gets access by connecting your external identity provider]({{< relref "/overview/architecture/authentication" >}}) to the Kubernetes API.
 
 ## Admin access via Teleport
+
+Giant Swarm uses Teleport to access clusters for management and support.
 
 ### What is Teleport?
 
@@ -58,7 +60,7 @@ Teleport is powerful because it:
 
 We use Teleport to securely access:
 
-- **SSH** - Node access is exposed through Teleport, which authenticates the user and records the session without requiring personal SSH keys on customer machines.
+- **SSH** - Nodes are accessed using Teleport, which authenticates the user and records the session without requiring personal SSH keys on customer machines.
 - **Kubernetes API** - Management cluster and workload cluster Kubernetes API server access is auditable and can be fully private.
 - **Apps** - User interfaces for Giant Swarm apps are also exposed and protected by Teleport, minimizing the number of components that require public endpoints.
 
@@ -68,9 +70,9 @@ Here's a diagram that shows how our Teleport setup works:
 
 We secure Teleport access with GitHub Single Sign-On (SSO) and multi-factor authentication. Only people in our GitHub organization can log in.
 
-We've built our Teleport cluster to be highly dependable, we also keep detailed access and audit logs for every session.
+We've built our Teleport cluster to be highly dependable; we also keep detailed access and audit logs for every session.
 
 ### Infrastructure provider access
 
-You'll also need to grant our operators admin rights to your infrastructure provider so that we can manage your cluster's lifecycle - creating, configuring, and cleaning up resources like machines, networks, and security groups.
+Our Kubernetes operators also require admin rights to your infrastructure provider so that we can manage your cluster's lifecycle - creating, configuring, and cleaning up resources like machines, networks, and security groups.
 
