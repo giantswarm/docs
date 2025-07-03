@@ -3,7 +3,7 @@ title: Prepare your AWS account
 linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2024-11-28
+last_review_date: 2025-07-02
 layout: single
 menu:
   principal:
@@ -104,21 +104,22 @@ Open the [IAM section](https://console.aws.amazon.com/iam/home) of the AWS conso
 
 Our platform needs different permissions to manage various resources on the AWS side. Here is the list of policies that need to be created. Click _Create policy_ and copy the policy content into the JSON editor field. Hit the `Next` button and add the policy name matching the policy link name. Repeat this process for each policy:
 
-- [giantswarm-${INSTALLATION_NAME}-capa-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/capa-controller-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-crossplane-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/crossplane-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-dns-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/dns-controller-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-eks-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/eks-controller-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-iam-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/iam-controller-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-irsa-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/irsa-operator-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-mc-bootstrap-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/mc-bootstrap-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-network-topology-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/network-topology-operator-policy.json)
-- [giantswarm-${INSTALLATION_NAME}-resolver-rules-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/resolver-rules-operator-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-capa-controller-policy]([https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/capa-controller-policy.json](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/capa-controller-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-capa-controller-vpc-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/capa-controller-vpc-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-crossplane-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/crossplane-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-dns-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/dns-controller-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-eks-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/eks-controller-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-iam-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/iam-controller-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-irsa-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/irsa-operator-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-mc-bootstrap-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/mc-bootstrap-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-network-topology-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/network-topology-operator-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-resolver-rules-operator-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/resolver-rules-operator-policy.json)
 
 **Warning**: When filling out the policy name, remember to replace the `INSTALLATION_NAME` placeholder with the name of your installation.
 
 ![AWS IAM console: Create policy](aws-roles-create-policy.png)
 
-**Note**: All policy names contain the installation name to make it easier to identify the policies and avoid conflicts with other installations running within the same account.
+**Note**: All policy names include the installation name to facilitate easier identification and prevent conflicts with other installations running within the same account.
 
 #### 2. Create the role metadata {#iam-capa-controller-role-basic}
 
