@@ -104,7 +104,7 @@ Open the [IAM section](https://console.aws.amazon.com/iam/home) of the AWS conso
 
 Our platform needs different permissions to manage various resources on the AWS side. Here is the list of policies that need to be created. Click _Create policy_ and copy the policy content into the JSON editor field. Hit the `Next` button and add the policy name matching the policy link name. Repeat this process for each policy:
 
-- [giantswarm-${INSTALLATION_NAME}-capa-controller-policy]([https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/master/capa-controller-role/capa-controller-policy.json](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/capa-controller-policy.json)
+- [giantswarm-${INSTALLATION_NAME}-capa-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/capa-controller-policy.json)
 - [giantswarm-${INSTALLATION_NAME}-capa-controller-vpc-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/capa-controller-vpc-policy.json)
 - [giantswarm-${INSTALLATION_NAME}-crossplane-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/crossplane-policy.json)
 - [giantswarm-${INSTALLATION_NAME}-dns-controller-policy](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/raw/refs/heads/main/capa-controller-role/policies/dns-controller-policy.json)
