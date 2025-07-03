@@ -176,7 +176,7 @@ Falco is a [CNCF project][falco-upstream] originally created by Sysdig which ena
 
 We include Falco in our managed security stack as a detection mechanism for malicious activity once a Pod has already started. It is deployed from our [Falco App][falco-app], which includes helper components for exposing Prometheus metrics and forwarding events to various other channels, such as Elasticsearch and various messages queues and alerting backends.
 
-[app-platform]: {{< relref "/vintage/platform-overview/app-platform" >}}
+[app-platform]: {{< relref "/overview/fleet-management/app-management" >}}
 [cilium-app]: https://github.com/giantswarm/cilium-app/
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
