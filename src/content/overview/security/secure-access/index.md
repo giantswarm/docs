@@ -5,7 +5,7 @@ weight: 30
 menu:
   principal:
     parent: overview-security
-last_review_date: 2025-05-15
+last_review_date: 2025-07-02
 aliases:
   - /vintage/platform-overview/security/cluster-security/cluster-access/
   - /platform-overview/security/cluster-security/cluster-access

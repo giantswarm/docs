@@ -146,4 +146,3 @@ Please note, while this document went into extensive details with regards to how
 
 - [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})
-- [Giant Swarm VPN and secure cluster access]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access" >}})
