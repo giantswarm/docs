@@ -1,23 +1,24 @@
 ---
 title: Persistent volumes
-description: Basic information on using Persistent Volumes in Giant Swarm workload clusters.
-weight: 90
+description: Storage classes, creation and mounting of persistent volumes.
+weight: 10
+aliases:
+  - /getting-started/persistent-volumes
+  - /vintage/getting-started/persistent-volumes
 menu:
-  main:
-    identifier: gettingstarted-persistentvolumes
-    parent: getting-started
-last_review_date: 2023-12-19
+  principal:
+    parent: tutorials-storage
+    identifier: tutorials-storage-persistent-volumes
+last_review_date: 2025-07-03
+owner:
+  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
   - How can I use persistent volumes in my AWS clusters?
   - How can I use persistent volumes in my Azure clusters?
   - How can I use persistent volumes in my VMware Cloud Director clusters?
   - How can I use persistent volumes in my VMware vSphere clusters?
-owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
-  - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
-
-For more documentation related to persistent volumes and storage, please refer to our advanced section on [storage]({{< relref "/vintage/advanced/storage/" >}}).
 
 ## Dynamic provisioning and storage classes
 
