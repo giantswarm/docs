@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-security
-last_review_date: 2024-05-21
+last_review_date: 2025-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
