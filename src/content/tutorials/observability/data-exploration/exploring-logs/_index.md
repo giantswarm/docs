@@ -7,6 +7,11 @@ menu:
     identifier: tutorials-observability-data-exploration-exploring-logs
     parent: tutorials-observability-data-exploration
 weight: 40
+aliases:
+  - /getting-started/observability/logging
+  - /getting-started/observability/logging/audit-logs
+  - /vintage/getting-started/observability/logging
+  - /vintage/getting-started/observability/logging/audit-logs
 last_review_date: 2024-07-17
 user_questions:
   - How to access logs from my installation?

@@ -72,7 +72,7 @@ This can be disabled using the following label:
 giantswarm.io/monitoring: "false"
 ```
 
-You can find more details about this in the [Disable Monitoring]({{< relref "/vintage/getting-started/observability/monitoring/disable" >}}) article.
+You can find more details about this in the Disable Monitoring article.
 
 ### Deletion Prevention
 
