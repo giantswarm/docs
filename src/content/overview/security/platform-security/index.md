@@ -1,14 +1,12 @@
 ---
-linkTitle: Platform Security
 title: Platform Security
 description: Architecture and configuration information for the collection of security-related platform features.
-weight: 30
+weight: 10
 menu:
-  main:
-    parent: platform-overview-security
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2023-11-10
+  principal:
+    parent: overview-security
+aliases:
+  - /platform-overview/security/platform-security/
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
@@ -16,11 +14,14 @@ user_questions:
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
+last_review_date: 2025-07-02
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
 ## Overview
 
-Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our RBAC and PSS tutorial, [Network Policy tutorial][net-pols], and [Security Guide][security] and help you gain deeper observability and control over your developer platform.
+Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our RBAC and PSS tutorial, Network Policy tutorial, and [Security Guide][security] and help you gain deeper observability and control over your developer platform.
 
 The stack consists of multiple distinct components which are independently installable and configurable based on the user's security requirements.
 
@@ -176,7 +177,7 @@ Falco is a [CNCF project][falco-upstream] originally created by Sysdig which ena
 
 We include Falco in our managed security stack as a detection mechanism for malicious activity once a Pod has already started. It is deployed from our [Falco App][falco-app], which includes helper components for exposing Prometheus metrics and forwarding events to various other channels, such as Elasticsearch and various messages queues and alerting backends.
 
-[app-platform]: {{< relref "/vintage/platform-overview/app-platform" >}}
+[app-platform]: {{< relref "/overview/fleet-management/app-management" >}}
 [cilium-app]: https://github.com/giantswarm/cilium-app/
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
@@ -186,7 +187,6 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
 [lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [loki-app]: https://github.com/giantswarm/loki-app
-[net-pols]: {{< relref "/vintage/getting-started/connectivity/network-policies" >}}
 [policy-enforcement]: {{< relref "/vintage/advanced/security/security-policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/overview/observability" >}}

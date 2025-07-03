@@ -23,7 +23,7 @@ user_questions:
 
 Once you have access to the platform API, the most natural next step is to create a workload cluster to understand how the platform works. This guide will describe step-by-step how to do it.
 
-Although our recommendable approach to manage your platform is to use [GitOps](https://www.giantswarm.io/blog/what-is-gitops) here we describe the process using the CLI to make it easier to understand the concepts. Translating these steps to GitOps is straightforward and you can follow our dedicated tutorial on [how to manage your workload clusters using GitOps]({{< relref "/vintage/advanced/gitops" >}}).
+Although our recommendable approach to manage your platform is to use [GitOps](https://www.giantswarm.io/blog/what-is-gitops) here we describe the process using the CLI to make it easier to understand the concepts. Translating these steps to GitOps is straightforward and you can follow our dedicated tutorial on [how to manage your workload clusters using GitOps]({{< relref "/tutorials/continuous-deployment/manage-workload-clusters" >}}).
 
 ## Requirements
 
@@ -202,7 +202,7 @@ Deletion works similarly: run `kubectl delete -f cluster.yaml`, `cluster.yaml` b
 - `App/<cluster>`
 - `ConfigMap/<cluster>-userconfig`
 
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}).
 
 ## Next step
 

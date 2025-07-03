@@ -38,7 +38,7 @@ Along these layers, Giant Swarm provides a live support channel, incident manage
 
 The Giant Swarm platform is build on top of Kubernetes based on [Cluster API](https://cluster-api.sigs.k8s.io/), an open source Kubernetes sub-project that standardizes the cluster lifecycle management across different cloud providers or on-premises infrastructure.
 
-The platform API is the regular `Kubernetes` API of your central _management cluster_ and is your interface for deploying workload clusters and applications, or to reach other capabilities such as the observability and security dashboards. Thanks to being based on `Kubernetes`, you can use the same tools and workflows you are already familiar with, such as `kubectl`, `GitOps` or any other existing Kubernetes-compatible tooling.
+The platform API is the regular Kubernetes API of your central _management cluster_ and is your interface for deploying workload clusters and applications, or to reach other capabilities such as the observability and security dashboards. Thanks to being based on Kubernetes, you can use the same tools and workflows you are already familiar with, such as kubectl, GitOps or any other existing Kubernetes-compatible tooling.
 
 In Giant Swarm, the management cluster is also used for enhancing the platform with capabilities, such as monitoring, alerting, policy management, and many more. You can use the platform API of our management clusters to configure these capabilities and even add your own capabilities through operators.
 
@@ -46,7 +46,7 @@ In Giant Swarm, the management cluster is also used for enhancing the platform w
 
 ## GitOps
 
-Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. In the platform, the `Flux` operator runs to ensure all changes are version-controlled, auditable, and easily reversible. You can use it to manage your applications and configurations. It's as simple as adding your existing repositories to the platform and let the platform do the rest.
+Giant Swarm uses GitOps as first-class citizen to manage the lifecycle of cluster and applications. In the platform, the Flux operator runs to ensure all changes are version-controlled, auditable, and easily reversible. You can use it to manage your applications and configurations. It's as simple as adding your existing repositories to the platform and let the platform do the rest.
 
 [Learn more in our guide about GitOps]({{< relref "/tutorials/continuous-deployment" >}}).
 
@@ -60,11 +60,11 @@ Observability on the Giant Swarm platform is based on the Grafana stack. Collect
 
 ## Single sign-on
 
-Single Sign-On (SSO) simplifies user authentication across your use of the Giant Swarm platform by authenticating user access with your existing identity provider (for example `Google Workspaces` or `Microsoft Entra` / `Active Directory`). This enhances security and user convenience by centralizing identity management and not requiring a separate password. You can build on top of `Kubernetes` Role-Based Access Control (RBAC) to define fine-grained access policies and permissions, ensuring which users are authorized to access certain platform resources. [Read more here]({{< relref "overview/architecture/authentication/" >}}).
+Single Sign-On (SSO) simplifies user authentication across your use of the Giant Swarm platform by authenticating user access with your existing identity provider (for example Google Workspaces or Microsoft Entra ID). This enhances security and user convenience by centralizing identity management and not requiring a separate password. You can build on top of Kubernetes role-based access control (RBAC) to define fine-grained access policies and permissions, ensuring which users are authorized to access certain platform resources. [Read more here]({{< relref "/overview/architecture/authentication/" >}}).
 
 ## Network and connectivity
 
-The different technologies used in the Giant Swarm platform provide you with a secure and reliable network and connectivity between your applications and services. Platform engineers can create network policies to control traffic flows and enforce security rules, ensuring that data is protected and isolated. Relying on the built-in networking capabilities of `Kubernetes` as well as the extended capabilities of `Cilium CNI`, the platform supports many routing and load balancing strategies, ingress and egress capabilities, enabling seamless communication between services and applications. [Learn more about connectivity]({{< relref "overview/connectivity/" >}}).
+The different technologies used in the Giant Swarm platform provide you with a secure and reliable network and connectivity between your applications and services. Platform engineers can create network policies to control traffic flows and enforce security rules, ensuring that data is protected and isolated. Relying on the built-in networking capabilities of Kubernetes as well as the extended capabilities of Cilium CNI, the platform supports many routing and load balancing strategies, ingress and egress capabilities, enabling seamless communication between services and applications. [Learn more about connectivity]({{< relref "/overview/connectivity/" >}}).
 
 ## Platform security
 
@@ -76,7 +76,7 @@ Cost control is becoming increasingly important as organizations seek to optimiz
 
 ## Automatic cluster management
 
-Based on `Cluster API` and other operators, the Giant Swarm platform provides automated provisioning, scaling, (planned) upgrading and deletion of clusters, reducing the operational burden on your team. The platform ensures clusters are always running optimally and securely, allowing developers to focus on building and deploying applications without worrying about underlying infrastructure management. In addition, special capabilities such as private clusters and routing are possible, allowing you to integrate the platform in your existing networks. Check all the information on [cluster management]({{< relref "/tutorials/fleet-management/cluster-management" >}}) section.
+Based on Cluster API and other operators, the Giant Swarm platform provides automated provisioning, scaling, (planned) upgrading and deletion of clusters, reducing the operational burden on your team. The platform ensures clusters are always running optimally and securely, allowing developers to focus on building and deploying applications without worrying about underlying infrastructure management. In addition, special capabilities such as private clusters and routing are possible, allowing you to integrate the platform in your existing networks. Check all the information on [cluster management]({{< relref "/tutorials/fleet-management/cluster-management" >}}) section.
 
 ## Cluster scaling
 
@@ -84,4 +84,4 @@ One of the key features of the Giant Swarm platform is the ability to scale clus
 
 ## Cloud resources provisioning
 
-Most likely, you have already external cloud resources which could be managed by the platform. Thanks to [Crossplane](https://www.cncf.io/projects/crossplane/) included in the platform API, you can include all your infrastructure, such as databases, queues or buckets, as part of the platform, relying on the same principles `Kubernetes` offers. Centralizing the management of all the infrastructure in a single place, helps you reduce the operational overhead and offer a self-service experience to your developers. Learn how to [provision cloud resources with Crossplane]({{< relref "/tutorials/fleet-management/infrastructure-management/crossplane" >}}).
+Most likely, you have already external cloud resources which could be managed by the platform. Thanks to [Crossplane](https://www.cncf.io/projects/crossplane/) included in the platform API, you can include all your infrastructure, such as databases, queues or buckets, as part of the platform, relying on the same principles Kubernetes offers. Centralizing the management of all the infrastructure in a single place, helps you reduce the operational overhead and offer a self-service experience to your developers.
