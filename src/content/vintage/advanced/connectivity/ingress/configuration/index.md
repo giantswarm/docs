@@ -336,7 +336,7 @@ Ingress NGINX Controller allows to define the timeout that waits to close a conn
 
 There are many other timeouts that can be customized when configuring an Ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-**Warning**: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. [Read how to configure Ingress NGINX Controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer#other-aws-elb-configuration-options" >}}).
+**Warning**: When running in cloud provider environments you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in Ingress Resources. Read how to [configure Ingress NGINX Controller in cloud environments]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}}) to avoid unexpected results.
 
 ### Session Affinity
 
