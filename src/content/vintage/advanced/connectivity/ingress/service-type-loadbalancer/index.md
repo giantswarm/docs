@@ -20,7 +20,7 @@ owner:
 
 Next to using the default Ingress NGINX Controller, on cloud providers (currently AWS, Azure and GCP), you can expose services directly outside your cluster by using Services of type `LoadBalancer`.
 
-You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional Ingress NGINX Controllers]({{< relref "/vintage/advanced/connectivity/ingress/multi-nginx-ic/index.md" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
+You can use this to [expose single Services](#service-of-type-lb) to the internet. It is also possible, to [install additional Ingress NGINX Controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your Services with a different Ingress Controller configuration.
 
 **Note** that this functionality cannot be used on premises (KVM).
 
@@ -309,7 +309,7 @@ But since their source IP addresses are not getting changed, they are hitting yo
 
 ## Further reading
 
-- [Running Multiple Ingress NGINX Controllers]({{< relref "/vintage/advanced/connectivity/ingress/multi-nginx-ic/index.md" >}})
+- [Running Multiple Ingress NGINX Controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}})
 - [Services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [AWS Load Balancer Controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
 - [Running Multiple Ingress NGINX Controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
