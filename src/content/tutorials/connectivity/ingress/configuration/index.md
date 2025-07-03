@@ -193,7 +193,7 @@ spec:
               number: SERVICE_PORT
 ```
 
-__Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation inside your ingresses needed and your web application will be secured by a valid TLS certificate. You can learn more about this behavior [here]({{< relref "/vintage/advanced/connectivity/tls-certificates" >}}).
+__Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation inside your ingresses needed and your web application will be secured by a valid TLS certificate. You can learn more about this behavior [here]({{< relref "/tutorials/security/tls-certificates" >}}).
 
 ### Authentication
 
