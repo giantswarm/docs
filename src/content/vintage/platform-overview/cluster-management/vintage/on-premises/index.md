@@ -58,7 +58,3 @@ We have three main parts:
 * Workload clusters running your application workloads
 
 All of these are geared towards enabling you to run multiple projects independently and consistently in your data centers.
-
-## Further Reading
-
-* [Giant Swarm VPN and secure cluster access]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access" >}})
