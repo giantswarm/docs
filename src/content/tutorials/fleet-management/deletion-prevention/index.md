@@ -19,6 +19,7 @@ aliases:
   - /guides/deletion-prevention/
   - /advanced/deletion-prevention/
   - /vintage/advanced/app-platform/deletion-prevention
+  - /tutorials/fleet-management/cluster-management/deletion-prevention
 owner:
   - https://github.com/orgs/giantswarm/teams/team-tenet
 ---
