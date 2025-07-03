@@ -12,6 +12,8 @@ user_questions:
 last_review_date: 2024-12-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+aliases:
+  - /vintage/advanced/access-management/iam-roles-for-service-accounts
 ---
 
 You can associate an IAM role with a `Kubernetes` service account. This service account can then provide AWS permissions to the containers in any pod that uses that service account. With this feature, you no longer need to provide extended permissions to the Giant Swarm node IAM role so that pods on that node can call AWS APIs.

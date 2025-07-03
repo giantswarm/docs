@@ -90,7 +90,7 @@ Giant Swarm configures the clusters in a secure way. [Role-Based Access Control 
 
 Within the cluster, Giant Swarm has set up a secure baseline using [Pod Security Policies (PSPs)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) and [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). Pod Security Policies are the Kubernetes resource that configures the sensitive aspects of your applications. By default, users and workloads running in Giant Swarm clusters, are assigned a restrictive policy that disallows running containers as root or mounting host path volumes (these are just two examples). Cluster operators must enable applications to have higher security privileges on a case by case basis. In the aforementioned security guide, we also explain how to configure tailored PSPs for you applications.
 
-In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. This [guide]({{< relref "/vintage/getting-started/connectivity/network-policies" >}}) helps to understand how such a dynamic firewall works.
+In addition to the security policies, Network Policies define the communication policies to and from the applications in each namespace. All components to run a cluster provided by Giant Swarm come with strict policies by default. Our managed namespaces (“kube-system” and “giantswarm”) block all traffic in general, so only expected and specifically configured routes and ports are enabled. Customers can follow this approach and deny all communications by default in their application namespaces forcing each workload to define which communications are allowed. The network policies guide helps to understand how such a dynamic firewall works.
 
 ## Observability
 
@@ -112,5 +112,5 @@ Please note, while this document went into extensive details with regards to how
 
 - [Giant Swarm support model]({{< relref "/support" >}})
 - [Giant Swarm operational layers]({{< relref "/overview/architecture/operational-layers" >}})
-- [Giant Swarm App Catalog]({{< relref "/vintage/platform-overview/app-platform" >}})
+- [Giant Swarm App Platform]({{< relref "/overview/fleet-management/app-management" >}})
 - [Giant Swarm VPN and secure cluster access]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access" >}})
