@@ -28,6 +28,7 @@ user_questions:
   - How can I enable & configure ModSecurity inside of the ingress nginx controller?
 last_review_date: 2024-08-26
 aliases:
+  - /vintage/advanced/connectivity/ingress/configuration
   - /advanced/connectivity/ingress/configuration
   - /guides/advanced-ingress-configuration/
   - /advanced/ingress/configuration/
@@ -193,7 +194,7 @@ spec:
               number: SERVICE_PORT
 ```
 
-__Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation inside your ingresses needed and your web application will be secured by a valid TLS certificate. You can learn more about this behavior [here]({{< relref "/vintage/advanced/connectivity/tls-certificates" >}}).
+__Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation inside your ingresses needed and your web application will be secured by a valid TLS certificate. You can learn more about this behavior [here]({{< relref "/tutorials/security/tls-certificates" >}}).
 
 ### Authentication
 
@@ -340,7 +341,7 @@ Ingress nginx controller allows you to define the timeout that waits to close a 
 
 Many other timeouts can be customized when configuring an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer#other-aws-elb-configuration-options" >}}).
+__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. Read [how to configure ingress nginx controller in cloud environments]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}}) to avoid unexpected results.
 
 ### Session affinity
 
@@ -356,7 +357,7 @@ This feature is implemented by the third party module [nginx-sticky-module-ng](h
 
 The ingress nginx controller creates an nginx configuration file. You can directly pass chunks of configuration, so-called _configuration snippets_, into any ingress manifest. These snippets will be added to the nginx configuration.
 
-The _configuration snippets_ through ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you must set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}).
+The _configuration snippets_ through ingress annotations is disabled by default. To enable parsing of _configuration snippets_, you must set `controller.allowSnippetAnnotations: true` in the [App configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}).
 
 __Warning__: We recommend enabling this option only if you TRUST users with permission to create ingress objects. Doing so may allow a user to add restricted configurations to the final `nginx.conf` file.
 
@@ -395,7 +396,7 @@ Your Giant Swarm installation comes with a default configuration for the ingress
 
 You can override these defaults by setting your per-cluster configuration in a ConfigMap named `ingress-nginx-user-values` in the management cluster.
 
-The page [App configuration reference]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) contains more information on how to set user-defined configuration for the ingress nginx controller.
+The page [App configuration reference]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) contains more information on how to set user-defined configuration for the ingress nginx controller.
 
 ### Where's the user values ConfigMap
 

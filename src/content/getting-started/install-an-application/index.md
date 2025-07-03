@@ -71,7 +71,7 @@ NAME                    CATALOG URL
 giantswarm              https://giantswarm.github.io/giantswarm-catalog/
 ```
 
-__Note__: You can [create your own catalog]({{< relref "/vintage/getting-started/app-platform/create-catalog/" >}}) and add your own applications to it.
+__Note__: You can [create your own catalog]({{< relref "/tutorials/fleet-management/app-platform/create-catalog" >}}) and add your own applications to it.
 
 To browse which applications are available in the catalog you can run the following command:
 
@@ -219,7 +219,7 @@ Based on the above `Ingress` definition in the Helm values, a TLS certificate sh
 
 ![Hello world page](hello-world.png)
 
-__Note__:You can read more about app platform configuration [here]({{< relref "/vintage/getting-started/app-platform/app-configuration" >}}).
+__Note__: You can read more about app platform configuration [here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}).
 
 After a few seconds, you should see the deployed status:
 

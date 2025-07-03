@@ -241,7 +241,7 @@ Creating a client certificate for a workload cluster requires access to the mana
 
 In an automation context, an interactive login with a personal authentication, potential using multiple authentication factors, is not possible. In this case, a **service account token** can be used to authenticate against the management cluster.
 
-Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions. The [access control]({{< relref "/vintage/platform-overview/web-interface/organizations/access-control" >}}) user interface makes this simple.
+Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions.
 
 Finally, this example shows how to execute the command using a service account token via the `--token` flag to authenticate:
 

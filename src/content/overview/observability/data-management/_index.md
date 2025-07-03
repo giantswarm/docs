@@ -1,12 +1,12 @@
 ---
 title: Data Management
 description: Learn how to manage observability data including ingestion, exploration, transformation, and export in the Giant Swarm platform.
-weight: 10
+weight: 40
 menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-data-management
-last_review_date: 2024-12-11
+last_review_date: 2025-07-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
