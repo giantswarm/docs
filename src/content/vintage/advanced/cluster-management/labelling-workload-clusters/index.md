@@ -82,7 +82,7 @@ To protect clusters from accidental deletion you can use the following label:
 giantswarm.io/prevent-deletion: ""
 ```
 
-For more information, please read the [Deletion Prevention]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}) article.
+For more information, please read the [Deletion Prevention]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}) article.
 
 ## Setting labels when creating a cluster
 

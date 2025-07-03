@@ -202,7 +202,7 @@ Deletion works similarly: run `kubectl delete -f cluster.yaml`, `cluster.yaml` b
 - `App/<cluster>`
 - `ConfigMap/<cluster>-userconfig`
 
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}).
 
 ## Next step
 
