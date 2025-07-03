@@ -1,14 +1,24 @@
 ---
 title: Data Management
-description: Documentation on how data is managed in the Giant Swarm Observability Platform.
+description: Learn how to manage observability data including ingestion, exploration, transformation, and export in the Giant Swarm platform.
 weight: 40
 menu:
   principal:
-    identifier: overview-observability-data-management
     parent: overview-observability
+    identifier: overview-observability-data-management
+last_review_date: 2025-07-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-01
+user_questions:
+  - How do I manage observability data?
+  - What data management capabilities are available?
 ---
 
-The Giant Swarm Observability Platform is designed to handle a wide range of observability data, including logs, metrics, and events. This document provides an overview of how data is managed within the platform, including ingestion, storage, and querying.
+Data management is a core aspect of the observability platform, providing you with comprehensive control over how your observability data flows through the system. From collecting metrics and logs to exploring and analyzing them, our platform offers powerful capabilities to handle your data lifecycle efficiently.
+
+## Key capabilities
+
+- **Data exploration**: Advanced querying and analysis of your metrics and logs
+- **Data ingestion**: Flexible collection and routing of observability data
+- **Data transformation**: Processing and enriching data for your specific needs
+- **Data export**: Access your data programmatically via our Observability Platform API

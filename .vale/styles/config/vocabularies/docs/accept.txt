@@ -11,7 +11,7 @@ autoscaling
 [Aa][Ww][Ss]
 az
 backbone
-backend
+[Bb]ackend
 CIDR[s]?
 CLI
 CR[D]?[s]?
@@ -34,12 +34,15 @@ ensure
 ESXi
 Etcd
 Explore
+extract
 Falco
 firewalling
 freely
 Grafana
+Giant Swarm
 gracefully
 Honeybadger
+HPA
 HTTP
 [Ii][Aa][Mm]
 impl_title
@@ -58,6 +61,7 @@ kubelet
 kube-vip
 [Kk]ustomization[s]?
 Kyverno
+LogQL
 namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
@@ -68,6 +72,7 @@ onboarding
 passthrough
 perfectly
 Planeteers
+PromQL
 Promtail
 quickly
 randomly
@@ -82,6 +87,8 @@ SemVer
 separately
 Sigstore
 SLA[s]?
+SLI[s]?
+SLO[s]?
 Spotify
 SRE[s]?
 SSL
