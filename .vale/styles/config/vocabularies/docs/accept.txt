@@ -1,5 +1,7 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
+allows
+against
 [Aa]gent
 API[s]?
 ARN[s]?
@@ -28,6 +30,7 @@ easily
 effectively
 ELB[s]?
 ENI[s]?
+ensure
 ESXi
 Etcd
 Explore
@@ -74,6 +77,7 @@ really
 relref
 rulesets
 runbook[s]?
+Sample
 SemVer
 separately
 Sigstore
