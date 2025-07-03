@@ -1,14 +1,12 @@
 ---
-linkTitle: Platform Security
 title: Platform Security
 description: Architecture and configuration information for the collection of security-related platform features.
-weight: 30
+weight: 10
 menu:
-  main:
-    parent: platform-overview-security
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2023-11-10
+  principal:
+    parent: overview-security
+aliases:
+  - /platform-overview/security/platform-security/
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
@@ -16,6 +14,9 @@ user_questions:
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
+last_review_date: 2023-11-10
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
 ## Overview
