@@ -14,7 +14,7 @@ user_questions:
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
-last_review_date: 2023-11-10
+last_review_date: 2025-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
