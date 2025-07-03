@@ -70,7 +70,7 @@ Shortcodes exist as one file each in the folder [src/layouts/shortcodes](https:/
 A shortcode is used in a markdown file like this:
 
 ```markdown
-... since version {{/*% first_aws_autoscaling_version */%}} and ...
+## Using mixed instance types (only {{% impl_title "capa_ec2" %}})
 ```
 
 ### Content linting
