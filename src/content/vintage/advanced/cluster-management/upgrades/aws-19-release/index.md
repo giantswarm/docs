@@ -106,11 +106,11 @@ During the upgrade, we are removing `KIAM` as a default app in your workload clu
 
 Additionally, we are creating a `Cloudfront Domain Alias` (except China) for each cluster which is used as the [OpenID Connect (OIDC) identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) to improve predictability and simplify IAM role creation.
 
-To ensure that your applications can assume the appropriate IAM roles, you need to add the `Cloudfront Domain Alias` to those roles as a [trust entity]({{< relref "/vintage/advanced/access-management/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
+To ensure that your applications can assume the appropriate IAM roles, you need to add the `Cloudfront Domain Alias` to those roles as a [trust entity]({{< relref "/tutorials/access-management/iam-roles-for-service-accounts" >}}).
 
 We have also adjusted the `external-dns` IRSA trust policy to facilitate externalDNS role being assumed by any Service Account containing "external-dns" to allow multiple app deployments.
 
-To help make your transition to `IRSA` as easy as possible, we've added more context on our [official docs]({{< relref "/vintage/advanced/access-management/iam-roles-for-service-accounts/index.md#aws-release-v19" >}}).
+To help make your transition to `IRSA` as easy as possible, we've added more context on our [official docs]({{< relref "/tutorials/access-management/iam-roles-for-service-accounts" >}}).
 
 ## Other release highlights
 

@@ -3,6 +3,9 @@ title: Ingress connectivity
 linkTitle: Ingress
 description: List of articles explaining how to manage with the different ingress features available in the platform.
 weight: 20
+aliases:
+  - /getting-started/connectivity/ingress-controller
+  - /vintage/getting-started/connectivity/ingress-controller
 menu:
   principal:
     parent: tutorials-connectivity
