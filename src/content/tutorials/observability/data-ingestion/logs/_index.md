@@ -76,7 +76,7 @@ Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/obs
 - Filter pods' namespaces using label selector
 - Modify labels using relabeling
 
-[PodLogs][1] can be created via a Helm Chart or [GitOps]({{< relref "/vintage/advanced/gitops" >}}). Alternatively it can also be directly created in the cluster.
+[PodLogs][1] can be created via a Helm Chart or GitOps. Alternatively it can also be directly created in the cluster.
 
 Example:
 
