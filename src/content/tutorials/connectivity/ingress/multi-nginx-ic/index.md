@@ -15,6 +15,7 @@ user_questions:
   - How do I configure ingress nginx controller to allow weak ciphers?
 last_review_date: 2024-08-26
 aliases:
+  - /vintage/advanced/connectivity/ingress/multi-nginx-ic
   - /advanced/connectivity/ingress/multi-nginx-ic
   - /guides/multi-nginx/
   - /advanced/multi-nginx/
