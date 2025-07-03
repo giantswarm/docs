@@ -8,6 +8,7 @@ menu:
 last_review_date: 2025-05-15
 aliases:
   - /vintage/platform-overview/security/cluster-security/cluster-access/
+  - /platform-overview/security/cluster-security/cluster-access
 user_questions:
   - How do you access my infrastructure provider account?
   - How do you safeguard admin access to my clusters?
