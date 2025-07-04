@@ -42,4 +42,4 @@ Our platform leverages various projects under the cloud-native initiative that h
 - **Node Local DNS**: an extension to CoreDNS that provides a scalable DNS solution regardless of the cluster's size. It improves the speed and reliability of DNS resolution for your workloads while reducing the load on CoreDNS.
 - **External DNS**: extends Kubernetes resources, adding the option to manage DNS records for external services.
 
-Learn how to expose your workloads on Giant Swarm by visiting our [getting started page]({{< relref "getting-started/understand-connectivity/" >}}).
+Learn how to expose your workloads on Giant Swarm by visiting our [getting started page]({{< relref "/getting-started/understand-connectivity/" >}}).

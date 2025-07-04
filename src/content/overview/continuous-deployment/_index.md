@@ -29,4 +29,4 @@ Continuous Deployment (CD) is a crucial practice in modern software development,
 
 - **Crossplane**: It enables the management of infrastructure and services using Kubernetes-native APIs. It supports the declarative management of cloud resources, facilitating the implementation of Infrastructure as Code (IaC) practices. Crossplane allows seamless integration with existing Kubernetes workflows, providing a unified approach to managing applications and infrastructure.
 
-Learn how to start with continuous deployment on Giant Swarm by visiting our [getting started continuous deployment page]({{< relref "getting-started/install-an-application/" >}}).
+Learn how to start with continuous deployment on Giant Swarm by visiting our [getting started continuous deployment page]({{< relref "/getting-started/install-an-application/" >}}).
