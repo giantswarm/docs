@@ -1,6 +1,6 @@
 ---
 title: Workload cluster releases
-last_review_date: 2025-07-01
+description: Explains how the workload cluster releases works and are defined
 weight: 30
 menu:
   principal:
@@ -23,6 +23,7 @@ user_questions:
 aliases:
   - /platform-overview/cluster-management/releases
   - /reference/workload-cluster-release-versions/
+last_review_date: 2025-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-tenet
 ---
