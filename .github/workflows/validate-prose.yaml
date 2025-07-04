@@ -16,7 +16,7 @@ jobs:
           mkdir bin && tar -xvzf vale_3.4.1_Linux_64-bit.tar.gz -C bin
           ls -la bin
           bin/vale --config=./.vale.ini \
-            --glob '!{src/content/vintage/**,src/content/changes/**}' \
+            --glob '!{src/content/changes/**}' \
             --no-exit \
             --output ./.vale/styles/rdjsonl.tmpl \
             src/content > out.jsonl
@@ -30,4 +30,4 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -f=rdjsonl -name=Vale -reporter=github-pr-annotations -fail-on-error=true -filter-mode=added -level=info < out.jsonl
+          reviewdog -f=rdjsonl -name=Vale -reporter=github-pr-annotations -fail-level=error -filter-mode=added -level=info < out.jsonl
