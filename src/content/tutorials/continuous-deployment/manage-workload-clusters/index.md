@@ -134,7 +134,7 @@ flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054
 
 ### Setting up secrets {#setting-up-secrets}
 
-The next step, you configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. Our recommendation is to keep secrets encrypted in the repository together with your applications but if your company policy doesn't allow it you can use [`external secret operator`]({{< relref "/tutorials/security/external-secrets-operator/" >}}) to use different sources.
+The next step is to configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. We recommend maintaining secrets encrypted in the repository alongside your applications. But if your company policy doesn't allow it, you can use [`external secret operator`]({{< relref "/tutorials/security/external-secrets-operator/" >}}) to use different sources.
 
 Giant Swarm uses `sops` with `pgp` for key management, creating master keys for all the `kustomizations` in the management cluster. In `kubectl-gs` you can generate a master and public key for the management cluster.
 
