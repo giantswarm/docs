@@ -95,6 +95,7 @@ SSL
 SSO
 subnet
 Trivy
+Teleport
 TLS
 templated
 upstream[s]?

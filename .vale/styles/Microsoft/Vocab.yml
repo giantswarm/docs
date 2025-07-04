@@ -5,13 +5,11 @@ level: suggestion
 ignorecase: true
 tokens:
   - above
-  - accessible
   - actionable
   - against
   - alarm
   - alert
   - alias
-  - allows?
   - and/or
   - as well as
   - assure
