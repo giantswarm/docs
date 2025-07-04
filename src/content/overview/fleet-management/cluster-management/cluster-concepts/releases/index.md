@@ -1,6 +1,6 @@
 ---
 title: Workload cluster releases
-description: Explains how the workload cluster releases works and are defined
+description: Explains how the workload cluster releases works and are defined.
 weight: 30
 menu:
   principal:
