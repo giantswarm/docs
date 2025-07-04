@@ -87,7 +87,7 @@ Here we document the flags that have a particular meaning for the `get clusters`
 
 To inspect a cluster's main custom resource in YAML notation, add the `--output yaml` flag (or `-o yaml` in short) to the command.
 
-The following example command would print the main resource for cluster `ab12c`. It would return the [Cluster]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) resource.
+The following example command would print the main resource for cluster `ab12c`. It would return the [Cluster](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) resource.
 
 ```nohighlight
 kubectl gs get clusters ab12c --output yaml

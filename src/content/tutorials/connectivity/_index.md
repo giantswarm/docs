@@ -1,7 +1,10 @@
 ---
 title: Connectivity
 description: Guides explaining how to manage with the different Networking features available in the platform.
-weight: 20
+weight: 30
+aliases:
+  - /getting-started/connectivity
+  - /vintage/getting-started/connectivity
 menu:
   principal:
     parent: tutorials

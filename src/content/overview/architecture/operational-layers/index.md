@@ -42,7 +42,7 @@ We will go through the operational layers one by one from the bottom (infrastruc
 
 ### Infrastructure {#infrastructure}
 
-The infrastructure layer covers the area on top of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs (Site Reliability Engineers). It is usually accessed through VPN and bastion hosts as well as through the cloud provider APIs if applicable. In most installations there's also ssh access through [Teleport]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access/#admin-access-via-teleport" >}}).
+The infrastructure layer covers the area on top of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs (Site Reliability Engineers). It is usually accessed through VPN and bastion hosts as well as through the cloud provider APIs if applicable. In most installations there's also ssh access through [Teleport]({{< relref "/overview/security/secure-access/#admin-access-via-teleport" >}}).
 
 This layer does not include the actual hardware and maintenance of the data center. This is either covered by the (internal or external) data center provider or by the cloud provider.
 
@@ -95,5 +95,5 @@ This enables the customer to individually set up their user management according
 
 ## Further reading
 
-- [Securing your Cluster with RBAC and PSP]({{< relref "/vintage/getting-started/security" >}})
+- [Securing your Cluster with RBAC and PSP]({{< relref "/tutorials/security/rbac" >}})
 - [Creating a client certificate for workload cluster access]({{< relref "/reference/kubectl-gs/login/#workload-cluster-client-certificate" >}})

@@ -7,6 +7,9 @@ menu:
     parent: tutorials-fleet-management-app-platform
     identifier: tutorials-fleet-management-app-platform-app-config
 weight: 30
+aliases:
+  - /getting-started/app-platform/app-configuration
+  - /vintage/getting-started/app-platform/app-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

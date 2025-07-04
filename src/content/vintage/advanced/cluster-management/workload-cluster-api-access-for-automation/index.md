@@ -29,7 +29,7 @@ This documentation entry provides step-by-step instructions on how to access the
 
 Before you proceed, make sure you have the following prerequisites:
 
-1. [Make sure you are logged in the right Workload Cluster]({{< relref "/vintage/getting-started/create-workload-cluster#step-5-log-in-to-the-workload-cluster" >}}).
+1. Make sure you are logged in the right Workload Cluster.
 2. The [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) command-line tool installed on your local machine.
 3. The necessary permissions to create and manage service accounts within the Kubernetes cluster.
 
@@ -150,6 +150,6 @@ kubectl --kubeconfig ./<cluster-id>.yaml get nodes
 
 ## Further reading
 
-- [Management API access for automation]({{< relref "/vintage/use-the-api/management-api/authentication/automation" >}}) explains how to authenticate in the Management API as an automation tool
-- [Authentication as a user]({{< relref "/vintage/use-the-api/management-api/authentication/user" >}}) explains how to authenticate in the Management API as an interactive user
-- [Authorization in the Management API]({{< relref "/vintage/use-the-api/management-api/authorization" >}}) explains how to assign permissions in the Management API to authenticated users
+- [Management API access for automation]({{< relref "/tutorials/access-management/authentication/automation" >}}) explains how to authenticate in the Management API as an automation tool
+- [Authentication as a user]({{< relref "/tutorials/access-management/authentication/user" >}}) explains how to authenticate in the Management API as an interactive user
+- [Authorization in the Management API]({{< relref "/tutorials/access-management/authorization" >}}) explains how to assign permissions in the Management API to authenticated users

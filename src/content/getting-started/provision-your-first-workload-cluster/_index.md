@@ -2,6 +2,12 @@
 title: Create a first workload cluster
 description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 30
+aliases:
+  - /getting-started/capa-wlcluster-creation/
+  - /getting-started/capz-cluster-creation/
+  - /getting-started/create-workload-cluster
+  - /getting-started/kubectl-gs/
+  - /vintage/getting-started/create-workload-cluster
 last_review_date: 2024-11-28
 menu:
   principal:
@@ -17,7 +23,7 @@ user_questions:
 
 Once you have access to the platform API, the most natural next step is to create a workload cluster to understand how the platform works. This guide will describe step-by-step how to do it.
 
-Although our recommendable approach to manage your platform is to use [GitOps](https://www.giantswarm.io/blog/what-is-gitops) here we describe the process using the CLI to make it easier to understand the concepts. Translating these steps to GitOps is straightforward and you can follow our dedicated tutorial on [how to manage your workload clusters using GitOps]({{< relref "/vintage/advanced/gitops" >}}).
+Although our recommendable approach to manage your platform is to use [GitOps](https://www.giantswarm.io/blog/what-is-gitops) here we describe the process using the CLI to make it easier to understand the concepts. Translating these steps to GitOps is straightforward and you can follow our dedicated tutorial on [how to manage your workload clusters using GitOps]({{< relref "/tutorials/continuous-deployment/manage-workload-clusters" >}}).
 
 ## Requirements
 
@@ -131,7 +137,7 @@ kubectl gs template cluster \
 
 This will create a `cluster.yaml` file containing all the Custom Resources (CRs) necessary to create the cluster.
 
-You will notice that clusters are templated exactly like [managed apps]({{< relref "vintage/use-the-api/management-api/crd/apps.application.giantswarm.io/" >}}) (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. Using an `App` custom resource for cluster templating allow us to keep consistency and simplicity using the platform API.
+You will notice that clusters are templated exactly like [managed apps]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io/" >}}) (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. Using an `App` custom resource for cluster templating allow us to keep consistency and simplicity using the platform API.
 
 In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product.
 
@@ -196,7 +202,7 @@ Deletion works similarly: run `kubectl delete -f cluster.yaml`, `cluster.yaml` b
 - `App/<cluster>`
 - `ConfigMap/<cluster>-userconfig`
 
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
+If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}).
 
 ## Next step
 

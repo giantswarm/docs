@@ -2,6 +2,9 @@
 title: Exposing workloads
 description: Expose your workloads to the public internet using an ingress controller.
 weight: 10
+aliases:
+  - /getting-started/connectivity/exposing-workloads
+  - /vintage/getting-started/connectivity/exposing-workloads
 menu:
   principal:
     parent: tutorials-connectivity-ingress
@@ -119,7 +122,6 @@ To know more about forwarding TCP ports using `kubectl port-forward`, you should
 
 ## Further reading
 
-- [Establishing Trust to Your Cluster's CA and Importing Certificates]({{< relref "/vintage/getting-started/ca-certificate" >}})
 - [Official Kubernetes documentation for the ingress resource](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Official Kubernetes documentation for the kubectl port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward/)
 - [Official Kubernetes documentation for accessing services running on the cluster](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-services-running-on-the-cluster)

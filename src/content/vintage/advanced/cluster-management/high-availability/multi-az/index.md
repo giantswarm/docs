@@ -109,7 +109,7 @@ Please be aware of some undesirable edge-cases and caveats. These might show up 
 
 ## Get started
 
-You can create clusters using the [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}).
+You can create clusters using the web interface.
 
 When inspecting details of such a cluster, we display the list of availability zones used by the cluster.
 
