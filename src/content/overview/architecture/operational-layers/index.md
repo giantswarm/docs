@@ -87,7 +87,7 @@ Tenant admins can manage access to workload clusters through different mechanism
 
 They can create certificate-based access using the kubectl gs CLI. Using this access should be time-limited to set up RBAC roles and bindings for Service Accounts and OIDC users.
 
-End users on this level are then created by a Tenant admin either as Service Accounts inside the workload cluster or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
+End users on this level are then created by a Tenant admin either as Service Accounts inside the workload cluster or managed in an [external identity provider (IdP)]({{< relref "/overview/architecture/authentication" >}}), like Azure Active Directory or any other OIDC-compliant IdP.
 
 However, a user with access to the Kubernetes API does not gain any permissions by default, as the clusters are locked down using RBAC. To provide access, a cluster admin needs to create roles and bindings for the users. These roles can be defined as narrow or broad as needed for the specific cluster. They can be bound to either single users or groups of them.
 
