@@ -47,7 +47,7 @@ Among the third party components building a workload cluster stack are
 as well as many operators and controllers created and maintained by Giant Swarm.
 
 All of the items in the list above are released independent of each other by their vendors.
-At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the [workload cluster releases reference]({{< relref "/vintage/platform-overview/cluster-management/releases" >}}).
+At Giant Swarm we bundle specific versions of these components of the workload cluster stack into a **workload cluster release**. A workload cluster release is specific for a provider (AWS, Azure, or KVM) and identified by a version number. To learn more about workload cluster releases and our versioning, check the workload cluster releases reference.
 
 Once deployed, the workload cluster stack is **immutable**.
 All components are deployed based on images, either of virtual machines or of Docker containers.
@@ -269,7 +269,3 @@ There's additional general container hygiene recommendations that will help smoo
 As container images might not be already available on the new node that the Pod gets rescheduled to, you should make sure that all container images (and tags) that you are using are available in the registry that is configured for the Pods.
 
 Furthermore, you should make your containers are as lightweight (in terms of size) as possible to make the image pulling and the rescheduling process faster.
-
-## Further reading
-
-- [Workload cluster releases]({{< relref "/vintage/platform-overview/cluster-management/releases" >}}) explains the semantics of workload cluster releases.
