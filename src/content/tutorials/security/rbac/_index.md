@@ -202,7 +202,7 @@ roleRef:
 
 #### Referring to subjects
 
-Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access (and with `PSPs` also `Pod` privileges) to certain `Pods`, for example monitoring and logging agents.
+Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access to certain `Pods`, for example monitoring and logging agents.
 
 For a detailed explanation of how to refer to subjects in bindings you can read the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
 
