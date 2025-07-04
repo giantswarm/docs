@@ -25,7 +25,7 @@ owner:
 
 You get secure access to your workload clusters by default. The Giant Swarm team also needs access to these clusters to provide you with the best support.
 
-This guide walks you through how this access works and the security measures implemented to ensure your clusters are managed securely and responsibly.
+This guide explains how this access works and the security measures for managing your clusters securely and responsibly.
 
 ## Intro
 
@@ -71,7 +71,7 @@ Here's a diagram that shows how our Teleport setup works:
 
 We secure Teleport access with GitHub Single Sign-On (SSO) and multi-factor authentication. Only people in our GitHub organization can log in.
 
-We've built our Teleport cluster to be highly dependable; we also keep detailed access and audit logs for every session.
+The Teleport cluster is built to be highly dependable, and detailed access and audit logs are kept for every session.
 
 ### Infrastructure provider access
 
