@@ -22,7 +22,7 @@ The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relre
 Before you begin, make sure you have:
 
 - Access to your management cluster
-- A tenant defined in a [Grafana Organization]({{< relref "/tutorials/observability/multi-tenancy/" >}})
+- A tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})
 
 ## Configure Alertmanager
 

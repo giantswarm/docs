@@ -52,7 +52,7 @@ Manage your observability platform's organizational structure through **[`Grafan
 - **Define tenant access**: Control which data tenants each organization can access
 - **Provision datasources**: Automatically configure tenant-scoped access to metrics, logs, and alerting
 
-Effective organization management provides teams with secure, isolated access to their observability data while maintaining proper governance and data separation. Contact your Giant Swarm account engineer for guidance on creating and configuring Grafana organizations with practical examples and step-by-step instructions.
+Effective organization management provides teams have secure, isolated access to their observability data while maintaining proper governance and data separation. Learn how to create and configure Grafana organizations with practical examples and step-by-step instructions.
 
 ## Data ingestion configuration
 
@@ -86,7 +86,7 @@ Integrate data from sources outside Giant Swarm managed clusters through the **[
 
 ## Visualization and dashboard configuration
 
-Customize how you view and visualize your observability data:
+Customize how you explore and visualize your observability data:
 
 ### Grafana organizations
 
@@ -161,8 +161,8 @@ Establish patterns and standards across your configuration:
 
 To begin configuring your observability platform:
 
-1. **Understand multi-tenancy**: Work with your Giant Swarm account engineer to plan your data organization strategy
-2. **Set up organizations**: Create Grafana organizations for your teams with assistance from Giant Swarm
+1. **Understand multi-tenancy**: Review [multi-tenancy concepts]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) to plan your data organization
+2. **Set up organizations**: Create Grafana organizations for your teams
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for critical system health
 5. **Build dashboards**: Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}) for your specific monitoring needs

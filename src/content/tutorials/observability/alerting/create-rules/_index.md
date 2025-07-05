@@ -21,7 +21,7 @@ The Giant Swarm Observability Platform provides an [alerting pipeline]({{< relre
 
 Following Giant Swarm's GitOps approach, you define alerting and recording rules using [Prometheus Operator](https://prometheus-operator.dev/) `PrometheusRule` resources. You can deploy these rules to both management clusters and workload clusters.
 
-**Warning:** The `observability.giantswarm.io/tenant` label on your rules must reference an existing tenant defined in a [Grafana Organization]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization/" >}}). The system ignores any `PrometheusRule` that references a non-existing tenant. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
+**Warning:** The `observability.giantswarm.io/tenant` label on your rules must reference an existing tenant defined in a Grafana Organization. The system ignores any `PrometheusRule` that references a non-existing tenant. Learn more about our multi-tenancy in [Multi-tenancy in the observability platform]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 
 ## Create alerting rules
 
@@ -171,7 +171,7 @@ For multi-environment deployments, consider using unique naming or namespace-spe
 
 With the introduction of Alloy 1.9, the Giant Swarm Observability Platform supports tenant federation capabilities. These capabilities let you create alerting and recording rules based on other tenants data without duplicating data intake. To use this feature, add the `monitoring.grafana.com/source_tenants` label on your `PrometheusRule`
 
-For more information about multi-tenancy and tenant management, see our [multi-tenancy documentation]({{< relref "/tutorials/observability/multi-tenancy/" >}}).
+For more information about multi-tenancy and tenant management, see our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 
 ### Example: Alerting on Giant Swarm system metrics
 
