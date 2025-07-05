@@ -28,5 +28,4 @@ Learn the core concepts behind multi-tenancy in the observability platform:
 
 Put multi-tenancy into practice:
 
-- **Creating Grafana organizations**: Step-by-step guide to create and configure Grafana organizations for your teams
-
+- **[Creating Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organizations" >}})**: Step-by-step guide to create and configure Grafana organizations for your teams

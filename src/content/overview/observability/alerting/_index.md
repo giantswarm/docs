@@ -20,7 +20,7 @@ Alerting is an important concept of any observability solution and it's thus onl
 
 Alerting is usually divided into two distinct concepts: the alerting pipeline (how to send alerts, to whom and what to send) and alerting/recording rules (what to alert on). This documentation will cover how those two topics work in the Observability Platform.
 
-As our alerting pipeline supports multi-tenancy, we strongly advocate that you first familiarize yourself with our [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}) concept.
+Learn more about our [multi-tenancy concept]({{< relref "/overview/observability/configuration/multi-tenancy/concepts" >}}).
 
 ### The alerting pipeline
 
@@ -50,7 +50,7 @@ If you want to want to learn more about the configuration of the alerting pipeli
 
 In this section, you have access to various features such as:
 
-- __Alerts rules__: all (alerts and recording) rules currently available, which can be filtered by state like firing or pending. When unfolding an alert rule you can use the *see graph* link to jump to an explore page with the alert’s expression pre-filled.
+- __Alerts rules__: all (alerts and recording) rules currently available, which can be filtered by state like firing or pending. When unfolding an alert rule you can use the *see graph* link to jump to an explore page with the alert's expression pre-filled.
 - __Contact points__: configured integrations (for example opsgenie or slack) to send alerts to, along with notification templates used to format alerts when sent out.
 - __Notification policies__: alerts routing which defines how alerts are sent to contact points based on matching criteria.
 - __Silences__: silences currently loaded and their state along with the affected alerts.
