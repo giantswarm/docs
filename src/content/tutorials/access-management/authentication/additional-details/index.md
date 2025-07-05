@@ -15,6 +15,8 @@ user_questions:
   - What requirements are there to use single sign-on with the platform API?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/use-the-api/management-api/authentication/additional-details/
 ---
 
 ## Details of the id token {#id-token-details}

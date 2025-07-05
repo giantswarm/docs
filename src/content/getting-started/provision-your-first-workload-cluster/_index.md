@@ -2,6 +2,12 @@
 title: Create a first workload cluster
 description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 30
+aliases:
+  - /getting-started/capa-wlcluster-creation/
+  - /getting-started/capz-cluster-creation/
+  - /getting-started/create-workload-cluster
+  - /getting-started/kubectl-gs/
+  - /vintage/getting-started/create-workload-cluster
 last_review_date: 2024-11-28
 menu:
   principal:
