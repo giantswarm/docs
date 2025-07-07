@@ -5,8 +5,8 @@ weight: 80
 layout: single
 menu:
   principal:
-    parent: tutorials-fleet-management-clusters-concepts
-    identifier: tutorials-fleet-management-clusters-concepts-upgrades
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-upgrades
 user_questions:
   - How do I upgrade my workload clusters?
 last_review_date: 2025-07-01
