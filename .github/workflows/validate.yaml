@@ -104,6 +104,13 @@ jobs:
               if full_path.name == '_template.md.tpl':
                 continue
               
+              # Verify usae of _index.md (list) vs. index.md (leaf article) file names
+              if file == '_index.md':
+                num_siblings = len(dirs) + len(files) - 1
+                if num_siblings == 0:
+                  errors.append(f"- FILE {full_path} should be named index.md (without underscore) instead")
+
+              # Verify file name character set
               if full_path.suffix.lower() == '.md':
                 if not allowed_chars.match(full_path.stem):
                   errors.append(f"- FILE {full_path}")
