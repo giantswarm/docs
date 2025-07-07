@@ -41,7 +41,7 @@ Work with Giant Swarm to configure core platform components:
 - **Manage permissions** with role-based access controls (RBAC) from your identity provider
 - **Configure tenant lifecycle** including creation, management, and removal processes
 
-[Multi-tenancy configuration](({{< relref "/tutorials/observability/multi-tenancy" >}})) affects all other platform components, making it essential to understand before configuring other areas.
+[Multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) affects all other platform components, making it essential to understand before configuring other areas.
 
 ### Organization management
 
