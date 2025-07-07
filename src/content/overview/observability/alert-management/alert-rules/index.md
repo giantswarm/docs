@@ -77,7 +77,7 @@ spec:
 - **`labels`**: Key-value pairs for routing and grouping alerts
 - **`annotations`**: Human-readable information about the alert
 
-For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/). You can also explore queries in your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) explore interface.
+For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) explore interface.
 
 ## Recording rules
 
@@ -115,6 +115,8 @@ spec:
 ## Log-based alerting
 
 Log-based alerting monitors application logs for specific patterns, errors, or anomalies using LogQL queries. The Loki ruler evaluates these alerts for powerful application-level monitoring.
+
+For a deeper understanding of how logs flow through the platform, see our [logging architecture documentation]({{< relref "/overview/observability/logging/" >}}).
 
 ### Configuration
 
@@ -204,6 +206,15 @@ spec:
 
 ## Next steps
 
-- Configure [Alertmanager]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) for your tenants
-- Explore [dashboard creation]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}}) to visualize your metrics
-- Review the [alerting pipeline]({{< relref "/overview/observability/alert-management/" >}}) architecture
+- Configure [Alertmanager]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) for your tenants to complete the alerting pipeline
+- Review the [alerting pipeline]({{< relref "/overview/observability/alert-management/" >}}) architecture to understand how alerts flow through the system
+- Learn about [data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}}) to query and analyze the metrics and logs that drive your alerts
+
+## Related observability features
+
+Alert rules work best when integrated with other platform capabilities:
+
+- **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Use advanced querying techniques to test and refine your alert expressions before deploying them
+- **[Logging architecture]({{< relref "/overview/observability/logging/" >}})**: Understand how log-based alerts work with Loki's distributed logging system
+- **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Essential for understanding tenant labeling requirements and secure alert isolation
+- **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api/" >}})**: Ingest external logs and events that can trigger alerts for comprehensive monitoring coverage
