@@ -37,7 +37,7 @@ Get familiar with tenant management in our [multi-tenancy documentation]({{< rel
 
 [Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) use Prometheus (PromQL) or Loki (LogQL) expressions to evaluate conditions and trigger notifications.
 
-### Basic structure
+### Alert example
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
