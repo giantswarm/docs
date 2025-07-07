@@ -2,7 +2,7 @@
 title: Platform access management
 linkTitle: Access management
 description: How the users can access the Giant Swarm platform and manage their applications.
-weight: 20
+weight: 10
 menu:
   principal:
     parent: tutorials

@@ -3,6 +3,9 @@ linkTitle: Target namespace metadata
 title: Configure an app's target namespace via its App CR
 description: How to configure metadata for the target namespace of an app via its app CR. So it can be used by other tools.
 weight: 60
+aliases:
+  - /getting-started/app-platform/namespace-configuration
+  - /vintage/getting-started/app-platform/namespace-configuration
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform

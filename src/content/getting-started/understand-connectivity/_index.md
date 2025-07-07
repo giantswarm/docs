@@ -2,6 +2,9 @@
 title: Control the application connectivity
 description: Understand how basic connectivity works in the platform and which options are available for exposing your app.
 weight: 50
+aliases:
+  - /getting-started/connectivity/network-policies
+  - /vintage/getting-started/connectivity/network-policies
 last_review_date: 2024-11-28
 menu:
   principal:

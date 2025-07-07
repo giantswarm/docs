@@ -1,19 +1,18 @@
 ---
+title: Domain allowlist
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
-last_review_date: 2025-06-04
-linkTitle: Domain allowlist
+weight: 40
 menu:
   principal:
     parent: overview-security
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
-title: Domain allowlist
-weight: 40
 user_questions:
   - What domains do Giant Swarm clusters need access to?
 aliases:
   - /vintage/platform-overview/security/cluster-security/domain-allowlist/
   - /platform-overview/security/cluster-security/domain-allowlist
+last_review_date: 2025-06-04
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
 
 List of the external domains we require access to for our clusters to function.

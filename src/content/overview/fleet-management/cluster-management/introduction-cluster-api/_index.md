@@ -6,7 +6,9 @@ menu:
   principal:
     parent: overview-fleetmanagement-clustermanagement
     identifier: overview-fleetmanagement-clustermanagement-capi
-last_review_date: 2024-05-02
+aliases:
+  - /platform-overview/cluster-management/cloud-provider-implementations
+last_review_date: 2025-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -44,6 +46,6 @@ On top of that, we've some additional features that aren't part of the Cluster A
 
 For creating a cluster using Cluster API, you would need to define a set of resources that will be used to create the cluster. For example: `Cluster`, `<PROVIDER_NAME>Cluster`, `KubeadmControlPlane`, `MachinePool`, `<PROVIDER_NAME>MachinePool`, etc. as standardized by the Cluster API custom resource definitions. You _could_ create these resources manually, exploring every single specification field that's possible to use, but we offer a more convenient way to do that: we've a set of charts that are ready to be used to provision a cluster correctly. For those, we provide proper release management, documentation and testing, such that you can trust that minor upgrades happen without disruption, or breaking changes are described and happening only in major releases.
 
-On top the chart, we've got the [`App` concept]({{< relref "vintage/getting-started/app-platform/app-bundle" >}}), a custom resource which helps us to select a chart to be installed in the management cluster allowing extended configuration capabilities that enhance the fleet management experience.
+On top the chart, we've got the [`App` concept]({{< relref "/overview/fleet-management/app-management" >}}), a custom resource which helps us to select a chart to be installed in the management cluster allowing extended configuration capabilities that enhance the fleet management experience.
 
-Learn more by reading how to [create your first workload cluster]({{< relref "vintage/getting-started/create-workload-cluster" >}}) or check the cluster apps we offer in our [catalog]({{< relref "vintage/use-the-api/management-api/cluster-apps" >}}).
+Learn more by reading how to [create your first workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).

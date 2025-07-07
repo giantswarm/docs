@@ -66,7 +66,7 @@ The following LogQL query can be used in `Grafana > Explore` UI to show all logs
 {namespace="example-namespace", pod=~"nginx-deployment.+"}
 ```
 
-Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
+Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/overview/observability/data-management/advanced-logql-tutorial/" >}}).
 
 ### Using PodLogs
 
@@ -76,7 +76,7 @@ Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/obs
 - Filter pods' namespaces using label selector
 - Modify labels using relabeling
 
-[PodLogs][1] can be created via a Helm Chart or [GitOps]({{< relref "/vintage/advanced/gitops" >}}). Alternatively it can also be directly created in the cluster.
+[PodLogs][1] can be created via a Helm Chart or GitOps. Alternatively it can also be directly created in the cluster.
 
 Example:
 
@@ -117,7 +117,7 @@ The following LogQL query can be used in `Grafana > Explore` UI to show all logs
 {job="example-namespace/example-podlog"}
 ```
 
-Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/tutorials/observability/data-exploration/exploring-logs" >}}).
+Learn more about LogQL in [Exploring logs with LogQL]({{< relref "/overview/observability/data-management/advanced-logql-tutorial/" >}}).
 
 ### Technical considerations
 

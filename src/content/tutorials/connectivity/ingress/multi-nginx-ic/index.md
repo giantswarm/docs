@@ -15,6 +15,7 @@ user_questions:
   - How do I configure ingress nginx controller to allow weak ciphers?
 last_review_date: 2024-08-26
 aliases:
+  - /vintage/advanced/connectivity/ingress/multi-nginx-ic
   - /advanced/connectivity/ingress/multi-nginx-ic
   - /guides/multi-nginx/
   - /advanced/multi-nginx/
@@ -143,7 +144,7 @@ For the second ingress nginx controller installation, ingress class name and hos
 
 ## Additional resources
 
-- [Services of type LoadBalancer]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer/index.md" >}})
+- [Services of type LoadBalancer]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}})
 - [Installing an ingress controller]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}})
 - [Ingress nginx controller configuration options](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml)
 - [Upstream ingress nginx controller configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
