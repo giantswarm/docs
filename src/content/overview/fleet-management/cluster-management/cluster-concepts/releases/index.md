@@ -40,7 +40,7 @@ We test workload cluster releases as a whole. To upgrade a component to a newer 
 
 ## Conventions around release versioning {#versioning-conventions}
 
-The Semver standard specifies version numbers in the form of `Major.Minor.Patch`.
+The SemVer standard specifies version numbers in the form of `Major.Minor.Patch`.
 
 Each new workload cluster release defines a set of changes with regard to exactly one previous workload cluster release. The nature or impact of the changes influence the version number of the new release.
 
