@@ -18,12 +18,6 @@ Data management is the backbone of our observability platform, giving you comple
 
 Think of data management as your control center for observability - it's where you decide what data to collect, how to organize it, and how to make it useful for your teams.
 
-<<<<<<< Updated upstream
-- **Data exploration**: Advanced querying and analysis of your metrics and logs
-- **Data ingestion**: Flexible collection and routing of observability data
-- **Data transformation**: Processing and enriching data for your specific needs
-- **Data export**: Access your data programmatically via our Observability Platform API
-=======
 ## Supported data types
 
 Our observability platform handles three key types of observability data:
@@ -76,4 +70,3 @@ Access your data programmatically:
 - **[API access]({{< relref "/overview/observability/observability-platform-api" >}})**: Programmatic data ingestion and retrieval via REST APIs
 - **External integration**: Connect to external monitoring tools and data sources
 - **Standard protocols**: Support for OpenTelemetry Protocol (OTLP) and Prometheus remote write
->>>>>>> Stashed changes
