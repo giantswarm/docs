@@ -57,6 +57,7 @@ Kinvolk
 krew
 [Kk]ustomize
 kube-vip
+kubeconfig[s]?
 kubectl
 kubelet
 kube-vip
