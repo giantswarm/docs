@@ -41,11 +41,11 @@ Work with Giant Swarm to configure core platform components:
 - **Manage permissions** with role-based access controls (RBAC) from your identity provider
 - **Configure tenant lifecycle** including creation, management, and removal processes
 
-Multi-tenancy configuration affects all other platform components, making it essential to understand before configuring other areas.
+[Multi-tenancy configuration](({{< relref "/tutorials/observability/multi-tenancy" >}})) affects all other platform components, making it essential to understand before configuring other areas.
 
 ### Organization management
 
-Manage your observability platform's organizational structure through **[`GrafanaOrganization`]({{< relref "/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}})** resources. Organization management enables you to:
+Manage your observability platform's organizational structure through **[`GrafanaOrganization`]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}})** resources. Organization management enables you to:
 
 - **Create isolated workspaces**: Set up dedicated Grafana organizations for teams, environments, or projects
 - **Configure access controls**: Map identity provider groups to appropriate roles (admin, editor, viewer)
@@ -86,24 +86,15 @@ Integrate data from sources outside Giant Swarm managed clusters through the **[
 
 ## Visualization and dashboard configuration
 
-Customize how you view and visualize your observability data:
-
-### Grafana organizations
-
 Once you've created Grafana organizations as part of your multi-tenancy setup, you can leverage them for powerful visualization capabilities:
-
-- **Isolated workspaces**: Each organization provides a dedicated environment for team-specific dashboards and visualizations
-- **Tenant-scoped data access**: Automatically provisioned datasources provide teams with access only to their authorized data
-- **Collaborative visualization**: Share dashboards and insights within organization boundaries
-- **Custom dashboard organization**: Organize monitoring assets by team, environment, or service ownership
 
 ### Custom dashboards
 
 **[Create custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}})** tailored to your specific monitoring needs:
 
 - **GitOps approach**: Version-controlled dashboard definitions using ConfigMaps
-- **UI creation**: Build dashboards directly in Grafana with persistent storage
 - **Dashboard provisioning**: Automatically deploy dashboards to specific organizations
+- **UI creation**: Build dashboards directly in Grafana with persistent storage
 - **Cross-tenant dashboards**: Combine data from multiple tenants when authorized
 
 ## Alerting and notification configuration
@@ -161,8 +152,8 @@ Establish patterns and standards across your configuration:
 
 To begin configuring your observability platform:
 
-1. **Understand multi-tenancy**: Work with your Giant Swarm account engineer to plan your data organization strategy
-2. **Set up organizations**: Create Grafana organizations for your teams with assistance from Giant Swarm
+1. **[Understand multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
+2. **Set up [Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for critical system health
 5. **Build dashboards**: Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}) for your specific monitoring needs
