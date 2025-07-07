@@ -46,19 +46,11 @@ Each new workload cluster release defines a set of changes with regard to exactl
 
 ### Major version {#major}
 
-The Kubernetes project provides the most important component of our workload clusters. So we align our workload cluster release versioning with the Kubernetes releases.
+The Kubernetes project provides the most critical component of our workload clusters. So we align our workload cluster release versioning with the Kubernetes releases.
 
 **Convention**: For each new _minor_ Kubernetes release we provide a new _major_ workload cluster release version.
 
-The following table shows which of our major releases contain which Kubernetes release.
-
-| Release version | Kubernetes version | Availability |
-|:---------------------------:|:------------------:|:------------:|
-| **28.x.x**                  | 1.28.x             | Available    |
-| **29.x.x**                  | 1.29.x             | Available    |
-| **30.x.x**                  | 1.30.x             | Available    |
-| **31.x.x**                  | 1.31.x             | Available    |
-| **32.x.x**                  | 1.32.x             | Available    |
+For example, the cluster release **28.x.x** will include a Kubernetes version of 1.28.x. 
 
 We test every new major workload cluster release, bringing a new Kubernetes minor release, against the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
 Every workload cluster release, from patch to major, also undergoes automated integration testing.
@@ -71,7 +63,7 @@ We increase (bump) the minor version number when a workload cluster release adds
 
 ### Patch version {#patch}
 
-We use patch releases to publish bug fixes, security fixes, or to make changes to the observability while maintaining the given functionality of the stack. This can include any sort of patch upgrades of third party components.
+The general rule for patch releases is that they have zero impact on customers and do not require rolling nodes. They are used to fix a problem in the predecessor (bugfix or security fix), implement temporary mitigations, or make other changes that do not require customer action.
 
 ### Lifecycle {#lifecycle}
 
@@ -104,7 +96,7 @@ Use Cases for Pre-Releases:
 
 - A new high impact feature is done, but needs to wait for the next major release (beta). Customers get early access to the functionality and see that it sits well with their set-up. Customers report back with bugs as necessary. This allows us to make fixes to bugs that we may have not found.
 
-- A new high impact feature is done and is urgently needed by a customer (release candidate (rc)). The customer can get a pre-release to test and roll out ASAP. This release is complete and stable. It may not meet the quality bars of a general availaibility (GA) release.
+- A new high-impact feature is done and is urgently needed by a customer (release candidate `rc`). The customer can get a pre-release to test and roll out ASAP. This release is complete and stable. It may not meet the quality bars of a general availability (GA) release.
 
 ### Inspecting workload cluster releases {#inspecting}
 
