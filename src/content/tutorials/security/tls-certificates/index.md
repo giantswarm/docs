@@ -12,6 +12,11 @@ user_questions:
 last_review_date: 2024-12-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/advanced/connectivity/tls-certificates
+  - /advanced/connectivity/tls-certificates
+  - /advanced/tls-certificates
+  - /guides/tls-certificates
 ---
 
 Exposing `HTTP` services using an [`Ingress` resource]({{< relref "/tutorials/connectivity/ingress/exposing-workloads" >}}) is a pretty straightforward task in `Kubernetes`. However, you should always make sure that the traffic is encrypted. Relying on `cert-manager` provides a simple approach to obtain declaratively TLS certificates automatically.

@@ -121,7 +121,7 @@ An organization is a key concept in the Giant Swarm platform, used to isolate [t
 
 ### giantswarm.io/prevent-deletion
 
-Can be set on certain resource types to prevent deletion. See [Prevent accidental deletion of resources]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
+Can be set on certain resource types to prevent deletion. See [Prevent accidental deletion of resources]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}).
 
 ### giantswarm.io/service-type
 

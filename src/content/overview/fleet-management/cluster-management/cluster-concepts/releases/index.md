@@ -1,7 +1,6 @@
 ---
 title: Workload cluster releases
 description: Details on the workload cluster release offered by Giant Swarm and ways to look up even more details.
-last_review_date: 2025-07-01
 weight: 30
 menu:
   principal:
@@ -24,6 +23,7 @@ user_questions:
 aliases:
   - /platform-overview/cluster-management/releases
   - /reference/workload-cluster-release-versions/
+last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-tenet
 ---
