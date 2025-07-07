@@ -225,7 +225,7 @@ spec:
   version: 1.17.0
 ```
 
-You can read more about app platform configuration [here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/vintage/advanced/connectivity/ingress" >}}).
+You can read more about app platform configuration [here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/tutorials/connectivity/ingress/configuration" >}}).
 
 ## Deleting an App CR
 
