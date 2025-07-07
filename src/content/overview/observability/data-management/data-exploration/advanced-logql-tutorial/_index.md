@@ -218,4 +218,4 @@ For comprehensive LogQL syntax and additional functions, refer to:
 
 Enhance your observability skills further:
 
-- [Dashboard creation guide]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/" >}}) for visualizing your log queries
+- [Dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for visualizing your log queries
