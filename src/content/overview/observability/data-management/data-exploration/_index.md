@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-exploration
-last_review_date: 2025-06-30
+last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -27,3 +27,4 @@ The Giant Swarm observability platform supports advanced querying capabilities t
 
 - **LogQL**: Advanced log querying for exploring and analyzing log data stored in Loki
 - **PromQL**: Powerful metric querying for analyzing time-series data stored in Mimir, including resource monitoring, application performance analysis, and capacity planning
+- **[Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}})**: Master complex log analysis and troubleshooting using LogQL with Loki
