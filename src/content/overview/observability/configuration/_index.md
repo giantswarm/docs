@@ -45,7 +45,7 @@ Work with Giant Swarm to configure core platform components:
 
 ### Organization management
 
-Manage your observability platform's organizational structure through **[`GrafanaOrganization`]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}})** resources. Organization management enables you to:
+Manage your observability platform's organizational structure through **[`GrafanaOrganization`]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})** resources. Organization management enables you to:
 
 - **Create isolated workspaces**: Set up dedicated Grafana organizations for teams, environments, or projects
 - **Configure access controls**: Map identity provider groups to appropriate roles (admin, editor, viewer)
