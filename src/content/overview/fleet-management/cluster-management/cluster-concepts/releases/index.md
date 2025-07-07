@@ -34,9 +34,9 @@ Our workload cluster releases define the capabilities of the clusters you create
 
 Throughout the lifecycle of a cluster, you first have the option to select a workload cluster release when creating the cluster. Later you are likely to upgrade the cluster from release to release. Understanding the differences of Major, Minor and Patch releases and their impact is crucial.
 
-Each workload cluster release bundles a stack of components with their specific versions. The workload cluster release itself is distinguished by the provider it is made for (AWS, Azure, or KVM) and the version number, which follows the [Semver](https://semver.org/) standard.
+Each workload cluster release bundles a stack of components with their specific versions. The workload cluster release itself is distinguished by the provider it is designed for (AWS, Azure, or vSphere) and the version number, which follows the [Semantic Versioning (SemVer)](https://semver.org/) standard.
 
-We test workload cluster releases as a whole. To upgrade a component to a newer version, the entire cluster is upgrade to a new workload cluster release. This is our best way to ensure that all components in the cluster interoperate well.
+We test workload cluster releases as a whole. To upgrade a component to a newer version, the entire cluster is upgraded to a new workload cluster release. This is our best way to ensure that all elements in the cluster interact well.
 
 ## Conventions around release versioning {#versioning-conventions}
 
@@ -92,7 +92,7 @@ Once deprecated, you can still continue to use the workload cluster release with
 
 ### Pre-releases
 
-Pre-releases (when available) give you the option to test new features or use new functionality before the feature is released. At the same time helps us release new features and test them in a realworld scenario with your help. When you test out a pre-release it helps find bugs or evaluate the impact of new functionality on the system.
+Pre-releases (when available) provide you with the option to test new features or use new functionality before the feature is officially released. At the same time, it helps us release new features and test them in a real-world scenario with your help. When you test a pre-release, it helps identify bugs or assess the impact of new functionality on the system.
 
 Currently not all Giant Swarm releases become available as pre-releases. We communicate pre-releases, when they are available for customer testing.
 
