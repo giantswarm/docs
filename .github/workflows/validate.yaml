@@ -105,10 +105,9 @@ jobs:
           
                   # Verify usae of _index.md (list) vs. index.md (leaf article) file names
                   if full_path.name == '_index.md':
-                      print(f'{full_path}, {len(files)} files, {len(dirs)} dirs')
                       num_siblings = len(dirs) + len(files) - 1
                       if num_siblings == 0:
-                          errors_index.append(f"- {full_path} should be named index.md (without underscore) if it has content, or deleted if it is empty")
+                          errors_index.append(f"- {full_path}")
                       continue
 
                   # Verify file name character set
@@ -130,7 +129,7 @@ jobs:
                   for error in errors_badchars:
                       sys.stderr.write(error + "\n")
               if len(errors_index) > 0:
-                  sys.stderr.write("The following files have the wrong name.\n")
+                  sys.stderr.write("These _index.md files should be named index.md (if not empty) or deleted.\n")
                   for error in errors_index:
                       sys.stderr.write(error + "\n")
               sys.exit(1)
