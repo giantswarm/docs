@@ -1,5 +1,6 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
+[Aa]lert
 allows
 against
 [Aa]gent
@@ -33,7 +34,7 @@ ENI[s]?
 ensure
 ESXi
 Etcd
-Explore
+[Ee]xplore
 extract
 Falco
 firewalling

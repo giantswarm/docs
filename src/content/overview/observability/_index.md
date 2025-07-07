@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-observability
-last_review_date: 2024-12-11
+last_review_date: 2025-06-30
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
