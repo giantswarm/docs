@@ -77,7 +77,7 @@ Old workload cluster releases get [deprecated](#deprecation) when replaced by ne
 
 Once we provide a new workload cluster release, be it major, minor, or patch, we usually deprecate an older version.
 
-- When we release a new major version, we deprecate all remaining workload cluster release in the oldest major version (to have only two major versions maintained).
+- As soon as we publish a new major release, we can deprecate all active releases in the two major versions preceding it, as none of them are needed as an upgrade path anymore.
 - When releasing a new minor or patch version, we deprecate the previous version. For example, when 28.1.0 comes out, the previous version 28.0.1 gets deprecated.
 
 Once deprecated, you can still continue to use the workload cluster release with existing clusters. In addition, as long as you have at least one cluster in your installation running the deprecated release, you can also create new clusters using that release. This allows you to create test clusters to test an upgrade from that release.
