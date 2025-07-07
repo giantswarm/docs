@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-exploration
     identifier: overview-observability-advanced-promql
-last_review_date: 2025-06-30
+last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -384,7 +384,7 @@ and [aggregation operators](https://prometheus.io/docs/prometheus/latest/queryin
   with your PromQL queries
 - Set up [alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}})
   for proactive monitoring
-- Explore [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}})
+- Explore [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})
   for organizing metrics data
 
 For a comprehensive PromQL reference, see the
