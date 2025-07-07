@@ -152,7 +152,7 @@ Establish patterns and standards across your configuration:
 
 To begin configuring your observability platform:
 
-1. **[Understand multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
+1. **[Understand multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
 2. **Set up [Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for critical system health
