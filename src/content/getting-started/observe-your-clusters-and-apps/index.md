@@ -33,7 +33,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    application.giantswarm.io/team: team-rocket
+    observability.giantswarm.io/tenant: my_team
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: my-namespace
@@ -47,9 +47,11 @@ spec:
       app.kubernetes.io/instance: my-service
 ```
 
-An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it's required for the `Prometheus` agent to discover the target.
+An important bit to notice is the `observability.giantswarm.io/tenant` label. This label is necessary as it's required for the metrics agent to discover the target and route the metrics to the correct tenant.
 
 Reading the manifest, the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application, so it should match the application label.
+
+For comprehensive guidance on metrics and logs ingestion, including PodMonitors and PodLogs, see our [Data Ingestion documentation]({{< relref "/overview/observability/data-management/data-ingestion" >}}).
 
 After applying the service monitor, you can open the `Explore` view in the `Grafana` UI and start querying the metrics from your application.
 
