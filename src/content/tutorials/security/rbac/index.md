@@ -20,21 +20,21 @@ last_review_date: 2024-11-28
 mermaid: true
 ---
 
-Role Base Access Control (RBAC) is the primary authorization mechanism for managing access to cluster resources in Kubernetes. It is enabled and configured by default on Giant Swarm clusters, and we support common automation use cases through additional platform capabilities described in our [Platform Access Management section][platform-access-management].
+Role-based access control (RBAC) is the primary authorization mechanism for managing access to cluster resources in Kubernetes. It is enabled and configured by default on Giant Swarm clusters, and we support common automation use cases through additional platform capabilities as described in our [platform access management][platform-access-management] section.
 
 ## Role based access control
 
-The `RBAC` API defines both roles and bindings on either namespace or cluster level. Like any other `Kubernetes` API object, these can be defined by writing YAML (or JSON) manifests.
+The RBAC API defines both roles and bindings on either namespace or cluster level. Like any other Kubernetes API object, these can be defined by writing YAML (or JSON) manifests.
 
-__Note__: that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a `cluster-admin` account to apply `RBAC` manifests.
+__Note__: that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a `cluster-admin` account to apply RBAC manifests.
 
 ### The role resources {#role-resources}
 
-The `Role` and `ClusterRole` allow a cluster administrator to define a reusable set of permissions. While a `Role` is used to grant permissions within a single namespace, a `ClusterRole` can grant the same permissions, but can be bound on a cluster-scope.
+The Role and ClusterRole allow a cluster administrator to define a reusable set of permissions. While a Role is used to grant permissions within a single namespace, a ClusterRole can grant the same permissions, but can be bound on a cluster-scope.
 
-If you want to grant access to a resource that isn't namespaced you have to use a `ClusterRole`.
+If you want to grant access to a resource that isn't namespaced you have to use a ClusterRole.
 
-As an example, the following `Role` grants read access to pods in the `default` namespace.
+As an example, the following Role grants read access to pods in the `default` namespace.
 
 ```yaml
 kind: Role
@@ -52,9 +52,9 @@ rules:
       - list
 ```
 
-As you can see, the list of `resources` accessible only contains the value `pods`. The `verbs` entries define what the subject can do to pods. The three verbs listed in the example above allow for read-only access. Other verbs available for use are `create`, `update`, `patch`, and `delete`.
+As you can see, the list of resources accessible only contains the value `pods`. The `verbs` entries define what the subject can do to pods. The three verbs listed in the example above allow for read-only access. Other verbs available for use are `create`, `update`, `patch`, and `delete`.
 
-On to another example. With a `ClusterRole` like the following you can grant read access to secrets.
+On to another example. With a ClusterRole like the following you can grant read access to secrets.
 
 ```yaml
 kind: ClusterRole
@@ -72,11 +72,11 @@ rules:
       - list
 ```
 
-Since a `ClusterRole` isn't namespaced, you can use it either in a particular namespace or across all namespaces, depending on how it's bound. This will be explained in the next section.
+Since a ClusterRole isn't namespaced, you can use it either in a particular namespace or across all namespaces, depending on how it's bound. This will be explained in the next section.
 
 #### Aggregated ClusterRoles
 
-You can also create ClusterRoles by combining other cluster roles using an `aggregationRule`. The permissions of aggregated cluster roles are controller-managed, and filled in by joining the rules of any `ClusterRole` that matches the provided label selector.
+You can also create ClusterRoles by combining other cluster roles using an `aggregationRule`. The permissions of aggregated cluster roles are controller-managed, and filled in by joining the rules of any ClusterRole that matches the provided label selector.
 
 You can use this to create meta cluster roles that you fill with `sub-cluster-roles` like following:
 
@@ -92,7 +92,7 @@ aggregationRule:
 rules: [] # Rules are automatically filled in by the controller manager.
 ```
 
-Now any `ClusterRole` you create that carries the `rbac.example.com/aggregate-to-monitoring: "true"` label will automatically get added to the `monitoring` cluster role, for example:
+Now any ClusterRole you create that carries the `rbac.example.com/aggregate-to-monitoring: "true"` label will automatically get added to the `monitoring` cluster role, for example:
 
 ```yaml
 kind: ClusterRole
@@ -130,20 +130,20 @@ rules:
   - use
 ```
 
-After applying above `ClusterRole` to the cluster, everyone with the cluster role `admin` will be able to use the `admin-psp` policy.
+After applying above ClusterRole to the cluster, everyone with the cluster role `admin` will be able to use the `admin-psp` policy.
 
 ### Binding a roles {#binding-role}
 
-With bindings you can bind a `Role` or `ClusterRole` to subjects like users, groups, or service accounts. There are again two different resource types available:
+With bindings you can bind a Role or ClusterRole to subjects like users, groups, or service accounts. There are again two different resource types available:
 
-- The `RoleBinding` grants access _within a certain namespace_ and can bind either a `Role` or a `ClusterRole` to subjects.
-- The `ClusterRoleBinding` grants access _cluster-wide_ and can only bind a `ClusterRole` to subjects.
+- The __RoleBinding__ grants access _within a certain namespace_ and can bind either a Role or a ClusterRole to subjects.
+- The __ClusterRoleBinding__ grants access _cluster-wide_ and can only bind a ClusterRole to subjects.
 
 #### RoleBinding
 
-A `RoleBinding` can either reference a `Role` or a `ClusterRole`, but will only grant permissions on the namespace it's applied to.
+A RoleBinding can either reference a Role or a ClusterRole, but will only grant permissions on the namespace it's applied to.
 
-The following `RoleBinding` binds the `Role` named “pod-reader” to the user “jane” within the “default” namespace. This grants “jane” read access to pods in the “default” namespace.
+The following RoleBinding binds the Role named `pod-reader` to the user `jane` within the `default` namespace. This grants `jane` read access to pods in the `default` namespace.
 
 ```yaml
 kind: RoleBinding
@@ -161,9 +161,9 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-In contrast, binding a `ClusterRole` (instead of a `Role`) with a `RoleBinding` allows cluster administrators to define a set of common roles for the entire cluster, then reuse them within _multiple namespaces_.
+In contrast, binding a ClusterRole (instead of a Role) with a RoleBinding allows cluster administrators to define a set of common roles for the entire cluster, then reuse them within _multiple namespaces_.
 
-For instance, even though the following `RoleBinding` refers to a `ClusterRole`, user `dave` will only be able read secrets in the “development” namespace (the namespace of the `RoleBinding`).
+For instance, even though the following RoleBinding refers to a ClusterRole, user `dave` will only be able read secrets in the `development` namespace (the namespace of the RoleBinding).
 
 ```yaml
 kind: RoleBinding
@@ -183,7 +183,7 @@ roleRef:
 
 #### ClusterRoleBinding
 
-Finally, a `ClusterRoleBinding` may be used to grant permission at the cluster level and in all namespaces. The following `ClusterRoleBinding` allows any user in the group “manager” to read secrets in any namespace.
+Finally, a ClusterRoleBinding may be used to grant permission at the cluster level and in all namespaces. The following ClusterRoleBinding allows any user in the group `manager` to read secrets in any namespace.
 
 ```yaml
 kind: ClusterRoleBinding
@@ -202,7 +202,7 @@ roleRef:
 
 #### Referring to subjects
 
-Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access (and with `PSPs` also `Pod` privileges) to certain `Pods`, for example monitoring and logging agents.
+Bindings can refer to subjects that are either single users, groups, or service accounts. The latter are needed to grant API access to certain pods, for example monitoring and logging agents.
 
 For a detailed explanation of how to refer to subjects in bindings you can read the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects).
 
@@ -210,9 +210,9 @@ For a detailed explanation of how to refer to subjects in bindings you can read 
 
 Your cluster comes by default with a set of roles and cluster roles as well as some default bindings. These are automatically reconciled and thus can't be changed or deleted.
 
-You can use the `Role` and `ClusterRole` resources to create bindings for your users. Following example would grant all users in the group `mynamespace-admin` full permissions to resources in the `mynamespace` namespace.
+You can use the Role and ClusterRole resources to create bindings for your users. Following example would grant all users in the group `mynamespace-admin` full permissions to resources in the `mynamespace` namespace.
 
-See how it references a `ClusterRole` named `admin`, which comes with Kubernetes by default.
+See how it references a ClusterRole named `admin`, which comes with Kubernetes by default.
 
 ```yaml
 kind: ClusterRoleBinding
@@ -238,7 +238,7 @@ For a complete overview of default roles and bindings you can read the [official
 
 __Warning:__ Consider the principle of least privilege and be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. Using the `cluster-admin` role by default in a Kubernetes cluster is analogous to giving root access to every user in a Linux system. Consider whether a binding to `cluster-admin` is truly necessary, or if a more minimal role can be bound instead. Read [the platform access management documentation][platform-access-management] to know more.
 
-### Verifying if you Have Access
+### Verifying if you have access
 
 If you aren't sure if your (or another) user is allowed to do a certain action, you can verify that with the `kubectl auth can-i` command.
 
@@ -257,7 +257,7 @@ $ kubectl auth can-i create deployments \
 no
 ```
 
-or impersonate a `ServiceAccount` to check if it's set up right:
+or impersonate a ServiceAccount to check if it's set up right:
 
 ```nohighlight
 $ kubectl auth can-i use podsecuritypolicies/privileged \
@@ -291,7 +291,7 @@ When binding roles to a user, the full username must be used, in the format abov
 
 ### Using organizations
 
-Organizations you set when creating `key-pairs` get mapped to groups inside Kubernetes. This allows role assignment to whole groups of users. A user can be part of multiple groups and thus be assigned multiple roles, the permissions of which are additive.
+Organizations you set when creating key pairs get mapped to groups inside Kubernetes. This allows role assignment to whole groups of users. A user can be part of multiple groups and thus be assigned multiple roles, the permissions of which are additive.
 
 There is only a single predefined user group inside Kubernetes. Members of the `system:masters` group will directly be assigned the default `cluster-admin` role, which is allowed to do anything. Our recommendation is to only use this kind of user when bootstrapping security settings for the cluster.
 
@@ -301,7 +301,7 @@ The `<cn-prefix>` defaults to the email you sign in with at Giant Swarm. The def
 
 ## Bootstrapping and managing access rights
 
-For bootstrapping and managing access rights on your `Kubernetes` cluster you first need a user that already has all rights that you want to give out. The easiest way to get such a user is creating a user that's in the `system:masters` group and thus carries Cluster Admin rights.
+For bootstrapping and managing access rights on your Kubernetes cluster you first need a user that already has all rights that you want to give out. The easiest way to get such a user is creating a user that's in the `system:masters` group and thus carries Cluster Admin rights.
 
 To create such a user with `kubectl gs` for a cluster with id `w6wn8` just run following command:
 
@@ -314,7 +314,7 @@ kubectl gs login $PLATFORM_API \
   --certificate-ttl 3h
 ```
 
-This will create a `kubeconfig` with a `cluster-admin` user that's valid for a three hours (as you don't want to yield that power for too long).
+This will create a kubeconfig with a `cluster-admin` user that's valid for a three hours (as you don't want to yield that power for too long).
 
 With this user, you can now start creating roles and bindings for your users and apps. Let's go through some examples.
 
@@ -343,9 +343,9 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The above YAML gives admin rights to the `development` namespace to both the user with `CN` prefix `jane` and all users within the `dev-admin` group.
+The above YAML gives admin rights to the `development` namespace to both the user with CN prefix `jane` and all users within the `dev-admin` group.
 
-You could create `kubeconfigs` for such users like following:
+You could create kubeconfigs for such users like following:
 
 ```sh
 export PLATFORM_API=https://api.capi.aws.k8s.gigantic.io # your platform API
@@ -359,7 +359,7 @@ export PLATFORM_API=https://api.capi.aws.k8s.gigantic.io # your platform API
 kubectl gs login $PLATFORM_API --workload-cluster w6wn8 --cn-prefix "marc" --certificate-organizations "dev-admin"
 ```
 
-Note that even when you don't need a specific username for giving Marc admin rights, you should still set a `CN` prefix to identify Marc's actions on the cluster.
+Note that even when you don't need a specific username for giving Marc admin rights, you should still set a CN prefix to identify Marc's actions on the cluster.
 
 ### Giving read access to the whole cluster
 
@@ -383,7 +383,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The above YAML gives view rights over the whole cluster to both the user with `CN` prefix `jane` and all users within the `cluster-view` group.
+The above YAML gives view rights over the whole cluster to both the user with CN prefix `jane` and all users within the `cluster-view` group.
 
 Let's assume you have already created both users from the example above. As Jane's username hasn't changed, she automatically gets the new rights using her existing credentials.
 
@@ -402,7 +402,7 @@ With the above, Marc would now be part of both groups and thus be bound by both 
 
 ### Running applications with API access
 
-Applications running inside your cluster that need access to the Kubernetes API need the right permissions bound to them. For this, Pods need to use a `ServiceAccount`.
+Applications running inside your cluster that need access to the Kubernetes API need the right permissions bound to them. For this, Pods need to use a ServiceAccount.
 
 The typical process looks like the following:
 
@@ -418,7 +418,7 @@ metadata:
 
 #### 2. Add the Service Account to your app {#app-api-add-sa}
 
-This is done by adding a line referencing the `ServiceAccount` to the `Pod` spec of your `Deployment` or `DaemonSet`. To be sure  you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
+This is done by adding a line referencing the ServiceAccount to the Pod spec of your Deployment or DaemonSet. To be sure  you have the right place in the YAML you can put it right above the line `containers:` at the same indentation level. The section should look similar to following:
 
 ```yaml
 [...]
@@ -437,7 +437,7 @@ spec:
 
 #### 3. Create a Role for your app {#app-api-create-role}
 
-This role should be very specific to the needs of your app and not allow anything more than what the app needs to work. In this example `fluentd` needs a cluster role that can get, watch, and list `Pods` and `Namespaces` in the whole cluster.
+This role should be very specific to the needs of your app and not allow anything more than what the app needs to work. In this example `fluentd` needs a cluster role that can get, watch, and list Pods and Namespaces in the whole cluster.
 
 ```yaml
 kind: ClusterRole
@@ -452,7 +452,7 @@ rules:
 
 #### 4. Bind the Role to the Service Account {#app-api-bind-role-sa}
 
-Now, you bind the role created above to the `ServiceAccount`:
+Now, you bind the role created above to the ServiceAccount:
 
 ```yaml
 kind: ClusterRoleBinding
