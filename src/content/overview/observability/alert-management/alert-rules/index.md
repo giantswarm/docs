@@ -91,7 +91,7 @@ Use recording rules to:
 - Create custom metrics by combining multiple metrics into business indicators
 - Simplify complex queries by breaking them into manageable components
 
-### Basic structure
+### Recording rule example
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
