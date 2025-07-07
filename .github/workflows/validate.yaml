@@ -95,39 +95,45 @@ jobs:
           allowed_chars_static = re.compile(r'^[a-z0-9-\._]+$') # images etc. may use the underscore
 
           content_dir = 'src/content'
-          errors = []
+          errors_badchars = []
+          errors_index = []
           for root, dirs, files in os.walk(content_dir):
-            for file in files:
-              full_path = Path(root, file)
-              if full_path.name == '_index.md':
-                continue
-              if full_path.name == '_template.md.tpl':
-                continue
-              
-              # Verify usae of _index.md (list) vs. index.md (leaf article) file names
-              if file == '_index.md':
-                num_siblings = len(dirs) + len(files) - 1
-                if num_siblings == 0:
-                  errors.append(f"- FILE {full_path} should be named index.md (without underscore) instead")
-
-              # Verify file name character set
-              if full_path.suffix.lower() == '.md':
-                if not allowed_chars.match(full_path.stem):
-                  errors.append(f"- FILE {full_path}")
-              else:
-                # static files
-                if not allowed_chars_static.match(full_path.name):
-                  errors.append(f"- FILE {full_path}")
-
-            for dir in dirs:
-              if not allowed_chars.match(dir):
-                errors.append(f"- DIR {Path(root, dir)}")
+              for file in files:
+                  full_path = Path(root, file)
+                  if full_path.name == '_template.md.tpl':
+                      continue
           
-          if len(errors) > 0:
-            sys.stderr.write("The following file/folder names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n")
-            for error in errors:
-              sys.stderr.write(error + "\n")
-            sys.exit(1)
+                  # Verify usae of _index.md (list) vs. index.md (leaf article) file names
+                  if full_path.name == '_index.md':
+                      print(f'{full_path}, {len(files)} files, {len(dirs)} dirs')
+                      num_siblings = len(dirs) + len(files) - 1
+                      if num_siblings == 0:
+                          errors_index.append(f"- {full_path} should be named index.md (without underscore) if it has content, or deleted if it is empty")
+                      continue
+
+                  # Verify file name character set
+                  if full_path.suffix.lower() == '.md':
+                      if not allowed_chars.match(full_path.stem):
+                          errors_badchars.append(f"- FILE {full_path}")
+                  else:
+                      # static files
+                      if not allowed_chars_static.match(full_path.name):
+                          errors_badchars.append(f"- FILE {full_path}")
+
+              for dir in dirs:
+                  if not allowed_chars.match(dir):
+                      errors_badchars.append(f"- DIR {Path(root, dir)}")
+
+          if (len(errors_badchars) + len(errors_index)) > 0:
+              if len(errors_badchars) > 0:
+                  sys.stderr.write("The following file/folder names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n")
+                  for error in errors_badchars:
+                      sys.stderr.write(error + "\n")
+              if len(errors_index) > 0:
+                  sys.stderr.write("The following files have the wrong name.\n")
+                  for error in errors_index:
+                      sys.stderr.write(error + "\n")
+              sys.exit(1)
 
       - name: Check for moved or deleted files
         if: ${{ github.event_name == 'pull_request' }}
