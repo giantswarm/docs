@@ -77,7 +77,7 @@ spec:
 - **`labels`**: Key-value pairs for routing and grouping alerts
 - **`annotations`**: Human-readable information about the alert
 
-For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) explore interface.
+For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}) explore interface.
 
 ## Recording rules
 
@@ -206,7 +206,7 @@ spec:
 
 ## Next steps
 
-- Configure [Alertmanager]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) for your tenants to complete the alerting pipeline
+- Configure [alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}}) for your tenants to complete the alerting pipeline
 - Review the [alerting pipeline]({{< relref "/overview/observability/alert-management/" >}}) architecture to understand how alerts flow through the system
 - Learn about [data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}}) to query and analyze the metrics and logs that drive your alerts
 

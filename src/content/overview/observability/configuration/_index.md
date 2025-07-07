@@ -45,7 +45,7 @@ Work with Giant Swarm to configure core platform components:
 
 ### Organization management
 
-Manage your observability platform's organizational structure through **[`GrafanaOrganization`]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}})** resources. Organization management enables you to:
+Manage your observability platform's organizational structure through **[`GrafanaOrganization`]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})** resources. Organization management enables you to:
 
 - **Create isolated workspaces**: Set up dedicated Grafana organizations for teams, environments, or projects
 - **Configure access controls**: Map identity provider groups to appropriate roles (admin, editor, viewer)
@@ -112,7 +112,7 @@ Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert management
 
-**[Configure Alertmanager]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}})** for comprehensive alert handling and operational workflows:
+**[Configure alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})** for comprehensive alert handling and operational workflows:
 
 - **Notification channels**: Integration with Slack, email, PagerDuty, and other services
 - **Contact points**: Configure notification destinations and templates
@@ -152,8 +152,8 @@ Establish patterns and standards across your configuration:
 
 To begin configuring your observability platform:
 
-1. **[Understand multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
-2. **Set up [Grafana organizations]({{< relref "/tutorials/observability/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
+1. **[Understand multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
+2. **Set up [Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for critical system health
 5. **Build dashboards**: Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for your specific monitoring needs

@@ -33,7 +33,7 @@ The alerting pipeline supports multi-tenancy, so we recommend getting familiar w
 
 The alerting pipeline is straightforward. The Loki and Mimir rulers evaluate alerting rules and send alerts to the Mimir Alertmanager. The Mimir Alertmanager (a multi-tenant aware Alertmanager) routes those alerts to configured receivers.
 
-Configure Alertmanager for your tenants using our [Alertmanager configuration tutorial]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
+Configure Alertmanager for your tenants using our [alert routing documentation]({{< relref "/overview/observability/alert-management/alert-routing/" >}}).
 
 ### Loading alerting and recording rules
 
@@ -50,7 +50,7 @@ Create your own rules using our [alert rules documentation]({{< relref "/overvie
 
 ## Alerting features in Grafana
 
-Access alerting configuration and monitoring in the **Alerting** section of your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}).
+Access alerting configuration and monitoring in the **Alerting** section of your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).
 
 ![Grafana alerting section](./grafana-alerting.png)
 
@@ -68,7 +68,7 @@ The alerting section provides:
 The platform supports comprehensive alert management through:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define conditions that trigger notifications when issues occur
-- **Alert routing**: Configure how alerts are delivered to different teams and channels through Alertmanager
+- **[Alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})**: Configure how alerts are delivered to different teams and channels through Alertmanager
 - **Alert silences**: Temporarily suppress alerts during maintenance or known issues through Grafana's interface
 
 ## Multi-tenant alerting
@@ -93,10 +93,10 @@ Each [tenant]({{< relref "/overview/observability/configuration/multi-tenancy/" 
 
 1. **Set up your tenant**: Ensure you have a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}) configured
 2. **Create alert rules**: Define [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for your applications and infrastructure
-3. **Configure routing**: Set up [Alertmanager configuration]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) to route alerts to your team
+3. **Configure routing**: Set up [alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}}) to route alerts to your team
 4. **Test and monitor**: Use Grafana's alerting interface to monitor rule performance and alert delivery
 
-For hands-on guidance, see our [alerting tutorials]({{< relref "/tutorials/observability/alerting/" >}}).
+Next, explore the individual alert management components to build a comprehensive monitoring strategy.
 
 ## Related observability features
 
