@@ -50,9 +50,9 @@ The Kubernetes project provides the most critical component of our workload clus
 
 **Convention**: For each new _minor_ Kubernetes release we provide a new _major_ workload cluster release version.
 
-For example, the cluster release **28.x.x** will include a Kubernetes version of 1.28.x. 
+For example, the cluster release **28.x.x** will include a Kubernetes version of **1.28.x**.
 
-We test every new major workload cluster release, bringing a new Kubernetes minor release, against the CNCF [conformance test suite](https://github.com/cncf/k8s-conformance).
+We test every new major workload cluster release, bringing a new Kubernetes minor release, against the Cloud Native Foundation [conformance test suite](https://github.com/cncf/k8s-conformance).
 Every workload cluster release, from patch to major, also undergoes automated integration testing.
 
 A major workload cluster release may contain other important changes, apart from a new Kubernetes release. Check the [Details about releases and features](#release-details) section for more information.
@@ -63,7 +63,7 @@ We increase (bump) the minor version number when a workload cluster release adds
 
 ### Patch version {#patch}
 
-The general rule for patch releases is that they have zero impact on customers and do not require rolling nodes. They are used to fix a problem in the predecessor (bugfix or security fix), implement temporary mitigations, or make other changes that do not require customer action.
+The general rule for patch releases is that they have zero impact on customers and do not require rolling nodes. They are used to fix a problem in the predecessor (bug fix or security fix), implement a temporary patch, or make other changes that do not require customer action.
 
 ### Lifecycle {#lifecycle}
 
@@ -96,7 +96,7 @@ Use Cases for Pre-Releases:
 
 - A new high impact feature is done, but needs to wait for the next major release (beta). Customers get early access to the functionality and see that it sits well with their set-up. Customers report back with bugs as necessary. This allows us to make fixes to bugs that we may have not found.
 
-- A new high-impact feature is done and is urgently needed by a customer (release candidate `rc`). The customer can get a pre-release to test and roll out ASAP. This release is complete and stable. It may not meet the quality bars of a general availability (GA) release.
+- A new high-impact feature is done and is urgently needed by a customer (release candidate `rc`). The customer can get a pre-release to test and roll out as soon as possible. This release is complete and stable. It may not meet the quality bars of a general availability (GA) release.
 
 ### Inspecting workload cluster releases {#inspecting}
 
