@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-data-management
-last_review_date: 2025-07-03
+last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -18,7 +18,7 @@ Data management is a core aspect of the observability platform, providing you wi
 
 ## Key capabilities
 
-- **Data exploration**: Advanced querying and analysis of your metrics and logs
+- **[Data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Advanced querying and analysis of your metrics and logs
 - **Data ingestion**: Flexible collection and routing of observability data
 - **Data transformation**: Processing and enriching data for your specific needs
 - **Data export**: Access your data programmatically via our Observability Platform API

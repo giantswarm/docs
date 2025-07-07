@@ -68,7 +68,7 @@ spec:
 
 No matter if you are using Helm Charts or GitOps and Kustomize, just put the ServiceMonitor CR next to your app and apply it in the same way. Once it's applied you can check either the _ServiceMonitors Overview_ or _ServiceMonitors Details_ dashboards, or just search for the new metrics ingested in your installation's Grafana to make sure that your containers are being scraped by the new monitoring agents.
 
-__Warning:__ The ServiceMonitor needs to be labeled with `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` for the metrics agent to be able to discover it and start collecting metrics. Also, you need to make sure that the tenant you're setting with the label does actually exist in one of the [Grafana organization CRs](https://docs.giantswarm.io/tutorials/observability/multi-tenancy/creating-grafana-organization/). Any metrics that are sent to a tenant that is not referenced by at least one Grafana Organisation is not ingested by Mimir!
+__Warning:__ The ServiceMonitor needs to be labeled with `observability.giantswarm.io/tenant: <YOUR-TENANT-NAME>` for the metrics agent to be able to discover it and start collecting metrics. Also, you need to make sure that the tenant you're setting with the label does actually exist in one of the [Grafana organization CRs]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}). Any metrics that are sent to a tenant that is not referenced by at least one Grafana Organisation is not ingested by Mimir!
 
 You can also collect logs in a similar way by using [PodLogs](https://docs.giantswarm.io/tutorials/observability/data-ingestion/logs/#using-podlogs), which are the equivalent resource for log ingestion.
 
