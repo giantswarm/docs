@@ -67,7 +67,7 @@ The general rule for patch releases is that they have zero impact on customers a
 
 ### Lifecycle {#lifecycle}
 
-For every provider, we maintain **two major versions** of workload cluster releases at the same time, which means that you have two different Kubernetes minor versions to chose from.
+For every provider, we maintain at least **two major versions** of workload cluster releases simultaneously, which means you have two different Kubernetes minor versions to choose from.
 
 With our development of **new functionality** we focus on our latest major version. The older major version is mostly maintained to fix security issues and stability problems.
 
