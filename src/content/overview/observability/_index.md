@@ -58,4 +58,8 @@ Create and organize custom visualizations with our [dashboard management capabil
 
 The observability platform provides comprehensive [data management capabilities]({{< relref "/overview/observability/data-management" >}}) that handle the complete lifecycle of your observability data - from collection and storage to analysis and export. Our integrated approach ensures efficient data flow while maintaining security, performance, and multi-tenancy across all data types.
 
+## Alert management
+
+Stay informed about your system's health with powerful [alert management capabilities]({{< relref "/overview/observability/alert-management" >}}). Create custom alerting rules, configure intelligent routing, and manage alert silences to ensure your team gets notified about the right issues at the right time.
+
 Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).
