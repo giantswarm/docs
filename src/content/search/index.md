@@ -6,4 +6,6 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 last_review_date: 2023-08-29
 layout: search/list.html
+user_questions:
+  - How can I search the entire documentation site?
 ---
