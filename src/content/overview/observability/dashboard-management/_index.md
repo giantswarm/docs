@@ -17,7 +17,7 @@ user_questions:
   - What makes Giant Swarm's dashboard management different?
 ---
 
-## What is dashboard management?
+## Introduction to dashboard management
 
 Dashboard management in Giant Swarm's observability platform is our comprehensive approach to creating, organizing, and maintaining visual representations of your data. It's more than just building charts - it's about creating meaningful, actionable insights that help your teams monitor, troubleshoot, and optimize your systems.
 
