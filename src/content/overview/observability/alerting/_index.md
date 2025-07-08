@@ -44,7 +44,7 @@ If you want to learn how to configure your own, please, refer to our [dedicated 
 
 ## Alerting Overview in Grafana
 
-If you want to want to learn more about the configuration of the alerting pipeline and the alerting rules for a tenant, you can find this information in the *Alerting* section of your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
+If you want to want to learn more about the configuration of the alerting pipeline and the alerting rules for a tenant, you can find this information in the *Alerting* section of your [installation's Grafana]({{< relref "/overview/observability/data-management/data-exploration/data-exploration/" >}})
 
 ![Grafana alerting section](./grafana-alerting.png)
 

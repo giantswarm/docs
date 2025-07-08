@@ -28,7 +28,7 @@ For PromQL fundamentals and complete syntax reference, refer to the
 ## Prerequisites
 
 - Access to your installation's Grafana interface (see
-  [accessing Grafana tutorial]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}))
+  [accessing Grafana tutorial]({{< relref "/overview/observability/data-management/data-exploration/data-exploration/" >}}))
 - Familiarity with basic PromQL syntax and concepts
 - Understanding of Prometheus metrics and labels
 
