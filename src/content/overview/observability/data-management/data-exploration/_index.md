@@ -80,6 +80,6 @@ Learn more about these default organizations and how to create your own in our [
 **Next steps:**
 
 - Try out the Explore and Drilldown features to get hands-on with your data.
-- Learn more aboout exploring metrics in our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}).
-- Learn more aboout exploring logs and events in our [advanced LogQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}).
+- Learn more about exploring metrics in our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}).
+- Learn more about exploring logs and events in our [advanced LogQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}).
 - For more on creating dashboards or ingesting new data, see our [data ingestion tutorial]({{< relref "/tutorials/observability/data-ingestion" >}}) or [multi-tenancy guide]({{< relref "/overview/observability/configuration/multi-tenancy" >}}).
