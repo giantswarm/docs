@@ -21,7 +21,7 @@ user_questions:
 
 Dashboard management in Giant Swarm's observability platform is our comprehensive approach to creating, organizing, and maintaining visual representations of your data. It's more than just building charts - it's about creating meaningful, actionable insights that help your teams monitor, troubleshoot, and optimize your systems.
 
-Think of dashboard management as the bridge between your raw observability data (metrics, logs, traces) and the insights your teams need to make informed decisions. Whether you're a developer checking application performance, an operations engineer monitoring infrastructure health, or an executive tracking business KPIs, dashboard management ensures you have the right views at the right time.
+Think of dashboard management as the bridge between your raw observability data (metrics, logs, traces) and the insights your teams need to make informed decisions. Whether you're a developer checking application performance, an operations engineer monitoring infrastructure health, or an executive tracking business Key Performance Indicators (KPIs), dashboard management ensures you have the right views at the right time.
 
 ## Our approach to dashboard management
 
