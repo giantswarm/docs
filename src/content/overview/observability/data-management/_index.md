@@ -52,8 +52,8 @@ Our platform provides comprehensive capabilities to handle your observability da
 
 Flexible collection from multiple sources:
 
-- **[Metrics ingestion]({{< relref "/tutorials/observability/data-ingestion/metrics" >}})**: Collect metrics from applications, infrastructure, and external sources using ServiceMonitors and PodMonitors
-- **[Log ingestion]({{< relref "/tutorials/observability/data-ingestion/logs" >}})**: Gather logs from applications and infrastructure using PodLogs and automatic collection
+- **[Metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#metrics-ingestion)**: Collect metrics from applications, infrastructure, and external sources using ServiceMonitors and PodMonitors
+- **[Log ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#log-ingestion)**: Gather logs from applications and infrastructure using PodLogs and automatic collection
 - **External data sources**: Push data from external systems via our [Observability Platform API]({{< relref "/overview/observability/observability-platform-api" >}})
 
 ### Data exploration
