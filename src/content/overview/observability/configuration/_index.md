@@ -90,7 +90,7 @@ Once you've created Grafana organizations as part of your multi-tenancy setup, y
 
 ### Custom dashboards
 
-**[Create custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}})** tailored to your specific monitoring needs:
+**[Create custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}})** tailored to your specific monitoring needs:
 
 - **GitOps approach**: Version-controlled dashboard definitions using ConfigMaps
 - **Dashboard provisioning**: Automatically deploy dashboards to specific organizations
@@ -156,6 +156,6 @@ To begin configuring your observability platform:
 2. **Set up [Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
 4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for critical system health
-5. **Build dashboards**: Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}) for your specific monitoring needs
+5. **Build dashboards**: Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for your specific monitoring needs
 
 For platform-level configuration assistance, contact your Giant Swarm account engineer who can help with OIDC provider setup, resource allocation, and other foundational configurations.

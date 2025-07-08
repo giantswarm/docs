@@ -380,7 +380,7 @@ and [aggregation operators](https://prometheus.io/docs/prometheus/latest/queryin
 
 ## Next steps
 
-- Create [custom dashboards]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}})
+- Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}})
   with your PromQL queries
 - Set up [alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})
   for proactive monitoring
