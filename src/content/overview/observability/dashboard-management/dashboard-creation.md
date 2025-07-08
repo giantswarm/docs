@@ -61,7 +61,7 @@ The `observability.giantswarm.io/organization` annotation determines which [Graf
 
 ### Dashboard requirements
 
-- **Unique UID**: Each dashboard needs a unique identifier within its organization
+- **Unique identifier (UID)**: Each dashboard needs a unique identifier within its organization
 - **Valid JSON**: Dashboard definitions must be valid Grafana JSON format
 - **Proper labeling**: Include the `app.giantswarm.io/kind: dashboard` label for automatic detection
 
