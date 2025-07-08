@@ -35,7 +35,6 @@ Time-series data that tracks numerical values over time, perfect for monitoring 
 
 ### Logs
 
-
 Detailed records of events and activities from your applications and infrastructure. We aggregate logs using **[Loki](https://grafana.com/oss/loki/)**, designed for efficiency and seamless integration with our metrics stack.
 
 **Examples:**
