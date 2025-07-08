@@ -61,7 +61,7 @@ Flexible collection from multiple sources:
 Advanced querying and analysis capabilities:
 
 - **[Interactive exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Grafana's Explore feature for ad-hoc analysis with PromQL and LogQL
-- **[Dashboard management]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}})**: Build custom visualizations with GitOps workflows or through the Grafana UI
+- **[Dashboard management]({{< relref "overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations with GitOps workflows or through the Grafana UI
 - **Query languages**: [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial.md" >}}) for metrics and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) for logs with powerful filtering and aggregation
 
 ### Data transformation
