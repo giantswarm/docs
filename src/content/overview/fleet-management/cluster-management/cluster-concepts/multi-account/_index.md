@@ -11,6 +11,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
   - Why should I use multi-account clusters in the Giant Swarm platform?
+aliases:
+  - /vintage/advanced/infrastructure-management/multi-account
 ---
 
 The Giant Swarm architecture distinguishes between the management cluster and workload clusters. The management cluster enables the creation and operation of workload clusters, and the workload clusters run your Kubernetes workloads.

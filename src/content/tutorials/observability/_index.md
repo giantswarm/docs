@@ -1,7 +1,7 @@
 ---
 title: Observability
 description: Guides explaining how to interact with the different Observability Platform components.
-weight: 20
+weight: 60
 aliases:
   - /getting-started/observability
   - /getting-started/observability/monitoring

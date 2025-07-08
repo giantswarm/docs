@@ -28,6 +28,7 @@ user_questions:
   - How can I enable & configure ModSecurity inside of the ingress nginx controller?
 last_review_date: 2024-08-26
 aliases:
+  - /vintage/advanced/connectivity/ingress/configuration
   - /advanced/connectivity/ingress/configuration
   - /guides/advanced-ingress-configuration/
   - /advanced/ingress/configuration/
@@ -193,7 +194,7 @@ spec:
               number: SERVICE_PORT
 ```
 
-__Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation inside your ingresses needed and your web application will be secured by a valid TLS certificate. You can learn more about this behavior [here]({{< relref "/vintage/advanced/connectivity/tls-certificates" >}}).
+__Note__: If you want to use [Let's Encrypt](https://letsencrypt.org/) certificates with your domains you can automate their creation and renewal with the help of [cert-manager](https://cert-manager.io/docs/). After configuring cert-manager there is only an annotation inside your ingresses needed and your web application will be secured by a valid TLS certificate. You can learn more about this behavior [here]({{< relref "/tutorials/security/tls-certificates" >}}).
 
 ### Authentication
 
@@ -340,7 +341,7 @@ Ingress nginx controller allows you to define the timeout that waits to close a 
 
 Many other timeouts can be customized when configuring an ingress. Take a look at the [official docs](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-timeouts).
 
-__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. [Read how to configure ingress nginx controller in cloud environments to avoid unexpected results]({{< relref "/vintage/advanced/connectivity/ingress/service-type-loadbalancer#other-aws-elb-configuration-options" >}}).
+__Warning__: When running in cloud provider environments, you may often rely on integrated services like AWS NLBs or Azure LBs. Those intermediate Load Balancers could have their own settings which can be in the request path conflicting with values defined in ingress Resources. Read [how to configure ingress nginx controller in cloud environments]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}}) to avoid unexpected results.
 
 ### Session affinity
 

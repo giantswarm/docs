@@ -1,5 +1,8 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
+[Aa]lert
+allows
+against
 [Aa]gent
 API[s]?
 ARN[s]?
@@ -9,7 +12,7 @@ autoscaling
 [Aa][Ww][Ss]
 az
 backbone
-backend
+[Bb]ackend
 CIDR[s]?
 CLI
 CR[D]?[s]?
@@ -28,15 +31,20 @@ easily
 effectively
 ELB[s]?
 ENI[s]?
+ensure
 ESXi
 Etcd
-Explore
+[Ee]xplore
+extract
 Falco
 firewalling
 freely
 Grafana
+Giant Swarm
 gracefully
+Hashicorp
 Honeybadger
+HPA
 HTTP
 [Ii][Aa][Mm]
 impl_title
@@ -50,11 +58,13 @@ Kinvolk
 krew
 [Kk]ustomize
 kube-vip
+kubeconfig[s]?
 kubectl
 kubelet
 kube-vip
 [Kk]ustomization[s]?
 Kyverno
+LogQL
 namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
@@ -65,6 +75,7 @@ onboarding
 passthrough
 perfectly
 Planeteers
+PromQL
 Promtail
 quickly
 randomly
@@ -74,16 +85,20 @@ really
 relref
 rulesets
 runbook[s]?
+Sample
 SemVer
 separately
 Sigstore
 SLA[s]?
+SLI[s]?
+SLO[s]?
 Spotify
 SRE[s]?
 SSL
 SSO
 subnet
 Trivy
+Teleport
 TLS
 templated
 upstream[s]?
