@@ -150,6 +150,7 @@ stringData:
 The platform supports various notification integrations:
 
 ### Slack
+
 ```yaml
 slack_configs:
   - api_url: "YOUR_WEBHOOK_URL"
@@ -160,6 +161,7 @@ slack_configs:
 ```
 
 ### Email
+
 ```yaml
 email_configs:
   - to: "team@company.com"
@@ -170,6 +172,7 @@ email_configs:
 ```
 
 ### PagerDuty
+
 ```yaml
 pagerduty_configs:
   - routing_key: "YOUR_INTEGRATION_KEY"
@@ -178,6 +181,7 @@ pagerduty_configs:
 ```
 
 ### Opsgenie
+
 ```yaml
 opsgenie_configs:
   - api_key: "YOUR_API_KEY"
@@ -213,21 +217,25 @@ mimirtool alertmanager verify --address=<your-mimir-url> config.yaml
 ## Configuration best practices
 
 ### Alert grouping
+
 - Group related alerts by `alertname` and `cluster_id` to reduce noise
 - Use appropriate `group_wait` values to batch related alerts
 - Set reasonable `repeat_interval` to avoid notification fatigue
 
 ### Routing strategy
+
 - Create specific routes for critical alerts that need immediate attention
 - Use default routes for general notifications
 - Match on meaningful labels like `severity`, `team`, or `service`
 
 ### Template design
+
 - Create reusable templates for consistent formatting
 - Include essential context: alert name, affected resources, and remediation links
 - Use clear, actionable language in notifications
 
 ### Security considerations
+
 - Store sensitive tokens and API keys securely
 - Limit access to Alertmanager configuration secrets
 - Use separate notification channels for different security levels
@@ -237,6 +245,7 @@ mimirtool alertmanager verify --address=<your-mimir-url> config.yaml
 The Observability Platform uses [Mimir Alertmanager](https://grafana.com/docs/mimir/latest/references/architecture/components/alertmanager/), which may not support all features available in upstream Prometheus Alertmanager. Some configuration options might not work as expected.
 
 Key considerations:
+
 - **Feature compatibility**: Not all Alertmanager features are supported in Mimir
 - **Template processing**: Only files with `.tmpl` extension are processed as templates
 - **Tenant isolation**: Each tenant manages their own routing configuration independently

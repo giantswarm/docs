@@ -44,6 +44,7 @@ The platform supports two types of rules that power your monitoring strategy:
 **Alerting rules** define conditions that trigger notifications when specific issues occur in your infrastructure or applications. They use Prometheus (PromQL) or Loki (LogQL) expressions to evaluate your data and fire alerts when thresholds are met.
 
 Key characteristics:
+
 - **Metric-based alerts**: Monitor infrastructure metrics like CPU usage, memory consumption, or response times
 - **Log-based alerts**: Watch for specific patterns, errors, or anomalies in application logs
 - **Flexible conditions**: Set duration requirements before alerts fire to reduce noise
@@ -54,6 +55,7 @@ Key characteristics:
 **Recording rules** pre-compute frequently needed or expensive expressions, saving the results as new time series. This improves query performance and enables you to create custom business metrics by combining multiple data sources.
 
 Use recording rules to:
+
 - Improve dashboard performance by pre-calculating complex aggregations
 - Create custom metrics that combine multiple sources into business indicators
 - Simplify complex queries by breaking them into manageable components

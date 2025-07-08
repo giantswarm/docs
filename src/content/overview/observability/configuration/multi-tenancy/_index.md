@@ -188,5 +188,4 @@ The platform automatically enforces tenant governance to control data ingestion:
 - [Create a Grafana organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}}) to implement your tenant strategy
 - [Configure alert management]({{< relref "/overview/observability/alert-management" >}}) with tenant-specific rules
 - [Set up data ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}) to send data to your tenants
-- [Configure alerting]({{< relref "/tutorials/observability/alerting" >}}) with tenant-specific rules
 - [Explore your data]({{< relref "/tutorials/observability/data-exploration" >}}) using Grafana dashboards and queries
