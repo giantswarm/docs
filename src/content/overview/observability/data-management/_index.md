@@ -71,7 +71,7 @@ Process and enrich your data during collection:
 
 - **Relabeling rules**: Modify, filter, or enrich metrics and logs before storage
 - **Data validation**: Ensure data quality and compliance with platform standards
-- **Parsing and enrichment**: Extract structured data from logs and add contextual information
+- **Parsing and enrichment**: extract structured data from logs and add contextual information
 
 ### Data export
 
