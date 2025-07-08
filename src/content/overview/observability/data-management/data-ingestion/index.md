@@ -71,6 +71,7 @@ spec:
 [PodMonitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#podmonitorspec) are useful for collecting metrics directly from pods when a Service isn't necessary or doesn't exist.
 
 Use PodMonitors when:
+
 - Your application doesn't require a Service for its primary function
 - You need to collect metrics from specific pod instances
 - You want more granular control over pod selection
@@ -137,6 +138,7 @@ spec:
 ```
 
 Use PodLogs when you need to:
+
 - Filter pods using complex label selectors
 - Apply custom relabeling rules
 - Collect from multiple namespaces
