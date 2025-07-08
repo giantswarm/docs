@@ -18,11 +18,9 @@ aliases:
 
 In this article you will learn how to forward audit logs to external storage, like a Security Information and Event Management (SIEM) system.
 
-If you want to learn about the audit logs Giant Swarm provides, take a look [here]({{< relref "/vintage/getting-started/observability/logging/audit-logs" >}})
-
 ## How to ship your audit logs to a remote location
 
-Giant Swarm provides a [Logging Infrastructure]({{< relref "/vintage/getting-started/observability/logging" >}}) that you can use to take a look at the logs of the components we manage, but it is highly possible that you need to store audit logs to a remote location for compliance reasons.
+Giant Swarm provides a Logging Infrastructure that you can use to take a look at the logs of the components we manage, but it is highly possible that you need to store audit logs to a remote location for compliance reasons.
 
 __Note__: You can also access and ship the audit logs for the management clusters, but this is not something we provide by default (at least for now). Please contact your Account Engineer to sort out the details.
 
