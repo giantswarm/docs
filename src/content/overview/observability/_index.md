@@ -50,4 +50,8 @@ Here are the most important tools we rely on:
 
 The observability platform provides comprehensive [data management capabilities]({{< relref "/overview/observability/data-management" >}}) that handle the complete lifecycle of your observability data - from collection and storage to analysis and export. Our integrated approach ensures efficient data flow while maintaining security, performance, and multi-tenancy across all data types.
 
+## Dashboard management
+
+Create and organize custom visualizations with our [dashboard management capabilities]({{< relref "/overview/observability/dashboard-management" >}}). Whether you prefer GitOps workflows or interactive creation, the platform provides flexible approaches to build dashboards that meet your specific monitoring needs while supporting multi-tenant organization.
+
 Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).

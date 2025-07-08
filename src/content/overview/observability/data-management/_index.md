@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-data-management
-last_review_date: 2025-07-07
+last_review_date: 2025-07-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
