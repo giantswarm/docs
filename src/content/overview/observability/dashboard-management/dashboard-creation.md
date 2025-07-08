@@ -112,4 +112,4 @@ Before building dashboards, spend time in [Grafana's Explore view]({{< relref "/
 ## Next steps
 
 - **[Set up multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})**: Organize dashboards by team or environment
-- **[Configure data ingestion]({{< relref "/tutorials/observability/data-ingestion" >}})**: Ensure you have the right data flowing into your dashboards
+- **[Configure data ingestion]({{< relref "/tutorials/observability/data-ingestion" >}})**: ensure you have the right data flowing into your dashboards
