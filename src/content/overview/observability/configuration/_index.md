@@ -41,7 +41,7 @@ Work with Giant Swarm to configure core platform components:
 - **Manage permissions** with role-based access controls (RBAC) from your identity provider
 - **Configure tenant lifecycle** including creation, management, and removal processes
 
-[Multi-tenancy configuration](({{< relref "/overview/observability/configuration/multi-tenancy" >}})) affects all other platform components, making it essential to understand before configuring other areas.
+[Multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) affects all other platform components, making it essential to understand before configuring other areas.
 
 ### Organization management
 
@@ -103,7 +103,7 @@ Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert rules
 
-**[Create alerting and recording rules]({{< relref "/tutorials/observability/alerting/create-rules" >}})** for proactive monitoring:
+**[Create alerting and recording rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})** for proactive monitoring:
 
 - **Metric-based alerts**: PromQL expressions for infrastructure and application monitoring
 - **Log-based alerts**: LogQL expressions for application error detection and log pattern analysis
@@ -155,7 +155,7 @@ To begin configuring your observability platform:
 1. **[Understand multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
 2. **Set up [Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
 3. **Configure data ingestion**: Set up [metrics]({{< relref "/tutorials/observability/data-ingestion/metrics" >}}) and [log collection]({{< relref "/tutorials/observability/data-ingestion/logs" >}}) for your applications
-4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}}) for critical system health
+4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for critical system health
 5. **Build dashboards**: Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for your specific monitoring needs
 
 For platform-level configuration assistance, contact your Giant Swarm account engineer who can help with OIDC provider setup, resource allocation, and other foundational configurations.
