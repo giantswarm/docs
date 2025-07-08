@@ -24,6 +24,7 @@ Our observability platform handles three key types of observability data:
 
 ### Metrics
 
+
 Time-series data that tracks numerical values over time, perfect for monitoring system health, performance trends, and capacity planning. We store metrics in **[Mimir](https://grafana.com/oss/mimir/)**, a horizontally scalable, multi-tenant time series database.
 
 **Examples:**
