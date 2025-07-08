@@ -28,7 +28,7 @@ Before proceeding, ensure you have:
 
 ## Access to logs
 
-Once you have [access to your management cluster's Grafana]({{< relref "/overview/observability/data-management/data-exploration/data-exploration/" >}}), you should:
+Once you have [access to your management cluster's Grafana]({{< relref "/overview/observability/data-management/data-exploration/" >}}), you should:
 
 1. Go to `Explore` item in the `Home` menu
 2. Select `Loki` as data source on the top left corner
@@ -218,4 +218,4 @@ For comprehensive LogQL syntax and additional functions, refer to:
 
 Enhance your observability skills further:
 
-- [Dashboard creation guide]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/" >}}) for visualizing your log queries
+- [Dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for visualizing your log queries
