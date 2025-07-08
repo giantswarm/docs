@@ -80,3 +80,4 @@ Access your data programmatically:
 - **[API access]({{< relref "/overview/observability/observability-platform-api" >}})**: Programmatic data ingestion and retrieval via REST APIs
 - **External integration**: Connect to external monitoring tools and data sources
 - **Standard protocols**: Support for OpenTelemetry Protocol (OTLP) and Prometheus remote write
+
