@@ -82,7 +82,7 @@ Access alerting configuration and monitoring in the **Alerting** section of your
 The alerting section provides:
 
 - **Alert rules**: All alerting and recording rules currently available, filterable by state (firing, pending). Use the "see graph" link to jump to an explore page with the alert's expression pre-filled
-- **Contact points**: Configured integrations (like OpsGenie or Slack) for sending alerts, including notification templates for formatting
+- **Contact points**: Configured integrations (like Opsgenie or Slack) for sending alerts, including notification templates for formatting
 - **Notification policies**: Alert routing that defines how alerts reach contact points based on matching criteria
 - **Silences**: Current silences and their states, along with affected alerts
 - **Active notifications**: Currently firing alerts with notification states

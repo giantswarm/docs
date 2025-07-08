@@ -177,7 +177,7 @@ pagerduty_configs:
     severity: "{{ .CommonLabels.severity }}"
 ```
 
-### OpsGenie
+### Opsgenie
 ```yaml
 opsgenie_configs:
   - api_key: "YOUR_API_KEY"
