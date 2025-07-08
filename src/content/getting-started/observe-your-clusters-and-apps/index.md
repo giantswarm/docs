@@ -75,7 +75,7 @@ Grafana stores its data in a PostgreSQL cluster with regular backups, so your da
 
 You can [download our example dashboard](./dashboard.json).
 
-Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation#gitops-approach" >}}).
+Please note that the recommended way for creating dashboard across multiple installations is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation#gitops-approach" >}}).
 
 For the UI approach, download the dashboard content and import it into the Grafana UI:
 
