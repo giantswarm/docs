@@ -95,7 +95,7 @@ Dashboards created in the UI are stored in PostgreSQL with automatic backups, en
 
 ### Start with exploration
 
-Before building dashboards, spend time in [Grafana's Explore view]({{< relref "/tutorials/observability/data-exploration/accessing-grafana#how-to-use-explore-and-drilldown-in-grafana" >}}) to understand your data and refine your queries.
+Before building dashboards, spend time in [Grafana's Explore view]({{< relref "/overview/observability/data-management/data-exploration#how-to-use-explore-and-drilldown-in-grafana" >}}) to understand your data and refine your queries.
 
 ### Design for your audience
 
