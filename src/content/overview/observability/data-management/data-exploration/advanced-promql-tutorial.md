@@ -375,14 +375,14 @@ sum by (instance, pod, container) (
   rate(container_cpu_usage_seconds_total[5m]))
 ```
 
-Learn more about [recording rules]({{< relref "/tutorials/observability/alerting/create-rules" >}})
+Learn more about [recording rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})
 and [aggregation operators](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators).
 
 ## Next steps
 
 - Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}})
   with your PromQL queries
-- Set up [alerting rules]({{< relref "/tutorials/observability/alerting/create-rules" >}})
+- Set up [alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})
   for proactive monitoring
 - Explore [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})
   for organizing metrics data
