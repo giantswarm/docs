@@ -15,6 +15,8 @@ user_questions:
   - How do I run queries in Explore?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
+aliases:
+  - /tutorials/observability/data-exploration/accessing-grafana/
 ---
 
 This guide shows you how to use the Explore and Drilldown features in Grafana to query and analyze the metrics and logs collected by the Giant Swarm Observability Platform. It also explains how to authenticate and access your Grafana instance securely.
