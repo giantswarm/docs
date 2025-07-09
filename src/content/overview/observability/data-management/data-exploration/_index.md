@@ -5,7 +5,7 @@ weight: 10
 menu:
   principal:
     parent: overview-observability-data-management
-    identifier: overview-observability-data-exploration
+    identifier: overview-observability-data-management-data-exploration
 last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
