@@ -17,8 +17,7 @@ user_questions:
   - How to customize dashboards?
   - How to create my own dashboards?
 aliases:
-  - /tutorials/observability/data-exploration/creating-custom-dashboards/
-  - /tutorials/observability/data-exploration/creating-custom-dashboards/index.html
+  - /tutorials/observability/data-exploration/creating-custom-dashboards
 ---
 
 Creating custom dashboards lets you visualize your observability data exactly how your team needs it. The platform supports two main approaches: a GitOps workflow for production environments and interactive creation for rapid development and prototyping.
