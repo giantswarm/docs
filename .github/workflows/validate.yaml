@@ -98,14 +98,15 @@ jobs:
           errors_badchars = []
           errors_index = []
           for root, dirs, files in os.walk(content_dir):
+              markown_files = [f for f in files if f.endswith('.md')]
               for file in files:
                   full_path = Path(root, file)
                   if full_path.name == '_template.md.tpl':
                       continue
           
-                  # Verify usae of _index.md (list) vs. index.md (leaf article) file names
+                  # Verify use of _index.md (list) vs. index.md (leaf article) file names
                   if full_path.name == '_index.md':
-                      num_siblings = len(dirs) + len(files) - 1
+                      num_siblings = len(dirs) + len(markown_files) - 1
                       if num_siblings == 0:
                           errors_index.append(f"- {full_path}")
                       continue
