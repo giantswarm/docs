@@ -112,7 +112,7 @@ Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert management
 
-**[Configure Alertmanager]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}})** for comprehensive alert handling and operational workflows:
+**[Configure alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})** for comprehensive alert handling and operational workflows:
 
 - **Notification channels**: Integration with Slack, email, PagerDuty, and other services
 - **Contact points**: Configure notification destinations and templates

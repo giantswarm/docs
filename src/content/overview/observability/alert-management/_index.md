@@ -14,7 +14,7 @@ user_questions:
   - How do I access alerting features in Grafana?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-07
+last_review_date: 2025-07-08
 ---
 
 Alert management is crucial for any observability solution. The Giant Swarm Observability Platform provides comprehensive alerting capabilities that help you monitor your infrastructure and applications proactively.
@@ -33,31 +33,58 @@ The alerting pipeline supports multi-tenancy, so we recommend getting familiar w
 
 The alerting pipeline is straightforward. The Loki and Mimir rulers evaluate alerting rules and send alerts to the Mimir Alertmanager. The Mimir Alertmanager (a multi-tenant aware Alertmanager) routes those alerts to configured receivers.
 
-Configure Alertmanager for your tenants using our [Alertmanager configuration tutorial]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}).
+Configure Alertmanager for your tenants using our [alert routing documentation]({{< relref "/overview/observability/alert-management/alert-routing/" >}}).
+
+### Understanding alerting and recording rules
+
+The platform supports two types of rules that power your monitoring strategy:
+
+#### Alerting rules
+
+**Alerting rules** define conditions that trigger notifications when specific issues occur in your infrastructure or applications. They use Prometheus (PromQL) or Loki (LogQL) expressions to evaluate your data and fire alerts when thresholds are met.
+
+Key characteristics:
+
+- **Metric-based alerts**: Monitor infrastructure metrics like CPU usage, memory consumption, or response times
+- **Log-based alerts**: Watch for specific patterns, errors, or anomalies in application logs
+- **Flexible conditions**: Set duration requirements before alerts fire to reduce noise
+- **Rich context**: Include labels for routing and annotations for human-readable information
+
+#### Recording rules
+
+**Recording rules** pre-compute frequently needed or expensive expressions, saving the results as new time series. This improves query performance and enables you to create custom business metrics by combining multiple data sources.
+
+Use recording rules to:
+
+- Improve dashboard performance by pre-calculating complex aggregations
+- Create custom metrics that combine multiple sources into business indicators
+- Simplify complex queries by breaking them into manageable components
 
 ### Loading alerting and recording rules
 
 ![loading recording and alerting rules](./alerting-loading-rules.png)
 
-The platform lets you create and load both alerting and recording rules into:
+The platform lets you create and load both types of rules into:
 
-- **Mimir ruler**: For metric-based alerts
+- **Mimir ruler**: For metric-based alerts and recording rules
 - **Loki ruler**: For log-based alerts
 
-You can load alerting and recording rules from both management clusters and workload clusters through our Grafana Alloy agents.
+You can deploy rules from both management clusters and workload clusters through our Grafana Alloy agents. The system automatically handles multi-tenant isolation and provides scoping mechanisms to prevent conflicts across clusters.
 
-Create your own rules using our [alert rules documentation]({{< relref "/overview/observability/alert-management/alert-rules/" >}}).
+All rules must include the `observability.giantswarm.io/tenant` label to specify which [tenant]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}) they belong to.
+
+Learn how to create and deploy your own rules using our [alert rules documentation]({{< relref "/overview/observability/alert-management/alert-rules/" >}}).
 
 ## Alerting features in Grafana
 
-Access alerting configuration and monitoring in the **Alerting** section of your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}).
+Access alerting configuration and monitoring in the **Alerting** section of your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).
 
 ![Grafana alerting section](./grafana-alerting.png)
 
 The alerting section provides:
 
 - **Alert rules**: All alerting and recording rules currently available, filterable by state (firing, pending). Use the "see graph" link to jump to an explore page with the alert's expression pre-filled
-- **Contact points**: Configured integrations (like OpsGenie or Slack) for sending alerts, including notification templates for formatting
+- **Contact points**: Configured integrations (like Opsgenie or Slack) for sending alerts, including notification templates for formatting
 - **Notification policies**: Alert routing that defines how alerts reach contact points based on matching criteria
 - **Silences**: Current silences and their states, along with affected alerts
 - **Active notifications**: Currently firing alerts with notification states
@@ -68,7 +95,7 @@ The alerting section provides:
 The platform supports comprehensive alert management through:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define conditions that trigger notifications when issues occur
-- **Alert routing**: Configure how alerts are delivered to different teams and channels through Alertmanager
+- **[Alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})**: Configure how alerts are delivered to different teams and channels through Alertmanager
 - **Alert silences**: Temporarily suppress alerts during maintenance or known issues through Grafana's interface
 
 ## Multi-tenant alerting
@@ -93,10 +120,10 @@ Each [tenant]({{< relref "/overview/observability/configuration/multi-tenancy/" 
 
 1. **Set up your tenant**: Ensure you have a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}) configured
 2. **Create alert rules**: Define [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for your applications and infrastructure
-3. **Configure routing**: Set up [Alertmanager configuration]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) to route alerts to your team
+3. **Configure routing**: Set up [alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}}) to route alerts to your team
 4. **Test and monitor**: Use Grafana's alerting interface to monitor rule performance and alert delivery
 
-For hands-on guidance, see our [alerting tutorials]({{< relref "/tutorials/observability/alerting/" >}}).
+Next, explore the individual alert management components to build a comprehensive monitoring strategy.
 
 ## Related observability features
 

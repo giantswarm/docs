@@ -65,6 +65,7 @@ kube-vip
 [Kk]ustomization[s]?
 Kyverno
 LogQL
+mimirtool
 namespace[s]?
 node[pP]ool[s]?
 [Nn]ginx
@@ -72,6 +73,7 @@ NLB[s]?
 OAuth
 OIDC
 onboarding
+PagerDuty
 passthrough
 perfectly
 Planeteers

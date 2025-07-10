@@ -1,6 +1,6 @@
 ---
 title: Alert rules
-description: Learn how to create and manage alerting and recording rules in the Giant Swarm Observability Platform using PrometheusRule resources.
+description: Learn how to create and deploy alerting and recording rules in the Giant Swarm Observability Platform using PrometheusRule resources.
 weight: 10
 menu:
   principal:
@@ -8,20 +8,21 @@ menu:
     parent: overview-observability-alert-management
 user_questions:
   - How do I create alerting rules?
-  - How do I create recording rules?
-  - What is log-based alerting?
+  - How do I deploy recording rules?
+  - What labels are required for rules?
   - How do PrometheusRule resources work?
-  - What labels are required for alerting rules?
+  - How do I create log-based alerts?
+  - What are the deployment patterns for rules?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-07
+last_review_date: 2025-07-08
 aliases:
   - /tutorials/observability/alerting/create-rules/
 ---
 
-Alert rules define conditions that trigger notifications when specific issues occur in your infrastructure or applications. The Giant Swarm Observability Platform supports both metric-based and log-based alerting through Prometheus and Loki rulers.
+This guide shows you how to create and deploy alerting and recording rules using Kubernetes resources. For an overview of what these rules are and how they fit into the alerting pipeline, see the [alert management overview]({{< relref "/overview/observability/alert-management/" >}}).
 
-## How alert rules work
+## How to deploy rules
 
 You define alerting and recording rules using [Prometheus Operator](https://prometheus-operator.dev/) `PrometheusRule` resources, following Giant Swarm's GitOps approach. Deploy these rules to both management clusters and workload clusters.
 
@@ -33,11 +34,11 @@ The platform evaluates your rules and routes alerts through the [alerting pipeli
 
 Get familiar with tenant management in our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 
-## Alerting rules
+## Alerting rule examples
 
-[Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) use Prometheus (PromQL) or Loki (LogQL) expressions to evaluate conditions and trigger notifications.
+Create alerting rules using [Prometheus alerting rule syntax](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) with PromQL or LogQL expressions.
 
-### Alert example
+### Metric-based alert
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -77,21 +78,13 @@ spec:
 - **`labels`**: Key-value pairs for routing and grouping alerts
 - **`annotations`**: Human-readable information about the alert
 
-For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) explore interface.
+For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}) explore interface.
 
-## Recording rules
+## Recording rule examples
 
-[Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) pre-compute frequently needed or computationally expensive expressions, saving results as new time series. This improves query performance and enables custom metrics for dashboards and alerts.
+Create recording rules using [Prometheus recording rule syntax](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) to pre-compute expensive expressions.
 
-### When to use recording rules
-
-Use recording rules to:
-
-- Improve performance by pre-calculating expensive aggregations
-- Create custom metrics by combining multiple metrics into business indicators
-- Simplify complex queries by breaking them into manageable components
-
-### Recording rule example
+### Basic recording rule
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
@@ -112,13 +105,11 @@ spec:
         record: cluster:node_cpu:ratio_rate5m
 ```
 
-## Log-based alerting
+## Log-based alerting examples
 
-Log-based alerting monitors application logs for specific patterns, errors, or anomalies using LogQL queries. The Loki ruler evaluates these alerts for powerful application-level monitoring.
+Create log-based alerts using LogQL queries. These require specific labels to route to the Loki ruler.
 
-For a deeper understanding of how logs flow through the platform, see our [logging architecture documentation]({{< relref "/overview/observability/logging/" >}}).
-
-### Configuration
+### Log pattern alert
 
 You'll need specific labels to indicate evaluation by Loki:
 
@@ -206,7 +197,7 @@ spec:
 
 ## Next steps
 
-- Configure [Alertmanager]({{< relref "/tutorials/observability/alerting/configure-alertmanager" >}}) for your tenants to complete the alerting pipeline
+- Configure [alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}}) for your tenants to complete the alerting pipeline
 - Review the [alerting pipeline]({{< relref "/overview/observability/alert-management/" >}}) architecture to understand how alerts flow through the system
 - Learn about [data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}}) to query and analyze the metrics and logs that drive your alerts
 
