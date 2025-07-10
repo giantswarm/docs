@@ -1,5 +1,6 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 Alertmanager
+[Aa]lert
 allows
 against
 [Aa]gent
@@ -30,10 +31,10 @@ easily
 effectively
 ELB[s]?
 ENI[s]?
-ensure
+[Ee]nsure
 ESXi
 Etcd
-Explore
+[Ee]xplore
 extract
 Falco
 firewalling
@@ -57,6 +58,7 @@ Kinvolk
 krew
 [Kk]ustomize
 kube-vip
+kubeconfig[s]?
 kubectl
 kubelet
 kube-vip

@@ -4,26 +4,28 @@ title: Creating a Grafana organization
 description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
-    identifier: tutorials-observability-multitenancy-create-grafana-organization
-    parent: tutorials-observability-multitenancy
+    identifier: overview-observability-configuration-multitenancy-create-grafana-organization
+    parent: overview-observability-configuration-multitenancy
 weight: 40
-last_review_date: 2025-06-11
+last_review_date: 2025-07-07
 user_questions:
   - How to create a Grafana organization?
   - How to configure RBAC for Grafana organizations?
   - How to assign tenants to organizations?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
+aliases:
+  - /tutorials/observability/multi-tenancy/creating-grafana-organization/ 
 ---
 
-This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/tutorials/observability/multi-tenancy" >}}) in your observability platform.
+This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) in your observability platform.
 
 ## Prerequisites
 
 Before creating your organization, make sure you have:
 
 - [Access to the management cluster]({{< relref "/tutorials/access-management" >}}), where you can create custom resources
-- Identified the [tenant names]({{< relref "/tutorials/observability/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
+- Identified the [tenant names]({{< relref "/overview/observability/configuration/multi-tenancy#tenant-naming-best-practices" >}}) you want to use
 - Configured groups for RBAC in your identity provider
 
 ## Understanding default organizations
@@ -33,7 +35,7 @@ Before creating your own organizations, it's helpful to know about the two that 
 - **Shared Org**: Your starting point with system dashboards and platform metrics (uses `giantswarm` tenant)
 - **Giant Swarm**: Internal organization for platform operations (Giant Swarm staff only)
 
-Your organizations will appear alongside the `Shared Org` in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/tutorials/observability/multi-tenancy#default-organizations" >}}).
+Your organizations will appear alongside the `Shared Org` in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/overview/observability/configuration/multi-tenancy#default-organizations" >}}).
 
 ## Creating a Grafana organization
 

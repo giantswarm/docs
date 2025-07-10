@@ -4,10 +4,10 @@ linkTitle: Advanced LogQL tutorial
 description: Advanced techniques for exploring logs using LogQL in the Giant Swarm Observability Platform.
 menu:
   principal:
-    identifier: overview-observability-data-management-advanced-logql-tutorial
-    parent: overview-observability-data-management
+    identifier: overview-observability-data-management-data-exploration-advanced-logql-tutorial
+    parent: overview-observability-data-management-data-exploration
 weight: 40
-last_review_date: 2025-07-01
+last_review_date: 2025-07-07
 user_questions:
   - How can I write advanced LogQL queries for my clusters?
   - What are some complex LogQL patterns for troubleshooting?
@@ -218,4 +218,4 @@ For comprehensive LogQL syntax and additional functions, refer to:
 
 Enhance your observability skills further:
 
-- [Dashboard creation guide]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/" >}}) for visualizing your log queries
+- [Dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for visualizing your log queries
