@@ -187,7 +187,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
 [lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [loki-app]: https://github.com/giantswarm/loki-app
-[policy-enforcement]: {{< relref "/vintage/advanced/security/security-policy-enforcement" >}}
+[policy-enforcement]: {{< relref "/tutorials/security/policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/overview/observability" >}}
 ||||||| parent of 9b26753a (Remove "Vintage / Getting started / Security")
