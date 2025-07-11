@@ -6,10 +6,10 @@ weight: 30
 aliases:
   - /advanced/connectivity/external-dns
 menu:
-  main:
-    identifier: advanced-external-dns
-    parent: advanced-connectivity
-last_review_date: 2023-11-07
+  principal:
+    parent: tutorials-connectivity
+    identifier: tutorials-connectivity-external-dns
+last_review_date: 2025-07-11
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
