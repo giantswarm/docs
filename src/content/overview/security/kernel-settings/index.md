@@ -3,9 +3,11 @@ linkTitle: Kernel settings
 title: Kernel settings
 description: Here's a complete list of the kernel settings we apply to all cluster nodes, be it control plane or worker.
 weight: 200
+layout: single
 menu:
   principal:
-    parent: overview-security-kernel-settings
+    parent: overview-security
+    identifier: overview-security-kernel-settings
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
 last_review_date: 2025-07-11
