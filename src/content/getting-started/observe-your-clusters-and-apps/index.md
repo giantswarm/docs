@@ -33,7 +33,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    application.giantswarm.io/team: team-rocket
+    observability.giantswarm.io/tenant: my_team
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: my-namespace
@@ -47,9 +47,11 @@ spec:
       app.kubernetes.io/instance: my-service
 ```
 
-An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it's required for the `Prometheus` agent to discover the target.
+An important bit to notice is the `observability.giantswarm.io/tenant` label. This label is necessary as it's required for the metrics agent to discover the target and route the metrics to the correct tenant.
 
 Reading the manifest, the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application, so it should match the application label.
+
+For comprehensive guidance on metrics and logs ingestion, including PodMonitors and PodLogs, see our [Data Ingestion documentation]({{< relref "/overview/observability/data-management/data-ingestion" >}}).
 
 After applying the service monitor, you can open the `Explore` view in the `Grafana` UI and start querying the metrics from your application.
 
@@ -71,11 +73,11 @@ Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux
 
 On some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}), you can start using the Grafana UI and create your very first dashboard. There, you can create panels with the desired visualizations. Then, export your dashboard by selecting `Share > Export` in the dashboard context menu, or by accessing the JSON Model in the dashboard settings.
 
-Grafana stores its data in a PostgreSQL cluster with regular backups, so your dashboard persists even if you upgrade it later or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation tutorial]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards" >}}).
+Grafana stores its data in a PostgreSQL cluster with regular backups, so your dashboard persists even if you upgrade it later or if the system restarts. For more information on dashboard creation, you can check our [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}).
 
 You can [download our example dashboard](./dashboard.json).
 
-Please note that the recommended way for creating dashboard is to use the `GitOps` approach where you store your dashboards' JSON files into a git repository. For more information, check the [related doc]({{< relref "/tutorials/observability/data-exploration/creating-custom-dashboards/#gitops" >}}).
+We recommend treating dashboards as code - versioned, reviewed, and deployed like any other infrastructure component. In this `GitOps` approach you store your dashboards' JSON files in a git repository. For more information, check the [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation#gitops-approach" >}}).
 
 For the UI approach, download the dashboard content and import it into the Grafana UI:
 

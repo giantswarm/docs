@@ -10,7 +10,6 @@ menu:
 user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
- -  How do I migrate from PSPs to PSS?
  -  What is the Policy API?
 last_review_date: 2024-11-28
 owner:
