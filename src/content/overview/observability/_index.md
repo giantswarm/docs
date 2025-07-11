@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-observability
-last_review_date: 2024-12-11
+last_review_date: 2025-06-30
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 ---
@@ -45,6 +45,14 @@ Here are the most important tools we rely on:
 - **Alloy:** As an OpenTelemetry collector, Grafana Alloy makes it easy to collect, process, and forward metrics, logs, and events from your workload clusters. Adding new data is as simple as setting up a new service monitor or adding the right labels.
 
 ---
+
+## Alert management
+
+Stay informed about your system's health with powerful [alert management capabilities]({{< relref "/overview/observability/alert-management" >}}). Create custom alerting rules, configure intelligent routing, and manage alert silences to ensure your team gets notified about the right issues at the right time.
+
+## Dashboard management
+
+Create and organize custom visualizations with our [dashboard management capabilities]({{< relref "/overview/observability/dashboard-management" >}}). Whether you prefer GitOps workflows or interactive creation, the platform provides flexible approaches to build dashboards that meet your specific monitoring needs while supporting multi-tenant organization.
 
 ## Data management
 
