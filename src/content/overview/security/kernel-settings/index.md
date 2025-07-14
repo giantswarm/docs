@@ -36,7 +36,7 @@ We adjust some kernel settings of Flatcar Container Linux machines used as Kuber
 | `net.ipv4.conf.default.accept_redirects` | 0     | Don't accept redirects for IPv4.                                    |
 | `net.ipv4.conf.default.log_martians`     | 1     | Log all martian packets coming to freshly added network interfaces. |
 | `net.ipv4.tcp_timestamps`                | 0     | Don't add timestamps to use less CPU cycles.                        |
-| `net.ipv6.conf.all.accept_redirects`     | 0     | Don't send redirects for IPv6.                                      |
+| `net.ipv6.conf.all.accept_redirects`     | 0     | Don't accept redirects for IPv6.                                    |
 | `net.ipv6.conf.default.accept_redirects` | 0     | Don't accept redirects for IPv6.                                    |
 
 ## Kubernetes-specific tuning
@@ -50,7 +50,7 @@ We adjust some kernel settings of Flatcar Container Linux machines used as Kuber
 | Setting                         | Value | Description                                                              |
 | :------------------------------ | :---- | :----------------------------------------------------------------------- |
 | `fs.inotify.max_user_watches`   | 16384 | Increase the max number of opened file watches to avoid a docker lock.   |
-| `fs.inotify.max_user_instances` | 8192  | Increase the max number of file descriptors to avoid a docker lock.      |
+| `fs.inotify.max_user_instances` | 8192  | Increase the max number of inotify instances to avoid Docker lock issues.|
 
 ## Workload-specific tuning
 
