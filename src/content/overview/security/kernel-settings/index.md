@@ -10,7 +10,7 @@ menu:
     identifier: overview-security-kernel-settings
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
-last_review_date: 2025-07-11
+last_review_date: 2025-07-14
 aliases:
   - /advanced/security/kernel-settings
   - /guides/kernel-settings/
@@ -41,9 +41,13 @@ We adjust some kernel settings of Flatcar Container Linux machines used as Kuber
 
 ## Kubernetes-specific tuning
 
-| Setting                            | Value         | Description                                                                 |
-| :--------------------------------- | :------------ | :-------------------------------------------------------------------------- |
-| `net.ipv4.ip_local_reserved_ports` | 30000 - 32767 | Reserve node port allocations to avoid conflicts with the kube-apiserver. |
+| Setting                                    | Value         | Description                                                                  |
+| :----------------------------------------- | :------------ | :--------------------------------------------------------------------------- |
+| `net.bridge.bridge-nf-call-ip6tables`      | 1             | Required for Kubernetes networking, enables ip6tables rules for bridged traffic. |
+| `net.bridge.bridge-nf-call-iptables`       | 1             | Required for Kubernetes networking, enables iptables rules for bridged traffic.  |
+| `net.ipv4.ip_forward`                      | 1             | Enable IP forwarding for IPv4.                                               |
+| `net.ipv4.ip_local_reserved_ports`         | 30000-32767   | Reserved to avoid conflicts with kube-apiserver, which allocates within this range. |
+| `net.ipv6.conf.all.forwarding`             | 1             | Enable IP forwarding for IPv6.                                               |
 
 ## CRI-specific tuning
 
@@ -56,4 +60,5 @@ We adjust some kernel settings of Flatcar Container Linux machines used as Kuber
 
 | Setting            | Value  | Description                                                                                                |
 | :----------------- | :----- | :--------------------------------------------------------------------------------------------------------- |
-| `vm.max_map_count` | 262144 | Increase max_map_count because some applications, like Elasticsearch, need a higher limit to start properly. |
+| `vm.max_map_count` | 262144 | Increased mmapfs because some applications, like ES, need higher limit to store data properly.             |
+| `vm.overcommit_memory`                     | 1     | Allow memory overcommit to avoid issues with certain applications.           |
