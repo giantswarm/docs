@@ -32,7 +32,7 @@ Silences temporarily prevent alerts from generating notifications without stoppi
 
 The Giant Swarm Observability Platform supports two approaches for managing silences:
 
-- **CRD-based (GitOps)**: Use Kubernetes resources with the v1alpha2 Silence API for version-controlled, automated silence management
+- **CRD-based (GitOps)** ✅ **Recommended**: Use Kubernetes resources with the v1alpha2 Silence API for version-controlled, automated silence management
 - **Grafana UI**: Create silences interactively through the Grafana interface for immediate, ad-hoc needs
 
 Both approaches integrate with the platform's multi-tenancy model and require proper tenant labeling.
@@ -296,8 +296,9 @@ kubectl get configmap alertmanager-config -n monitoring -o yaml
 
 ### Silence management guidelines
 
+- **Prefer CRDs for most use cases**: The GitOps approach with CRDs is recommended for better version control, auditability, and team collaboration
 - **Use CRDs for planned silences**: Leverage GitOps for predictable maintenance windows
-- **Use Grafana UI for emergencies**: Quick silences during active incidents
+- **Use Grafana UI for emergencies**: Quick silences during active incidents when immediate action is needed
 - **Time creation carefully**: Since v1alpha2 silences start immediately, create them exactly when needed
 - **Set reasonable durations**: Use appropriate `valid-until` times to avoid indefinite silences
 - **Use meaningful names**: Choose descriptive silence names for easy identification
