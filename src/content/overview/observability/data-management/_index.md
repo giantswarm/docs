@@ -66,11 +66,12 @@ Advanced querying and analysis capabilities:
 
 ### Data transformation
 
-Process and enrich your data during collection:
+**[Transform and enrich your data]({{< relref "/overview/observability/data-management/data-transformation" >}})** during collection and visualization:
 
-- **Relabeling rules**: modify, filter, or enrich metrics and logs before storage
-- **Data validation**: ensure data quality and compliance with platform standards
-- **Parsing and enrichment**: extract structured data from logs and add contextual information
+- **[Recording rules]({{< relref "/overview/observability/alert-management/alert-rules#recording-rules" >}})**: Pre-compute expensive PromQL expressions for better performance
+- **Relabeling rules**: Modify, filter, or enrich metrics and logs before storage
+- **Data parsing**: Extract structured data from logs and add contextual information
+- **Grafana transformations**: Client-side data processing for visualization
 
 ### Data export
 
