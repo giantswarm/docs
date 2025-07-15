@@ -77,15 +77,6 @@ Metrics export capabilities are in development:
 - **Application metrics**: Custom business and performance metrics
 - **Platform metrics**: Kubernetes and Giant Swarm platform metrics
 
-### Advanced protocols 🚧
-
-Future protocol support is planned:
-
-- **OpenTelemetry events**: OTLP-format structured events and traces
-- **Standardized telemetry**: Full OpenTelemetry Protocol (OTLP) support for comprehensive data exchange
-
-📋 **Note**: Metrics export and OpenTelemetry Protocol (OTLP) support are planned for future releases. Track progress in our [changes and releases]({{< relref "/changes" >}}) under "Observability Platform".
-
 ## Export methods
 
 ### Method 1: External Grafana integration
