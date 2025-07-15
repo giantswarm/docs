@@ -253,7 +253,7 @@ When multiple silences could match an alert:
 
 - **Most specific wins**: Silences with more matchers take precedence
 - **Newest wins**: Among equally specific silences, the most recently created applies
-- **All must match**: An alert must match ALL matchers in a silence to be suppressed
+- **All must match**: An alert must match all matchers in a silence to be suppressed
 
 ## Troubleshooting silences
 
