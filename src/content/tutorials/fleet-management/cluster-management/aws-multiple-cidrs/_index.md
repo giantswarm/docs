@@ -86,6 +86,9 @@ data:
             - 10.2.0.0/16
           pods:
             cidrBlocks:
+              # The pod CIDR which will be added as secondary VPC CIDR,
+              # putting pod IPs directly on the AWS network. No need to add
+              # this CIDR to the above list since that is done automatically.
               - 10.50.0.0/16
         subnets:
           - cidrBlocks:
