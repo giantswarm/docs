@@ -250,6 +250,7 @@ Silences work at the Alertmanager level, after alert rules evaluation but before
 ### Silence priority
 
 When multiple silences could match an alert:
+
 - **Most specific wins**: Silences with more matchers take precedence
 - **Newest wins**: Among equally specific silences, the most recently created applies
 - **All must match**: An alert must match ALL matchers in a silence to be suppressed
