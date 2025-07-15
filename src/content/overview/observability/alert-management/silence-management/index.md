@@ -182,6 +182,7 @@ For immediate silence needs or interactive troubleshooting, use the Grafana Aler
 ### Viewing active silences
 
 In Grafana:
+
 1. Navigate to **Alerting > Silences**
 2. View active, pending, and expired silences
 3. Filter by state, matchers, or creator
