@@ -113,7 +113,7 @@ Choose the appropriate tenant based on the data you want to access:
 | Data Type | Tenant Value | Description |
 |-----------|--------------|-------------|
 | Platform logs | `giantswarm` | System and infrastructure logs |
-| Platform metrics | `anonymous` | System and infrastructure metrics |
+| Platform metrics | `giantswarm` | System and infrastructure metrics |
 | Custom logs | Your tenant | Logs from your applications |
 | Custom metrics | Your tenant | Metrics from your applications |
 
