@@ -3,6 +3,8 @@ linkTitle: Overview
 title: Customer support
 description: The support we provide is an essential part of our offering. Here we explain various support service processes and workflows.
 weight: 10
+aliases:
+  - /basics/giant-swarm-support
 last_review_date: 2024-11-25
 user_questions:
   - What should I know when working with Giant Swarm's support staff?
