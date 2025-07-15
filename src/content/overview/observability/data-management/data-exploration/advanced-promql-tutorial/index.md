@@ -4,8 +4,8 @@ description: Learn advanced PromQL techniques for querying and analyzing metrics
 weight: 20
 menu:
   principal:
-    parent: overview-observability-data-exploration
-    identifier: overview-observability-advanced-promql
+    parent: overview-observability-data-management-data-exploration
+    identifier: overview-observability-data-management-data-exploration-advanced-promql-turorial
 last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas

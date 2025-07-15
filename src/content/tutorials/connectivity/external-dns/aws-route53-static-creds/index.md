@@ -4,15 +4,16 @@ title: External DNS with AWS Route 53 and static credentials
 description: How to configure the External DNS service to use AWS Route 53 with static credentials.
 weight: 25
 menu:
-  main:
-    parent: advanced-external-dns
+  principal:
+    parent: tutorials-connectivity-external-dns
+    identifier: tutorials-connectivity-external-dns-aws
 user_questions:
   - How can I customize the External DNS AWS authentication method?
-last_review_date: 2023-11-07
 aliases:
   - /advanced/connectivity/external-dns/aws-route53-static-creds
   - /guides/external-dns/aws-route53-static-creds/
   - /advanced/external-dns/aws-route53-static-creds/
+last_review_date: 2025-07-11
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
@@ -29,7 +30,7 @@ You can find more information in the [AWS Route 53 - IAM Policy](https://github.
 
 There are two possible configurations described in this section.
 
-__Important:__ Independent of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
+**Warning**: Independent of the cloud provider where the App is running, you must set the `provider` value as `aws`, as shown in the examples.
 
 ### Use an existing secret (recommended)
 
@@ -74,7 +75,7 @@ Starting from version `2.35.1`, with the addition of the secretConfiguration val
 
 #### secretConfiguration
 
-This method is flexible as it loads credentias from the chart values and stores them in a `Secret` without making any assumptions about the structure of your data. It can be used in conjunction with `env` values to provide the credentials to the application.
+This method is flexible as it loads credentials from the chart values and stores them in a `Secret` without making any assumptions about the structure of your data. It can be used in conjunction with `env` values to provide the credentials to the application.
 
 This example is the equivalent configuration to the one outlined in the following section:
 
@@ -97,7 +98,7 @@ secretConfiguration:
 
 #### aws_access_key_id and aws_secret_access_key
 
-__Warning:__ This method will be deprecated in future versions.
+**Warning**: This method will be deprecated in future versions.
 
 This configuration directly injects the `aws_access_key_id` and `aws_secret_access_key` into the App.
 

@@ -4,7 +4,7 @@ title: How to explore data in Grafana
 menu:
   principal:
     parent: overview-observability-data-management
-    identifier: overview-observability-data-exploration
+    identifier: overview-observability-data-management-data-exploration
 weight: 40
 last_review_date: 2025-07-08
 description: Learn how to access your Grafana instance, authenticate securely, and use the Explore and Drilldown features to query and analyze metrics and logs in the Giant Swarm Observability Platform.
@@ -16,7 +16,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
-  - /overview/observability/data-management/data-exploration//accessing-grafana/
+  - /tutorials/observability/data-exploration/accessing-grafana/
 ---
 
 This guide shows you how to use the Explore and Drilldown features in Grafana to query and analyze the metrics and logs collected by the Giant Swarm Observability Platform. It also explains how to authenticate and access your Grafana instance securely.
