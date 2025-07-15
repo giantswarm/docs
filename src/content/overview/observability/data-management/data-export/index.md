@@ -42,7 +42,6 @@ The API consists of different ingress components that use:
 - **Shared host**: Based on your Giant Swarm installation's base domain (`https://observability.<domain_name>`)
 - **OIDC authentication**: Secure access through your identity provider
 - **Multi-tenant access control**: Tenant-scoped data access through HTTP headers
-- **Planned protocols**: OpenTelemetry Protocol (OTLP) support is in development for standardized data exchange
 
 ![Data export architecture](./observability-platform-api-graph.png)
 [_Full size architecture diagram_](./observability-platform-api-graph-big.png)
