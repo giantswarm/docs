@@ -208,4 +208,4 @@ Alert rules work best when integrated with other platform capabilities:
 - **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Use advanced querying techniques to test and refine your alert expressions before deploying them
 - **[Logging architecture]({{< relref "/overview/observability/logging/" >}})**: Understand how log-based alerts work with Loki's distributed logging system
 - **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Essential for understanding tenant labeling requirements and secure alert isolation
-- **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api/" >}})**: Ingest external logs and events that can trigger alerts for comprehensive monitoring coverage
+- **[Data Export]({{< relref "/overview/observability/data-management/data-export/" >}})**: Ingest external logs and events that can trigger alerts for comprehensive monitoring coverage

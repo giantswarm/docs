@@ -54,7 +54,7 @@ Flexible collection from multiple sources:
 
 - **[Metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#metrics-ingestion)**: Collect metrics from applications, infrastructure, and external sources using ServiceMonitors and PodMonitors
 - **[Log ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#log-ingestion)**: Gather logs from applications and infrastructure using PodLogs and automatic collection
-- **External data sources**: Push data from external systems via our [Observability Platform API]({{< relref "/overview/observability/observability-platform-api" >}})
+- **External data sources**: Push data from external systems via our [Data Export API]({{< relref "/overview/observability/data-management/data-export" >}})
 
 ### Data exploration
 
@@ -75,8 +75,9 @@ Advanced querying and analysis capabilities:
 
 ### Data export
 
-Access your data programmatically:
+Access your data programmatically for external analysis and integration:
 
-- **[API access]({{< relref "/overview/observability/observability-platform-api" >}})**: Programmatic data ingestion and retrieval via REST APIs
-- **External integration**: Connect to external monitoring tools and data sources
-- **Standard protocols**: Support for OpenTelemetry Protocol (OTLP) and Prometheus remote write
+- **[Data export capabilities]({{< relref "/overview/observability/data-management/data-export" >}})**: Secure API access for external tools and custom integrations
+- **External Grafana integration**: Connect self-managed Grafana instances to Giant Swarm data
+- **Programmatic access**: REST APIs compatible with Loki and Prometheus standards
+- **Planned protocols**: OpenTelemetry Protocol (OTLP) support is in development for standardized telemetry data exchange

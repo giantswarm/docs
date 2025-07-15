@@ -78,7 +78,7 @@ Configure **[log ingestion]({{< relref "/overview/observability/data-management/
 
 ### External data sources
 
-Integrate data from sources outside Giant Swarm managed clusters through the **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api" >}})**:
+Integrate data from sources outside Giant Swarm managed clusters through our **[Data Export capabilities]({{< relref "/overview/observability/data-management/data-export" >}})**:
 
 - **OIDC authentication**: Configure your identity provider for secure API access
 - **Data ingestion endpoints**: Send metrics, logs, and traces from external systems
