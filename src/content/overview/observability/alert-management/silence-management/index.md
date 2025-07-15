@@ -20,7 +20,7 @@ last_review_date: 2025-07-15
 
 This guide shows you how to create and manage alert silences to temporarily suppress notifications during planned maintenance or while investigating issues. For an overview of how silences fit into the alerting pipeline, see the [alert management overview]({{< relref "/overview/observability/alert-management/" >}}).
 
-## What are silences?
+## What are silences
 
 Silences temporarily prevent alerts from generating notifications without stopping alert evaluation. When an alert matches an active silence, Alertmanager suppresses notifications but continues evaluating the alert rule. This is essential for:
 
