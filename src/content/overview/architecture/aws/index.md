@@ -22,26 +22,26 @@ This details the AWS-specific architecture of the Giant Swarm platform. Please m
 
 ## Management cluster, workload clusters and workload separation via AWS accounts
 
-The management cluster runs the software needed to create and manage workload clusters, among other operations. Generally, you only need one management cluster, but you can also have multiple if you want to separate by region, or development vs. production, for example.
+The management cluster runs the software needed to create and manage workload clusters, among other operations. You only need one management cluster, but you can also have multiple if you want to separate by region, or development vs. production, for example.
 
-The management cluster and its workload clusters can be in the same or in different AWS accounts. If you decide on different accounts, each account needs an IAM role with minimal permissions in order to create cluster resources (VPC, subnets, EC2 instances, etc.). Don't worry ‒ once your first account is set up, Giant Swarm engineers take care of setting up other accounts and updating IAM policies whenever needed (for example, additional permissions for new features). The IAM setup is open source and part of our documentation.
+The management cluster and its workload clusters can be in the same or in different AWS accounts. If you decide on different accounts, each account needs an IAM role with minimal permissions to create cluster resources (VPC, subnets, EC2 instances, etc.). Don't worry ‒ once your first account is set up, Giant Swarm engineers take care of setting up other accounts and updating IAM policies whenever needed (for example, additional permissions for new features). The IAM setup is open source and part of our documentation.
 
 Using multiple accounts has the advantage of strictly separating development and production environments, as required for certain audits, or to separate clusters of different teams, for instance. You can read more in [Multi-account clusters]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/multi-account" >}}).
 
 One AWS account can host many clusters, and the recommended quota/limit increases are [documented in the AWS account setup]({{< relref "/getting-started/prepare-your-provider-infrastructure/aws" >}}). The two most common reasons for customers to segregate applications over different clusters and/or accounts are security and separation of concerns.
 
-Example: Use AWS accounts (and other AWS tools) to establish different access models based on environments. You could have an account **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an account **B**, where developers can get access in order to debug and test their applications or understand the infrastructure that holds it.
+Example: Use AWS accounts (and other AWS tools) to establish different access models based on environments. You could have an account **A** for production, where users have no rights, and audit policies and logging systems track every single action. And you could have an account **B**, where developers can get access to debug and test their applications or understand the infrastructure that holds it.
 
 ## Access by Giant Swarm
 
-The operators running on the management cluster (Cluster API, Cluster API Provider AWS, Crossplane, etc.) need certain permissions in customer AWS accounts to manage workload clusters and their cloud resources. Also, Giant Swarm engineers need admin access in order to troubleshoot and resolve incidents (see [Giant Swarm support model](/support/overview)). Both of these permission sets are, as mentioned above, set up using AWS IAM policies once you become a Giant Swarm customer and start using one or more AWS accounts for Kubernetes clusters.
+The operators running on the management cluster (Cluster API, Cluster API Provider AWS, Crossplane, etc.) need certain permissions in customer AWS accounts to manage workload clusters and their cloud resources. Also, Giant Swarm engineers need admin access to troubleshoot and resolve incidents (see [Giant Swarm support model](/support/overview)). Both of these permission sets are, as mentioned above, set up using AWS IAM policies once you become a Giant Swarm customer and start using one or more AWS accounts for Kubernetes clusters.
 
 ## AWS infrastructure of clusters
 
 Giant Swarm workload clusters are managed by CAPA (Cluster API Provider AWS) and we offer clusters
 
 - based directly on Kubernetes running on EC2 instances (see details below)
-- _or_ based on EKS, the partially-managed Kubernetes offering by AWS
+- _or_ based on EKS, the partially managed Kubernetes offering by AWS
 
 ### CAPA clusters running directly on EC2 instances (non-EKS)
 
