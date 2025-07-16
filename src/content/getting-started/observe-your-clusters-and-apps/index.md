@@ -57,7 +57,7 @@ After applying the service monitor, you can open the `Explore` view in the `Graf
 
 ![Explore application metrics](explore-application-metrics.png)
 
-__Note__: The `Grafana` UI is accessible via ingress. To find the address, you can check the ingress resource in the `monitoring` namespace of the platform API. More information in the [access `Grafana` page]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
+__Note__: The `Grafana` UI is accessible via ingress. To find the address, you can check the ingress resource in the `monitoring` namespace of the platform API. More information in the [access `Grafana` page]({{< relref "/overview/observability/data-management/data-exploration/" >}})
 
 ## Step 2: Inspect the default dashboards
 
