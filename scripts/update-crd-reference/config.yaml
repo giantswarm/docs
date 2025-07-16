@@ -62,7 +62,7 @@ source_repositories:
     cr_paths:
       - docs/cr
     metadata:
-      silences.monitoring.giantswarm.io:
+      silences.observability.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-atlas
         topics:

@@ -12,6 +12,8 @@ user_questions:
   - How does the alerting pipeline work?
   - How do I create and configure alert rules?
   - How do I access alerting features in Grafana?
+  - How do I silence alerts during maintenance?
+  - What's the difference between alert rules and recording rules?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 last_review_date: 2025-07-08
@@ -86,7 +88,7 @@ The alerting section provides:
 - **Alert rules**: All alerting and recording rules currently available, filterable by state (firing, pending). Use the "see graph" link to jump to an explore page with the alert's expression pre-filled
 - **Contact points**: Configured integrations (like Opsgenie or Slack) for sending alerts, including notification templates for formatting
 - **Notification policies**: Alert routing that defines how alerts reach contact points based on matching criteria
-- **Silences**: Current silences and their states, along with affected alerts
+- **Silences**: Current silences and their states, along with affected alerts. Create immediate silences through the UI or manage them via CRDs for GitOps workflows
 - **Active notifications**: Currently firing alerts with notification states
 - **Settings**: General Alertmanager instance settings and current configuration
 
@@ -96,7 +98,7 @@ The platform supports comprehensive alert management through:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define conditions that trigger notifications when issues occur
 - **[Alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})**: Configure how alerts are delivered to different teams and channels through Alertmanager
-- **Alert silences**: Temporarily suppress alerts during maintenance or known issues through Grafana's interface
+- **[Silence management]({{< relref "/overview/observability/alert-management/silence-management/" >}})**: Temporarily suppress alerts during maintenance or known issues using both CRD-based and Grafana UI approaches
 
 ## Multi-tenant alerting
 
@@ -114,7 +116,9 @@ Each [tenant]({{< relref "/overview/observability/configuration/multi-tenancy/" 
 - Include runbook links in alert annotations
 - Test alerts in non-production environments first
 - Review and update alert rules regularly
-- Configure silences for planned maintenance
+- Configure silences for planned maintenance using CRDs for better auditability
+- Use specific silence matchers to avoid over-silencing alerts
+- Document silence reasons with meaningful comments
 
 ## Getting started
 
