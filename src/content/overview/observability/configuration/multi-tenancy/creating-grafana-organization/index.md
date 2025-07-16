@@ -174,12 +174,12 @@ After creating your organization:
 
 ```bash
 kubectl get grafanaorganization myonlineshop -o yaml
-2. [**Log in to Grafana**]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and verify:
+2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
 
 
 - The organization dropdown menu on the top-left corner shows all expected organizations
 
 ![Switching organization](./organization_switching.png)
 
-- You can [explore and query data]({{< relref "/tutorials/observability/data-exploration" >}}) for each of your tenants
+- You can [explore and query data]({{< relref "/overview/observability/data-management/data-exploration/" >}}) for each of your tenants
 - Logged-in users have appropriate role assignments under the `Administration / Users and access / Users` section

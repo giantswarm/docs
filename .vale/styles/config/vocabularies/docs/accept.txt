@@ -65,6 +65,7 @@ kube-vip
 [Kk]ustomization[s]?
 Kyverno
 LogQL
+[Mm]atcher[s]?
 mimirtool
 namespace[s]?
 node[pP]ool[s]?
