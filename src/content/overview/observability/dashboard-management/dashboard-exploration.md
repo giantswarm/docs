@@ -34,7 +34,7 @@ Once you're logged in to Grafana:
 
 ## Out-of-the-box dashboards
 
-Giant Swarm provides a comprehensive set of public dashboards that are accessible to customers based on the dashboards available in the [public_dashboards](https://github.com/giantswarm/dashboards/tree/main/helm/dashboards/charts/public_dashboards/dashboards/shared/public) section of the Giant Swarm dashboards repository.
+Giant Swarm provides a comprehensive set of public dashboards that are accessible to customers based on the dashboards available in the ["public_dashboards"](https://github.com/giantswarm/dashboards/tree/main/helm/dashboards/charts/public_dashboards/dashboards/shared/public) section of the Giant Swarm dashboards repository.
 
 ### Core platform dashboards
 
