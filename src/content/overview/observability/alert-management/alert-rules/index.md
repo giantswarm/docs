@@ -15,7 +15,7 @@ user_questions:
   - What are the deployment patterns for rules?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-08
+last_review_date: 2025-07-17
 aliases:
   - /tutorials/observability/alerting/create-rules/
 ---
@@ -208,4 +208,4 @@ Alert rules work best when integrated with other platform capabilities:
 - **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Use advanced querying techniques to test and refine your alert expressions before deploying them
 - **[Logging architecture]({{< relref "/overview/observability/logging/" >}})**: Understand how log-based alerts work with Loki's distributed logging system
 - **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Essential for understanding tenant labeling requirements and secure alert isolation
-- **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api/" >}})**: Ingest external logs and events that can trigger alerts for comprehensive monitoring coverage
+- **[Data Import and Export]({{< relref "/overview/observability/data-management/data-import-export/" >}})**: Import external logs that can trigger alerts and export alert data for comprehensive monitoring coverage across your infrastructure

@@ -16,7 +16,7 @@ user_questions:
   - What's the difference between alert rules and recording rules?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-08
+last_review_date: 2025-07-17
 ---
 
 Alert management is crucial for any observability solution. The Giant Swarm Observability Platform provides comprehensive alerting capabilities that help you monitor your infrastructure and applications proactively.
@@ -136,4 +136,4 @@ Alert management works best when integrated with other observability capabilitie
 - **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Explore and analyze the data that drives your alerts through advanced querying and visualization tools
 - **[Logging]({{< relref "/overview/observability/logging/" >}})**: Create log-based alerts using Loki's powerful LogQL query language to monitor application and system events
 - **[Multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Understand how tenant isolation ensures your alerts and configurations remain secure and properly scoped
-- **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api/" >}})**: Integrate external systems with your alerting pipeline by ingesting logs and events from sources outside your clusters
+- **[Data Import and Export]({{< relref "/overview/observability/data-management/data-import-export/" >}})**: Integrate external systems with your alerting pipeline by importing logs from external sources and exporting alert data for external analysis
