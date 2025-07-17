@@ -3,7 +3,7 @@ title: Data Ingestion
 description: Learn how to ingest metrics and logs into the Giant Swarm Observability Platform using ServiceMonitors, PodMonitors, and PodLogs.
 aliases:
   - /tutorials/observability/data-ingestion/
-  - /overview/observability/data-management/data-ingestion/#metrics-ingestion/
+  - /tutorials/observability/data-ingestion/metrics/
   - /tutorials/observability/data-ingestion/logs/
 weight: 20
 menu:
