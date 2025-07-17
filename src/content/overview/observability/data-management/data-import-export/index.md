@@ -1,37 +1,49 @@
 ---
-title: Data Export
-description: Learn how to export observability data from the Giant Swarm platform using the Observability Platform API for external analysis and integration.
+title: Data Import and Export
+description: Learn how to import data into and export data from the Giant Swarm observability platform using the Observability Platform API for external integration and analysis.
 weight: 50
 menu:
   principal:
     parent: overview-observability-data-management
-    identifier: overview-observability-data-management-data-export
+    identifier: overview-observability-data-management-data-import-export
+aliases:
+  - /overview/observability/data-management/data-export/
 last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How do I export data from the observability platform?
+  - How do I import data into the observability platform?
   - How can I access observability data externally?
+  - How do I send data from external sources to the platform?
   - How do I connect external tools to the platform?
   - What is the Observability Platform API?
   - How do I set up external Grafana to access Giant Swarm data?
 ---
 
-Data export enables you to access your observability data from external systems and tools, giving you the flexibility to integrate Giant Swarm's observability platform with your existing monitoring infrastructure or specialized analysis tools.
+Data import and export capabilities enable you to both send observability data from external sources into the Giant Swarm platform and access your observability data from external systems and tools. This gives you the flexibility to integrate Giant Swarm's observability platform with your existing monitoring infrastructure, external data sources, and specialized analysis tools.
 
-The Observability Platform API serves as the primary mechanism for data export, providing secure, authenticated access to your metrics, logs, and events from anywhere - not just from within Giant Swarm managed clusters.
+The Observability Platform API serves as the primary mechanism for both data import and export, providing secure, authenticated access to send and receive metrics, logs, and events from anywhere - not just from within Giant Swarm managed clusters.
 
-## Why exporting data
+## Why importing and exporting data
 
-Exporting observability data opens up powerful integration possibilities:
+Data import and export capabilities open up powerful integration possibilities:
+
+**Data Import Benefits:**
+
+- **External data sources**: Send logs and events from SaaS applications, databases, or other infrastructure not managed by Giant Swarm
+- **Cross-platform correlation**: Combine data from multiple environments and platforms in a single observability stack
+- **Legacy system integration**: Import data from existing monitoring tools during migrations or for hybrid deployments
+- **Third-party services**: Collect observability data from external services, APIs, or cloud providers
+
+**Data Export Benefits:**
 
 - **External monitoring tools**: Connect your existing Grafana instances, monitoring dashboards, or business intelligence tools
-- **Cross-platform correlation**: Combine Giant Swarm observability data with metrics from SaaS services, databases, or other infrastructure
 - **Specialized analysis**: Use advanced analytics tools, machine learning platforms, or custom applications with your observability data
 - **Backup and archival**: Create additional copies of your observability data for compliance or long-term analysis
 - **Multi-cloud strategies**: Centralize observability data from multiple cloud providers and platforms
 
-## How data export works
+## How data import and export works
 
 The Observability Platform API provides both **data ingestion** (sending data to the platform) and **data export** (retrieving data from the platform) capabilities through a unified, secure interface.
 
@@ -48,7 +60,7 @@ The API consists of different ingress components that use:
 
 ### Authentication and access control
 
-All data export requests require:
+All data import and export requests require:
 
 1. **Valid OIDC token**: Authentication through your organization's identity provider
 2. **Tenant specification**: Include an `X-Scope-OrgId` HTTP header with an existing tenant name
@@ -59,25 +71,84 @@ Please note that your identity must have access to the specified tenant.
 
 ## Available data types
 
-The platform supports exporting different types of observability data:
+The platform supports importing and exporting different types of observability data:
 
 ### Logs and events ✅
 
-Currently available for export:
+Currently available for both import and export:
 
-- **Application logs**: Custom logs from your workloads
+- **Application logs**: Custom logs from your workloads and external applications
 - **System logs**: Kubernetes events and infrastructure logs  
 - **Audit logs**: Security and compliance-related events
+- **External service logs**: Logs from SaaS applications, databases, and third-party services
 
 ### Metrics 🚧
 
-Metrics export capabilities are in development:
+Metrics capabilities are in development:
 
+- **Export**: Limited metrics export capabilities are available
+- **Import**: Metrics import is planned for future releases
 - **Infrastructure metrics**: CPU, memory, disk, and network metrics
 - **Application metrics**: Custom business and performance metrics
 - **Platform metrics**: Kubernetes and Giant Swarm platform metrics
 
-## Export methods
+**Note**: Currently, data import via the API is limited to logs and events only. Metrics import will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes" >}}) for updates on metrics import availability.
+
+## Data import methods
+
+### Loki API ingestion
+
+Send log data directly to the platform using the Loki push API with properly formatted log streams.
+
+#### Loki push endpoint
+
+The platform provides a Loki-compatible endpoint for log data ingestion:
+
+- **Logs ingestion**: `https://observability.<domain_name>/loki/api/v1/push`
+
+#### Example: Sending logs via Loki API
+
+```bash
+# Example Loki logs ingestion
+curl -X POST \
+     -H "Authorization: Bearer $OIDC_TOKEN" \
+     -H "X-Scope-OrgId: your-tenant" \
+     -H "Content-Type: application/json" \
+     -d @logs-payload.json \
+     "https://observability.<domain>/loki/api/v1/push"
+```
+
+#### Payload format
+
+Logs should be sent in Loki's native format. Here's an example payload structure:
+
+```json
+{
+  "streams": [
+    {
+      "stream": {
+        "job": "my-external-service",
+        "level": "info",
+        "service": "auth-service"
+      },
+      "values": [
+        ["1640995200000000000", "Application started successfully"],
+        ["1640995201000000000", "User authentication completed"]
+      ]
+    }
+  ]
+}
+```
+
+The payload structure includes:
+
+- **streams**: Array of log streams, each with labels and log entries
+- **stream**: Object containing label key-value pairs to identify the log stream
+- **values**: Array of timestamp-message pairs, where timestamps are in nanoseconds since Unix epoch
+
+⚠️ **Prerequisites**: You must configure OIDC authentication with Giant Swarm before using the import method. Contact your account engineer for setup assistance.
+
+## Data export methods
 
 ### Method 1: External Grafana integration
 
@@ -86,6 +157,7 @@ Connect your self-managed Grafana instance to access Giant Swarm observability d
 #### Setting up Grafana data sources
 
 1. **Configure the connection URL**:
+
    - For logs (Loki): `https://observability.<domain_name>`
    - For metrics (Mimir/Prometheus): `https://observability.<domain_name>/prometheus`
 
@@ -94,12 +166,14 @@ Connect your self-managed Grafana instance to access Giant Swarm observability d
    ![Data source URL configuration](./datasource-url.png)
 
 2. **Set up authentication**:
+
    - Select "Forward OAuth Identity" in the Authentication section
    - This passes your OIDC credentials to the API
 
    ![Data source authentication setup](./datasource-authentication.png)
 
 3. **Configure tenant access**:
+
    - Add an `X-Scope-OrgID` custom header
    - Set the value to your target tenant (for example, `giantswarm` for platform logs, `anonymous` for platform metrics)
    - For custom data, use the tenant you configured during ingestion
@@ -142,16 +216,36 @@ curl -H "Authorization: Bearer $OIDC_TOKEN" \
 
 ## Security and compliance
 
-Data export maintains the same security standards as the internal platform:
+Data import and export maintain the same security standards as the internal platform:
 
 - **End-to-end encryption**: All data transfer uses TLS encryption
 - **Identity-based access**: Integration with your organization's OIDC provider
 - **Tenant isolation**: Multi-tenant architecture ensures data separation
 - **Audit trails**: All data access requests are logged for compliance
 
+## Getting started with data import
+
+### Prerequisites for data import
+
+Before you can import data, ensure you have:
+
+1. **OIDC provider configured**: Work with Giant Swarm to set up identity provider integration
+2. **Tenant setup**: Create or identify the tenant where your external data should be stored
+3. **Data format**: Prepare your data in Loki's native log stream format
+4. **Network access**: Ensure your external systems can reach `https://observability.<domain_name>`
+
+### Setup process for data import
+
+1. **Plan your data sources**: Identify which external systems will send data to the platform
+2. **Configure authentication**: Work with Giant Swarm to set up OIDC integration for your data sources
+3. **Set up tenants**: Create appropriate Grafana Organizations for your external data
+4. **Test ingestion**: Send sample data to verify connectivity and formatting
+5. **Implement production ingestion**: Deploy your chosen import method at scale
+6. **Monitor ingestion**: Track data volume and verify data is being properly processed
+
 ## Getting started with data export
 
-### Prerequisites
+### Prerequisites for data export
 
 Before you can export data, ensure you have:
 
@@ -159,7 +253,7 @@ Before you can export data, ensure you have:
 2. **Tenant access**: Confirm you have access to the tenants containing your data
 3. **Network access**: Ensure your external systems can reach `https://observability.<domain_name>`
 
-### Setup process
+### Setup process for data export
 
 1. **Plan your integration**: Identify what data you need and which external tools will consume it
 2. **Configure authentication**: Work with Giant Swarm to set up OIDC integration
@@ -169,7 +263,16 @@ Before you can export data, ensure you have:
 
 ## Performance considerations
 
-Data export can impact platform resources:
+Both data import and export can impact platform resources:
+
+**Data Import Impact:**
+
+- **Ingestion volume**: Large volumes of imported data increase storage and processing requirements
+- **Data frequency**: High-frequency data streams consume more ingestion capacity
+- **Payload size**: Large individual payloads affect processing time and memory usage
+- **Tenant capacity**: Multiple tenants importing data share platform ingestion resources
+
+**Data Export Impact:**
 
 - **Query complexity**: Complex queries (broad time ranges, intensive filters) consume more resources
 - **Export volume**: Large data exports may affect platform performance
@@ -177,40 +280,19 @@ Data export can impact platform resources:
 
 ### Best practices
 
+**For Data Import:**
+
+- **Batch processing**: Send data in appropriately sized batches rather than individual events
+- **Rate limiting**: Implement client-side rate limiting to avoid overwhelming the platform
+- **Data filtering**: Only send relevant data; pre-filter unnecessary logs or events
+- **Compression**: Use compressed payloads where supported to reduce transfer time
+
+**For Data Export:**
+
 - **Optimize queries**: Use specific time ranges and efficient filters
 - **Implement caching**: Cache frequently accessed data in your external systems
 - **Schedule intensive exports**: Run large data exports during off-peak hours
 - **Monitor impact**: Track export performance and adjust patterns as needed
-
-## Troubleshooting
-
-### Common issues
-
-**Authentication failures**:
-
-- Verify OIDC token validity and refresh if expired
-- Confirm your identity has access to the specified tenant
-- Check that the tenant exists in a Grafana Organization
-
-**Data access issues**:
-
-- Verify the `X-Scope-OrgId` header matches an existing tenant
-- Confirm the tenant contains the data you're trying to access
-- Check that data ingestion is properly configured for your tenant
-
-**Performance problems**:
-
-- Reduce query time ranges or add more specific filters
-- Verify network connectivity and latency to the API endpoints
-- Check platform status and resource utilization
-
-### Getting help
-
-For data export setup and troubleshooting:
-
-- **Documentation**: Review [multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}) for tenant management
-- **Support**: Contact Giant Swarm support for authentication and API setup assistance
-- **Community**: Join discussions about observability integrations and best practices
 
 ## Next steps
 

@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-data-management
-last_review_date: 2025-07-08
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -52,16 +52,16 @@ Our platform provides comprehensive capabilities to handle your observability da
 
 Flexible collection from multiple sources:
 
-- **[Metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#metrics-ingestion)**: Collect metrics from applications, infrastructure, and external sources using ServiceMonitors and PodMonitors
-- **[Log ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#log-ingestion)**: Gather logs from applications and infrastructure using PodLogs and automatic collection
-- **External data sources**: Push data from external systems via our [Data Export API]({{< relref "/overview/observability/data-management/data-export" >}})
+- **[Metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#metrics-ingestion" >}})**: Collect metrics from applications, infrastructure, and external sources using ServiceMonitors and PodMonitors
+- **[Log ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#logs-ingestion" >}})**: Gather logs from applications and infrastructure using PodLogs and automatic collection
+- **External data sources**: Push data from external systems via our [Data Import and Export API]({{< relref "/overview/observability/data-management/data-import-export" >}})
 
 ### Data exploration
 
 Advanced querying and analysis capabilities:
 
 - **[Interactive exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Grafana's Explore feature for ad-hoc analysis with PromQL and LogQL
-- **[Dashboard management]({{< relref "overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations with GitOps workflows or through the Grafana UI
+- **[Dashboard management]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations with GitOps workflows or through the Grafana UI
 - **Query languages**: [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial.md" >}}) for metrics and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) for logs with powerful filtering and aggregation
 
 ### Data transformation
@@ -73,11 +73,12 @@ Advanced querying and analysis capabilities:
 - **Data parsing**: Extract structured data from logs and add contextual information
 - **Grafana transformations**: Client-side data processing for visualization
 
-### Data export
+### Data import and export
 
-Access your data programmatically for external analysis and integration:
+Access your data programmatically for external analysis and integration, and send external data to the platform:
 
-- **[Data export capabilities]({{< relref "/overview/observability/data-management/data-export" >}})**: Secure API access for external tools and custom integrations
+- **[Data import and export capabilities]({{< relref "/overview/observability/data-management/data-import-export" >}})**: Secure API access for external tools and custom integrations, plus data import from external sources
 - **External Grafana integration**: Connect self-managed Grafana instances to Giant Swarm data
 - **Programmatic access**: REST APIs compatible with Loki and Prometheus standards
-- **Planned protocols**: OpenTelemetry Protocol (OTLP) support is in development for standardized telemetry data exchange
+- **Data ingestion**: Send logs from external systems using Loki's native format
+- **Future protocols**: OpenTelemetry Protocol (OTLP) support is planned for standardized telemetry data exchange
