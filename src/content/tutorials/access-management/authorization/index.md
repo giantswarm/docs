@@ -29,7 +29,7 @@ As authorization in the management cluster is based on some fundamental `kuberne
 - [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and
 - [Role-based access control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
 
-Also be aware that this article deals with permissions in the management cluster only. Handling authorization in workload clusters isn't covered here, however we provide a comprehensive article on [RBAC and PSPs in workload clusters]({{< relref "/vintage/getting-started/security" >}}).
+Also be aware that this article deals with permissions in the management cluster only. Handling authorization in workload clusters isn't covered here, however we provide a comprehensive article on [RBAC in workload clusters]({{< relref "/tutorials/security/rbac" >}}).
 
 If you are mostly interested in how to set up access for certain types of users, we recommend to skip to the [typical use cases](#typical-use-cases) section. You can always catch up on the basics later, as needed. Alternatively, if you work through this page from top to bottom, you'll pick up the pieces in a more logical order and put them together later.
 

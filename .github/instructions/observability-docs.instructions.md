@@ -70,3 +70,7 @@ Every documentation page must have the following metadata at the top:
     - in the case of observability documentation this is https://github.com/orgs/giantswarm/teams/team-atlas
 - `last_review_date`: The date when the page was last reviewed or updated.
 
+If you move or rename a page, 
+- ensure that the `aliases` field is added or updated for the old page path to redirect users.
+- ensure that all existing links to the old page are updated to point to the new path.
+- ensure that the `menu` field is set to include the page in the correct hierarchy.

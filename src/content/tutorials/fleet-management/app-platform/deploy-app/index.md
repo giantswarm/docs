@@ -24,8 +24,6 @@ The _Giant Swarm App Platform_ is built on top of [`helm`](https://helm.sh/) and
 In this guide, we will install an ingress controller app. You will do this by using `kubectl`, creating
 an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) custom resource using the cluster API of your management cluster (also known platform API).
 
-The `App` custom resources can be created this way via your automation(See: [guide]({{< relref "/vintage/getting-started/connectivity/ingress-controller" >}})).
-
 In general, you can manage `App` custom resources with any tool that can communicate with the cluster API such as `helm` or GitOps tools (like Argo CD or Flux CD).
 
 ## Setting up
@@ -227,7 +225,7 @@ spec:
   version: 1.17.0
 ```
 
-You can read more about app platform configuration [here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/vintage/advanced/connectivity/ingress" >}}).
+You can read more about app platform configuration [here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) and about advanced ingress configuration [here]({{< relref "/tutorials/connectivity/ingress/configuration" >}}).
 
 ## Deleting an App CR
 

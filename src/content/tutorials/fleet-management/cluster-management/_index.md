@@ -5,6 +5,17 @@ menu:
   principal:
     parent: tutorials-fleet-management
     identifier: tutorials-fleet-management-clusters
+aliases:
+  - /getting-started/operations
+  - /getting-started/operations/autoscaling
+  - /getting-started/operations/autoscaling/cluster-size
+  - /getting-started/operations/autoscaling/vertical-pod-autoscaler
+  - /operations
+  - /operations/autoscaling
+  - /vintage/getting-started/operations
+  - /vintage/getting-started/operations/autoscaling
+  - /vintage/getting-started/operations/autoscaling/cluster-size
+  - /vintage/getting-started/operations/autoscaling/vertical-pod-autoscaler
 last_review_date: 2024-11-29
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
