@@ -52,7 +52,8 @@ All data export requests require:
 
 1. **Valid OIDC token**: Authentication through your organization's identity provider
 2. **Tenant specification**: Include an `X-Scope-OrgId` HTTP header with an existing tenant name
-3. **Proper authorization**: Your identity must have access to the specified tenant
+
+Please note that your identity must have access to the specified tenant.
 
 ⚠️ **Important**: Only data from tenants defined in [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}) resources can be accessed. Requests for non-existent tenants will be rejected.
 
