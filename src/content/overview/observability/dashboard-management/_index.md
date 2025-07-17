@@ -6,13 +6,15 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-dashboard-management
-last_review_date: 2025-07-08
+last_review_date: 2025-07-15
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - What is dashboard management in the observability platform?
   - How does Giant Swarm approach dashboard management?
   - What are the different ways to manage dashboards?
+  - How do I find existing dashboards?
+  - What dashboards are available out of the box?
   - How do I organize dashboards across teams?
   - What makes Giant Swarm's dashboard management different?
 ---
@@ -40,6 +42,15 @@ We recommend treating dashboards as code - versioned, reviewed, and deployed lik
 Your dashboards live in organized spaces that align with your team structure and security requirements. Share insights across teams while maintaining appropriate access controls and data isolation.
 
 ## What dashboard management includes
+
+### Discovery and exploration
+
+Start your dashboard journey with our **[dashboard exploration guide]({{< relref "/overview/observability/dashboard-management/dashboard-exploration" >}})**, which covers:
+
+- **[Out-of-the-box dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-exploration#out-of-the-box-dashboards" >}})** for immediate platform visibility across Kubernetes, networking, applications, and observability infrastructure
+- **[Search and navigation]({{< relref "/overview/observability/dashboard-management/dashboard-exploration#how-to-search-and-navigate-dashboards" >}})** tools for finding relevant dashboards quickly
+- **[Getting started recommendations]({{< relref "/overview/observability/dashboard-management/dashboard-exploration#getting-started-with-dashboard-exploration" >}})** tailored for different user roles (new users, developers, platform teams)
+- **Organized structure** with logical categorization and tagging for easy discovery
 
 ### Creation and deployment
 
@@ -71,6 +82,12 @@ Raw observability data is only valuable when it's accessible and actionable. Eff
 
 ## Getting started
 
-Ready to dive in? Our [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) walks you through both GitOps and interactive approaches, helping you choose the right method for your use case.
+Your dashboard management journey starts with exploration. Begin with our **[dashboard exploration guide]({{< relref "/overview/observability/dashboard-management/dashboard-exploration" >}})** to:
+
+1. **Discover pre-built dashboards** that provide immediate visibility into your clusters, applications, and platform health
+2. **Learn navigation techniques** to find and organize dashboards effectively
+3. **Understand role-specific recommendations** for new users, developers, and platform teams
+
+Once you've explored the available dashboards and understand the navigation patterns, move on to our [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) to build custom visualizations. This guide covers both GitOps and interactive approaches, helping you choose the right method for your use case.
 
 For a deeper understanding of how dashboards fit into your overall observability strategy, explore our [data management capabilities]({{< relref "/overview/observability/data-management" >}}) and [multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy" >}}).
