@@ -29,7 +29,7 @@ To start exploring dashboards, you'll need access to your Grafana instance. If y
 Once you're logged in to Grafana:
 
 1. **Navigate to dashboards**: Click the **Dashboards** icon (grid squares) in the left sidebar
-2. **Browse by organization**: You'll see dashboards organized by [Grafana organization]({{< relref "/overview/observability/configuration/multi-tenancy" >}})
+2. **Browse by organization**: You'll see all dashboards available in your selected [Grafana organization]({{< relref "/overview/observability/configuration/multi-tenancy" >}}), switching to another Grafana organization will most likely change the list of available dashboards.
 3. **Start with Shared Org**: The `Shared Org` contains system dashboards accessible to all users
 
 ## Out-of-the-box dashboards
