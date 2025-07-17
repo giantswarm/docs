@@ -1,12 +1,12 @@
 ---
-title: Dashboard Management
+title: Dashboard management
 description: Understand how Giant Swarm's dashboard management capabilities help you create, organize, and maintain custom visualizations for your observability data.
 weight: 30
 menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-dashboard-management
-last_review_date: 2025-07-15
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -17,6 +17,9 @@ user_questions:
   - What dashboards are available out of the box?
   - How do I organize dashboards across teams?
   - What makes Giant Swarm's dashboard management different?
+  - How do I create a custom dashboard?
+  - How do I use GitOps for dashboards?
+  - How do I share dashboards with my team?
 ---
 
 ## Introduction to dashboard management

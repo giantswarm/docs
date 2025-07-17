@@ -1,21 +1,21 @@
 ---
-title: Silence management
-description: Learn how to create and manage alert silences using both Kubernetes CRDs and the Grafana UI in the Giant Swarm Observability Platform.
+title: Silences
+description: Learn how to manage alert silences in the Giant Swarm observability platform.
 weight: 30
 menu:
   principal:
-    identifier: overview-observability-alert-management-silence-management
     parent: overview-observability-alert-management
-user_questions:
-  - How do I create alert silences?
-  - How do I silence alerts temporarily?
-  - What's the difference between CRD and Grafana UI silences?
-  - How do I use tenant labeling for silences?
-  - How do I manage silences with GitOps?
-  - How do I check active silences?
+    identifier: overview-observability-alert-management-silences
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-15
+user_questions:
+  - How do I silence alerts?
+  - How do I schedule maintenance windows?
+  - How do I use silences in Alertmanager?
+  - How do I manage silences via CRDs and the UI?
+  - How do I automate silence management?
+  - How do silences interact with alert rules and routing?
 ---
 
 This guide shows you how to create and manage alert silences to temporarily suppress notifications during planned maintenance or while investigating issues. For an overview of how silences fit into the alerting pipeline, see the [alert management overview]({{< relref "/overview/observability/alert-management/" >}}).

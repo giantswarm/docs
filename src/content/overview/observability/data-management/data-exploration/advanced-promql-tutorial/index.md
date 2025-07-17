@@ -1,19 +1,19 @@
 ---
-title: Advanced PromQL Tutorial
-description: Learn advanced PromQL techniques for querying and analyzing metrics data in the Giant Swarm observability platform.
-weight: 20
+title: Advanced PromQL tutorial
+description: Deep dive into advanced PromQL queries and techniques for metrics analysis in the Giant Swarm observability platform.
+weight: 30
 menu:
   principal:
     parent: overview-observability-data-management-data-exploration
-    identifier: overview-observability-data-management-data-exploration-advanced-promql-turorial
-last_review_date: 2025-07-07
+    identifier: overview-observability-data-management-data-exploration-advanced-promql-tutorial
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How do I write advanced PromQL queries?
-  - What are the best practices for metrics analysis?
-  - How do I create complex aggregations and calculations?
-  - How do I monitor Kubernetes resources effectively?
+  - What are best practices for metrics analysis?
+  - How do I aggregate and filter metrics?
+  - How do I use PromQL for troubleshooting?
 ---
 
 PromQL (Prometheus Query Language) is the powerful query language used by

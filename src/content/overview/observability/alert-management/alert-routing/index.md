@@ -1,20 +1,20 @@
 ---
 title: Alert routing
-description: Configure how alerts are delivered to different teams and channels through Alertmanager in the Giant Swarm Observability Platform.
+description: Learn how to configure alert routing and notification policies in the Giant Swarm observability platform.
 weight: 20
 menu:
   principal:
-    identifier: overview-observability-alert-management-alert-routing
     parent: overview-observability-alert-management
-user_questions:
-  - How do I configure Alertmanager?
-  - How do I route alerts to different teams?
-  - How do I visualize the existing alerting configuration?
-  - How do I set up notification channels?
-  - What are alert routing best practices?
+    identifier: overview-observability-alert-management-alert-routing
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-07
+user_questions:
+  - How does alert routing work?
+  - How do I configure Alertmanager?
+  - What notification channels are supported?
+  - How do I test and validate alert routing?
+  - How do I use notification templates?
 aliases:
   - /tutorials/observability/alerting/configure-alertmanager/
 ---

@@ -1,21 +1,19 @@
 ---
 title: Alert rules
-description: Learn how to create and deploy alerting and recording rules in the Giant Swarm Observability Platform using PrometheusRule resources.
+description: Learn how to create and manage alerting and recording rules in the Giant Swarm observability platform.
 weight: 10
 menu:
   principal:
-    identifier: overview-observability-alert-management-alert-rules
     parent: overview-observability-alert-management
-user_questions:
-  - How do I create alerting rules?
-  - How do I deploy recording rules?
-  - What labels are required for rules?
-  - How do PrometheusRule resources work?
-  - How do I create log-based alerts?
-  - What are the deployment patterns for rules?
+    identifier: overview-observability-alert-management-alert-rules
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-17
+user_questions:
+  - How do I create alert rules?
+  - What is the difference between alerting and recording rules?
+  - How do I use PromQL and LogQL for alerting?
+  - How do I deploy alert rules?
 aliases:
   - /tutorials/observability/alerting/create-rules/
 ---

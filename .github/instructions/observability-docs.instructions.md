@@ -44,7 +44,7 @@ The observability documentation should have the following hierarchy:
       - Multi-Tenancy
         - Creating Grafana Organisations
 - Getting Started
-  - Observe your clusters and apps
+  - Observe your clusters and apps (located at `/getting-started/observe-your-clusters-and-apps/`)
 
 ## Buildup of the Observability Documentation Pages
 

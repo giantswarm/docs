@@ -17,6 +17,9 @@ user_questions:
   - How do I configure data ingestion?
   - What alerting options can I configure?
   - How do I manage access controls?
+  - How do I set up the initial platform configuration?
+  - How do I create and manage Grafana organizations?
+  - How do I plan for scale and consistency?
 ---
 
 The Giant Swarm observability platform offers extensive configuration options to tailor the system to your organization's specific monitoring, alerting, and visualization needs. This overview covers the key areas you can configure to create a customized observability experience that fits your operational requirements.

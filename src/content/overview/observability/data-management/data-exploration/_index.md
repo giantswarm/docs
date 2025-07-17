@@ -1,20 +1,19 @@
 ---
-linkTitle: Data Exploration
-title: How to explore data in Grafana
+title: Data exploration
+description: Learn how to explore and analyze your observability data using Grafana, PromQL, and LogQL.
+weight: 10
 menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-exploration
-weight: 40
-last_review_date: 2025-07-08
-description: Learn how to access your Grafana instance, authenticate securely, and use the Explore and Drilldown features to query and analyze metrics and logs in the Giant Swarm Observability Platform.
-user_questions:
-  - How do I log in to Grafana?
-  - How do I explore data?
-  - What is the Drilldown app in Grafana?
-  - How do I run queries in Explore?
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
+user_questions:
+  - How do I explore observability data?
+  - What tools can I use to analyze metrics and logs?
+  - How do I use PromQL and LogQL?
+  - How do I access Grafana Explore?
 aliases:
   - /tutorials/observability/data-exploration/accessing-grafana/
 ---

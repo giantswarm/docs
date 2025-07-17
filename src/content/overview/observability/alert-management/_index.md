@@ -1,11 +1,14 @@
 ---
 title: Alert management
-description: Learn how to manage alerts in the Giant Swarm Observability Platform, including alert rules, routing, and the alerting pipeline.
+description: Learn how to manage alerts in the Giant Swarm observability platform, including alert rules, routing, and the alerting pipeline.
 weight: 30
 menu:
   principal:
     identifier: overview-observability-alert-management
     parent: overview-observability
+last_review_date: 2025-07-17
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How do I manage alerts in the observability platform?
   - What alert management features are available?
@@ -14,12 +17,12 @@ user_questions:
   - How do I access alerting features in Grafana?
   - How do I silence alerts during maintenance?
   - What's the difference between alert rules and recording rules?
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-17
+  - How do I set up alert routing?
+  - How do I use silences for planned maintenance?
+  - How do I test and monitor alert delivery?
 ---
 
-Alert management is crucial for any observability solution. The Giant Swarm Observability Platform provides comprehensive alerting capabilities that help you monitor your infrastructure and applications proactively.
+Alert management is crucial for any observability solution. The Giant Swarm observability platform provides comprehensive alerting capabilities that help you monitor your infrastructure and applications proactively.
 
 Alerting consists of two main concepts: the **alerting pipeline** (how to send alerts, to whom, and what to send) and **[alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})** (what to alert on).
 
@@ -98,7 +101,7 @@ The platform supports comprehensive alert management through:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define conditions that trigger notifications when issues occur
 - **[Alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})**: Configure how alerts are delivered to different teams and channels through Alertmanager
-- **[Silence management]({{< relref "/overview/observability/alert-management/silence-management/" >}})**: Temporarily suppress alerts during maintenance or known issues using both CRD-based and Grafana UI approaches
+- **[Silences]({{< relref "/overview/observability/alert-management/silences/" >}})**: Temporarily suppress alerts during maintenance or known issues using both CRD-based and Grafana UI approaches
 
 ## Multi-tenant alerting
 

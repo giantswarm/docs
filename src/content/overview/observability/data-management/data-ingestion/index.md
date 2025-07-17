@@ -1,25 +1,19 @@
 ---
-title: Data Ingestion
-description: Learn how to ingest metrics and logs into the Giant Swarm Observability Platform using ServiceMonitors, PodMonitors, and PodLogs.
-aliases:
-  - /tutorials/observability/data-ingestion/
-  - /tutorials/observability/data-ingestion/metrics/
-  - /tutorials/observability/data-ingestion/logs/
+title: Data ingestion
+description: Learn how to ingest metrics and logs into the Giant Swarm observability platform.
 weight: 20
 menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-ingestion
-last_review_date: 2025-07-07
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - How do I ingest custom metrics into the observability platform?
-  - How do I collect logs from my applications?
-  - What is a ServiceMonitor and when should I use it?
-  - What is a PodMonitor and how is it different from ServiceMonitor?
-  - How do I configure log collection for my workloads?
-  - What's the difference between using pod labels and PodLogs for log ingestion?
+  - How do I ingest data into the observability platform?
+  - What data sources are supported?
+  - How do I configure metrics and log ingestion?
+  - How do I use ServiceMonitors and PodMonitors?
 ---
 
 The Giant Swarm Observability Platform provides flexible, self-service data ingestion capabilities for both metrics and logs. By default, all clusters are equipped with the necessary components to collect and forward observability data to the central platform.

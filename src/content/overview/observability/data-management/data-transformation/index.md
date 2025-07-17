@@ -1,20 +1,19 @@
 ---
 title: Data transformation
-description: Learn how to transform and process observability data in the Giant Swarm Observability Platform using recording rules, relabeling, and Grafana transformations.
+description: Learn how to transform and enrich observability data in the Giant Swarm platform.
 weight: 30
 menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-transformation
-user_questions:
-  - How do I transform data in the observability platform?
-  - What are recording rules and how do I use them?
-  - How do I use relabeling to modify metrics and logs?
-  - What data transformation options are available in Grafana?
-  - How do I create derived metrics from existing data?
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-15
+user_questions:
+  - How do I transform observability data?
+  - What are relabeling and recording rules?
+  - How do I enrich logs and metrics?
+  - How do I use Grafana transformations?
 ---
 
 Data transformation allows you to process, enrich, and modify observability data to better suit your analysis and monitoring needs. The Giant Swarm Observability Platform offers several transformation approaches at different stages of the data pipeline.
