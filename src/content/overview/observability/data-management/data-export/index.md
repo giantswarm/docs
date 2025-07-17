@@ -21,7 +21,7 @@ Data export enables you to access your observability data from external systems 
 
 The Observability Platform API serves as the primary mechanism for data export, providing secure, authenticated access to your metrics, logs, and events from anywhere - not just from within Giant Swarm managed clusters.
 
-## Why export data?
+## Why exporting data
 
 Exporting observability data opens up powerful integration possibilities:
 
