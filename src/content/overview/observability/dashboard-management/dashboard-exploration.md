@@ -85,7 +85,7 @@ Monitoring infrastructure health:
 Platform automation and lifecycle management:
 
 - **Flux Control Plane** - GitOps controller health and sync status
-- **KEDA** - Kubernetes Event Driven Autoscaling metrics
+- **KEDA** - Kubernetes Event Driven autoscaling metrics
 - **Karpenter** - Node autoscaling performance (AWS)
 - **AWS Load Balancer Controller** - AWS LB controller metrics (AWS)
 
