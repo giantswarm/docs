@@ -100,7 +100,7 @@ Connect your self-managed Grafana instance to access Giant Swarm observability d
 
 3. **Configure tenant access**:
    - Add an `X-Scope-OrgID` custom header
-   - Set the value to your target tenant (e.g., `giantswarm` for platform logs, `anonymous` for platform metrics)
+   - Set the value to your target tenant (for example, `giantswarm` for platform logs, `anonymous` for platform metrics)
    - For custom data, use the tenant you configured during ingestion
 
    ![Data source headers configuration](./datasource-headers.png)
