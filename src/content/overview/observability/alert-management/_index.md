@@ -101,7 +101,7 @@ The platform supports comprehensive alert management through:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define conditions that trigger notifications when issues occur
 - **[Alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})**: Configure how alerts are delivered to different teams and channels through Alertmanager
-- **[Silence management]({{< relref "/overview/observability/alert-management/silence-management/" >}})**: Temporarily suppress alerts during maintenance or known issues using both CRD-based and Grafana UI approaches
+- **[Silences]({{< relref "/overview/observability/alert-management/silences/" >}})**: Temporarily suppress alerts during maintenance or known issues using both CRD-based and Grafana UI approaches
 
 ## Multi-tenant alerting
 
