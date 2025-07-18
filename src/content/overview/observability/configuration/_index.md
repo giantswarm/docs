@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-configuration
-last_review_date: 2025-07-07
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -41,7 +41,7 @@ Work with Giant Swarm to configure core platform components:
 - **Manage permissions** with role-based access controls (RBAC) from your identity provider
 - **Configure tenant lifecycle** including creation, management, and removal processes
 
-[Multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) affects all other platform components, making it essential to understand before configuring other areas.
+[Multi-tenancy configuration](({{< relref "/overview/observability/configuration/multi-tenancy" >}})) affects all other platform components, making it essential to understand before configuring other areas.
 
 ### Organization management
 
@@ -60,7 +60,7 @@ Control what observability data flows into your platform and how it's processed:
 
 ### Metrics collection
 
-Configure **[metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#metrics-ingestion)** to collect custom application and infrastructure metrics:
+Configure **[metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#metrics-ingestion" >}})** to collect custom application and infrastructure metrics:
 
 - **ServiceMonitors**: Define which services to scrape for metrics and how frequently
 - **PodMonitors**: Configure direct pod-level metric collection for specialized use cases
@@ -69,7 +69,7 @@ Configure **[metrics ingestion]({{< relref "/overview/observability/data-managem
 
 ### Log collection
 
-Configure **[log ingestion]({{< relref "/overview/observability/data-management/data-ingestion" >}}#log-ingestion)** to capture application and system logs:
+Configure **[log ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#logs-ingestion" >}})** to capture application and system logs:
 
 - **PodLogs**: Select which pods to collect logs from using label selectors
 - **Pod labels**: Enable automatic log collection by labeling pods with tenant information
@@ -78,11 +78,11 @@ Configure **[log ingestion]({{< relref "/overview/observability/data-management/
 
 ### External data sources
 
-Integrate data from sources outside Giant Swarm managed clusters through the **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api" >}})**:
+Integrate data from sources outside Giant Swarm managed clusters through our **[Data Import and Export capabilities]({{< relref "/overview/observability/data-management/data-import-export" >}})**:
 
 - **OIDC authentication**: Configure your identity provider for secure API access
-- **Data ingestion endpoints**: Send metrics, logs, and traces from external systems
-- **OpenTelemetry Protocol (OTLP)**: Configure standardized telemetry data ingestion
+- **Data ingestion endpoints**: Send logs from external systems using Loki's native format
+- **Data export endpoints**: Retrieve metrics and logs for external analysis and storage
 
 ## Visualization and dashboard configuration
 
@@ -103,7 +103,7 @@ Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert rules
 
-**[Create alerting and recording rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})** for proactive monitoring:
+**[Create alerting and recording rules]({{< relref "/overview/observability/alert-management/alert-rules" >}})** for proactive monitoring:
 
 - **Metric-based alerts**: PromQL expressions for infrastructure and application monitoring
 - **Log-based alerts**: LogQL expressions for application error detection and log pattern analysis
@@ -112,7 +112,7 @@ Set up comprehensive alerting to provide timely notification of issues:
 
 ### Alert management
 
-**[Configure alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})** for comprehensive alert handling and operational workflows:
+**[Configure Alertmanager]({{< relref "/overview/observability/alert-management/alert-routing" >}})** for comprehensive alert handling and operational workflows:
 
 - **Notification channels**: Integration with Slack, email, PagerDuty, and other services
 - **Contact points**: Configure notification destinations and templates
@@ -154,8 +154,8 @@ To begin configuring your observability platform:
 
 1. **[Understand multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})**: Work with your Giant Swarm account engineer to plan your data organization strategy
 2. **Set up [Grafana organizations]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}})**: Create organizations for your teams with assistance from Giant Swarm
-3. **Configure data ingestion**: Set up [data collection]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for your applications (metrics and logs)
-4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for critical system health
-5. **Build dashboards**: Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}}) for your specific monitoring needs
+3. **Configure data ingestion**: Set up [metrics]({{< relref "/overview/observability/data-management/data-ingestion/#metrics-ingestion" >}}) and [log collection]({{< relref "/overview/observability/data-management/data-ingestion/#logs-ingestion" >}}) for your applications
+4. **Create essential alerts**: Implement [basic alerting rules]({{< relref "/overview/observability/alert-management/alert-rules" >}}) for critical system health
+5. **Build dashboards**: Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for your specific monitoring needs
 
 For platform-level configuration assistance, contact your Giant Swarm account engineer who can help with OIDC provider setup, resource allocation, and other foundational configurations.
