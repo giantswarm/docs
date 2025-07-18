@@ -4,59 +4,58 @@ title: Advanced CoreDNS configuration
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters.
 weight: 25
 menu:
-  main:
-    parent: advanced-connectivity
+  principal:
+    parent: tutorials-connectivity
+    identifier: tutorials-connectivity-coredns
+aliases:
+  - /advanced/connectivity/coredns
+  - /guides/advanced-coredns-configuration/
+  - /advanced/coredns/
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
   - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
-last_review_date: 2023-11-07
-aliases:
-  - /advanced/connectivity/coredns
-  - /guides/advanced-coredns-configuration/
-  - /advanced/coredns/
+last_review_date: 2025-07-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-Your Giant Swarm installation comes with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns)
+Your Giant Swarm clusters come with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns). CoreDNS is installed as default application in your clusters using a HelmRelease named `<CLUSTER_ID>-coredns`. This guide explains how you can customize the CoreDNS configuration in your clusters.
 
-You can override these defaults in a ConfigMap named `coredns-user-values` in the management cluster.
+## Where to store the user configuration
 
-__Note__: In Cluster API, CoreDNS is part of default apps `<provider>` chart (example [Cluster API for Openstack](https://github.com/giantswarm/default-apps-openstack/). In order to extend the app, you need to patch the App Custom Resource to use `coredns-user-values` configmap. [Check out this example](https://github.com/giantswarm/gitops-template/pull/74/files).
+Given the cluster you are trying to configure has id: `123ab` then you will find a `123ab-coredns` HelmRelease in the organization namespace of the management cluster. Inside this HelmRelease, there is a field called `ValuesFrom` which lets you define a set of ConfigMaps that will be used to override the default values of the CoreDNS Helm chart.
 
-## Where is the user values ConfigMap
-
-Given the cluster you are trying to configure has id: `123ab` then you will find the `coredns-user-values` ConfigMap in the management cluster in the `123ab` namespace:
-
-```nohighlight
-$ kubectl -n 123ab get cm coredns-user-values --context=control-plane
-NAME                                   DATA      AGE
-coredns-user-values                    0         11m
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  ...
+  name: 123ab-coredns
+  namespace: org-my-org
+spec:
+  ...
+  valuesFrom:
+  - kind: ConfigMap
+    name: 123ab-coredns-global-values
+    optional: false
+    valuesKey: values
+  - kind: ConfigMap
+    ...
 ```
-
-__Warning:__
-
-Please do not edit any other CoreDNS related ConfigMaps.
-
-Only the user values ConfigMap is safe to edit.
-
------
 
 ## How to set configuration options using the user values ConfigMap
 
-On the management cluster, create or edit a ConfigMap named `coredns-user-values`
+On the management cluster, create or edit a ConfigMap named `123ab-coredns-global-values`
 in the workload cluster namespace as described above:
 
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  labels:
-    app: coredns
-  name: coredns-user-values
-  namespace: abc12
+  name: 123ab-coredns-global-values
+  namespace: org-my-org
 data:
   values: |
     configmap:
@@ -197,7 +196,7 @@ data:
 
 This custom configuration allows CoreDNS to resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than the generic one. At the same time we use a different cache TTL(2000) setting.
 
-__Warning:__ By default our clusters come with Pod Security Policies and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
+__Warning:__ By default our clusters come with Pod Security Standards and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 
 ## Further reading
 
