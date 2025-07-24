@@ -1,18 +1,19 @@
 ---
 title: Multi-tenancy
-description: How multi-tenancy works in the Observability Platform and best practices.
-weight: 20
+description: Learn how to set up and manage multi-tenancy in the Giant Swarm observability platform.
+weight: 10
 menu:
   principal:
     parent: overview-observability-configuration
-    identifier: overview-observability-configuration-multitenancy
-last_review_date: 2025-07-07
+    identifier: overview-observability-configuration-multi-tenancy
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - How to isolate data in the observability platform?
-  - What are tenant separation best practices?
-  - How do tenants and organizations work together?
+  - What is multi-tenancy in observability?
+  - How do I create and manage tenants?
+  - How does access control work?
+  - How do I map Grafana organizations to tenants?
 ---
 
 The observability platform supports multi-tenancy to help you isolate data and control access across different teams, environments, or projects. This guide explains the core concepts and best practices for implementing tenant separation.
@@ -181,7 +182,6 @@ The platform automatically enforces tenant governance to control data ingestion:
 **Removing tenants:**
 
 1. Stop sending data to the tenant
-2. Remove tenant from all `GrafanaOrganization` resources (data will be kept until the retention period expires)
 
 ## Next steps
 
