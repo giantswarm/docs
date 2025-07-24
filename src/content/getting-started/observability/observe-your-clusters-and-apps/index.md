@@ -191,7 +191,7 @@ spec:
 
 🚀 **Need help with metrics?** Our [data ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion/" >}}) covers this in detail.
 
-## What's next?
+## Next steps
 
 Now that you're monitoring your clusters and applications, here are some next steps to get even more value from the observability platform:
 
