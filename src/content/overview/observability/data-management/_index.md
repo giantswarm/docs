@@ -1,5 +1,5 @@
 ---
-title: Data Management
+title: Data management
 description: Learn how to manage observability data including ingestion, exploration, transformation, and export in the Giant Swarm platform.
 weight: 40
 menu:
@@ -12,11 +12,16 @@ owner:
 user_questions:
   - How do I manage observability data?
   - What data management capabilities are available?
+  - What types of data can I collect?
+  - How do I explore and export data?
+  - How do I ingest logs and metrics?
+  - How do I transform or enrich my data?
+  - How do I connect external tools to observability data?
 ---
 
 Data management is the backbone of our observability platform, giving you complete control over how your observability data flows through the system. From collecting metrics and logs to exploring and analyzing them, our platform offers powerful capabilities to handle your data lifecycle efficiently.
 
-Think of data management as your control center for observability - it's where you decide what data to collect, how to organize it, and how to make it useful for your teams.
+Think of data management as your control center for observability—it's where you decide what data to collect, how to organize it, and how to make it useful for your teams.
 
 ## Supported data types
 
