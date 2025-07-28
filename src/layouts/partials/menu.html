@@ -12,7 +12,7 @@
 
                 <li class="acnav__item{{ if $hasChildren1 }} has-children{{ end }}{{ if $isActive1 }} is-active{{ end }}{{ if $isExpanded1 }} is-expanded{{ end }}" role="none">
                     {{ if $hasChildren1 }}
-                                                <button
+                        <button
                             class="acnav__toggle"
                             aria-expanded="{{ if $isExpanded1 }}true{{ else }}false{{ end }}"
                             aria-controls="submenu-level1-{{ .Identifier | default (.Name | urlize) }}"
@@ -35,7 +35,7 @@
 
                                 <li class="acnav__item{{ if $hasChildren2 }} has-children{{ end }}{{ if $isActive2 }} is-active{{ end }}{{ if $isExpanded2 }} is-expanded{{ end }}" role="none">
                                     {{ if $hasChildren2 }}
-                                                                                <button
+                                        <button
                                             class="acnav__toggle"
                                             aria-expanded="{{ if $isExpanded2 }}true{{ else }}false{{ end }}"
                                             aria-controls="submenu-level2-{{ .Identifier | default (.Name | urlize) }}"
@@ -58,7 +58,7 @@
 
                                                 <li class="acnav__item{{ if $hasChildren3 }} has-children{{ end }}{{ if $isActive3 }} is-active{{ end }}{{ if $isExpanded3 }} is-expanded{{ end }}" role="none">
                                                     {{ if $hasChildren3 }}
-                                                                                                                <button
+                                                        <button
                                                             class="acnav__toggle"
                                                             aria-expanded="{{ if $isExpanded3 }}true{{ else }}false{{ end }}"
                                                             aria-controls="submenu-level3-{{ .Identifier | default (.Name | urlize) }}"
