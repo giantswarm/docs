@@ -137,6 +137,5 @@ Next, explore the individual alert management components to build a comprehensiv
 Alert management works best when integrated with other observability capabilities:
 
 - **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Explore and analyze the data that drives your alerts through advanced querying and visualization tools
-- **[Logging]({{< relref "/overview/observability/logging/" >}})**: Create log-based alerts using Loki's powerful LogQL query language to monitor application and system events
 - **[Multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Understand how tenant isolation ensures your alerts and configurations remain secure and properly scoped
 - **[Data Import and Export]({{< relref "/overview/observability/data-management/data-import-export/" >}})**: Integrate external systems with your alerting pipeline by importing logs from external sources and exporting alert data for external analysis
