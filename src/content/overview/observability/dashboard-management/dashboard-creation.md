@@ -1,5 +1,5 @@
 ---
-title: Dashboard Creation
+title: Dashboard creation
 description: Learn how to create custom Grafana dashboards using GitOps workflows or the interactive UI in the Giant Swarm platform.
 weight: 10
 menu:
