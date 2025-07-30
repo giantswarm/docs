@@ -15,7 +15,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
-  - /tutorials/observability/multi-tenancy/creating-grafana-organization/ 
+  - /tutorials/observability/multi-tenancy/creating-grafana-organization/
 ---
 
 This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) in your observability platform.

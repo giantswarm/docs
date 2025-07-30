@@ -99,7 +99,7 @@ Before building dashboards, spend time in [Grafana's Explore view]({{< relref "/
 ### Design for your audience
 
 - **Executive dashboards**: Focus on high-level KPIs and trends
-- **Operational dashboards**: Emphasize real-time status and alert states  
+- **Operational dashboards**: Emphasize real-time status and alert states
 - **Troubleshooting dashboards**: Include detailed metrics and drill-down capabilities
 
 ### Leverage existing resources

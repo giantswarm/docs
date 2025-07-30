@@ -26,7 +26,7 @@ Alert routing determines how alerts flow from your [alert rules]({{< relref "/ov
 When your alert rules trigger, they send alerts to Mimir Alertmanager. The Alertmanager then:
 
 1. **Groups alerts** based on your configuration to reduce noise
-2. **Routes alerts** to appropriate receivers using matching rules  
+2. **Routes alerts** to appropriate receivers using matching rules
 3. **Delivers notifications** through configured channels like Slack, email, or PagerDuty
 4. **Handles silences** and suppression logic
 
@@ -74,7 +74,7 @@ stringData:
         - match:
             severity: warning
           receiver: "warning-alerts"
-    
+
     receivers:
       - name: "default-receiver"
         slack_configs:
@@ -82,7 +82,7 @@ stringData:
             channel: "#general-alerts"
             title: "Alert: {{ .GroupLabels.alertname }}"
             text: "{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}"
-      
+
       - name: "critical-alerts"
         slack_configs:
           - api_url: "YOUR_SLACK_WEBHOOK_URL"
@@ -92,7 +92,7 @@ stringData:
         pagerduty_configs:
           - routing_key: "YOUR_PAGERDUTY_INTEGRATION_KEY"
             description: "Critical alert: {{ .GroupLabels.alertname }}"
-      
+
       - name: "warning-alerts"
         slack_configs:
           - api_url: "YOUR_SLACK_WEBHOOK_URL"
@@ -118,7 +118,7 @@ stringData:
     route:
       receiver: "templated-receiver"
       group_by: ["alertname"]
-    
+
     receivers:
       - name: "templated-receiver"
         slack_configs:
@@ -126,16 +126,16 @@ stringData:
             channel: "#alerts"
             title: "{{ template \"alert.title\" . }}"
             text: "{{ template \"alert.description\" . }}"
-    
+
     templates:
       - alert_templates.tmpl
-  
+
   # Template file (must have .tmpl extension)
   alert_templates.tmpl: |
     {{ define "alert.title" }}
     [{{ .CommonLabels.alertname }} | {{ .CommonLabels.cluster_id }}]
     {{ end }}
-    
+
     {{ define "alert.description" }}
     {{ range .Alerts }}
     *Summary:* {{ .Annotations.summary }}

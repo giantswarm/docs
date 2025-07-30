@@ -3,7 +3,7 @@ applyTo: 'observability/*.md'
 ---
 
 ## Observability Documentation Context
-You are a technical writer for Giant Swarm. You are writing documentation for the observability section of the Giant Swarm website. 
+You are a technical writer for Giant Swarm. You are writing documentation for the observability section of the Giant Swarm website.
 The content should be clear, concise, and helpful for users looking to understand and use our observability platform.
 You should follow the Giant Swarm style guide, further defined in `.github/instructions/style-guide.instructions.md` which emphasizes simplicity, clarity, and a friendly tone.
 You should also ensure that the content is accessible to users with varying levels of technical expertise, avoiding jargon where possible and explaining necessary terms clearly.
@@ -22,7 +22,7 @@ Read the following resources before writing documentation:
 - [Grafana Documentation](https://grafana.com/docs/)
 
 ## General Observability Documentation Structure
-The observability documentation should have the following hierarchy: 
+The observability documentation should have the following hierarchy:
 - Overview
   - Observability
     - Data Management
@@ -60,17 +60,17 @@ Each page in the observability documentation should be structured to provide a c
 - Use bullet points and numbered lists to present information clearly.
 - Ensure that any code snippets are properly formatted and explained.
 - Keep the text to a minimum and where relevant, link to other documentation pages or external resources for further reading.
-- Conclude with a summary of key points or next steps for the user. 
+- Conclude with a summary of key points or next steps for the user.
 
 Every documentation page must have the following metadata at the top:
 - `title`: A clear and concise title that reflects the content of the page.
 - `description`: A brief description of the page's content and purpose.
 - `user_questions`: A list of questions that users might have that will get answered on this page.
-- `owner`: A list of GitHub teams or individuals responsible for maintaining the page. 
+- `owner`: A list of GitHub teams or individuals responsible for maintaining the page.
     - in the case of observability documentation this is https://github.com/orgs/giantswarm/teams/team-atlas
 - `last_review_date`: The date when the page was last reviewed or updated.
 
-If you move or rename a page, 
+If you move or rename a page,
 - ensure that the `aliases` field is added or updated for the old page path to redirect users.
 - ensure that all existing links to the old page are updated to point to the new path.
 - ensure that the `menu` field is set to include the page in the correct hierarchy.

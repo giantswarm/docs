@@ -34,7 +34,7 @@ Time-series data that tracks numerical values over time, perfect for monitoring 
 **Examples:**
 
 - CPU and memory usage
-- Request rates and response times  
+- Request rates and response times
 - Error counts and success rates
 - Custom application metrics
 
