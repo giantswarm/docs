@@ -6,9 +6,19 @@ menu:
   principal:
     parent: overview
     identifier: overview-observability
-last_review_date: 2024-12-11
+last_review_date: 2025-07-17
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-product
+  - https://github.com/orgs/giantswarm/teams/team-atlas
+user_questions:
+  - What is observability?
+  - What can I do with the observability platform?
+  - What technologies are used?
+  - How do I get started with observability?
+  - Where do I find dashboards, alerts, and data management docs?
+  - How do I monitor my clusters and apps?
+  - How do I access logs and metrics?
+  - How do I set up alerts and dashboards?
+  - How do I manage multi-tenancy and access control?
 ---
 
 # What is observability
@@ -46,4 +56,16 @@ Here are the most important tools we rely on:
 
 ---
 
-Ready to get started? Check out our [getting started observability page]({{< relref "getting-started/observe-your-clusters-and-apps/" >}}) to begin your journey.
+## Alert management
+
+Stay informed about your system's health with powerful [alert management capabilities]({{< relref "/overview/observability/alert-management" >}}). Create custom alerting rules, configure intelligent routing, and manage alert silences to ensure your team gets notified about the right issues at the right time.
+
+## Dashboard management
+
+Create and organize custom visualizations with our [dashboard management capabilities]({{< relref "/overview/observability/dashboard-management" >}}). Whether you prefer GitOps workflows or interactive creation, the platform provides flexible approaches to build dashboards that meet your specific monitoring needs while supporting multi-tenant organization.
+
+## Data management
+
+The observability platform provides comprehensive [data management capabilities]({{< relref "/overview/observability/data-management" >}}) that handle the complete lifecycle of your observability data - from collection and storage to analysis and export. Our integrated approach ensures efficient data flow while maintaining security, performance, and multi-tenancy across all data types.
+
+Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).
