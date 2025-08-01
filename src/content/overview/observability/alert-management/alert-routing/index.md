@@ -1,20 +1,20 @@
 ---
 title: Alert routing
-description: Configure how alerts are delivered to different teams and channels through Alertmanager in the Giant Swarm Observability Platform.
+description: Learn how to configure alert routing and notification policies in the Giant Swarm observability platform.
 weight: 20
 menu:
   principal:
-    identifier: overview-observability-alert-management-alert-routing
     parent: overview-observability-alert-management
-user_questions:
-  - How do I configure Alertmanager?
-  - How do I route alerts to different teams?
-  - How do I visualize the existing alerting configuration?
-  - How do I set up notification channels?
-  - What are alert routing best practices?
+    identifier: overview-observability-alert-management-alert-routing
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-07
+user_questions:
+  - How does alert routing work?
+  - How do I configure Alertmanager?
+  - What notification channels are supported?
+  - How do I test and validate alert routing?
+  - How do I use notification templates?
 aliases:
   - /tutorials/observability/alerting/configure-alertmanager/
 ---
@@ -26,7 +26,7 @@ Alert routing determines how alerts flow from your [alert rules]({{< relref "/ov
 When your alert rules trigger, they send alerts to Mimir Alertmanager. The Alertmanager then:
 
 1. **Groups alerts** based on your configuration to reduce noise
-2. **Routes alerts** to appropriate receivers using matching rules  
+2. **Routes alerts** to appropriate receivers using matching rules
 3. **Delivers notifications** through configured channels like Slack, email, or PagerDuty
 4. **Handles silences** and suppression logic
 
@@ -74,7 +74,7 @@ stringData:
         - match:
             severity: warning
           receiver: "warning-alerts"
-    
+
     receivers:
       - name: "default-receiver"
         slack_configs:
@@ -82,7 +82,7 @@ stringData:
             channel: "#general-alerts"
             title: "Alert: {{ .GroupLabels.alertname }}"
             text: "{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}"
-      
+
       - name: "critical-alerts"
         slack_configs:
           - api_url: "YOUR_SLACK_WEBHOOK_URL"
@@ -92,7 +92,7 @@ stringData:
         pagerduty_configs:
           - routing_key: "YOUR_PAGERDUTY_INTEGRATION_KEY"
             description: "Critical alert: {{ .GroupLabels.alertname }}"
-      
+
       - name: "warning-alerts"
         slack_configs:
           - api_url: "YOUR_SLACK_WEBHOOK_URL"
@@ -118,7 +118,7 @@ stringData:
     route:
       receiver: "templated-receiver"
       group_by: ["alertname"]
-    
+
     receivers:
       - name: "templated-receiver"
         slack_configs:
@@ -126,16 +126,16 @@ stringData:
             channel: "#alerts"
             title: "{{ template \"alert.title\" . }}"
             text: "{{ template \"alert.description\" . }}"
-    
+
     templates:
       - alert_templates.tmpl
-  
+
   # Template file (must have .tmpl extension)
   alert_templates.tmpl: |
     {{ define "alert.title" }}
     [{{ .CommonLabels.alertname }} | {{ .CommonLabels.cluster_id }}]
     {{ end }}
-    
+
     {{ define "alert.description" }}
     {{ range .Alerts }}
     *Summary:* {{ .Annotations.summary }}
@@ -272,4 +272,3 @@ Alert routing works best when integrated with other platform capabilities:
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define the conditions that trigger notifications
 - **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Understand how tenant isolation affects alert routing
 - **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Explore the metrics and logs that power your alerts
-- **[Logging]({{< relref "/overview/observability/logging/" >}})**: Set up log-based alerts that integrate with your routing configuration

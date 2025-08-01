@@ -4,8 +4,8 @@ title: Creating a Grafana organization
 description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
-    identifier: overview-observability-configuration-multitenancy-create-grafana-organization
-    parent: overview-observability-configuration-multitenancy
+    identifier: overview-observability-configuration-multi-tenancy-create-grafana-organization
+    parent: overview-observability-configuration-multi-tenancy
 weight: 40
 last_review_date: 2025-07-07
 user_questions:
@@ -15,7 +15,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
-  - /tutorials/observability/multi-tenancy/creating-grafana-organization/ 
+  - /tutorials/observability/multi-tenancy/creating-grafana-organization/
 ---
 
 This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) in your observability platform.
@@ -174,12 +174,12 @@ After creating your organization:
 
 ```bash
 kubectl get grafanaorganization myonlineshop -o yaml
-2. [**Log in to Grafana**]({{< relref "/tutorials/observability/data-exploration/accessing-grafana" >}}) and verify:
+2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
 
 
 - The organization dropdown menu on the top-left corner shows all expected organizations
 
 ![Switching organization](./organization_switching.png)
 
-- You can [explore and query data]({{< relref "/tutorials/observability/data-exploration" >}}) for each of your tenants
+- You can [explore and query data]({{< relref "/overview/observability/data-management/data-exploration/" >}}) for each of your tenants
 - Logged-in users have appropriate role assignments under the `Administration / Users and access / Users` section

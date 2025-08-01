@@ -6,9 +6,19 @@ menu:
   principal:
     parent: overview
     identifier: overview-observability
-last_review_date: 2025-06-30
+last_review_date: 2025-07-17
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-product
+  - https://github.com/orgs/giantswarm/teams/team-atlas
+user_questions:
+  - What is observability?
+  - What can I do with the observability platform?
+  - What technologies are used?
+  - How do I get started with observability?
+  - Where do I find dashboards, alerts, and data management docs?
+  - How do I monitor my clusters and apps?
+  - How do I access logs and metrics?
+  - How do I set up alerts and dashboards?
+  - How do I manage multi-tenancy and access control?
 ---
 
 # What is observability

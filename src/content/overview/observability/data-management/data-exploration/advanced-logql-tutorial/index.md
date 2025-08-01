@@ -1,20 +1,19 @@
 ---
 title: Advanced LogQL tutorial
-linkTitle: Advanced LogQL tutorial
-description: Advanced techniques for exploring logs using LogQL in the Giant Swarm Observability Platform.
+description: Deep dive into advanced LogQL queries and techniques for log analysis in the Giant Swarm observability platform.
+weight: 20
 menu:
   principal:
-    identifier: overview-observability-data-management-data-exploration-advanced-logql-tutorial
     parent: overview-observability-data-management-data-exploration
-weight: 40
-last_review_date: 2025-07-07
-user_questions:
-  - How can I write advanced LogQL queries for my clusters?
-  - What are some complex LogQL patterns for troubleshooting?
-  - How do I analyze application logs with LogQL?
-  - How can I create metrics from logs using LogQL?
+    identifier: overview-observability-data-management-data-exploration-advanced-logql-tutorial
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
+user_questions:
+  - How do I write advanced LogQL queries?
+  - What are best practices for log analysis?
+  - How do I extract fields and parse logs?
+  - How do I use LogQL for troubleshooting?
 ---
 
 This tutorial covers advanced LogQL techniques for analyzing logs in the Giant Swarm Observability Platform. Building on basic log exploration, you'll learn to craft sophisticated queries for complex troubleshooting scenarios and log analysis.
@@ -28,7 +27,7 @@ Before proceeding, ensure you have:
 
 ## Access to logs
 
-Once you have [access to your management cluster's Grafana]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}), you should:
+Once you have [access to your management cluster's Grafana]({{< relref "/overview/observability/data-management/data-exploration/" >}}), you should:
 
 1. Go to `Explore` item in the `Home` menu
 2. Select `Loki` as data source on the top left corner

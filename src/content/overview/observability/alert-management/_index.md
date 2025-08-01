@@ -1,23 +1,28 @@
 ---
 title: Alert management
-description: Learn how to manage alerts in the Giant Swarm Observability Platform, including alert rules, routing, and the alerting pipeline.
+description: Learn how to manage alerts in the Giant Swarm observability platform, including alert rules, routing, and the alerting pipeline.
 weight: 30
 menu:
   principal:
     identifier: overview-observability-alert-management
     parent: overview-observability
+last_review_date: 2025-07-17
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How do I manage alerts in the observability platform?
   - What alert management features are available?
   - How does the alerting pipeline work?
   - How do I create and configure alert rules?
   - How do I access alerting features in Grafana?
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: 2025-07-08
+  - How do I silence alerts during maintenance?
+  - What's the difference between alert rules and recording rules?
+  - How do I set up alert routing?
+  - How do I use silences for planned maintenance?
+  - How do I test and monitor alert delivery?
 ---
 
-Alert management is crucial for any observability solution. The Giant Swarm Observability Platform provides comprehensive alerting capabilities that help you monitor your infrastructure and applications proactively.
+Alert management is crucial for any observability solution. The Giant Swarm observability platform provides comprehensive alerting capabilities that help you monitor your infrastructure and applications proactively.
 
 Alerting consists of two main concepts: the **alerting pipeline** (how to send alerts, to whom, and what to send) and **[alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})** (what to alert on).
 
@@ -86,7 +91,7 @@ The alerting section provides:
 - **Alert rules**: All alerting and recording rules currently available, filterable by state (firing, pending). Use the "see graph" link to jump to an explore page with the alert's expression pre-filled
 - **Contact points**: Configured integrations (like Opsgenie or Slack) for sending alerts, including notification templates for formatting
 - **Notification policies**: Alert routing that defines how alerts reach contact points based on matching criteria
-- **Silences**: Current silences and their states, along with affected alerts
+- **Silences**: Current silences and their states, along with affected alerts. Create immediate silences through the UI or manage them via CRDs for GitOps workflows
 - **Active notifications**: Currently firing alerts with notification states
 - **Settings**: General Alertmanager instance settings and current configuration
 
@@ -96,7 +101,7 @@ The platform supports comprehensive alert management through:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define conditions that trigger notifications when issues occur
 - **[Alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})**: Configure how alerts are delivered to different teams and channels through Alertmanager
-- **Alert silences**: Temporarily suppress alerts during maintenance or known issues through Grafana's interface
+- **[Silences]({{< relref "/overview/observability/alert-management/silences/" >}})**: Temporarily suppress alerts during maintenance or known issues using both CRD-based and Grafana UI approaches
 
 ## Multi-tenant alerting
 
@@ -114,7 +119,9 @@ Each [tenant]({{< relref "/overview/observability/configuration/multi-tenancy/" 
 - Include runbook links in alert annotations
 - Test alerts in non-production environments first
 - Review and update alert rules regularly
-- Configure silences for planned maintenance
+- Configure silences for planned maintenance using CRDs for better auditability
+- Use specific silence matchers to avoid over-silencing alerts
+- Document silence reasons with meaningful comments
 
 ## Getting started
 
@@ -130,6 +137,5 @@ Next, explore the individual alert management components to build a comprehensiv
 Alert management works best when integrated with other observability capabilities:
 
 - **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Explore and analyze the data that drives your alerts through advanced querying and visualization tools
-- **[Logging]({{< relref "/overview/observability/logging/" >}})**: Create log-based alerts using Loki's powerful LogQL query language to monitor application and system events
 - **[Multi-tenancy configuration]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Understand how tenant isolation ensures your alerts and configurations remain secure and properly scoped
-- **[Observability Platform API]({{< relref "/overview/observability/observability-platform-api/" >}})**: Integrate external systems with your alerting pipeline by ingesting logs and events from sources outside your clusters
+- **[Data Import and Export]({{< relref "/overview/observability/data-management/data-import-export/" >}})**: Integrate external systems with your alerting pipeline by importing logs from external sources and exporting alert data for external analysis

@@ -1,19 +1,19 @@
 ---
-title: Advanced PromQL Tutorial
-description: Learn advanced PromQL techniques for querying and analyzing metrics data in the Giant Swarm observability platform.
-weight: 20
+title: Advanced PromQL tutorial
+description: Deep dive into advanced PromQL queries and techniques for metrics analysis in the Giant Swarm observability platform.
+weight: 30
 menu:
   principal:
     parent: overview-observability-data-management-data-exploration
-    identifier: overview-observability-data-management-data-exploration-advanced-promql-turorial
-last_review_date: 2025-07-07
+    identifier: overview-observability-data-management-data-exploration-advanced-promql-tutorial
+last_review_date: 2025-07-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
   - How do I write advanced PromQL queries?
-  - What are the best practices for metrics analysis?
-  - How do I create complex aggregations and calculations?
-  - How do I monitor Kubernetes resources effectively?
+  - What are best practices for metrics analysis?
+  - How do I aggregate and filter metrics?
+  - How do I use PromQL for troubleshooting?
 ---
 
 PromQL (Prometheus Query Language) is the powerful query language used by
@@ -28,7 +28,7 @@ For PromQL fundamentals and complete syntax reference, refer to the
 ## Prerequisites
 
 - Access to your installation's Grafana interface (see
-  [accessing Grafana tutorial]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}}))
+  [accessing Grafana tutorial]({{< relref "/overview/observability/data-management/data-exploration/" >}}))
 - Familiarity with basic PromQL syntax and concepts
 - Understanding of Prometheus metrics and labels
 
@@ -51,11 +51,11 @@ Build effective queries systematically:
 # Step 1: Basic selection
 http_requests_total{service="web-api"}
 
-# Step 2: Add rate calculation  
+# Step 2: Add rate calculation
 rate(http_requests_total{service="web-api"}[5m])
 
 # Step 3: Calculate error percentage
-sum(rate(http_requests_total{service="web-api", status=~"5.."}[5m])) / 
+sum(rate(http_requests_total{service="web-api", status=~"5.."}[5m])) /
 sum(rate(http_requests_total{service="web-api"}[5m])) * 100
 ```
 
@@ -92,13 +92,13 @@ Use sophisticated label matching for precise metric selection:
 ```promql
 # Target specific infrastructure components
 node_cpu_seconds_total{cluster_type="management_cluster", mode="idle"}
-container_memory_usage_bytes{cluster_type="workload_cluster", 
+container_memory_usage_bytes{cluster_type="workload_cluster",
   namespace="production"}
 
 # High-priority pods only
 kube_pod_info{priority_class=~"system-.*|critical-.*"}
 
-# Exclude system namespaces  
+# Exclude system namespaces
 container_cpu_usage_seconds_total{
   namespace!~"kube-system|giantswarm|kube-.*"}
 
@@ -123,7 +123,7 @@ Monitor infrastructure at three levels: **node** (physical resources),
 (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100
 
 # Disk space utilization by mount point
-(1 - (node_filesystem_avail_bytes{fstype!~"tmpfs|fuse.lxcfs"} / 
+(1 - (node_filesystem_avail_bytes{fstype!~"tmpfs|fuse.lxcfs"} /
   node_filesystem_size_bytes)) * 100
 
 # Top CPU consuming pods
@@ -131,7 +131,7 @@ topk(10, sum by (namespace, pod) (
   rate(container_cpu_usage_seconds_total{container!="POD"}[5m])))
 
 # Memory usage vs limits by namespace
-sum by (namespace) (container_memory_usage_bytes{container!="POD"}) / 
+sum by (namespace) (container_memory_usage_bytes{container!="POD"}) /
 sum by (namespace) (container_spec_memory_limit_bytes{container!="POD"}) * 100
 
 # Containers hitting CPU throttling
@@ -172,7 +172,7 @@ identify performance bottlenecks.
 
 ```promql
 # Database connection pool utilization
-mysql_global_status_threads_connected / 
+mysql_global_status_threads_connected /
   mysql_global_variables_max_connections * 100
 
 # Queue depth and processing rate
@@ -180,7 +180,7 @@ queue_depth_total{queue="critical-jobs"}
 rate(queue_messages_processed_total[5m])
 
 # Average processing time
-rate(queue_processing_time_seconds_sum[5m]) / 
+rate(queue_processing_time_seconds_sum[5m]) /
   rate(queue_processing_time_seconds_count[5m])
 ```
 
@@ -229,16 +229,16 @@ Analyze deployment status and scaling patterns:
 
 ```promql
 # Deployment replica availability
-kube_deployment_status_replicas_available / 
+kube_deployment_status_replicas_available /
   kube_deployment_spec_replicas * 100
 
 # HPA current vs target scaling
-kube_horizontalpodautoscaler_status_current_replicas / 
+kube_horizontalpodautoscaler_status_current_replicas /
 kube_horizontalpodautoscaler_spec_max_replicas * 100
 
 # Persistent volume usage
-(kubelet_volume_stats_capacity_bytes - 
-  kubelet_volume_stats_available_bytes) / 
+(kubelet_volume_stats_capacity_bytes -
+  kubelet_volume_stats_available_bytes) /
 kubelet_volume_stats_capacity_bytes * 100
 ```
 
@@ -256,7 +256,7 @@ Combine metrics across different dimensions:
 ```promql
 # Average response time per service across all clusters
 avg by (service) (
-  histogram_quantile(0.50, 
+  histogram_quantile(0.50,
     sum by (service, le) (
       rate(http_request_duration_seconds_bucket[5m])
     )
@@ -265,7 +265,7 @@ avg by (service) (
 
 # Resource usage efficiency by cluster
 sum by (cluster_id) (rate(container_cpu_usage_seconds_total[5m])) /
-sum by (cluster_id) (container_spec_cpu_quota / 
+sum by (cluster_id) (container_spec_cpu_quota /
   container_spec_cpu_period)
 ```
 
@@ -282,7 +282,7 @@ Analyze trends and changes over time:
 ```promql
 # Hour-over-hour growth rate
 (
-  sum(rate(http_requests_total[5m])) - 
+  sum(rate(http_requests_total[5m])) -
   sum(rate(http_requests_total[5m] offset 1h))
 ) / sum(rate(http_requests_total[5m] offset 1h)) * 100
 
@@ -306,16 +306,16 @@ Define and monitor key reliability metrics:
 
 ```promql
 # Availability SLI (percentage of successful requests)
-sum(rate(http_requests_total{status!~"5.."}[5m])) / 
+sum(rate(http_requests_total{status!~"5.."}[5m])) /
 sum(rate(http_requests_total[5m])) * 100
 
-# Latency SLI (percentage of requests under threshold)  
+# Latency SLI (percentage of requests under threshold)
 sum(rate(http_request_duration_seconds_bucket{le="0.1"}[5m])) /
 sum(rate(http_request_duration_seconds_count[5m])) * 100
 
 # Error budget consumption rate
 (1 - (
-  sum(rate(http_requests_total{status!~"5.."}[30d])) / 
+  sum(rate(http_requests_total{status!~"5.."}[30d])) /
   sum(rate(http_requests_total[30d]))
 )) / 0.001  # 99.9% SLO
 ```
@@ -331,7 +331,7 @@ Identify unusual behavior and potential issues:
 
 ```promql
 # Traffic spike detection
-sum(rate(http_requests_total[5m])) / 
+sum(rate(http_requests_total[5m])) /
   avg_over_time(sum(rate(http_requests_total[5m]))[1h:5m]) > 2
 
 # Capacity planning prediction
