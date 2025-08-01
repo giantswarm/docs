@@ -78,7 +78,7 @@ The platform supports importing and exporting different types of observability d
 Currently available for both import and export:
 
 - **Application logs**: Custom logs from your workloads and external applications
-- **System logs**: Kubernetes events and infrastructure logs  
+- **System logs**: Kubernetes events and infrastructure logs
 - **Audit logs**: Security and compliance-related events
 - **External service logs**: Logs from SaaS applications, databases, and third-party services
 

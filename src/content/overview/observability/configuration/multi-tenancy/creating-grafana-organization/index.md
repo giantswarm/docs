@@ -4,8 +4,8 @@ title: Creating a Grafana organization
 description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
-    identifier: overview-observability-configuration-multitenancy-create-grafana-organization
-    parent: overview-observability-configuration-multitenancy
+    identifier: overview-observability-configuration-multi-tenancy-create-grafana-organization
+    parent: overview-observability-configuration-multi-tenancy
 weight: 40
 last_review_date: 2025-07-07
 user_questions:
@@ -15,7 +15,7 @@ user_questions:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
-  - /tutorials/observability/multi-tenancy/creating-grafana-organization/ 
+  - /tutorials/observability/multi-tenancy/creating-grafana-organization/
 ---
 
 This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) in your observability platform.

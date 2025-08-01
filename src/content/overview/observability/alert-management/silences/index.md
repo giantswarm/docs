@@ -25,7 +25,7 @@ This guide shows you how to create and manage alert silences to temporarily supp
 Silences temporarily prevent alerts from generating notifications without stopping alert evaluation. When an alert matches an active silence, Alertmanager suppresses notifications but continues evaluating the alert rule. This is essential for:
 
 - **Planned maintenance**: Prevent noise during scheduled downtime
-- **Investigation periods**: Focus on troubleshooting without constant notifications  
+- **Investigation periods**: Focus on troubleshooting without constant notifications
 - **Known issues**: Temporarily suppress alerts for acknowledged problems
 
 ## Silence management approaches
@@ -116,7 +116,7 @@ spec:
 The v1alpha2 API supports four match types using Alertmanager operator symbols:
 
 - **`"="`**: Exact string match
-- **`"!="`**: String doesn't match exactly  
+- **`"!="`**: String doesn't match exactly
 - **`"=~"`**: Regular expression match
 - **`"!~"`**: Regular expression doesn't match
 

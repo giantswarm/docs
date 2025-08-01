@@ -41,7 +41,7 @@ Giant Swarm provides a comprehensive set of public dashboards that are accessibl
 Essential cluster and infrastructure monitoring:
 
 - **Cluster Overview** - High-level cluster health and resource utilization
-- **Node Overview** - Individual node metrics, CPU, memory, disk usage  
+- **Node Overview** - Individual node metrics, CPU, memory, disk usage
 - **Node Utilization** - Node resource allocation and capacity planning
 
 ### Kubernetes component dashboards
