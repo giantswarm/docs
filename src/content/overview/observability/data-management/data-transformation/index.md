@@ -43,7 +43,7 @@ Recording rules are created using the same `PrometheusRule` resources as alertin
 ### Key benefits for data transformation
 
 - **Performance optimization**: Pre-calculate expensive aggregations to speed up dashboards
-- **Simplified queries**: Break complex expressions into manageable, reusable components  
+- **Simplified queries**: Break complex expressions into manageable, reusable components
 - **Custom metrics creation**: Combine multiple metrics into business-relevant indicators
 - **Consistent calculations**: Ensure identical computation across dashboards and alerts
 
@@ -76,12 +76,12 @@ spec:
       targetLabel: environment
       regex: "production-(.*)"
       replacement: "prod"
-    
+
     # Drop sensitive metrics
     - sourceLabels: [__name__]
       regex: "secret_.*|password_.*"
       action: drop
-    
+
     # Rename metric labels
     - sourceLabels: [application_name]
       targetLabel: app
@@ -107,18 +107,18 @@ spec:
   - action: replace
     replacement: my_team
     targetLabel: giantswarm_observability_tenant
-  
+
   # Add application version from pod labels
   - sourceLabels: [__meta_kubernetes_pod_label_version]
     targetLabel: app_version
     action: replace
-  
+
   # Extract service name from pod name
   - sourceLabels: [__meta_kubernetes_pod_name]
     targetLabel: service
     regex: "(.+)-[0-9a-f]+-[0-9a-z]{5}"
     replacement: "${1}"
-  
+
   selector:
     matchLabels:
       app: my-application
@@ -136,9 +136,9 @@ Extract fields from JSON-formatted logs:
 
 ```promql
 # Parse JSON logs and extract specific fields
-{app="my-application"} 
-| json 
-| level="error" 
+{app="my-application"}
+| json
+| level="error"
 | line_format "{{.timestamp}} [{{.level}}] {{.component}}: {{.message}}"
 ```
 
@@ -148,7 +148,7 @@ Use regex patterns to extract data from unstructured logs:
 
 ```promql
 # Extract HTTP request details from access logs
-{job="nginx"} 
+{job="nginx"}
 | pattern `<ip> - - [<timestamp>] "<method> <uri> <protocol>" <status> <bytes>`
 | status >= 400
 ```
@@ -159,7 +159,7 @@ Add contextual information during log processing:
 
 ```promql
 # Add severity based on log level
-{app="my-application"} 
+{app="my-application"}
 | json level
 | label_format severity=`{{ if eq .level "error" }}critical{{ else if eq .level "warn" }}warning{{ else }}info{{ end }}`
 ```
@@ -173,7 +173,7 @@ For advanced LogQL techniques, see our [advanced LogQL tutorial]({{< relref "/ov
 ### Common transformation use cases
 
 - **Calculate derived values**: Create ratios, percentages, or growth rates
-- **Merge data sources**: Combine metrics and logs in single visualizations  
+- **Merge data sources**: Combine metrics and logs in single visualizations
 - **Format for presentation**: Rename fields, apply units, or create custom formatting
 - **Filter and aggregate**: Focus on specific data subsets or summary statistics
 
