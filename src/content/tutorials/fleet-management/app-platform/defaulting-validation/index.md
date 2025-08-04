@@ -3,6 +3,9 @@ linkTitle: Defaulting and validation
 title: Defaulting and validation of App CRs
 description: How defaulting and validation of app CRs is implemented by app-admission-controller.
 weight: 40
+aliases:
+  - /getting-started/app-platform/defaulting-validation
+  - /vintage/getting-started/app-platform/defaulting-validation
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform

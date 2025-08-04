@@ -42,7 +42,7 @@ We will go through the operational layers one by one from the bottom (infrastruc
 
 ### Infrastructure {#infrastructure}
 
-The infrastructure layer covers the area on top of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs (Site Reliability Engineers). It is usually accessed through VPN and bastion hosts as well as through the cloud provider APIs if applicable. In most installations there's also ssh access through [Teleport]({{< relref "/vintage/platform-overview/security/cluster-security/cluster-access/#admin-access-via-teleport" >}}).
+The infrastructure layer covers the area on top of actual (or virtual) machines, networking, etc., which is managed by Giant Swarm SREs (Site Reliability Engineers). It is usually accessed through VPN and bastion hosts as well as through the cloud provider APIs if applicable. In most installations there's also ssh access through [Teleport]({{< relref "/overview/security/secure-access/#admin-access-via-teleport" >}}).
 
 This layer does not include the actual hardware and maintenance of the data center. This is either covered by the (internal or external) data center provider or by the cloud provider.
 
@@ -87,7 +87,7 @@ Tenant admins can manage access to workload clusters through different mechanism
 
 They can create certificate-based access using the kubectl gs CLI. Using this access should be time-limited to set up RBAC roles and bindings for Service Accounts and OIDC users.
 
-End users on this level are then created by a Tenant admin either as Service Accounts inside the workload cluster or managed in an external identity provider (IdP), like [Azure Active Directory]({{< relref "/vintage/advanced/access-management/authentication-azure-ad" >}}) or any other OIDC-compliant IdP.
+End users on this level are then created by a Tenant admin either as Service Accounts inside the workload cluster or managed in an [external identity provider (IdP)]({{< relref "/overview/architecture/authentication" >}}), like Azure Active Directory or any other OIDC-compliant IdP.
 
 However, a user with access to the Kubernetes API does not gain any permissions by default, as the clusters are locked down using RBAC. To provide access, a cluster admin needs to create roles and bindings for the users. These roles can be defined as narrow or broad as needed for the specific cluster. They can be bound to either single users or groups of them.
 
@@ -95,5 +95,5 @@ This enables the customer to individually set up their user management according
 
 ## Further reading
 
-- [Securing your Cluster with RBAC and PSP]({{< relref "/vintage/getting-started/security" >}})
+- [Securing your Cluster with RBAC]({{< relref "/tutorials/security/rbac" >}})
 - [Creating a client certificate for workload cluster access]({{< relref "/reference/kubectl-gs/login/#workload-cluster-client-certificate" >}})

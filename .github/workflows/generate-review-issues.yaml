@@ -3,6 +3,7 @@ on:
   schedule:
     # At 0:05 on Sundays
     - cron:  '5 0 * * 0'
+  workflow_dispatch:
 
 jobs:
   front-matter:
@@ -17,7 +18,9 @@ jobs:
       - name: Validate front matter and last review date
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: make validate-last-reviewed
+        run: |
+          ISSUES=$(make validate-last-reviewed-json)
+          echo "ISSUES=$(echo "$ISSUES" | jq -c '.')" >> $GITHUB_ENV
 
       - name: Generate issues of out of date docs
         uses: giantswarm/open-issue@7774937e31b23a52257a34462a753b0a28a4d1f1 # 0.3.0

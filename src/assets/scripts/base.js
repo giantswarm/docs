@@ -30,95 +30,51 @@ function getParameterByName(name) {
 /* Initialize Inkeep widget for the Search Box */
 var inkeepWidget = null;
 var inkeepBaseSettings = {
-  apiKey: "edfd9409339b80d69b5e25c6f7d1765de5f4ea23d4f711ea", // required
-  integrationId: "clp8yzdn00010s601l08xlvth", // required
-  organizationId: "org_glSX3NU5GkGXusqB", // required
+  apiKey: "5576a5448b50accc4cc1437c22d7252a7e89c42277956323", // required
   organizationDisplayName: "Giant Swarm",
-  primaryBrandColor: "#386900"
-};
-$(function() {
-  inkeepWidget = Inkeep().embed({
-    componentType: "SearchBar", // required
-    targetElement: document.getElementById("searchInputMobile"), // required
-    properties: {
-      stylesheetUrls: ["/css/inkeep.css"],
-      baseSettings: inkeepBaseSettings,
-      modalSettings: {
-        // optional InkeepModalSettings
-      },
-      searchSettings: {
-        // optional InkeepSearchSettings
-      },
-      aiChatSettings: {
-        // optional InkeepAIChatSettings
+  primaryBrandColor: "#386900",
+  theme: {
+    styles: [
+      {
+        key: "custom-theme",
+        type: "style",
+        value: `
+          .ikp-search-bar__text{
+            font-size: 14px;
+          }
+        `,
       }
-    },
-  });
-});
+    ]
+  }
+};
+
+function handleOpenChange(newOpen) {
+  inkeepWidget.update({ modalSettings: { isOpen: newOpen } });
+}
 
 $(function() {
-  const inkeepDiv = document.createElement("div");
-  inkeepDiv.id = "inkeepModal";
-  inkeepDiv.style.position = "absolute";
-  document.body.appendChild(inkeepDiv);
-
-  let inkeepHiddenWidget;
-  let inkeepHiddenConfig;
-
-  const handleClose = () => {
-    inkeepHiddenWidget.render({
-      ...inkeepHiddenConfig,
-      isOpen: false,
-    });
-  };
-
-  const handleOpen = () => {
-    inkeepHiddenWidget.render({
-      ...inkeepHiddenConfig,
-      isOpen: true,
-    });
-  }
-
-  inkeepHiddenConfig = {
-    componentType: "CustomTrigger", // required
-    targetElement: inkeepDiv, // required
-    properties: {
-      isOpen: false, // required
-      onClose: handleClose, // required
-      onOpen: undefined,
+  inkeepWidget = Inkeep.SearchBar(
+    "#searchInputMobile", // required
+    {
       baseSettings: inkeepBaseSettings,
       modalSettings: {
-        // optional InkeepModalSettings
+        onOpenChange: handleOpenChange
       },
       searchSettings: {
         // optional InkeepSearchSettings
       },
       aiChatSettings: {
-        // optional InkeepAIChatSettings
-      },
-    },
-  };
-
-  inkeepHiddenWidget = Inkeep().embed(inkeepHiddenConfig);
-
-  window.inkeepWidget = inkeepHiddenWidget;
-  window.inkeepConfig = inkeepHiddenConfig;
-});
-
-$(function() {
-  var disclaimerShown = document.cookie.replace(/(?:(?:^|.*;\s*)disclaimerShown\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  var isVintage = window.location.pathname.startsWith("/vintage");
-
-  if (!disclaimerShown && isVintage) {
-    $('#vintage-disclaimer').show();
-  }
-
-  $('#vintage-disclaimer-button').click(function() {
-      $('#vintage-disclaimer').hide();
-      var date = new Date();
-      date.setDate(date.getDate() + 1); // Cookie expires after 1 day
-      document.cookie = "disclaimerShown=true;expires=" + date.toUTCString() + ";path=/";
-  });
+        chatSubjectName: "Giant Swarm",
+        aiAssistantAvatar: "https://storage.googleapis.com/organization-image-assets/giantswarm-botAvatarSrcUrl-1701430144117.png",
+        getHelpOptions: [],
+        exampleQuestions: [
+          "How to create a cluster?",
+          "How to add a node pool?",
+          "How to upgrade my cluster?",
+          "How to use the kubectl gs?",
+        ]
+      }
+    });
 });
 
 /** Remove TOC if empty **/

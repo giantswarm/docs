@@ -56,21 +56,37 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.12.0
+    commit_reference: v0.18.0
     crd_paths:
       - config/crd
     cr_paths:
       - docs/cr
     metadata:
-      silences.monitoring.giantswarm.io:
+      silences.observability.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-atlas
         topics:
           - managementcluster
+          - observability
+  - url: https://github.com/giantswarm/observability-operator
+    organization: giantswarm
+    short_name: observability-operator
+    commit_reference: v0.36.0
+    crd_paths:
+      - config/crd/bases
+    cr_paths:
+      - config/samples
+    metadata:
+      grafanaorganizations.observability.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-atlas
+        topics:
+          - managementcluster
+          - observability
   - url: https://github.com/giantswarm/release-operator
     organization: giantswarm
     short_name: release-operator
-    commit_reference: v4.2.0
+    commit_reference: v4.2.1
     crd_paths:
       - config/crd
     cr_paths:
@@ -85,7 +101,7 @@ source_repositories:
   - url: https://github.com/giantswarm/organization-operator
     organization: giantswarm
     short_name: organization-operator
-    commit_reference: v2.0.2
+    commit_reference: v2.1.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -241,7 +257,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.41.1
+    commit_reference: v0.42.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -255,7 +271,7 @@ source_repositories:
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.0.8
+    commit_reference: v0.1.4
     crd_paths:
       - helm
     metadata:
@@ -265,7 +281,7 @@ source_repositories:
   - url: https://github.com/giantswarm/exception-recommender
     organization: giantswarm
     short_name: exception-recommender
-    commit_reference: v0.1.1
+    commit_reference: v0.2.0
     crd_paths:
       - helm
     metadata:

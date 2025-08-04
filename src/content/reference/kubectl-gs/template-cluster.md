@@ -9,13 +9,13 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How can I create a cluster manifest for the Management API?
+  - How can I create a cluster manifest for the platform API?
 last_review_date: 2024-11-25
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
 
-This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the Management API to create a cluster.
+This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the platform API to create a cluster.
 
 The outcome depends on the provider, set via the `--provider` flag.
 
@@ -28,16 +28,6 @@ For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
 - `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which cluster chart is used, depending on the cloud provider.
 - [`App (name=<cluster name>-default-apps)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
 - `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which default apps chart is used, depending on the cloud provider.
-
-{{< /tab >}}
-{{< tab id="flags-aws" for-impl="vintage_aws">}}
-
-For {{% impl_title "vintage_aws" %}} (`--provider aws`):
-
-- [`Cluster`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) (API version `cluster.x-k8s.io/v1beta1`) - holds the base cluster specification.
-- `AWSCluster` (`awsclusters.infrastructure.giantswarm.io` API version `infrastructure.giantswarm.io/v1alpha3`) - holds AWS-specific configuration.
-- [`G8sControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes
-- [`AWSControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/awscontrolplanes.infrastructure.giantswarm.io.md" >}}) (API version `infrastructure.giantswarm.io/v1alpha3`) - specifies the control plane nodes with AWS-specific details
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -188,25 +178,6 @@ It supports the following flags:
 ## Examples
 
 {{< tabs >}}
-{{< tab id="command-examples-aws" for-impl="vintage_aws">}}
-
-Example command for an AWS cluster:
-
-```nohighlight
-kubectl gs template cluster \
-  --provider aws \
-  --control-plane-az eu-central-1a \
-  --external-snat true \
-  --description "Cluster #2" \
-  --pods-cidr 10.2.0.0/16 \
-  --organization acme \
-  --release 17.0.0 \
-  --label environment=testing \
-  --label team=upstate \
-  --service-priority lowest
-```
-
-{{< /tab >}}
 {{< tab id="command-examples-aws-capi" for-impl="capa_ec2">}}
 
 Example command for an AWS CAPI cluster:

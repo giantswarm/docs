@@ -10,20 +10,20 @@ last_review_date: 2024-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How can I create an catalog manifest for the Management API?
+  - How can I create an catalog manifest for the platform API?
   - How can I add catalog level values or secrets for the apps deployed from this catalog?
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-catalog/
 ---
 
-The `template catalog` command allows to create an [app catalog]({{< relref "/vintage/getting-started/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
+The `template catalog` command allows to create an [app catalog]({{< relref "/tutorials/fleet-management/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
 The resulting manifest will define a [`Catalog`]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}}) resource (API group/version `application.giantswarm.io/v1alpha1`).
 
 **Note:** The `Catalog` CRD is namespace scoped and replaces the [AppCatalog]({{< relref "/reference/platform-api/crd/appcatalogs.application.giantswarm.io.md" >}})
 CRD which is cluster scoped. This is to improve multi-tenancy support when used with the [platform API]({{< relref "/overview/architecture/#platform-api" >}}).
 
-The Catalog CRD supports having a related `ConfigMap` and/or `Secret` resource with values YAML. These values serve as a base for the rest of the [configuration]({{< relref "/vintage/getting-started/app-platform/app-configuration/index.md" >}}) when Apps are deployed from this App Catalog.
+The Catalog CRD supports having a related `ConfigMap` and/or `Secret` resource with values YAML. These values serve as a base for the rest of the [configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) when Apps are deployed from this App Catalog.
 
 ## Usage
 

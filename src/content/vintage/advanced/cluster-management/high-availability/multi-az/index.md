@@ -109,15 +109,10 @@ Please be aware of some undesirable edge-cases and caveats. These might show up 
 
 ## Get started
 
-You can create clusters using the [web interface]({{< relref "/vintage/platform-overview/web-interface/" >}}).
+You can create clusters using the web interface.
 
 When inspecting details of such a cluster, we display the list of availability zones used by the cluster.
 
 Where worker nodes are organized in node pools, the availability zone distribution must be configured when creating a node pool. This is supported both in the web UI as well as the [`kubectl gs template nodepool`]({{< relref "/reference/kubectl-gs/template-nodepool" >}}) command. For inspection, the [`kubectl gs get nodepools`]({{< relref "/reference/kubectl-gs/get-nodepools" >}}) commands provide AZ information.
 
 Also exclusively on AWS, for control plane nodes, the choice to use high-availability (three control plane nodes, placed in one AZ each) is made on cluster creation. It is also possible to switch from a single control plane node to high availability after cluster creation, but not vice versa.
-
-## Further reading
-
-- [The Giant Swarm AWS Architecture]({{< relref "/vintage/platform-overview/cluster-management/vintage/aws" >}}) explains in more detail the setup of Giant Swarm on AWS.
-- [The Giant Swarm Azure Architecture]({{< relref "/vintage/platform-overview/cluster-management/vintage/azure" >}}) explains in more detail the setup of Giant Swarm on Azure.

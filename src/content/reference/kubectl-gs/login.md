@@ -10,12 +10,15 @@ menu:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
-  - How can I log in with kubectl for the Management API?
+  - How can I log in with kubectl for the platform API?
   - How can I create a workload cluster client certificate?
   - How do I specify the time to live for a workload cluster client certificate?
 last_review_date: 2024-11-25
 aliases:
   - /vintage/use-the-api/kubectl-gs/login/
+  - /vintage/use-the-api/management-api/wc-key-pairs/
+  - /use-the-api/management-api/wc-key-pairs/
+  - /ui-api/management-api/wc-key-pairs/
 ---
 
 Use this command to set up a kubectl context to work with:
@@ -24,7 +27,7 @@ Use this command to set up a kubectl context to work with:
 
 2. a workload cluster, using OIDC authentication
 
-3. a workload cluster, using client certificate auth (Not supported on KVM)
+3. a workload cluster, using client certificate authentication
 
 Note that `3` implies `1`. When setting up workload cluster access via client certificate, management cluster access will be set up as well, if that is not yet done.
 
@@ -48,7 +51,7 @@ No arguments.
 
 For the `MANAGEMENT_CLUSTER` argument there are several options.
 
-1. **Management API endpoint URL:** The URL of the cluster's Kubernetes API endpoint. This can be also be a workload cluster, if OIDC has been set up for it.
+1. **Platform API endpoint URL:** The URL of the cluster's Kubernetes API endpoint. This can be also be a workload cluster, if OIDC has been set up for it.
 
 2. **Context name:** Name of a Giant Swarm kubectl context, generated via one of the two methods above. The context name normally starts with the `gs-` prefix, however that prefix can be omitted for convenience. If no OIDC context can be found, an attempt to select a client certificate will be made.
 
@@ -73,7 +76,7 @@ For **OIDC** authentication, the following flags are available:
 
 - `--token`: Use a bearer token instead of OIDC authentication, e. g. a service account token.
 
-- `--internal-api` - (AWS only) With this flag you use an internal Management API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is usually the same as the normal one, with the prefix `internal-`. Example: if your Management API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`. This flag works with API hostnames of management clusters and workload clusters alike.
+- `--internal-api` - (AWS only) With this flag you use an internal platform API endpoint. It resolves to an internal IP address that is only accessible from within the cluster's virtual private cloud (VPC). The hostname of this endpoint is usually the same as the normal one, with the prefix `internal-`. Example: if your platform API host name is `g8s.example.yourdomain.tld`, the alternative hostname is `internal-g8s.example.yourdomain.tld`. This flag works with API hostnames of management clusters and workload clusters alike.
 
 - `--connector-id` - OIDC authentication prompts the user to select an authentication provider for the login process. The connector ID flag can be used to skip the prompt by providing an identifier of a specific authentication provider.
 
@@ -101,7 +104,7 @@ To set up a context initially, you'll have to use either the web UI URL as an ar
 kubectl gs login https://happa.g8s.example.westeurope.azure.gigantic.io
 ```
 
-... or the Management API endpoint URL.
+... or the platform API endpoint URL.
 
 ```nohighlight
 kubectl gs login https://api.g8s.example.westeurope.azure.gigantic.io
@@ -162,7 +165,7 @@ A valid `gs-example` context already exists, there is no need to log in again, i
 
 ### Workload cluster
 
-If OIDC is set up on a workload cluster, the initial login can be done via the Management API endpoint URL as well.
+If OIDC is set up on a workload cluster, the initial login can be done via the platform API endpoint URL as well.
 
 ```nohighlight
 kubectl gs login https://api.test.g8s.example.westeurope.azure.gigantic.io
@@ -238,7 +241,7 @@ Creating a client certificate for a workload cluster requires access to the mana
 
 In an automation context, an interactive login with a personal authentication, potential using multiple authentication factors, is not possible. In this case, a **service account token** can be used to authenticate against the management cluster.
 
-Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions. The [access control]({{< relref "/vintage/platform-overview/web-interface/organizations/access-control" >}}) user interface makes this simple.
+Giant Swarm provides a `ClusterRole` named `write-client-certificates` which provides the permissions required to create a workload cluster certificate. Bind this role to your service account in the namespace of the organization owning the workload cluster, to grant the required permissions.
 
 Finally, this example shows how to execute the command using a service account token via the `--token` flag to authenticate:
 

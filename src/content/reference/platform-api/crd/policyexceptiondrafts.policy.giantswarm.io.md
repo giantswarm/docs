@@ -12,7 +12,7 @@ crd:
   technical_name: policyexceptiondrafts.policy.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/exception-recommender
-  source_repository_ref: v0.1.1
+  source_repository_ref: v0.2.0
   versions:
     - v1alpha1
   topics:
@@ -23,7 +23,7 @@ aliases:
   - /use-the-api/management-api/crd/policyexceptiondrafts.policy.giantswarm.io/
 technical_name: policyexceptiondrafts.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/exception-recommender
-source_repository_ref: v0.1.1
+source_repository_ref: v0.2.0
 ---
 
 # PolicyExceptionDraft

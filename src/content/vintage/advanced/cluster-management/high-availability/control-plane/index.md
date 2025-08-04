@@ -104,7 +104,7 @@ the instructions in the web UI.
 ### Via the Management API {#management-api}
 
 In order to convert a single node control plane to high availability, the cluster's
-[`G8sControlPlane`]({{< relref "/vintage/use-the-api/management-api/crd/g8scontrolplanes.infrastructure.giantswarm.io.md" >}})
+G8sControlPlane
 has to be modified. First you have to find the resource for your cluster ID. The
 following command helps with that:
 

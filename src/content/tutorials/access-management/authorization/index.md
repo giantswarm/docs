@@ -13,6 +13,11 @@ user_questions:
   - How can I set up access to resources in the management cluster?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
+aliases:
+  - /vintage/use-the-api/management-api/authorization/
+  - /use-the-api/management-api/authorization
+  - /reference/management-api/authorization/
+  - /ui-api/management-api/authorization/
 ---
 
 Once your users are [authenticated]({{< relref "/tutorials/access-management/authentication" >}}) for the platform API, you want to define which permissions they will have assigned. That's what we'll explain in more detail in this article.
@@ -24,7 +29,7 @@ As authorization in the management cluster is based on some fundamental `kuberne
 - [Namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) and
 - [Role-based access control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
 
-Also be aware that this article deals with permissions in the management cluster only. Handling authorization in workload clusters isn't covered here, however we provide a comprehensive article on [RBAC and PSPs in workload clusters]({{< relref "/vintage/getting-started/security" >}}).
+Also be aware that this article deals with permissions in the management cluster only. Handling authorization in workload clusters isn't covered here, however we provide a comprehensive article on [RBAC in workload clusters]({{< relref "/tutorials/security/rbac" >}}).
 
 If you are mostly interested in how to set up access for certain types of users, we recommend to skip to the [typical use cases](#typical-use-cases) section. You can always catch up on the basics later, as needed. Alternatively, if you work through this page from top to bottom, you'll pick up the pieces in a more logical order and put them together later.
 

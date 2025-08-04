@@ -12,7 +12,7 @@ crd:
   technical_name: policyexceptions.policy.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/kyverno-policy-operator
-  source_repository_ref: v0.0.8
+  source_repository_ref: v0.1.4
   versions:
     - v1alpha1
   topics:
@@ -23,7 +23,7 @@ aliases:
   - /use-the-api/management-api/crd/policyexceptions.policy.giantswarm.io/
 technical_name: policyexceptions.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/kyverno-policy-operator
-source_repository_ref: v0.0.8
+source_repository_ref: v0.1.4
 ---
 
 # PolicyException
@@ -66,7 +66,10 @@ source_repository_ref: v0.0.8
 </div>
 
 <div class="property-description">
-<p>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+<p>APIVersion defines the versioned schema of this representation of an object.
+Servers should convert recognized schemas to the latest internal value, and
+may reject unrecognized values.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
 
 </div>
 
@@ -84,7 +87,11 @@ source_repository_ref: v0.0.8
 </div>
 
 <div class="property-description">
-<p>Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+<p>Kind is a string value representing the REST resource this object represents.
+Servers may infer this from the endpoint the client submits requests to.
+Cannot be updated.
+In CamelCase.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
 
 </div>
 

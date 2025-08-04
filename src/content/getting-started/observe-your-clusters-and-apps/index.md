@@ -1,39 +1,76 @@
 ---
 title: Observe your clusters and apps
-description: Check cluster and app metrics with the observability tools provided with the Giant Swarm platform.
+description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics to custom dashboards and alerts.
 weight: 60
-last_review_date: 2024-11-28
+last_review_date: 2025-07-17
 menu:
   principal:
     parent: getting-started
     identifier: getting-started-observe
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - How do I observe the platform metrics for my application?
-  - What do I need to do to observe the platform metrics for my application?
+  - How do I start monitoring my applications?
+  - What observability data is available out of the box?
+  - How do I access Grafana dashboards?
+  - How do I set up custom metrics collection?
+  - How do I create my first custom dashboard?
+  - How do I monitor application logs?
+  - What should I monitor first in my cluster?
 ---
 
-Every cluster benefits from automatic monitoring by default in the Giant Swarm platform. It allows you to observe the cluster health and application behaviour simultaneously with little effort. An in-cluster agent scrapes the metrics and sends them to a central location on the management cluster, where you can interact with them through our managed Grafana instance.
+Giant Swarm's observability platform gives you immediate visibility into your clusters and applications. Every cluster comes with automatic monitoring configured out of the box, collecting metrics, logs, and traces that help you understand system health and application performance.
 
-## Requirements
+This guide will walk you through your first steps with the observability platform, from accessing pre-built dashboards to setting up custom monitoring for your applications.
 
-First step, you need a running workload cluster. If you don't have one, please first [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). Second, you need to deploy the `hello-world` application explained [in the previous step]({{< relref "/getting-started/install-an-application" >}}). Further, make sure you have installed [`jq`](https://jqlang.github.io/jq/download/) on your local machine.
+## What you get automatically
 
-In case you are running your own application, you need to make sure that your application is already [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics.
+Every Giant Swarm cluster includes:
 
-Also, consider that ingesting new metrics into the platform impacts your costs. The central monitoring system's resource consumption is actually related to the number of metrics it has to handle, so please choose which metrics you want to ingest.
+- **Platform metrics**: CPU, memory, disk, and network metrics from all cluster nodes
+- **Kubernetes metrics**: Pod status, deployments, services, and cluster events
+- **Application logs**: Automatic collection from all pods in your cluster
+- **Pre-built dashboards**: Ready-to-use visualizations for infrastructure and platform components
+- **Default alerts**: Proactive notifications for common infrastructure issues
+- **Secure access**: Integration with your organization's identity provider
 
-## Step 1: Create a service monitor
+## Prerequisites
 
-In case of running the `hello-world` application, there is a baked-in service monitor that scrapes the metrics from the application. You can enable it by setting `serviceMonitor.enabled` to `true` in the values of the helm chart. If you are running your own application, you need to create a service monitor that scrapes the metrics from your application. This is an example of a service monitor you can use:
+Before you start:
+
+1. **Running workload cluster**: If you don't have one, [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) first
+2. **Sample application**: Deploy the [`hello-world` application]({{< relref "/getting-started/install-an-application" >}}) or use your own instrumented application
+3. **Local tools**: Install [`jq`](https://jqlang.github.io/jq/download/) for command-line JSON processing
+
+**Important**: If you're using your own application, ensure it's [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics. Adding new metrics impacts platform costs, so choose your metrics thoughtfully.
+
+## Step 1: Access your observability platform
+
+Start by accessing Grafana, your main interface for observability data:
+
+1. **Find your Grafana URL**: Check the ingress resource in the `monitoring` namespace of your management cluster
+2. **Log in**: Use your organization's identity provider credentials
+3. **Explore pre-built dashboards**: Navigate to `Dashboards` → `Giant Swarm Public Dashboards`
+
+You'll immediately see dashboards showing:
+
+- **Cluster overview**: Resource usage, node health, and capacity
+- **Kubernetes metrics**: Pod status, deployment health, and service performance
+- **Infrastructure metrics**: CPU, memory, disk, and network across all nodes
+- **Platform components**: Ingress controllers, DNS, and other system services
+
+## Step 2: Set up application metrics collection
+
+To monitor your specific applications, you need to configure metrics collection. For the `hello-world` application, enable the built-in service monitor by setting `serviceMonitor.enabled` to `true` in your Helm values.
+
+For custom applications, create a `ServiceMonitor` resource:
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    application.giantswarm.io/team: team-rocket
+    observability.giantswarm.io/tenant: my-team
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: my-namespace
@@ -47,69 +84,130 @@ spec:
       app.kubernetes.io/instance: my-service
 ```
 
-An important bit to notice is the `application.giantswarm.io/team` label. This label is necessary as it's required for the `Prometheus` agent to discover the target.
+**Key configuration points:**
 
-Reading the manifest, the application will be scraped every 60 seconds. It will read the metrics from the `/metrics` endpoint using the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) as a regular service does. Also, the `app.kubernetes.io/instance` label is used to identify the application, so it should match the application label.
+- **Tenant label**: The `observability.giantswarm.io/tenant: my-team` label is required for metrics routing and data isolation
+- **Scrape interval**: Metrics are collected every 60 seconds (adjust based on your needs)
+- **Metrics endpoint**: The `/metrics` path should expose Prometheus-format metrics
+- **Port reference**: Use the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) from your service definition
+- **Label selector**: Must match your application's labels for discovery
 
-After applying the service monitor, you can open the `Explore` view in the `Grafana` UI and start querying the metrics from your application.
+Apply this configuration to start collecting metrics from your application.
+
+⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for metrics and logs.
+
+## Step 3: Explore your metrics
+
+Once metrics collection is configured, explore your data using Grafana's Explore view:
+
+1. **Open Explore**: In Grafana, click `Explore` in the left sidebar
+2. **Select data source**: Choose the appropriate Prometheus data source
+3. **Query your metrics**: Use PromQL to query application metrics
 
 ![Explore application metrics](explore-application-metrics.png)
 
-__Note__: The `Grafana` UI is accessible via ingress. To find the address, you can check the ingress resource in the `monitoring` namespace of the platform API. More information in the [access `Grafana` page]({{< relref "/tutorials/observability/data-exploration/accessing-grafana/" >}})
+Try these sample queries to get started:
 
-## Step 2: Inspect the default dashboards
+- `rate(http_requests_total[5m])` - Request rate over the last five minutes
+- `histogram_quantile(0.95, http_request_duration_seconds_bucket)` - 95th percentile response time
+- `up{job="my-service"}` - Check if your service is up and running
 
-The platform provides a set of default dashboards that you can use to monitor the cluster components and your application. You can access them by opening the `Dashboards` view in the `Grafana` UI and explore different options in `Giant Swarm Public Dashboards` folder.
+**New to PromQL?** Check our [Advanced PromQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}) for detailed guidance.
 
-Below is an example of service monitor metrics filtered to show the `hello-world` application and how many cardinality the `promhttp_metric_handler_requests_total` metric has.
+## Step 4: Monitor application logs
+
+Giant Swarm automatically collects logs from all pods. To access your application logs:
+
+1. **Navigate to Explore**: Select the Loki data source
+2. **Use LogQL queries**: Search and filter your logs
+
+Try these sample queries:
+
+- `{namespace="my-namespace"}` - All logs from your namespace
+- `{app="my-app"} |= "error"` - Error messages from your application
+- `{namespace="my-namespace"} | json | level="error"` - Structured log parsing for error levels
+
+**Want to learn more?** Our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}) covers complex log queries and analysis.
+
+## Step 5: Review pre-built dashboards
+
+The platform provides comprehensive pre-built dashboards for immediate insights. Access them in Grafana under `Dashboards` → `Giant Swarm Public Dashboards`:
+
+**Infrastructure dashboards:**
+
+- **Cluster overview**: High-level cluster health and resource usage
+- **Node metrics**: Individual node performance and capacity
+- **Kubernetes resources**: Pod, deployment, and service status
+
+**Platform component dashboards:**
+
+- **Ingress controller**: Request rates, response times, and error rates
+- **DNS performance**: Query success rates and response times
+- **Flux GitOps**: Deployment status and reconciliation metrics
+
+**Application insights:**
+Below is an example showing `hello-world` application metrics, including the cardinality of the `promhttp_metric_handler_requests_total` metric:
 
 ![Service monitor metrics](service-monitor-metrics.png)
 
-Along with service monitor metrics, you can check metrics for DNS, Ingress, Flux, and many other components. Don't hesitate to provide feedback on the dashboards or suggest new ones.
+These dashboards give you instant visibility into system health and help identify patterns or issues quickly.
 
-## Step 3: Create your own dashboard
+## Step 6: Create your first custom dashboard
 
-In some occasions, you may want to create a custom dashboard to visualize the metrics of your application. Once logged into the [platform API]({{< relref "/reference/platform-api" >}}) you can create a special `ConfigMap` containing the dashboard in JSON format. It will look like this:
+While pre-built dashboards provide great starting points, you'll likely want custom visualizations for your specific applications and workflows.
 
-```yaml
-apiVersion: v1
-data:
-  my-dashboard.json: |-
-    __DASHBOARD_JSON__
-kind: ConfigMap
-metadata:
-  annotations:
-    k8s-sidecar-target-directory: /var/lib/grafana/dashboards/customer
-  labels:
-    app.giantswarm.io/kind: dashboard
-  name: my-grafana-dashboard
-  namespace: my-namespace
-```
+### Method 1: Create in Grafana UI (Quick start)
 
-It's important to have an annotation with the key `k8s-sidecar-target-directory` pointing to the location where the dashboard will be stored in the `Grafana UI`. Also notice the label `app.giantswarm.io/kind` has to be set to `dashboard` in order to be recognized by the platform.
+1. **Create new dashboard**: In Grafana, click `+` → `Dashboard`
+2. **Add panels**: Choose visualization types (graphs, tables, stats)
+3. **Configure queries**: Use PromQL for metrics or LogQL for logs
+4. **Save dashboard**: Name and organize your dashboard
 
-The easiest way to build a dashboard is using the Grafana UI. There, you can create panels with the desired visualizations and then export them by selecting `Share > Export`` in the dashboard context menu or by accessing the JSON Model in the dashboard settings.
+Your dashboard automatically persists in the platform's PostgreSQL storage with regular backups.
 
-__Warning__: The dashboards served in the platform are all created from a GitOps repository or created by users through `ConfigMap` resources; there is no persistent storage for `Grafana`, which means dashboards aren't persisted if the system restarts or are upgraded.
+### Method 2: GitOps approach (Recommended)
 
-In our example, you can find the dashboard JSON [here](./dashboard.json). Download the dashboard content and use `jq` to minify it:
+For production environments, treat dashboards as code:
 
-```sh
-jq -c . dashboard.json
-```
+1. **Export dashboard JSON**: Use `Share` → `Export` from any dashboard
+2. **Store in Git**: Version control your dashboard definitions
+3. **Deploy via ConfigMaps**: Use Kubernetes resources to deploy dashboards
+4. **Automate updates**: Integrate with your CI/CD pipeline
 
-Then replace the `__DASHBOARD_JSON__` placeholder in the `ConfigMap` with the minified JSON content. After that, apply the `ConfigMap` to the platform API:
+[Download our example dashboard](./dashboard.json) or check our [comprehensive dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for detailed instructions.
 
-```sh
-kubectl apply -f config-map.yaml
-```
+### Import the example dashboard
 
-After a few seconds, you can open the `Dashboards` view in the `Grafana` UI and find your custom dashboard in the `Customer` folder.
+To quickly get started with a custom dashboard:
+
+- **Open import**: Go to `Dashboards` → `New` → `Import`
+
+![dashboard-import-new](dashboard-import.png)
+
+- **Upload JSON**: Load the [example dashboard file](./dashboard.json)
+
+![dashboard-import-panel](dashboard-import-json.png)
+
+- **Explore the result**: Your new dashboard shows application-specific metrics
 
 ![custom-dashboard](custom-dashboard.png)
 
-As you can see in the image above, the dashboard shows some information about the `hello-world` application. You see the number of errors, the number of success requests, and the number of requests by code. Feel free to poke around and create your own panels.
+The example dashboard demonstrates key application metrics like error rates, success rates, and request distribution by HTTP status code.
 
-## Next step
+## What's next
 
-After knowing how your application behaves let's explore how security is handled in the platform. Learn more [in the security overview]({{< relref "/overview/security" >}}).
+Now that you're monitoring your clusters and applications, explore these advanced capabilities:
+
+### Enhance your observability
+
+- **[Set up alerting]({{< relref "/overview/observability/alert-management/" >}})**: Get notified before issues impact users
+- **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/" >}})**: Master PromQL and LogQL for deeper insights
+- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/" >}})**: Collect custom metrics and logs
+- **[Explore data transformation]({{< relref "/overview/observability/data-management/data-transformation/" >}})**: Optimize metrics storage and processing
+
+### Integrate external tools
+
+- **[Import/export data]({{< relref "/overview/observability/data-management/data-import-export/" >}})**: Connect external systems and analysis tools
+- **[Set up multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Organize data access for teams and environments
+
+Ready to explore platform security? Learn more [in the security overview]({{< relref "/overview/security" >}}).

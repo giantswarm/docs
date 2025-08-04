@@ -3,6 +3,9 @@ linkTitle: Customizing default apps
 title: Customizing default apps
 description: How to customize preinstalled apps configuration using `ConfigMaps` or secrets.
 weight: 50
+aliases:
+  - /getting-started/app-platform/configuring-default-apps
+  - /vintage/getting-started/app-platform/configuring-default-apps
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform

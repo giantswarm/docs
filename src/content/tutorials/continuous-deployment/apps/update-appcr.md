@@ -11,7 +11,7 @@ user_questions:
   - How can I update an existent app deployed with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2025-03-25
 ---
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
@@ -53,11 +53,12 @@ In case you just want to update the configuration of the app, you need to edit t
 
 In this case, you need to decrypt the `secret.enc.yaml` file before editing it. Then you perform the changes and encrypt the file again.
 
-Import the workload cluster private `GPG` key from your key chain tool. In our example, you see `LastPass` for this purpose:
+Import the workload cluster private `GPG` key from your keychain tool. In our example, you see `1Password` for this purpose:
 
 ```sh
+eval $(op signin)
 gpg --import \
-<(lpass show --notes "Shared-Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)")
+<(op read "Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)/notesPlain")
 ```
 
 Then you can decrypt the `secret.enc.yaml` file and decode the `values` field:

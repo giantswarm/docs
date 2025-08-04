@@ -2,8 +2,8 @@ PROJECT=docs
 COMPANY=giantswarm
 REGISTRY=gsoci.azurecr.io
 SHELL=bash
-MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.35.0@sha256:22cf4699a448a7bbc311a940e0600019423d7671cbedae9c35cd32b51f560350
-VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.4.0@sha256:fe9c173ef6dcd782cefa53cad69d1684bc317b12188b03299b0d29aecf265a59
+MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.45.0@sha256:27eadb7b23b79b4b01b9220e18467d041804e632f41cf69b9c1613b48ed72749
+VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.11.2@sha256:27aab968708850a6cc7369dc1325f1812e2c3de0741327fa0aed832e328357d7
 APPLICATION=docs-app
 RUNNING_IN_CI ?= false
 
@@ -52,7 +52,7 @@ update-cluster-app-reference:
 	scripts/update-helm-chart-reference/main.sh
 
 # Generate the reference documentation for the custom resource
-# definitions (CRD) used in the Management API.
+# definitions (CRD) used in the platform API.
 update-crd-reference:
 	scripts/update-crd-reference/main.sh
 
@@ -70,7 +70,7 @@ lint-markdown:
 	  --config .markdownlint.yaml \
 	  --ignore README.md \
 	  --ignore ./src/content/changes \
-	  --ignore ./src/content/vintage/use-the-api/management-api/crd \
+	  --ignore ./src/content/vintage \
 	  --ignore ./src/content/reference/platform-api/crd \
 	  $$(if [ "$(RUNNING_IN_CI)" = "true" ]; then echo "--output markdownlint.out"; fi) \
 	  ./src
@@ -104,29 +104,23 @@ lint-prose-update:
 # Validate front matter in all pages.
 validate-front-matter:
 	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py
+		--volume=${PWD}:/workdir:ro \
+		-w /workdir \
+		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+		/workdir/scripts/validate-front-matter/script.py
 
 # Validate front matter for last-reviewed date.
-validate-last-reviewed:
-	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py \
-		--validation last-reviewed \
-		--output json
+validate-last-reviewed-json:
+	@docker run --rm --volume=${PWD}:/workdir:ro -w /workdir $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest /workdir/scripts/validate-front-matter/script.py --validation last-reviewed --output json
 
 # Print a report of pages with a last_review_date that's
 # too long ago.
 validate-last-reviewed:
 	docker run --rm \
-	  --volume=${PWD}:/workdir:ro \
-	  -w /workdir \
-	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/validate-front-matter/script.py --validation last-reviewed
+		--volume=${PWD}:/workdir:ro \
+		-w /workdir \
+		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+		/workdir/scripts/validate-front-matter/script.py --validation last-reviewed
 
 docker-build:
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .
@@ -171,8 +165,10 @@ linkcheck-internal:
 
 update-website-content:
 	cd ./scripts/update-website-content && \
-		npm ci && \
-		npm start
+		yarn install && \
+		yarn playwright install && \
+		yarn playwright install-deps && \
+		yarn start
 
 # Verify internal and external links
 # based on the currently deployed docs website.
