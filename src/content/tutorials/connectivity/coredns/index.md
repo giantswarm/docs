@@ -16,51 +16,29 @@ user_questions:
   - How can I customize the CoreDNS configuration?
   - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
-last_review_date: 2025-07-07
+last_review_date: 2025-08-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-Your Giant Swarm clusters come with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns). CoreDNS is installed as default application in your clusters using a HelmRelease named `<CLUSTER_ID>-coredns`. This guide explains how you can customize the CoreDNS configuration in your clusters.
+Your Giant Swarm clusters come with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns). CoreDNS is installed as default application in your clusters using a [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/). This guide explains how you can customize the CoreDNS configuration in your clusters.
 
 ## Where to store the user configuration
 
-Given the cluster you are trying to configure has id: `123ab` then you will find a `123ab-coredns` HelmRelease in the organization namespace of the management cluster. Inside this HelmRelease, there is a field called `ValuesFrom` which lets you define a set of ConfigMaps that will be used to override the default values of the CoreDNS Helm chart.
+Given the cluster you are trying to configure is called: `123ab` you can create or extend the `<CLUSTER>-user-values` ConfigMap of the organization namespace on the management cluster. Inside the ConfigMap, the Helm values are passed as the field called `values` which lets you define a
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
-kind: HelmRelease
-metadata:
-  ...
-  name: 123ab-coredns
-  namespace: org-my-org
-spec:
-  ...
-  valuesFrom:
-  - kind: ConfigMap
-    name: 123ab-coredns-global-values
-    optional: false
-    valuesKey: values
-  - kind: ConfigMap
-    ...
-```
-
-## How to set configuration options using the user values ConfigMap
-
-On the management cluster, create or edit a ConfigMap named `123ab-coredns-global-values`
-in the workload cluster namespace as described above:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: 123ab-coredns-global-values
-  namespace: org-my-org
 data:
   values: |
-    configmap:
-      cache: "60"
+    global:
+      ...
+kind: ConfigMap
+metadata:
+  name: 123ab-user-values
+  namespace: org-my-org
 ```
+
+More information about cluster configuration[here](https://docs.giantswarm.io/tutorials/fleet-management/app-platform/configuring-default-apps/).
 
 ## Configuration Reference
 
@@ -181,7 +159,7 @@ data:
 
 ### Advanced configuration
 
-In case you need to have a finer granularity you can define custom server blocks with all desired configurations. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with a custom configuration:
+In case you need to have a finer granularity you can define custom server blocks with all desired configurations. They will be parsed after the catch-all block in the `Corefile`. As an example, let's define a block for a `example.com` with a custom configuration:
 
 ```yaml
 data:
