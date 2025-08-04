@@ -18,15 +18,11 @@ user_questions:
   - How can I limit the disruption caused by cluster upgrades?
 ---
 
-This guide is focus on explaining the details on how workload cluster upgrades work and how to prepare your workloads to remain operational during a workload cluster upgrade. A workload cluster in a Giant Swarm platform is running a stack comprising many software components, provided by the Kubernetes project and other open source projects or software vendors, as well as by Giant Swarm. In order to keep all components up-to-date, to allow you to benefit from latest improvements, features and security fixes, the platform provides upgrades for the entire software stack in workload clusters.
+This guide explains how workload cluster upgrades work and how to prepare your workloads to remain operational during upgrades. Giant Swarm advocates for frequent, small updates to keep changes manageable. Our goal is to help you run all clusters on the latest version without disrupting your operations.
 
-Giant Swarm advocates for frequent, small updates to keep the change in the system manageable. Our goal is to help you run all clusters on the latest version without disrupting your operations.
+## Workload cluster releases
 
-## Background and concepts
-
-### The workload cluster stack
-
-The workload cluster stack includes third-party components such as:
+A **release** bundles certain versions of third-party and Giant Swarm specific components:
 
 - [Kubernetes](https://kubernetes.io/) with its sub-components
 - [Flatcar Container Linux](https://www.flatcar-linux.org/docs/latest/) as the node's operating system
@@ -36,150 +32,70 @@ The workload cluster stack includes third-party components such as:
 - [An observability bundle](https://github.com/giantswarm/observability-bundle)
 - [A security bundle](https://github.com/giantswarm/security-bundle)
 
-among other operators and APIs maintained by Giant Swarm.
+Each release is specific to the provider (AWS, Azure, or VMware) and identified by a version number. See the [workload cluster releases](https://github.com/giantswarm/releases/) repository for all available releases. Releases are **immutable** once deployed, ensuring consistency. Changes only happen through upgrades to a new release.
 
-These components are bundled into a **workload cluster release** specific to the provider (AWS, Azure, or VMware), identified by a version number. For more information, see the [workload cluster releases](https://github.com/giantswarm/releases/) repository with all available releases.
+**Patch upgrades** increase the patch version for bug fixes and stability improvements.
 
-The stack is **immutable** once deployed, ensuring consistency with the tested stack. Changes are only made through upgrades to a new workload cluster release.
+**Minor upgrades** introduce non-disruptive features that are typically less significant than major updates.
 
-### Upgrade semantics {#semantics}
+**Major upgrades** include new Kubernetes minor releases, third-party components, and significant new features. Major releases align with Kubernetes upstream minor releases.
 
-Workload cluster release versioning allows for three upgrade levels:
+When a new major version is released, the oldest major release is deprecated. You can only create clusters with deprecated releases using `kubectl-gs`. Existing clusters remain unaffected.
 
-- _Patch upgrade_: Increases the patch version for bug fixes and stability improvements.
-- _Minor upgrade_: Introduces non-disruptive features that are typically less significant than major updates, unless the features are actively enabled.
-- _Major upgrade_: Includes new Kubernetes minor releases, third-party components, and significant new features.
+## How to upgrade
 
-Major releases are aligned with Kubernetes upstream minor releases and include comprehensive release notes to aid preparation.
+**Patch and minor upgrades** are automatically rolled out by Giant Swarm, respecting agreed maintenance windows.
 
-#### Considerations {#considerations}
+**Major upgrades** are not automated. You'll be notified to schedule the upgrade, possibly after updating workloads. Giant Swarm staff may assist or initiate these upgrades.
 
-Upon releasing a new major version, the oldest major release is deprecated. Deprecated releases can only create clusters using `kubectl-gs`. Existing clusters remain unaffected.
+You cannot skip major versions when upgrading - upgrades must proceed sequentially through major versions. You can skip minor and patch releases if needed.
 
-Creating new clusters with deprecated releases is discouraged. Testing workload cluster upgrades in a separate environment is recommended.
+To trigger an upgrade:
 
-### Upgrade automation
+- **GitOps**: Update the cluster configuration file with the desired release version
+- **kubectl-gs**: Use the [`update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}) command with the `--release-version` flag
 
-**Patch and minor upgrades** are rolled out automatically by Giant Swarm, respecting agreed maintenance windows. Our team is developing the automation necessary to further streamline this process, allowing customers to manage maintenance windows effectively.
+## Avoid downtime during upgrades
 
-**Major upgrades** are not automated. You are notified to schedule the upgrade, possibly after updating workloads. Giant Swarm staff may assist or initiate these upgrades to ensure continuity.
+To ensure your workloads remain operational during upgrades:
 
-### Skipping workload cluster release
+- **Ensure redundancy**: Use two or more replicas for all critical deployments
+- **Distribute workloads**: Use [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity) to spread replicas across nodes
+- **Use probes**: Implement [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) with appropriate `initialDelaySeconds` values
+- **Handle termination signals**: Ensure pods handle `TERM` signals gracefully and configure `terminationGracePeriodSeconds` for longer shutdowns if needed
+- **Set disruption budgets**: Use [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to maintain minimum pod counts (avoid `maxUnavailable=0` for single-replica deployments)
+- **Set scheduling priorities**: Use Pod priority classes and set resource requests/limits to influence scheduling
+- **Avoid ephemeral resources**: Use controllers (Deployments, StatefulSets) instead of standalone Pods
+- **Configure webhook timeouts**: Set low timeout values (e.g., 5 seconds) for validation and mutation webhooks
+- **Verify pod health**: Ensure all critical pods are running before upgrades with `kubectl get pods --all-namespaces | grep -v "Running\|ContainerCreating"`
 
-Skipping major versions when upgrading is unsupported. Upgrades must proceed sequentially through major versions.
+## How upgrades work under the hood
 
-You can skip minor and patch releases if needed. Our interfaces default to the next active workload cluster release. To skip a version:
+Upgrades occur at runtime while maintaining workload functionality. Control plane nodes are recreated (causing temporary API slowness), then worker nodes are drained, stopped, and recreated while pods get rescheduled.
 
-- In the **GitOps** workflow, update the cluster configuration file with the desired release version.
-- Using **kubectl-gs**, use the [`update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}) command with the `--release-version` flag.
+{{< tabs >}}
+{{< tab id="aws-upgrade-details" for-impl="capa" title="AWS" >}}
 
-## How upgrades work
+Control plane machines are rotated first, followed by worker nodes. Control plane nodes are replaced one by one to keep the cluster operational.
 
-Upgrades occur at runtime, maintaining workload functionality (with certain requirements). Key steps include:
+The Cluster API for AWS controller manages upgrades using EC2 instances. The default [instance warmup](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) configuration ensures AWS doesn't replace all nodes at once but in steps, allowing human intervention if needed. For small node pools, one node is replaced every 10 minutes. For larger pools, small sets of nodes are replaced every 10 minutes.
 
-- Control plane node recreation could causes temporal Kubernetes API slow requests.
-- Nodes are drained, stopped, and recreated.
-- Pods are rescheduled during node draining.
+Worker nodes receive a terminate signal from AWS. The [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) drains machines gracefully before termination. The default timeout is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools), which you can adjust as needed.
 
-### Specific details for AWS
-
-The control plane machines are rotated first, followed by worker nodes. The control plane nodes are replaced one by one, ensuring the cluster remains operational.
-
-The Cluster API for AWS controller manages the cluster control plane using EC2 instances. The default configuration of [instance warmup](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) ensures AWS doesn't replace all nodes at once but in steps, allowing human intervention if needed. For a small node pool, one node is replaced every 10 minutes. For larger pools, small sets of nodes are replaced every 10 minutes.
-
-Once the worker nodes are rolled, each instance receives a terminate signal from AWS. Thanks to [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) the machines are drained gracefully before being terminated. By default, the timeout configure to complete the draining operation is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools). Customers can adjust this value to fit their needs in case they have specific requirements.
-
-### Specific details for Azure
+{{< /tab >}}
+{{< tab id="azure-upgrade-details" for-impl="capz" title="Azure" >}}
 
 TBD
 
-### Specific details for vSphere
+{{< /tab >}}
+{{< tab id="vsphere-upgrade-details" for-impl="capv" title="vSphere" >}}
 
 TBD
 
-### Specific details for vCloud Director
+{{< /tab >}}
+{{< tab id="vcd-upgrade-details" for-impl="capvcd" title="vCloud Director" >}}
 
 TBD
 
-## How to upgrade a cluster {#how-to-upgrade-a-cluster}
-
-Authenticated users can upgrade clusters to the **next active workload cluster release** using the platform API. Our CLI extensions allows to trigger the action thanks to the command [`kubectl-gs update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}). For `GitOps` approach, you can directly change the cluster configuration version in the App custom resource.
-
-Giant Swarm selects upgrade versions following best practices, avoiding skips over major versions. Test upgrades in non-production environments if using raw API methods.
-
-## Checklist {#checklist}
-
-Before upgrading, complete the following checks and best practices:
-
-### Overview
-
-- [Ensure redundancy for workloads](#checklist-ensure-redundancy)
-- [Distribute workloads across nodes](#checklist-distribute-workloads)
-- [Use liveness and readiness probes](#checklist-liveness-readiness)
-- [Handle termination signals in Pods](#checklist-termination-signals)
-- [Manage disruption budgets](#checklist-disruption-budgets)
-- [Set scheduling priorities](#checklist-scheduling-priorities)
-- [Consider high-availability control planes](#checklist-ha-masters)
-- [Avoid ephemeral resources](#checklist-avoid-ephemeral-resources)
-- [Configure webhook timeouts](#checklist-webhook-timeouts)
-- [Verify that all your pods are running](#checklist-verify-pods-running)
-- [General container hygiene](#checklist-general-hygiene)
-
-### Ensure redundancy for workloads {#checklist-ensure-redundancy}
-
-Ensure **two or more replicas** for all critical deployments, with higher counts for production environments. Adjust based on environment needs, ensuring `Horizontal Pod Autoscaler` settings reflect minimum replica requirements.
-
-### Distribute workloads across nodes {#checklist-distribute-workloads}
-
-Use [inter-pod anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity) to distribute replicas across nodes, avoiding simultaneous unavailability. Consider using the [descheduler](https://github.com/kubernetes-sigs/descheduler) to balance workloads.
-
-### Use liveness and readiness probes {#checklist-liveness-readiness}
-
-Implement [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) to manage traffic routing and container termination gracefully. Set appropriate `initialDelaySeconds` values.
-
-### Handle termination signals in Pods {#checklist-termination-signals}
-
-Pods receive a termination signal (`TERM`) during node draining. Ensure they handle this signal gracefully. Configure `terminationGracePeriodSeconds` for longer shutdowns if necessary. See [`Pod Termination`](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination).
-
-### Manage disruption budgets {#checklist-disruption-budgets}
-
-Use [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to maintain minimum pod counts during upgrades. Avoid setting `maxUnavailable=0` for single-replica deployments to prevent upgrade blocks.
-
-### Set scheduling priorities {#checklist-scheduling-priorities}
-
-Utilize Pod priority classes to manage scheduling under resource pressure. Set resource requests and limits to influence scheduling decisions.
-
-### Avoid ephemeral resources {#checklist-avoid-ephemeral-resources}
-
-Avoid using ephemeral resources like standalone Pods or local storage for persistent data. Use controllers (Deployments, StatefulSets) for reliability.
-
-### Configure webhook timeouts {#checklist-webhook-timeouts}
-
-Ensure validation and mutation webhooks have appropriate [timeouts](https://github.com/kubernetes/kubernetes/issues/71508#issuecomment-470315405) to prevent upgrade disruptions. Use low timeout values:
-
-```yaml
-apiVersion: admissionregistration.k8s.io/v1beta1
-kind: ValidatingWebhookConfiguration
-metadata:
-  name: <name of this configuration object>
-webhooks:
-- name: <webhook name>
-  ...
-  timeoutSeconds: 5
-```
-
-### Verify that all your pods are running {#checklist-verify-pods-running}
-
-Ensure all critical pods are operational, and no deployments are stuck. Use this command to check:
-
-```nohighlight
-kubectl get pods --all-namespaces | grep -v "Running\|ContainerCreating"
-```
-
-### General container hygiene {#checklist-general-hygiene}
-
-There’s additional general container hygiene recommendations that will help smoothen the upgrade process.
-
-As container images might not be already available on the new node that the `Pod` gets rescheduled to, you should make sure that all container images (and tags) that you are using are available in the registry that is configured for the pods.
-
-Furthermore, you should make your containers are as lightweight (in terms of size) as possible to make the image pulling and the rescheduling process faster.
+{{< /tab >}}
+{{< /tabs >}}
