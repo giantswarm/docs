@@ -1,6 +1,6 @@
 ---
 title: Cluster upgrades
-description: How workload cluster release versions work and how they relate to Kubernetes versions and breaking changes. Safety and automation considerations for upgrades.
+description: How workload cluster release work and how they relate to Kubernetes versions and breaking changes. Safety and automation considerations for upgrades.
 weight: 10
 menu:
   principal:
@@ -9,7 +9,7 @@ menu:
 aliases:
   - /platform-overview/cluster-management/cluster-upgrades/
   - /reference/cluster-upgrades/
-last_review_date: 2025-01-31
+last_review_date: 2025-08-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -35,7 +35,6 @@ The workload cluster stack includes third-party components such as:
 - [Cilium](https://cilium.io/) for networking and security
 - [An observability bundle](https://github.com/giantswarm/observability-bundle)
 - [A security bundle](https://github.com/giantswarm/security-bundle)
-- [Ingress controller](https://github.com/kubernetes/ingress-nginx) for routing traffic
 
 among other operators and APIs maintained by Giant Swarm.
 
@@ -78,9 +77,9 @@ You can skip minor and patch releases if needed. Our interfaces default to the n
 
 Upgrades occur at runtime, maintaining workload functionality (with certain requirements). Key steps include:
 
+- Control plane node recreation could causes temporal Kubernetes API slow requests.
 - Nodes are drained, stopped, and recreated.
 - Pods are rescheduled during node draining.
-- Control plane node recreation could causes brief Kubernetes API unavailability though the API server is highly available minimizing the impact.
 
 ### Specific details for AWS
 
@@ -104,7 +103,7 @@ TBD
 
 ## How to upgrade a cluster {#how-to-upgrade-a-cluster}
 
-Authenticated users can upgrade clusters to the **next active workload cluster release** using the platform API. Our CLI extensions allows to trigger the action thanks to the command [`kubectl-gs update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}).
+Authenticated users can upgrade clusters to the **next active workload cluster release** using the platform API. Our CLI extensions allows to trigger the action thanks to the command [`kubectl-gs update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}). For `GitOps` approach, you can directly change the cluster configuration version in the App custom resource.
 
 Giant Swarm selects upgrade versions following best practices, avoiding skips over major versions. Test upgrades in non-production environments if using raw API methods.
 
