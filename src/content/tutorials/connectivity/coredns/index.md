@@ -21,7 +21,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-Your Giant Swarm clusters come with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns). CoreDNS is installed as default application in your clusters using a [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/). This guide explains how you can customize the CoreDNS configuration in your clusters.
+Your Giant Swarm clusters come with a default configuration for the [CoreDNS add-on](https://github.com/coredns/coredns). CoreDNS is installed as default application in your clusters using a [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/). This guide explains how you can customize the CoreDNS configuration in your clusters.
 
 ## Where to store the user configuration
 
