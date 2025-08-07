@@ -94,7 +94,7 @@ spec:
 
 Apply this configuration to start collecting metrics from your application.
 
-⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion/index.md" >}}) for metrics and logs.
+⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion/" >}}) for metrics and logs.
 
 ## Step 3: Explore your metrics
 
@@ -112,7 +112,7 @@ Try these sample queries to get started:
 - `histogram_quantile(0.95, http_request_duration_seconds_bucket)` - 95th percentile response time
 - `up{job="my-service"}` - Check if your service is up and running
 
-**New to PromQL?** Check our [Advanced PromQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial/index.md" >}}) for detailed guidance.
+**New to PromQL?** Check our [Advanced PromQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial/" >}}) for detailed guidance.
 
 ## Step 4: Monitor application logs
 
@@ -127,7 +127,7 @@ Try these sample queries:
 - `{app="my-app"} |= "error"` - Error messages from your application
 - `{namespace="my-namespace"} | json | level="error"` - Structured log parsing for error levels
 
-**Want to learn more?** Our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/index.md" >}}) covers complex log queries and analysis.
+**Want to learn more?** Our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) covers complex log queries and analysis.
 
 ## Step 5: Review pre-built dashboards
 
@@ -174,7 +174,7 @@ For production environments, treat dashboards as code:
 3. **Deploy via ConfigMaps**: Use Kubernetes resources to deploy dashboards
 4. **Automate updates**: Integrate with your CI/CD pipeline
 
-[Download our example dashboard](./dashboard.json) or check our [comprehensive dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation/index.md" >}}) for detailed instructions.
+[Download our example dashboard](./dashboard.json) or check our [comprehensive dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}}) for detailed instructions.
 
 ### Import the example dashboard
 
@@ -200,14 +200,14 @@ Now that you're monitoring your clusters and applications, explore these advance
 
 ### Enhance your observability
 
-- **[Set up alerting]({{< relref "/overview/observability/alert-management/index.md" >}})**: Get notified before issues impact users
-- **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/index.md" >}})**: Master PromQL and LogQL for deeper insights
-- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/index.md" >}})**: Collect custom metrics and logs
-- **[Explore data transformation]({{< relref "/overview/observability/data-management/data-transformation/index.md" >}})**: Optimize metrics storage and processing
+- **[Set up alerting]({{< relref "/overview/observability/alert-management/" >}})**: Get notified before issues impact users
+- **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/" >}})**: Master PromQL and LogQL for deeper insights
+- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/" >}})**: Collect custom metrics and logs
+- **[Explore data transformation]({{< relref "/overview/observability/data-management/data-transformation/" >}})**: Optimize metrics storage and processing
 
 ### Integrate external tools
 
-- **[Import/export data]({{< relref "/overview/observability/data-management/data-import-export/index.md" >}})**: Connect external systems and analysis tools
-- **[Set up multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/index.md" >}})**: Organize data access for teams and environments
+- **[Import/export data]({{< relref "/overview/observability/data-management/data-import-export/" >}})**: Connect external systems and analysis tools
+- **[Set up multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Organize data access for teams and environments
 
 Ready to explore platform security? Learn more [in the security overview]({{< relref "/overview/security" >}}).
