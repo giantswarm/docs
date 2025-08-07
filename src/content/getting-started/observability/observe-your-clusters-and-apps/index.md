@@ -30,7 +30,7 @@ Your observability platform is accessible through your dedicated Grafana instanc
 2. **Log in**: Use your organization's single sign-on (SSO) credentials
 3. **Start exploring**: You'll see a familiar Grafana interface with data already flowing in
 
-🔗 **Need help with access?** Check our [data exploration guide]({{< relref "/overview/observability/data-management/data-exploration/" >}}) for detailed authentication steps.
+🔗 **Need help with access?** Check our [data exploration guide]({{< relref "/overview/observability/data-management/data-exploration/index.md" >}}) for detailed authentication steps.
 
 ## Explore pre-configured dashboards
 
@@ -123,7 +123,7 @@ Here are some useful LogQL queries to get you started:
 {cluster_id="your-cluster-name", pod=~"your-app-.*"}
 ```
 
-🎓 **Want to learn more?** Check our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) for powerful log analysis techniques.
+🎓 **Want to learn more?** Check our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/index.md" >}}) for powerful log analysis techniques.
 
 ## Get alerted on issues
 
@@ -152,7 +152,7 @@ While default alerts cover essential monitoring, you can customize them for your
 - **Configure notification channels** like Slack, email, or PagerDuty
 - **Set up alert silences** during maintenance windows
 
-🔧 **Ready to customize?** Learn more in our [alert management documentation]({{< relref "/overview/observability/alert-management/" >}}).
+🔧 **Ready to customize?** Learn more in our [alert management documentation]({{< relref "/overview/observability/alert-management/index.md" >}}).
 
 ## Monitor application performance
 
@@ -189,7 +189,7 @@ spec:
     path: /metrics
 ```
 
-🚀 **Need help with metrics?** Our [data ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion/" >}}) covers this in detail.
+🚀 **Need help with metrics?** Our [data ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion/index.md" >}}) covers this in detail.
 
 ## Next steps
 
@@ -197,20 +197,20 @@ Now that you're monitoring your clusters and applications, here are some next st
 
 ### Explore deeper
 
-- **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/" >}})** with PromQL and LogQL
-- **[Create custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})** tailored to your team's needs
-- **[Set up multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})** to organize data by team or environment
+- **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/index.md" >}})** with PromQL and LogQL
+- **[Create custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/index.md" >}})** tailored to your team's needs
+- **[Set up multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/index.md" >}})** to organize data by team or environment
 
 ### Integrate external data
 
-- **[Import external logs]({{< relref "/overview/observability/data-management/data-import-export/" >}})** from SaaS applications or other infrastructure
-- **[Export data]({{< relref "/overview/observability/data-management/data-import-export/" >}})** to external monitoring tools or analytics platforms
-- **[Transform data]({{< relref "/overview/observability/data-management/data-transformation/" >}})** to match your organization's standards
+- **[Import external logs]({{< relref "/overview/observability/data-management/data-import-export/index.md" >}})** from SaaS applications or other infrastructure
+- **[Export data]({{< relref "/overview/observability/data-management/data-import-export/index.md" >}})** to external monitoring tools or analytics platforms
+- **[Transform data]({{< relref "/overview/observability/data-management/data-transformation/index.md" >}})** to match your organization's standards
 
 ### Scale your monitoring
 
-- **[Configure advanced alerting]({{< relref "/overview/observability/alert-management/alert-rules/" >}})** with complex conditions and routing
-- **[Manage alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})** to ensure the right teams get notified
-- **[Organize teams]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}})** with separate Grafana organizations
+- **[Configure advanced alerting]({{< relref "/overview/observability/alert-management/alert-rules/index.md" >}})** with complex conditions and routing
+- **[Manage alert routing]({{< relref "/overview/observability/alert-management/alert-routing/index.md" >}})** to ensure the right teams get notified
+- **[Organize teams]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/index.md" >}})** with separate Grafana organizations
 
 The observability platform grows with your needs - start simple and add complexity as your monitoring requirements evolve.

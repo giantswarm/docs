@@ -77,7 +77,7 @@ For rapid prototyping and iterative development, create dashboards directly in G
 
 ### Getting started
 
-1. [Access your Grafana instance]({{< relref "/overview/observability/data-management/data-exploration" >}})
+1. [Access your Grafana instance]({{< relref "/overview/observability/data-management/data-exploration/index.md" >}})
 2. Navigate to **Dashboards** > **New** > **New Dashboard**
 3. Add panels, configure visualizations, and arrange your layout
 4. Save your dashboard to the appropriate organization
