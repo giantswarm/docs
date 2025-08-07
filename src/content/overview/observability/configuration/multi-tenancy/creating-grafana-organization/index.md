@@ -4,7 +4,7 @@ title: Creating a Grafana organization
 description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
-    identifier: overview-observability-configuration-multi-tenancy-create-grafana-organization
+    identifier: overview-observability-configuration-multi-tenancy-grafana-org
     parent: overview-observability-configuration-multi-tenancy
 weight: 40
 last_review_date: 2025-07-07
