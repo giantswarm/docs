@@ -66,3 +66,11 @@ More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.
 Found on the AWSCluster resource for Cluster API provider AWS (CAPA) clusters. Specifies the ID of the managed prefix list to use when the topology mode (`network-topology.giantswarm.io/mode`) is set to `UserManaged`.
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/capa.go#L37-L39)
+
+### reconcile.fluxcd.io/requestedAt
+
+On a Flux resource, this annotation indicates that a Flux reconciliation has been requested. More info in the [Flux docs on HelmReleases, for example](https://fluxcd.io/flux/components/helm/helmreleases/#triggering-a-reconcile).
+
+### reconcile.fluxcd.io/forceAt
+
+On a HelmRelease resource, this annotation indicates that a forceful Helm install or upgrade has been requested. More info in the [Flux docs](https://fluxcd.io/flux/components/helm/helmreleases/#forcing-a-release).
