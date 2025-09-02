@@ -41,7 +41,7 @@ metadata:
   namespace: org-my-org
 ```
 
-More information about cluster configuration[here](https://docs.giantswarm.io/tutorials/fleet-management/app-platform/configuring-default-apps/).
+More information about [cluster configuration](https://docs.giantswarm.io/tutorials/fleet-management/app-platform/configuring-default-apps/).
 
 ## Configuration Reference
 
@@ -122,7 +122,7 @@ data:
       /etc/resolv.conf
 ```
 
-__Warning:__ The number of forward upstreams is limited to 15.
+**Warning**: The number of forward upstreams is limited to 15.
 
 The example above results in the following additional forward entries in the CoreDNS configuration:
 
@@ -138,7 +138,7 @@ This setting would forward all requests to 1.1.1.1 which is Cloudflare's DNS. If
 
 The forward plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/forward/).
 
-__Notes:__ For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include `.` and `/etc/resolv.conf` as they are rendered by the chart. They can be configured using simple or multiple lines:
+**Note**: For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include `.` and `/etc/resolv.conf` as they are rendered by the chart. They can be configured using simple or multiple lines:
 
 **Simple lines:**
 
@@ -177,7 +177,7 @@ data:
 
 This custom configuration allows CoreDNS to resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than the generic one. At the same time we use a different cache TTL(2000) setting.
 
-__Warning:__ By default our clusters come with Pod Security Standards and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
+**Warning**: By default our clusters come with Pod Security Standards and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 
 ## Further reading
 
