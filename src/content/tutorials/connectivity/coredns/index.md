@@ -31,7 +31,10 @@ Given the cluster you are trying to configure is called: `123ab` you can create 
 data:
   values: |
     global:
-      ...
+      apps:
+          coreDns:
+              values:
+                  ...
 kind: ConfigMap
 metadata:
   name: 123ab-user-values
