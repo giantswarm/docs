@@ -9,7 +9,7 @@ menu:
   principal:
     parent: tutorials
     identifier: tutorials-connectivity
-last_review_date: 2024-08-26
+last_review_date: 2025-09-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
