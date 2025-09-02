@@ -16,7 +16,7 @@ user_questions:
   - How can I customize the CoreDNS configuration?
   - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
-last_review_date: 2025-08-04
+last_review_date: 2025-09-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
@@ -37,7 +37,7 @@ data:
                   ...
 kind: ConfigMap
 metadata:
-  name: 123ab-user-values
+  name: 123ab-userconfig
   namespace: org-my-org
 ```
 
