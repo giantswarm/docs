@@ -10,35 +10,25 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2024-11-25
+last_review_date: 2025-09-03
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
 
-This command helps with creating a cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the platform API to create a cluster.
+This command helps with creating a Cluster API (CAPI) cluster by producing a manifest based on user input. This manifest can then optionally be modified and finally be applied to the platform API to create a cluster.
 
-The outcome depends on the provider, set via the `--provider` flag.
+The generated manifest includes:
 
-{{< tabs >}}
-{{< tab id="flags-capi" for-impl="capi_any">}}
+- [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources. The resource name is identical with the cluster name.
+- `ConfigMap` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which cluster chart is used, depending on the cloud provider. The resource name is the cluster name plus the `-userconfig` suffix.
 
-For CAPI providers (`--provider {capa,capv,capvcd,capz,eks,...}`):
-
-- [`App (name=<cluster name>)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources.
-- `ConfigMap (name=<cluster name>-userconfig)` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which cluster chart is used, depending on the cloud provider.
-- [`App (name=<cluster name>-default-apps)`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) (API version `application.giantswarm.io/v1alpha1`) - describes the Giant Swarm App which defines the helm release which in turn creates the preinstalled apps which run in the workload cluster.
-- `ConfigMap (name=<cluster name>-default-apps-userconfig)` - describes the configuration for the above preinstalled apps charts. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which default apps chart is used, depending on the cloud provider.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## General CLI flags
+## Syntax and flags
 
 The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (one of: `aws`, `azure`, `capa`, `gcp`, `vsphere` or `openstack`).
+- `--provider` - The infrastructure provider (one of: `aws`, `azure`, `capa`, `vsphere`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
   Can be retrieved with `kubectl get releases` for your installation.
@@ -51,6 +41,8 @@ It supports the following flags:
 - `--oidc-username-claim` (optional - CAPI) - This is the claim used to map the username identity of the user.
 - `--oidc-groups-claim` (optional - CAPI) - This is the claim used to map the group identity of the user.
 
+  TODO: move the following content to the flag it belongs to.
+  
   On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
 
   On Azure, it can be any of the 3 zones: `1`, `2`, `3`.
@@ -59,7 +51,7 @@ It supports the following flags:
   specify three distinct availability zones instead (AWS only). This can be done by separating AZ names with comma or using the flag
   three times with a single AZ name.
 
-### AWS CAPI specific flags
+### Flags specific to AWS {#flags-capa}
 
 - `--aws-cluster-role-identity-name` (optional) - Refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account (default: `default`).
 - `--az-usage-limit` (optional) - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets (default: `3`).
@@ -81,16 +73,7 @@ It supports the following flags:
 - `--region` - AWS region where cluster will be created.
 - `--vpc-cidr` (optional) - IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
-### AWS Vintage specific flags
-
-- `--external-snat` - AWS CNI configuration to disable (is enabled by default) the [external source network address translation](https://docs.aws.amazon.com/eks/latest/userguide/external-snat.html).
-- `--pods-cidr` (optional) - CIDR applied to the pods. If this isn't provided, the installation default will be applied.
-- `--label` (optional) - workload cluster label in the form of `key=value`. Can be specified multiple times.
-- `--service-priority` (optional) - [Service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster (one of: `highest`, `medium`, or `lowest`; default: `highest`).
-- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
-- `--release` - Workload cluster release version.
-
-### Azure CAPI specific flags
+### Flags specific to Azure {#flags-capz}
 
 - `--azure-subscription-id` - Azure subscription ID to use.
 - `--bastion-instance-type` (optional) - Instance type used for the bastion machine (default: `Standard_D2s_v5`).
@@ -102,56 +85,9 @@ It supports the following flags:
 - `--name` - must only contain alphanumeric characters, start with a letter, and be no longer than 20 characters in length.
 - `--region` - Azure region where cluster will be created.
 
-### Azure Vintage specific flags
-
-- `--release-branch` (optional) - The Giant Swarm [releases repository](https://github.com/giantswarm/releases) branch to use to look up the workload cluster release set via the `--release` flag (default: `master`).
-- `--release` - Workload cluster release version.
-
-### GCP specific flags
-
-- `--gcp-project` - The Google Cloud Platform project where the cluster will be deployed.
-- `--region` - The Google Cloud Platform region where the cluster will be deployed.
-- `--gcp-failure-domains` - The Google Cloud Platform zones where the cluster's control-plane nodes will be deployed.
-- `--gcp-control-plane-sa-email` (optional) - The Google Cloud Platform Service Account which the control-plane nodes will use (default: "default").
-- `--gcp-control-plane-sa-scopes` (optional) - The Google Cloud Platform API scopes the control-plane will have access to (default: `https://www.googleapis.com/auth/compute`).
-- `--gcp-machine-deployment-sa-email` (optional) - The Google Cloud Platform Service Account used by the worker nodes (default "default").
-- `--gcp-machine-deployment-sa-scopes` (optional) - The Scope of the worker nodes' Google Cloud Platform Service Account (default [https://www.googleapis.com/auth/compute]).
-- `--gcp-machine-deployment-name` (optional) - The name of the MachineDeployment (default: `worker1`).
-- `--gcp-machine-deployment-instance-type` (optional) - The Google Cloud Platform Instance Type for the default nodepool isntances (default: `n1-standard-4`).
-- `--gcp-machine-deployment-failure-domain` (optional) - The Google Cloud Platform zones where the cluster's default nodepool will be deployed. (default: `europe-west6-a`).
-- `--gcp-machine-deployment-replicas` (optional) - The number of nodes in the default nodepool (default: 3).
-- `--gcp-machine-deployment-disk-size` (optional) - The node disk size in GB for the default nodepool (default: 100).
-
 **Note:** The zones where the worker and control-plane nodes are deployed must be in the same region specified in the `--region` flag.
 
-### OpenStack specific flags
-
-- `--cluster-version` (optional) - Version of `cluster-openstack` helm chart to use. If not provided, the latest version will be used.
-- `--default-apps-version` (optional) - Version of `default-apps-openstack` helm chart to use. If not provided, the latest version will be used.
-- `--cloud` - Name of the cloud in the `cloud-config` secret. This is almost always "openstack".
-- `--cloud-config` - Name of the `cloud-config` secret which defines the credentials for the OpenStack project in which the cluster should be created. This must be created in the organization namespace before creating a cluster.
-- `--dns-nameservers` (optional) - A list of DNS nameservers to be used to resolve external names.
-- `--external-network-id` - UUID of the external network to be used. Only required if multiple external networks are available.
-- `--node-cidr` - CIDR defining the IP range of cluster nodes. When used, new network and subnet will be created.
-- `--network-name` (optional) - Name of existing network for the cluster. Can be used when `--node-cidr` is empty.
-- `--subnet-name` (optional) - Name of existing subnet for the cluster. Can be used when `--node-cidr` is empty.
-- `--bastion-boot-from-volume` - If true, bastion machine will use a persistent root volume instead of an ephemeral volume.
-- `--bastion-disk-size` - Size of root volume attached to the cluster bastion machine in gigabytes. Must be greater than or equal to the size of the bastion source image (`--bastion-image`).
-- `--bastion-image` - Bastion image name or root volume source UUID if --bastion-boot-from-volume is set.
-- `--bastion-machine-flavor` - Flavor (a.k.a. size) of the bastion machine.
-- `--control-plane-boot-from-volume` - If true, control plane machine(s) will use a persistent root volume instead of an ephemeral volume.
-- `--control-plane-disk-size` - Size of root volumes attached to each control plane node machine in gigabytes. Must be greater than or equal to the size of the node source image.
-- `--control-plane-image` - Control plane image name or root volume source UUID if --control-plane-boot-from-volume is set.
-- `--control-plane-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
-- `--control-plane-replicas` - Number of control plane replicas. This should be 1 for a non-HA control plane or 3 for an HA control plane (etcd requires an odd number of members).
-- `--worker-boot-from-volume` - If true, worker machines will use a persistent root volume instead of an ephemeral volume.
-- `--worker-disk-size` - Size of root volumes attached to each worker node machine in gigabytes. Must be greater than or equal to the size of the node source image (`--worker-image`).
-- `--worker-failure-domain` - Failure domain of worker nodes.
-- `--worker-image` - Worker image name or root volume source UUID if --worker-boot-from-volume is set.
-- `--worker-machine-flavor` - Flavor (a.k.a. size) of the worker node machines.
-- `--worker-replicas` - Number of replicas in the primary worker node pool.
-
-### vSphere specific flags
+### Flags specific to vSphere {#flags-capv}
 
 - `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
 - `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
@@ -185,6 +121,7 @@ Example command for an AWS CAPI cluster:
 ```nohighlight
 kubectl gs template cluster \
   --provider capa \
+  --release 31.1.1 \
   --control-plane-az eu-central-1a \
   --description "Development Cluster" \
   --name dev01 \
@@ -238,23 +175,28 @@ The above example command would generate the following output:
 apiVersion: v1
 data:
   values: |
-    aws: {}
-    bastion: {}
-    clusterDescription: Development Cluster
-    clusterName: dev01
-    controlPlane:
-      replicas: 3
-    machinePools:
-      machine-pool0:
-        availabilityZones:
-        - eu-central-1a
-        instanceType: m5.xlarge
-        maxSize: 10
-        minSize: 3
-        rootVolumeSizeGB: 300
-    network:
-      availabilityZoneUsageLimit: 3
-    organization: acme
+    global:
+      connectivity:
+        availabilityZoneUsageLimit: 3
+        network: {}
+        topology: {}
+      controlPlane: {}
+      metadata:
+        description: Development Cluster
+        name: dev01
+        organization: acme
+        preventDeletion: false
+      nodePools:
+        nodepool0:
+          availabilityZones:
+          - eu-central-1a
+          instanceType: m5.xlarge
+          maxSize: 10
+          minSize: 3
+          rootVolumeSizeGB: 8
+      providerSpecific: {}
+      release:
+        version: 31.1.1
 kind: ConfigMap
 metadata:
   creationTimestamp: null
@@ -292,51 +234,7 @@ spec:
     configMap:
       name: dev01-userconfig
       namespace: org-acme
-  version: 0.9.2
----
-apiVersion: v1
-data:
-  values: |
-    clusterName: dev01
-    organization: acme
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  labels:
-    giantswarm.io/cluster: dev01
-  name: dev01-default-apps-userconfig
-  namespace: org-acme
----
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-  name: dev01-default-apps
-  namespace: org-acme
-spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: default-apps-aws
-  namespace: org-acme
-  userConfig:
-    configMap:
-      name: dev01-default-apps-userconfig
-      namespace: org-acme
-  version: 0.5.4
+  version: ""
 ```
 
 {{< /tab >}}
