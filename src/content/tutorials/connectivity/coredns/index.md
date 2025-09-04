@@ -4,64 +4,44 @@ title: Advanced CoreDNS configuration
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters.
 weight: 25
 menu:
-  main:
-    parent: advanced-connectivity
+  principal:
+    parent: tutorials-connectivity
+    identifier: tutorials-connectivity-coredns
+aliases:
+  - /advanced/connectivity/coredns
+  - /guides/advanced-coredns-configuration/
+  - /advanced/coredns/
 user_questions:
   - How can I override the default CoreDNS configuration?
   - How can I customize the CoreDNS configuration?
   - How can I adjust resource limits for CoreDNS?
   - Where is the user values ConfigMap for CoreDNS?
-last_review_date: 2023-11-07
-aliases:
-  - /advanced/connectivity/coredns
-  - /guides/advanced-coredns-configuration/
-  - /advanced/coredns/
+last_review_date: 2025-09-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-Your Giant Swarm installation comes with a default configuration for the [CoreDNS addon](https://github.com/coredns/coredns)
+Your Giant Swarm clusters come with a default configuration for the [CoreDNS add-on](https://github.com/coredns/coredns). CoreDNS is installed as default application in your clusters using a [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/). This guide explains how you can customize the CoreDNS configuration in your clusters.
 
-You can override these defaults in a ConfigMap named `coredns-user-values` in the management cluster.
+## Where to store the user configuration
 
-__Note__: In Cluster API, CoreDNS is part of default apps `<provider>` chart (example [Cluster API for Openstack](https://github.com/giantswarm/default-apps-openstack/). In order to extend the app, you need to patch the App Custom Resource to use `coredns-user-values` configmap. [Check out this example](https://github.com/giantswarm/gitops-template/pull/74/files).
-
-## Where is the user values ConfigMap
-
-Given the cluster you are trying to configure has id: `123ab` then you will find the `coredns-user-values` ConfigMap in the management cluster in the `123ab` namespace:
-
-```nohighlight
-$ kubectl -n 123ab get cm coredns-user-values --context=control-plane
-NAME                                   DATA      AGE
-coredns-user-values                    0         11m
-```
-
-__Warning:__
-
-Please do not edit any other CoreDNS related ConfigMaps.
-
-Only the user values ConfigMap is safe to edit.
-
------
-
-## How to set configuration options using the user values ConfigMap
-
-On the management cluster, create or edit a ConfigMap named `coredns-user-values`
-in the workload cluster namespace as described above:
+Given the cluster you are trying to configure is called: `123ab` you can create or extend the `<CLUSTER>-user-values` ConfigMap of the organization namespace on the management cluster. Inside the ConfigMap, the Helm values are passed as the field called `values` which lets you define a
 
 ```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  labels:
-    app: coredns
-  name: coredns-user-values
-  namespace: abc12
 data:
   values: |
-    configmap:
-      cache: "60"
+    global:
+      apps:
+          coreDns:
+              values:
+                  ...
+kind: ConfigMap
+metadata:
+  name: 123ab-userconfig
+  namespace: org-my-org
 ```
+
+More information about [cluster configuration](https://docs.giantswarm.io/tutorials/fleet-management/app-platform/configuring-default-apps/).
 
 ## Configuration Reference
 
@@ -142,7 +122,7 @@ data:
       /etc/resolv.conf
 ```
 
-__Warning:__ The number of forward upstreams is limited to 15.
+**Warning**: The number of forward upstreams is limited to 15.
 
 The example above results in the following additional forward entries in the CoreDNS configuration:
 
@@ -158,7 +138,7 @@ This setting would forward all requests to 1.1.1.1 which is Cloudflare's DNS. If
 
 The forward plugin also supports much more detailed configuration which is documented in the [upstream documentation](https://coredns.io/plugins/forward/).
 
-__Notes:__ For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include `.` and `/etc/resolv.conf` as they are rendered by the chart. They can be configured using simple or multiple lines:
+**Note**: For releases using the CoreDNS chart in versions 1.1.3 and below, the upstreams must not include `.` and `/etc/resolv.conf` as they are rendered by the chart. They can be configured using simple or multiple lines:
 
 **Simple lines:**
 
@@ -182,7 +162,7 @@ data:
 
 ### Advanced configuration
 
-In case you need to have a finer granularity you can define custom server blocks with all desired configurations. They will be parsed after the catch-all block in the Corefile. As an example, let's define a block for a `example.com` with a custom configuration:
+In case you need to have a finer granularity you can define custom server blocks with all desired configurations. They will be parsed after the catch-all block in the `Corefile`. As an example, let's define a block for a `example.com` with a custom configuration:
 
 ```yaml
 data:
@@ -197,7 +177,7 @@ data:
 
 This custom configuration allows CoreDNS to resolve all `example.com` requests to a different upstream DNS resolver (9.9.9.9) than the generic one. At the same time we use a different cache TTL(2000) setting.
 
-__Warning:__ By default our clusters come with Pod Security Policies and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
+**Warning**: By default our clusters come with Pod Security Standards and Network Policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens to `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
 
 ## Further reading
 
