@@ -235,48 +235,6 @@ $transition: all 0.2s ease
     .acnav__list--level4
       display: block !important
 
-// Dark mode support
-@media (prefers-color-scheme: dark)
-  .acnav
-    .acnav__link
-      color: rgba(255, 255, 255, 0.9)
-
-      &:hover
-        color: #60a5fa
-        background-color: rgba(255, 255, 255, 0.1)
-
-    .acnav__item
-      border-bottom-color: rgba(255, 255, 255, 0.1)
-
-      &.is-active > .acnav__link,
-      &.is-active > .acnav__toggle .acnav__link
-        color: rgba(255, 255, 255, 0.95)
-        font-weight: 600
-
-      .current
-        color: rgba(255, 255, 255, 0.95)
-        font-weight: 600
-
-        &::before
-          background: #60a5fa
-
-    .acnav__list--level2,
-    .acnav__list--level3,
-    .acnav__list--level4
-      border-left-color: rgba(255, 255, 255, 0.2)
-
-    .acnav__toggle
-      color: rgba(255, 255, 255, 0.9)
-
-      &:hover,
-      &:focus
-        background-color: rgba(255, 255, 255, 0.1)
-
-      &-icon
-        &::before,
-        &::after
-          background: currentColor
-
 // Mobile responsive adjustments
 @media screen and (max-width: 768px)
   .acnav
