@@ -5,7 +5,8 @@ description: Unhealthy cluster nodes can lead to impaired workload reliability a
 weight: 60
 menu:
   principal:
-    parent:
+    parent: overview-fleetmanagement-clustermanagement-concepts
+    identifier: overview-fleetmanagement-clustermanagement-concepts-node-termination
 user_questions:
   - How are unhealthy worker nodes treated?
 last_review_date: 2025-07-14
