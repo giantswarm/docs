@@ -82,7 +82,7 @@ Control plane machines are rotated first, followed by worker nodes. Control plan
 
 The Cluster API for AWS controller manages upgrades using EC2 instances. The default [instance warmup](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) configuration ensures AWS doesn't replace all nodes at once but in steps, allowing human intervention if needed. For small node pools, one node is replaced every 10 minutes. For larger pools, small sets of nodes are replaced every 10 minutes.
 
-Worker nodes receive a terminate signal from AWS. The [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) drains machines gracefully before termination. The default timeout is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools), which you can adjust as needed.
+Worker nodes receive a terminate signal from AWS. The preinstalled [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) drains machines gracefully before termination. The default timeout is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools), which you can adjust as needed.
 
 {{< /tab >}}
 {{< tab id="azure-upgrade-details" for-impl="capz" title="Azure" >}}
