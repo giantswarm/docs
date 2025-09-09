@@ -85,18 +85,24 @@ Worker nodes receive a terminate signal from AWS. The preinstalled [`aws-node-te
 
 {{< /tab >}}
 {{< tab id="azure-upgrade-details" for-impl="capz" title="Azure" >}}
+Control plane machines are rotated first, followed by worker nodes. Control plane nodes are replaced one by one to keep the cluster operational.
 
-TBD
+Worker upgrade behavior is based on the MachineDeployment (individual VMs, typically in an Availability Set): Cluster API performs a rolling update. By default it creates one new node, waits for it to become Ready, then drains and deletes one old node (maxSurge=1, maxUnavailable=0).
 
+Nodes being removed are cordoned and drained before deletion. For VMSS-initiated scale-in or eviction (for example Spot VM eviction), Azure Scheduled Events are emitted; a node-termination handler drains the node gracefully before the VM is removed. Drain/timeout behavior is configurable.
 {{< /tab >}}
 {{< tab id="vsphere-upgrade-details" for-impl="capv" title="vSphere" >}}
+Control plane machines are rotated first, followed by worker nodes. Control plane nodes are replaced one by one to keep the cluster operational.
 
-TBD
+Workers are managed via MachineDeployments. Cluster API uses a rolling update strategy by default (maxSurge=1, maxUnavailable=0): it adds a new VM/node, waits for it to be Ready, then cordons, drains, and deletes one old VM at a time.
 
+There is no cloud-level termination signal on vSphere. Draining and deletion are orchestrated by Cluster API. Timeouts for draining and node deletion are configurable (for example via KubeadmControlPlane’s nodeDrainTimeout/nodeDeletionTimeout and the MachineDeployment rolling update strategy).
 {{< /tab >}}
 {{< tab id="vcd-upgrade-details" for-impl="capvcd" title="vCloud Director" >}}
+Control plane machines are rotated first, followed by worker nodes. Control plane nodes are replaced one by one to keep the cluster operational.
 
-TBD
+Workers are managed via MachineDeployments. Cluster API performs a rolling update (default maxSurge=1, maxUnavailable=0): new VMs are brought up and made Ready before old nodes are cordoned, drained, and removed.
 
+Cloud Director does not provide termination notices to the node. Draining is handled by Cluster API before VM deletion. Because Cloud Director operations (power off, guest customization, network attachment) can take longer than on IaaS clouds, rollouts may progress more slowly. Drain and deletion timeouts are configurable to accommodate environment characteristics.
 {{< /tab >}}
 {{< /tabs >}}
