@@ -69,7 +69,7 @@ To ensure your workloads remain operational during upgrades:
 - **Set scheduling priorities**: Use Pod priority classes and set resource requests/limits to influence scheduling
 - **Avoid ephemeral resources**: Use controllers (Deployments, StatefulSets) instead of standalone Pods
 - **Configure webhook timeouts**: Set low timeout values (e.g., 5 seconds) for validation and mutation webhooks
-- **Verify pod health**: Ensure all critical pods are running before upgrades with `kubectl get pods --all-namespaces | grep -v "Running\|ContainerCreating"`
+- **Verify pod health**: Ensure all critical pods are running before upgrades with `kubectl get pods --all-namespaces | grep -v "Running\|Completed"`
 
 ## How upgrades work under the hood
 
