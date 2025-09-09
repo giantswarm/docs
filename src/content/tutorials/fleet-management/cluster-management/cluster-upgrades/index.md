@@ -41,11 +41,11 @@ Versions are named **<major>.<minor>.<patch>**.
 
 **Major upgrades** include new Kubernetes releases, third-party components, and significant new features. Major releases align with Kubernetes upstream releases.
 
-When a new major version is released, the oldest major release is deprecated. You can only create clusters with deprecated releases using `kubectl-gs`. Existing clusters remain unaffected.
+When a new major version is released, the oldest major release is deprecated. You could still create clusters with deprecated releases if necessary. Existing clusters remain unaffected.
 
 ## How to upgrade
 
-**Patch and minor upgrades** are automatically rolled out by Giant Swarm, respecting agreed maintenance windows.
+**Patch and minor upgrades** are automatically rolled out by Giant Swarm, respecting agreed maintenance windows or schedules.
 
 **Major upgrades** are not automated. You'll be notified to schedule the upgrade, possibly after updating workloads. Giant Swarm staff may assist or initiate these upgrades.
 
