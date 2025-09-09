@@ -38,7 +38,7 @@ Versions are named **<major>.<minor>.<patch>**.
 
 **Patch upgrades** increase the patch version for bug fixes and stability improvements.
 
-**Minor upgrades** introduce non-disruptive features that are typically less significant than major updates.
+**Minor upgrades** introduce non-disruptive features that are typically less significant than major upgrades.
 
 **Major upgrades** include new Kubernetes minor releases, third-party components, and significant new features. Major releases align with Kubernetes upstream minor releases.
 
