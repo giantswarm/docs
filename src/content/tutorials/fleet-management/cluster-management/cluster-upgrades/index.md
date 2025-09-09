@@ -55,7 +55,7 @@ You cannot skip major versions when upgrading (e.g. v32.x.y to v34.x.y) – upgr
 To trigger an upgrade:
 
 - **GitOps**: Update the cluster configuration file with the desired release version
-- **kubectl-gs**: Use the [`update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}) command with the `--release-version` flag
+- **kubectl-gs** command line tool: Use the [`update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}) command with the `--release-version` flag
 
 ## Avoid downtime during upgrades
 
