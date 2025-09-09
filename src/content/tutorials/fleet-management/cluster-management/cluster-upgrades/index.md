@@ -29,8 +29,8 @@ A **release** bundles certain versions of third-party and Giant Swarm specific c
 - [Containerd](https://github.com/containerd/containerd) as a container runtime environment
 - [Etcd](https://etcd.io/) for distributed storage
 - [Cilium](https://cilium.io/) for networking and security
-- [An observability bundle](https://github.com/giantswarm/observability-bundle)
-- [A security bundle](https://github.com/giantswarm/security-bundle)
+- [Observability bundle](https://github.com/giantswarm/observability-bundle)
+- [Security bundle](https://github.com/giantswarm/security-bundle)
 
 Each release is specific to the provider (AWS, Azure, or VMware) and identified by a version number. See the [workload cluster releases](https://github.com/giantswarm/releases/) repository for all available releases. Releases are **immutable** once deployed, ensuring consistency. Changes only happen through upgrades to a new release.
 
