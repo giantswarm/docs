@@ -40,7 +40,7 @@ Versions are named **<major>.<minor>.<patch>**.
 
 **Minor upgrades** introduce non-disruptive features that are typically less significant than major upgrades.
 
-**Major upgrades** include new Kubernetes minor releases, third-party components, and significant new features. Major releases align with Kubernetes upstream minor releases.
+**Major upgrades** include new Kubernetes releases, third-party components, and significant new features. Major releases align with Kubernetes upstream releases.
 
 When a new major version is released, the oldest major release is deprecated. You can only create clusters with deprecated releases using `kubectl-gs`. Existing clusters remain unaffected.
 
