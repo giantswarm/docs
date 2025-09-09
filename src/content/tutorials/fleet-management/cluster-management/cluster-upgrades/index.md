@@ -34,6 +34,8 @@ A **release** bundles certain versions of third-party and Giant Swarm specific c
 
 Each release is specific to the provider (AWS, Azure, or VMware) and identified by a version number. See the [workload cluster releases](https://github.com/giantswarm/releases/) repository for all available releases. Releases are **immutable** once deployed, ensuring consistency. Changes only happen through upgrades to a new release.
 
+Versions are named **<major>.<minor>.<patch>**.
+
 **Patch upgrades** increase the patch version for bug fixes and stability improvements.
 
 **Minor upgrades** introduce non-disruptive features that are typically less significant than major updates.
