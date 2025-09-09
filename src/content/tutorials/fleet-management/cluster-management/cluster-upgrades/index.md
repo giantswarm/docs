@@ -9,7 +9,7 @@ menu:
 aliases:
   - /platform-overview/cluster-management/cluster-upgrades/
   - /reference/cluster-upgrades/
-last_review_date: 2025-08-04
+last_review_date: 2025-09-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -27,7 +27,6 @@ A **release** bundles certain versions of third-party and Giant Swarm specific c
 - [Kubernetes](https://kubernetes.io/) with its sub-components
 - [Flatcar Container Linux](https://www.flatcar-linux.org/docs/latest/) as the node's operating system
 - [Containerd](https://github.com/containerd/containerd) as a container runtime environment
-- [Etcd](https://etcd.io/) for distributed storage
 - [Cilium](https://cilium.io/) for networking and security
 - [Observability bundle](https://github.com/giantswarm/observability-bundle)
 - [Security bundle](https://github.com/giantswarm/security-bundle)
