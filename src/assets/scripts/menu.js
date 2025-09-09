@@ -102,7 +102,7 @@
       }
 
       // Close sibling submenus at the same level
-      this.closeSiblingSubmenus(button);
+      // this.closeSiblingSubmenus(button);
     }
 
     animateExpand(submenu) {

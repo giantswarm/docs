@@ -39,7 +39,6 @@ $transition: all 0.2s ease
     display: flex
     align-items: center
     gap: 8px
-    border-radius: 4px
     transition: $transition
     color: inherit
 
@@ -48,7 +47,7 @@ $transition: all 0.2s ease
 
     &:focus
       outline: 2px solid $focus-color
-      outline-offset: 2px
+      outline-offset: -2px
       background-color: $hover-bg
 
     // Toggle icon styling
@@ -86,10 +85,15 @@ $transition: all 0.2s ease
         transform: translate(-50%, -50%) rotate(90deg)
 
   &__item
+    position: relative
     margin-bottom: 0
     line-height: 1.5
     padding: 0
     list-style: none
+
+    &.has-children ~ :not(.has-children) > .acnav__link,
+    &:has(~ .has-children):not(.has-children) > .acnav__link
+      padding-left: 28px
 
     // Add subtle borders for better separation
     &:not(:last-child)
@@ -109,14 +113,16 @@ $transition: all 0.2s ease
 
     .acnav__item::before
       content: ''
+      display: none
       position: absolute
-      left: -8px
-      top: 50%
-      width: 3px
-      height: 16px
-      background: $primary-color
-      transform: translateY(-50%)
-      border-radius: 2px
+      left: 0
+      top: 0
+      width: 2px
+      height: 100%
+      background: #234a61
+    
+    &.is-active:not(.has-children)::before
+      display: block
 
   // List styling
   &__list
@@ -128,20 +134,20 @@ $transition: all 0.2s ease
     &--level1
       padding-bottom: 20px
 
-      > .acnav__item
-        margin-bottom: 4px
-
     // Nested level indentation and styling
     &--level2,
     &--level3,
     &--level4
-      border-left: 2px solid rgba($border-color, 0.3)
+      border-left: 1px solid rgba($border-color, 0.3)
       margin-left: 8px
       padding-left: 12px
 
       .acnav__item
-        margin-bottom: 2px
         font-size: 14px
+
+    &--level3,
+    &--level4
+      padding-left: 20px
 
   // Link styling
   &__link
@@ -150,7 +156,6 @@ $transition: all 0.2s ease
     margin: 0
     color: $text-light
     text-decoration: none
-    border-radius: 4px
     transition: $transition
     width: 100%
     box-sizing: border-box
@@ -162,7 +167,7 @@ $transition: all 0.2s ease
 
     &:focus
       outline: 2px solid $focus-color
-      outline-offset: 2px
+      outline-offset: -2px
       background-color: $hover-bg
       color: $text-color
 
@@ -191,7 +196,6 @@ $transition: all 0.2s ease
   &__list--level2
     .acnav__link,
     .acnav__toggle
-      padding: 8px 12px
       font-size: 14px
 
       .acnav__link
@@ -201,7 +205,6 @@ $transition: all 0.2s ease
   &__list--level4
     .acnav__link,
     .acnav__toggle
-      padding: 6px 12px
       font-size: 13px
 
       .acnav__link
