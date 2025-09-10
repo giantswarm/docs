@@ -132,7 +132,7 @@ You've got several options to inspect workload cluster release details:
 - [observability-bundle](https://github.com/giantswarm/observability-bundle)
 - [alloy-app](https://github.com/giantswarm/alloy-app)
 - [prometheus-operator-crd](https://github.com/giantswarm/prometheus-operator-crd)
-  * [kube-prometheus-stack-app](https://github.com/giantswarm/kube-prometheus-stack-app)
+- [kube-prometheus-stack-app](https://github.com/giantswarm/kube-prometheus-stack-app)
 - [prometheus-agent](https://github.com/giantswarm/prometheus-agent-app)
 - [promtail-app](https://github.com/giantswarm/promtail-app)
 - [grafana-agent-app](https://github.com/giantswarm/grafana-agent-app)
