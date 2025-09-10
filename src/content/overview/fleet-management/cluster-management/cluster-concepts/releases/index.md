@@ -143,16 +143,16 @@ You've got several options to inspect workload cluster release details:
   * [edgedb](https://github.com/giantswarm/edgedb-app)
   * [exception-recommender](https://github.com/giantswarm/exception-recommender)
   * [falco](https://github.com/giantswarm/falco-app)
-  * [jiralert](https://github.com/giantswarm/jiralert-app)
-  * [kyverno](https://github.com/giantswarm/kyverno-app)
-  * [kyverno-crds](https://github.com/giantswarm/kyverno-crds)
-  * [kyverno-policy-operator](https://github.com/giantswarm/kyverno-policy-operator)
-  * [kyverno-policies](https://github.com/giantswarm/kyverno-policies)
-  * [policy-api-crds](https://github.com/giantswarm/policy-api-crds)
-  * [reports-server](https://github.com/giantswarm/reports-server-app)
-  * [starboard-exporter](https://github.com/giantswarm/starboard-exporter)
-  * [trivy](https://github.com/giantswarm/trivy-app)
-  * [trivy-operator](https://github.com/giantswarm/trivy-operator-app)
+- [jiralert](https://github.com/giantswarm/jiralert-app)
+- [kyverno](https://github.com/giantswarm/kyverno-app)
+- [kyverno-crds](https://github.com/giantswarm/kyverno-crds)
+- [kyverno-policy-operator](https://github.com/giantswarm/kyverno-policy-operator)
+- [kyverno-policies](https://github.com/giantswarm/kyverno-policies)
+- [policy-api-crds](https://github.com/giantswarm/policy-api-crds)
+- [reports-server](https://github.com/giantswarm/reports-server-app)
+- [starboard-exporter](https://github.com/giantswarm/starboard-exporter)
+- [trivy](https://github.com/giantswarm/trivy-app)
+- [trivy-operator](https://github.com/giantswarm/trivy-operator-app)
 - [teleport-kube-agent](https://github.com/giantswarm/teleport-kube-agent-app)
 - [vertical-pod-autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app)
 - [vertical-pod-autoscaler-crd](https://github.com/giantswarm/vertical-pod-autoscaler-crd)
@@ -178,7 +178,7 @@ You've got several options to inspect workload cluster release details:
 - [azuredisk-csi-driver](https://github.com/giantswarm/azuredisk-csi-driver-app)
 - [azurefile-csi-driver](https://github.com/giantswarm/azurefile-csi-driver-app)
 
-### VSphere
+### vSphere
 
 - [cloud-provider-vsphere](https://github.com/giantswarm/cloud-provider-vsphere-app)
 - [kube-vip](https://github.com/giantswarm/kube-vip-app)
@@ -188,7 +188,6 @@ You've got several options to inspect workload cluster release details:
 ### Cloud Director
 
 - [cloud-provider-cloud-director](https://github.com/giantswarm/cloud-provider-cloud-director-app)
-
 
 ## Further reading
 
