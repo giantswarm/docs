@@ -288,3 +288,22 @@ source_repositories:
       policyexceptiondrafts.policy.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-shield
+  - url: https://github.com/giantswarm/konfigure-operator
+    organization: giantswarm
+    short_name: konfigure-operator
+    commit_reference: v1.0.1
+    crd_paths:
+      - config/crd/bases
+    cr_paths:
+      - docs/examples/crs
+    metadata:
+      konfigurationschemas.konfigure.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-honeybadger
+        topics:
+          - configuration
+      konfigurations.konfigure.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-honeybadger
+        topics:
+          - configuration
