@@ -44,7 +44,7 @@ We test workload cluster releases as a whole. To upgrade a component to a newer 
 
 The SemVer standard specifies version numbers in the form of `Major.Minor.Patch`.
 
-Each new workload cluster release defines a set of changes with regard to exactly one previous workload cluster release. What changed influences the version number of the new release.
+Each new workload cluster release defines a set of changes regarding exactly one previous workload cluster release. What changed influences the version number of the latest release.
 
 ### Major version {#major}
 
@@ -82,7 +82,7 @@ Once we've released a new workload cluster release, whether it's major, minor, o
 - As soon as we publish a new major release, we can deprecate all active releases in the two major versions preceding it, since they're no longer needed as an upgrade path.
 - When we release a new minor or patch version, we deprecate the previous version. For example, when 31.1.0 comes out, the previous version 31.0.1 gets deprecated.
 
-Once deprecated, you can still keep using the workload cluster release with existing clusters. In addition, as long as you have at least one cluster in your installation running the deprecated release, you can also create new clusters using that release. This allows you to create test clusters to test an upgrade from that release.
+Once deprecated, you can continue to use the workload cluster release with existing clusters. Also, as long as you have at least one cluster in your installation running the deprecated release, you can also create new clusters using that release. This allows you to create test clusters to test an upgrade from that release.
 
 ### Pre-releases
 
@@ -120,8 +120,8 @@ You've got several options to inspect workload cluster release details:
 - [cilium-servicemonitors](https://github.com/giantswarm/cilium-servicemonitors-app)
 - [coredns](https://github.com/giantswarm/coredns-app)
 - [coredns-extensions](https://github.com/giantswarm/coredns-extensions-app)
-- [etcd-defrag](https://github.com/giantswarm/etcd-defrag-app)
-- [etcd-k8s-res-count-exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter)
+- [ETCD-defrag](https://github.com/giantswarm/etcd-defrag-app)
+- [ETCD-k8s-resources-count](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter)
 - [external-dns](https://github.com/giantswarm/external-dns-app)
 - [k8s-audit-metrics](https://github.com/giantswarm/k8s-audit-metrics)
 - [k8s-dns-node-cache](https://github.com/giantswarm/k8s-dns-node-cache-app)
@@ -130,16 +130,16 @@ You've got several options to inspect workload cluster release details:
 - [network-policies](https://github.com/giantswarm/network-policies-app)
 - [node-exporter](https://github.com/giantswarm/node-exporter-app)
 - [observability-bundle](https://github.com/giantswarm/observability-bundle)
-  * [alloy-app](https://github.com/giantswarm/alloy-app)
-  * [prometheus-operator-crd](https://github.com/giantswarm/prometheus-operator-crd)
+- [alloy-app](https://github.com/giantswarm/alloy-app)
+- [prometheus-operator-crd](https://github.com/giantswarm/prometheus-operator-crd)
   * [kube-prometheus-stack-app](https://github.com/giantswarm/kube-prometheus-stack-app)
-  * [prometheus-agent](https://github.com/giantswarm/prometheus-agent-app)
-  * [promtail-app](https://github.com/giantswarm/promtail-app)
-  * [grafana-agent-app](https://github.com/giantswarm/grafana-agent-app)
+- [prometheus-agent](https://github.com/giantswarm/prometheus-agent-app)
+- [promtail-app](https://github.com/giantswarm/promtail-app)
+- [grafana-agent-app](https://github.com/giantswarm/grafana-agent-app)
 - [observability-policies](https://github.com/giantswarm/observability-policies-app)
 - [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter-app)
 - [security-bundle](https://github.com/giantswarm/security-bundle)
-  * [cloudnative-pg](https://github.com/giantswarm/cloudnative-pg-app)
+- [cloudnative-pg](https://github.com/giantswarm/cloudnative-pg-app)
   * [edgedb](https://github.com/giantswarm/edgedb-app)
   * [exception-recommender](https://github.com/giantswarm/exception-recommender)
   * [falco](https://github.com/giantswarm/falco-app)
