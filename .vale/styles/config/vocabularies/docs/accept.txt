@@ -29,6 +29,13 @@ backbone
 CIDR[s]?
 CLI
 cluster-vsphere
+[Cc]ontainerd
+[Cc]rossplane
+CRs
+declaratively
+descheduler
+[Dd]ex
+[Dd][Nn][Ss]
 configmap[s]?
 containerd
 CR[D]?[s]?
