@@ -1,54 +1,101 @@
 {{ $site := .Site}}
 
 <section class="nav-wrap">
-	<nav class="acnav" role="navigation">
-		<ul class="acnav__list acnav__list--level1">
-
+	<nav class="acnav" role="navigation" aria-label="Main navigation">
+		<ul class="acnav__list acnav__list--level1" role="list">
 			{{ $currentPage := . }}
             {{ range .Site.Menus.principal }}
                 {{ $pageForItem1 := $site.GetPage .URL }}
-                {{ if .HasChildren }}
-                    <li class="has-children">
-                        <div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) (eq $pageForItem1.Name $currentPage.Name) }} active{{ end }}"><a href="{{ .URL }}" class="{{ if $currentPage.IsMenuCurrent "main" . }}current{{ end }}">{{ .Name }}</a></div>
-                        {{ if or ($currentPage.IsDescendant $pageForItem1) (eq $pageForItem1.Name $currentPage.Name) }}
-                        <ul class="acnav__list acnav__list--level2">
+                {{ $hasChildren1 := .HasChildren }}
+                {{ $isActive1 := or ($currentPage.HasMenuCurrent "main" .) (eq $currentPage.RelPermalink .URL) }}
+                {{ $isExpanded1 := or ($currentPage.IsDescendant $pageForItem1) (eq $pageForItem1.Name $currentPage.Name) }}
+
+                <li class="acnav__item{{ if $hasChildren1 }} has-children{{ end }}{{ if $isActive1 }} is-active{{ end }}{{ if $isExpanded1 }} is-expanded{{ end }}" role="none">
+                    {{ if $hasChildren1 }}
+                        <button
+                            class="acnav__toggle"
+                            aria-expanded="{{ if $isExpanded1 }}true{{ else }}false{{ end }}"
+                            aria-controls="submenu-level1-{{ .Identifier | default (.Name | urlize) }}"
+                            aria-label="{{ if $isExpanded1 }}Collapse{{ else }}Expand{{ end }} {{ .Name }} submenu"
+                        >
+                            <span class="acnav__toggle-icon" aria-hidden="true"></span>    
+                            <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                        </button>
+                        <ul
+                            class="acnav__list acnav__list--level2"
+                            id="submenu-level1-{{ .Identifier | default (.Name | urlize) }}"
+                            role="group"
+                            {{ if not $isExpanded1 }}aria-hidden="true"{{ end }}
+                        >
                             {{ range .Children }}
                                 {{ $pageForItem2 := $site.GetPage .URL }}
-                                {{ if .HasChildren }}
-                                    <li class="has-children">
-                                        <div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" . ) }} active{{ end }}"><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></div>
-                                        {{ if or ($currentPage.IsDescendant $pageForItem2) (eq $pageForItem2.Name $currentPage.Name) }}
-                                            <ul class="acnav__list acnav__list--level3">
-                                                {{ range .Children }}
-													{{ $pageForItem3 := $site.GetPage .URL }}
-													{{ if .HasChildren }}
-														<li class="has-children">
-															<div class="acnav__label{{ if or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" . ) }} active{{ end }}"><a class="{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></div>
-															{{ if or ($currentPage.IsDescendant $pageForItem3) (eq $pageForItem3.Name $currentPage.Name) }}
-																<ul class="acnav__list acnav__list--level4">
-																	{{ range .Children }}
-																	<li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
-																	{{ end }}
-																</ul>
-															{{ end }}
-														</li>
-													{{ else }}
-														<li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
-													{{ end }}
-                                                {{ end }}
-                                            </ul>
-                                        {{ end }}
-                                    </li>
-                                {{ else }}
-                                    <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
-                                {{ end }}
+                                {{ $hasChildren2 := .HasChildren }}
+                                {{ $isActive2 := or ($currentPage.HasMenuCurrent "main" .) (eq $currentPage.RelPermalink .URL) }}
+                                {{ $isExpanded2 := or ($currentPage.IsDescendant $pageForItem2) (eq $pageForItem2.Name $currentPage.Name) }}
+
+                                <li class="acnav__item{{ if $hasChildren2 }} has-children{{ end }}{{ if $isActive2 }} is-active{{ end }}{{ if $isExpanded2 }} is-expanded{{ end }}" role="none">
+                                    {{ if $hasChildren2 }}
+                                        <button
+                                            class="acnav__toggle"
+                                            aria-expanded="{{ if $isExpanded2 }}true{{ else }}false{{ end }}"
+                                            aria-controls="submenu-level2-{{ .Identifier | default (.Name | urlize) }}"
+                                            aria-label="{{ if $isExpanded2 }}Collapse{{ else }}Expand{{ end }} {{ .Name }} submenu"
+                                        >
+                                            <span class="acnav__toggle-icon" aria-hidden="true"></span>
+                                            <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                                        </button>
+                                        <ul
+                                            class="acnav__list acnav__list--level3"
+                                            id="submenu-level2-{{ .Identifier | default (.Name | urlize) }}"
+                                            role="group"
+                                            {{ if not $isExpanded2 }}aria-hidden="true"{{ end }}
+                                        >
+                                            {{ range .Children }}
+                                                {{ $pageForItem3 := $site.GetPage .URL }}
+                                                {{ $hasChildren3 := .HasChildren }}
+                                                {{ $isActive3 := or ($currentPage.HasMenuCurrent "main" .) (eq $currentPage.RelPermalink .URL) }}
+                                                {{ $isExpanded3 := or ($currentPage.IsDescendant $pageForItem3) (eq $pageForItem3.Name $currentPage.Name) }}
+
+                                                <li class="acnav__item{{ if $hasChildren3 }} has-children{{ end }}{{ if $isActive3 }} is-active{{ end }}{{ if $isExpanded3 }} is-expanded{{ end }}" role="none">
+                                                    {{ if $hasChildren3 }}
+                                                        <button
+                                                            class="acnav__toggle"
+                                                            aria-expanded="{{ if $isExpanded3 }}true{{ else }}false{{ end }}"
+                                                            aria-controls="submenu-level3-{{ .Identifier | default (.Name | urlize) }}"
+                                                            aria-label="{{ if $isExpanded3 }}Collapse{{ else }}Expand{{ end }} {{ .Name }} submenu"
+                                                        >
+                                                            <span class="acnav__toggle-icon" aria-hidden="true"></span>
+                                                            <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                                                        </button>
+                                                        <ul
+                                                            class="acnav__list acnav__list--level4"
+                                                            id="submenu-level3-{{ .Identifier | default (.Name | urlize) }}"
+                                                            role="group"
+                                                            {{ if not $isExpanded3 }}aria-hidden="true"{{ end }}
+                                                        >
+                                                            {{ range .Children }}
+                                                                {{ $isActive4 := eq $currentPage.RelPermalink .URL }}
+                                                                <li class="acnav__item{{ if $isActive4 }} is-active{{ end }}" role="none">
+                                                                    <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                                                                </li>
+                                                            {{ end }}
+                                                        </ul>
+                                                    {{ else }}
+                                                        <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                                                    {{ end }}
+                                                </li>
+                                            {{ end }}
+                                        </ul>
+                                    {{ else }}
+                                        <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                                    {{ end }}
+                                </li>
                             {{ end }}
                         </ul>
-                        {{ end }}
-                    </li>
-                {{ else }}
-                    <li><a class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
-                {{ end }}
+                    {{ else }}
+                        <a href="{{ .URL }}" class="acnav__link{{ if $currentPage.IsMenuCurrent "main" . }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+                    {{ end }}
+                </li>
             {{ end }}
 		</ul>
 	</nav>
