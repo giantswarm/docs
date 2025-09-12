@@ -59,7 +59,7 @@ IP[s]?
 IPAM
 JSON
 k8s
-Karpenter
+[K|k]arpenter
 Keybase
 keyless
 Kinvolk
@@ -103,10 +103,10 @@ SRE[s]?
 SSL
 SSO
 subnets?
-Teleport
+[T|t]eleport
 templated
 TLS
-Trivy
+[T|t]rivy
 upstream[s]?
 vApp
 vCenter
@@ -115,5 +115,5 @@ VM[s]?
 VMware
 VPC
 vs.
-vSphere
+[V|v]Sphere
 Zot
