@@ -38,7 +38,7 @@ declaratively
 Drilldown
 easily
 effectively
-[E|e]ggedb
+[E|e]dgedb
 ELB[s]?
 ENI[s]?
 ESXi

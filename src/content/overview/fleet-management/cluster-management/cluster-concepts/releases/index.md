@@ -30,7 +30,7 @@ owner:
 
 Our workload cluster releases define the capabilities of the clusters you create in your installations. Here we explain our versioning and give details on workload cluster releases for certain providers.
 
-**TL;DR**: Workload cluster releases bundle tested components together. We follow Kubernetes versioning - when Kubernetes 1.31 comes out, we release version 31.x.x. We support at least two major versions simultaneously.
+**TL;DR**: Workload cluster releases bundle tested components together. We follow Kubernetes versioning; when Kubernetes 1.31 is released, we will release version 31.x.x. We support at least two major versions simultaneously.
 
 ## Introduction
 
