@@ -106,7 +106,7 @@ You've got several options to inspect workload cluster release details:
 
 - We announce new workload cluster releases in your Slack support channel. Each announcement includes a link to the release notes in our [changes and releases]({{< relref "/changes" >}}) section here on the docs site.
 
-- Using the [`kubectl gs get release`]({{< relref "/vintage/platform-overview/web-interface/" >}}) command, you can get more information about the workload cluster releases available in your installation. This command lists all available workload cluster releases, their versions, and the Kubernetes version they contain.
+- Using the [`kubectl gs get release`]({{< relref "/reference/kubectl-gs/get-releases/" >}}) command, you can get more information about the workload cluster releases available in your installation. This command lists all available workload cluster releases, their versions, and the Kubernetes version they contain.
 
 ### Default applications {#apps}
 
