@@ -49,6 +49,8 @@ When a new major version is released, the oldest major release is deprecated. Yo
 
 **Major upgrades** are not automated. You'll be notified to schedule the upgrade, possibly after updating workloads. Giant Swarm staff may assist or initiate these upgrades.
 
+![Upgrade Types Comparison](upgrade-types-comparison.svg)
+
 You cannot skip major versions when upgrading (e.g. v32.x.y to v34.x.y) – upgrades must proceed sequentially through major versions. You can usually skip minor and patch releases if needed. Please always check the [changelog]({{< relref "/changes" >}}).
 
 To trigger an upgrade:
