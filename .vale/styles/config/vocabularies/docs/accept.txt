@@ -26,6 +26,7 @@ autoscaler
 autoscaling
 az
 backbone
+beta
 CIDR[s]?
 CLI
 cluster-vsphere
@@ -37,17 +38,18 @@ declaratively
 Drilldown
 easily
 effectively
+[E|e]dgedb
 ELB[s]?
 ENI[s]?
 ESXi
-Etcd
+[E|e]tcd
 extract
-Falco
+[F|f]alco
 firewalling
 freely
 Giant Swarm
 gracefully
-Grafana
+[G|g]rafana
 Hashicorp
 Honeybadger
 HPA
@@ -57,7 +59,7 @@ IP[s]?
 IPAM
 JSON
 k8s
-Karpenter
+[K|k]arpenter
 Keybase
 keyless
 Kinvolk
@@ -66,7 +68,7 @@ kube-vip
 kubeconfig[s]?
 kubectl
 kubelet
-Kyverno
+[K|k]yverno
 LogQL
 mimirtool
 namespace[s]?
@@ -80,7 +82,7 @@ passthrough
 perfectly
 Planeteers
 PromQL
-Promtail
+[P|p]romtail
 quickly
 randomly
 rapidly
@@ -101,10 +103,10 @@ SRE[s]?
 SSL
 SSO
 subnets?
-Teleport
+[T|t]eleport
 templated
 TLS
-Trivy
+[T|t]rivy
 upstream[s]?
 vApp
 vCenter
@@ -113,5 +115,5 @@ VM[s]?
 VMware
 VPC
 vs.
-vSphere
+[V|v]Sphere
 Zot
