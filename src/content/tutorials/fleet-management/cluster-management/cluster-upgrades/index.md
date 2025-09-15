@@ -51,7 +51,7 @@ When a new major version is released, the oldest major release is deprecated. Yo
 
 ![Upgrade Types Comparison](upgrade-types-comparison.svg)
 
-You cannot skip major versions when upgrading (e.g. v32.x.y to v34.x.y) – upgrades must proceed sequentially through major versions. You can usually skip minor and patch releases if needed. Please always check the [changelog]({{< relref "/changes" >}}).
+You cannot skip major versions when upgrading (for example, v32.x.y to v34.x.y)–upgrades must proceed sequentially through major versions. You can usually skip minor and patch releases if needed. Please always check the [changelog]({{< relref "/changes" >}}).
 
 To trigger an upgrade:
 
@@ -69,7 +69,7 @@ To ensure your workloads remain operational during upgrades:
 - **Set disruption budgets**: Use [PodDisruptionBudgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) to maintain minimum pod counts (avoid `maxUnavailable=0` for single-replica deployments)
 - **Set scheduling priorities**: Use Pod priority classes and set resource requests/limits to influence scheduling
 - **Avoid ephemeral resources**: Use controllers (Deployments, StatefulSets) instead of standalone Pods
-- **Configure webhook timeouts**: Set low timeout values (e.g., 5 seconds) for validation and mutation webhooks
+- **Configure webhook timeouts**: Set low timeout values (for example, 5 seconds) for validation and mutation webhooks
 - **Verify pod health**: Ensure all critical pods are running before upgrades with `kubectl get pods --all-namespaces | grep -v "Running\|Completed"`
 
 ## How upgrades work under the hood
@@ -91,12 +91,12 @@ Control plane machines are rotated first, followed by worker nodes. Control plan
 
 Worker upgrade behavior is based on the MachineDeployment (individual VMs, typically in an Availability Set): Cluster API performs a rolling update. By default it creates one new node, waits for it to become Ready, then drains and deletes one old node (maxSurge=1, maxUnavailable=0).
 
-Nodes being removed are cordoned and drained before deletion. For VMSS-initiated scale-in or eviction (for example Spot VM eviction), Azure Scheduled Events are emitted; a node-termination handler drains the node gracefully before the VM is removed. Drain/timeout behavior is configurable.
+Nodes being removed are cordoned and drained before deletion. For Virtual Machine Scale Sets (VMSS)-initiated scale-in or eviction (for example Spot VM eviction), Azure Scheduled Events are emitted; a node-termination handler drains the node gracefully before the VM is removed. Drain/timeout behavior is configurable.
 {{< /tab >}}
 {{< tab id="vsphere-upgrade-details" for-impl="capv" title="vSphere" >}}
 Control plane machines are rotated first, followed by worker nodes. Control plane nodes are replaced one by one to keep the cluster operational.
 
-Workers are managed via MachineDeployments. Cluster API uses a rolling update strategy by default (maxSurge=1, maxUnavailable=0): it adds a new VM/node, waits for it to be Ready, then cordons, drains, and deletes one old VM at a time.
+Workers use MachineDeployments with rolling updates (maxSurge=1, maxUnavailable=0): new VMs are added, then old ones are drained and deleted sequentially.
 
 There is no cloud-level termination signal on vSphere. Draining and deletion are orchestrated by Cluster API. Timeouts for draining and node deletion are configurable (for example via KubeadmControlPlane’s nodeDrainTimeout/nodeDeletionTimeout and the MachineDeployment rolling update strategy).
 {{< /tab >}}
