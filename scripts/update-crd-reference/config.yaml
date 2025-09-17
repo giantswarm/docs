@@ -257,7 +257,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.42.1
+    commit_reference: v0.42.2
     crd_paths:
       - config/crd
     cr_paths:
