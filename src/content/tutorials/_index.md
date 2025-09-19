@@ -5,7 +5,7 @@ weight: 30
 menu:
   principal:
     identifier: tutorials
-last_review_date: 2024-03-07
+last_review_date: 2025-09-19
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

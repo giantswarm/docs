@@ -13,7 +13,7 @@ user_questions:
   - How does Giant Swarm help engineering teams?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-planeteers
-last_review_date: 2024-04-26
+last_review_date: 2025-09-19
 ---
 
 Giant Swarm's mission is to empower our customers to build their own cloud-native [developer platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#what-is-a-platform). When development organizations and departments grow and their environments expand, they often face exponentially growing complexity in managing the lifecycle and operations of their application and services. Soon this gets overwhelming; to be fair, it's not our customers' core business. We believe that having a flexible, [unified cloud-native developer platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#why-platforms) plays a crucial role in growing your development organization efficiently. The platform not only helps to take [the toil](https://sre.google/sre-book/eliminating-toil/) out of the development teams to have less cognitive load but also enables capabilities to manage security and governance more centrally.
