@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-fleetmanagement-clustermanagement-concepts
     identifier: overview-fleetmanagement-clustermanagement-concepts-organizations
-last_review_date: 2024-07-14
+last_review_date: 2025-09-19
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

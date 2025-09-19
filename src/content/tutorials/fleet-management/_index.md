@@ -6,7 +6,7 @@ menu:
   principal:
     parent: tutorials
     identifier: tutorials-fleet-management
-last_review_date: 2024-05-02
+last_review_date: 2025-09-19
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:

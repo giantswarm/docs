@@ -4,7 +4,7 @@ description: Full-text search for the Giant Swarm documentation, also covering t
 expiration_in_days: 730
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
-last_review_date: 2023-08-29
+last_review_date: 2025-09-19
 layout: search/list.html
 user_questions:
   - How can I search the entire documentation site?

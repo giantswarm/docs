@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-fleetmanagement
     identifier: overview-fleetmanagement-multitenancy
-last_review_date: 2024-07-17
+last_review_date: 2025-09-19
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 aliases:
