@@ -17,7 +17,7 @@ user_questions:
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) charts and allows you to manage apps and their configurations represented by `App` custom resources (CRs) for multiple clusters, from a single place: the [Platform API]({{< relref "/overview/architecture#platform-api" >}}) on the management cluster.
 
-In this guide, we will install a `hello-world` app together with an ingress nginx controller to serve the web application publicly. We will do this by using kubectl, to create an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR using the platform API of your management cluster.
+In this guide, we will install a `hello-world` app together with an ingress-nginx controller to serve the web application publicly. We will do this by using kubectl, to create an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR using the platform API of your management cluster.
 
 In general, you can manage `App` CRs with any tool that can communicate with the Kubernetes API such as Helm or GitOps tools (like Argo CD or Flux CD).
 
@@ -57,7 +57,7 @@ __Note__: We don't enforce the cluster prefix (here: `test01-`), but it's a good
 
 You can see that several applications already exist for the workload cluster `test01`. Most of the apps run directly in the workload cluster itself. The operator which actually deploys the applications to the workload clusters is running on the management cluster and is called `app-operator`. Learn more about this process [in this guide]({{< relref "/overview/fleet-management/app-management" >}}).
 
-## Step 2: Install an ingress nginx controller {#install-ingress-controller}
+## Step 2: Install an ingress-nginx controller {#install-ingress-controller}
 
 Before installing the `hello-world` app, an ingress controller must be running in the cluster. The ingress controller is responsible for routing the incoming traffic to the correct service in the cluster and make it available publicly.
 
@@ -79,7 +79,7 @@ To browse which applications are available in the catalog you can run the follow
 kubectl get appcatalogentries -n default -l application.giantswarm.io/catalog=giantswarm
 ```
 
-In our case we're interested in the ingress nginx controller, so let's check the latest version available in the catalog:
+In our case we're interested in the ingress-nginx controller, so let's check the latest version available in the catalog:
 
 ```text
 $ kubectl gs get appcatalogentries -n default -l app.kubernetes.io/name=ingress-nginx
