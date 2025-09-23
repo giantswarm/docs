@@ -1,4 +1,4 @@
-name: Create Release
+name: Create release on merge
 
 on:
   push:
@@ -7,14 +7,21 @@ on:
 
 jobs:
   build:
-    name: Create Release
+    name: Create release
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'do not release')"
     steps:
-      - name: Create Release
-        id: create_release
-        uses: zendesk/action-create-release@d690a6dcc904617a6ef45f845114e6e3d9f1b0af # v1
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@a22cf08638b34d5badda920f9daf6e72c477b07b # v6.2
         with:
-          tag_schema: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create release
+        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          omitBody: true
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+
