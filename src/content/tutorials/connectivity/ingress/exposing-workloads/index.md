@@ -9,7 +9,7 @@ menu:
   principal:
     parent: tutorials-connectivity-ingress
     identifier: tutorials-connectivity-ingress-ic
-last_review_date: 2024-08-26
+last_review_date: 2025-09-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
