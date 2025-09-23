@@ -78,10 +78,6 @@ The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on resour
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L9)
 
-### giantswarm.io/aws-ebs-limit
-
-This label is set on EBS CSI driver pods (on AWS) by [aws-ebs-csi-volume-limiter](https://github.com/giantswarm/aws-ebs-csi-volume-limiter/blob/v0.1.0/main.go#L86-L90). It informs about the maximum number of EBS volumes that can be attached to the respective node.
-
 ### giantswarm.io/cluster
 
 Used on a variety of resources to associate the resource with a specific cluster. The value is the name of the cluster.
