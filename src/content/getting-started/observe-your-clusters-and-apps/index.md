@@ -176,7 +176,7 @@ Once traces are flowing, explore them in Grafana:
 1. **Navigate to Explore**: Select the Tempo data source
 2. **Use TraceQL queries**: Search and analyze your traces
 
-Try these sample queries:
+Try these example queries:
 
 - `{resource.service.name = "my-service"}` - All traces from a specific service
 - `{trace.duration > 5s}` - Find slow requests
