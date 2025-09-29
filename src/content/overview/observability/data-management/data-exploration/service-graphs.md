@@ -83,6 +83,7 @@ Arrows between services show:
 - **Traffic patterns**: Which services handle the most requests
 
 ### Troubleshooting workflows
+
 1. **Start with the service graph** to get an overview of system health
 2. **Identify problematic connections** (red or slow edges)
 3. **Click on connections** to drill down to individual traces
