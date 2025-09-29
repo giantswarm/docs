@@ -23,7 +23,7 @@ user_questions:
 
 Data import and export capabilities enable you to both send observability data from external sources into the Giant Swarm platform and access your observability data from external systems and tools. This gives you the flexibility to integrate Giant Swarm's observability platform with your existing monitoring infrastructure, external data sources, and specialized analysis tools.
 
-The Observability Platform API serves as the primary mechanism for both data import and export, providing secure, authenticated access to send and receive metrics, logs, and events from anywhere - not just from within Giant Swarm managed clusters.
+The Observability Platform API serves as the primary mechanism for both data import and export, providing secure, authenticated access to send and receive metrics, logs, traces, and events from anywhere - not just from within Giant Swarm managed clusters.
 
 ## Why importing and exporting data
 
@@ -82,6 +82,15 @@ Currently available for both import and export:
 - **Audit logs**: Security and compliance-related events
 - **External service logs**: Logs from SaaS applications, databases, and third-party services
 
+### Traces ✅
+
+Available for both import and export (when tracing is enabled for your cluster):
+
+- **Distributed traces**: End-to-end request flows across services
+- **Application traces**: Custom spans from your instrumented applications
+- **External service traces**: Traces from third-party services and APIs
+- **Platform traces**: Kubernetes and infrastructure-level tracing data
+
 ### Metrics 🚧
 
 Metrics capabilities are in development:
@@ -92,7 +101,7 @@ Metrics capabilities are in development:
 - **Application metrics**: Custom business and performance metrics
 - **Platform metrics**: Kubernetes and Giant Swarm platform metrics
 
-**Note**: Currently, data import via the API is limited to logs and events only. Metrics import will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes" >}}) for updates on metrics import availability.
+**Note**: Currently, data import via the API supports logs, events, and traces (when enabled). Metrics import will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes" >}}) for updates on metrics import availability.
 
 ## Data import methods
 
@@ -148,6 +157,50 @@ The payload structure includes:
 
 ⚠️ **Prerequisites**: You must configure OIDC authentication with Giant Swarm before using the import method. Contact your account engineer for setup assistance.
 
+### OTLP trace ingestion
+
+Send trace data to the platform using the OpenTelemetry Protocol (OTLP) with properly instrumented applications.
+
+#### OTLP trace endpoints
+
+The platform provides OTLP-compatible endpoints for trace data ingestion:
+
+- **HTTP**: `https://observability.<domain_name>`
+- **gRPC**: 🚧 Currently not implemented
+
+#### Example: Sending traces via OTLP
+
+Configure your OpenTelemetry instrumentation to send traces directly to the platform:
+
+```javascript
+// Example Node.js OpenTelemetry configuration
+const { NodeSDK } = require('@opentelemetry/sdk-node');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-http');
+
+const traceExporter = new OTLPTraceExporter({
+  url: 'https://observability.<domain>/v1/traces',
+  headers: {
+    'Authorization': `Bearer ${process.env.OIDC_TOKEN}`,
+    'X-Scope-OrgId': 'your-tenant'
+  }
+});
+
+const sdk = new NodeSDK({
+  traceExporter
+});
+
+sdk.start();
+```
+
+#### Trace data requirements
+
+- **Tenant specification**: Include `X-Scope-OrgId` header with your tenant name
+- **Authentication**: Valid OIDC token in Authorization header
+- **Format**: Standard OTLP trace format with proper span relationships
+- **Service identification**: Ensure `service.name` attribute is set for service graph generation
+
+⚠️ **Prerequisites**: Tracing must be enabled for your cluster and you must configure OIDC authentication with Giant Swarm before using trace import. Contact your account engineer for setup assistance.
+
 ## Data export methods
 
 ### Method 1: External Grafana integration
@@ -160,6 +213,7 @@ Connect your self-managed Grafana instance to access Giant Swarm observability d
 
    - For logs (Loki): `https://observability.<domain_name>`
    - For metrics (Mimir/Prometheus): `https://observability.<domain_name>/prometheus`
+   - For traces (Tempo): `https://observability.<domain_name>/tempo` (when tracing is enabled)
 
    Replace `<domain_name>` with your installation's base domain.
 
@@ -188,8 +242,10 @@ Choose the appropriate tenant based on the data you want to access:
 |-----------|--------------|-------------|
 | Platform logs | `giantswarm` | System and infrastructure logs |
 | Platform metrics | `giantswarm` | System and infrastructure metrics |
+| Platform traces | `giantswarm` | System and infrastructure traces |
 | Custom logs | Your tenant | Logs from your applications |
 | Custom metrics | Your tenant | Metrics from your applications |
+| Custom traces | Your tenant | Traces from your applications |
 
 ### Method 2: Programmatic API access
 
@@ -201,7 +257,8 @@ The platform provides standard observability API endpoints:
 
 - **Loki API**: Compatible with standard Loki query API for logs
 - **Prometheus API**: Compatible with Prometheus query API for metrics (when available)
-- **Future protocols**: OpenTelemetry Protocol (OTLP) endpoints are planned for comprehensive telemetry data exchange
+- **Tempo API**: Compatible with Tempo query API for traces (when tracing is enabled)
+- **OTLP endpoints**: OpenTelemetry Protocol endpoints for trace ingestion
 
 #### Example: Querying logs programmatically
 
@@ -210,6 +267,15 @@ The platform provides standard observability API endpoints:
 curl -H "Authorization: Bearer $OIDC_TOKEN" \
      -H "X-Scope-OrgId: giantswarm" \
      "https://observability.<domain>/loki/api/v1/query_range?query={cluster_id=\"your-cluster\"}"
+```
+
+#### Example: Querying traces programmatically
+
+```bash
+# Example TraceQL query via API (when tracing is enabled)
+curl -H "Authorization: Bearer $OIDC_TOKEN" \
+     -H "X-Scope-OrgId: your-tenant" \
+     "https://observability.<domain>/tempo/api/search?q={service.name=\"your-service\"}"
 ```
 
 ⚠️ **Prerequisites**: You must configure OIDC authentication with Giant Swarm before using the API. Contact your account engineer for setup assistance.
@@ -236,12 +302,13 @@ Before you can import data, ensure you have:
 
 ### Setup process for data import
 
-1. **Plan your data sources**: Identify which external systems will send data to the platform
+1. **Plan your data sources**: Identify which external systems will send data to the platform (logs, traces when enabled)
 2. **Configure authentication**: Work with Giant Swarm to set up OIDC integration for your data sources
-3. **Set up tenants**: Create appropriate Grafana Organizations for your external data
-4. **Test ingestion**: Send sample data to verify connectivity and formatting
-5. **Implement production ingestion**: Deploy your chosen import method at scale
-6. **Monitor ingestion**: Track data volume and verify data is being properly processed
+3. **Enable tracing**: For trace data import, ensure tracing is enabled for your cluster
+4. **Set up tenants**: Create appropriate Grafana Organizations for your external data
+5. **Test ingestion**: Send sample data to verify connectivity and formatting
+6. **Implement production ingestion**: Deploy your chosen import method at scale
+7. **Monitor ingestion**: Track data volume and verify data is being properly processed
 
 ## Getting started with data export
 

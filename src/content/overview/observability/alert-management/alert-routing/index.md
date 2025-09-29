@@ -271,4 +271,4 @@ Alert routing works best when integrated with other platform capabilities:
 
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Define the conditions that trigger notifications
 - **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Understand how tenant isolation affects alert routing
-- **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Explore the metrics and logs that power your alerts
+- **[Data management]({{< relref "/overview/observability/data-management/" >}})**: Explore the logs, metrics and traces that power your alerts

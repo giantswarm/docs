@@ -1,6 +1,6 @@
 ---
 title: Observe your clusters and apps
-description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics to custom dashboards and alerts.
+description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics and logs to distributed tracing, custom dashboards and alerts.
 weight: 60
 last_review_date: 2025-07-17
 menu:
@@ -19,7 +19,7 @@ user_questions:
   - What should I monitor first in my cluster?
 ---
 
-Giant Swarm's observability platform gives you immediate visibility into your clusters and applications. Every cluster comes with automatic monitoring configured out of the box, collecting metrics, logs, and traces that help you understand system health and application performance.
+Giant Swarm's observability platform gives you immediate visibility into your clusters and applications. Every cluster comes with automatic monitoring configured out of the box, collecting metrics and logs that help you understand system health and application performance. Distributed tracing is also available to help you understand request flows across your microservices.
 
 This guide will walk you through your first steps with the observability platform, from accessing pre-built dashboards to setting up custom monitoring for your applications.
 
@@ -30,6 +30,7 @@ Every Giant Swarm cluster includes:
 - **Platform metrics**: CPU, memory, disk, and network metrics from all cluster nodes
 - **Kubernetes metrics**: Pod status, deployments, services, and cluster events
 - **Application logs**: Automatic collection from all pods in your cluster
+- **Distributed tracing**: Optional trace collection for understanding request flows (requires enablement)
 - **Pre-built dashboards**: Ready-to-use visualizations for infrastructure and platform components
 - **Default alerts**: Proactive notifications for common infrastructure issues
 - **Secure access**: Integration with your organization's identity provider
@@ -94,7 +95,7 @@ spec:
 
 Apply this configuration to start collecting metrics from your application.
 
-⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for metrics and logs.
+⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for logs, metrics and traces.
 
 ## Step 3: Explore your metrics
 
@@ -129,7 +130,73 @@ Try these sample queries:
 
 **Want to learn more?** Our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}) covers complex log queries and analysis.
 
-## Step 5: Review pre-built dashboards
+## Step 5: Set up distributed tracing (Optional)
+
+Distributed tracing helps you understand how requests flow through your microservices architecture. Giant Swarm's observability platform supports tracing through Tempo and OpenTelemetry.
+
+**Important**: Tracing is available in alpha from cluster release v31 and fully supported from v33. It's disabled by default and must be enabled by your Account Engineer.
+
+### Prerequisites for tracing
+
+- **Cluster version**: v31+ (alpha) or v33+ (full support)
+- **Tracing enabled**: Contact your Account Engineer to enable tracing for your cluster
+- **Application instrumentation**: Your applications must be instrumented with OpenTelemetry
+
+### Configure trace collection
+
+Once tracing is enabled, configure your applications to send traces to the cluster-local OTLP endpoint:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-traced-app
+spec:
+  template:
+    metadata:
+      labels:
+        # Required for trace data routing
+        observability.giantswarm.io/tenant: my-team
+        app: my-traced-app
+    spec:
+      containers:
+      - name: app
+        image: my-app:latest
+        env:
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://otlp-gateway.kube-system.svc:4318"
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "service.name=my-traced-app"
+```
+
+### Explore traces with TraceQL
+
+Once traces are flowing, explore them in Grafana:
+
+1. **Navigate to Explore**: Select the Tempo data source
+2. **Use TraceQL queries**: Search and analyze your traces
+
+Try these sample queries:
+
+- `{resource.service.name = "my-service"}` - All traces from a specific service
+- `{trace.duration > 5s}` - Find slow requests
+- `{status = error}` - Find failed traces
+- `{span.http.method = "POST" && span.http.status_code >= 400}` - Failed HTTP requests
+
+### Service graph insights
+
+Tempo automatically generates service graphs from your trace data, showing:
+
+- **Service topology**: How your services communicate
+- **Request rates**: Traffic between services
+- **Error rates**: Failed requests between services
+- **Performance metrics**: Response times and throughput
+
+Access the service graph in Grafana under the Tempo data source's "Service Graph" tab.
+
+**Want to learn more?** Our [Advanced TraceQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial" >}}) covers complex trace queries and analysis.
+
+## Step 6: Review pre-built dashboards
 
 The platform provides comprehensive pre-built dashboards for immediate insights. Access them in Grafana under `Dashboards` → `Giant Swarm Public Dashboards`:
 
@@ -152,7 +219,7 @@ Below is an example showing `hello-world` application metrics, including the car
 
 These dashboards give you instant visibility into system health and help identify patterns or issues quickly.
 
-## Step 6: Create your first custom dashboard
+## Step 7: Create your first custom dashboard
 
 While pre-built dashboards provide great starting points, you'll likely want custom visualizations for your specific applications and workflows.
 
@@ -160,7 +227,7 @@ While pre-built dashboards provide great starting points, you'll likely want cus
 
 1. **Create new dashboard**: In Grafana, click `+` → `Dashboard`
 2. **Add panels**: Choose visualization types (graphs, tables, stats)
-3. **Configure queries**: Use PromQL for metrics or LogQL for logs
+3. **Configure queries**: Use PromQL for metrics, LogQL for logs, or TraceQL for traces
 4. **Save dashboard**: Name and organize your dashboard
 
 Your dashboard automatically persists in the platform's PostgreSQL storage with regular backups.
@@ -202,7 +269,7 @@ Now that you're monitoring your clusters and applications, explore these advance
 
 - **[Set up alerting]({{< relref "/overview/observability/alert-management/" >}})**: Get notified before issues impact users
 - **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/" >}})**: Master PromQL and LogQL for deeper insights
-- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/" >}})**: Collect custom metrics and logs
+- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/" >}})**: Collect custom logs, metrics and traces
 - **[Explore data transformation]({{< relref "/overview/observability/data-management/data-transformation/" >}})**: Optimize metrics storage and processing
 
 ### Integrate external tools

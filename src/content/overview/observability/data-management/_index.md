@@ -14,12 +14,12 @@ user_questions:
   - What data management capabilities are available?
   - What types of data can I collect?
   - How do I explore and export data?
-  - How do I ingest logs and metrics?
+  - How do I ingest logs, metrics and traces?
   - How do I transform or enrich my data?
   - How do I connect external tools to observability data?
 ---
 
-Data management is the backbone of our observability platform, giving you complete control over how your observability data flows through the system. From collecting metrics and logs to exploring and analyzing them, our platform offers powerful capabilities to handle your data lifecycle efficiently.
+Data management is the backbone of our observability platform, giving you complete control over how your observability data flows through the system. From collecting logs, metrics and traces to exploring and analyzing them, our platform offers powerful capabilities to handle your data lifecycle efficiently.
 
 Think of data management as your control center for observability—it's where you decide what data to collect, how to organize it, and how to make it useful for your teams.
 
@@ -49,6 +49,19 @@ Detailed records of events and activities from your applications and infrastruct
 - System and security logs
 - Custom structured logs
 
+### Traces
+
+Detailed records of requests as they flow through distributed systems, showing the complete journey from service to service. We store traces using **[Tempo](https://grafana.com/oss/tempo/)**, built for high-volume trace ingestion and efficient storage.
+
+**Examples:**
+
+- HTTP request traces across microservices
+- Database query spans and performance
+- Service-to-service communication patterns
+- Application performance bottlenecks
+
+**Note:** Trace ingestion is available in alpha from cluster release v31 and fully supported from v33. Tracing is disabled by default and can be enabled on request through your Account Engineer.
+
 ## Data management capabilities
 
 Our platform provides comprehensive capabilities to handle your observability data throughout its lifecycle:
@@ -59,15 +72,16 @@ Flexible collection from multiple sources:
 
 - **[Metrics ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#metrics-ingestion" >}})**: Collect metrics from applications, infrastructure, and external sources using ServiceMonitors and PodMonitors
 - **[Log ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#logs-ingestion" >}})**: Gather logs from applications and infrastructure using PodLogs and automatic collection
+- **[Trace ingestion]({{< relref "/overview/observability/data-management/data-ingestion/#trace-ingestion" >}})**: Collect distributed traces from instrumented applications using OpenTelemetry Protocol (OTLP)
 - **External data sources**: Push data from external systems via our [Data Import and Export API]({{< relref "/overview/observability/data-management/data-import-export" >}})
 
 ### Data exploration
 
 Advanced querying and analysis capabilities:
 
-- **[Interactive exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Grafana's Explore feature for ad-hoc analysis with PromQL and LogQL
+- **[Interactive exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Grafana's Explore feature for ad-hoc analysis with PromQL, LogQL, and TraceQL
 - **[Dashboard management]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations with GitOps workflows or through the Grafana UI
-- **Query languages**: [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial.md" >}}) for metrics and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) for logs with powerful filtering and aggregation
+- **Query languages**: [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial.md" >}}) for metrics, [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) for logs, and [TraceQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial/" >}}) for traces with powerful filtering and analysis
 
 ### Data transformation
 
@@ -86,4 +100,4 @@ Access your data programmatically for external analysis and integration, and sen
 - **External Grafana integration**: Connect self-managed Grafana instances to Giant Swarm data
 - **Programmatic access**: REST APIs compatible with Loki and Prometheus standards
 - **Data ingestion**: Send logs from external systems using Loki's native format
-- **Future protocols**: OpenTelemetry Protocol (OTLP) support is planned for standardized telemetry data exchange
+- **OpenTelemetry Protocol (OTLP)**: Native support for trace ingestion using industry-standard OTLP format

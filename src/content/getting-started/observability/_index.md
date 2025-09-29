@@ -25,7 +25,7 @@ This section will walk you through the essential first steps to start monitoring
 Here's how to make the most of your observability platform from day one:
 
 1. **[Observe your clusters and apps]({{< relref "/getting-started/observability/observe-your-clusters-and-apps/" >}})** - Start monitoring immediately with our pre-configured dashboards and alerts
-2. **[Explore your data]({{< relref "/overview/observability/data-management/data-exploration/" >}})** - Learn to query and analyze metrics and logs
+2. **[Explore your data]({{< relref "/overview/observability/data-management/data-exploration/" >}})** - Learn to query and analyze logs, metrics and traces
 3. **[Set up custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})** - Create visualizations tailored to your needs
 4. **[Configure alerts]({{< relref "/overview/observability/alert-management/" >}})** - Get notified about issues that matter to your team
 
