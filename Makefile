@@ -106,12 +106,16 @@ validate-front-matter:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-		/workdir/scripts/validate-front-matter/script.py
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.1 \
+			--path ./src/content
 
 # Validate front matter for last-reviewed date.
 validate-last-reviewed-json:
-	@docker run --rm --volume=${PWD}:/workdir:ro -w /workdir $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest /workdir/scripts/validate-front-matter/script.py --validation last-reviewed --output json
+	docker run --rm \
+		--volume=${PWD}:/workdir:ro \
+		-w /workdir \
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.1 \
+			--validation last-reviewed --output json
 
 # Print a report of pages with a last_review_date that's
 # too long ago.
@@ -119,8 +123,8 @@ validate-last-reviewed:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-		/workdir/scripts/validate-front-matter/script.py --validation last-reviewed
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.1 \
+			--validation last-reviewed
 
 docker-build:
 	docker build -t $(REGISTRY)/$(COMPANY)/$(PROJECT):latest .

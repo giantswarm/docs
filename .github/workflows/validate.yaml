@@ -17,15 +17,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
-      - name: Install dependencies
-        run: pip3 install click colored
+      - name: Install frontmatter-validator
+        uses: giantswarm/install-binary-action@0797deb878056114fa54ee30c519f617716e8c69 # v3.1.1
+        with:
+          binary: frontmatter-validator
+          version: "0.1.1"
+          smoke_test: frontmatter-validator --help
 
       - name: Validate front matter for changed files
         run: |
+          echo "Detecting changed files:"
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           if [ -s files.txt ]; then
-            cat files.txt | python3 scripts/validate-front-matter/script.py
+            # Validate the changed files
+            echo "Validating front matter for changed files:"
+            cat files.txt | frontmatter-validator
+
             # Print for debugging
             printf "\nAnnotations JSON:\n"
             cat ./annotations.json
