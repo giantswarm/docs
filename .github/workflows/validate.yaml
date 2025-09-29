@@ -22,6 +22,7 @@ jobs:
         with:
           binary: frontmatter-validator
           version: "0.1.0"
+          smoke_test: frontmatter-validator --help
 
       - name: Validate front matter for changed files
         run: |
