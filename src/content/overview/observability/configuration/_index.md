@@ -85,7 +85,7 @@ Integrate data from sources outside Giant Swarm managed clusters through our **[
 
 - **OIDC authentication**: Configure your identity provider for secure API access
 - **Data ingestion endpoints**: Send logs from external systems using Loki's native format
-- **Data export endpoints**: Retrieve logs, metrics and traces for external analysis and storage
+- **Data export endpoints**: Retrieve logs, metrics, and traces for external analysis and storage
 
 ## Visualization and dashboard configuration
 

@@ -65,8 +65,8 @@ Learn more about these default organizations and how to create your own in our [
    - You can visualize results as graphs, tables, logs, or trace views directly in the Explore view.
 
 4. **Access the Drilldown tab:**
-   - In the left-hand menu, click the tab labeled **Drilldown** (next to Explore). This opens the Drilldown app, which lets you quickly investigate logs, metrics and traces side by side.
-   - The Drilldown app is designed for simplified exploration, making it easy to move between logs, metrics and traces, filter by time ranges, and dig deeper into your data.
+   - In the left-hand menu, click the tab labeled **Drilldown** (next to Explore). This opens the Drilldown app, which lets you quickly investigate logs, metrics, and traces side by side.
+   - The Drilldown app is designed for simplified exploration, making it easy to move between logs, metrics, and traces, filter by time ranges, and dig deeper into your data.
    - Learn more about [Drilldown in Grafana](https://grafana.com/docs/grafana/latest/explore/simplified-exploration/).
 
 ![Grafana Drilldown tab](drilldown-tab.png)

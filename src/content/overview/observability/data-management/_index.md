@@ -14,12 +14,12 @@ user_questions:
   - What data management capabilities are available?
   - What types of data can I collect?
   - How do I explore and export data?
-  - How do I ingest logs, metrics and traces?
+  - How do I ingest logs, metrics, and traces?
   - How do I transform or enrich my data?
   - How do I connect external tools to observability data?
 ---
 
-Data management is the backbone of our observability platform, giving you complete control over how your observability data flows through the system. From collecting logs, metrics and traces to exploring and analyzing them, our platform offers powerful capabilities to handle your data lifecycle efficiently.
+Data management is the backbone of our observability platform, giving you complete control over how your observability data flows through the system. From collecting logs, metrics, and traces to exploring and analyzing them, our platform offers powerful capabilities to handle your data lifecycle efficiently.
 
 Think of data management as your control center for observability—it's where you decide what data to collect, how to organize it, and how to make it useful for your teams.
 

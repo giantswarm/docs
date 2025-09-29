@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I transform observability data?
   - What are relabeling and recording rules?
-  - How do I enrich logs, metrics and traces?
+  - How do I enrich logs, metrics, and traces?
   - How do I use Grafana transformations?
 ---
 

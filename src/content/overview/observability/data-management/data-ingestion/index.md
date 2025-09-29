@@ -12,12 +12,12 @@ owner:
 user_questions:
   - How do I ingest data into the observability platform?
   - What data sources are supported?
-  - How do I configure logs, metrics and traces ingestion?
+  - How do I configure logs, metrics, and traces ingestion?
   - How do I use ServiceMonitors and PodMonitors?
   - How do I configure tracing with OpenTelemetry?
 ---
 
-The Giant Swarm Observability Platform provides flexible, self-service data ingestion capabilities for logs, metrics and traces. By default, all clusters are equipped with the necessary components to collect and forward observability data to the central platform.
+The Giant Swarm Observability Platform provides flexible, self-service data ingestion capabilities for logs, metrics, and traces. By default, all clusters are equipped with the necessary components to collect and forward observability data to the central platform.
 
 ## Architecture overview
 

@@ -16,7 +16,7 @@ user_questions:
   - How do I get started with observability?
   - Where do I find dashboards, alerts, and data management docs?
   - How do I monitor my clusters and apps?
-  - How do I access logs, metrics and traces?
+  - How do I access logs, metrics, and traces?
   - How do I set up alerts and dashboards?
   - How do I manage multi-tenancy and access control?
   - How do I enable distributed tracing?

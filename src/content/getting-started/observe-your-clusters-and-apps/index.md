@@ -269,7 +269,7 @@ Now that you're monitoring your clusters and applications, explore these advance
 
 - **[Set up alerting]({{< relref "/overview/observability/alert-management/" >}})**: Get notified before issues impact users
 - **[Learn advanced querying]({{< relref "/overview/observability/data-management/data-exploration/" >}})**: Master PromQL and LogQL for deeper insights
-- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/" >}})**: Collect custom logs, metrics and traces
+- **[Configure data ingestion]({{< relref "/overview/observability/data-management/data-ingestion/" >}})**: Collect custom logs, metrics, and traces
 - **[Explore data transformation]({{< relref "/overview/observability/data-management/data-transformation/" >}})**: Optimize metrics storage and processing
 
 ### Integrate external tools
