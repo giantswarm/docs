@@ -44,8 +44,10 @@ The graphs are created automatically as Tempo processes your traces, analyzing s
 
 ## Reading service graphs
 
-### Nodes (Services)
+### Nodes (services)
+
 Each circle represents a service, showing:
+
 - **Service name**: From the `service.name` attribute in traces
 - **Color coding**: Green (healthy), yellow (warnings), red (errors)
 - **Request rate**: Requests per second handled by the service
