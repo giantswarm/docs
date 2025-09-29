@@ -320,6 +320,7 @@ Query trace topology:
    ```
 
 3. **Service dependency mapping**:
+
    ```traceql
    {resource.service.name = "my-service"} | by(span.kind, resource.service.name)
    ```
