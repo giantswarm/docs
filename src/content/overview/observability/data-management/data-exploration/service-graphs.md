@@ -68,6 +68,7 @@ Arrows between services show:
 ## Common use cases
 
 ### Identifying issues
+
 - **Red nodes/edges**: Services or connections with high error rates
 - **Missing services**: Services that should be present but aren't showing up
 - **Thick edges with slow response**: High-traffic paths that are performing poorly
