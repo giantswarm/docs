@@ -144,7 +144,7 @@ Distributed tracing helps you understand how requests flow through your microser
 
 ### Configure trace collection
 
-Once tracing is enabled, configure your applications to send traces to the cluster-local OTLP endpoint:
+Once tracing is enabled, configure your applications to send traces to the cluster-local OpenTelemetry (OTLP) endpoint:
 
 ```yaml
 apiVersion: apps/v1
