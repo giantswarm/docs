@@ -43,7 +43,7 @@ ELB[s]?
 ENI[s]?
 ESXi
 [E|e]tcd
-extract
+[E|e]xtract
 [F|f]alco
 firewalling
 freely
@@ -92,7 +92,7 @@ really
 relref
 rulesets
 runbook[s]?
-Sample
+[s|S]ample
 SemVer
 separately
 Sigstore

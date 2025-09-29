@@ -91,6 +91,7 @@ Arrows between services show:
 - **Include meaningful operation names**: Help differentiate between different types of calls
 
 ### For effective analysis
+
 - **Start with recent time ranges** for current system state
 - **Use longer ranges** to understand overall architecture and patterns
 - **Combine with other data**: Use service names to query metrics and logs
