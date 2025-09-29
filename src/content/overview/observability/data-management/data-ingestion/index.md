@@ -31,7 +31,7 @@ This architecture allows you to configure data collection declaratively using Ku
 
 ## Metrics ingestion
 
-### Prerequisites
+### Application instrumentation
 
 Before ingesting metrics, ensure your application is properly [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to expose metrics in Prometheus format.
 
@@ -150,12 +150,11 @@ These are managed through predefined PodLogs resources and shouldn't be modified
 
 ## Trace ingestion
 
-
 Starting from cluster release v31 (alpha) and fully supported from v33, the observability platform supports distributed tracing through OpenTelemetry Protocol (OTLP). Traces help you understand request flow and performance across your distributed applications.
 
 **Important**: Trace ingestion is disabled by default and must be enabled through your Account Engineer before configuration.
 
-### Prerequisites
+### OpenTelemetry instrumentation
 
 Before ingesting traces, ensure your application is properly [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) with OpenTelemetry libraries for your programming language.
 
