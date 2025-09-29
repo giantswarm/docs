@@ -53,6 +53,7 @@ Each circle represents a service, showing:
 - **Request rate**: Requests per second handled by the service
 
 ### Edges (Connections)
+
 Arrows between services show:
 
 - **Direction**: Who calls whom
