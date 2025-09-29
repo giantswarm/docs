@@ -173,7 +173,7 @@ For advanced LogQL techniques, see our [advanced LogQL tutorial]({{< relref "/ov
 ### Common transformation use cases
 
 - **Calculate derived values**: Create ratios, percentages, or growth rates
-- **Merge data sources**: Combine logs, metrics and traces in single visualizations
+- **Merge data sources**: Combine logs, metrics, and traces in single visualizations
 - **Format for presentation**: Rename fields, apply units, or create custom formatting
 - **Filter and aggregate**: Focus on specific data subsets or summary statistics
 
