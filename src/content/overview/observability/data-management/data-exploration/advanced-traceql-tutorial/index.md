@@ -317,6 +317,7 @@ Query trace topology:
    ```
 
 2. **Performance analysis workflow**:
+
    ```traceql
    {trace.duration > 5s} | by(resource.service.name) | quantile(0.95)
    ```
