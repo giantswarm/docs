@@ -106,7 +106,7 @@ validate-front-matter:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.0 \
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.1 \
 			--path ./src/content
 
 # Validate front matter for last-reviewed date.
@@ -114,7 +114,7 @@ validate-last-reviewed-json:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.0 \
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.1 \
 			--validation last-reviewed --output json
 
 # Print a report of pages with a last_review_date that's
@@ -123,7 +123,7 @@ validate-last-reviewed:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.0 \
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.1 \
 			--validation last-reviewed
 
 docker-build:
