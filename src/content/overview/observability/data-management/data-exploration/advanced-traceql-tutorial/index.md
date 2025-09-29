@@ -235,6 +235,7 @@ Find cross-service calls:
 
 1. **Find error traces**:
 
+
    ```traceql
    {status = error && resource.service.name = "payment-service"}
    ```
