@@ -54,6 +54,7 @@ Each circle represents a service, showing:
 
 ### Edges (Connections)
 Arrows between services show:
+
 - **Direction**: Who calls whom
 - **Thickness**: Request volume (thicker = more traffic)
 - **Color**: Health status (red for high error rates)
