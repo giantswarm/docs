@@ -34,7 +34,7 @@ jobs:
             cat files.txt | docker run --rm \
               --volume=${PWD}:/workdir:ro \
               -w /workdir \
-              $(REGISTRY)/$(COMPANY)/frontmatter-validator:0.1.0
+              gsoci.azurecr.io/giantswarm/frontmatter-validator:0.1.0
 
             # Print for debugging
             printf "\nAnnotations JSON:\n"
