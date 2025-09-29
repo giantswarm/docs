@@ -333,7 +333,7 @@ Query trace topology:
 
 - **Don't over-filter**: Too many conditions can return no results
 - **Mind the hierarchy**: Remember that traces have spans, not the other way around
-- **Use appropriate time ranges**: Very long time ranges can timeout
+- **Use appropriate time ranges**: Excessively long time ranges can timeout
 
 ## Integration with Grafana dashboards
 

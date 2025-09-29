@@ -23,7 +23,7 @@ user_questions:
 
 Data import and export capabilities enable you to both send observability data from external sources into the Giant Swarm platform and access your observability data from external systems and tools. This gives you the flexibility to integrate Giant Swarm's observability platform with your existing monitoring infrastructure, external data sources, and specialized analysis tools.
 
-The Observability Platform API serves as the primary mechanism for both data import and export, providing secure, authenticated access to send and receive metrics, logs, traces, and events from anywhere - not just from within Giant Swarm managed clusters.
+The Observability Platform API serves as the primary mechanism for both data import and export. It provides secure, authenticated access to send and receive metrics, logs, traces, and events from anywhere - not just from within Giant Swarm managed clusters.
 
 ## Why importing and exporting data
 
@@ -107,7 +107,7 @@ Metrics capabilities are in development:
 
 ### Loki API ingestion
 
-Send log data directly to the platform using the Loki push API with properly formatted log streams.
+Send log data directly to the platform using the Loki push API with correctly formatted log streams.
 
 #### Loki push endpoint
 
@@ -159,7 +159,7 @@ The payload structure includes:
 
 ### OTLP trace ingestion
 
-Send trace data to the platform using the OpenTelemetry Protocol (OTLP) with properly instrumented applications.
+Send trace data to the platform using the OpenTelemetry Protocol (OTLP) with instrumented applications.
 
 #### OTLP trace endpoints
 
@@ -308,7 +308,7 @@ Before you can import data, ensure you have:
 4. **Set up tenants**: Create appropriate Grafana Organizations for your external data
 5. **Test ingestion**: Send sample data to verify connectivity and formatting
 6. **Implement production ingestion**: Deploy your chosen import method at scale
-7. **Monitor ingestion**: Track data volume and verify data is being properly processed
+7. **Monitor ingestion**: Track data volume and verify data is being processed correctly
 
 ## Getting started with data export
 

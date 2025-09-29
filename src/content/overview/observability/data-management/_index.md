@@ -60,7 +60,7 @@ Detailed records of requests as they flow through distributed systems, showing t
 - Service-to-service communication patterns
 - Application performance bottlenecks
 
-**Note:** Trace ingestion is available in alpha from cluster release v31 and fully supported from v33. Tracing is disabled by default and can be enabled on request through your Account Engineer.
+**Note:** Trace ingestion is available in alpha from cluster release v31 and fully supported from v33. Tracing is turned off by default and can be enabled on request through your Account Engineer.
 
 ## Data management capabilities
 

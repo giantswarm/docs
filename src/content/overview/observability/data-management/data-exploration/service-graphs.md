@@ -20,7 +20,7 @@ user_questions:
 
 Service graphs provide an automatic visual representation of your distributed system's architecture, generated directly from your trace data. They show how services communicate, traffic patterns, and performance characteristics - giving you instant insight into your system's topology without any additional configuration.
 
-## What are service graphs?
+## What are service graphs
 
 Service graphs are automatically generated visualizations that show:
 
@@ -52,7 +52,7 @@ Each circle represents a service, showing:
 - **Color coding**: Green (healthy), yellow (warnings), red (errors)
 - **Request rate**: Requests per second handled by the service
 
-### Edges (Connections)
+### Edges (connections)
 
 Arrows between services show:
 
@@ -72,7 +72,7 @@ Arrows between services show:
 
 - **Red nodes/edges**: Services or connections with high error rates
 - **Missing services**: Services that should be present but aren't showing up
-- **Thick edges with slow response**: High-traffic paths that are performing poorly
+- **Thick edges with slow response**: High-traffic paths with performance issues
 - **Isolated services**: Services that aren't communicating as expected
 
 ### Understanding architecture

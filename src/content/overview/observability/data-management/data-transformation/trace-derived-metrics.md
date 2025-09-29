@@ -22,9 +22,9 @@ Giant Swarm's observability platform automatically generates metrics from your t
 
 You can't create alerts directly from trace data, so these automatically generated metrics bridge the gap between detailed trace analysis and reliable monitoring.
 
-## Understanding RED metrics
+## Understanding metrics derived from traces
 
-Tempo's metrics-generator automatically creates RED metrics from your trace data:
+Tempo's metrics-generator automatically creates RED (Rate, Error, Duration) metrics from your trace data:
 
 ### Rate
 
@@ -249,7 +249,7 @@ groups:
 
 ### Common monitoring patterns
 
-1. **Service-level monitoring**: Track overall service health using RED metrics
+1. **Service-level monitoring**: Track overall service health using RED (Rate, Error, Duration) metrics
 2. **Dependency monitoring**: Alert when upstream services affect downstream performance
 3. **Capacity planning**: Monitor request rates and latency trends over time
 4. **Quality monitoring**: Track degradation in service quality metrics
