@@ -248,6 +248,7 @@ Find cross-service calls:
    ```
 
 3. **Analyze error patterns**:
+
    ```traceql
    {status = error} | by(span.status.message)
    ```
