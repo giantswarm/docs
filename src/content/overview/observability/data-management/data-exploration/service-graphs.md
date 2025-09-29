@@ -76,6 +76,7 @@ Arrows between services show:
 - **Isolated services**: Services that aren't communicating as expected
 
 ### Understanding architecture
+
 - **Hub services**: Central services that many others depend on
 - **Service chains**: Long paths of service-to-service calls
 - **External dependencies**: Services that call external systems
