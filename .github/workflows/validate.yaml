@@ -26,11 +26,12 @@ jobs:
 
       - name: Validate front matter for changed files
         run: |
+          echo "Detecting changed files:"
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           if [ -s files.txt ]; then
             # Validate the changed files
-            echo "Validating front matter for changed files"
+            echo "Validating front matter for changed files:"
             cat files.txt | frontmatter-validator
 
             # Print for debugging
