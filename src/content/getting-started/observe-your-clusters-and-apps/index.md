@@ -95,7 +95,7 @@ spec:
 
 Apply this configuration to start collecting metrics from your application.
 
-⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for logs, metrics and traces.
+⚠️ **Need more advanced ingestion?** See our comprehensive [Data Ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for logs, metrics, and traces.
 
 ## Step 3: Explore your metrics
 
