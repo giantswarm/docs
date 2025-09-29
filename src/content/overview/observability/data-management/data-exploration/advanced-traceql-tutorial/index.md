@@ -241,6 +241,7 @@ Find cross-service calls:
    ```
 
 2. **Narrow down by time**:
+
    ```traceql
    {status = error && resource.service.name = "payment-service"} 
    | select(trace.start_time > now() - 1h)
