@@ -61,6 +61,7 @@ Arrows between services show:
 - **Color**: Health status (red for high error rates)
 
 ### Key metrics displayed
+
 - **Request rates**: Traffic volume between services
 - **Error rates**: Failed request percentages  
 - **Response times**: Latency for service interactions
