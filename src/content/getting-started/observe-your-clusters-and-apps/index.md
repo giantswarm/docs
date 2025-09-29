@@ -30,7 +30,7 @@ Every Giant Swarm cluster includes:
 - **Platform metrics**: CPU, memory, disk, and network metrics from all cluster nodes
 - **Kubernetes metrics**: Pod status, deployments, services, and cluster events
 - **Application logs**: Automatic collection from all pods in your cluster
-- **Distributed tracing**: Optional trace collection for understanding request flows (requires enablement)
+- **Distributed tracing**: Trace collection for understanding request flows. To enable on your clusters, ask your account engineer.
 - **Pre-built dashboards**: Ready-to-use visualizations for infrastructure and platform components
 - **Default alerts**: Proactive notifications for common infrastructure issues
 - **Secure access**: Integration with your organization's identity provider
