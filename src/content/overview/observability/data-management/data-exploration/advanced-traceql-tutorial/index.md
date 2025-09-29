@@ -312,6 +312,7 @@ Query trace topology:
 ### Common patterns
 
 1. **Error investigation workflow**:
+
    ```traceql
    {status = error} | by(resource.service.name) | count()
    ```
