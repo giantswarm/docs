@@ -92,6 +92,7 @@ Arrows between services show:
 ## Best practices
 
 ### For better service graphs
+
 - **Use consistent service names**: Avoid including instance IDs or dynamic values
 - **Instrument all service boundaries**: Ensure traces capture all service-to-service calls
 - **Include meaningful operation names**: Help differentiate between different types of calls
