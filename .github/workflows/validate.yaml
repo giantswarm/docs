@@ -21,7 +21,7 @@ jobs:
         uses: giantswarm/install-binary-action@0797deb878056114fa54ee30c519f617716e8c69 # v3.1.1
         with:
           binary: frontmatter-validator
-          version: "0.1.1"
+          version: "0.2.0"
           smoke_test: frontmatter-validator --help
 
       - name: Validate front matter for changed files
@@ -32,7 +32,7 @@ jobs:
           if [ -s files.txt ]; then
             # Validate the changed files
             echo "Validating front matter for changed files:"
-            cat files.txt | frontmatter-validator
+            cat files.txt | frontmatter-validator --config ./scripts/frontmatter-validator/config-default.yaml
 
             # Print for debugging
             printf "\nAnnotations JSON:\n"
