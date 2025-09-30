@@ -101,7 +101,7 @@ Metrics capabilities are in development:
 - **Application metrics**: Custom business and performance metrics
 - **Platform metrics**: Kubernetes and Giant Swarm platform metrics
 
-**Note**: Currently, data import via the API supports logs, events, and traces (when enabled). Metrics import will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes" >}}) for updates on metrics import availability.
+**Note**: Currently, data import via the API supports logs, events, and traces. Metrics import will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes" >}}) for updates on metrics import availability.
 
 ## Data import methods
 
