@@ -24,7 +24,7 @@ You can't create alerts directly from trace data, so these automatically generat
 
 ## Understanding metrics derived from traces
 
-Tempo's metrics-generator automatically creates RED (Rate, Error, Duration) metrics from your trace data:
+Tempo's metrics-generator automatically creates rate, error, and duration (RED) metrics from your trace data:
 
 ### Rate
 
