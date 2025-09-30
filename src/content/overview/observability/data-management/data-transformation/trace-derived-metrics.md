@@ -249,7 +249,7 @@ groups:
 
 ### Common monitoring patterns
 
-1. **Service-level monitoring**: Track overall service health using RED (Rate, Error, Duration) metrics
+1. **Service-level monitoring**: Track overall service health using RED metrics
 2. **Dependency monitoring**: Alert when upstream services affect downstream performance
 3. **Capacity planning**: Monitor request rates and latency trends over time
 4. **Quality monitoring**: Track degradation in service quality metrics
