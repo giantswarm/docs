@@ -178,7 +178,7 @@ Once traces are flowing, explore them in Grafana:
 
 Try these example queries:
 
-- `{resource.service.name = "my-service"}` - All traces from a specific service
+- `{resource.service.name = "my-traced-app"}` - All traces from a specific service
 - `{trace.duration > 5s}` - Find slow requests
 - `{status = error}` - Find failed traces
 - `{span.http.method = "POST" && span.http.status_code >= 400}` - Failed HTTP requests
