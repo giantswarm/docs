@@ -134,7 +134,7 @@ Try these sample queries:
 
 Distributed tracing helps you understand how requests flow through your microservices architecture. Giant Swarm's observability platform supports tracing through Tempo and OpenTelemetry.
 
-**Important**: Tracing is available in alpha from cluster release v31 and fully supported from v33. It's turned off by default and must be enabled by your Account Engineer.
+**Important**: Tracing is available in alpha from cluster release v31 and fully supported from v33. It's disabled by default and must be enabled by your account engineer.
 
 ### Prerequisites for tracing
 
