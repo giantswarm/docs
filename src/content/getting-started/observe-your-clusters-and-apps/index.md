@@ -164,7 +164,7 @@ spec:
         image: my-app:latest
         env:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "http://otlp-gateway.kube-system.svc:4318"
+          value: "http://otlp-gateway.kube-system.svc:4318" # 4318 for http, or 4317 for grpc
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: "service.name=my-traced-app"
 ```
