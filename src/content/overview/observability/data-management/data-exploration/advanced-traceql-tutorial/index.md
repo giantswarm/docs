@@ -26,7 +26,7 @@ This tutorial builds on the concepts from [data exploration]({{< relref "/overvi
 
 Before starting this tutorial:
 
-- **Tracing enabled**: Your cluster must have tracing enabled (contact your Account Engineer)
+- **Tracing enabled**: Your cluster must have tracing enabled (contact your account engineer)
 - **Instrumented applications**: Your applications should be sending traces to `otlp-gateway.kube-system.svc`
 - **Grafana access**: You can access your Grafana instance and the Tempo data source
 
