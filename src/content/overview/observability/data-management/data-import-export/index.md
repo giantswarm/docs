@@ -302,7 +302,7 @@ Before you can import data, ensure you have:
 
 ### Setup process for data import
 
-1. **Plan your data sources**: Identify which external systems will send data to the platform (logs, traces when enabled)
+1. **Plan your data sources**: Identify which external systems will send data to the platform
 2. **Configure authentication**: Work with Giant Swarm to set up OIDC integration for your data sources
 3. (Optional) **Enable tracing**: For trace data import, ensure tracing is enabled for your cluster
 4. **Set up tenants**: Create appropriate Grafana Organizations for your external data
