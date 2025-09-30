@@ -84,6 +84,6 @@ Learn more about these default organizations and how to create your own in our [
 - Try out the Explore and Drilldown features to get hands-on with your data.
 - Learn more about exploring metrics in our [advanced PromQL guide]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}).
 - Learn more about exploring logs and events in our [advanced LogQL guide]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}).
-- Learn more about exploring traces in our [advanced TraceQL guide]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial" >}}) (when tracing is enabled).
+- Learn more about exploring traces in our [advanced TraceQL guide]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial" >}}).
 - Understand service topology with [service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs/" >}}) generated from trace data.
 - For more on creating dashboards or ingesting new data, see our [data ingestion tutorial]({{< relref "/overview/observability/data-management/data-ingestion" >}}) or [multi-tenancy guide]({{< relref "/overview/observability/configuration/multi-tenancy" >}}).
