@@ -139,7 +139,7 @@ Distributed tracing helps you understand how requests flow through your microser
 ### Prerequisites for tracing
 
 - **Cluster version**: v31+ (alpha) or v33+ (full support)
-- **Tracing enabled**: Contact your Account Engineer to enable tracing for your cluster
+- **Tracing enabled**: Contact your account engineer to enable tracing for your cluster
 - **Application instrumentation**: Your applications must be instrumented with OpenTelemetry
 
 ### Configure trace collection
