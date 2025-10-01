@@ -3,7 +3,7 @@ title: Prepare your AWS account
 linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2025-07-02
+last_review_date: 2025-10-01
 layout: single
 menu:
   principal:
@@ -90,7 +90,7 @@ dynamically based on traffic, hence the high numbers of EC2 instances requested.
 
 There are various IAM resources required to run our platform. To ensure fast and streamlined operations to our customers, these IAM resources are managed by Giant Swarm in an automated system. [Below](#iam-roles) are details of each IAM role we use for informational purposes only.
 
-To onboard a new AWS account to use with the Giant Swarm platform, follow the instructions in the [`giantswarm-aws-account-prerequisites` repo](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/blob/main/onboarding/README.md), where you'll also find the OpenTofu we use to manage the IAM roles.
+To onboard a new AWS account to use with the Giant Swarm platform, follow the instructions in the [`giantswarm-aws-account-prerequisites` repository](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/blob/main/onboarding/README.md), where you'll also find the OpenTofu we use to manage the IAM roles.
 
 After that, make sure to notify your Giant Swarm account engineer to provide the new AWS account ID so we can bootstrap the rest of the required IAM resources.
 
