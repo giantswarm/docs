@@ -141,14 +141,18 @@ Each management cluster has its own IAM role in each of the AWS accounts it mana
 
 Name pattern: `giantswarm-${installation_name}-capa-controller`
 
-### GiantSwarmAdmin role {#iam-giantswarmadmin-role}
+### Giant Swarm staff admin role {#iam-giantswarm-admin}
 
 This IAM role is used by Giant Swarm engineers to access the AWS account for support purposes, specifically when changes need to be made on-the-fly.
 
 It is also used by our account automation to manage the IAM resources.
 
-### GiantSwarmReadOnly role {#iam-giantswarmreadonly-role}
+Name: `GiantSwarmAdmin`
+
+### Giant Swarm staff read-only role {#iam-giantswarm-readonly}
 
 This IAM role is used by Giant Swarm engineers to access the AWS account for support purposes in a view-only capacity.
 
 It is also used by our account automation to plan and validate changes during pull-requests on our infrastructure code.
+
+Name: `GiantSwarmReadOnly`
