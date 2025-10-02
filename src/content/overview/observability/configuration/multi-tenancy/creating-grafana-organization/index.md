@@ -164,7 +164,7 @@ Creating a `GrafanaOrganization` resource automatically provisions:
 1. **New Grafana organization** with your specified display name
 2. **Tenant-scoped datasources** for Loki, Mimir, and Alertmanager
 3. **User role assignments** based on your RBAC configuration
-4. **Data collection** of alerts, metrics and logs
+4. **Data collection** of alerts, logs, metrics, and traces
 
 ## Verification steps
 
