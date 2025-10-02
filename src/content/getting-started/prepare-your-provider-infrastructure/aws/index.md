@@ -135,7 +135,7 @@ This is a non-exclusive list of the primary IAM roles used by the Giant Swarm pl
 
 ### CAPA controller role {#iam-capa-controller-role}
 
-The CAPA controller in the management cluster uses the controller role to provision all infrastructure for managing workload clusters.
+The Cluster API for AWS (CAPA) controller in the management cluster uses the controller role to provision all infrastructure for managing workload clusters.
 
 Each management cluster has its own IAM role in each of the AWS accounts it manages clusters on.
 
