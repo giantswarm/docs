@@ -10,7 +10,7 @@ user_questions:
 aliases:
   - /vintage/platform-overview/security/cluster-security/domain-allowlist/
   - /platform-overview/security/cluster-security/domain-allowlist
-last_review_date: 2025-06-04
+last_review_date: 2025-10-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
@@ -24,8 +24,6 @@ List of the external domains we require access to for our clusters to function.
 - `amazonaws.com`
     - domains:
         - `*.amazonaws.com`
-        - `ec2.eu-west-2.amazonaws.com`
-        - `sts.eu-central-1.amazonaws.com`
     - AWS services are used for a variety of tasks, such as `etcd` backup storage.
 - `azurecr.io`
     - domains:
@@ -43,7 +41,6 @@ List of the external domains we require access to for our clusters to function.
 - `docker.com`
     - domains:
         - `*.docker.com`
-        - `production.cloudflare.docker.com`
     - Container images are hosted on `Dockerhub`.
     - `Dockerhub` uses `Cloudflare` as the `CDN` for serving Docker image layer blobs, manifests, etc.
 - `docker.io`
@@ -86,9 +83,10 @@ List of the external domains we require access to for our clusters to function.
     - Grafana may download plugins from the Grafana plugin registry.
 - `grafana.net`
     - domains:
-        - `prometheus-us-central1.grafana.net`
+        - `*.grafana.net`
+        - `*.grafana.org`
     - Some metrics are pushed to our hosted Grafana tenant.
-- `giantswarm.io
+- `giantswarm.io`
     - domains:
         - `vault.operations.giantswarm.io`
         - `schema.giantswarm.io`
