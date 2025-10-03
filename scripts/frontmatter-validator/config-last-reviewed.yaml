@@ -1,0 +1,42 @@
+# Frontmatter Validator configuration - Last review date only
+# This configuration only validates last review date related checks.
+
+# Only enable last review date checks by default
+default_rules:
+  enabled_checks:
+    - NO_FRONT_MATTER           # Need frontmatter to check review dates
+    - NO_TRAILING_NEWLINE       # Basic file format requirement
+    - NO_LAST_REVIEW_DATE
+    - REVIEW_TOO_LONG_AGO
+    - INVALID_LAST_REVIEW_DATE
+
+# Directory-specific overrides for last review date validation
+directory_overrides:
+  # Vintage documentation doesn't require review dates
+  - path: "src/content/vintage/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # Changes/changelog entries don't need review dates
+  - path: "src/content/changes/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # Cluster apps documentation
+  - path: "src/content/reference/platform-api/cluster-apps/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # CRD documentation doesn't require review dates
+  - path: "src/content/reference/platform-api/crd/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # Meta documentation
+  - path: "src/content/meta/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
