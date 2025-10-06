@@ -19,7 +19,7 @@ user_questions:
   - What should I monitor first in my cluster?
 ---
 
-Giant Swarm's observability platform gives you immediate visibility into your clusters and applications. Every cluster comes with automatic monitoring configured out of the box, collecting metrics and logs that help you understand system health and application performance. Distributed tracing is also available to help you understand request flows across your microservices.
+Giant Swarm's observability platform gives you immediate visibility into your clusters and applications. Every cluster comes with automatic monitoring configured out of the box, collecting metrics and logs that help you understand system health and application performance. Additionally you can request distributed tracing to help you understand request flows across your microservices.
 
 This guide will walk you through your first steps with the observability platform, from accessing pre-built dashboards to setting up custom monitoring for your applications.
 
