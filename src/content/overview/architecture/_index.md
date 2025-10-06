@@ -56,7 +56,7 @@ Giant Swarm uses [Backstage](https://www.cncf.io/projects/backstage/) as develop
 
 ## Observability
 
-Observability on the Giant Swarm platform is based on the Grafana stack. Collectors store metrics, logs, and traces in central storage. You can use them in the managed Grafana instance on your management cluster to get a centralized view, set up alerts and dashboards, or troubleshoot issues. In our [getting started guide]({{< relref "/getting-started/observe-your-clusters-and-apps" >}}), you see how easily your developers can start monitoring applications with this stack. Giant Swarm's pre-installed dashboards let you view the infrastructure and cluster health without extra effort.
+Observability on the Giant Swarm platform is based on the Grafana's LGTM stack. Collectors store metrics, logs, and traces in central storage. You can use them in the managed Grafana instance on your management cluster to get a centralized view, set up alerts and dashboards, or troubleshoot issues. In our [getting started guide]({{< relref "/getting-started/observe-your-clusters-and-apps" >}}), you see how easily your developers can start monitoring applications with this stack. Giant Swarm's pre-installed dashboards let you view the infrastructure and cluster health without extra effort.
 
 ## Single sign-on
 
