@@ -152,7 +152,7 @@ These are managed through predefined PodLogs resources and shouldn't be modified
 
 Starting from cluster release v31 (alpha) and fully supported from v33, the observability platform supports distributed tracing through OpenTelemetry Protocol (OTLP). Traces help you understand request flow and performance across your distributed applications.
 
-**Important**: Trace ingestion is turned off by default and must be enabled through your Account Engineer before configuration.
+**Important**: Distributed tracing must be enabled through your Account Engineer before configuration.
 
 ### OpenTelemetry instrumentation
 
