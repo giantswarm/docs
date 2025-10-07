@@ -16,9 +16,10 @@ user_questions:
   - How do I get started with observability?
   - Where do I find dashboards, alerts, and data management docs?
   - How do I monitor my clusters and apps?
-  - How do I access logs and metrics?
+  - How do I access logs, metrics, and traces?
   - How do I set up alerts and dashboards?
   - How do I manage multi-tenancy and access control?
+  - How do I enable distributed tracing?
 ---
 
 # What is observability
@@ -30,6 +31,8 @@ Observability is all about understanding what's happening in your systems, so yo
 - **Monitor your systems:** Continuously collect and analyze metrics to check the performance and health of your applications and infrastructure. Effective monitoring helps you spot anomalies, understand usage patterns, and make data-driven decisions.
 
 - **Centralize your logs:** Capture detailed records of system and application events. Centralized logging makes troubleshooting and auditing easier. Search and analyze logs to find issues, track changes, and meet compliance needs, all in one place.
+
+- **Trace your requests:** Follow requests as they flow through your distributed systems. Distributed tracing helps you understand how services interact, identify bottlenecks, and troubleshoot performance issues across your entire application stack.
 
 - **Visualize your data:** Connect the dots between different data sources. Use dashboards, visualizations, and alerts to get a clear picture of your platform. Start with our ready-made dashboards or create your own to track what matters most to you.
 
@@ -48,11 +51,13 @@ Here are the most important tools we rely on:
 
 - **Loki:** An open-source, horizontally scalable, highly available log aggregation system. Loki collects logs from any source and in any format, covering everything from app and system events to audit logs. With LogQL, you can query logs and even generate metrics from log data.
 
-- **Grafana:** A popular open-source visualization tool for exploring metrics and logs. Grafana lets you create dashboards and graphs for all your observability needs. It integrates seamlessly with Mimir and Loki, and supports other data sources like Prometheus, Elasticsearch, and InfluxDB.
+- **Tempo:** An open-source, horizontally scalable distributed tracing backend. Tempo ingests traces from any source, stores them efficiently, and provides fast querying capabilities. It integrates with OpenTelemetry and supports TraceQL for powerful trace analysis and service graph visualization.
+
+- **Grafana:** A popular open-source visualization tool for exploring metrics, logs, and traces. Grafana lets you create dashboards and graphs for all your observability needs. It integrates seamlessly with Mimir, Loki, and Tempo, and supports other data sources like Prometheus, Elasticsearch, and InfluxDB.
 
 - **Alertmanager:** Part of the Grafana ecosystem, Alertmanager handles all your alerts. It manages routing, grouping, and silencing, so the right people get notified at the right time. It supports notifications via email, Slack, PagerDuty, and more.
 
-- **Alloy:** As an OpenTelemetry collector, Grafana Alloy makes it easy to collect, process, and forward metrics, logs, and events from your workload clusters. Adding new data is as simple as setting up a new service monitor or adding the right labels.
+- **Alloy:** As an OpenTelemetry collector, Grafana Alloy makes it easy to collect, process, and forward metrics, logs, and traces from your workload clusters. Adding new data is as simple as setting up a new service monitor or adding the right labels.
 
 ---
 
@@ -66,6 +71,6 @@ Create and organize custom visualizations with our [dashboard management capabil
 
 ## Data management
 
-The observability platform provides comprehensive [data management capabilities]({{< relref "/overview/observability/data-management" >}}) that handle the complete lifecycle of your observability data - from collection and storage to analysis and export. Our integrated approach ensures efficient data flow while maintaining security, performance, and multi-tenancy across all data types.
+The observability platform provides comprehensive [data management capabilities]({{< relref "/overview/observability/data-management" >}}) that handle the complete lifecycle of your observability data - from collection and storage to analysis and export. Our integrated approach ensures efficient data flow while maintaining security, performance, and multi-tenancy across all data types including metrics, logs, and traces.
 
 Learn how to start with observability on Giant Swarm by visiting our [getting started observability page]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}).

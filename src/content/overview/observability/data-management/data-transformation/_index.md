@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I transform observability data?
   - What are relabeling and recording rules?
-  - How do I enrich logs and metrics?
+  - How do I enrich logs, metrics, and traces?
   - How do I use Grafana transformations?
 ---
 
@@ -173,7 +173,7 @@ For advanced LogQL techniques, see our [advanced LogQL tutorial]({{< relref "/ov
 ### Common transformation use cases
 
 - **Calculate derived values**: Create ratios, percentages, or growth rates
-- **Merge data sources**: Combine metrics and logs in single visualizations
+- **Merge data sources**: Combine logs, metrics, and traces in single visualizations
 - **Format for presentation**: Rename fields, apply units, or create custom formatting
 - **Filter and aggregate**: Focus on specific data subsets or summary statistics
 
