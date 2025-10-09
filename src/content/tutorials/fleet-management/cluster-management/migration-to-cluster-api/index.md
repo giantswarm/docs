@@ -34,7 +34,7 @@ The vintage service account issuer (first in the list above) needs to be phased 
 Two things need to happen to achieve that without downtime:
 
 - You may have applications using the issuers for IRSA, i.e. authenticating to the AWS API through service accounts. In this case, AWS IAM trust relationships may still reference the old domain. You will change them with the below instructions to allow both old and new domains.
-- Kubernetes service account tokens must be re-issued by the new issuer domain. Kubernetes does this automatically, but only once a token expires. Therefore, both issuers must be kept for a certain time, but you will turn around their purpose: the vintage issuer will be switched to only validate (old, existing) tokens, while the other issuer will be switched to become primary, meaning it is responsible to issue any new tokens once the old tokens expire, and is also used for validation.
+- Kubernetes service account tokens must be re-issued by the new issuer domain. Kubernetes does this automatically, but only once a token expires. Therefore, both issuers must be kept for a certain time, but you will turn around their purpose: the vintage issuer will be switched to only validate (old, existing) tokens, while the CAPA issuer will be switched to become primary, meaning it is responsible to issue any new tokens once the old tokens expire, and is also used for validation.
 
 **Let's start. These are the exact steps you need to follow:**
 
