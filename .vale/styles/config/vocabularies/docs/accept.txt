@@ -24,13 +24,22 @@ ASGs?
 auditable
 autoscaler
 autoscaling
+aws-cli
+AWS
 az
+Azure
 backbone
 beta
+CAPA
+CAPI
+CAPV
+CAPVCD
+CAPZ
 CIDR[s]?
 CLI
 cluster-vsphere
 configmap[s]?
+configs?
 containerd
 CR[D]?[s]?
 CRs
@@ -47,6 +56,7 @@ ESXi
 [F|f]alco
 firewalling
 freely
+GCP
 Giant Swarm
 gracefully
 [G|g]rafana
@@ -57,6 +67,8 @@ HTTP
 impl_title
 IP[s]?
 IPAM
+IRSA
+jq
 JSON
 k8s
 [K|k]arpenter
