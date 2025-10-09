@@ -52,13 +52,24 @@ Two things need to happen to achieve that without downtime:
    echo "### Affected AWS accounts ### "; echo; grep -oE ':[0-9]{12,}:' /tmp/service-accounts.txt | tr -d ':' | sort | uniq > /tmp/affected-accounts.txt; cat /tmp/affected-accounts.txt; echo; echo "### Unknown roles, please manually check to which account each of them belongs ###"; grep -vE ':[0-9]{12,}:' /tmp/service-accounts.txt || echo '(none)'
    ```
 
-4. Find trust policies that only allow the vintage OIDC issuer. You can do this manually using the AWS Console, or somewhat automated using aws-cli. In both cases, if you have roles in multiple accounts, you need to go through all accounts. The file `/tmp/affected-accounts.txt` lists all affected account numbers ‒ **please perform the next steps for each account**. The below instructions are for aws-cli and also require [jq](https://jqlang.org/) to be installed.
+4. Find out the CAPI base domain which we'll need in a few moments. You're still logged into the workload cluster's Kubernetes API, right? Then run the following command. The expected output is shown as well:
+
+   ```text
+   $ kubectl get configmap -n giantswarm -o yaml | grep baseDomain: | sed -E 's/^ +//' | sort | uniq
+   baseDomain: capi.acme.net
+   baseDomain: mycluster.capi.acme.net
+   baseDomain: mycluster.k8s.myoldmanagementcluster.vintage.acme.net
+   ```
+
+   In the output, you can see the CAPI base domain `capi.acme.net`, the vintage base domain `k8s.myoldmanagementcluster.vintage.acme.net` and a combination of your cluster name (here: `mycluster`) with those domains. Remember the base domain _without_ the cluster name for the next step.
+
+5. Find trust policies that only allow the vintage OIDC issuer. You can do this manually using the AWS Console, or somewhat automated using aws-cli. In both cases, if you have roles in multiple accounts, you need to go through all accounts. The file `/tmp/affected-accounts.txt` lists all affected account numbers ‒ **please perform the next steps for each account**. The below instructions are for aws-cli and also require [jq](https://jqlang.org/) to be installed.
 
    ```sh
    # Use some way to tell aws-cli how to reach an account
    export AWS_PROFILE="FILL_PROFILE_FOR_THE_AWS_ACCOUNT"
 
-   # Specify the base domain of your CAPI MC
+   # Specify the base domain that we found in the previous step
    capi_base_domain="capi.acme.net"
 
    # Copy-paste this full line into your terminal
@@ -67,7 +78,7 @@ Two things need to happen to achieve that without downtime:
 
    With this, you now have a list of affected IAM roles in _one_ account.
 
-5. Update trust policies of the affected IAM roles. They should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, the following block shows how the trust policy should look like. The order doesn't matter as long as you trust both the old and new issuer. Make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references.
+6. Update trust policies of the affected IAM roles. They should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, the following block shows how the trust policy should look like. The order doesn't matter as long as you trust both the old and new issuer. Make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references.
 
    ```json
    {
@@ -105,7 +116,7 @@ Two things need to happen to achieve that without downtime:
     }
    ```
 
-6. Switch the order of the service account issuers in the cluster values (the values for the cluster-aws chart; specifically `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`). This will instruct the Kubernetes API to start issuing service account tokens using the CAPI issuer, while still accepting tokens from the vintage issuer. Important notes:
+7. Switch the order of the service account issuers in the cluster values (the values for the cluster-aws chart; specifically `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`). This will instruct the Kubernetes API to start issuing service account tokens using the CAPI issuer, while still accepting tokens from the vintage issuer. Important notes:
    - This needs to be done **after** all IAM role trust policies have been updated.
    - This will roll the control plane nodes of the cluster.
    - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
@@ -146,14 +157,14 @@ Two things need to happen to achieve that without downtime:
    kubectl get pod -n kube-system -l component=kube-apiserver -o yaml | grep -E 'name: kube-apiserver-|--service-account-issuer'
    ```
 
-7. Wait until all service account tokens have been renewed:
+8. Wait until all service account tokens have been renewed:
    - For [bound service account tokens](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume) this happens either when the Pod gets deleted or after a defined lifespan (1 hour by default). This could be forced by rolling all the worker nodes, which would delete and re-schedule all `Pods`.
    - If [long-lived tokens are in use via `Secret` objects](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#manual-secret-management-for-serviceaccounts), these will need to be re-created and re-distributed manually.
-8. Remove the vintage issuer from the cluster configuration values. Specifically, you want to use the default, so please completely **remove** the whole array `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` from your cluster values. That means to only use the new issuer. Some clusters may still have the older key name `internal.migration.irsaAdditionalDomain` which you should also remove now. Important notes:
+9. Remove the vintage issuer from the cluster configuration values. Specifically, you want to use the default, so please completely **remove** the whole array `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` from your cluster values. That means to only use the new issuer. Some clusters may still have the older key name `internal.migration.irsaAdditionalDomain` which you should also remove now. Important notes:
    - All Service Account tokens issued by the vintage issuer will no longer be accepted by the cluster's Kubernetes API, so make sure to wait until all tokens are renewed (see previous step).
    - This will roll the control plane nodes of the cluster.
    - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
-9. (Optional) Update all the AWS IAM Roles used by a `ServiceAccount` via IRSA, to remove the vintage issuer from their trust policy.
+10. (Optional) Update all the AWS IAM Roles used by a `ServiceAccount` via IRSA, to remove the vintage issuer from their trust policy.
 
 ## DNS hosted zones and Kubernetes API endpoint
 
