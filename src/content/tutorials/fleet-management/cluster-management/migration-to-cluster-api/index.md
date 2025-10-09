@@ -21,7 +21,7 @@ For each of the cleanup steps, which can be done independently of each other, fe
 
 A cluster's service account issuer is an OIDC provider that signs and issues the tokens for the cluster's Service Accounts. These service accounts can then be used to authenticate workloads against the Kubernetes API and the AWS API via [IRSA]({{< relref "/tutorials/access-management/iam-roles-for-service-accounts/" >}}).
 
-In CAPA, since the cluster domain name changes from vintage, a new service account issuer has also been introduced. To make for a smooth migration though, we support defining multiple issuers in a cluster. This way, service account tokens issued by all the defined issuers will be accepted in the cluster's Kubernetes API. The accepted issuers are defined in `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` in the cluster app values (order matters as we'll see below).
+In CAPA, since the cluster domain name changes from vintage, a new service account issuer has also been introduced. To make for a smooth migration though, we support defining multiple issuers in a cluster. This way, service account tokens issued by all the defined issuers will be accepted in the cluster's Kubernetes API. The accepted issuers are defined in `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` ([values documentation](https://github.com/giantswarm/cluster/blob/main/helm/cluster/README.md#provider-integration)) in the cluster-aws app values (order matters as we'll see below).
 
 A migrated cluster, for example, can look like this before cleanup:
 
