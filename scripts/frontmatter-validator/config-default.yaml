@@ -1,0 +1,86 @@
+# Frontmatter Validator configuration
+# This file defines which validation checks are enabled and how they apply to different directories.
+
+# Default rules applied to all files unless overridden
+default_rules:
+  enabled_checks:
+    - NO_FRONT_MATTER
+    - NO_TRAILING_NEWLINE
+    - UNKNOWN_ATTRIBUTE
+    - NO_TITLE
+    - LONG_TITLE
+    - SHORT_TITLE
+    - NO_DESCRIPTION
+    - LONG_DESCRIPTION
+    - SHORT_DESCRIPTION
+    - NO_FULL_STOP_DESCRIPTION
+    - INVALID_DESCRIPTION
+    - NO_LINK_TITLE
+    - LONG_LINK_TITLE
+    - NO_WEIGHT
+    - NO_OWNER
+    - INVALID_OWNER
+    - NO_LAST_REVIEW_DATE
+    - REVIEW_TOO_LONG_AGO
+    - INVALID_LAST_REVIEW_DATE
+    - NO_USER_QUESTIONS
+    - LONG_USER_QUESTION
+    - NO_QUESTION_MARK
+
+# Directory-specific overrides
+# Rules are applied in order, with later matches taking precedence
+directory_overrides:
+  # CRD documentation has relaxed requirements
+  - path: "src/content/reference/platform-api/crd/**"
+    disabled_checks:
+      - INVALID_DESCRIPTION
+      - LONG_DESCRIPTION
+      - NO_DESCRIPTION
+      - NO_FULL_STOP_DESCRIPTION
+      - NO_LINK_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+      - SHORT_DESCRIPTION
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # Vintage CRD documentation
+  - path: "src/content/vintage/use-the-api/management-api/crd/**"
+    disabled_checks:
+      - NO_DESCRIPTION
+      - LONG_DESCRIPTION
+      - SHORT_DESCRIPTION
+      - NO_FULL_STOP_DESCRIPTION
+      - INVALID_DESCRIPTION
+      - NO_LINK_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+
+  # Changes/changelog entries have different requirements
+  - path: "src/content/changes/**"
+    disabled_checks:
+      - LONG_LINK_TITLE
+      - NO_DESCRIPTION
+      - NO_FULL_STOP_DESCRIPTION
+      - NO_LAST_REVIEW_DATE
+      - NO_LINK_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+      - SHORT_DESCRIPTION
+
+  # Vintage documentation doesn't require review dates
+  - path: "src/content/vintage/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # Cluster apps documentation
+  - path: "src/content/reference/platform-api/cluster-apps/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  # Meta documentation
+  - path: "src/content/meta/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE

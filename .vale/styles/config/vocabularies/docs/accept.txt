@@ -24,9 +24,17 @@ ASGs?
 auditable
 autoscaler
 autoscaling
+aws-cli
+AWS
 az
+Azure
 backbone
 beta
+CAPA
+CAPI
+CAPV
+CAPVCD
+CAPZ
 CIDR[s]?
 CLI
 cluster-vsphere
@@ -38,6 +46,7 @@ descheduler
 [Dd]ex
 [Dd][Nn][Ss]
 configmap[s]?
+configs?
 [C|c]ontainerd
 CR[D]?[s]?
 CRs
@@ -50,10 +59,11 @@ ELB[s]?
 ENI[s]?
 ESXi
 [E|e]tcd
-extract
+[E|e]xtract
 [F|f]alco
 firewalling
 freely
+GCP
 Giant Swarm
 gracefully
 [G|g]rafana
@@ -64,6 +74,8 @@ HTTP
 impl_title
 IP[s]?
 IPAM
+IRSA
+jq
 JSON
 k8s
 [K|k]arpenter
@@ -85,6 +97,7 @@ node[pP]ool[s]?
 OAuth
 OIDC
 onboarding
+OTLP
 PagerDuty
 passthrough
 perfectly
@@ -100,7 +113,7 @@ relref
 rollouts
 rulesets
 runbook[s]?
-Sample
+[s|S]ample
 SemVer
 separately
 Sigstore
@@ -115,6 +128,7 @@ subnets?
 [T|t]eleport
 templated
 TLS
+TraceQL
 [T|t]rivy
 upstream[s]?
 vApp

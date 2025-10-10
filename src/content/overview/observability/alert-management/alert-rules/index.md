@@ -197,7 +197,7 @@ spec:
 
 - Configure [alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}}) for your tenants to complete the alerting pipeline
 - Review the [alerting pipeline]({{< relref "/overview/observability/alert-management/" >}}) architecture to understand how alerts flow through the system
-- Learn about [data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}}) to query and analyze the metrics and logs that drive your alerts
+- Learn about [data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}}) to query and analyze the logs, metrics, and traces that drive your alerts
 
 ## Related observability features
 

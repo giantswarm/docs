@@ -10,7 +10,7 @@ aliases:
   - /getting-started/management-cluster
   - /vintage/getting-started/management-cluster/
   - /platform-overview/management-api
-last_review_date: 2024-07-17
+last_review_date: 2025-09-19
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -59,9 +59,9 @@ A special command to log in to the platform API is `kubectl gs login`. You need 
 ```text
 $ kubectl gs login "https://api.<management cluster base domain>/"
 [...]
-A new kubectl context named 'gs-wombat' has been created and selected. To switch back to this context later, use either of these commands:
- kubectl gs login wombat
- kubectl config use-context gs-wombat
+A new kubectl context named 'gs-<management-cluster-name>' has been created and selected. To switch back to this context later, use either of these commands:
+ kubectl gs login <management-cluster-name>
+ kubectl config use-context gs-<management-cluster-name>
 ```
 
 When logging in, you must authenticate in your browser using the configured identity provider (for example, by signing into an `Active Directory` or `GitHub` user account). To learn more about the different authentication methods, see the [authentication page]({{< relref "/overview/architecture/authentication" >}}).
@@ -108,10 +108,10 @@ Finally, you can see the apps deployed in a cluster by running:
 ```text
 $ kubectl gs get app -n org-giantswarm
 NAME                     VERSION     LAST DEPLOYED     STATUS
-golem-capa-karpenter      0.3.0          50d          deployed
-golem-capi-node-labeler   0.5.0          54d          deployed
-golem-cert-exporter       2.8.5          54d          deployed
-golem-cert-manager        3.7.2          39d          deployed
+<mc-name>-capa-karpenter      0.3.0          50d          deployed
+<mc-name>-capi-node-labeler   0.5.0          54d          deployed
+<mc-name>-cert-exporter       2.8.5          54d          deployed
+<mc-name>-cert-manager        3.7.2          39d          deployed
 [...]
 ```
 

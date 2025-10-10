@@ -13,8 +13,7 @@ user_questions:
   - How do I configure an ingress controller behind an ELB that terminates SSL?
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
-  - How do I configure an internal Load Balancer on GCP?
-last_review_date: 2024-08-26
+last_review_date: 2025-09-22
 aliases:
   - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
@@ -23,9 +22,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
-Next to using the default ingress nginx controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using services of type `LoadBalancer`.
+Next to using the default ingress-nginx controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using services of type `LoadBalancer`.
 
-You can use this to [expose single services](#service-of-type-lb) to the internet. It's also possible, to [install additional ingress nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
+You can use this to [expose single services](#service-of-type-lb) to the internet. It's also possible, to [install additional ingress-nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
 
 __Note__: that this functionality can't be used on premises in most of the occasions.
 
@@ -127,7 +126,7 @@ service.beta.kubernetes.io/aws-load-balancer-backend-protocol: (https|http|ssl|t
 
 The second annotation specifies which protocol a pod speaks. For HTTPS and SSL, the ELB will expect the pod to authenticate itself over the encrypted connection.
 
-Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http` requires changing `controller.service.targetPorts.https` to `http` in your ingress nginx controller configuration.
+Please note, setting `service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http` requires changing `controller.service.targetPorts.https` to `http` in your ingress-nginx controller configuration.
 
 HTTP and HTTPS will select layer 7 proxy: the ELB will terminate the connection with the user, parse headers and inject the `X-Forwarded-For` header with the user’s IP address (pods will only see the IP address of the ELB at the other end of its connection) when forwarding requests.
 
@@ -239,7 +238,7 @@ To avoid downtime, we can create an additional Kubernetes `Service` of type `Loa
 
 1. Identify the LoadBalancer Service: Begin by identifying the Kubernetes Service of type LoadBalancer that requires parameter changes.
 
-2. Prepare a temporary replacement: Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The ingress controller (for example ingress nginx controller) is agnostic to the source of its requests, ensuring that this process doesn't disrupt ongoing operations.
+2. Prepare a temporary replacement: Clone the existing Service or create a new temporary Service with the required new configuration. The goal is to create a new LoadBalancer (LB) with its own DNS on the provider's infrastructure. The ingress controller (for example ingress-nginx controller) is agnostic to the source of its requests, ensuring that this process doesn't disrupt ongoing operations.
 
 3. Redirect traffic to the temporary LoadBalancer service: Once the temporary Service is set up and the new LoadBalancer can handle traffic, switch the DNS entry for the relevant domain to the new LoadBalancer. This seamlessly directs traffic originally intended for the old LoadBalancer to the new temporary one.
 
@@ -293,6 +292,16 @@ Since the health check might get false negative when two pods are running on the
 
 At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster, except of using PROXY protocol and `externalTrafficPolicy: Cluster` which leads to the AWS Network Load Balancer balancing traffic across all nodes and adding an extra hop for distribution inside the cluster.
 
+One way to make `externalTrafficPolicy: Local` work with PROXY protocol is to explicitly configure AWS load balancer health checks to use the traffic port. Important: Since the health check only supports a single protocol per service, you can only use either HTTP or HTTPS ports not both.
+
+```yaml
+metadata:
+  name: my-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "traffic-port"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTPS"
+```
+
 ##### Security Group configuration on internal AWS Network Load Balancers
 
 Last but not least there is one thing, you should take care of, left. If you aren't accessing an internal AWS Network Load Balancer from inside your cluster and therefore can actually use the integrated client IP preservation, you might still want to access this load balancer from other internal sources, which is totally fine and working.
@@ -303,8 +312,8 @@ But since their source IP addresses aren't getting changed, they're hitting your
 
 ## Further reading
 
-- [Running Multiple ingress nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}})
+- [Running Multiple ingress-nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}})
 - [services of type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer)
 - [AWS Load Balancer controller - Annotations](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/service/annotations/)
-- [Running Multiple ingress nginx controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
-- [Deploying the ingress nginx controller]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}})
+- [Running Multiple ingress-nginx controllers](https://github.com/kubernetes/ingress-nginx#running-multiple-ingress-controllers)
+- [Deploying the ingress-nginx controller]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}})

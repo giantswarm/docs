@@ -56,7 +56,7 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.18.0
+    commit_reference: v0.19.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -71,7 +71,7 @@ source_repositories:
   - url: https://github.com/giantswarm/observability-operator
     organization: giantswarm
     short_name: observability-operator
-    commit_reference: v0.41.0
+    commit_reference: v0.43.1
     crd_paths:
       - config/crd/bases
     cr_paths:
@@ -257,7 +257,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.42.1
+    commit_reference: v0.42.3
     crd_paths:
       - config/crd
     cr_paths:
