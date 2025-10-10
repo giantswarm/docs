@@ -38,9 +38,16 @@ CAPZ
 CIDR[s]?
 CLI
 cluster-vsphere
+[Cc]ontainerd
+[Cc]rossplane
+CRs
+declaratively
+descheduler
+[Dd]ex
+[Dd][Nn][Ss]
 configmap[s]?
 configs?
-containerd
+[C|c]ontainerd
 CR[D]?[s]?
 CRs
 declaratively
@@ -81,6 +88,7 @@ kubeconfig[s]?
 kubectl
 kubelet
 [K|k]yverno
+liveness
 LogQL
 mimirtool
 namespace[s]?
@@ -102,6 +110,7 @@ rapidly
 RBAC
 really
 relref
+rollouts
 rulesets
 runbook[s]?
 [s|S]ample
