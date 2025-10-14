@@ -39,7 +39,7 @@ Two things need to happen to achieve that without downtime:
 
 **Let's start. These are the exact steps you need to follow:**
 
-1. Choose one workload cluster for which you want to perform the cleanup. In this example, we'll call the cluster `mycluster`. [Log into]({{< relref "/getting-started/access-to-platform-api/" >}}) the Kubernetes API.
+1. Choose one workload cluster for which you want to perform the cleanup. In this example, we'll call the cluster `mycluster`. Make sure it's at least on [CAPA Release v32.1.0]({{< relref "/changes/capa-releases/releases/aws-32.1.0/" >}}) so that built-in apps support both the old and new issuer. [Log into]({{< relref "/getting-started/access-to-platform-api/" >}}) the Kubernetes API.
 2. Find all the AWS IAM Roles used by a `ServiceAccount` via IRSA:
 
    ```sh
