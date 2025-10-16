@@ -190,11 +190,11 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [policy-enforcement]: {{< relref "/tutorials/security/policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/overview/observability" >}}
-||||||| parent of 9b26753a (Remove "Vintage / Getting started / Security")
+[security]: {{< relref "/overview/security" >}}
 [starboard-exporter]: https://github.com/giantswarm/starboard-exporter/
 [trivy-app]: https://github.com/giantswarm/trivy-app/
 [trivy-upstream]: https://github.com/aquasecurity/trivy
 [trivy-operator-app]: https://github.com/giantswarm/trivy-operator-app
 [trivy-operator-upstream]: https://github.com/aquasecurity/trivy-operator
 [vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension
-[ingress-nginx-app]: (https://github.com/giantswarm/ingress-nginx-app)
+[ingress-nginx-app]: https://github.com/giantswarm/ingress-nginx-app
