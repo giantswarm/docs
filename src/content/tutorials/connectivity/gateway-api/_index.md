@@ -150,7 +150,7 @@ giantswarm-default   envoy-gateway   10.0.0.100     True         5m
 
 This default Gateway is configured to handle traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to use immediately with HTTPRoutes.
 
-### Custom Gateway Setup (Optional)
+### Custom gateway setup (optional)
 
 If you need additional Gateways for specific requirements, you can create custom ones:
 
