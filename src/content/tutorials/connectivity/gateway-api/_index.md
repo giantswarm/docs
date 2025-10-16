@@ -409,7 +409,7 @@ To migrate from traditional Ingress to Gateway API:
 1. **Gateway not ready**:
 
    ```bash
-   kubectl describe gateway giantswarm-default -n giantswarm
+   kubectl describe gateway giantswarm-default -n envoy-gateway-system
    # Check the status conditions for error messages
    ```
 
