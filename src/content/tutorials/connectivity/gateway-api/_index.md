@@ -404,7 +404,7 @@ To migrate from traditional Ingress to Gateway API:
 
 ## Troubleshooting
 
-### Common Issues
+### Common issues
 
 1. **Gateway not ready**:
 
