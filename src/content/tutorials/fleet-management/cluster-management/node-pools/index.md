@@ -14,7 +14,7 @@ user_questions:
   - Which workload cluster releases introduced node pools?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2025-01-28
+last_review_date: 2025-10-16
 ---
 
 A node pool is a set of nodes within a `Kubernetes` cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
@@ -33,7 +33,7 @@ common configuration. You can combine any type of node pool within one cluster. 
 
 ## Configuration
 
-Node pools can be created, deleted or updated by changing the configuration used when creating the cluster using [`kubectl-gs`]({{< relref "/getting-started/provision-your-first-workload-cluster" >}})
+Node pools can be created, deleted or updated by changing the configuration used [when creating the cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}})
 
 {{< tabs >}}
 {{< tab id="nodepool-capa-config" for-impl="capa_ec2" >}}
@@ -70,6 +70,78 @@ master         ip-10-1-5-55.eu-central-1.compute.internal
 worker  mycluster-pool0  ip-10-1-6-225.eu-central-1.compute.internal
 worker  mycluster-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 ```
+
+{{< /tab >}}
+{{< tab id="nodepool-capa-karpenter-config" for-impl="capa_ec2_karpenter" >}}
+
+In your workload cluster values, you can specify the node pool configuration to use `karpenter`
+
+```yaml
+global:
+  metadata:
+    name: test-cluster
+    organization: giantswarm
+  nodePools:
+    pool0:
+      type: karpenter # This is the key difference that will make karpenter manage your worker nodes
+      requirements: # In the 'requirements' you can specify which nodes you want karpenter to consider or to ignore for your node pool
+        - key: karpenter.k8s.aws/instance-family
+          operator: NotIn
+          values:
+            - t3
+            - t3a
+            - t2
+        - key: karpenter.k8s.aws/instance-cpu
+          operator: In
+          values:
+            - "4"
+            - "8"
+            - "16"
+            - "32"
+        - key: karpenter.k8s.aws/instance-hypervisor
+          operator: In
+          values:
+            - nitro
+        - key: kubernetes.io/arch
+          operator: In
+          values:
+            - amd64
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values:
+            - spot
+            - on-demand
+        - key: kubernetes.io/os
+          operator: In
+          values:
+            - linux
+  providerSpecific:
+    region: "eu-west-1"
+  release:
+    version: 33.0.0
+```
+
+A node pool is identified by a name that you can pick as a cluster administrator. The name must follow these rules:
+
+- must be between 5 and 20 characters long
+- must start with a lowercase letter or number
+- must end with a lowercase letter or number
+- must contain only lowercase letters, numbers, and dashes
+
+For example, `pool0`, `group-1` are valid node pool names.
+
+The node pool name will be a suffix of the cluster name. In the example above, the node pool name will be `mycluster-pool0`.
+
+All nodes in the node pool will be labeled with the node pool name, using the `giantswarm.io/machine-pool` label. You can identify the nodes' node pool using that label.
+
+When using `type: karpenter` in your node pool configuration, `karpenter` will be deployed in your cluster to manage your worker nodes.
+The configuration values that you specify in the node pool configuration will be translated into the Custom Resources that `karpenter` is watching: [`NodePools` (`nodepools.karpenter.sh`)](https://karpenter.sh/docs/concepts/nodepools/) and [`EC2NodeClasses` (`ec2nodeclasses.karpenter.k8s.aws`)](https://karpenter.sh/docs/concepts/nodeclasses/).
+There will be a pair of these Custom Resources for every node pool that you define in your cluster values.
+
+Both `karpenter` Custom Resources [`NodePools`](https://karpenter.sh/docs/concepts/nodepools/) and [`EC2NodeClasses`](https://karpenter.sh/docs/concepts/nodeclasses/) offer many configuration options.
+We expose most of those fields as values that you can set when defining your node pool in the cluster values.
+
+In addition, every EC2 instance that `karpenter` is managing is represented by a Custom Resource called [`NodeClaim` (`nodeclaims.karpenter.sh`)](https://karpenter.sh/docs/concepts/nodeclaims/).
 
 {{< /tab >}}
 {{< tab id="nodepool-capz-config" for-impl="capz_vms" >}}
@@ -124,9 +196,24 @@ spec:
 ```
 
 {{< /tab >}}
-{{< tab id="nodepool-capz-scheduling" for-impl="capz_vms" >}}
+{{< tab id="nodepool-capa-scheduling" for-impl="capa_ec2_karpenter" >}}
 
 ```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeSelector:
+    giantswarm.io/machine-pool: mycluster-pool0
+```
+
+{{< /tab >}}
+{{< tab id="nodepool-capz-scheduling" for-impl="capz_vms" >}}
+
 A similar example for an Azure cluster:
 
 ```yaml
@@ -271,11 +358,28 @@ Using multiple instance types in a node pool has some benefits:
 
 ## Node pools and autoscaling {#autoscaling}
 
-With node pools, you set the autoscaling range per node pool (supported on {{% impl_title "capa_ec2" %}} clusters only). The `Kubernetes` cluster autoscaler has to decide which node pool to scale under which circumstances.
+{{< tabs >}}
+{{< tab id="nodepool-autoscaling-capa" title="General" >}}
+
+With node pools, you set the autoscaling range per node pool. The `Kubernetes` cluster autoscaler has to decide which node pool to scale under which circumstances.
 
 If you assign workloads to node pools as described [above](#assigning-workloads) and the autoscaler finds pods in `Pending` state, it will decide based on the node selectors which node pools to scale up.
 
 In case there are workloads not assigned to any node pools, the autoscaler may pick any node pool for scaling. For details on the decision logic, please check the upstream FAQ for [AWS](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md).
+
+{{< /tab >}}
+{{< tab id="nodepool-autoscaling-capa-karpenter" for-impl="capa_ec2_karpenter" >}}
+
+`karpenter` is watching the `Pods` in the cluster, and it will scale up the node pool based on the `Pods` that are in `Pending` state.
+You can learn more about how `karpenter` works [here](https://karpenter.sh/docs/).
+
+{{< /tab >}}
+{{< tab id="nodepool-autoscaling-capz" for-impl="capz_vms" >}} >}}
+
+Not supported at the moment.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## On-demand and spot instances {#on-demand-spot}
 
@@ -296,6 +400,31 @@ nodePools:
     spotInstances:
       enabled: true
       maxPrice: 1.2
+```
+
+{{< /tab >}}
+{{< tab id="nodepool-capa-spot-instances" for-impl="capa_ec2_karpenter" >}}
+
+Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). On the node pool definition, you can enable it in the `requirements` field
+
+```yaml
+global:
+  metadata:
+    name: test-cluster
+    organization: giantswarm
+  nodePools:
+    pool0:
+      type: karpenter
+      requirements:
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values:
+            - spot
+            - on-demand
+  providerSpecific:
+    region: "eu-west-1"
+  release:
+    version: 33.0.0
 ```
 
 {{< /tab >}}
