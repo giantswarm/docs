@@ -426,8 +426,8 @@ To migrate from traditional Ingress to Gateway API:
 
 ## Further Reading
 
-- [Kubernetes Gateway API Documentation](https://gateway-api.sigs.k8s.io/)
-- [Envoy Gateway Documentation](https://gateway.envoyproxy.io/)
-- [Gateway API CRDs App Repository](https://github.com/giantswarm/gateway-api-crds-app)
-- [Envoy Gateway App Repository](https://github.com/giantswarm/envoy-gateway-app)
-- [Gateway API Config App Repository](https://github.com/giantswarm/gateway-api-config-app)
+- [Kubernetes Gateway API documentation](https://gateway-api.sigs.k8s.io/)
+- [Envoy Gateway documentation](https://gateway.envoyproxy.io/)
+- [Gateway API CRDs app repository](https://github.com/giantswarm/gateway-api-crds-app)
+- [Envoy Gateway app repository](https://github.com/giantswarm/envoy-gateway-app)
+- [Gateway API Config app repository](https://github.com/giantswarm/gateway-api-config-app)
