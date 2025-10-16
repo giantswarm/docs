@@ -355,12 +355,9 @@ spec:
 To migrate from traditional Ingress to Gateway API:
 
 1. **Identify existing Ingress resources**:
+
    ```bash
    kubectl get ingress --all-namespaces
-   ```
-
-2. **Convert Ingress to HTTPRoute**:
-   ```yaml
    # Before (Ingress)
    apiVersion: networking.k8s.io/v1
    kind: Ingress
