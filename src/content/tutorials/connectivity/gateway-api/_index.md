@@ -75,11 +75,13 @@ kubectl gs template app \
   --cluster-name=CLUSTER_NAME \
   --organization=ORGANIZATION \
   --name=gateway-api-bundle \
-  --target-namespace=envoy-gateway-system \
+  --target-namespace=org-ORGANIZATION \
   --version=0.3.0 > gateway-api-bundle.yaml
 
 kubectl apply -f gateway-api-bundle.yaml
 ```
+
+**Note**: The app target namespace is the organization namespace since it is a bundle.
 
 ### Option 2: Install Components Individually
 
@@ -131,15 +133,32 @@ kubectl apply -f gateway-api-config.yaml
 
 ## Configuration
 
-### Basic Gateway Setup
+### Using the Default Gateway
 
-After installation, you need to create a Gateway resource to define your load balancer:
+When you install the Gateway API Bundle, it automatically creates a default Gateway called `giantswarm-default` that's ready to use for the entire cluster. You can verify it exists:
+
+```bash
+kubectl get gateway -n giantswarm
+```
+
+Expected output:
+
+```
+NAME                 CLASS           ADDRESS        PROGRAMMED   AGE
+giantswarm-default   envoy-gateway   10.0.0.100     True         5m
+```
+
+This default Gateway is configured to handle traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to use immediately with HTTPRoutes.
+
+### Custom Gateway Setup (Optional)
+
+If you need additional Gateways for specific requirements, you can create custom ones:
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: example-gateway
+  name: custom-gateway
   namespace: giantswarm
 spec:
   gatewayClassName: envoy-gateway
@@ -147,19 +166,17 @@ spec:
   - name: http
     protocol: HTTP
     port: 80
-    hostname: "*.CLUSTER_ID.k8s.gigantic.io"
+    hostname: "*.example.com"
   - name: https
     protocol: HTTPS
     port: 443
-    hostname: "*.CLUSTER_ID.k8s.gigantic.io"
+    hostname: "*.example.com"
     tls:
       mode: Terminate
       certificateRefs:
       - name: example-tls-cert
         kind: Secret
 ```
-
-Replace `CLUSTER_ID` with your actual cluster ID.
 
 ### Custom Gateway Configuration
 
@@ -203,7 +220,7 @@ kubectl apply -f gateway-api-config.yaml
 
 ### Basic HTTP Routing
 
-Create an HTTPRoute to route traffic to your application:
+Create an HTTPRoute to route traffic to your application using the default Gateway:
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
@@ -213,7 +230,7 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-  - name: example-gateway
+  - name: giantswarm-default
     namespace: giantswarm
   hostnames:
   - "app.CLUSTER_ID.k8s.gigantic.io"
@@ -237,7 +254,7 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-  - name: example-gateway
+  - name: giantswarm-default
     namespace: giantswarm
   hostnames:
   - "api.CLUSTER_ID.k8s.gigantic.io"
@@ -275,7 +292,7 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-  - name: example-gateway
+  - name: giantswarm-default
     namespace: giantswarm
   hostnames:
   - "canary.CLUSTER_ID.k8s.gigantic.io"
@@ -319,7 +336,7 @@ metadata:
   namespace: giantswarm
 spec:
   parentRefs:
-  - name: example-gateway
+  - name: giantswarm-default
   hostnames:
   - "prod.CLUSTER_ID.k8s.gigantic.io"
   rules:
@@ -370,7 +387,7 @@ To migrate from traditional Ingress to Gateway API:
      name: example-route
    spec:
      parentRefs:
-     - name: example-gateway
+     - name: giantswarm-default
        namespace: giantswarm
      hostnames:
      - "app.example.com"
@@ -394,7 +411,7 @@ To migrate from traditional Ingress to Gateway API:
 
 1. **Gateway not ready**:
    ```bash
-   kubectl describe gateway example-gateway -n giantswarm
+   kubectl describe gateway giantswarm-default -n giantswarm
    # Check the status conditions for error messages
    ```
 
