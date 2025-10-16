@@ -143,7 +143,7 @@ kubectl get gateway -n giantswarm
 
 Expected output:
 
-```
+```text
 NAME                 CLASS           ADDRESS        PROGRAMMED   AGE
 giantswarm-default   envoy-gateway   10.0.0.100     True         5m
 ```
