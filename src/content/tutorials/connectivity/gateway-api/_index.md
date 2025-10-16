@@ -115,7 +115,7 @@ kubectl gs template app \
 kubectl apply -f envoy-gateway.yaml
 ```
 
-#### Step 3: Install Gateway API Config (Optional)
+#### Step 3: Install Gateway API config (optional)
 
 For a quick start with default configuration:
 
