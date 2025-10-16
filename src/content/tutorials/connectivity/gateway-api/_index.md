@@ -400,7 +400,7 @@ To migrate from traditional Ingress to Gateway API:
 
 3. **Test the new configuration** before removing the old Ingress
 
-4. **Update DNS** to point to the new Gateway load balancer
+3. **Update DNS** to point to the new gateway load balancer
 
 ## Troubleshooting
 
