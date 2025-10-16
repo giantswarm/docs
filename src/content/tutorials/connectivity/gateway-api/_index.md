@@ -159,7 +159,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: custom-gateway
-  namespace: giantswarm
+  namespace: envoy-gateway-system
 spec:
   gatewayClassName: envoy-gateway
   listeners:
