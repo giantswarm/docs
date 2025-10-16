@@ -26,7 +26,7 @@ This guide explains how to set up and use Gateway API with Envoy Gateway in Gian
 
 Gateway API introduces several key concepts that provide more flexibility and control over traffic management:
 
-### Gateway API vs Ingress
+### Gateway API vs. Ingress
 
 | Feature | Ingress | Gateway API |
 |---------|---------|-------------|
