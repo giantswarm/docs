@@ -161,7 +161,7 @@ metadata:
   name: custom-gateway
   namespace: envoy-gateway-system
 spec:
-  gatewayClassName: envoy-gateway
+  gatewayClassName: giantswarm-default
   listeners:
   - name: http
     protocol: HTTP
