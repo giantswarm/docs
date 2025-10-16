@@ -17,6 +17,13 @@ title: Workload cluster release aws-33.0.0 for CAPA
 
 > **WARNING:** This release enables the `OwnerReferencesPermissionEnforcement` admission controller by default. This means that only users with delete permission to an object can change its `metadata.ownerReferences`, and only users with update permission to the finalizers subresource of the referenced owner can change `metadata.ownerReferences[x].blockOwnerDeletion`. If you have workloads that need to modify these fields, please ensure that the necessary RBAC permissions are in place before upgrading to this release.
 
+Example:
+```yaml
+- apiGroups: ["<group>"]
+  resources: ["<resource>", "<resource>/finalizers"]
+  verbs: ["delete", "..."]  # Add any additional verbs your use case requires
+```
+
 ## Changes compared to v32.0.0
 
 ### Components
