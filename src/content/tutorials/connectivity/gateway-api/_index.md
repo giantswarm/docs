@@ -410,15 +410,10 @@ To migrate from traditional Ingress to Gateway API:
 ### Common Issues
 
 1. **Gateway not ready**:
+
    ```bash
    kubectl describe gateway giantswarm-default -n giantswarm
    # Check the status conditions for error messages
-   ```
-
-2. **HTTPRoute not working**:
-   ```bash
-   kubectl describe httproute example-app-route
-   # Verify parentRefs and backend services exist
    ```
 
 3. **Cross-namespace access denied**:
