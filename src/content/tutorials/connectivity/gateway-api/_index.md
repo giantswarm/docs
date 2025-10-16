@@ -282,7 +282,7 @@ spec:
       port: 3000
 ```
 
-### Traffic Splitting and Canary Deployments
+### Traffic splitting and canary deployments
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
