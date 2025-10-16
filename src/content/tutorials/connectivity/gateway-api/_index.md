@@ -218,7 +218,7 @@ kubectl apply -f gateway-api-config.yaml
 
 ## Usage Examples
 
-### Basic HTTP Routing
+### Basic HTTP routing
 
 Create an HTTPRoute to route traffic to your application using the default Gateway:
 
