@@ -310,7 +310,7 @@ spec:
       weight: 10
 ```
 
-### Cross-Namespace Routing
+### Cross-namespace routing
 
 To route traffic to services in different namespaces, create a ReferenceGrant:
 
