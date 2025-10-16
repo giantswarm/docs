@@ -12,7 +12,7 @@ crd:
   technical_name: grafanaorganizations.observability.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/observability-operator
-  source_repository_ref: v0.44.0
+  source_repository_ref: v0.45.1
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
 technical_name: grafanaorganizations.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/observability-operator
-source_repository_ref: v0.44.0
+source_repository_ref: v0.45.1
 ---
 
 # GrafanaOrganization
