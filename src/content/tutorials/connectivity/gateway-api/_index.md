@@ -178,7 +178,7 @@ spec:
         kind: Secret
 ```
 
-### Custom Gateway Configuration
+### Custom gateway configuration
 
 For production use, customize the Gateway API Config app with your specific requirements:
 
