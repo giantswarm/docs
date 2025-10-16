@@ -133,7 +133,7 @@ kubectl apply -f gateway-api-config.yaml
 
 ## Configuration
 
-### Using the Default Gateway
+### Using the default gateway
 
 When you install the Gateway API Bundle, it automatically creates a default Gateway called `giantswarm-default` that's ready to use for the entire cluster. You can verify it exists:
 
