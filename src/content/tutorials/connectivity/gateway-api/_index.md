@@ -69,67 +69,28 @@ Gateway API support is provided through three apps that work together. You can i
 
 The easiest way to get started is using the Gateway API Bundle, which installs all required components:
 
-```bash
-kubectl gs template app \
-  --catalog=giantswarm \
-  --cluster-name=CLUSTER_NAME \
-  --organization=ORGANIZATION \
-  --name=gateway-api-bundle \
-  --target-namespace=org-ORGANIZATION \
-  --version=0.3.0 > gateway-api-bundle.yaml
-
-kubectl apply -f gateway-api-bundle.yaml
+```yaml
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+spec:
+  catalog: giantswarm
+  config:
+    configMap:
+      name: <CLUSTER_NAME>-gateway-api-bundle
+      namespace: org-<ORGANIZATION>
+  kubeConfig:
+    inCluster: true
+  name: gateway-api-bundle
+  namespace: org-giantswarm
+  version: 0.5.0
 ```
 
-**Note**: The app target namespace is the organization namespace since it is a bundle.
-
-### Option 2: Install Components Individually
-
-If you need more control over the installation, install each component separately:
-
-#### Step 1: Install Gateway API CRDs
-
-```bash
-kubectl gs template app \
-  --catalog=giantswarm \
-  --cluster-name=CLUSTER_NAME \
-  --organization=ORGANIZATION \
-  --name=gateway-api-crds \
-  --target-namespace=default \
-  --version=1.5.0 > gateway-api-crds.yaml
-
-kubectl apply -f gateway-api-crds.yaml
-```
-
-#### Step 2: Install Envoy Gateway
-
-```bash
-kubectl gs template app \
-  --catalog=giantswarm \
-  --cluster-name=CLUSTER_NAME \
-  --organization=ORGANIZATION \
-  --name=envoy-gateway \
-  --target-namespace=envoy-gateway-system \
-  --version=0.3.0 > envoy-gateway.yaml
-
-kubectl apply -f envoy-gateway.yaml
-```
-
-#### Step 3: Install Gateway API config (optional)
-
-For a quick start with default configuration:
-
-```bash
-kubectl gs template app \
-  --catalog=giantswarm \
-  --cluster-name=CLUSTER_NAME \
-  --organization=ORGANIZATION \
-  --name=gateway-api-config \
-  --target-namespace=giantswarm \
-  --version=0.5.1 > gateway-api-config.yaml
-
-kubectl apply -f gateway-api-config.yaml
-```
+Run `kubectl apply -f` command to install the bundle and way till the app is finally deployed and all the child applications are deployed too (CRDs, envoy gateway and gateway default config).
 
 ## Configuration
 
