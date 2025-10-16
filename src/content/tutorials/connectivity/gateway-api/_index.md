@@ -216,7 +216,7 @@ kubectl gs template app \
 kubectl apply -f gateway-api-config.yaml
 ```
 
-## Usage Examples
+## Usage examples
 
 ### Basic HTTP routing
 
