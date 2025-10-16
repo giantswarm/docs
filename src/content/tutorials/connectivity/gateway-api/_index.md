@@ -244,7 +244,7 @@ spec:
       port: 8080
 ```
 
-### Advanced Routing with Path-based Rules
+### Advanced routing with path-based rules
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
