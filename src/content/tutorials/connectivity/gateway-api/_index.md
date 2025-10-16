@@ -413,7 +413,7 @@ To migrate from traditional Ingress to Gateway API:
    # Check the status conditions for error messages
    ```
 
-3. **Cross-namespace access denied**:
+2. **Cross-namespace access denied**:
    - Ensure ReferenceGrant is created in the target namespace
    - Verify the ReferenceGrant allows the specific resource types
 
