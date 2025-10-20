@@ -121,7 +121,7 @@ helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
 helm repo update
 ```
 
-2. Install the NVIDIA DRA driver:
+1. Install the NVIDIA DRA driver:
 
 ```bash
 helm install nvidia-dra-driver-gpu nvidia/nvidia-dra-driver-gpu \
@@ -137,8 +137,6 @@ helm install nvidia-dra-driver-gpu nvidia/nvidia-dra-driver-gpu \
   --set kubeletPlugin.tolerations[0].effect=NoSchedule
 ```
 
-**Note**: For Ubuntu-based nodes, use `nvidiaDriverRoot="/opt/nvidia"` instead.
-
 ## Verify DRA setup
 
 ### Check DRA driver pods
@@ -150,7 +148,8 @@ kubectl get pods -n nvidia-dra-driver-gpu
 ```
 
 Expected output:
-```
+
+```text
 NAME                                         READY   STATUS    RESTARTS   AGE
 nvidia-dra-driver-gpu-kubelet-plugin-52cdm   1/1     Running   0          46s
 ```
@@ -269,23 +268,6 @@ spec:
    - ResourceClaimTemplate selectors match available devices
    - Pods have appropriate tolerations for GPU nodes
    - The correct runtime class is specified
-
-### Debugging commands
-
-Check DRA driver logs:
-```bash
-kubectl logs -n nvidia-dra-driver-gpu -l app=nvidia-dra-driver-gpu
-```
-
-Inspect ResourceSlice details:
-```bash
-kubectl describe resourceslices
-```
-
-Check ResourceClaim status:
-```bash
-kubectl get resourceclaims -o wide
-```
 
 ## Limitations and considerations
 
