@@ -2,6 +2,7 @@
 title: Data import and export
 description: Learn how to import data into and export data from the Giant Swarm observability platform using Grafana Alloy and the Observability Platform API for external integration and analysis.
 weight: 50
+mermaid: true
 menu:
   principal:
     parent: overview-observability-data-management
@@ -58,8 +59,54 @@ The API consists of different ingress components that use:
 - **OIDC authentication**: Secure access through your identity provider
 - **Multi-tenant access control**: Tenant-scoped data access through HTTP headers
 
-![Data export architecture](./observability-platform-api-graph.png)
-[_Full size architecture diagram_](./observability-platform-api-graph-big.png)
+{{< mermaid >}}
+graph TB
+    subgraph ext ["External Systems"]
+        A[External Alloy Instance]
+        B[External Grafana]
+        C[Custom Applications]
+    end
+
+    subgraph ing ["Observability Platform Ingresses"]
+        D["nginx-ingress<br/>observability.domain"]
+        E["oauth2-proxy<br/>Authentication Handler"]
+    end
+
+    subgraph backend ["Backend Services"]
+        G["Grafana Mimir<br/>Metrics Storage"]
+        H["Grafana Loki<br/>Log Storage"]
+        I["Grafana Tempo<br/>Trace Storage"]
+    end
+
+    subgraph auth ["Authentication"]
+        J["OIDC Provider<br/>Azure AD / Google / Okta"]
+    end
+
+    %% Data Import Flow
+    A -->|"Metrics: Prometheus Remote Write<br/>Logs: Loki Push API<br/>Traces: OTLP HTTP"| D
+    C -->|"Direct API Calls<br/>with OIDC Token"| D
+
+    %% Data Export Flow  
+    B -->|"Query APIs<br/>Forward OAuth Identity"| D
+
+    %% Internal Flow
+    D -->|"Route to auth handler"| E
+    E -->|"Validate Token"| J
+    E -->|"Authenticated + X-Scope-OrgID"| G
+    E -->|"Authenticated + X-Scope-OrgID"| H
+    E -->|"Authenticated + X-Scope-OrgID"| I
+
+    %% Styling
+    classDef external fill:#e1f5fe
+    classDef ingress fill:#fff3e0
+    classDef backend fill:#f3e5f5
+    classDef auth fill:#e8f5e8
+
+    class A,B,C external
+    class D,E ingress
+    class G,H,I backend
+    class J auth
+{{< /mermaid >}}
 
 ### Authentication and access control
 
