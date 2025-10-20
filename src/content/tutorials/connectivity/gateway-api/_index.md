@@ -385,7 +385,7 @@ To migrate from traditional Ingress to Gateway API:
 - Cross-namespace routing requires explicit ReferenceGrant configuration
 - Some advanced Envoy features may require custom EnvoyProxy configuration
 
-## Further Reading
+## Further reading
 
 - [Kubernetes Gateway API documentation](https://gateway-api.sigs.k8s.io/)
 - [Envoy Gateway documentation](https://gateway.envoyproxy.io/)
