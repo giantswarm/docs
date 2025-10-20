@@ -61,51 +61,51 @@ The API consists of different ingress components that use:
 
 {{< mermaid >}}
 graph TB
-    subgraph ext ["External Systems"]
-        A[External Alloy Instance]
-        B[External Grafana]
-        C[Custom Applications]
-    end
+  subgraph ext ["External Systems"]
+    A[External Alloy Instance]
+    B[External Grafana]
+    C[Custom Applications]
+  end
 
-    subgraph ing ["Observability Platform Ingresses"]
-        D["nginx-ingress<br/>observability.domain"]
-        E["oauth2-proxy<br/>Authentication Handler"]
-    end
+  subgraph ing ["Observability Platform Ingresses"]
+    D["nginx-ingress<br/>observability.domain"]
+    E["oauth2-proxy<br/>Authentication Handler"]
+  end
 
-    subgraph backend ["Backend Services"]
-        G["Grafana Mimir<br/>Metrics Storage"]
-        H["Grafana Loki<br/>Log Storage"]
-        I["Grafana Tempo<br/>Trace Storage"]
-    end
+  subgraph backend ["Backend Services"]
+    G["Grafana Mimir<br/>Metrics Storage"]
+    H["Grafana Loki<br/>Log Storage"]
+    I["Grafana Tempo<br/>Trace Storage"]
+  end
 
-    subgraph auth ["Authentication"]
-        J["OIDC Provider<br/>Azure AD / Google / Okta"]
-    end
+  subgraph auth ["Authentication"]
+    J["OIDC Provider<br/>Azure AD / Google / Okta"]
+  end
 
-    %% Data Import Flow
-    A -->|"Metrics: Prometheus Remote Write<br/>Logs: Loki Push API<br/>Traces: OTLP HTTP"| D
-    C -->|"Direct API Calls<br/>with OIDC Token"| D
+  %% Data Import Flow
+  A -->|"Metrics: Prometheus Remote Write<br/>Logs: Loki Push API<br/>Traces: OTLP HTTP"| D
+  C -->|"Direct API Calls<br/>with OIDC Token"| D
 
-    %% Data Export Flow  
-    B -->|"Query APIs<br/>Forward OAuth Identity"| D
+  %% Data Export Flow  
+  B -->|"Query APIs<br/>Forward OAuth Identity"| D
 
-    %% Internal Flow
-    D -->|"Route to auth handler"| E
-    E -->|"Validate Token"| J
-    E -->|"Authenticated + X-Scope-OrgID"| G
-    E -->|"Authenticated + X-Scope-OrgID"| H
-    E -->|"Authenticated + X-Scope-OrgID"| I
+  %% Internal Flow
+  D -->|"Route to auth handler"| E
+  E -->|"Validate Token"| J
+  E -->|"Authenticated + X-Scope-OrgID"| G
+  E -->|"Authenticated + X-Scope-OrgID"| H
+  E -->|"Authenticated + X-Scope-OrgID"| I
 
-    %% Styling
-    classDef external fill:#e1f5fe
-    classDef ingress fill:#fff3e0
-    classDef backend fill:#f3e5f5
-    classDef auth fill:#e8f5e8
+  %% Styling
+  classDef external fill:#e1f5fe
+  classDef ingress fill:#fff3e0
+  classDef backend fill:#f3e5f5
+  classDef auth fill:#e8f5e8
 
-    class A,B,C external
-    class D,E ingress
-    class G,H,I backend
-    class J auth
+  class A,B,C external
+  class D,E ingress
+  class G,H,I backend
+  class J auth
 {{< /mermaid >}}
 
 ### Authentication and access control
@@ -150,7 +150,6 @@ Available for both import and export:
 - **Platform metrics**: Kubernetes and Giant Swarm platform metrics
 - **External system metrics**: Metrics from SaaS applications, databases, and third-party services
 
-
 ## Data import methods
 
 The platform provides HTTP APIs that accept observability data in standard formats. While you can send data directly via API calls, we recommend using Grafana Alloy as it provides a robust, configurable way to collect and forward data with built-in authentication and error handling.
@@ -164,6 +163,7 @@ The platform exposes these standard observability APIs for data import:
 - **Traces**: OTLP HTTP endpoint at `https://observability.<domain>/tempo` (when tracing is enabled)
 
 All APIs require:
+
 - **Authentication**: Valid OIDC token in `Authorization: Bearer <token>` header
 - **Tenant routing**: `X-Scope-OrgID: <tenant>` header to specify target tenant
 
@@ -230,6 +230,7 @@ otelcol.exporter.otlphttp "observability_platform" {
 ```
 
 **Configuration placeholders:**
+
 - `<your-domain>`: Your observability platform domain
 - `<client_id>`, `<client_secret>`: OAuth2 credentials provided by your Account Engineer
 - `<oidc_provider_token_url>`: Your OIDC provider's token endpoint URL  
