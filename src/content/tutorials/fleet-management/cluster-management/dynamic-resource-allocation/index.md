@@ -89,24 +89,22 @@ Apply the updated configuration and wait for the cluster to be updated.
 
 ### Step 2: Configure GPU nodes with DRA labels
 
-When creating GPU node pools, add specific labels to disable the default device plugins and enable DRA:
+When creating GPU node pools, add specific a taint to disable common workloads to run in GPU instances:
 
 ```yaml
 nodePools:
   gpu-dra-pool:
-    instanceType: g5.2xlarge
+    instanceType: g4dn.4xlarge
     minSize: 1
     maxSize: 3
     rootVolumeSizeGB: 50
-    # Disable default GPU device plugin and enable DRA
-    customNodeLabels:
-      gke-no-default-gpu-device-plugin: "true"
-      gke-no-default-gpu-dra-plugin: "false"
     customNodeTaints:
     - key: "nvidia.com/gpu"
       value: "Exists"
       effect: "NoSchedule"
 ```
+
+**Note**: Make sure the root volume is bigger than 15GB to have space for drivers.
 
 ## Install DRA drivers
 
@@ -126,15 +124,11 @@ helm repo update
 ```bash
 helm install nvidia-dra-driver-gpu nvidia/nvidia-dra-driver-gpu \
   --version="25.3.2" \
-  --create-namespace \
-  --namespace nvidia-dra-driver-gpu \
-  --set nvidiaDriverRoot="/opt/nvidia/" \
-  --set gpuResourcesEnabledOverride=true \
-  --set resources.computeDomains.enabled=false \
-  --set kubeletPlugin.priorityClassName="" \
-  --set kubeletPlugin.tolerations[0].key=nvidia.com/gpu \
-  --set kubeletPlugin.tolerations[0].operator=Exists \
-  --set kubeletPlugin.tolerations[0].effect=NoSchedule
+  --namespace kube-system \
+  --set kubeletPlugin.tolerations[0].key="nvidia.com/gpu" \
+  --set kubeletPlugin.tolerations[0].operator="Exists" \
+  --set kubeletPlugin.tolerations[0].effect="NoSchedule" \
+  --set resources.gpus.enabled=false
 ```
 
 ## Verify DRA setup
@@ -144,7 +138,7 @@ helm install nvidia-dra-driver-gpu nvidia/nvidia-dra-driver-gpu \
 Verify that the DRA driver pods are running:
 
 ```bash
-kubectl get pods -n nvidia-dra-driver-gpu
+kubectl get pods -n kube-system -l app.kubernetes.io/name=nvidia-dra-driver-gpu
 ```
 
 Expected output:
@@ -174,21 +168,21 @@ spec:
   - basic:
       attributes:
         architecture:
-          string: Ada Lovelace
+          string: Ampere
         brand:
           string: Nvidia
         productName:
-          string: NVIDIA L4
+          string: NVIDIA Tesla 4
         type:
           string: gpu
         uuid:
           string: GPU-4d403095-4294-6ddd-66fd-cfe5778ef56e
       capacity:
         memory:
-          value: 23034Mi
+          value: 15360Mi
     name: gpu-0
   driver: gpu.nvidia.com
-  nodeName: worker-node-1
+  nodeName: ip-100-12-233-34.eu-west-2.compute.internal
 ```
 
 ## Deploy workloads with DRA
@@ -214,7 +208,7 @@ spec:
     resourceClaimTemplateName: gpu-template
   containers:
   - name: cuda-container
-    image: "nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda11.7.1-ubuntu20.04"
+    image: "gsoci.azurecr.io/giantswarm/gpu-operator-validator:v25.3.2"
     resources:
       claims:
       - name: gpu-claim
@@ -262,7 +256,7 @@ spec:
 
 1. **DRA driver pods not starting**: Check that the feature gate is enabled and nodes have the correct labels.
 
-2. **ResourceSlice objects not created**: Verify that the DRA driver is properly installed and has the necessary permissions.
+2. **ResourceSlice objects not created**: Verify that the DRA controller a kubelet plugins to ensure there are no errors. Contact Giant Swarm support if it is the case.
 
 3. **Workloads not scheduling**: Ensure that:
    - ResourceClaimTemplate selectors match available devices
@@ -280,7 +274,6 @@ spec:
 
 - Learn about [GPU workloads]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}}) for traditional GPU scheduling
 - Explore [cluster autoscaling]({{< relref "/tutorials/fleet-management/cluster-management/cluster-autoscaler" >}}) for dynamic GPU node provisioning
-- Check the [Kubernetes DRA documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/) for advanced use cases
 
 ## Further reading
 
