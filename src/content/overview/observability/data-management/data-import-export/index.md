@@ -2,13 +2,14 @@
 title: Data import and export
 description: Learn how to import data into and export data from the Giant Swarm observability platform using the Observability Platform API for external integration and analysis.
 weight: 50
+mermaid: true
 menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-import-export
 aliases:
   - /overview/observability/data-management/data-export/
-last_review_date: 2025-07-17
+last_review_date: 2025-10-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -19,6 +20,8 @@ user_questions:
   - How do I connect external tools to the platform?
   - What is the Observability Platform API?
   - How do I set up external Grafana to access Giant Swarm data?
+  - How do I configure OAuth2 authentication for external data import?
+  - How do I send data from external systems?
 ---
 
 Data import and export capabilities enable you to both send observability data from external sources into the Giant Swarm platform and access your observability data from external systems and tools. This gives you the flexibility to integrate Giant Swarm's observability platform with your existing monitoring infrastructure, external data sources, and specialized analysis tools.
@@ -55,8 +58,54 @@ The API consists of different ingress components that use:
 - **OIDC authentication**: Secure access through your identity provider
 - **Multi-tenant access control**: Tenant-scoped data access through HTTP headers
 
-![Data export architecture](./observability-platform-api-graph.png)
-[_Full size architecture diagram_](./observability-platform-api-graph-big.png)
+{{< mermaid >}}
+graph TB
+  subgraph ext ["External Systems"]
+    A[External Alloy Instance]
+    B[External Grafana]
+    C[Custom Applications]
+  end
+
+  subgraph ing ["Observability Platform Ingresses"]
+    D["nginx-ingress<br/>observability.domain"]
+    E["oauth2-proxy<br/>Authentication Handler"]
+  end
+
+  subgraph backend ["Backend Services"]
+    G["Grafana Mimir<br/>Metrics Storage"]
+    H["Grafana Loki<br/>Log Storage"]
+    I["Grafana Tempo<br/>Trace Storage"]
+  end
+
+  subgraph auth ["Authentication"]
+    J["OIDC Provider<br/>Azure AD / Google / Okta"]
+  end
+
+  %% Data Import Flow
+  A -->|"Metrics: Prometheus Remote Write<br/>Logs: Loki Push API<br/>Traces: OTLP HTTP"| D
+  C -->|"Direct API Calls<br/>with OIDC Token"| D
+
+  %% Data Export Flow  
+  B -->|"Query APIs<br/>Forward OAuth Identity"| D
+
+  %% Internal Flow
+  D -->|"Route to auth handler"| E
+  E -->|"Validate Token"| J
+  E -->|"Authenticated + X-Scope-OrgID"| G
+  E -->|"Authenticated + X-Scope-OrgID"| H
+  E -->|"Authenticated + X-Scope-OrgID"| I
+
+  %% Styling
+  classDef external fill:#e1f5fe
+  classDef ingress fill:#fff3e0
+  classDef backend fill:#f3e5f5
+  classDef auth fill:#e8f5e8
+
+  class A,B,C external
+  class D,E ingress
+  class G,H,I backend
+  class J auth
+{{< /mermaid >}}
 
 ### Authentication and access control
 
@@ -91,115 +140,110 @@ Available for both import and export (when tracing is enabled for your cluster):
 - **External service traces**: Traces from third-party services and APIs
 - **Platform traces**: Kubernetes and infrastructure-level tracing data
 
-### Metrics 🚧
+### Metrics ✅
 
-Metrics capabilities are in development:
+Available for both import and export:
 
-- **Export**: Limited metrics export capabilities are available
-- **Import**: Metrics import is planned for future releases
-- **Infrastructure metrics**: CPU, memory, disk, and network metrics
-- **Application metrics**: Custom business and performance metrics
+- **Infrastructure metrics**: CPU, memory, disk, and network metrics from external systems
+- **Application metrics**: Custom business and performance metrics from external services
 - **Platform metrics**: Kubernetes and Giant Swarm platform metrics
-
-**Note**: Currently, data import via the API supports logs, events, and traces. Metrics import will follow in a later release. Keep an eye on our [changes and releases]({{< relref "/changes" >}}) for updates on metrics import availability.
+- **External system metrics**: Metrics from SaaS applications, databases, and third-party services
 
 ## Data import methods
 
-### Loki API ingestion
+The platform provides HTTP APIs that accept observability data in standard formats. While you can send data directly via API calls, we recommend using Grafana Alloy as it provides a robust, configurable way to collect and forward data with built-in authentication and error handling.
 
-Send log data directly to the platform using the Loki push API with correctly formatted log streams.
+### Available APIs
 
-#### Loki push endpoint
+The platform exposes these standard observability APIs for data import:
 
-The platform provides a Loki-compatible endpoint for log data ingestion:
+- **Metrics**: Prometheus remote write API at `https://observability.<domain>/prometheus/api/v1/push`
+- **Logs**: Loki push API at `https://observability.<domain>/loki/api/v1/push`
+- **Traces**: OTLP HTTP endpoint at `https://observability.<domain>/tempo` (when tracing is enabled)
 
-- **Logs ingestion**: `https://observability.<domain_name>/loki/api/v1/push`
+All APIs require:
 
-#### Example: Sending logs via Loki API
+- **Authentication**: Valid OIDC token in `Authorization: Bearer <token>` header
+- **Tenant routing**: `X-Scope-OrgID: <tenant>` header to specify target tenant
 
-```bash
-# Example Loki logs ingestion
-curl -X POST \
-     -H "Authorization: Bearer $OIDC_TOKEN" \
-     -H "X-Scope-OrgId: your-tenant" \
-     -H "Content-Type: application/json" \
-     -d @logs-payload.json \
-     "https://observability.<domain>/loki/api/v1/push"
-```
+### Grafana Alloy configuration (Recommended)
 
-#### Payload format
+The recommended approach is using Grafana Alloy to collect and forward all observability data. Here's a complete configuration that handles metrics, logs, and traces:
 
-Logs should be sent in Loki's native format. Here's an example payload structure:
+```alloy
+// ============================================================================
+// OAuth2 Authentication (shared across all components)
+// ============================================================================
 
-```json
-{
-  "streams": [
-    {
-      "stream": {
-        "job": "my-external-service",
-        "level": "info",
-        "service": "auth-service"
-      },
-      "values": [
-        ["1640995200000000000", "Application started successfully"],
-        ["1640995201000000000", "User authentication completed"]
-      ]
+// Shared OAuth2 configuration for metrics
+prometheus.remote_write "to_observability_platform" {
+  endpoint {
+    url = "https://observability.<your-domain>/prometheus/api/v1/push"
+    oauth2 {
+      client_id     = "<client_id>"
+      client_secret = "<client_secret>"
+      scopes        = ["<required_scopes>"]
+      token_url     = "<oidc_provider_token_url>"
     }
-  ]
+    headers = {
+      "X-Scope-OrgID" = "<tenant_id>"
+    }
+  }
+}
+
+// Shared OAuth2 configuration for logs
+loki.write "to_observability_platform" {
+  endpoint {
+    url = "https://observability.<your-domain>/loki/api/v1/push"
+    oauth2 {
+      client_id     = "<client_id>"
+      client_secret = "<client_secret>"
+      scopes        = ["<required_scopes>"]
+      token_url     = "<oidc_provider_token_url>"
+    }
+    headers = {
+      "X-Scope-OrgID" = "<tenant_id>"
+    }
+  }
+}
+
+// Shared OAuth2 configuration for traces
+otelcol.auth.oauth2 "observability_platform" {
+  client_id     = "<client_id>"
+  client_secret = "<client_secret>"
+  token_url     = "<oidc_provider_token_url>"
+  scopes        = ["<required_scopes>"]
+}
+
+
+// Export traces to observability platform
+otelcol.exporter.otlphttp "observability_platform" {
+  client {
+    endpoint = "https://observability.<your-domain>/tempo"
+    auth     = otelcol.auth.oauth2.observability_platform.handler
+    headers = {
+      "X-Scope-OrgID" = "<tenant_id>"
+    }
+  }
 }
 ```
 
-The payload structure includes:
+**Configuration placeholders:**
 
-- **streams**: Array of log streams, each with labels and log entries
-- **stream**: Object containing label key-value pairs to identify the log stream
-- **values**: Array of timestamp-message pairs, where timestamps are in nanoseconds since Unix epoch
+- `<your-domain>`: Your observability platform domain
+- `<client_id>`, `<client_secret>`: OAuth2 credentials provided by your Account Engineer
+- `<oidc_provider_token_url>`: Your OIDC provider's token endpoint URL  
+- `<required_scopes>`: OAuth2 scopes required by your OIDC provider
+- `<tenant_id>`: Target tenant for data routing (must exist in a Grafana Organization)
 
-⚠️ **Prerequisites**: You must configure OIDC authentication with Giant Swarm before using the import method. Contact your account engineer for setup assistance.
+**Common OIDC provider examples:**
 
-### OTLP trace ingestion
+- **Azure AD**: `token_url = "https://login.microsoftonline.com/<tenant>/oauth2/v2.0/token"`, `scopes = ["<client_id>/.default", "openid", "email", "profile"]`
+- **Google**: `token_url = "https://oauth2.googleapis.com/token"`, `scopes = ["openid", "email", "profile"]`
+- **Okta**: `token_url = "https://<domain>.okta.com/oauth2/default/v1/token"`, `scopes = ["openid", "email", "profile"]`
+- **Keycloak**: `token_url = "https://<keycloak-domain>/realms/<realm>/protocol/openid-connect/token"`, `scopes = ["openid", "email", "profile"]`
 
-Send trace data to the platform using the OpenTelemetry Protocol (OTLP) with instrumented applications.
-
-#### OTLP trace endpoints
-
-The platform provides OTLP-compatible endpoints for trace data ingestion:
-
-- **HTTP**: `https://observability.<domain_name>`
-- **gRPC**: 🚧 Currently not implemented
-
-#### Example: Sending traces via OTLP
-
-Configure your OpenTelemetry instrumentation to send traces directly to the platform:
-
-```javascript
-// Example Node.js OpenTelemetry configuration
-const { NodeSDK } = require('@opentelemetry/sdk-node');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-http');
-
-const traceExporter = new OTLPTraceExporter({
-  url: 'https://observability.<domain>/v1/traces',
-  headers: {
-    'Authorization': `Bearer ${process.env.OIDC_TOKEN}`,
-    'X-Scope-OrgId': 'your-tenant'
-  }
-});
-
-const sdk = new NodeSDK({
-  traceExporter
-});
-
-sdk.start();
-```
-
-#### Trace data requirements
-
-- **Tenant specification**: Include `X-Scope-OrgId` header with your tenant name
-- **Authentication**: Valid OIDC token in Authorization header
-- **Format**: Standard OTLP trace format with proper span relationships
-- **Service identification**: Ensure `service.name` attribute is set for service graph generation
-
-⚠️ **Prerequisites**: Tracing must be enabled for your cluster and you must configure OIDC authentication with Giant Swarm before using trace import. Contact your account engineer for setup assistance.
+**Prerequisites**: The API must be enabled for your installation. Contact your Account Engineer to configure the necessary authentication endpoints.
 
 ## Data export methods
 
@@ -278,7 +322,7 @@ curl -H "Authorization: Bearer $OIDC_TOKEN" \
      "https://observability.<domain>/tempo/api/search?q={service.name=\"your-service\"}"
 ```
 
-⚠️ **Prerequisites**: You must configure OIDC authentication with Giant Swarm before using the API. Contact your account engineer for setup assistance.
+**Prerequisites**: The API must be enabled for your installation. Contact your Account Engineer to configure the necessary authentication endpoints.
 
 ## Security and compliance
 
