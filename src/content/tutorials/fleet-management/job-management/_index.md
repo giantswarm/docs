@@ -27,7 +27,7 @@ This guide explains how to set up and use Kueue for job management in Giant Swar
 
 Kueue addresses the challenges of managing compute resources in multi-tenant Kubernetes environments by providing:
 
-### Why use Kueue?
+### Why use Kueue
 
 - **Resource quotas and fair sharing**: Implement quotas and policies for fair resource distribution among different teams and tenants
 - **Advanced job queueing**: Queue jobs based on priorities with different strategies like `StrictFIFO` and `BestEffortFIFO`
