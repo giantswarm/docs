@@ -114,7 +114,7 @@ spec:
 
 In the configuration, you enable the gateway to be the default ingress method for your cluster. Also, the [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) CRDs are installed in the workload cluster.
 
-Run `kubectl apply -f` command on your management cluster to install the bundle and wait untill the app is finally deployed and all the child applications are deployed too (CRDs, envoy gateway and gateway default config).
+Run `kubectl apply -f` command on your management cluster to install the bundle then wait until the child apps are deployed (CRDs, envoy gateway and gateway default config).
 
 ## Configuration
 
