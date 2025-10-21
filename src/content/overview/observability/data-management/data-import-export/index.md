@@ -1,6 +1,6 @@
 ---
 title: Data import and export
-description: Learn how to import data into and export data from the Giant Swarm observability platform using Grafana Alloy and the Observability Platform API for external integration and analysis.
+description: Learn how to import data into and export data from the Giant Swarm observability platform using the Observability Platform API for external integration and analysis.
 weight: 50
 mermaid: true
 menu:
