@@ -74,7 +74,7 @@ worker  mycluster-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 {{< /tab >}}
 {{< tab id="nodepool-capa-karpenter-config" for-impl="capa_ec2_karpenter" >}}
 
-In your workload cluster values, you can specify the node pool configuration to use `karpenter`
+In your workload cluster values, you can specify the node pool configuration to use Karpenter
 
 ```yaml
 global:
@@ -147,20 +147,20 @@ The node pool name will be a suffix of the cluster name. In the example above, t
 
 All nodes in the node pool will be labeled with the node pool name, using the `giantswarm.io/machine-pool` label. You can identify the nodes' node pool using that label.
 
-When using `type: karpenter` in your node pool configuration, `karpenter` will be deployed in your cluster to manage your worker nodes.
-The configuration values that you specify in the node pool configuration will be translated into the Custom Resources that `karpenter` is watching: [`NodePools` (`nodepools.karpenter.sh`)](https://karpenter.sh/docs/concepts/nodepools/) and [`EC2NodeClasses` (`ec2nodeclasses.karpenter.k8s.aws`)](https://karpenter.sh/docs/concepts/nodeclasses/).
+When using `type: karpenter` in your node pool configuration, Karpenter will be deployed in your cluster to manage your worker nodes.
+The configuration values that you specify in the node pool configuration will be translated into the Custom Resources that Karpenter is watching: [`NodePools` (`nodepools.karpenter.sh`)](https://karpenter.sh/docs/concepts/nodepools/) and [`EC2NodeClasses` (`ec2nodeclasses.karpenter.k8s.aws`)](https://karpenter.sh/docs/concepts/nodeclasses/).
 There will be a pair of these Custom Resources for every node pool that you define in your cluster values.
 
-Both `karpenter` Custom Resources [`NodePools`](https://karpenter.sh/docs/concepts/nodepools/) and [`EC2NodeClasses`](https://karpenter.sh/docs/concepts/nodeclasses/) offer many configuration options.
+Both Karpenter Custom Resources [`NodePools`](https://karpenter.sh/docs/concepts/nodepools/) and [`EC2NodeClasses`](https://karpenter.sh/docs/concepts/nodeclasses/) offer many configuration options.
 We expose most of those fields as values that you can set when defining your node pool in the cluster values.
 
-Also, every EC2 instance that `karpenter` is managing is represented by a Custom Resource called [`NodeClaim` (`nodeclaims.karpenter.sh`)](https://karpenter.sh/docs/concepts/nodeclaims/).
+Also, every EC2 instance that Karpenter is managing is represented by a Custom Resource called [`NodeClaim` (`nodeclaims.karpenter.sh`)](https://karpenter.sh/docs/concepts/nodeclaims/).
 
-In the `karpenter` node pools you can't specify the number of nodes in your cluster. Neither the minimum or maximum number of nodes that you want to have in your cluster.
+In the Karpenter node pools you can't specify the number of nodes in your cluster. Neither the minimum or maximum number of nodes that you want to have in your cluster.
 Instead, you can specify [the maximum amount of resources](https://karpenter.sh/docs/concepts/nodepools/#speclimits) that the node pool can consume.
 
-Depending on the workloads that are deployed, `karpenter` will try to optimize the number of nodes in your cluster. This process is called [consolidation](https://karpenter.sh/v0.32/concepts/disruption/#consolidation).
-You can also configure your node pool to instruct `karpenter` about when and how to do the consolidation through [the `disruption` configurations](https://karpenter.sh/docs/concepts/disruption/).
+Depending on the workloads that are deployed, Karpenter will try to optimize the number of nodes in your cluster. This process is called [consolidation](https://karpenter.sh/v0.32/concepts/disruption/#consolidation).
+You can also configure your node pool to instruct Karpenter about when and how to do the consolidation through [the `disruption` configurations](https://karpenter.sh/docs/concepts/disruption/).
 
 {{< /tab >}}
 {{< tab id="nodepool-capz-config" for-impl="capz_vms" >}}
@@ -369,10 +369,10 @@ When node pool instances need to be rolled, each instance receives a terminate s
 {{< tab id="nodepool-update-capa-karpenter" for-impl="capa_ec2_karpenter" >}}
 
 During a cluster upgrade, creating new EC2 instances (called "rolling nodes") can be necessary. That only happens if anything changes in the node configuration, such as configuration files or newer version of Kubernetes or Flatcar Linux.
-The [`disruption.budgets` configuration](https://karpenter.sh/docs/concepts/disruption/#nodepool-disruption-budgets) of your node pool control the speed in which `karpenter` can scale down nodes in your cluster.
+The [`disruption.budgets` configuration](https://karpenter.sh/docs/concepts/disruption/#nodepool-disruption-budgets) of your node pool control the speed in which Karpenter can scale down nodes in your cluster.
 
-When node pool instances need to be rolled, `karpenter` automatically taints, drains, and terminates the nodes.
-By setting the `terminationGracePeriod` field on your node pool, you can configure the amount of time a `Node` can be draining before `karpenter` forcibly cleans up the node. Pods blocking eviction like `PodDisruptionBudgets` and do-not-disrupt will be respected during draining until the `terminationGracePeriod` is reached, where those pods will be forcibly deleted.
+When node pool instances need to be rolled, Karpenter automatically taints, drains, and terminates the nodes.
+By setting the `terminationGracePeriod` field on your node pool, you can configure the amount of time a `Node` can be draining before Karpenter forcibly cleans up the node. Pods blocking eviction like `PodDisruptionBudgets` and do-not-disrupt will be respected during draining until the `terminationGracePeriod` is reached, where those pods will be forcibly deleted.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -431,7 +431,7 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 {{< /tab >}}
 {{< tab id="nodepool-autoscaling-capa-karpenter" for-impl="capa_ec2_karpenter" >}}
 
-`karpenter` is watching the `Pods` in the cluster, and [it will scale up the node pool](https://karpenter.sh/docs/) based on the `Pods` that are in `Pending` state.
+Karpenter is watching the `Pods` in the cluster, and [it will scale up the node pool](https://karpenter.sh/docs/) based on the `Pods` that are in `Pending` state.
 
 {{< /tab >}}
 {{< tab id="nodepool-autoscaling-capz" for-impl="capz_vms" >}} >}}
