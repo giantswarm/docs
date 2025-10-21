@@ -35,17 +35,6 @@ Kueue addresses the challenges of managing compute resources in multi-tenant Kub
 - **Preemption support**: Allow higher-priority jobs to preempt lower-priority ones when resources are constrained
 - **Gang scheduling support**: All-or-nothing scheduling semantics for distributed workloads that require coordinated resource allocation
 
-### Key Features
-
-Based on the [official Kueue documentation](https://kueue.sigs.k8s.io/docs/overview/), Kueue provides:
-
-- **Job management**: Support for job queueing with priority-based scheduling strategies
-- **Advanced resource management**: Resource flavor fungibility, fair sharing, cohorts, and preemption policies
-- **Wide integration support**: Built-in support for Kubernetes Jobs, Kubeflow training jobs, RayJob, RayCluster, JobSet, AppWrappers, and plain Pods
-- **System insights**: Built-in Prometheus metrics and on-demand visibility for monitoring pending workloads
-- **Admission checks**: Mechanisms for internal or external components to influence workload admission
-- **Topology-aware scheduling**: Optimize pod-to-pod communication by scheduling based on data center topology
-
 ### Core Concepts
 
 - **ClusterQueue**: Defines resource quotas and admission policies for a cluster
@@ -61,6 +50,7 @@ Before setting up Kueue, ensure you have:
 - A Giant Swarm workload cluster
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
+- Have `JobSet` extension on the workload cluster (`helm install jobset oci://registry.k8s.io/jobset/charts/jobset --version 0.10.1`). It will be automatically deployed in the near future as Kueue dependency.
 - Basic understanding of Kubernetes batch workloads and resource management
 
 ## Installation
@@ -220,90 +210,76 @@ spec:
       restartPolicy: Never
 ```
 
-### Machine Learning Training Job
-
-Example using a PyTorch training job with GPU resources:
-
-```yaml
-apiVersion: kubeflow.org/v1
-kind: PyTorchJob
-metadata:
-  name: pytorch-training
-  namespace: default
-spec:
-  pytorchReplicaSpecs:
-    Master:
-      replicas: 1
-      template:
-        metadata:
-          labels:
-            kueue.x-k8s.io/queue-name: local-queue
-        spec:
-          containers:
-          - name: pytorch
-            image: pytorch/pytorch:latest
-            command: ["python", "train.py"]
-            resources:
-              requests:
-                nvidia.com/gpu: 1
-                cpu: 2
-                memory: 4Gi
-    Worker:
-      replicas: 2
-      template:
-        metadata:
-          labels:
-            kueue.x-k8s.io/queue-name: local-queue
-        spec:
-          containers:
-          - name: pytorch
-            image: pytorch/pytorch:latest
-            command: ["python", "train.py", "--worker"]
-            resources:
-              requests:
-                nvidia.com/gpu: 1
-                cpu: 2
-                memory: 4Gi
-```
-
 ### Gang Scheduling with All-or-Nothing Semantics
 
 Kueue supports gang scheduling through its "All-or-Nothing" semantics, ensuring that either all pods in a job are scheduled together or none are scheduled. This is particularly useful for distributed training jobs and tightly coupled workloads.
 
 #### Basic Gang Scheduling Configuration
 
-Enable all-or-nothing scheduling in your ClusterQueue:
+First, you need to customize the Kueue configuration to enable the `waitForPodsReady` setting:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-kueue-userconfig
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    waitForPodsReady:
+      enable: true
+      timeout: 10m
+```
+
+Now update the app resource to point to the configmap:
+
+```yaml
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: <CLUSTER_NAME>-kueue
+  namespace: org-fer
+spec:
+  ...
+  userConfig:
+    configMap:
+      name: <CLUSTER_NAME>-kueue-userconfig
+      namespace: org-<ORGANIZATION>
+```
+
+Now define two new queues (Cluster and Local) to run the tests:
 
 ```yaml
 apiVersion: kueue.x-k8s.io/v1beta1
 kind: ClusterQueue
 metadata:
-  name: gang-scheduling-queue
+  name: gang-cluster-queue
 spec:
   namespaceSelector: {}
-  queueingStrategy: BestEffortFIFO
   resourceGroups:
   - coveredResources: ["cpu", "memory", "nvidia.com/gpu"]
     flavors:
     - name: default-flavor
       resources:
       - name: "cpu"
-        nominalQuota: 100
+        nominalQuota: 10
       - name: "memory"
-        nominalQuota: 200Gi
+        nominalQuota: 20Gi
     - name: gpu-flavor
       resources:
       - name: "nvidia.com/gpu"
-        nominalQuota: 8
-  # Enable all-or-nothing scheduling with timeout
-  admissionChecksStrategy:
-    admissionChecks:
-    - name: all-or-nothing-check
+        nominalQuota: 2
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  namespace: default
+  name: gang-queue
+spec:
+  clusterQueue: "gang-cluster-queue"
 ```
 
-#### JobSet with Gang Scheduling
-
-Use JobSet for complex multi-job workflows that need coordinated scheduling:
+Now, you create a `JobSet` to define a driver controller and some workers:
 
 ```yaml
 apiVersion: jobset.x-k8s.io/v1alpha2
@@ -318,7 +294,7 @@ spec:
     template:
       metadata:
         labels:
-          kueue.x-k8s.io/queue-name: user-queue
+          kueue.x-k8s.io/queue-name: gang-queue
       spec:
         parallelism: 1
         completions: 1
@@ -338,7 +314,7 @@ spec:
     template:
       metadata:
         labels:
-          kueue.x-k8s.io/queue-name: user-queue
+          kueue.x-k8s.io/queue-name: gang-queue
       spec:
         parallelism: 2
         completions: 2
@@ -350,47 +326,50 @@ spec:
               command: ["sh", "-c", "echo 'Worker job running'; sleep 45"]
               resources:
                 requests:
-                  cpu: 1
-                  memory: 1Gi
+                  cpu: 2
+                  memory: 2Gi
+                  nvidia.com/gpu: 1
             restartPolicy: Never
+            tolerations:
+            - key: nvidia.com/gpu
+              value: "true"
+              effect: NoSchedule
 ```
 
-## Monitoring and Observability
-
-### Check Queue Status
-
-Monitor queue status and pending workloads:
-
-```bash
-# Check cluster queues
-kubectl get clusterqueue
-
-# Check local queues
-kubectl get localqueue -A
-
-# Check workloads
-kubectl get workload -A
-
-# Describe a specific queue for detailed information
-kubectl describe clusterqueue cluster-queue
-```
+Once you submit the `JobSet` it will create two `ReplicatedJobs` which at the same time will create three worker replicas with two jobs for each. Since those jobs request way more memory, cpu and GPU resources the job will not be scheduled and the whole group will be requeue after time out. You can try to relax the requests and see how Kueue controller schedule the jobs all together when the capacity is available.
 
 ### Prometheus Metrics
 
-Kueue provides built-in Prometheus metrics for monitoring:
+Kueue comes with a set of built-in Prometheus metrics for observe the state of the jobs and queues. You need to pass the proper configuration at deployment time to get those into the Observability platform.
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-kueue-userconfig
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    ...
+    enablePrometheus: true
+```
+
+It will create a `ServiceMonitor` in the Kueue namespace which instruct the alloy agent to collect the specific metrics. Some of these metrics are:
 
 - `kueue_admitted_workloads_total`: Total number of admitted workloads
 - `kueue_pending_workloads`: Number of pending workloads per queue
 - `kueue_cluster_queue_resource_usage`: Resource usage per cluster queue
 - `kueue_admission_wait_time_seconds`: Time workloads wait before admission
 
-You can check [our Observability platform]({{< relref "/overview/observability" >}}) to observe the status of the queues and workloads.
+You can access [our Observability platform UI]({{< relref "/overview/observability/dashboard-management/dashboard-exploration/" >}}) to get a glance of those metrics.
 
 ## Advanced Features
 
 ### Cohorts for Resource Sharing
 
-Enable resource borrowing between cluster queues:
+In multi-team environments where different teams have varying workload patterns competing for resources, you may need some higher abstractions to manage those resource properly. Cohorts enable dynamic resource redistribution, improving overall cluster utilization and reducing job wait times.
+
+This is an example for enabling resource borrowing between cluster queues:
 
 ```yaml
 apiVersion: kueue.x-k8s.io/v1beta1
@@ -432,6 +411,26 @@ spec:
 
 ### Preemption Policies
 
+Preemption policies are essential when you need to ensure that critical, can access resources immediately, even when the cluster is fully utilized by lower-priority jobs. Preemption may help too maintaining SLA compliance and ensures that business-critical workloads are never blocked by less important tasks.
+
+First, let's configure the workload priority classes:
+
+```yaml
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: WorkloadPriorityClass
+metadata:
+  name: high-priority
+value: 1000
+description: "Priority class for critical jobs"
+---
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: WorkloadPriorityClass
+metadata:
+  name: low-priority
+value: 100
+description: "Priority class for non critical jobs"
+```
+
 Configure preemption to allow higher-priority jobs to preempt lower-priority ones:
 
 ```yaml
@@ -444,7 +443,6 @@ spec:
     reclaimWithinCohort: Any
     borrowWithinCohort:
       policy: LowerPriority
-      maxPriorityThreshold: 100
   resourceGroups:
   - coveredResources: ["cpu", "memory"]
     flavors:
@@ -456,39 +454,17 @@ spec:
         nominalQuota: 200Gi
 ```
 
-## Troubleshooting
+Now configure the job with the proper label:
 
-### Common Issues
+```yaml
+  labels:
+    ...
+    kueue.x-k8s.io/priority-class: [low|hight]-priority
+```
 
-1. **Jobs not being admitted**:
+Now you can submit first the low priority job and after it is scheduled, you deploy the high priority one. You can observe how first one is evicted to leave space for the second one.
 
-   ```bash
-   kubectl describe workload -n NAMESPACE WORKLOAD_NAME
-   # Check for admission conditions and resource availability
-   ```
-
-2. **Resource quota exceeded**:
-
-   ```bash
-   kubectl describe clusterqueue QUEUE_NAME
-   # Check resource usage vs. quotas
-   ```
-
-3. **Queue not accepting jobs**:
-
-   ```bash
-   kubectl get clusterqueue
-   # Ensure queue is active and not stopped
-   ```
-
-### Performance Tuning
-
-For high-throughput environments, consider:
-
-- Adjusting the `updateIntervalSeconds` in the visibility configuration
-- Tuning the `queueingStrategy` (StrictFIFO vs BestEffortFIFO)
-- Configuring appropriate `borrowingLimit` values for cohorts
-- Setting up multiple cluster queues for different workload types
+You can configure more complex scenarios using [fair sharing](https://kueue.sigs.k8s.io/docs/concepts/preemption/#fair-sharing).
 
 ## Best Practices
 
