@@ -30,9 +30,9 @@ To avoid collisions between both, the cluster autoscaler is configured to have a
 
 ## Configuration
 
-### `Karpenter`
+### Karpenter
 
-You can learn more about the `Karpenter` configuration in the [node pools configuration page]({{< ref "/tutorials/fleet-management/cluster-management/node-pools" >}}).
+You can learn more about the Karpenter configuration in the [node pools configuration page]({{< ref "/tutorials/fleet-management/cluster-management/node-pools" >}}).
 
 ### Cluster autoscaler
 
