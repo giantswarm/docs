@@ -46,7 +46,7 @@ The Gateway API consists of three main components available in Giant Swarm:
 
 Those are bundle together in [Gateway API bundle](https://github.com/giantswarm/gateway-api-bundle/tree/main/helm/gateway-api-bundle) to help with the installation.
 
-### Gateway API Resources
+### Gateway API resources
 
 - **GatewayClass**: Defines the type of gateway (managed by platform team)
 - **Gateway**: Configures load balancer and listeners (managed by platform team)

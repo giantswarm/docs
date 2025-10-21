@@ -130,6 +130,7 @@ templated
 TLS
 TraceQL
 [T|t]rivy
+UDP
 upstream[s]?
 vApp
 vCenter
