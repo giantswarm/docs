@@ -20,7 +20,6 @@ user_questions:
   - How do I connect external tools to the platform?
   - What is the Observability Platform API?
   - How do I set up external Grafana to access Giant Swarm data?
-  - How do I configure external Alloy instances to send data to the platform?
   - How do I configure OAuth2 authentication for external data import?
   - How do I send metrics from external systems using Alloy?
 ---
