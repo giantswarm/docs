@@ -15,7 +15,7 @@ user_questions:
   - How do I configure Envoy Gateway for my workloads?
   - What are the Gateway API components and how do they work together?
   - How do I migrate from Ingress to Gateway API?
-last_review_date: 2025-10-15
+last_review_date: 2025-10-17
 ---
 
 The Kubernetes Gateway API is the next-generation standard for managing ingress traffic in Kubernetes clusters. It provides a more expressive, extensible, and role-oriented approach to traffic management compared to traditional Ingress resources. Giant Swarm supports Gateway API through Envoy Gateway, providing advanced load balancing, traffic routing, and API gateway capabilities.
@@ -44,6 +44,8 @@ The Gateway API consists of three main components available in Giant Swarm:
 2. **[Envoy Gateway](https://github.com/giantswarm/envoy-gateway-app)**: The gateway implementation based on Envoy Proxy
 3. **[Gateway API Config](https://github.com/giantswarm/gateway-api-config-app)**: Default configuration for quick setup
 
+Those are bundle together in [Gateway API bundle](https://github.com/giantswarm/gateway-api-bundle/tree/main/helm/gateway-api-bundle) to help with the installation.
+
 ### Gateway API Resources
 
 - **GatewayClass**: Defines the type of gateway (managed by platform team)
@@ -63,13 +65,19 @@ Before setting up Gateway API, ensure you have:
 
 ## Installation
 
-Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment.
-
-### Option 1: Install Gateway API Bundle (Recommended)
-
-The easiest way to get started is using the Gateway API Bundle, which installs all required components:
+Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components:
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
@@ -79,14 +87,14 @@ metadata:
   namespace: org-<ORGANIZATION>
 spec:
   catalog: giantswarm
-  config:
-    configMap:
-      name: <CLUSTER_NAME>-gateway-api-bundle
-      namespace: org-<ORGANIZATION>
   kubeConfig:
     inCluster: true
   name: gateway-api-bundle
-  namespace: org-giantswarm
+  namespace: org-<ORGANIZATION>
+  userConfig:
+    configMap:
+      name: <CLUSTER_NAME>-gateway-api-bundle
+      namespace: org-<ORGANIZATION>
   version: 0.5.0
 ```
 
@@ -96,17 +104,24 @@ Run `kubectl apply -f` command to install the bundle and way till the app is fin
 
 ### Using the default gateway
 
-When you install the Gateway API Bundle, it automatically creates a default Gateway called `giantswarm-default` that's ready to use for the entire cluster. You can verify it exists:
+When you install the Gateway API Bundle, it automatically creates a default Gateway Class called `giantswarm-default` that's pointing to the envoy controller. You can verify it exists:
 
 ```bash
-kubectl get gateway -n giantswarm
+kubectl get gatewayclass
 ```
 
 Expected output:
 
 ```text
-NAME                 CLASS           ADDRESS        PROGRAMMED   AGE
-giantswarm-default   envoy-gateway   10.0.0.100     True         5m
+NAME                 CONTROLLER                                      ACCEPTED
+giantswarm-default   gateway.envoyproxy.io/gatewayclass-controller   True
+```
+
+Additionally, it also creates a default gateway ready to use in the cluster:
+
+```text
+NAME          CLASS      ADDRESS     PROGRAMMED
+giantswarm-default   giantswarm-default   axx8.eu-west-2.elb.amazonaws.com   True
 ```
 
 This default Gateway is configured to handle traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to use immediately with HTTPRoutes.
@@ -218,7 +233,7 @@ spec:
   - name: giantswarm-default
     namespace: giantswarm
   hostnames:
-  - "api.CLUSTER_ID.k8s.gigantic.io"
+  - "example-api.CLUSTER_ID.k8s.gigantic.io"
   rules:
   - matches:
     - path:
@@ -317,66 +332,51 @@ To migrate from traditional Ingress to Gateway API:
 
 1. **Identify existing Ingress resources**:
 
-   ```bash
-   kubectl get ingress --all-namespaces
-   # Before (Ingress)
-   apiVersion: networking.k8s.io/v1
-   kind: Ingress
-   metadata:
-     name: example-ingress
-   spec:
-     ingressClassName: nginx
-     rules:
-     - host: app.example.com
-       http:
-         paths:
-         - path: /
-           pathType: Prefix
-           backend:
-             service:
-               name: example-service
-               port:
-                 number: 8080
+  ```bash
+    kubectl get ingress --all-namespaces
+    # Before (Ingress)
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: example-ingress
+    spec:
+      ingressClassName: nginx
+      rules:
+      - host: app.example.com
+        http:
+          paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: example-service
+                port:
+                  number: 8080
 
-   # After (HTTPRoute)
-   apiVersion: gateway.networking.k8s.io/v1
-   kind: HTTPRoute
-   metadata:
-     name: example-route
-   spec:
-     parentRefs:
-     - name: giantswarm-default
-       namespace: giantswarm
-     hostnames:
-     - "app.example.com"
-     rules:
-     - matches:
-       - path:
-           type: PathPrefix
-           value: /
-       backendRefs:
-       - name: example-service
-         port: 8080
-   ```
+    # After (HTTPRoute)
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      name: example-route
+    spec:
+      parentRefs:
+      - name: giantswarm-default
+        namespace: giantswarm
+      hostnames:
+      - "app.example.com"
+      rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+        - name: example-service
+          port: 8080
+  ```
 
-2. **Test the new configuration** before removing the old Ingress
+1. **Test the new configuration** before removing the old Ingress
 
-3. **Update DNS** to point to the new gateway load balancer
-
-## Troubleshooting
-
-### Common issues
-
-1. **Gateway not ready**:
-
-   ```bash
-   kubectl describe gateway giantswarm-default -n envoy-gateway-system
-   # Check the status conditions for error messages
-   ```
-
-2. **Cross-namespace access denied**:
-   - Ensure ReferenceGrant is created in the target namespace
-   - Verify the ReferenceGrant allows the specific resource types
+1. **Update DNS** to point to the new gateway load balancer
 
 ## Limitations
 
