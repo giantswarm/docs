@@ -109,7 +109,7 @@ spec:
     configMap:
       name: <CLUSTER_NAME>-gateway-api-bundle
       namespace: org-<ORGANIZATION>
-  version: 0.5.0
+  version: 0.5.1
 ```
 
 In the configuration, you enable the gateway to be the default ingress method for your cluster. Also, the inference CRDs are installed in the workload cluster.
