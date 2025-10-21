@@ -77,6 +77,20 @@ data:
   values: |
     clusterID: <CLUSTER_NAME>
     organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  dnsName: ingress
+      gatewayApiCrds:
+        userConfig:
+          configMap:
+            values: |
+              install:
+                inferencepools: "standard"
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
@@ -97,6 +111,8 @@ spec:
       namespace: org-<ORGANIZATION>
   version: 0.5.0
 ```
+
+In the configuration, you enable the gateway to be the default ingress method for your cluster. Also, the inference CRDs are installed in the workload cluster.
 
 Run `kubectl apply -f` command to install the bundle and way till the app is finally deployed and all the child applications are deployed too (CRDs, envoy gateway and gateway default config).
 
@@ -125,6 +141,8 @@ giantswarm-default   giantswarm-default   axx8.eu-west-2.elb.amazonaws.com   Tru
 ```
 
 This default Gateway is configured to handle traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to use immediately with HTTPRoutes.
+
+**Note**: In case you have already running ingress controller in your cluster, talk to us to help you with the migration.
 
 ### Custom gateway setup (optional)
 
@@ -325,58 +343,6 @@ spec:
       namespace: production
       port: 8080
 ```
-
-## Migration from Ingress
-
-To migrate from traditional Ingress to Gateway API:
-
-1. **Identify existing Ingress resources**:
-
-  ```bash
-    kubectl get ingress --all-namespaces
-    # Before (Ingress)
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: example-ingress
-    spec:
-      ingressClassName: nginx
-      rules:
-      - host: app.example.com
-        http:
-          paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: example-service
-                port:
-                  number: 8080
-
-    # After (HTTPRoute)
-    apiVersion: gateway.networking.k8s.io/v1
-    kind: HTTPRoute
-    metadata:
-      name: example-route
-    spec:
-      parentRefs:
-      - name: giantswarm-default
-        namespace: giantswarm
-      hostnames:
-      - "app.example.com"
-      rules:
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /
-        backendRefs:
-        - name: example-service
-          port: 8080
-  ```
-
-1. **Test the new configuration** before removing the old Ingress
-
-1. **Update DNS** to point to the new gateway load balancer
 
 ## Limitations
 
