@@ -21,7 +21,7 @@ user_questions:
   - What is the Observability Platform API?
   - How do I set up external Grafana to access Giant Swarm data?
   - How do I configure OAuth2 authentication for external data import?
-  - How do I send metrics from external systems using Alloy?
+  - How do I send data from external systems?
 ---
 
 Data import and export capabilities enable you to both send observability data from external sources into the Giant Swarm platform and access your observability data from external systems and tools. This gives you the flexibility to integrate Giant Swarm's observability platform with your existing monitoring infrastructure, external data sources, and specialized analysis tools.
