@@ -112,15 +112,15 @@ spec:
   version: 0.5.1
 ```
 
-In the configuration, you enable the gateway to be the default ingress method for your cluster. Also, the inference CRDs are installed in the workload cluster.
+In the configuration, you enable the gateway to be the default ingress method for your cluster. Also, the [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) CRDs are installed in the workload cluster.
 
-Run `kubectl apply -f` command to install the bundle and way till the app is finally deployed and all the child applications are deployed too (CRDs, envoy gateway and gateway default config).
+Run `kubectl apply -f` command on your management cluster to install the bundle and wait untill the app is finally deployed and all the child applications are deployed too (CRDs, envoy gateway and gateway default config).
 
 ## Configuration
 
 ### Using the default gateway
 
-When you install the Gateway API Bundle, it automatically creates a default Gateway Class called `giantswarm-default` that's pointing to the envoy controller. You can verify it exists:
+When you install the Gateway API Bundle, it automatically creates a default Gateway Class called `giantswarm-default` that's pointing to the envoy controller. You can verify it exists on your workload cluster:
 
 ```bash
 kubectl get gatewayclass
@@ -354,6 +354,7 @@ spec:
 ## Further reading
 
 - [Kubernetes Gateway API documentation](https://gateway-api.sigs.k8s.io/)
+- [Kubernetes Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/)
 - [Envoy Gateway documentation](https://gateway.envoyproxy.io/)
 - [Gateway API CRDs app repository](https://github.com/giantswarm/gateway-api-crds-app)
 - [Envoy Gateway app repository](https://github.com/giantswarm/envoy-gateway-app)
