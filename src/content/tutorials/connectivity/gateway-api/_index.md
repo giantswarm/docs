@@ -136,7 +136,7 @@ giantswarm-default   gateway.envoyproxy.io/gatewayclass-controller   True
 Additionally, it also creates a default gateway ready to use in the cluster:
 
 ```text
-NAME          CLASS      ADDRESS     PROGRAMMED
+NAME                 CLASS                ADDRESS                            PROGRAMMED
 giantswarm-default   giantswarm-default   axx8.eu-west-2.elb.amazonaws.com   True
 ```
 
