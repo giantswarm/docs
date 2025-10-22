@@ -35,11 +35,11 @@ Kueue addresses the challenges of managing compute resources in multi-tenant Kub
 - **Preemption support**: Allow higher-priority jobs to preempt lower-priority ones when resources are constrained
 - **Gang scheduling support**: All-or-nothing scheduling semantics for distributed workloads that require coordinated resource allocation
 
-### Core Concepts
+### Core concepts
 
 - **ClusterQueue**: Defines resource quotas and admission policies for a cluster
 - **LocalQueue**: Provides a namespace-scoped interface to submit jobs to a ClusterQueue
-- **ResourceFlavor**: Represents different types of resources (e.g., different instance types, zones)
+- **ResourceFlavor**: Represents different types of resources (for example, different instance types, zones)
 - **Workload**: Kueue's representation of a job that needs resources
 - **Cohort**: Groups ClusterQueues to enable resource borrowing between them
 
@@ -57,7 +57,7 @@ Before setting up Kueue, ensure you have:
 
 Kueue is available as a managed app in the Giant Swarm catalog. You can install it using the Giant Swarm app platform.
 
-### Install Kueue App
+### Install Kueue app
 
 Install the Kueue app using `kubectl gs`:
 
@@ -84,6 +84,7 @@ kubectl get pods -n kueue-system
 ```
 
 Expected output:
+
 ```
 NAME                                        READY   STATUS    RESTARTS   AGE
 kueue-controller-manager-74c8f8c7c4-x7jwz   2/2     Running   0          2m
@@ -96,7 +97,8 @@ kubectl get crd | grep kueue
 ```
 
 Expected output:
-```
+
+```text
 clusterqueues.kueue.x-k8s.io                    2025-10-16T10:00:00Z
 localqueues.kueue.x-k8s.io                      2025-10-16T10:00:00Z
 resourceflavors.kueue.x-k8s.io                  2025-10-16T10:00:00Z
@@ -106,11 +108,11 @@ workloads.kueue.x-k8s.io                        2025-10-16T10:00:00Z
 
 ## Configuration
 
-### Basic Setup
+### Basic setup
 
 Create a basic Kueue configuration with resource flavors, cluster queue, and local queue:
 
-#### Step 1: Create Resource Flavors
+#### Step 1: Create resource flavors
 
 Resource flavors represent different types of compute resources:
 
@@ -176,9 +178,9 @@ spec:
   clusterQueue: cluster-queue
 ```
 
-## Usage Examples
+## Usage examples
 
-### Basic Batch Job
+### Basic batch job
 
 Create a simple batch job that uses Kueue for scheduling:
 
@@ -210,11 +212,11 @@ spec:
       restartPolicy: Never
 ```
 
-### Gang Scheduling with All-or-Nothing Semantics
+### Gang scheduling
 
 Kueue supports gang scheduling through its "All-or-Nothing" semantics, ensuring that either all pods in a job are scheduled together or none are scheduled. This is particularly useful for distributed training jobs and tightly coupled workloads.
 
-#### Basic Gang Scheduling Configuration
+#### Basic configuration
 
 First, you need to customize the Kueue configuration to enable the `waitForPodsReady` setting:
 
@@ -336,9 +338,9 @@ spec:
               effect: NoSchedule
 ```
 
-Once you submit the `JobSet` it will create two `ReplicatedJobs` which at the same time will create three worker replicas with two jobs for each. Since those jobs request way more memory, cpu and GPU resources the job will not be scheduled and the whole group will be requeue after time out. You can try to relax the requests and see how Kueue controller schedule the jobs all together when the capacity is available.
+Once you submit the `JobSet`, it will create two `ReplicatedJobs`, which, in turn, will make three worker replicas with two jobs assigned to each. Since those jobs require way more memory, CPU, and GPU resources, the job will not be scheduled, and the whole group will be requeued after a timeout. You can relax the requests and see how the Kueue controller schedules the jobs altogether when capacity is available.
 
-### Prometheus Metrics
+### Prometheus metrics
 
 Kueue comes with a set of built-in Prometheus metrics for observe the state of the jobs and queues. You need to pass the proper configuration at deployment time to get those into the Observability platform.
 
