@@ -35,6 +35,7 @@ Kueue addresses the challenges of managing compute resources in multi-tenant Kub
 - **Preemption support**: Allow higher-priority jobs to preempt lower-priority ones when resources are constrained
 - **Gang scheduling support**: All-or-nothing scheduling semantics for distributed workloads that require coordinated resource allocation
 - **Multi-cluster functionality**: Scale out jobs to different cluster targets to distribute your workloads, reducing costs and improving availability. 
+
 ### Core concepts
 
 - **ClusterQueue**: Defines resource quotas and admission policies for a cluster
