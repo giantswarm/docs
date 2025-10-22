@@ -34,7 +34,7 @@ Kueue addresses the challenges of managing compute resources in multi-tenant Kub
 - **Resource fungibility**: Automatically use alternative resource flavors when preferred resources are unavailable
 - **Preemption support**: Allow higher-priority jobs to preempt lower-priority ones when resources are constrained
 - **Gang scheduling support**: All-or-nothing scheduling semantics for distributed workloads that require coordinated resource allocation
-- **Multi-cluster functionality**: Scale out jobs to different cluster targets to distribute your workloads, reducing costs and improving availability. 
+- **Multi-cluster functionality**: Scale out jobs to different cluster targets to distribute your workloads, reducing costs and improving availability.
 
 ### Core concepts
 
