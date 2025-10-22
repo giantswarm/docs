@@ -85,7 +85,7 @@ kubectl get pods -n kueue-system
 
 Expected output:
 
-```
+```text
 NAME                                        READY   STATUS    RESTARTS   AGE
 kueue-controller-manager-74c8f8c7c4-x7jwz   2/2     Running   0          2m
 ```
