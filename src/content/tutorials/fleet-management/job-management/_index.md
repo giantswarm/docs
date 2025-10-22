@@ -1,7 +1,7 @@
 ---
 linkTitle: Job management
 title: Job management with Kueue
-description: Learn how to use Kueue for Kubernetes-native job queueing and resource management in Giant Swarm workload clusters to efficiently manage batch workloads, ML training jobs, and resource quotas.
+description: Learn how to use Kueue for Kubernetes-native job queueing and resource management in Giant Swarm workload clusters to manage batch workloads efficiently, AI and ML training jobs, or resource quotas.
 weight: 50
 menu:
   principal:
