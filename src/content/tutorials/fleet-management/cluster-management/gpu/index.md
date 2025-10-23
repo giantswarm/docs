@@ -13,7 +13,8 @@ user_questions:
   - How can I use GPUs with my CAPI workload clusters?
   - How do I add GPU nodes to my CAPI cluster?
   - How do I configure GPU support in my workload cluster?
-last_review_date: 2025-03-12
+  - How do I monitor the GPU state?
+last_review_date: 2025-10-22
 ---
 
 This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads, focusing on NVIDIA GPUs.
@@ -160,6 +161,35 @@ spec:
 ### Resource management
 
 `GPUs` are only available through limits, not requests. The number specified in limits determines how many `GPUs` will be allocated to the pod.
+
+### Monitoring
+
+Giant Swarm offers a [Observability platform]({{< relref "/overview/observability" >}}) ready to use by your workloads. In current case, you can observe the metrics of the GPU devices available in the cluster. In order to feed those metrics into the platform you need to set a `ServiceMonitor` like:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: dcgm-exporter
+  namespace: kube-system
+  labels:
+    app: nvidia-dcgm-exporter
+    observability.giantswarm.io/tenant: my_tenant
+    giantswarm.io/service-type: managed
+spec:
+  endpoints:
+  - interval: 60s
+    path: /metrics
+    port: gpu-metrics
+    scrapeTimeout: 45s
+  selector:
+    matchLabels:
+      app: nvidia-dcgm-exporter
+```
+
+After applying the manifest, and waiting few minutes you can explore the available metrics.
+
+![GPU dashboard](gpu-dashboard.png)
 
 ## Best practices
 

@@ -87,6 +87,7 @@ kube-vip
 kubeconfig[s]?
 kubectl
 kubelet
+Kueue
 [K|k]yverno
 liveness
 LogQL
