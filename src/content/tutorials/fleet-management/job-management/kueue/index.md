@@ -5,8 +5,8 @@ description: Learn how to use Kueue for Kubernetes-native job queueing and resou
 weight: 50
 menu:
   principal:
-    parent: tutorials-fleet-management
-    identifier: tutorials-fleet-management-job-management
+    parent: tutorials-fleet-management-job-management
+    identifier: tutorials-fleet-management-job-management-kueue
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
