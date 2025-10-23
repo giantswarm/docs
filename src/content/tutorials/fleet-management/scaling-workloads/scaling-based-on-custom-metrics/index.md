@@ -1,5 +1,6 @@
 ---
 title: Scaling workloads based on custom GPU metrics
+linkTitle: Scaling GPU workloads
 description: Learn how to configure Horizontal Pod Autoscaling with Prometheus adapter to scale workloads based on custom GPU metrics in Giant Swarm clusters.
 weight: 10
 menu:
@@ -46,8 +47,8 @@ You should see DCGM metrics in your Grafana Explore view, such as:
 
 - `DCGM_FI_DEV_GPU_UTIL` - GPU utilization percentage
 - `DCGM_FI_DEV_MEM_COPY_UTIL` - GPU memory utilization
-- `DCGM_FI_DEV_FB_USED` - GPU framebuffer memory used
-- `DCGM_FI_DEV_FB_TOTAL` - GPU framebuffer memory total
+- `DCGM_FI_DEV_FB_USED` - GPU frame buffer memory used
+- `DCGM_FI_DEV_FB_TOTAL` - GPU frame buffer memory total
 
 ## Step 2: Install KEDA
 
