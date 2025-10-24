@@ -13,7 +13,7 @@ crd:
   technical_name: organizations.security.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/organization-operator
-  source_repository_ref: v2.1.1
+  source_repository_ref: v2.1.2
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/organizations.security.giantswarm.io/
 technical_name: organizations.security.giantswarm.io
 source_repository: https://github.com/giantswarm/organization-operator
-source_repository_ref: v2.1.1
+source_repository_ref: v2.1.2
 ---
 
 # Organization

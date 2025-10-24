@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-configuration
-last_review_date: 2025-07-17
+last_review_date: 2025-10-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -15,6 +15,7 @@ user_questions:
   - How do I set up multi-tenancy?
   - What can I customize in Grafana?
   - How do I configure data ingestion?
+  - How do I configure external data ingestion from non-managed clusters?
   - What alerting options can I configure?
   - How do I manage access controls?
   - How do I set up the initial platform configuration?
@@ -83,8 +84,8 @@ Configure **[log ingestion]({{< relref "/overview/observability/data-management/
 
 Integrate data from sources outside Giant Swarm managed clusters through our **[Data Import and Export capabilities]({{< relref "/overview/observability/data-management/data-import-export" >}})**:
 
+- **External ingestion**: Send metrics, logs, and traces from external sources using **[authenticated endpoints]({{< relref "/overview/observability/data-management/data-import-export/#grafana-alloy-integration-recommended" >}})**
 - **OIDC authentication**: Configure your identity provider for secure API access
-- **Data ingestion endpoints**: Send logs from external systems using Loki's native format
 - **Data export endpoints**: Retrieve logs, metrics, and traces for external analysis and storage
 
 ## Visualization and dashboard configuration

@@ -68,6 +68,7 @@ params:
 
     # Provider and implementation specific
     capa_ec2: "CAPA (AWS EC2)"
+    capa_ec2_karpenter: "CAPA (AWS EC2 Karpenter)"
     capa_eks: "CAPA (AWS EKS)"
     capv: "CAPV (VMware vSphere)"
     capvcd: "CAPVCD (VMware Cloud Director)"
