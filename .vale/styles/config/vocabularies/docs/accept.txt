@@ -73,6 +73,7 @@ Hashicorp
 Honeybadger
 HPA
 HTTP
+hyperparameter
 impl_title
 IP[s]?
 IPAM
