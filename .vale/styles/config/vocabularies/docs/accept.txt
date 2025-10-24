@@ -67,6 +67,7 @@ firewalling
 freely
 GCP
 Giant Swarm
+GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
@@ -95,6 +96,7 @@ Kueue
 liveness
 LogQL
 mimirtool
+MIG
 namespace[s]?
 NLB[s]?
 node[pP]ool[s]?
@@ -132,6 +134,7 @@ subnets?
 [T|t]eleport
 templated
 TLS
+toleration[s]
 TraceQL
 [T|t]rivy
 UDP
