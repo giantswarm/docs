@@ -210,7 +210,7 @@ Set up port forwarding to access your Ray cluster:
 kubectl port-forward service/sample-raycluster-head-svc 8265:8265
 ```
 
-Let's calculate the number PI using the Monte Carlo method. The python script can be found [here](http://bit.ly/4o7Tc2h). You can use this command to submit the job to the Ray cluster API.
+Let's calculate the value of pi using the Monte Carlo method. The Python script can be found [in this gist file](http://bit.ly/4o7Tc2h). You can use this command to submit the job to the Ray cluster API.
 
 ```bash
 # Submit a job using Ray CLI
