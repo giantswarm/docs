@@ -2,6 +2,8 @@
 [Aa][Ww][Ss]
 [Aa]gent
 [Aa]lert
+Autoscaling
+Autoscaler
 [Bb]ackend
 [cC]loud
 [Cc]rossplane
@@ -87,6 +89,7 @@ kube-vip
 kubeconfig[s]?
 kubectl
 kubelet
+Kueue
 [K|k]yverno
 liveness
 LogQL
