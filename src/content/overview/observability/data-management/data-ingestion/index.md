@@ -169,6 +169,8 @@ The OpenTelemetry SDK supports configuration via [standard environment variables
   env:
     - name: OTEL_RESOURCE_ATTRIBUTES
       value: "service.name=shoot"
+  ```
+
 - `OTEL_TRACES_SAMPLER`: Controls trace sampling strategy (for example `always_on`, `parentbased_always_on`, etc.)
 - `OTEL_TRACES_SAMPLER_ARG`: Additional arguments for the sampler
 
