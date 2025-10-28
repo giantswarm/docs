@@ -85,7 +85,7 @@ roleRef:
 
 In case you use the [a `Kubernetes` client](https://kubernetes.io/docs/reference/using-api/client-libraries/) you can set the `TOKEN` obtained in the step before to grant access to the API. The exact steps may vary depending on the programming language and Kubernetes client library you are using. Usually the best is to generate a `kubeconfig` and pass it to the client build function.
 
-For generating a `kubeconfig` for the hypothetic `jenkins` service account, you can use this script:
+For generating a `kubeconfig` for the hypothetical `jenkins` service account, you can use this script:
 
 ```bash
 #!/bin/bash
