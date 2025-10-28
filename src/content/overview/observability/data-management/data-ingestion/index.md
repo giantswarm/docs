@@ -164,6 +164,7 @@ The OpenTelemetry SDK supports configuration via [standard environment variables
 
 - `OTEL_EXPORTER_OTLP_ENDPOINT`: Sets the OTLP endpoint for trace export (for example `http://otlp-gateway.kube-system.svc:4318`)
 - `OTEL_RESOURCE_ATTRIBUTES`: Defines resource attributes such as `service.name`, `deployment.environment`, etc. Example:
+
   ```yaml
   env:
     - name: OTEL_RESOURCE_ATTRIBUTES
