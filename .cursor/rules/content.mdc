@@ -1,0 +1,26 @@
+---
+globs: src/content/**.md
+alwaysApply: true
+---
+
+# Content editing rules
+
+Apply these rules whenever creating, editing or deleting content in the `src/content` directory.
+
+## URL to path mapping
+
+- The folder `src` represents a HUGO site published at https://docs.giantswarm.io/
+- Each page URL maps to a markdown file in the folder. For example:
+  - `https://docs.giantswarm.io/overview/security/platform-security/` maps to `src/content/overview/security/_index.md`
+  - `https://docs.giantswarm.io/overview/observability/alert-management/alert-routing/` maps to `src/content/overview/observability/alert-management/alert-routing/index.md`
+
+## Markdown rules
+
+- Leave a blank line between a headline and the following paragraph
+- The page headline is rendered by the HTML template based on the `title` frontmatter field and must not be part of the markdown body
+- Lint markdown after editing
+
+## Linking
+
+- Links to other pages within docs.giantswarm.io are set using the `relref` shortcode.
+- The relref parameter always starts with a forward slash.
