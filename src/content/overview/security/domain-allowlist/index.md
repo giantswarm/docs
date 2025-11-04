@@ -41,7 +41,8 @@ List of the external domains we require access to for our clusters to function.
 - `cronitor.io`
     - domains:
         - `cronitor.io`
-    - Cronitor's API is used to ensure our alerting pipeline is fully functional.
+        - `cronitor.link`
+    - Cronitor's API is used to ensure our alerting pipeline is fully functional (heartbeat monitoring).
 - `docker.com`
     - domains:
         - `*.docker.com`
