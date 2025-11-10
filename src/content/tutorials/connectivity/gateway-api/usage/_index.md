@@ -149,4 +149,3 @@ spec:
       namespace: production
       port: 8080
 ```
-
