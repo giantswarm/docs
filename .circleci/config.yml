@@ -31,12 +31,9 @@ workflows:
     - architect/push-to-registries:
         name: push-to-registries
         context: architect
-        push-to-aliyun: false
-        push-to-docker: false
         filters:
           tags:
             only: /^v.*/
-
           branches:
             ignore:
               - main
@@ -52,7 +49,6 @@ workflows:
         filters:
           tags:
             only: /^v.*/
-
           branches:
             ignore:
             - main
