@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@4.35.6
+  architect: giantswarm/architect@6.8.0
 
 jobs:
   test:
@@ -39,8 +39,7 @@ workflows:
 
           branches:
             ignore:
-            - main
-            - master
+              - main
     - architect/push-to-app-catalog:
         context: architect
         executor: app-build-suite
@@ -49,7 +48,7 @@ workflows:
         app_catalog_test: giantswarm-operations-platform-test-catalog
         chart: docs-app
         requires:
-        - push-to-registries
+          - push-to-registries
         filters:
           tags:
             only: /^v.*/
@@ -57,7 +56,6 @@ workflows:
           branches:
             ignore:
             - main
-            - master
     - test:
         requires:
-        - push-to-app-catalog
+          - push-to-app-catalog
