@@ -38,6 +38,11 @@ List of the external domains we require access to for our clusters to function.
     - domains:
         - `*.cloudfront.net`
     - Operators may pull from sites behind `Cloudfront`.
+- `cronitor.io`
+    - domains:
+        - `cronitor.io`
+        - `cronitor.link`
+    - Cronitor's API is used to ensure our alerting pipeline is fully functional (heartbeat monitoring).
 - `docker.com`
     - domains:
         - `*.docker.com`

@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-ingestion
-last_review_date: 2025-07-17
+last_review_date: 2025-10-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -157,6 +157,24 @@ Starting from cluster release v31 (alpha) and fully supported from v33, the obse
 ### OpenTelemetry instrumentation
 
 Before ingesting traces, ensure your application is [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) with OpenTelemetry libraries for your programming language.
+
+#### SDK configuration options
+
+The OpenTelemetry SDK supports configuration via [standard environment variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration), making it easy to control trace export and resource attributes without code changes. Common options include:
+
+- `OTEL_EXPORTER_OTLP_ENDPOINT`: Sets the OTLP endpoint for trace export (for example `http://otlp-gateway.kube-system.svc:4318`)
+- `OTEL_RESOURCE_ATTRIBUTES`: Defines resource attributes such as `service.name`, `deployment.environment`, etc. Example:
+
+  ```yaml
+  env:
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: "service.name=shoot"
+  ```
+
+- `OTEL_TRACES_SAMPLER`: Controls trace sampling strategy (for example `always_on`, `parentbased_always_on`, etc.)
+- `OTEL_TRACES_SAMPLER_ARG`: Additional arguments for the sampler
+
+Refer to the [OpenTelemetry Environment Variable Specification](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) for a full list of supported options.
 
 ### Configuration
 

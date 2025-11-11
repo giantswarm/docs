@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How can I use the workload Cluster API in a programmatic way?
   - How do I grant access to Kubernetes API from my CI system?
-last_review_date: 2024-11-29
+last_review_date: 2025-11-28
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -36,6 +36,16 @@ You need to create a `ServiceAccount` that represents your automation task. Idea
 ```bash
 kubectl create serviceaccount <service-account-name> -n <namespace>
 ```
+
+Since Kubernetes 1.30 version, the API does not create the token automatically for service accounts. You need to explicitly annotate a secret with `kubernetes.io/service-account.name` opting to the service account. Now Kubernetes uses [TokenRequest](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/) to obtain that credentials.
+
+Since you want a token for a external system to automate actions on the Kubernetes API, you can just use the `create token` command with the optional `--duration` flag to generate a token representing the service account.
+
+```bash
+kubectl create token <service-account-name> (--duration 3600h)
+```
+
+The token will be returned by not saved as Kubernetes secret anymore, it makes easier also to rotate those credentials for your external system.
 
 ## Assign a role to the service account
 
@@ -71,20 +81,11 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### Retrieve the service account token
-
-Use the following command to get the service account token for your automation task:
-
-```bash
-SECRET=$(kubectl get serviceaccount <service-account-name> -n <namespace> -o jsonpath='{.secrets[0].name}')
-TOKEN=$(kubectl get secret $SECRET -n <namespace> -o jsonpath='{.data.token}' | base64 -d)
-```
-
 ### Configure authentication in your tool
 
 In case you use the [a `Kubernetes` client](https://kubernetes.io/docs/reference/using-api/client-libraries/) you can set the `TOKEN` obtained in the step before to grant access to the API. The exact steps may vary depending on the programming language and Kubernetes client library you are using. Usually the best is to generate a `kubeconfig` and pass it to the client build function.
 
-For generating a `kubeconfig` you can use this script:
+For generating a `kubeconfig` for the hypothetical `jenkins` service account, you can use this script:
 
 ```bash
 #!/bin/bash
@@ -93,9 +94,8 @@ For generating a `kubeconfig` you can use this script:
 CLUSTER=$1
 
 # Init env vars
-SECRET=$(kubectl --namespace default get sa jenkins -o jsonpath='{.secrets[0].name}')
-TOKEN=$(kubectl --namespace default get secret $SECRET -o jsonpath='{.data.token}' | base64 --decode)
-CA_CERT=$(kubectl --namespace default get secret $SECRET -o jsonpath='{.data.ca\.crt}')
+TOKEN=$(kubectl create token jenkins')
+CA_CERT=$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
 API_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
 # Get CA from secret
@@ -114,6 +114,8 @@ kubectl --kubeconfig /tmp/kubeconfig_$CLUSTER.yaml config use-context gs-$CLUSTE
 
 cat /tmp/kubeconfig_$CLUSTER.yaml
 ```
+
+**Note**: You have to be already logged in the cluster with enough permissions to generate the token and access to the `ServiceAccount`. The CA is obtained from the current kubeconfig. [More info how to access the platform API and login into the workload cluster API](https://docs.giantswarm.io/getting-started/access-to-platform-api/).
 
 You can save the script as `kubeconfig-sa.sh` and run it passing a cluster ID to get the `kubeconfig` content as result.
 

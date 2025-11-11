@@ -2,6 +2,8 @@
 [Aa][Ww][Ss]
 [Aa]gent
 [Aa]lert
+Autoscaling
+Autoscaler
 [Bb]ackend
 [cC]loud
 [Cc]rossplane
@@ -65,12 +67,14 @@ firewalling
 freely
 GCP
 Giant Swarm
+GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
 Honeybadger
 HPA
 HTTP
+hyperparameter
 impl_title
 IP[s]?
 IPAM
@@ -87,10 +91,12 @@ kube-vip
 kubeconfig[s]?
 kubectl
 kubelet
+Kueue
 [K|k]yverno
 liveness
 LogQL
 mimirtool
+MIG
 namespace[s]?
 NLB[s]?
 node[pP]ool[s]?
@@ -128,8 +134,10 @@ subnets?
 [T|t]eleport
 templated
 TLS
+toleration[s]
 TraceQL
 [T|t]rivy
+UDP
 upstream[s]?
 vApp
 vCenter
