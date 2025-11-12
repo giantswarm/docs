@@ -123,7 +123,7 @@ List of the external domains we require access to for our clusters to function.
     - Opsgenie's API is used to send alerts.
 - `pagerduty.com`
     - domains:
-        - `api.eu.pagerduty.com`
+        - `events.eu.pagerduty.com`
     - PagerDuty's API is used to send alerts.
 - `quay.io`
     - domains:
