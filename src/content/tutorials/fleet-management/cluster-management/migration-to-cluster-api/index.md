@@ -10,6 +10,8 @@ menu:
 last_review_date: 2025-10-07
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
+user_questions:
+- How to migrate the OIDC service account issuer from vintage to CAPA?
 ---
 
 From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to manage Kubernetes lifecycle across a fleet of clusters. We built our own tooling, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a standardized method for cluster lifecycle management. [Cluster API]({{< relref "/overview/fleet-management/cluster-management/introduction-cluster-api" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
@@ -39,7 +41,7 @@ Two things need to happen to achieve that without downtime:
 
 **Let's start. These are the exact steps you need to follow:**
 
-1. Choose one workload cluster for which you want to perform the cleanup. In this example, we'll call the cluster `mycluster`. [Log into]({{< relref "/getting-started/access-to-platform-api/" >}}) the Kubernetes API.
+1. Choose one workload cluster for which you want to perform the cleanup. In this example, we'll call the cluster `mycluster`. Make sure it's at least on [CAPA Release v32.1.0]({{< relref "/changes/capa-releases/releases/aws-32.1.0/" >}}) so that built-in apps support both the old and new issuer. [Log into]({{< relref "/getting-started/access-to-platform-api/" >}}) the Kubernetes API.
 2. Find all the AWS IAM Roles used by a `ServiceAccount` via IRSA:
 
    ```sh
