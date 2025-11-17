@@ -73,6 +73,7 @@ gracefully
 Hashicorp
 Honeybadger
 HPA
+htpasswd
 HTTP
 hyperparameter
 impl_title
