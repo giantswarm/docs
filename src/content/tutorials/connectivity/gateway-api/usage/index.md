@@ -31,7 +31,7 @@ metadata:
 spec:
   parentRefs:
   - name: giantswarm-default
-    namespace: giantswarm
+    namespace: envoy-gateway-system
   hostnames:
   - "app.CLUSTER_ID.k8s.gigantic.io"
   rules:
@@ -55,7 +55,7 @@ metadata:
 spec:
   parentRefs:
   - name: giantswarm-default
-    namespace: giantswarm
+    namespace: envoy-gateway-system
   hostnames:
   - "example-api.CLUSTER_ID.k8s.gigantic.io"
   rules:
@@ -93,7 +93,7 @@ metadata:
 spec:
   parentRefs:
   - name: giantswarm-default
-    namespace: giantswarm
+    namespace: envoy-gateway-system
   hostnames:
   - "canary.CLUSTER_ID.k8s.gigantic.io"
   rules:
@@ -110,42 +110,24 @@ spec:
       weight: 10
 ```
 
-### Cross-namespace routing
+## Authentication
 
-To route traffic to services in different namespaces, create a ReferenceGrant:
+### Basic Auth
+
+Using the SecurityPolicy custom resource, you can add basic authentication to your HTTPRoute. In this example, `basic-auth` is a secret containing the `.htpasswd` file in the [Apache htpasswd format](https://httpd.apache.org/docs/current/programs/htpasswd.html).
 
 ```yaml
-apiVersion: gateway.networking.k8s.io/v1beta1
-kind: ReferenceGrant
-metadata:
-  name: allow-gateway-access
-  namespace: production
-spec:
-  from:
-  - group: gateway.networking.k8s.io
-    kind: HTTPRoute
-    namespace: giantswarm
-  to:
-  - group: ""
-    kind: Service
 ---
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
 metadata:
-  name: cross-namespace-route
-  namespace: giantswarm
+  name: basic-auth
 spec:
-  parentRefs:
-  - name: giantswarm-default
-  hostnames:
-  - "prod.CLUSTER_ID.k8s.gigantic.io"
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /
-    backendRefs:
-    - name: production-service
-      namespace: production
-      port: 8080
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: example-app-route
+  basicAuth:
+    users:
+      name: "basic-auth"
 ```
