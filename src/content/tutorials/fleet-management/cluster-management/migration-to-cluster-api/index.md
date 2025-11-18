@@ -287,8 +287,8 @@ metadata:
 Diff:
 
 ```diff
---- old.yaml	2025-11-18 12:57:37
-+++ new.yaml	2025-11-18 12:58:39
+--- old.yaml  2025-11-18 12:57:37
++++ new.yaml  2025-11-18 12:58:39
 @@ -29,32 +29,10 @@
                          etcdPrefix: giantswarm.io
                          extraCertificateSANs:
