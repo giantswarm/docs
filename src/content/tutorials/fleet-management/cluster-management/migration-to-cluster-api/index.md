@@ -7,7 +7,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-migration-to-cluster-api
-last_review_date: 2025-10-07
+last_review_date: 2025-11-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
