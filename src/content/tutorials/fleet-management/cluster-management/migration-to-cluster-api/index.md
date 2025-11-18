@@ -7,7 +7,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-migration-to-cluster-api
-last_review_date: 2025-10-07
+last_review_date: 2025-11-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -190,7 +190,6 @@ There are some fields in the cluster manifest that are only used during the migr
 
     - Keep `/bin/sh /migration/add-vintage-service-account-key.sh` until you have completed the section [OIDC providers (service account issuers) and IAM policies](#oidc-providers-service-account-issuers-and-iam-policies)
 - `cluster.internal.advancedConfiguration.controlPlane.postKubeadmCommands`: can be completely removed
-- `internal.migration.irsaAdditionalDomain`: starting from release v25.1.1 this domain needs to be appended to `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`, and the `internal.migration.irsaAdditionalDomain` field can be removed
 
 Here's an example manifest, and a diff with the proposed changes:
 
@@ -217,9 +216,6 @@ data:
                 maxSize: 9
         providerSpecific:
             region: eu-west-1
-    internal:
-        migration:
-            irsaAdditionalDomain: irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net
     cluster:
         internal:
             advancedConfiguration:
@@ -272,6 +268,14 @@ data:
                         - sleep 90
                     postKubeadmCommands:
                         - /bin/sh /migration/move-etcd-leader.sh
+        providerIntegration:
+            controlPlane:
+                kubeadmConfig:
+                    clusterConfiguration:
+                        apiServer:
+                            serviceAccountIssuers:
+                                - url: https://irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net
+                                - templateName: awsIrsaServiceAccountIssuer
 kind: ConfigMap
 metadata:
   labels:
@@ -283,19 +287,9 @@ metadata:
 Diff:
 
 ```diff
---- one.yaml  2024-11-21 14:20:41
-+++ two.yaml  2024-11-21 14:20:53
-@@ -20,9 +20,6 @@
-                 maxSize: 9
-         providerSpecific:
-             region: eu-west-1
--    internal:
--        migration:
--            irsaAdditionalDomain: irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net
-     cluster:
-         internal:
-             advancedConfiguration:
-@@ -32,43 +29,23 @@
+--- old.yaml  2025-11-18 12:57:37
++++ new.yaml  2025-11-18 12:58:39
+@@ -29,32 +29,10 @@
                          etcdPrefix: giantswarm.io
                          extraCertificateSANs:
                              - api.mycluster.k8s.myoldmanagementcluster.vintage.acme.net
@@ -342,15 +336,7 @@ Diff:
 -                        - sleep 90
 -                    postKubeadmCommands:
 -                        - /bin/sh /migration/move-etcd-leader.sh
-+        providerIntegration:
-+            controlPlane:
-+                kubeadmConfig:
-+                    clusterConfiguration:
-+                        apiServer:
-+                            serviceAccountIssuers:
-+                                - url: https://irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net
-+                                - templateName: awsIrsaServiceAccountIssuer
- kind: ConfigMap
- metadata:
-   labels:
+         providerIntegration:
+             controlPlane:
+                 kubeadmConfig:
 ```
