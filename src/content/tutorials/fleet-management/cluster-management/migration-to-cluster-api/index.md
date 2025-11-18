@@ -186,9 +186,10 @@ There are some fields in the cluster manifest that are only used during the migr
 - `cluster.internal.advancedConfiguration.controlPlane.files`: besides the following files, all other files in the list can be deleted
 
     - Keep `/migration/add-vintage-service-account-key.sh` and `/etc/kubernetes/pki/sa-old.pem` until you have complete the section [OIDC providers (service account issuers) and IAM policies](#oidc-providers-service-account-issuers-and-iam-policies)
-- `cluster.internal.advancedConfiguration.controlPlane.preKubeadmCommands`: everything except the following fields can be deleted
+- `cluster.internal.advancedConfiguration.controlPlane.preKubeadmCommands`: remove the following lines
 
-    - Keep `/bin/sh /migration/add-vintage-service-account-key.sh` until you have completed the section [OIDC providers (service account issuers) and IAM policies](#oidc-providers-service-account-issuers-and-iam-policies)
+    - `/bin/sh /migration/join-existing-cluster.sh`
+    - `sleep 90`
 - `cluster.internal.advancedConfiguration.controlPlane.postKubeadmCommands`: can be completely removed
 
 Here's an example manifest, and a diff with the proposed changes:
@@ -287,8 +288,8 @@ metadata:
 Diff:
 
 ```diff
---- old.yaml  2025-11-18 12:57:37
-+++ new.yaml  2025-11-18 12:58:39
+--- old.yaml  2025-11-18 16:08:32
++++ new.yaml  2025-11-18 16:16:55
 @@ -29,32 +29,10 @@
                          etcdPrefix: giantswarm.io
                          extraCertificateSANs:
@@ -329,8 +330,8 @@ Diff:
                           path: /etc/kubernetes/pki/sa-old.pem
                           permissions: "0640"
                      preKubeadmCommands:
--                        - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
--                        - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
+                         - 'iptables -A PREROUTING -t nat  -p tcp --dport 6443 -j REDIRECT --to-port 443 # route traffic from 6443 to 443'
+                         - 'iptables -t nat -A OUTPUT -p tcp --destination 127.0.0.1 --dport 6443 -j REDIRECT --to-port 443 # include localhost'
 -                        - /bin/sh /migration/join-existing-cluster.sh
                          - /bin/sh /migration/add-vintage-service-account-key.sh
 -                        - sleep 90
