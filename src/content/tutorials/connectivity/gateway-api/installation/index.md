@@ -23,10 +23,11 @@ Before setting up Gateway API, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
 - Basic understanding of Kubernetes networking concepts
+- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) is required for configuring AWS Network Load Balancers.
 
 ## Installation
 
-Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components:
+Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components (Gateway API CRDs, [Envoy Gateway](https://gateway.envoyproxy.io/) and a preconfigured default Gateway):
 
 ```yaml
 apiVersion: v1
