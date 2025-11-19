@@ -28,7 +28,7 @@ Continuous Deployment (CD) is a crucial practice in modern software development,
 
 - **FluxCD**: It implements the GitOps methodology, allowing continuous deployment through automated synchronization of Git repositories with Kubernetes clusters. It ensures that the desired state defined in Git is always reflected in the deployed infrastructure and applications, providing a reliable and secure way to manage deployments.
 
-- **Flux Operator**: The is an open-source operator that primarily extends Flux with self-service capabilities, deployment windows, and preview environments for GitHub, GitLab and Azure DevOps pull requests testing.
+- **Flux Operator**: an open-source operator that primarily extends Flux with self-service capabilities, deployment windows, and preview environments for GitHub, GitLab and Azure DevOps pull requests testing.
 
 - **External Secrets Operator**: This is an open-source operator that integrates with various secret management solutions, such as AWS Secrets Manager, Azure Key Vault, and HashiCorp Vault. ESO retrieves secrets from these external sources and injects them into Kubernetes secrets, enabling secure and dynamic secret management in cloud-native environments.
 
