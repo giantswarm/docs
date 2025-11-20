@@ -25,6 +25,8 @@ Before setting up Gateway API, ensure you have:
 - Basic understanding of Kubernetes networking concepts
 - On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) is required for configuring AWS Network Load Balancers.
 
+In case you can not install `aws-load-balancer-controller` or don't want to use AWS Network Load Balancers, you can set `gateways.default.provider.aws.useNetworkLoadBalancer=false` in `gatewayApiConfig.userConfig.configMap` of the bundle.
+
 ## Installation
 
 Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components (Gateway API CRDs, [Envoy Gateway](https://gateway.envoyproxy.io/) and a preconfigured default Gateway):
@@ -79,6 +81,23 @@ In the configuration, you enable the gateway to be the default ingress method fo
 Run `kubectl apply -f` command on your management cluster to install the bundle then wait until the child apps are deployed (CRDs, envoy gateway and gateway default config).
 
 ## Configuration
+
+### Certificate management with cert-manager
+
+In order to obtain TLS certificates for your domains served by Gateway API, cert-manager needs to be configured to handle Gateway resources.
+
+In your clusters user ConfigMap, add the following section. Do this only after Gateway API CRDs are installed.
+
+```yaml
+global:
+  apps:
+    certManager:
+      values:
+        config:
+          apiVersion: controller.config.cert-manager.io/v1alpha1
+          enableGatewayAPI: true
+          kind: ControllerConfiguration
+```
 
 ### Using the default gateway
 
