@@ -185,7 +185,7 @@ There are some fields in the cluster manifest that are only used during the migr
 - `cluster.internal.advancedConfiguration.controlPlane.etcd`: can be completely removed
 - `cluster.internal.advancedConfiguration.controlPlane.files`: besides the following files, all other files in the list can be deleted
 
-    - Keep `/migration/add-vintage-service-account-key.sh` and `/etc/kubernetes/pki/sa-old.pem` until you have complete the section [OIDC providers (service account issuers) and IAM policies](#oidc-providers-service-account-issuers-and-iam-policies)
+    - Keep `/migration/add-vintage-service-account-key.sh` and `/etc/kubernetes/pki/sa-old.pem` until you have completed the section [OIDC providers (service account issuers) and IAM policies](#oidc-providers-service-account-issuers-and-iam-policies)
 - `cluster.internal.advancedConfiguration.controlPlane.preKubeadmCommands`: remove the following lines
 
     - `/bin/sh /migration/join-existing-cluster.sh`
