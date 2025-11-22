@@ -12,9 +12,23 @@ user_questions:
   - What are node pools?
   - In which cloud environments are node pools supported?
   - Which workload cluster releases introduced node pools?
+  - How can unhealthy worker nodes be deleted?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
-last_review_date: 2025-10-16
+aliases:
+  - /advanced/cluster-management/automatic-node-termination
+  - /advanced/cluster-management/high-availability/multi-az
+  - /advanced/cluster-management/node-pools-capi
+  - /advanced/cluster-management/node-pools-vintage
+  - /advanced/cluster-management/spot-instances/aws/similar-instance-types
+  - /advanced/cluster-management/upgrades/upgrade-disruption
+  - /vintage/advanced/cluster-management/automatic-node-termination
+  - /vintage/advanced/cluster-management/high-availability/multi-az
+  - /vintage/advanced/cluster-management/node-pools-capi
+  - /vintage/advanced/cluster-management/node-pools-vintage
+  - /vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types
+  - /vintage/advanced/cluster-management/upgrades/upgrade-disruption
+last_review_date: 2025-11-21
 ---
 
 A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
@@ -494,6 +508,75 @@ This is currently not supported.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Automatic termination of unhealthy nodes (machine health checks) {#automatic-termination-of-unhealthy-nodes}
+
+Degraded nodes in a Kubernetes cluster should be a rare issue, however when it occurs, it can have severe consequences for the workloads scheduled to the affected nodes. The goal should be to detect bad nodes early and remove them from the cluster, replacing them with healthy ones.
+
+The node's health status is used to determine if a node needs to be terminated. A node reporting a `Ready` status is one sign for considering it healthy. But it may also have other problems, such as a full disk. If a node reports an unhealthy status continuously for a given time, and the `MachineHealthCheck` is enabled, it will be recycled.
+
+{{< tabs >}}
+<!--
+  This isn't cluster-aws/CAPA specific at all. Any cluster-* chart that enables
+  the `MachineHealthCheck` object for workers (MachineDeployment/MachinePool)
+  can make use of the termination feature. The `diskFull*` properties are specific
+  to node-problem-detector-app, which is automatically installed if the
+  underlying `cluster` chart is new enough.
+
+  So in short: We should easily be able to support all this for all providers,
+  but it's not the case yet. Remove the tab-ing here once all charts have it.
+-->
+{{< tab id="nodepool-machinehealthcheck-capa" for-impl="capa_ec2" >}}
+
+For tuning the behavior of automatic node termination on AWS, you can configure your cluster-aws `App` with these values (see [documentation](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#node-pools)):
+
+```highlight
+global:
+  # For worker nodes, the check is *disabled* by default
+  nodePools:
+    pool0:
+      type: machinepool # not yet supported for Karpenter pools
+
+      minSize: 3
+      maxSize: 15
+
+      machineHealthCheck:
+        # This is the only required field, since the check is disabled by default
+        # for workers
+        enabled: true
+
+        # maxUnhealthy says to not delete any nodes if more than this value
+        # (in this example: 20%; for 15 nodes that would be 3 nodes) are unhealthy.
+        # This is a safety guard in case many nodes become unhealthy at the same
+        # time. Deleting them would exacerbate the problem or even bring all
+        # workloads down. Please adjust the value according to your pool size.
+        maxUnhealthy: 20%
+
+        # Checks using built-in status fields of Node objects.
+        # All of these are enabled by default with reasonable defaults,
+        # i.e. the time until a node gets deleted if it stays in this bad condition.
+        # We recommend to use the defaults (don't set the fields at all):
+        nodeStartupTimeout: 8m0s
+        unhealthyNotReadyTimeout: 10m0s
+        unhealthyUnknownTimeout: 10m0s
+
+        # Optional, these enable custom checks for certain disks, using
+        # the component "node-problem-detector". Disabled by default if you don't
+        # set any of these fields.
+        diskFullContainerdTimeout: "15m"
+        diskFullKubeletTimeout: "15m"
+        diskFullVarLogTimeout: "15m"
+```
+
+{{< /tab >}}
+{{< tab id="nodepool-machinehealthcheck-other" title="Other" >}}
+
+For other providers, we do not support health checks yet.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+For control plane nodes, the check is _enabled_ by default and we recommend leaving the defaults. If you still want to customize, the same fields as shown above are available as `global.controlPlane.machineHealthCheck`.
 
 ## Limitations
 
