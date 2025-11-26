@@ -18,4 +18,4 @@ aliases:
   - /vintage/use-the-api/kubectl-gs/template-nodepool/
 ---
 
-The `template nodepool` command is no longer relevant since the migration from the vintage to the CAPI product.
+The `template nodepool` command is no longer relevant since the migration from the vintage to the CAPI product. Please check the [reference documentation for the cluster charts]({{< relref "/reference/platform-api/cluster-apps/" >}}). Node pools are defined together with the cluster definition.
