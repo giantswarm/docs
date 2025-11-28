@@ -215,7 +215,7 @@ spec:
 
 ### Gang scheduling
 
-Kueue supports gang scheduling through its "All-or-Nothing" semantics, ensuring that either all pods in a job are scheduled together or none are scheduled. This is particularly useful for distributed training jobs and tightly coupled workloads.
+Kueue supports gang scheduling through its "All-or-Nothing" semantics, ensuring that either all pods in a job are scheduled together or none are scheduled. This is particularly useful for distributed training jobs and coupled workloads.
 
 #### Basic configuration
 
@@ -339,7 +339,7 @@ spec:
               effect: NoSchedule
 ```
 
-Once you submit the `JobSet`, it will create two `ReplicatedJobs`, which, in turn, will make three worker replicas with two jobs assigned to each. Since those jobs require way more memory, CPU, and GPU resources, the job will not be scheduled, and the whole group will be requeued after a timeout. You can relax the requests and see how the Kueue controller schedules the jobs altogether when capacity is available.
+Once you submit the `JobSet`, it will create two `ReplicatedJobs`, which, in turn, will make three worker replicas with two jobs assigned to each. Since those jobs require way more memory, CPU, and GPU resources, the job will not be scheduled, and the whole group will be re-queued after a timeout. You can relax the requests and see how the Kueue controller schedules the jobs altogether when capacity is available.
 
 ### Prometheus metrics
 
@@ -366,11 +366,11 @@ It will create a `ServiceMonitor` in the Kueue namespace which instruct the allo
 
 You can access [our Observability platform UI]({{< relref "/overview/observability/dashboard-management/dashboard-exploration/" >}}) to get a glance of those metrics.
 
-## Advanced Features
+## Advanced features
 
-### Cohorts for Resource Sharing
+### Cohorts for resource sharing
 
-In multi-team environments where different teams have varying workload patterns competing for resources, you may need some higher abstractions to manage those resource properly. Cohorts enable dynamic resource redistribution, improving overall cluster utilization and reducing job wait times.
+In multi-team environments where different teams have varying workload patterns competing for resources, you may need some higher abstractions to manage those resources. Cohorts enable dynamic resource redistribution, improving overall cluster utilization and reducing job wait times.
 
 This is an example for enabling resource borrowing between cluster queues:
 
@@ -412,7 +412,7 @@ spec:
         borrowingLimit: 200Gi
 ```
 
-### Preemption Policies
+### Preemption policies
 
 Preemption policies are essential when you need to ensure that critical, can access resources immediately, even when the cluster is fully utilized by lower-priority jobs. Preemption may help too maintaining SLA compliance and ensures that business-critical workloads are never blocked by less important tasks.
 
@@ -469,18 +469,18 @@ Now you can submit first the low priority job and after it is scheduled, you dep
 
 You can configure more complex scenarios using [fair sharing](https://kueue.sigs.k8s.io/docs/concepts/preemption/#fair-sharing).
 
-## Best Practices
+## Best practices
 
 1. **Resource Planning**: Design resource flavors that match your actual node types and availability zones
 2. **Queue Organization**: Create separate queues for different workload types (batch, ML training, gang-scheduled jobs)
 3. **Quota Management**: Set realistic quotas based on actual cluster capacity and usage patterns
 4. **Gang Scheduling**: Use all-or-nothing semantics for distributed workloads that require coordinated scheduling
 5. **Monitoring**: Implement monitoring for queue depths, admission rates, and resource utilization
-6. **Preemption Strategy**: Use preemption carefully to balance resource efficiency with job stability
+6. **Preemption Strategy**: Use preemption to balance resource efficiency with job stability
 7. **Testing**: Test queue configurations in development environments before applying to production
 8. **Timeout Configuration**: Set appropriate timeouts for gang-scheduled jobs to avoid resource deadlocks
 
-## Further Reading
+## Further reading
 
 - [Kueue Official Documentation](https://kueue.sigs.k8s.io/docs/overview/)
 - [Kueue GitHub Repository](https://github.com/kubernetes-sigs/kueue)
