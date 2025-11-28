@@ -16,22 +16,28 @@ The purpose of this command is to find broken links in content and fix them.
 
 3. Start `docker run -d --rm --name server -p 8080:8080 -P gsoci.azurecr.io/giantswarm/docs:$TAG`
 
-4. Run the linkchecker against the container using this command:
+4. Run the linkchecker against the container using this command to check internal links:
 
    ```
    docker run --rm --name linkchecker \
+		-v $PWD:/workdir \
+		-w /workdir \
 		--link server:server \
 		ghcr.io/linkchecker/linkchecker:latest \
 		http://server:8080 \
-		-t 5 \
+		-t 4 \
 		--no-status \
-		--ignore-url="^https://docs\.giantswarm\.io/.*"
+		--file-output text/linkcheck-report.txt \
+		--ignore-url="^https://docs\.giantswarm\.io/.*" \
+		--ignore-url="^http://server:8080/changes/.*"
    ```
 
-5. Print the broken links found.
+5. When done, read the rport file `linkcheck-report.txt`. Each report starts with the term `URL` and ends with a double line break.
 
-6. Fix the links usinr the `relref` shortcode.
+6. Fix each broken link. Also update links that are permanent redirects (status 301) to point to actual target.
 
 7. Quit the server container: `docker kill server`.
 
 8. Report the results to the user.
+
+IMPORTANT: Always use the `relref` shortcode for internal links. When modifying an internal link that was not using relref, change it to relref syntax.
