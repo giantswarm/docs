@@ -1,7 +1,7 @@
 ---
 linkTitle: Configuring installation process
-title: Configure helm execution
-description: Which options for the helm execution are currently supported by the App Platform.
+title: Configure Helm execution
+description: Options for Helm execution that are currently supported by the App Platform.
 weight: 60
 aliases:
   - /getting-started/app-platform/installation-configuration
@@ -17,9 +17,9 @@ user_questions:
 last_review_date: 2024-10-28
 ---
 
-As explained in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}) all managed apps are `helm` charts underneath. It means that at the very bottom the platform must trigger the helm-related actions, like installation or upgrade, against the requested application. This process, mostly, can't be influenced by a user as we try to well-tune it universally to all the apps. Yet, we anticipate that apps not matching these universal rules may exist, hence we offer a way to tweak some of the `helm's` options.
+As explained in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}), all managed apps are `helm` charts underneath. It means that at the very bottom the platform must trigger Helm-related actions, like installation or upgrade, against the requested application. This process, mostly, can't be influenced by a user as we try to tune it universally for all apps. Yet, we anticipate that apps not matching these universal rules may exist, hence we offer a way to tweak some `helm` options.
 
-There are several options currently supported for every `helm` action. In the next sections, you see a list of the possible customizations with code snippets to help you understand how to use them.
+There are several options currently supported for every `helm` action. In the next sections, you see a list of possible customizations with code snippets to help you understand how to use them.
 
 ## Install
 
