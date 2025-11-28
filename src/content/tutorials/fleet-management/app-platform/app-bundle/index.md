@@ -24,7 +24,7 @@ last_review_date: 2024-10-28
 
 As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}), all managed apps are packaged, maintained, and offered as `helm` charts, and it's no different for app bundles. What makes them special compared to solitary apps is that the bundle `helm` chart, instead of carrying regular resources composing the actual application, carries [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.
 
-In other words, an app bundle can be thought of as a meta package. It doesn't install anything in the workload cluster on its own, but instead requests installation of certain pre-defined applications.
+In other words, an app bundle can be thought of as a meta package. It doesn't install anything in the workload cluster on its own, but instead requests the installation of certain pre-defined applications.
 
 The distinction between solitary and bundle apps is depicted in the figure below.
 
@@ -32,13 +32,13 @@ The distinction between solitary and bundle apps is depicted in the figure below
 
 The `A1` app's `helm` chart consists of end resources representing the actual application. Upon installing this app, these resources are created in the **workload cluster directly**. On the other side is a bundle `helm` chart carrying the `A1-A4` `App` custom resources. Installing this bundle results in the creation of these nested `App` custom resources in the **management cluster**. These `App` custom resources are then picked up and reconciled by the app platform, which only then results in creating end resources in the workload cluster.
 
-As already hinted, the direct consequence of nesting `App` custom resources inside a `helm` chart is how the app is installed. Installing a solitary app for the workload cluster doesn't result in creating any resources in the management cluster. In contrast, the bundle app is first installed in the management cluster, where it creates the `App` custom resources. These are then, in the second step, installed in the workload cluster. More about this in the [`App Bundle` installation](#app-bundle-installation).
+As already hinted, the direct consequence of nesting `App` custom resources inside a `helm` chart is how the app is installed. Installing a solitary app for the workload cluster doesn't result in creating any resources in the management cluster. In contrast, the bundle app is first installed in the management cluster, where it creates the nested `App` custom resources. These are then, in the second step, installed in the workload cluster. More about this in the [`App Bundle` installation](#app-bundle-installation).
 
 ## App bundle installation {#app-bundle-installation}
 
 ### High-level overview
 
-The solitary app installation process has already been well depicted in the [app platform overview]({{< relref "/overview/fleet-management/app-management#what-makes-up-the-app-platform" >}}). The bundle installation process is very similar except it involves one extra layer, and hence extra controllers.
+The solitary app installation process has already been clearly depicted in the [app platform overview]({{< relref "/overview/fleet-management/app-management#what-makes-up-the-app-platform" >}}). The bundle installation process is very similar except it involves one extra layer, and hence extra controllers.
 
 This layer consists of the management cluster's app and chart operators. Their purpose is to install applications and controllers designed to provide management layer functionality. These may be leveraged to install app bundles.
 
@@ -67,7 +67,7 @@ Now, obviously to leverage this management cluster layer, the bundle `App` custo
 
 The first, not so obvious, consequence of installing a bundle in a management cluster before its nested apps are installed in the workload cluster is the requirement for name uniqueness. When a given app bundle is to be installed for more than one workload cluster, each `App` custom resource instance must be given a unique name within the management cluster.
 
-It becomes natural for solitary apps, for example, the [`Hello World` app](https://github.com/giantswarm/hello-world-app), that when one needs to install it twice in the workload cluster, both `App` custom resource instances must be named uniquely. It's natural because both live under the same namespace. Even if we could break them into separate namespaces, this uniqueness would still be required because both apps target the same workload cluster and must be distinguished by its operators.
+It becomes natural for solitary apps (for example, the [Hello World app]) that when you need to install it twice in the workload cluster, both App custom resource instances must be named uniquely. It's natural because both live under the same namespace. Even if we could break them into separate namespaces, this uniqueness would still be required because both apps target the same workload cluster and must be distinguished by its operators.
 
 It's less obvious for the bundle apps, because these are usually scattered across the namespaces for the corresponding workload clusters from the very beginning. This gives the impression they're isolated, which we already know to not be the case. Not complying with this rule results in apps competing over certain resources, and hence conflicting.
 
@@ -83,7 +83,7 @@ The user creates an `App` custom resource in the `WC2` namespace and names it `b
 
 ![User installs a bundle twice with wrong names](app-bundle-naming-conflict-step-2.png)
 
-The broken link doesn't result in removing the first instance. However, it does result in the `Chart` custom resource being continuously switched between apps, leading to continuous re-deployments and instability. Due to this, it's required that the bundle `App` custom resources are named uniquely. This results in the creation of a separate set of corresponding resources and an effectively unique deployment link. See the figure below.
+The broken link doesn't result in removing the first instance. However, it does cause the Chart custom resource to be continuously switched between apps, leading to continuous re-deployments and instability. Due to this, it's required that the bundle `App` custom resources are named uniquely. This results in the creation of a separate set of corresponding resources and an effectively unique deployment link. See the figure below.
 
 <div class="feedback well">
 <h5><i class="fa fa-help-outline"></i>
@@ -96,7 +96,7 @@ It's a common practice to either prepend or append the workload cluster name to 
 
 #### Configuring the bundle's `App` resource for the unique app operator
 
-Once unique names are ensured, the `App` custom resource must be configured to be installed in the management cluster by the unique app operator. It's done by means of the `app-operator.giantswarm.io/version: 0.0.0` label and the `.spec.kubeConfig.inCluster: true` field. See the snippet below (note some fields have been removed for brevity).
+Once unique names are ensured, the `App` custom resource must be configured to be installed in the management cluster by the unique app operator. This is done by means of the `app-operator.giantswarm.io/version: 0.0.0` label and the `.spec.kubeConfig.inCluster: true` field. See the snippet below (note some fields have been removed for brevity).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -127,7 +127,7 @@ Is it possible to install any app in the management cluster
 
 Once the `App` custom resource name and configuration for unique App Operator are taken care of, the only thing left is to configure the bundle. This ensures that nested `App` custom resources are placed into the correct workload cluster namespace, with the correct configuration. This requires two steps.
 
-Firstly, the `App` custom resource's `.metadata.namespace` and `.spec.namespace` fields must be equal, meaning they must reference the same namespace. Let's consider the snippet from the previous paragraph and enrich it with these settings.
+Firstly, the `App` custom resource's `.metadata.namespace` and `.spec.namespace` fields must be equal — that is, they must reference the same namespace. Let's consider the snippet from the previous paragraph and enrich it with these settings.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
