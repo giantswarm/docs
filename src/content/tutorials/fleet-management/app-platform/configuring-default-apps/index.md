@@ -28,20 +28,20 @@ Customizing the app's configuration means providing overrides to the Helm chart'
 
 In order to find out what options you can customize for each app, you can refer to the app's default values file in the GitHub repository.
 
-For example, for the [app providing CoreDNS](https://github.com/giantswarm/coredns-app) you can refer to the file [helm/coredns-app/values.yaml](https://github.com/giantswarm/coredns-app/blob/master/helm/coredns-app/values.yaml) in the repo.
+For example, for the [app providing CoreDNS](https://github.com/giantswarm/coredns-app) you can refer to the file [helm/coredns-app/values.yaml](https://github.com/giantswarm/coredns-app/blob/master/helm/coredns-app/values.yaml) in the repository.
 
 If you can't find the default values file for the app you need to customize the configuration for, please reach out to your account engineer.
 
 ## Prepare the configuration file
 
-Let's say for example you want to decrease the cache TTL for CoreDNS. The relevant setting in the values file is:
+Let's say for example you want to decrease the cache lifetime for CoreDNS. The relevant setting in the values file is:
 
 ```yaml
 configmap:
   cache: 30
 ```
 
-In order to change the default value of 30 seconds to 15 seconds, you need to prepare a file with the same structure, such as:
+To change the default value of 30 seconds to 15 seconds, you need to prepare a file with the same structure, such as:
 
 ```yaml
 configmap:
@@ -62,7 +62,7 @@ kubectl --namespace $NAMESPACE \
   --from-file=values=coredns-config-override.yaml
 ```
 
-After you created the ConfigMap, you need to label it in order to associate the configuration with the app you want to override the configuration to. In our example, the label value is `coredns`.
+After you created the ConfigMap, you need to label it to associate the configuration with the app you want to override the configuration to. In our example, the label value is `coredns`.
 
 ```sh
 kubectl --namespace $NAMESPACE \
@@ -92,6 +92,6 @@ kubectl --namespace $NAMESPACE \
 
 Please note it's possible to override multiple configuration fields in the same ConfigMap or Secret and it's possible to have multiple ConfigMaps and Secrets for the same app.
 
-In order to specify a priority order in case of multiple ConfigMaps or Secrets, you can use the `cluster-operator.giantswarm.io/app-config-priority` annotation.
+To specify a priority order in case of multiple ConfigMaps or Secrets, you can use the `cluster-operator.giantswarm.io/app-config-priority` annotation.
 
 Please refer to the [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration#extra-configs" >}}) page for more details.
