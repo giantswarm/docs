@@ -7,7 +7,7 @@
 3. Run `vale` validation as shown in the `lint-prose` target in `Makefile`, but only for modified/added pages, not for the entire content directory. This is the rough syntax:
 
    ```
-   docker run --rm -ti \
+   docker run --rm \
      -v $PWD:/workdir -w /workdir \
      <vale-container-image> \
      --config=/workdir/.vale.ini \
