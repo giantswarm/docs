@@ -64,7 +64,7 @@ kubectl --namespace $NAMESPACE \
 
 After you created the ConfigMap, you need to label it to associate the configuration with the app you want to override the configuration to. In our example, the label value is `coredns`.
 
-```sh
+```shell
 kubectl --namespace $NAMESPACE \
   label configmap coredns-override-default \
   app.kubernetes.io/name=coredns
@@ -74,7 +74,7 @@ kubectl --namespace $NAMESPACE \
 
 In case the configuration change involves confidential data, you might want to provide the setting as a secret rather than a ConfigMap. Example:
 
-```sh
+```shell
 kubectl --namespace $NAMESPACE \
   create secret generic coredns-override-default \
   --from-file=values=coredns-config-override.yaml
@@ -82,7 +82,7 @@ kubectl --namespace $NAMESPACE \
 
 You still need to label the secret with the app name:
 
-```sh
+```shell
 kubectl --namespace $NAMESPACE \
   label secret coredns-override-default \
   app.kubernetes.io/name=coredns
