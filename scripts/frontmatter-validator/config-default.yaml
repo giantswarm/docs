@@ -30,6 +30,10 @@ default_rules:
 # Directory-specific overrides
 # Rules are applied in order, with later matches taking precedence
 directory_overrides:
+  - path: ".cursor/**"
+    disabled_checks:
+      - NO_FRONT_MATTER
+
   # CRD documentation has relaxed requirements
   - path: "src/content/reference/platform-api/crd/**"
     disabled_checks:
