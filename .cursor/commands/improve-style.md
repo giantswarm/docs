@@ -4,7 +4,16 @@
 
 2. Fix any obvious grammar problems. When in doubt, explain a grammar problem to the user and let the user fix the problem.
 
-3. Run `vale` validation as explained in the `lint-prose` target in `Makefile`, but only for modified/added pages, not for the entire content directory.
+3. Run `vale` validation as shown in the `lint-prose` target in `Makefile`, but only for modified/added pages, not for the entire content directory. This is the rough syntax:
+
+   ```
+   docker run --rm -ti \
+     -v $PWD:/workdir -w /workdir \
+     <vale-container-image> \
+     --config=/workdir/.vale.ini \
+     --no-wrap \
+     <relative-path-to-markdown-file>
+   ```
 
 4. Mitigate the vale complaints.
 
