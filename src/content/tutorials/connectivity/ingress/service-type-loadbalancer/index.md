@@ -292,9 +292,9 @@ Since the health check might get false negative when two pods are running on the
 
 At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster, except of using PROXY protocol and `externalTrafficPolicy: Cluster` which leads to the AWS Network Load Balancer balancing traffic across all nodes and adding an extra hop for distribution inside the cluster.
 
-To make `externalTrafficPolicy: Local` work with PROXY protocol, you need to explicitly configure AWS load balancer health checks to use the appropriate traffic port and protocol. We recommend setting the health check port annotation to the name of your HTTP port (e.g., "http") and the protocol to "HTTP", so that they match what your service expects. Avoid using "traffic-port" as the value, since it is applied globally to all target groups and can cause conflicts if your service exposes multiple ports or protocols.
+To use `externalTrafficPolicy: Local` with PROXY protocol, you need to configure AWS load balancer health checks to use the appropriate traffic port and protocol. We recommend setting the health check port annotation to the name of your HTTP port and the protocol to "HTTP", so that they match what your service expects. Avoid using "traffic-port" as the value, since it is applied globally to all target groups and can cause conflicts if your service exposes multiple ports or protocols.
 
-It is important to specify a proper health check path when configuring your AWS Network Load Balancer. For optimal performance and reliability, we recommend targeting a resource that returns a static response directly from the ingress-nginx itself—ideally a path like `/healthz`—which is lightweight and always returns an HTTP 200 status. This ensures the health check accurately represents the availability of the ingress controller rather than depending on a backend service, reducing unnecessary load and minimizing false negatives.
+It is important to specify a correct health check path. For performance and reliability, we recommend configuring the health check to target a resource that returns a static response directly from ingress-nginx and always returns an HTTP 200 status code. The ingress-nginx controller exposes the `/healthz` path for exactly this purpose.
 
 ```yaml
 metadata:
