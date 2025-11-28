@@ -17,17 +17,17 @@ user_questions:
 last_review_date: 2024-10-28
 ---
 
-As explained in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}), all managed apps are `helm` charts underneath. It means that at the very bottom the platform must trigger Helm-related actions, like installation or upgrade, against the requested application. This process, mostly, can't be influenced by a user as we try to tune it universally for all apps. Yet, we anticipate that apps not matching these universal rules may exist, hence we offer a way to tweak some `helm` options.
+As explained in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}), all managed apps are Helm charts underneath. It means that at the very bottom the platform must trigger Helm-related actions, like installation or upgrade, against the requested application. This process, mostly, can't be influenced by a user as we try to tune it universally for all apps. Yet, we anticipate that apps not matching these universal rules may exist, hence we offer a way to tweak some Helm options.
 
-There are several options currently supported for every `helm` action. In the next sections, you see a list of possible customizations with code snippets to help you understand how to use them.
+There are several options currently supported for every Helm action. In the next sections, you see a list of possible customizations with code snippets to help you understand how to use them.
 
 ## Install
 
-The installation options are exposed via the corresponding `.spec.install` field of the `App` custom resource.
+The installation options are exposed via the corresponding `.spec.install` field of the App resource.
 
 ### SkipCRDs
 
-If set, no [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) will be installed by `helm`. By default, those are installed if not already present. Find the example below.
+If set, no [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) will be installed by Helm. By default, those are installed if not already present. Find the example below.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -41,7 +41,7 @@ spec:
 
 ### Install timeout
 
-Time to wait for any individual `kubernetes` operation (like `Jobs` for hooks). If not set, the default timeout of `5` minutes is used.
+Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of 5 minutes is used.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -55,11 +55,11 @@ spec:
 
 ## Upgrade
 
-The installation options are exposed via the corresponding `.spec.upgrade` field of the `App` resource.
+The installation options are exposed via the corresponding `.spec.upgrade` field of the App resource.
 
 ### Upgrade timeout
 
-Time to wait for any individual `kubernetes` operation (like `Jobs` for hooks). If not set, the default timeout of `5` minutes is used.
+Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of 5 minutes is used.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -73,11 +73,11 @@ spec:
 
 ## Rollback
 
-The installation options are exposed via the corresponding `.spec.rollback` field of the `App` resource.
+The installation options are exposed via the corresponding `.spec.rollback` field of the App resource.
 
 ### Rollback timeout
 
-Time to wait for any individual `kubernetes` operation (like `Jobs` for hooks). If not set, the default timeout of `5` minutes is used.
+Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of 5 minutes is used.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -91,11 +91,11 @@ spec:
 
 ## Uninstall
 
-The installation options are exposed via the corresponding `.spec.uninstall` field of the `App` resource.
+The installation options are exposed via the corresponding `.spec.uninstall` field of the App resource.
 
 ### Uninstall timeout
 
-Time to wait for any individual `kubernetes` operation (like `Jobs` for hooks). If not set, the default timeout of `5` minutes is used.
+Time to wait for any individual Kubernetes operation (like Jobs for hooks). If not set, the default timeout of 5 minutes is used.
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
