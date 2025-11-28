@@ -1,5 +1,5 @@
 ---
-linkTitle: Annotations
+linkTitle: K8s annotations
 title: Kubernetes resource annotation reference
 description: Overview of Kubernetes resource annotations used by Giant Swarm, and their meaning.
 layout: single
