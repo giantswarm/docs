@@ -15,6 +15,6 @@
      <relative-path-to-markdown-file>
    ```
 
-4. Mitigate the vale complaints.
+4. Mitigate the vale errors, then warnings, then suggestions.
 
 IMPORTANT: When making changes to the content, make sure to not modify the meaning of the content, or remove any detail!
