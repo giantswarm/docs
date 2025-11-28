@@ -20,7 +20,7 @@ last_review_date: 2025-11-28
 
 In a Giant Swarm platform, every workload cluster has a set of apps that are installed automatically at creation time, called default apps. Default apps are defined in the [cluster app](https://github.com/giantswarm/cluster) and the list includes important applications that are mandatory to make the cluster work correctly. Examples of these apps are CoreDNS or Cilium.
 
-Normally it's advisable to stick to the default values for the configuration of default apps. Sometimes though, some level of customization is needed. This page explains how to customize the configuration of default apps.
+Normally it's advisable to stick to the default values for the configuration of default apps. Sometimes, though, some level of customization is needed. This page explains how to customize the configuration of default apps.
 
 ## Find out what configuration can be changed
 
@@ -62,7 +62,7 @@ kubectl --namespace $NAMESPACE \
   --from-file=values=coredns-config-override.yaml
 ```
 
-After you created the ConfigMap, you need to label it to associate the configuration with the app you want to override the configuration to. In our example, the label value is `coredns`.
+After you have created the ConfigMap, you need to label it to associate the configuration with the app you want to override the configuration for. In our example, the label value is `coredns`.
 
 ```shell
 kubectl --namespace $NAMESPACE \
@@ -90,7 +90,7 @@ kubectl --namespace $NAMESPACE \
 
 ## Multiple configurations and priority
 
-Please note it's possible to override multiple configuration fields in the same ConfigMap or Secret and it's possible to have multiple ConfigMaps and Secrets for the same app.
+Please note that you can override multiple configuration fields in the same ConfigMap or Secret, and you can have multiple ConfigMaps and Secrets for the same app.
 
 To specify a priority order in case of multiple ConfigMaps or Secrets, you can use the `cluster-operator.giantswarm.io/app-config-priority` annotation.
 
