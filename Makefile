@@ -166,8 +166,7 @@ linkcheck-internal:
 		http://server:8080 \
 		-t 5 \
 		--no-status \
-		--ignore-url="^https://docs\.giantswarm\.io/.*" \
-		--ignore-url=/api/
+		--ignore-url="^https://docs\.giantswarm\.io/.*"
 	docker kill server
 	docker kill linkchecker
 
@@ -192,7 +191,6 @@ linkcheck:
 		--file-output csv/linkcheck.csv \
 		--check-extern \
 		--verbose \
-		--ignore-url=/api/ \
 		--ignore-url="^https://.+.example.com/.*" \
 		--ignore-url=".*gigantic\.io.*" \
 		--ignore-url="^https://my-org\.github\.com/.*" \
