@@ -301,7 +301,7 @@ spec:
 
 ### Rate limiting
 
-The annotations `nginx.ingress.kubernetes.io/limit-connections` and `nginx.ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://www.f5.com/products/nginx).
+The annotations `nginx.ingress.kubernetes.io/limit-connections` and `nginx.ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://blog.nginx.org/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
 
 `nginx.ingress.kubernetes.io/limit-connections`: Number of concurrent connections allowed from a single IP address.
 
