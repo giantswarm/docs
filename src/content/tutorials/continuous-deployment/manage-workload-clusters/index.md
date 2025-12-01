@@ -22,7 +22,7 @@ Below you will learn how to manage infrastructure and applications in the Giant 
 
 In the following example, based on the [`GitOps template`](https://github.com/giantswarm/gitops-template), you will find all the resources used in this section.
 
-It's necessary to have [`Flux` CLI](https://fluxcd.io/docs/cmd/) and [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs) installed in your machine. Also you installed [`gpg`](https://gnupg.org/) to encrypt and decrypt secrets.
+It's necessary to have [`Flux` CLI](https://fluxcd.io/flux/cmd/) and [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs) installed in your machine. Also you installed [`gpg`](https://gnupg.org/) to encrypt and decrypt secrets.
 
 ## Organization access control
 

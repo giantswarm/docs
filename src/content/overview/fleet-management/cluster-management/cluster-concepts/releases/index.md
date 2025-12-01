@@ -140,7 +140,7 @@ You've got several options to inspect workload cluster release details:
 - [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter-app)
 - [security-bundle](https://github.com/giantswarm/security-bundle)
 - [cloudnative-pg](https://github.com/giantswarm/cloudnative-pg-app)
-- [edgedb](https://github.com/giantswarm/edgedb-app)
+- [edgedb](https://github.com/giantswarm/gel-app)
 - [exception-recommender](https://github.com/giantswarm/exception-recommender)
 - [falco](https://github.com/giantswarm/falco-app)
 - [jiralert](https://github.com/giantswarm/jiralert-app)

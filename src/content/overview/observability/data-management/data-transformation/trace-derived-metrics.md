@@ -263,4 +263,4 @@ To effectively use trace-derived metrics:
 - **[Learn advanced PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial/" >}})**: Master querying techniques for trace-derived metrics
 - **[Understand service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs/" >}})**: Connect metrics to visual service topology analysis
 
-For more detailed configuration options, refer to the [Tempo metrics-generator documentation](https://grafana.com/docs/tempo/latest/metrics-generator/).
+For more detailed configuration options, refer to the [Tempo metrics-generator documentation](https://grafana.com/docs/tempo/v2.5.x/metrics-generator/).

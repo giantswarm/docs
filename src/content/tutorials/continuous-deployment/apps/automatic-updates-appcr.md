@@ -119,7 +119,7 @@ spec:
 
 __Note__: the `filterTags` allows you to filter the image tags before those are considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
 
-Check [`Flux` docs](https://fluxcd.io/docs/components/image/imagepolicies/#examples) for more examples of possible policies.
+Check [`Flux` docs](https://fluxcd.io/flux/components/image/imagepolicies/#examples) for more examples of possible policies.
 
 Lastly, add the new resources to the `kustomization.yaml` file:
 
@@ -197,4 +197,4 @@ spec:
 
 Now your secret is stored in the cluster and in the repository encrypted. `Flux` will use it to pull the images from the private registry thanks to the reference in the `ImageRepository` resource.
 
-Learn more about [using private registries with `Flux`](https://fluxcd.io/docs/guides/image-update/#using-private-registries).
+Learn more about [using private registries with `Flux`](https://fluxcd.io/flux/guides/image-update/#using-private-registries).

@@ -24,7 +24,7 @@ Giant Swarm perceives the cloud-native landscape as a journey, and it takes time
 
 Giant Swarm offers a series of training sessions to help you get started with our platform. During the onboarding process, your account engineer will schedule these sessions. Our experts will present to you the following topics:
 
-[_Team Planeteers_](https://www.giantswarm.io/about)
+[_Team Planeteers_](https://www.giantswarm.io/blog/about)
 
 - Who is Giant Swarm?
 - What's the support model?
@@ -35,7 +35,7 @@ Giant Swarm offers a series of training sessions to help you get started with ou
 
 ### Kubernetes 101
 
-[_Team Planeteers_](https://www.giantswarm.io/about)
+[_Team Planeteers_](https://www.giantswarm.io/blog/about)
 
 - High level overview of microservices
 - What's `Kubernetes` and what are the reasons to use it
@@ -44,7 +44,7 @@ Giant Swarm offers a series of training sessions to help you get started with ou
 
 ### GitOps 101
 
-[_Team Honeybadger_](https://www.giantswarm.io/about)
+[_Team Honeybadger_](https://www.giantswarm.io/blog/about)
 
 - What's `GitOps`?
 - What led us to `GitOps` in the first place?
@@ -55,7 +55,7 @@ Giant Swarm offers a series of training sessions to help you get started with ou
 
 ### Cloud Native Security 101
 
-[_Team Shield_](https://www.giantswarm.io/about)
+[_Team Shield_](https://www.giantswarm.io/blog/about)
 
 - What does security mean in a cloud-native world?
 - What are `Pod Security Standards`, `Network Policies`, `RBAC`, etc.?
@@ -65,7 +65,7 @@ Giant Swarm offers a series of training sessions to help you get started with ou
 
 ### Monitoring and Observability 101
 
-[_Team Atlas_](https://www.giantswarm.io/about)
+[_Team Atlas_](https://www.giantswarm.io/blog/about)
 
 - What's the advantage of observability on `Kubernetes`?
 - Which tools do we provide and recommend? Why?
@@ -75,7 +75,7 @@ Giant Swarm offers a series of training sessions to help you get started with ou
 
 ### Troubleshooting and Best Practices 101
 
-[_Team Planeteers_](https://www.giantswarm.io/about)
+[_Team Planeteers_](https://www.giantswarm.io/blog/about)
 
 - What are the most common mistakes we've seen in 10 years of experience?
 - How do we make deployments Cloud Native?

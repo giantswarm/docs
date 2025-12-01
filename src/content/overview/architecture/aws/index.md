@@ -34,7 +34,7 @@ Example: Use AWS accounts (and other AWS tools) to establish different access mo
 
 ## Access by Giant Swarm
 
-The operators running on the management cluster (Cluster API, Cluster API Provider AWS, Crossplane, etc.) need certain permissions in customer AWS accounts to manage workload clusters and their cloud resources. Also, Giant Swarm engineers need admin access to troubleshoot and resolve incidents (see [Giant Swarm support model]({{< relref "/support/overview" >}})). Both of these permission sets are, as mentioned above, set up using AWS IAM policies once you become a Giant Swarm customer and start using one or more AWS accounts for Kubernetes clusters.
+The operators running on the management cluster (Cluster API, Cluster API Provider AWS, Crossplane, etc.) need certain permissions in customer AWS accounts to manage workload clusters and their cloud resources. Also, Giant Swarm engineers need admin access to troubleshoot and resolve incidents (see [Giant Swarm support model]({{< relref "/support/overview/" >}})). Both of these permission sets are, as mentioned above, set up using AWS IAM policies once you become a Giant Swarm customer and start using one or more AWS accounts for Kubernetes clusters.
 
 ## AWS infrastructure of clusters
 

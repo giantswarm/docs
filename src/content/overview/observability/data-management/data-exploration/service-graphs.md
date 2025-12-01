@@ -113,4 +113,4 @@ To get the most value from service graphs:
 
 - **[Create service dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations for service health
 
-For more information about Tempo's service graph feature, see the [Grafana Tempo documentation](https://grafana.com/docs/tempo/latest/metrics-generator/service-graphs/).
+For more information about Tempo's service graph feature, see the [Grafana Tempo documentation](https://grafana.com/docs/tempo/latest/metrics-generator/).

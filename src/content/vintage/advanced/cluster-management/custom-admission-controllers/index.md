@@ -252,5 +252,5 @@ Also, it is good to mention there are already some projects which leverage this 
 
 - [Official documentation](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/)
 - [Go framework to create mutation/validation controllers](https://github.com/slok/kubewebhook/)
-- [Mutation controller Tutorial](https://github.com/morvencao/kube-mutating-webhook-tutorial/)
+- [Mutation controller Tutorial](https://github.com/morvencao/kube-sidecar-injector)
 - [Mutation and validation controller implementing OPA framework](https://github.com/open-policy-agent/gatekeeper)

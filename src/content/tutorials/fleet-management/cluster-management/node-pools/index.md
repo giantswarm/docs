@@ -173,7 +173,7 @@ Also, every EC2 instance that Karpenter is managing is represented by a Custom R
 In the Karpenter node pools you can't specify the number of nodes in your cluster. Neither the minimum or maximum number of nodes that you want to have in your cluster.
 Instead, you can specify [the maximum amount of resources](https://karpenter.sh/docs/concepts/nodepools/#speclimits) that the node pool can consume.
 
-Depending on the workloads that are deployed, Karpenter will try to optimize the number of nodes in your cluster. This process is called [consolidation](https://karpenter.sh/v0.32/concepts/disruption/#consolidation).
+Depending on the workloads that are deployed, Karpenter will try to optimize the number of nodes in your cluster. This process is called [consolidation](https://karpenter.sh/docs/concepts/disruption/#consolidation).
 You can also configure your node pool to instruct Karpenter about when and how to do the consolidation through [the `disruption` configurations](https://karpenter.sh/docs/concepts/disruption/).
 
 {{< /tab >}}

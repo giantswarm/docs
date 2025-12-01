@@ -68,7 +68,7 @@ Learn more about how to configure `kube-vip` in the [advanced documentation]({{<
 {{< /tab >}}
 
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
-When using NSX Advanced Load Balancer (NSX ALB), [there are several components](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-A247F5F2-AC7E-48E7-B615-F8D361C7292A.html) involved to enable load balancer capabilities in Kubernetes.
+When using NSX Advanced Load Balancer (NSX ALB), [there are several components](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere-supervisor/7-0/vsphere-with-tanzu-configuration-and-management-7-0.html) involved to enable load balancer capabilities in Kubernetes.
 
 The `controller` in NSX ALB plays a pivotal role. It's responsible for communicating the operations requested to the vCenter Server, ensuring the smooth functioning of the load balancer. Additionally, there is a `service engine` to manage virtual IP addresses and a Kubernetes `operator` to reconcile the NSX ALB resources in the clusters.
 
@@ -83,7 +83,7 @@ The Cluster API controller that provisions the infrastructure in the vSphere env
 
 **Warning**: The password may not contain `\` (backslash) characters. Ideally restrict special characters to ` . , ! ? - `
 
-**Note**: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-authentication/GUID-31F302A6-D622-4FEC-9007-EE3BA1205AEA.html) in case you need help.
+**Note**: The user creation is out of the scope of this document, but you can follow the [official VMware documentation](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-authentication-8-0.html) in case you need help.
 
 Create the user role browsing to `Administration > Access Control > Roles`and clicking `NEW`. The role must have at least the following permissions:
 

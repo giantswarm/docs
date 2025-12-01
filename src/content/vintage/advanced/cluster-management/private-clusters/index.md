@@ -166,7 +166,7 @@ kubectl gs template cluster \
   > cluster.yaml
 ```
 
-The command will automatically fetch outbound IPs of the management cluster (typically 3 NAT Gateway IPs which are permanent) and add them to the list of IP ranges you provided. You will find the output in the list [`controlPlane.loadBalancerIngressAllowCidrBlocks`](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#control-plane) of the produced YAML:
+The command will automatically fetch outbound IPs of the management cluster (typically 3 NAT Gateway IPs which are permanent) and add them to the list of IP ranges you provided. You will find the output in the list [`controlPlane.loadBalancerIngressAllowCidrBlocks`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#control-plane) of the produced YAML:
 
 ```yaml
 apiVersion: v1

@@ -279,4 +279,4 @@ spec:
 
 - [Kubernetes Dynamic Resource Allocation KEP](https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/3063-dynamic-resource-allocation)
 - [NVIDIA DRA Driver Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html)
-- [Kubernetes Device Plugin vs DRA Comparison](https://kubernetes.io/blog/2023/08/15/dynamic-resource-allocation/)
+- [Kubernetes Device Plugin vs DRA Comparison](https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/)
