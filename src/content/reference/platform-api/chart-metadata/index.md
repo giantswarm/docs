@@ -1,7 +1,7 @@
 ---
 title: Chart metadata reference
 linkTitle: Chart metadata
-description: Helm charts maintained by Giant Swarm require certain chart metadata. This page explains which fields are requires and recommended, and for what purpose. We also show how chart metadadat is represented in OCC registries.
+description: Helm charts maintained by Giant Swarm require certain chart metadata. This page explains which fields are requires and recommended, and for what purpose. We also show how chart metadata is represented in OCC registries.
 menu:
   principal:
     identifier: reference-platform-api-chartmetadata
@@ -18,23 +18,58 @@ Helm requires certain chart metadata being available in `Chart.yaml`. In additio
 
 On this page the goal is to document the requriements for all chart metadata and provide some context for each field, and explain to application users the meaning of metadata properties. We also show how these properties are represented in OCI registries.
 
-## Example {#example}
+## Background
 
-The following `Chart.yaml` example includes required and recommended properties only.
+Historically, Giant Swarm distributed charts via HTTP repositories. In addition, we used proprietary top-level keys in `Chart.yaml` (`restrictions`).
+
+Since late 2025, we publish charts in OCI registries, and HTTP based repositories are being phased out. The metadata schema described here is targeting OCI registries and aims to be compliant with the [OpenContainers Annotation Spec](https://specs.opencontainers.org/image-spec/annotations/). Former proprietary top-level keys in `Chart.yaml` are migrated to annotations.
+
+On this page, we mention the old metadata keys as "legacy". Our CI/CD pipeline makes sure to translate between the legacy and the OCI-compliant annotation keys.
+
+## Examples
+
+The following `Chart.yaml` example includes required and recommended properties only:
 
 ```yaml
 annotations:
-  application.giantswarm.io/team: shield
+  io.giantswarm.application.audience: all
+  io.giantswarm.application.managed: "true"
+  io.giantswarm.application.team: shield
 apiVersion: v2
-description: Connects things and keeps things secure
-home: https://github.com/giantswarm/awesome-application
-icon: https://s.giantswarm.io/app-icons/1/png/awesome-application-light.svg
-name: awesome-application
+description: Keeps things secure at runtime
+home: https://github.com/giantswarm/security-guard
+icon: https://s.giantswarm.io/app-icons/1/png/security-guard-light.svg
+name: security-guard
 keywords:
   - security
+  - containers
+version: "3.2.1"
+```
+
+A more complex example:
+
+```yaml
+annotations:
+  io.giantswarm.application.audience: all
+  io.giantswarm.application.managed: "true"
+  io.giantswarm.application.team: cabbage
+  io.giantswarm.application.app-type: cluster
+  io.giantswarm.application.upstream-chart-version: "1.1.27"
+  io.giantswarm.application.upstream-chart-url: https://example.com/charts/great-connector/
+  io.giantswarm.application.restrictions.cluster-singleton: "true"
+  io.giantswarm.application.restrictions.fixed-namespace: "false"
+  io.giantswarm.application.restrictions.compatible-providers: "aws,azure"
+apiVersion: v2
+appVersion: "1.26.3"
+description: Connects everything with everything else
+home: https://github.com/giantswarm/great-connector
+icon: https://s.giantswarm.io/app-icons/1/png/great-connector-light.svg
+name: great-connector
+keywords:
   - networking
 version: "2.3.1"
 ```
+
 
 ## Chart.yaml properties {#properties}
 
@@ -45,39 +80,45 @@ Some terminology for this overview:
 - **REQUIRED**: Every chart must have this property defined.
 - **RECOMMENDED**: For good quality, customer experience etc., this property should be defined.
 - **OPTIONAL**: Can be present and might increase the customer experience, to be decided case by case.
-- **OCI annotation key** when given indicates how the respective field or annotation is represented in an OCI repository annotation.
+- **Legacy Chart.yaml key** key used previously in `Chart.yaml` files authered by Giant Swarm.
 
-## annotations {#annotations}
+### annotations {#annotations}
 
-**REQUIRED** annotations object. See below for required keys and their meaning. Annotation values must be strings.
+**REQUIRED** annotations object. See below for required keys and their meaning. Annotation values must be of type string.
 
-### application.giantswarm.io/audience
+All annotations listed here are also represented in OCI repositories where charts get pushed to by the Giant Swarm CI/CD pipeline. In particular, they become part of the "config" manifest, which is a representation of the `Chart.yaml` content. In addition, the annotations are made available in the manifest of each repository.
+
+#### io.giantswarm.application.audience
 
 **REQUIRED** Indicates who is encouraged to deploy and use this application.
 
 The value `all` means that the application is for everyone, including Giant Swarm customers. `giantswarm` means that the app is built for Giant Swarm internal purposes, not to be used by customers.
 
-### application.giantswarm.io/managed
+#### io.giantswarm.application.managed
 
 **REQUIRED** Indicates whether Giant Swarm is responsible for operating the application. The value `true` indicates that Giant Swarm takes responsibility in general. `false` means that customers deploying the application are responsible for operating it.
 
-### application.giantswarm.io/team
+#### io.giantswarm.application.team
 
 **REQUIRED** Short form of the Giant Swarm product team that owns the application. Example: "honeybadger"
 
-OCI annotation key: `io.giantswarm.application.team`
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/team`
 
-### application.giantswarm.io/app-type
+#### io.giantswarm.application.app-type
 
 OPTIONAL application type. TODO: Explain. Value can be `bundle` or `cluster`.
 
-### application.giantswarm.io/metadata
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/app-type`
+
+#### io.giantswarm.application.metadata
 
 Added automatically by the CI/CD pipelinefor compatibility with HTTP registries. Will be removed when they are no longer needed.
 
 Example: `http://example.com/hello-world-app-1.2.3.tgz-meta/main.yaml`
 
-### application.giantswarm.io/readme
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/metadata`
+
+#### io.giantswarm.application.readme
 
 URL to the application readme file.
 
@@ -85,7 +126,9 @@ Example: `https://raw.githubusercontent.com/giantswarm/hello-world-app/refs/tags
 
 This annotation is added automatically by the CI/CD pipeline with a value specific for each release. It must not be present in Chart.yaml.
 
-### application.giantswarm.io/values-schema
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/readme`
+
+#### io.giantswarm.application.values-schema
 
 URL to the application's values.yaml JSON schema.
 
@@ -93,53 +136,63 @@ Example: `https://raw.githubusercontent.com/giantswarm/hello-world-app/refs/tags
 
 This annotation is added automatically by the CI/CD pipeline with a value specific for each release. It must not be present in Chart.yaml.
 
-### application.giantswarm.io/upstream-chart-version
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/values-schema`
+
+#### io.giantswarm.application.upstream-chart-version
 
 OPTIONAL if the chart is based on an upstream chart, this shows the original chart version.
 
 Example: `1.2.3`
 
-### application.giantswarm.io/upstream-chart-url
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/upstream-chart-version`
+
+#### io.giantswarm.application.upstream-chart-url
 
 OPTIONAL if the chart is based on an upstream chart, this shows the original chart URL.
 
 Example: `https://github.com/giantswarm/hello-world-app`
 
-### application.giantswarm.io/restrictions/cluster-singleton
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/upstream-chart-url`
+
+#### io.giantswarm.application.restrictions.cluster-singleton
 
 OPTIONAL Boolean to indicate that the application can be installed only once per cluster.
 
 Example: `"true"`
 
-### application.giantswarm.io/restrictions/fixed-namespace
+Legacy Chart.yaml key: `restrictions` / `clusterSingleton`
+
+#### io.giantswarm.application.restrictions.fixed-namespace
 
 OPTIONAL Namespace the application must be installed into.
 
 Example: `helloworld`
 
-### application.giantswarm.io/restrictions/gpu-instances
+Legacy Chart.yaml key: `restrictions` / `fixedNamespace`
+
+#### io.giantswarm.application.restrictions.gpu-instances
 
 OPTIONAL Boolean to indicate whether the application requires GPU nodes.
 
 Example: `"false"`
 
-### application.giantswarm.io/restrictions/namespace-singleton
+Legacy Chart.yaml key: `restrictions` / `gpuInstances`
+
+#### io.giantswarm.application.restrictions.namespace-singleton
 
 OPTIONAL Boolean to indicate that the application can be installed only once per namespace.
 
 Example: `"true"`
 
-### application.giantswarm.io/restrictions/compatible-providers
+Legacy Chart.yaml key: `restrictions` / `namespaceSingleton`
+
+#### io.giantswarm.application.restrictions.compatible-providers
 
 OPTIONAL List of infrastructure providers the application is compatible with. Multiple provider names must be separated with comma.
 
 Example: `azure,aws`
 
-### ui.giantswarm.io/logo
-
-OPTIONAL Logo image URL. In contrast to the icon, the logo is meant for display in a larger rectangular space and is displayed larger than the icon, so it can be more details. An example would be the combination of a logo and the wordmark.
-
-We added this annotation specifically for our web UI (happa), which is deprecated, and we currently have no plans to use it in the new UI based on Backstage.
+Legacy Chart.yaml key: `restrictions` / `compatibleProviders`
 
 ### apiVersion
 
@@ -193,14 +246,10 @@ Character set: `[a-z0-9-]`. See [chart name best-practices](https://v3.helm.sh/d
 
 Example: `2.9.1`
 
-## OCI artifact metadata
+## Additional OCI annotations
 
-This sections describes the metadata we expect in manifests of OCI artifacts for charts.
+The listing above shows which metadata annotations are expected from Chart.yaml. This sections now is for additional annotations we expect in OCI artifact manifests for charts.
 
-All metadata from the chart as described above is expected to land in the OCI repository as the `config` resource.
-
-In addition, we rely on the following key of the main artifact manifest.
-
-### Annotation org.opencontainers.image.created
+### org.opencontainers.image.created
 
 Date and time of creation of the artifact. helm push sets this to the current date automatically when pushing.
