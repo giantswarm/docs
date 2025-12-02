@@ -1,7 +1,7 @@
 ---
 title: Chart metadata reference
 linkTitle: Chart metadata
-description: Helm charts maintained by Giant Swarm require certain chart metadata. This page explains which fields are requires and recommended, and for what purpose. We also show how chart metadata is represented in OCC registries.
+description: Helm charts maintained by Giant Swarm require certain chart metadata. This page explains which fields are requires and recommended, and for what purpose. We also show how chart metadata is represented in OCI registries.
 menu:
   principal:
     identifier: reference-platform-api-chartmetadata
