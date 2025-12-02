@@ -110,14 +110,6 @@ OPTIONAL application type. TODO: Explain. Value can be `bundle` or `cluster`.
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/app-type`
 
-#### io.giantswarm.application.metadata
-
-Added automatically by the CI/CD pipelinefor compatibility with HTTP registries. Will be removed when they are no longer needed.
-
-Example: `http://example.com/hello-world-app-1.2.3.tgz-meta/main.yaml`
-
-Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/metadata`
-
 #### io.giantswarm.application.readme
 
 URL to the application readme file.
