@@ -70,7 +70,6 @@ keywords:
 version: "2.3.1"
 ```
 
-
 ## Chart.yaml properties {#properties}
 
 See [the Helm docs](https://helm.sh/docs/topics/charts/#the-chartyaml-file) for any optional properties defined by the Helm project.
@@ -106,7 +105,7 @@ Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/team`
 
 #### io.giantswarm.application.app-type
 
-OPTIONAL application type. TODO: Explain. Value can be `bundle` or `cluster`.
+OPTIONAL application type indicator. Value can be `bundle` or `cluster`.
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/app-type`
 
@@ -148,9 +147,7 @@ Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/upstream-chart
 
 #### io.giantswarm.application.restrictions.cluster-singleton
 
-OPTIONAL Boolean to indicate that the application can be installed only once per cluster.
-
-Example: `"true"`
+OPTIONAL Indicates that the application can be installed only once per cluster. Can be `true` or `false`.
 
 Legacy Chart.yaml key: `restrictions` / `clusterSingleton`
 
@@ -164,17 +161,13 @@ Legacy Chart.yaml key: `restrictions` / `fixedNamespace`
 
 #### io.giantswarm.application.restrictions.gpu-instances
 
-OPTIONAL Boolean to indicate whether the application requires GPU nodes.
-
-Example: `"false"`
+OPTIONAL Indicate whether the application requires GPU nodes. Can be `true` or `false`.
 
 Legacy Chart.yaml key: `restrictions` / `gpuInstances`
 
 #### io.giantswarm.application.restrictions.namespace-singleton
 
-OPTIONAL Boolean to indicate that the application can be installed only once per namespace.
-
-Example: `"true"`
+OPTIONAL Indicates that the application can be installed only once per namespace. Can be `true` or `false`.
 
 Legacy Chart.yaml key: `restrictions` / `namespaceSingleton`
 
