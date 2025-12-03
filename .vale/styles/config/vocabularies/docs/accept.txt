@@ -102,6 +102,8 @@ namespace[s]?
 NLB[s]?
 node[pP]ool[s]?
 OAuth
+OCI
+OCIRepository
 OIDC
 onboarding
 OTLP
@@ -139,6 +141,7 @@ toleration[s]
 TraceQL
 [T|t]rivy
 UDP
+unmanaged
 upstream[s]?
 vApp
 vCenter
