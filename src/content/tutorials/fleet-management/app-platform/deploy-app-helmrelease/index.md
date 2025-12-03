@@ -16,7 +16,9 @@ last_review_date: 2025-12-03
 
 ## Background
 
-Giant Swarm management clusters use Flux and Helm to deliver resources to clusters. To deploy workloads in workload clusters, the preferred method as of **TODO** is the use of Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources in combination with Flux [OCIRespository](https://fluxcd.io/flux/components/source/ocirepositories/) resources as a source. For a general explanation on how the Giant Swarm app platform works, please check [our app platform overview]({{< relref "/overview/fleet-management/app-management" >}}).
+Giant Swarm management clusters use Flux and Helm to deliver resources to clusters. This may be used as an alternative to [App resources]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for more advanced control.
+
+To deploy workloads in workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources can be used in combination with Flux [OCIRespository](https://fluxcd.io/flux/components/source/ocirepositories/) resources.
 
 **Note:** While Giant Swarm supports other Flux sources, OCIRepository is the method recommended by the Flux project and by Giant Swarm. This guide focuses on that method only.
 
