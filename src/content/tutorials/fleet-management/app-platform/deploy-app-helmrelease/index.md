@@ -122,7 +122,7 @@ flux create helmrelease dev01-hello-world \
     --kubeconfig-secret-ref dev01-kubeconfig \
     --target-namespace helloworld \
     --create-target-namespace=true \
-    --labels giantswarm.io/cluster=dev01 \
+    --label giantswarm.io/cluster=dev01 \
     --interval 60m
 ```
 
@@ -133,7 +133,7 @@ flux create helmrelease dev01-hello-world \
 - `--kubeconfig-secret-ref` is a reference to a kubeconfig as a Secret resource that Flux will use to deploy the chart in the workload cluster. This is always present in the owner organization's namespace and follows the naming convention `<clustername>-kubeconfig`.
 - `--target-namespace` tells Helm in which namespace the chart's resources should be deployed, in the workload cluster.
 - With `--create-target-namespace=true` we instruct Helm to create this namespace if it doesn't exist.
-- The `--labels` flag adds a label to the created resource. We set the `giantswarm.io/cluster` label to the cluster name to display all HelmRelease for a particular cluster in Giant Swarm user interfaces.
+- The `--label` flag adds a label to the created resource. We set the `giantswarm.io/cluster` label to the cluster name to display all HelmRelease for a particular cluster in Giant Swarm user interfaces.
 - The `--interval` serves the same purpose as in the previous step.
 
 ### Inspecting resource status
