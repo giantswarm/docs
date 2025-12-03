@@ -142,7 +142,7 @@ During the creation of our resource, the Flux CLI already gave some feedback. If
 
 On the command line, we have the choice between using the `flux` CLI or `kubectl`.
 
-**Inspect OCIRepository status**
+#### Inspect OCIRepository status
 
 We keep using the resource names from our example, for simplicity reasons.
 
@@ -156,7 +156,7 @@ kubectl describe ocirepository \
     dev01-hello-world
 ```
 
-**Inspect HelmRelease status**
+#### Inspect HelmRelease status
 
 ```nohighlight
 flux get helmreleases \
