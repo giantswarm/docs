@@ -31,7 +31,7 @@ To deploy workloads in workload clusters, Flux [HelmRelease](https://fluxcd.io/f
 - **Configuration** for the chart, often referred to as `values.yaml` file
 - the [Flux CLI](https://fluxcd.io/flux/cmd/) installed
 
-**Note:** It is important that you use the correct minor version of the Flux CLI, to be compatible with the server side. When in doubt about the version used on the server side, please visit your Backstage portal and open the page _Clusters_, then select the right management cluster, and then find the version number in the _Flux status_ panel. Alternatively, contact our support.
+**Note:** It is important that you use the correct minor version of the Flux CLI, to be compatible with the server side. When in doubt about the version used on the server side, please visit your [developer portal]({{< relref "/overview/developer-portal" >}}) and open the page _Clusters_, then select the right management cluster, and then find the version number in the _Flux status_ panel. Alternatively, contact our support.
 
 ## Logical steps
 
