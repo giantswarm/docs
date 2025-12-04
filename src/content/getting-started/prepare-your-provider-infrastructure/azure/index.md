@@ -28,8 +28,8 @@ In addition to the following prerequisites, your account engineer will provide y
 
 2. An individual has to have the following permissions and tools working within the designated Azure subscription:
 
-    * An account with [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
-    * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed and configured to point to chosen subscription via [`az account set`](https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest#az-account-set) command.
+    * An account with [Owner](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator) role.
+    * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) installed and configured to point to chosen subscription via [`az account set`](https://learn.microsoft.com/en-us/cli/azure/account?view=azure-cli-latest#az-account-set) command.
 
 ## Step 1: Service quotas {#quotas}
 
@@ -89,7 +89,7 @@ Alternatively, you can create your role assignment with restricted access to spe
 
 ### Controller permissions {#iam-azure-operator-role}
 
-On the other hand, the automation requires an [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?tabs=browser#service-principal-object), let's call it `Giant Swarm Service Principal`, to enable CAPZ controller to control the Azure resources.
+On the other hand, the automation requires an [Azure Service Principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object), let's call it `Giant Swarm Service Principal`, to enable CAPZ controller to control the Azure resources.
 
 #### Create the service principal
 
@@ -149,7 +149,7 @@ The following information needs to be provided to Giant Swarm:
 
 Once all necessary information is provided, our engineers create the management cluster. The provided permissions work within your subscription to provision and validate the infrastructure, ensuring a seamless and efficient process.
 
-When Giant Swarm completes the management cluster provisioning, our engineers can clean up part of the initial setup. The _Giant Swarm Service Principal_ can be deleted as it's used only for the initial bootstrap, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) is created.
+When Giant Swarm completes the management cluster provisioning, our engineers can clean up part of the initial setup. The _Giant Swarm Service Principal_ can be deleted as it's used only for the initial bootstrap, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp) is created.
 
 ## Step 3: Virtual machine templates
 
