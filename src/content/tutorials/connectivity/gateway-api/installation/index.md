@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2025-10-17
+last_review_date: 2025-12-04
 ---
 
 ## Prerequisites
@@ -138,9 +138,7 @@ data:
 
 **Note**: The base domain is appended to each subdomain to compose the FQDN (Fully Qualified Domain Name), `myapplication.CLUSTER_ID.k8s.gigantic.io` in our example.
 
-### Configuring a custom domain
-
-#### Overriding the base domain
+#### Option 2: Overriding the base domain
 
 It's possible to completely override the base domain and make the Gateway only accept a domain that is not the cluster domain.
 
@@ -170,7 +168,7 @@ data:
 
 This results in a Gateway with an HTTPS listener that accepts traffic for `myapplication.example.com` with a TLS certificate attached.
 
-#### Adding a new listener
+#### Option 3: Adding a new listener
 
 In this example we show how to add a new listener for the base domain `example.com`. In this case, TLS certificates are created by cert-manager but we disable the integration with external-dns.
 
