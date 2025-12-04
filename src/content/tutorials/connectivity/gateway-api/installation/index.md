@@ -170,7 +170,7 @@ This results in a Gateway with an HTTPS listener that accepts traffic for `myapp
 
 #### Option 3: Adding a new listener
 
-In this example we show how to add a new listener for the base domain `example.com`. In this case, TLS certificates are created by cert-manager but we disable the integration with external-dns.
+In this example, you observe how to add a new listener for the base domain `example.com`. In this case, TLS certificates are created by cert-manager, but external-dns integration is disabled.
 
 ```yaml
 apiVersion: v1
