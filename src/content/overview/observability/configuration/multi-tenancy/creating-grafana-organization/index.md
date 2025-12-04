@@ -389,7 +389,7 @@ When you update existing `v1alpha1` resources, they are automatically converted 
 2. **Review access**: Use the migration as an opportunity to review and refine tenant access permissions
 3. **Gradual rollout**: Migrate one organization at a time to ensure smooth transitions
 4. **Monitor impact**: Verify that users retain appropriate access after migration
-5. **Use granular access**: Take advantage of the new access types to implement principle of least privilege
+5. **Use granular access**: Take advantage of the new access types to implement the principle of least privilege
 
 ## What happens when you create an organization
 
