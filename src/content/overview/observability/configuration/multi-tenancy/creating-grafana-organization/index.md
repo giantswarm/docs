@@ -304,7 +304,7 @@ rbac:
 
 ## Migrating from v1alpha1 to v1alpha2
 
-The v1alpha2 API version introduces enhanced tenant configuration with granular access control. While v1alpha1 resources continue to work through automatic conversion, we recommend migrating to v1alpha2 to take advantage of the new features.
+The `v1alpha2` API version introduces enhanced tenant configuration with granular access control. While `v1alpha1` resources continue to work through automatic conversion, we recommend migrating to `v1alpha2` to take advantage of the new features.
 
 ### Key differences
 
