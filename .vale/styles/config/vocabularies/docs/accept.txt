@@ -74,6 +74,7 @@ gracefully
 [G|g]rafana
 Hashicorp
 Honeybadger
+[H|h]ostname
 HPA
 htpasswd
 HTTP
