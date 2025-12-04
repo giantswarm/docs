@@ -210,3 +210,5 @@ data:
                       dnsEndpoints:
                         enabled: false
 ```
+
+You can add multiple listeners to the same Gateway to accept traffic from different domains. Each listener can have its own configuration for TLS certificates, DNS endpoints, and subdomain lists, allowing you to manage multiple domains within a single Gateway resource.
