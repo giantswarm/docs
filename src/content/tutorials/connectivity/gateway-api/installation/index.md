@@ -104,13 +104,14 @@ Additionally, it also creates the `giantswarm-default` Gateway ready to use in t
 NAME                 CLASS                ADDRESS                            PROGRAMMED
 giantswarm-default   giantswarm-default   axx8.eu-west-2.elb.amazonaws.com   True
 ```
+
 **Note**: Since DNS and TLS certificates in the Gateway API world are different from Ingress, you must configure which domains the Gateway accepts.
 
-The default Gateway is configured to accept traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to attach any HTTPRoutes matching that pattern. Although no TLS certificates or DNS records are created based on the HTTPRoutes.
+The default Gateway is configured to accept traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to attach any HTTPRoute resources matching that pattern. However, no TLS certificates or DNS records are automatically created based on the HTTPRoute resources.
 
 #### Option 1: Adding each subdomain
 
-You can define a list of subdomains inside the HTTPS listener. This will automatically create a CNAME DNS record pointing to the Gateway load balancer and add it to the `dnsNames` list in the certificate.
+You can define a list of subdomains inside the HTTPS listener. This will automatically create a CNAME (Canonical Name) DNS record pointing to the Gateway load balancer and add it to the `dnsNames` list in the certificate.
 
 ```yaml
 apiVersion: v1
@@ -134,7 +135,8 @@ data:
                       subdomains:
                       - myapplication
 ```
-**Note**: The base domain is appended to each subdomain to compose the FQDN, `myapplication.CLUSTER_ID.k8s.gigantic.io` in our example.
+
+**Note**: The base domain is appended to each subdomain to compose the FQDN (Fully Qualified Domain Name), `myapplication.CLUSTER_ID.k8s.gigantic.io` in our example.
 
 ### Configuring a custom domain
 
@@ -165,6 +167,7 @@ data:
                       subdomains:
                       - myapplication
 ```
+
 This results in a Gateway with an HTTPS listener that accepts traffic for `myapplication.example.com` with a TLS certificate attached.
 
 #### Adding a new listener

@@ -18,11 +18,11 @@ last_review_date: 2025-10-17
 
 The Kubernetes Gateway API Inference Extension enables AI/ML workloads to be exposed and managed through the Gateway API. This extension provides a standardized way to configure routing and load balancing for inference endpoints, making it easier to deploy and scale AI services in your Kubernetes clusters.
 
-This guide walks you through installing the Gateway API Inference Extension on Giant Swarm workload clusters by enabling the inference pool Custom Resource Definitions (CRDs) in your gateway-api-bundle configuration.
+This guide walks you through installing the Gateway API Inference Extension on Giant Swarm workload clusters. You enable the inference pool Custom Resource Definitions (CRDs) in your Gateway API bundle configuration.
 
 ## Installation
 
-Our gateway-api-crds App already supports the inference extensions. In your gateway-api-bundle ConfigMap, add the following block:
+Our Gateway API CRDs app already supports the inference extensions. In your Gateway API bundle configmap, add the following block:
 
 ```yaml
 apiVersion: v1
