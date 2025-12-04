@@ -1,6 +1,6 @@
-# Fix broken links
+# Fix broken internal links
 
-The purpose of this command is to find broken links in content and fix them.
+The purpose of this command is to find broken internal links in content and fix them.
 
 1. Fetch the latest release tag for container image `gsoci.azurecr.io/giantswarm/docs`. A release tag has the format `[0-9]+\.[0-9]+\.[0-9]+`. Use this command:
 
@@ -32,7 +32,7 @@ The purpose of this command is to find broken links in content and fix them.
 		--ignore-url="^http://server:8080/changes/.*"
    ```
 
-5. When done, read the rport file `linkcheck-report.txt`. Each report starts with the term `URL` and ends with a double line break.
+5. When done, read the report file `linkcheck-report.txt`. Each report starts with the term `URL` and ends with a double line break.
 
 6. Fix each broken link. Also update links that are permanent redirects (status 301) to point to actual target.
 
