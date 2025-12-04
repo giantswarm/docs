@@ -377,7 +377,7 @@ You can specify both types for full access, or use them separately for restricte
 
 ### Automatic migration behavior
 
-When you update existing v1alpha1 resources, they are automatically converted to v1alpha2:
+When you update existing `v1alpha1` resources, they are automatically converted to `v1alpha2`:
 
 - Each tenant string is converted to a `TenantConfig` object
 - The `name` field is set to the original tenant string  
