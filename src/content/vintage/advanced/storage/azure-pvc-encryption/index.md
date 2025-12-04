@@ -21,11 +21,11 @@ last_review_date: 2024-02-16
 If your cluster is running in Azure infrastructure, the most common way to provision Persistent Volumes (PVs) is by using Azure Disks.
 
 On Giant Swarm Workload clusters, the default Storage Classes already include definitions for Azure Disks as well as Azure Files. Those disks however are not encrypted with Customer-Managed keys but only with Platform-Managed keys.
-In order to increase the security of your persistent data on PVs you can use the [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) service as an encryption key provider.
+In order to increase the security of your persistent data on PVs you can use the [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) service as an encryption key provider.
 
 ## Azure Key Vault setup
 
-A prerequisite for following steps is to have a deployed Key Vault instance either in your cluster's Resource Group, or in your account. Please follow the [official docs](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
+A prerequisite for following steps is to have a deployed Key Vault instance either in your cluster's Resource Group, or in your account. Please follow the [official docs](https://learn.microsoft.com/en-us/azure/key-vault/general/overview) to get started.
 
 ## Create first encryption key
 
@@ -71,9 +71,9 @@ The final step is to add the Managed Identities (Service Principals) to every Vi
 
 ## Further reading
 
-- [Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts)
+- [Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts)
 - [Persistent volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistent-volumes)
 - [Persistent volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)
 - [Claim persistent volumes in pods](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes)
-- [BYOC with Azure disks on AKS](https://docs.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys)
-- [Azure Disk Encryption](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-enable-customer-managed-keys-portal)
+- [BYOC with Azure disks on AKS](https://learn.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys)
+- [Azure Disk Encryption](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-enable-customer-managed-keys-portal)

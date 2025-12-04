@@ -84,7 +84,7 @@ For rapid prototyping and iterative development, create dashboards directly in G
 
 ### Grafana documentation
 
-For detailed guidance on using Grafana's dashboard builder, see the [official Grafana documentation](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/create-dashboard/).
+For detailed guidance on using Grafana's dashboard builder, see the [official Grafana documentation](https://grafana.com/docs/grafana/latest/visualizations/dashboards/build-dashboards/create-dashboard/).
 
 ### Data persistence
 

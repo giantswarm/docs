@@ -67,7 +67,7 @@ __Note__: Our engineers can upload the `vApp templates` to the `giantswarm` cata
 
 ## Step 4:  Virtual machine sizing
 
-To define the set of instance types available to the users when deploying clusters, you need to prepare the [virtual machine sizing policies](https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Service-Provider-Admin-Portal-Guide/GUID-F6719175-7A29-42CA-BB00-A6BDC22B3EEC.html). You can choose the name and sizes of these policies, but we propose the following ones as a starting point
+To define the set of instance types available to the users when deploying clusters, you need to prepare the [virtual machine sizing policies](https://techdocs.broadcom.com/us/en/vmware-cis/cloud-director/vmware-cloud-director/10-6.html). You can choose the name and sizes of these policies, but we propose the following ones as a starting point
 
 | Name | vCPU | Memory |
 |------|------|--------|

@@ -41,7 +41,7 @@ Before you start:
 
 1. **Running workload cluster**: If you don't have one, [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) first
 2. **Sample application**: Deploy the [`hello-world` application]({{< relref "/getting-started/install-an-application" >}}) or use your own instrumented application
-3. **Local tools**: Install [`jq`](https://jqlang.github.io/jq/download/) for command-line JSON processing
+3. **Local tools**: Install [`jq`](https://jqlang.org/download/) for command-line JSON processing
 
 **Important**: If you're using your own application, ensure it's [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics. Adding new metrics impacts platform costs, so choose your metrics thoughtfully.
 

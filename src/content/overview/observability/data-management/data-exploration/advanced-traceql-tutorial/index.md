@@ -361,4 +361,4 @@ Now that you understand TraceQL:
 - **Create trace dashboards**: Build custom visualizations for your distributed systems
 - **Integrate with alerts**: Use metrics generated from traces for proactive monitoring
 
-For more complex scenarios, consider exploring [Grafana's TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/) and the [OpenTelemetry instrumentation guides](https://opentelemetry.io/docs/instrumentation/).
+For more complex scenarios, consider exploring [Grafana's TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/) and the [OpenTelemetry instrumentation guides](https://opentelemetry.io/docs/languages/).
