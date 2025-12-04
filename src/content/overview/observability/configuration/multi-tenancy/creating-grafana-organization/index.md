@@ -241,7 +241,7 @@ spec:
 
 **Granular access control (v1alpha2 only):**
 
-With v1alpha2, you can specify different access types for fine-grained control:
+With `v1alpha2`, you can specify different access types for fine-grained control:
 
 ```yaml
 apiVersion: observability.giantswarm.io/v1alpha2
