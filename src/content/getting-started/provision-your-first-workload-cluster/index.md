@@ -38,7 +38,7 @@ You can template a cluster ([command reference]({{< relref "/reference/kubectl-g
 {{< tabs >}}
 {{< tab id="cluster-capa-ec2" for-impl="capa_ec2">}}
 
-This will automatically use the latest release of the relevant Helm chart [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/CHANGELOG.md):
+This will automatically use the latest release of the relevant Helm chart [cluster-aws](https://github.com/giantswarm/cluster-aws/blob/main/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -68,7 +68,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capa-eks" for-impl="capa_eks">}}
 
-This will automatically use the latest release of the relevant Helm chart [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/master/CHANGELOG.md):
+This will automatically use the latest release of the relevant Helm chart [cluster-eks](https://github.com/giantswarm/cluster-eks/blob/main/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -96,7 +96,7 @@ If no `aws-cluster-role-identity-name` is passed, then we assume a `AWSClusterRo
 {{< /tab >}}
 {{< tab id="cluster-capz-azure-vms" for-impl="capz_vms">}}
 
-This will automatically use the latest release of the relevant Helm chart [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/master/CHANGELOG.md):
+This will automatically use the latest release of the relevant Helm chart [cluster-azure](https://github.com/giantswarm/cluster-azure/blob/main/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -120,7 +120,7 @@ This will install the relevant Helm chart [cluster-cloud-director](https://githu
 {{< /tab >}}
 {{< tab id="cluster-capv" for-impl="capv">}}
 
-This will automatically use the latest release of the relevant Helm chart [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/master/CHANGELOG.md):
+This will automatically use the latest release of the relevant Helm chart [cluster-vsphere](https://github.com/giantswarm/cluster-vsphere/blob/main/CHANGELOG.md):
 
 ```sh
 kubectl gs template cluster \
@@ -139,9 +139,9 @@ This will create a `cluster.yaml` file containing all the Custom Resources (CRs)
 
 You will notice that clusters are templated exactly like [managed apps]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io/" >}}) (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. Using an `App` custom resource for cluster templating allow us to keep consistency and simplicity using the platform API.
 
-In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product.
+In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product.
 
-__Note__: Templating these and other resources as YAML files is reasonable when you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository). We recommend running `kubectl gs template --help` and the online [reference]({{< relref "/reference/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/master/helm/cluster-aws/README.md)).
+__Note__: Templating these and other resources as YAML files is reasonable when you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository). We recommend running `kubectl gs template --help` and the online [reference]({{< relref "/reference/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md)).
 
 To _actually_ create the resources you need to apply the manifests. Ensure you are still pointing to the management cluster's kubectl context and run:
 

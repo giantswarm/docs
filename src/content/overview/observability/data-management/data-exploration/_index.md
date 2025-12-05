@@ -22,7 +22,7 @@ This guide shows you how to use the Explore and Drilldown features in Grafana to
 
 Giant Swarm provides an Observability Platform in each installation, based on [Grafana Mimir](https://grafana.com/oss/mimir/) for metrics, [Grafana Loki](https://grafana.com/oss/loki/) for logs, and [Grafana Tempo](https://grafana.com/oss/tempo/) for traces. The platform collects data from the system and apps managed by Giant Swarm, as well as any source of data you configure according to [the data ingestion tutorial]({{< relref "/overview/observability/data-management/data-ingestion" >}}).
 
-You can use the [Explore](https://grafana.com/docs/grafana/latest/explore/) and Drilldown features in your [Grafana](https://grafana.com/) instance to query, visualize, and analyze your data interactively.
+You can use the [Explore](https://grafana.com/docs/grafana/latest/visualizations/explore/) and Drilldown features in your [Grafana](https://grafana.com/) instance to query, visualize, and analyze your data interactively.
 
 ![Grafana Explore tab](explore-tab.png)
 
@@ -52,14 +52,14 @@ Learn more about these default organizations and how to create your own in our [
 
 1. **Access the Explore tab:**
    - In the left-hand menu, click the compass icon labeled **Explore**. This opens the Explore view, where you can run ad-hoc queries on your data sources.
-   - Learn more in the [Grafana Explore documentation](https://grafana.com/docs/grafana/latest/explore/).
+   - Learn more in the [Grafana Explore documentation](https://grafana.com/docs/grafana/latest/visualizations/explore/).
 
 2. **Select your data source:**
    - At the top of the Explore view, choose **Mimir** (for metrics), **Loki** (for logs), or **Tempo** (for traces) as your data source.
 
 3. **Query your data:**
-   - For metrics, use [PromQL](https://grafana.com/docs/grafana/latest/datasources/prometheus/querying/).
-   - For logs, use [LogQL](https://grafana.com/docs/loki/latest/logql/).
+   - For metrics, use [PromQL](https://grafana.com/docs/grafana/latest/datasources/prometheus/).
+   - For logs, use [LogQL](https://grafana.com/docs/loki/latest/query/).
    - For traces, use [TraceQL](https://grafana.com/docs/tempo/latest/traceql/) (available when tracing is enabled for your cluster).
    - Start typing in the query field. Grafana provides autocomplete and suggestions to help you build queries.
    - You can visualize results as graphs, tables, logs, or trace views directly in the Explore view.
@@ -67,14 +67,14 @@ Learn more about these default organizations and how to create your own in our [
 4. **Access the Drilldown tab:**
    - In the left-hand menu, click the tab labeled **Drilldown** (next to Explore). This opens the Drilldown app, which lets you quickly investigate logs, metrics, and traces side by side.
    - The Drilldown app is designed for simplified exploration, making it easy to move between logs, metrics, and traces, filter by time ranges, and dig deeper into your data.
-   - Learn more about [Drilldown in Grafana](https://grafana.com/docs/grafana/latest/explore/simplified-exploration/).
+   - Learn more about [Drilldown in Grafana](https://grafana.com/docs/grafana/latest/visualizations/simplified-exploration/).
 
 ![Grafana Drilldown tab](drilldown-tab.png)
 
 ## Tips for exploring data
 
 - Use filters and time range selectors to narrow down your results.
-- Save useful queries as [library panels](https://grafana.com/docs/grafana/latest/panels/library-panels/) or bookmarks for quick access later.
+- Save useful queries as [library panels](https://grafana.com/docs/grafana/latest/visualizations/dashboards/build-dashboards/manage-library-panels/) or bookmarks for quick access later.
 - Check out the [Grafana documentation](https://grafana.com/docs/grafana/latest/) for more tips and advanced features.
 
 ---

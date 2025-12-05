@@ -217,4 +217,4 @@ If you encounter issues that cannot be resolved using the troubleshooting steps 
 
 - [NVIDIA GPU Operator Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html)
 - [Kubernetes Device Plugins](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/)
-- [NVIDIA Tesla Driver Documentation](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
+- [NVIDIA Tesla Driver Documentation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)

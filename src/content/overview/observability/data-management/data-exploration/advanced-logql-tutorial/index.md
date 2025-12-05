@@ -22,7 +22,7 @@ This tutorial covers advanced LogQL techniques for analyzing logs in the Giant S
 
 Before proceeding, ensure you have:
 
-- Basic understanding of LogQL syntax (refer to the [Grafana - Log queries](https://grafana.com/docs/loki/next/query/log_queries))
+- Basic understanding of LogQL syntax (refer to the [Grafana - Log queries](https://grafana.com/docs/loki/next/query/log_queries/))
 - Familiarity with Kubernetes concepts and Giant Swarm cluster architecture
 
 ## Access to logs

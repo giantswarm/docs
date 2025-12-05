@@ -168,7 +168,7 @@ For advanced LogQL techniques, see our [advanced LogQL tutorial]({{< relref "/ov
 
 ## Grafana transformations
 
-[Grafana transformations](https://grafana.com/docs/grafana/latest/panels/transformations/) process data client-side during visualization, enabling real-time calculations and formatting without modifying stored data.
+[Grafana transformations](https://grafana.com/docs/grafana/latest/visualizations/panels-visualizations/query-transform-data/transform-data/) process data client-side during visualization, enabling real-time calculations and formatting without modifying stored data.
 
 ### Common transformation use cases
 
@@ -198,7 +198,7 @@ For advanced LogQL techniques, see our [advanced LogQL tutorial]({{< relref "/ov
 - **Prefer recording rules**: For frequently used calculations, create recording rules instead
 - **Consider data volume**: Large datasets may cause browser performance issues
 
-For comprehensive transformation examples, see the [Grafana transformations documentation](https://grafana.com/docs/grafana/latest/panels/transformations/).
+For comprehensive transformation examples, see the [Grafana transformations documentation](https://grafana.com/docs/grafana/latest/visualizations/panels-visualizations/query-transform-data/transform-data/).
 
 ## Best practices
 
