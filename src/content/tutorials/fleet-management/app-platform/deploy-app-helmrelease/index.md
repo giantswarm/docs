@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I deploy an app using a HelmRelease?
-last_review_date: 2025-12-03
+last_review_date: 2025-12-05
 ---
 
 ## Background
@@ -123,6 +123,7 @@ flux create helmrelease dev01-hello-world \
     --target-namespace helloworld \
     --create-target-namespace=true \
     --label giantswarm.io/cluster=dev01 \
+    --release-name dev01-hello-world \
     --interval 60m
 ```
 
@@ -134,6 +135,7 @@ flux create helmrelease dev01-hello-world \
 - `--target-namespace` tells Helm in which namespace the chart's resources should be deployed, in the workload cluster.
 - With `--create-target-namespace=true` we instruct Helm to create this namespace if it doesn't exist.
 - The `--label` flag adds a label to the created resource. We set the `giantswarm.io/cluster` label to the cluster name to display all HelmRelease for a particular cluster in Giant Swarm user interfaces.
+- The `--release-name` flag sets the name of the Helm release to the same name as the Flux HelmRelease resource.
 - The `--interval` serves the same purpose as in the previous step.
 
 ### Inspecting resource status
