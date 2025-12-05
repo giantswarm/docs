@@ -2,7 +2,7 @@
 linkTitle: Inference Extension
 title: Installing Gateway API Inference Extension
 description: Learn how to install the Kubernetes Gateway API Inference Extension in Giant Swarm workload clusters.
-weight: 11
+weight: 30
 menu:
   principal:
     parent: tutorials-connectivity-gateway-api
