@@ -301,7 +301,7 @@ spec:
 
 ### Rate limiting
 
-The annotations `nginx.ingress.kubernetes.io/limit-connections` and `nginx.ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
+The annotations `nginx.ingress.kubernetes.io/limit-connections` and `nginx.ingress.kubernetes.io/limit-rps` define a limit on the connections that can be opened by a single client IP address. This can be used to mitigate [DDoS Attacks](https://blog.nginx.org/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus).
 
 `nginx.ingress.kubernetes.io/limit-connections`: Number of concurrent connections allowed from a single IP address.
 
@@ -507,7 +507,7 @@ data:
 
 ### Web Application Firewall
 
-The ingress-nginx controller ships with the [ModSecurity](https://www.modsecurity.org) module, which can be used to enhance your ingress-nginx controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
+The ingress-nginx controller ships with the [ModSecurity](https://modsecurity.org/) module, which can be used to enhance your ingress-nginx controller deployment by Web Application Firewall capabilities to protect your workload against malicious requests.
 
 While enabling those capabilities in the first step is easy, it might take some more effort to fine-tune it to your needs. Since, especially in blocking mode, even legal requests might get blocked; we recommend first running ModSecurity in the detection mode and observing its logs. At the same time, it already checks incoming traffic for malicious requests.
 

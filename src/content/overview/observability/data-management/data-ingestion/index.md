@@ -25,7 +25,7 @@ Each Giant Swarm cluster comes pre-configured with:
 
 - **[Prometheus Operator](https://prometheus-operator.dev/)**: Manages Prometheus instances and provides CRDs for metric collection configuration
 - **[Grafana Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/)**: Acts as the monitoring agent for metrics, logs, and traces collection
-- **Central storage**: Metrics are stored in [Grafana Mimir](https://grafana.com/oss/mimir/), logs in [Grafana Loki](https://grafana.com/docs/loki/), and traces in [Grafana Tempo](https://grafana.com/oss/tempo/)
+- **Central storage**: Metrics are stored in [Grafana Mimir](https://grafana.com/oss/mimir/), logs in [Grafana Loki](https://grafana.com/docs/loki/latest/), and traces in [Grafana Tempo](https://grafana.com/oss/tempo/)
 
 This architecture allows you to configure data collection declaratively using Kubernetes Custom Resources, making it easy to integrate into your existing deployment workflows.
 

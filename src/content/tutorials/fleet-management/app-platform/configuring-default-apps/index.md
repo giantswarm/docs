@@ -28,7 +28,7 @@ Customizing the app's configuration means providing overrides to the Helm chart'
 
 In order to find out what options you can customize for each app, you can refer to the app's default values file in the GitHub repository.
 
-For example, for the [app providing CoreDNS](https://github.com/giantswarm/coredns-app) you can refer to the file [helm/coredns-app/values.yaml](https://github.com/giantswarm/coredns-app/blob/master/helm/coredns-app/values.yaml) in the repository.
+For example, for the [app providing CoreDNS](https://github.com/giantswarm/coredns-app) you can refer to the file [helm/coredns-app/values.yaml](https://github.com/giantswarm/coredns-app/blob/main/helm/coredns-app/values.yaml) in the repository.
 
 If you can't find the default values file for the app you need to customize the configuration for, please reach out to your account engineer.
 

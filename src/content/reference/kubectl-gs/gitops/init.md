@@ -30,7 +30,7 @@ The structure created by the command is presented below.
 └── management-clusters
 ```
 
-The security architecture of the GitOps repository relies on [Mozilla SOPS](https://github.com/mozilla/sops),
+The security architecture of the GitOps repository relies on [Mozilla SOPS](https://github.com/getsops/sops),
 however the encryption is not performed automatically by `kubectl-gs`. Please download and run the `sops`
 binary to be able to decrypt and encrypt secrets.
 
