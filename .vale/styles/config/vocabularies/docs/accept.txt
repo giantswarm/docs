@@ -39,6 +39,7 @@ CAPVCD
 CAPZ
 CIDR[s]?
 CLI
+CNAME
 cluster-vsphere
 [Cc]ontainerd
 [Cc]rossplane
@@ -62,6 +63,7 @@ ENI[s]?
 ESXi
 [E|e]tcd
 [E|e]xtract
+FQDN
 [F|f]alco
 firewalling
 freely
@@ -72,9 +74,11 @@ gracefully
 [G|g]rafana
 Hashicorp
 Honeybadger
+[H|h]ostname
 HPA
 htpasswd
 HTTP
+HTTPRoute[s]?
 hyperparameter
 impl_title
 IP[s]?

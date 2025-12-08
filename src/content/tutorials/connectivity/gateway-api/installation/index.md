@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2025-10-17
+last_review_date: 2025-12-04
 ---
 
 ## Prerequisites
@@ -41,20 +41,6 @@ data:
   values: |
     clusterID: <CLUSTER_NAME>
     organization: <ORGANIZATION>
-    apps:
-      gatewayApiConfig:
-        userConfig:
-          configMap:
-            values: |
-              gateways:
-                default:
-                  dnsName: ingress
-      gatewayApiCrds:
-        userConfig:
-          configMap:
-            values: |
-              install:
-                inferencepools: "standard"
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
@@ -73,12 +59,10 @@ spec:
     configMap:
       name: <CLUSTER_NAME>-gateway-api-bundle
       namespace: org-<ORGANIZATION>
-  version: 1.1.0
+  version: 1.4.0
 ```
 
-In the configuration, you enable the gateway to be the default ingress method for your cluster. Also, the [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) CRDs are installed in the workload cluster.
-
-Run `kubectl apply -f` command on your management cluster to install the bundle then wait until the child apps are deployed (CRDs, envoy gateway and gateway default config).
+Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until the child apps are deployed (CRDs, Envoy Gateway, and Gateway default config).
 
 ## Configuration
 
@@ -101,7 +85,7 @@ global:
 
 ### Using the default gateway
 
-When you install the Gateway API Bundle, it automatically creates a default Gateway Class called `giantswarm-default` that's pointing to the envoy controller. You can verify it exists on your workload cluster:
+When you install the Gateway API Bundle, it automatically creates a default GatewayClass called `giantswarm-default` managed by the Envoy Gateway controller. You can verify it exists on your workload cluster:
 
 ```bash
 kubectl get gatewayclass
@@ -114,79 +98,117 @@ NAME                 CONTROLLER                                      ACCEPTED
 giantswarm-default   gateway.envoyproxy.io/gatewayclass-controller   True
 ```
 
-Additionally, it also creates a default gateway ready to use in the cluster:
+Additionally, it also creates the `giantswarm-default` Gateway ready to use in the cluster:
 
 ```text
 NAME                 CLASS                ADDRESS                            PROGRAMMED
 giantswarm-default   giantswarm-default   axx8.eu-west-2.elb.amazonaws.com   True
 ```
 
-This default Gateway is configured to handle traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to use immediately with HTTPRoutes.
+**Note**: Since DNS and TLS certificates in the Gateway API world are different from Ingress, you must configure which domains the Gateway accepts.
 
-**Note**: In case you have already running the ingress-nginx controller in your cluster, talk to us to help you with the migration.
+The default Gateway is configured to accept traffic for your cluster's base domain (`*.CLUSTER_ID.k8s.gigantic.io`) and is ready to attach any HTTPRoute resources matching that pattern. However, no TLS certificates or DNS records are automatically created based on the HTTPRoute resources.
 
-### Custom gateway setup (optional)
+#### Option 1: Adding each subdomain
 
-If you need additional Gateways for specific requirements, you can create custom ones:
+You can define a list of subdomains inside the HTTPS listener. This will automatically create a CNAME (Canonical Name) DNS record pointing to the Gateway load balancer and add it to the `dnsNames` list in the certificate.
 
 ```yaml
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: custom-gateway
-  namespace: envoy-gateway-system
-spec:
-  gatewayClassName: giantswarm-default
-  listeners:
-  - name: http
-    protocol: HTTP
-    port: 80
-    hostname: "*.example.com"
-  - name: https
-    protocol: HTTPS
-    port: 443
-    hostname: "*.example.com"
-    tls:
-      mode: Terminate
-      certificateRefs:
-      - name: example-tls-cert
-        kind: Secret
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  listeners:
+                    https:
+                      subdomains:
+                      - myapplication
 ```
 
-### Custom gateway configuration
+**Note**: The base domain is appended to each subdomain to compose the FQDN (Fully Qualified Domain Name), `myapplication.CLUSTER_ID.k8s.gigantic.io` in our example.
 
-For production use, customize the Gateway API Config app with your specific requirements:
+#### Option 2: Overriding the base domain
+
+It's possible to completely override the base domain and make the Gateway only accept a domain that is not the cluster domain.
 
 ```yaml
-# gateway-api-config-values.yaml
-gateways:
-  production:
-    hostnames:
-      - "api.example.com"
-      - "*.apps.example.com"
-    tls:
-      enabled: true
-      certificateRef:
-        name: production-tls
-        namespace: giantswarm
-  staging:
-    hostnames:
-      - "staging.example.com"
-    tls:
-      enabled: false
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  overrideBaseDomain: "example.com"
+                  listeners:
+                    https:
+                      subdomains:
+                      - myapplication
 ```
 
-Apply the configuration:
+This results in a Gateway with an HTTPS listener that accepts traffic for `myapplication.example.com` with a TLS certificate attached.
 
-```bash
-kubectl gs template app \
-  --catalog=giantswarm \
-  --cluster-name=CLUSTER_NAME \
-  --organization=ORGANIZATION \
-  --name=gateway-api-config \
-  --target-namespace=giantswarm \
-  --user-configmap=gateway-api-config-values.yaml \
-  --version=0.5.1 > gateway-api-config.yaml
+#### Option 3: Adding a new listener
 
-kubectl apply -f gateway-api-config.yaml
+In this example, you observe how to add a new listener for the base domain `example.com`. In this case, TLS certificates are created by cert-manager, but external-dns integration is disabled.
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  listeners:
+                    example-https:
+                      name: example-https
+                      protocol: HTTPS
+                      hostname: '*.example.com'
+                      port: 443
+                      allowedRoutes:
+                        namespaces:
+                          from: All
+                      tls:
+                        mode: Terminate
+                        certificateRefs: []
+                      subdomains:
+                      - myapplication
+                      - docs
+                      - otherapp
+                      certificate:
+                        enabled: true
+                      dnsEndpoints:
+                        enabled: false
 ```
+
+You can add multiple listeners to the same Gateway to accept traffic from different domains. Each listener can have its own configuration for TLS certificates, DNS endpoints, and subdomain lists, allowing you to manage multiple domains within a single Gateway resource. The `giantswarm-default` gateway comes with 2 listeners enabled by default: one on port 80 (HTTP) and one on port 443 (HTTPS). Keep in mind that there is a limit of 64 listeners per Gateway, and each listener must have a unique combination of port, protocol, and hostname.
