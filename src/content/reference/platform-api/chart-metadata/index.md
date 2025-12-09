@@ -6,7 +6,7 @@ menu:
   principal:
     identifier: reference-platform-api-chartmetadata
     parent: reference-platform-api
-last_review_date: 2025-11-28
+last_review_date: 2025-12-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
