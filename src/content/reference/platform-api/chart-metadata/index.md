@@ -179,6 +179,12 @@ Example: `azure,aws`
 
 Legacy Chart.yaml key: `restrictions` / `compatibleProviders`
 
+#### io.giantswarm.ui.logo {#io.giantswarm.ui.logo}
+
+OPTIONAL URL of a logo with landscape aspect ratio.
+
+Legacy Chart.yaml key: `annotations` / `ui.giantswarm.io/logo`
+
 ### apiVersion
 
 **REQUIRED** Specify the helm chart schema version. The recommended value is `v2`.
