@@ -6,7 +6,7 @@ menu:
   principal:
     identifier: reference-platform-api-chartmetadata
     parent: reference-platform-api
-last_review_date: 2025-11-28
+last_review_date: 2025-12-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -87,29 +87,29 @@ Some terminology for this overview:
 
 All annotations listed here are also represented in OCI repositories where charts get pushed to by the Giant Swarm CI/CD pipeline. In particular, they become part of the "config" manifest, which is a representation of the `Chart.yaml` content. In addition, the annotations are made available in the manifest of each repository.
 
-#### io.giantswarm.application.audience
+#### io.giantswarm.application.audience {#io.giantswarm.application.audience}
 
 **REQUIRED** Indicates who is encouraged to deploy and use this application.
 
 The value `all` means that the application is for everyone, including Giant Swarm customers. `giantswarm` means that the app is built for Giant Swarm internal purposes, not to be used by customers.
 
-#### io.giantswarm.application.managed
+#### io.giantswarm.application.managed {#io.giantswarm.application.managed}
 
 **REQUIRED** Indicates whether Giant Swarm is responsible for operating the application. The value `true` indicates that Giant Swarm takes responsibility in general. `false` means that customers deploying the application are responsible for operating it.
 
-#### io.giantswarm.application.team
+#### io.giantswarm.application.team {#io.giantswarm.application.team}
 
 **REQUIRED** Short form of the Giant Swarm product team that owns the application. Example: "honeybadger"
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/team`
 
-#### io.giantswarm.application.app-type
+#### io.giantswarm.application.app-type {#io.giantswarm.application.app-type}
 
 OPTIONAL application type indicator. Value can be `bundle` or `cluster`.
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/app-type`
 
-#### io.giantswarm.application.readme
+#### io.giantswarm.application.readme {#io.giantswarm.application.readme}
 
 URL to the application readme file.
 
@@ -119,7 +119,7 @@ This annotation is added automatically by the CI/CD pipeline with a value specif
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/readme`
 
-#### io.giantswarm.application.values-schema
+#### io.giantswarm.application.values-schema {#io.giantswarm.application.values-schema}
 
 URL to the application's values.yaml JSON schema.
 
@@ -129,7 +129,7 @@ This annotation is added automatically by the CI/CD pipeline with a value specif
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/values-schema`
 
-#### io.giantswarm.application.upstream-chart-version
+#### io.giantswarm.application.upstream-chart-version {#io.giantswarm.application.upstream-chart-version}
 
 OPTIONAL if the chart is based on an upstream chart, this shows the original chart version.
 
@@ -137,7 +137,7 @@ Example: `1.2.3`
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/upstream-chart-version`
 
-#### io.giantswarm.application.upstream-chart-url
+#### io.giantswarm.application.upstream-chart-url {#io.giantswarm.application.upstream-chart-url}
 
 OPTIONAL if the chart is based on an upstream chart, this shows the original chart URL.
 
@@ -145,13 +145,13 @@ Example: `https://github.com/giantswarm/hello-world-app`
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/upstream-chart-url`
 
-#### io.giantswarm.application.restrictions.cluster-singleton
+#### io.giantswarm.application.restrictions.cluster-singleton {#io.giantswarm.application.restrictions.cluster-singleton}
 
 OPTIONAL Indicates that the application can be installed only once per cluster. Can be `true` or `false`.
 
 Legacy Chart.yaml key: `restrictions` / `clusterSingleton`
 
-#### io.giantswarm.application.restrictions.fixed-namespace
+#### io.giantswarm.application.restrictions.fixed-namespace {#io.giantswarm.application.restrictions.fixed-namespace}
 
 OPTIONAL Namespace the application must be installed into.
 
@@ -159,25 +159,31 @@ Example: `helloworld`
 
 Legacy Chart.yaml key: `restrictions` / `fixedNamespace`
 
-#### io.giantswarm.application.restrictions.gpu-instances
+#### io.giantswarm.application.restrictions.gpu-instances {#io.giantswarm.application.restrictions.gpu-instances}
 
 OPTIONAL Indicate whether the application requires GPU nodes. Can be `true` or `false`.
 
 Legacy Chart.yaml key: `restrictions` / `gpuInstances`
 
-#### io.giantswarm.application.restrictions.namespace-singleton
+#### io.giantswarm.application.restrictions.namespace-singleton {#io.giantswarm.application.restrictions.namespace-singleton}
 
 OPTIONAL Indicates that the application can be installed only once per namespace. Can be `true` or `false`.
 
 Legacy Chart.yaml key: `restrictions` / `namespaceSingleton`
 
-#### io.giantswarm.application.restrictions.compatible-providers
+#### io.giantswarm.application.restrictions.compatible-providers {#io.giantswarm.application.restrictions.compatible-providers}
 
 OPTIONAL List of infrastructure providers the application is compatible with. Multiple provider names must be separated with comma.
 
 Example: `azure,aws`
 
 Legacy Chart.yaml key: `restrictions` / `compatibleProviders`
+
+#### io.giantswarm.ui.logo {#io.giantswarm.ui.logo}
+
+OPTIONAL URL of a logo with landscape aspect ratio.
+
+Legacy Chart.yaml key: `annotations` / `ui.giantswarm.io/logo`
 
 ### apiVersion
 
@@ -235,6 +241,6 @@ Example: `2.9.1`
 
 The listing above shows which metadata annotations are expected from Chart.yaml. This sections now is for additional annotations we expect in OCI artifact manifests for charts.
 
-### org.opencontainers.image.created
+### org.opencontainers.image.created {#org.opencontainers.image.created}
 
 Date and time of creation of the artifact. helm push sets this to the current date automatically when pushing.
