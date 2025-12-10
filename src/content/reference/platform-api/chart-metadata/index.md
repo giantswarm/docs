@@ -89,13 +89,17 @@ All annotations listed here are also represented in OCI repositories where chart
 
 #### io.giantswarm.application.audience {#io.giantswarm.application.audience}
 
-**REQUIRED** Indicates who is encouraged to deploy and use this application.
+**REQUIRED** if the chart `type` is not specified or `application`, otherwise (`type: library`) not recommended.
+
+Indicates who is encouraged to deploy and use this application.
 
 The value `all` means that the application is for everyone, including Giant Swarm customers. `giantswarm` means that the app is built for Giant Swarm internal purposes, not to be used by customers.
 
 #### io.giantswarm.application.managed {#io.giantswarm.application.managed}
 
-**REQUIRED** Indicates whether Giant Swarm is responsible for operating the application. The value `true` indicates that Giant Swarm takes responsibility in general. `false` means that customers deploying the application are responsible for operating it.
+**REQUIRED** if the chart `type` is not specified or `application`, otherwise (`type: library`) not recommended.
+
+Indicates whether Giant Swarm is responsible for operating the application. The value `true` indicates that Giant Swarm takes responsibility in general. `false` means that customers deploying the application are responsible for operating it.
 
 #### io.giantswarm.application.team {#io.giantswarm.application.team}
 
