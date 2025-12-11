@@ -113,6 +113,12 @@ OPTIONAL application type indicator. Value can be `bundle` or `cluster`.
 
 Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/app-type`
 
+#### io.giantswarm.application.two-step-install {#io.giantswarm.application.two-step-install}
+
+OPTIONAL Instructs chart-operator to deploy this chart in two steps, if value is "true". This allows for deploying CRDs in the first step, and then CRs using these CRDs in the second step.
+
+Legacy Chart.yaml key: `annotations` / `application.giantswarm.io/two-step-install`
+
 #### io.giantswarm.application.readme {#io.giantswarm.application.readme}
 
 URL to the application readme file.
