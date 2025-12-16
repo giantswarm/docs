@@ -1,0 +1,51 @@
+{{- /* Generate llms.txt - a markdown index of all documentation pages */ -}}
+# Giant Swarm Documentation
+
+{{- /* Define section order and titles */ -}}
+{{- $sectionOrder := slice "overview" "getting-started" "tutorials" "reference" "support" -}}
+{{- $sectionTitles := dict "overview" "Overview" "getting-started" "Getting Started" "tutorials" "Tutorials" "reference" "Reference" "support" "Support & Training" -}}
+
+{{- /* Filter pages: exclude vintage, changes, meta, search, and empty sections */ -}}
+{{- $filteredPages := slice -}}
+{{- range .Site.RegularPages -}}
+  {{- $section := .Section -}}
+  {{- if and (ne $section "vintage") (ne $section "changes") (ne $section "meta") (ne $section "search") (ne $section "") -}}
+    {{- $filteredPages = $filteredPages | append . -}}
+  {{- end -}}
+{{- end }}
+
+{{- /* Output sections in predefined order */ -}}
+{{ range $sectionOrder -}}
+  {{- $sectionKey := . -}}
+  {{- $pages := where $filteredPages "Section" $sectionKey -}}
+  {{- if $pages }}
+
+## {{ $sectionKey }}
+    {{- /* Sort pages by weight, then by title */ -}}
+    {{- range sort $pages ".Weight" }}
+- [{{ .Title }}]({{ $.Site.BaseURL }}{{ strings.TrimPrefix "/" .RelPermalink }}): {{ with .Description }}{{ . }}{{ end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* Collect unique sections that haven't been processed yet */ -}}
+{{- $remainingSections := slice -}}
+{{- range $filteredPages -}}
+  {{- $currentSection := .Section -}}
+  {{- if not (in $sectionOrder $currentSection) -}}
+    {{- if not (in $remainingSections $currentSection) -}}
+      {{- $remainingSections = $remainingSections | append $currentSection -}}
+    {{- end -}}
+  {{- end -}}
+{{- end }}
+
+{{- /* Output remaining sections */ -}}
+{{ range $remainingSections -}}
+  {{- $sectionKey := . -}}
+  {{- $pages := where $filteredPages "Section" $sectionKey }}
+
+## {{ $sectionKey }}
+  {{- range sort $pages ".Weight" }}
+- [{{ .Title }}]({{ $.Site.BaseURL }}{{ strings.TrimPrefix "/" .RelPermalink }}): {{ with .Description }}{{ . }}{{ end }}
+  {{- end }}
+{{- end }}
