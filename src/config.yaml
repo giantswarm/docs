@@ -53,6 +53,18 @@ taxonomies:
 permalinks:
   changes_categories: /changes/:slug
 
+outputFormats:
+  llmstxt:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+    notAlternative: false
+
+outputs:
+  home:
+    - html
+    - llmstxt
+
 # Populate the `.Site.Params` variable for use in templates and shortcodes
 params:
   impl_titles:
