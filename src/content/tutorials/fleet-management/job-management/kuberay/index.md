@@ -15,7 +15,7 @@ user_questions:
 last_review_date: 2025-10-21
 ---
 
-[Ray](https://ray.io/) is a unified framework for scaling AI and Python applications. It provides a simple, universal API for building distributed applications and includes libraries for machine learning, reinforcement learning, and hyperparameter tuning. [KubeRay](https://ray-project.github.io/kuberay/) is the official Kubernetes operator for Ray that automates the deployment, scaling, and management of Ray clusters on Kubernetes.
+[Ray](https://www.ray.io/) is a unified framework for scaling AI and Python applications. It provides a simple, universal API for building distributed applications and includes libraries for machine learning, reinforcement learning, and hyperparameter tuning. [KubeRay](https://ray-project.github.io/kuberay/) is the official Kubernetes operator for Ray that automates the deployment, scaling, and management of Ray clusters on Kubernetes.
 
 Key benefits of using Ray with KubeRay on Giant Swarm:
 
@@ -210,14 +210,14 @@ Set up port forwarding to access your Ray cluster:
 kubectl port-forward service/sample-raycluster-head-svc 8265:8265
 ```
 
-Let's calculate the value of pi using the Monte Carlo method. The Python script can be found [in this gist file](http://bit.ly/4o7Tc2h). You can use this command to submit the job to the Ray cluster API.
+Let's calculate the value of pi using the Monte Carlo method. The Python script can be found [in this gist file](https://gist.githubusercontent.com/pipo02mix/a32771ec8358d338426c915e2b7a8078/raw/9bb509f37dba7edf09f042cee5e71f78aa0ccb10/dt.py). You can use this command to submit the job to the Ray cluster API.
 
 ```bash
 # Submit a job using Ray CLI
 ray job submit \
   --address="http://localhost:8265" \
   --runtime-env-json='{"pip": ["numpy"], "working_dir": "."}' \
-  -- python http://bit.ly/4o7Tc2h
+  -- python https://gist.githubusercontent.com/pipo02mix/a32771ec8358d338426c915e2b7a8078/raw/9bb509f37dba7edf09f042cee5e71f78aa0ccb10/dt.py
 ```
 
 Observe in the dashboard how the job is executed in parallel and how resources are scaled based on load.

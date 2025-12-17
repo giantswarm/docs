@@ -292,14 +292,18 @@ Since the health check might get false negative when two pods are running on the
 
 At last this means there is currently no way of preserving the original client IP using internal AWS Network Load Balancers being accessed from inside the same cluster, except of using PROXY protocol and `externalTrafficPolicy: Cluster` which leads to the AWS Network Load Balancer balancing traffic across all nodes and adding an extra hop for distribution inside the cluster.
 
-One way to make `externalTrafficPolicy: Local` work with PROXY protocol is to explicitly configure AWS load balancer health checks to use the traffic port. Important: Since the health check only supports a single protocol per service, you can only use either HTTP or HTTPS ports not both.
+To use `externalTrafficPolicy: Local` with PROXY protocol, you need to configure AWS load balancer health checks to use the appropriate traffic port and protocol. We recommend setting the health check port annotation to the name of your HTTP port and the protocol to "HTTP", so that they match what your service expects. Avoid using "traffic-port" as the value, since it is applied globally to all target groups and can cause conflicts if your service exposes multiple ports or protocols.
+
+It is important to specify a correct health check path. For performance and reliability, we recommend configuring the health check to target a resource that returns a static response directly from ingress-nginx and always returns an HTTP 200 status code. The ingress-nginx controller exposes the `/healthz` path for exactly this purpose.
 
 ```yaml
 metadata:
   name: my-service
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "traffic-port"
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTPS"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "http"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /healthz
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "2"
 ```
 
 ##### Security Group configuration on internal AWS Network Load Balancers

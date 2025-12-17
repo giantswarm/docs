@@ -149,7 +149,7 @@ In case the volume to be expanded contains a file system, the [resizing is only 
 {{< tabs >}}
 {{< tab id="expansion-specifics-aws" for-impl="aws_any" >}}
 
-Expanding EBS volumes is a time consuming operation. Also, there is a [per-volume quota](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/modify-volume-requirements.html) of one modification every 6 hours.
+Expanding EBS volumes is a time consuming operation. Also, there is a [per-volume quota](https://docs.aws.amazon.com/ebs/latest/userguide/modify-volume-requirements.html) of one modification every 6 hours.
 
 {{< /tab >}}
 {{< tab id="expansion-specifics-azure" for-impl="azure_any" >}}

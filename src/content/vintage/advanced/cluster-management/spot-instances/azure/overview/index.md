@@ -25,7 +25,7 @@ As of workload cluster release v{{% first_azure_spotinstances_version %}} for Az
 
 The main differences between spot and on-demand VMs are that spot VMs can be terminated any time by Microsoft Azure. They are also more frequently unavailable.
 
-By default at Giant Swarm you can create node pool with spot VMs that will be dynamically billed up to the max price of the on-demand VMs. This is the generic [Azure feature](https://docs.microsoft.com/en-us/azure/virtual-machines/spot-vms#pricing) and the value is set as `-1` by default at creation for the max price.
+By default at Giant Swarm you can create node pool with spot VMs that will be dynamically billed up to the max price of the on-demand VMs. This is the generic [Azure feature](https://learn.microsoft.com/en-us/azure/virtual-machines/spot-vms#pricing) and the value is set as `-1` by default at creation for the max price.
 
 Instead of default behavior you can also set the hourly max price for a spot VM which is determined by Azure through a bidding system. The resulting price varies over time and is usually much lower than the cost of the same VM size when booked as on-demand VM.
 

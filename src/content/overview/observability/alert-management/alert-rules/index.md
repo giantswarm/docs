@@ -139,7 +139,7 @@ spec:
           severity: warning
 ```
 
-For more information about writing LogQL queries, see the [Loki LogQL documentation](https://grafana.com/docs/loki/latest/logql/).
+For more information about writing LogQL queries, see the [Loki LogQL documentation](https://grafana.com/docs/loki/latest/query/).
 
 ## Rule scoping
 
