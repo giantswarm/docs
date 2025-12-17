@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/giantswarm/crd-docs-generator/refs/heads/main/config-schema.json
 template_path: ./crd.template
 # List of repositories containing CRDs.
 # Sequence is important here if several repos provide the same CRD (based on the full name).
