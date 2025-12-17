@@ -35,6 +35,8 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
       catalogs.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
