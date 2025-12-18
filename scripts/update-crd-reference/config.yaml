@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/giantswarm/crd-docs-generator/refs/heads/main/config-schema.json
 template_path: ./crd.template
 # List of repositories containing CRDs.
 # Sequence is important here if several repos provide the same CRD (based on the full name).
@@ -27,21 +28,29 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
       apps.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
       catalogs.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
       charts.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
   - url: https://github.com/giantswarm/config-controller
     organization: giantswarm
     short_name: config-controller
