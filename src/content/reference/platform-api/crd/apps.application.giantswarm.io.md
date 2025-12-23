@@ -17,6 +17,8 @@ crd:
     - v1alpha1
   topics:
     - apps
+  deprecation:
+    info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -28,6 +30,10 @@ source_repository_ref: v0.6.2
 ---
 
 # App
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+We are moving towards deploying Helm charts using Flux and HelmRelease resources.
+</p>
 
 
 <p class="crd-description">App represents a managed app which a user intended to install. It is reconciled by app-operator.</p>

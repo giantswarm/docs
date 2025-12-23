@@ -17,6 +17,8 @@ crd:
     - v1alpha1
   topics:
     - apps
+  deprecation:
+    info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -28,6 +30,10 @@ source_repository_ref: v0.6.2
 ---
 
 # Catalog
+<p class="well disclaimer">
+<i class="fa fa-warning"></i> <b>Deprecation:</b>
+We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
+</p>
 
 
 <p class="crd-description">Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.</p>
