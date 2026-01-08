@@ -59,7 +59,7 @@ kind: Silence
 metadata:
   labels:
     # Required: specifies which tenant this silence belongs to
-    observability.giantswarm.io/tenant: my_team
+    observability.giantswarm.io/tenant: my_tenant
   annotations:
     # When the silence expires (yyyy-mm-dd or RFC3339 format)
     valid-until: "2025-07-20T06:00:00Z"
@@ -85,7 +85,7 @@ apiVersion: observability.giantswarm.io/v1alpha2
 kind: Silence
 metadata:
   labels:
-    observability.giantswarm.io/tenant: my_team
+    observability.giantswarm.io/tenant: my_tenant
   annotations:
     # Silence expires at end of load testing
     valid-until: "2025-07-20T18:00:00Z"
@@ -214,7 +214,7 @@ apiVersion: observability.giantswarm.io/v1alpha2
 kind: Silence
 metadata:
   labels:
-    observability.giantswarm.io/tenant: my_team
+    observability.giantswarm.io/tenant: my_tenant
   annotations:
     # Extended end time for longer maintenance
     valid-until: "2025-07-20T08:00:00Z"
@@ -236,7 +236,7 @@ Delete silences before their expiration time:
 kubectl delete silence maintenance-window -n my-namespace
 
 # Remove all silences for a tenant (be careful!)
-kubectl delete silences -l observability.giantswarm.io/tenant=my_team -n my-namespace
+kubectl delete silences -l observability.giantswarm.io/tenant=my_tenant -n my-namespace
 ```
 
 ## Integration with alert routing

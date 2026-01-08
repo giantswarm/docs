@@ -62,7 +62,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    observability.giantswarm.io/tenant: my_team
+    observability.giantswarm.io/tenant: my_tenant
   name: application-metrics
   namespace: my-namespace
 spec:
@@ -105,7 +105,7 @@ spec:
   relabelings:
   # Set tenant for data routing
   - action: replace
-    replacement: my_team
+    replacement: my_tenant
     targetLabel: giantswarm_observability_tenant
 
   # Add application version from pod labels

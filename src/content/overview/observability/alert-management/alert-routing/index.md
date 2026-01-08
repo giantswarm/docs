@@ -54,7 +54,7 @@ metadata:
     # Required: marks this secret as an Alertmanager configuration
     observability.giantswarm.io/kind: alertmanager-config
     # Required: specifies the tenant for this configuration
-    observability.giantswarm.io/tenant: my_team
+    observability.giantswarm.io/tenant: my_tenant
   name: my-alertmanager-config
   namespace: default
 stringData:
