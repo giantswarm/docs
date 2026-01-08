@@ -100,7 +100,7 @@ spec:
     metadata:
       labels:
         # Enable automatic log collection
-        observability.giantswarm.io/tenant: my_team
+        observability.giantswarm.io/tenant: my_tenant
         app: nginx
     spec:
       containers:
@@ -197,7 +197,7 @@ spec:
     metadata:
       labels:
         # Required for trace data routing
-        observability.giantswarm.io/tenant: my_team
+        observability.giantswarm.io/tenant: my_tenant
         app: traced-app
     spec:
       containers:
