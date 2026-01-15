@@ -225,4 +225,7 @@ global:
 
 - [cluster chart repository](https://github.com/giantswarm/cluster) - Provider-independent base chart
 - [cluster-aws chart repository](https://github.com/giantswarm/cluster-aws) - AWS provider chart
+- [cluster-azure chart repository](https://github.com/giantswarm/cluster-azure) - Azure provider chart
+- [cluster-vsphere chart repository](https://github.com/giantswarm/cluster-vsphere) - vSphere provider chart
+- [cluster-cloud-director chart repository](https://github.com/giantswarm/cluster-cloud-director) - VMware Cloud Director provider chart
 - [App configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) - General app configuration practices
