@@ -24,21 +24,27 @@ Every workload cluster has a set of apps installed automatically at creation tim
 
 While the default configuration works for most cases, sometimes customization is needed. This guide explains how to customize default apps using the cluster chart values.
 
+## App deployment mechanism
+
+Default applications are deployed using two mechanisms:
+- **App CR** - Giant Swarm's in-house app management
+- **HelmRelease CR** - Flux CD's Helm controller
+
 ## Understanding app keys
 
 Each default app has a `configKey` that identifies it in the values structure. You customize apps under `global.apps.<configKey>`.
 
 Common apps and their keys:
 
-| Application | Config Key | Description |
-|-------------|------------|-------------|
-| AWS EBS CSI Driver | `awsEbsCsiDriver` | EBS volume provisioning (AWS) |
-| Cilium | `cilium` | CNI networking |
-| CoreDNS | `coreDns` | Cluster DNS |
-| cert-manager | `certManager` | Certificate management |
-| External DNS | `externalDns` | External DNS integration |
-| Cluster Autoscaler | `clusterAutoscaler` | Node autoscaling |
-| Vertical Pod Autoscaler | `verticalPodAutoscaler` | Pod resource recommendations |
+| Application                                                                          | Config Key              | Mechanism     |
+|--------------------------------------------------------------------------------------|-------------------------|---------------|
+| [AWS EBS CSI Driver](https://github.com/giantswarm/aws-ebs-csi-driver-app)           | `awsEbsCsiDriver`       | `HelmRelease` |
+| [Cilium](https://github.com/giantswarm/cilium-app)                                   | `cilium`                | `HelmRelease`         |
+| [CoreDNS](https://github.com/giantswarm/coredns-app)                                 | `coreDns`               | `HelmRelease`         |
+| [cert-manager](https://github.com/giantswarm/cert-manager-app)                       | `certManager`           | `App`         |
+| [External DNS](https://github.com/giantswarm/external-dns-app)                       | `externalDns`           | `App`         |
+| [Cluster Autoscaler](https://github.com/giantswarm/cluster-autoscaler-app)           | `clusterAutoscaler`     | `App`         |
+| [Vertical Pod Autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app) | `verticalPodAutoscaler` | `App`         |
 
 For a complete list, check the `values.schema.json` in your provider's cluster chart.
 
@@ -59,40 +65,11 @@ global:
   apps:
     coreDns:
       values:
-        configmap:
+        ConfigMap:
           cache: 15
 ```
 
 This example reduces the CoreDNS cache lifetime from the default 30 seconds to 15 seconds.
-
-### AWS EBS CSI Driver example
-
-```yaml
-global:
-  apps:
-    awsEbsCsiDriver:
-      values:
-        controller:
-          resources:
-            limits:
-              memory: 256Mi
-        node:
-          tolerateAllTaints: true
-```
-
-### Cilium example
-
-```yaml
-global:
-  apps:
-    cilium:
-      values:
-        hubble:
-          relay:
-            enabled: true
-          ui:
-            enabled: true
-```
 
 ## Method 2: External ConfigMaps or Secrets
 
@@ -112,6 +89,18 @@ The referenced resource must:
 
 - Exist in the same namespace as the cluster
 - Have values under a key named `values`
+
+#### For HelmRelease-based Apps
+
+The `extraConfigs` field uses:
+- `kind`: `ConfigMap` or `Secret` (PascalCase)
+- `optional`: boolean - if `true`, missing resources are ignored
+
+#### For App CR-based Apps
+
+The `extraConfigs` field uses:
+- `kind`: `configMap` or `secret` (camelCase)
+- `priority`: integer (1-150, default 25) - higher priority values override lower ones
 
 ### Creating the ConfigMap
 
@@ -191,7 +180,7 @@ global:
     # Customize CoreDNS
     coreDns:
       values:
-        configmap:
+        ConfigMap:
           cache: 15
 
     # Customize Cilium
@@ -206,7 +195,7 @@ global:
     # Customize cert-manager with external config
     certManager:
       extraConfigs:
-        - kind: ConfigMap
+        - kind: configMap
           name: cert-manager-org-config
           optional: true
       values:
