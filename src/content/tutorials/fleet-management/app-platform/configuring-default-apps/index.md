@@ -38,33 +38,33 @@ Each default app has a `configKey` that identifies it in the values structure. Y
 
 These apps are deployed on all clusters regardless of the infrastructure provider:
 
-| Application | Config Key | Mechanism |
-|-------------|------------|-----------|
-| [Cilium](https://github.com/giantswarm/cilium-app) | `cilium` | `HelmRelease` |
-| [CoreDNS](https://github.com/giantswarm/coredns-app) | `coreDns` | `HelmRelease` |
-| [Network Policies](https://github.com/giantswarm/network-policies-app) | `networkPolicies` | `HelmRelease` |
-| [Node Problem Detector](https://github.com/giantswarm/node-problem-detector-app) | `nodeProblemDetector` | `HelmRelease` |
-| [Vertical Pod Autoscaler CRD](https://github.com/giantswarm/vertical-pod-autoscaler-crd) | `verticalPodAutoscalerCrd` | `HelmRelease` |
-| [cert-exporter](https://github.com/giantswarm/cert-exporter) | `certExporter` | `App` |
-| [cert-manager](https://github.com/giantswarm/cert-manager-app) | `certManager` | `App` |
-| [Chart Operator Extensions](https://github.com/giantswarm/chart-operator-extensions) | `chartOperatorExtensions` | `App` |
-| [Cilium ServiceMonitors](https://github.com/giantswarm/cilium-servicemonitors-app) | `ciliumServiceMonitors` | `App` |
-| [Cluster Autoscaler](https://github.com/giantswarm/cluster-autoscaler-app) | `clusterAutoscaler` | `App` |
-| [CoreDNS Extensions](https://github.com/giantswarm/coredns-extensions) | `coreDnsExtensions` | `App` |
-| [etcd Defrag](https://github.com/giantswarm/etcd-defrag-app) | `etcdDefrag` | `App` |
-| [etcd K8s Resources Count Exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter) | `etcdKubernetesResourcesCountExporter` | `App` |
-| [External DNS](https://github.com/giantswarm/external-dns-app) | `externalDns` | `App` |
-| [K8s Audit Metrics](https://github.com/giantswarm/k8s-audit-metrics) | `k8sAuditMetrics` | `App` |
-| [K8s DNS Node Cache](https://github.com/giantswarm/k8s-dns-node-cache-app) | `k8sDnsNodeCache` | `App` |
-| [Metrics Server](https://github.com/giantswarm/metrics-server-app) | `metricsServer` | `App` |
-| [Net Exporter](https://github.com/giantswarm/net-exporter) | `netExporter` | `App` |
-| [Node Exporter](https://github.com/giantswarm/node-exporter-app) | `nodeExporter` | `App` |
-| [Observability Bundle](https://github.com/giantswarm/observability-bundle) | `observabilityBundle` | `App` |
-| [Observability Policies](https://github.com/giantswarm/observability-policies-app) | `observabilityPolicies` | `App` |
-| [Prometheus Blackbox Exporter](https://github.com/giantswarm/prometheus-blackbox-exporter) | `prometheusBlackboxExporter` | `App` |
-| [Security Bundle](https://github.com/giantswarm/security-bundle) | `securityBundle` | `App` |
-| [Teleport Kube Agent](https://github.com/giantswarm/teleport-kube-agent-app) | `teleportKubeAgent` | `App` |
-| [Vertical Pod Autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app) | `verticalPodAutoscaler` | `App` |
+| Application                                                                                                 | Config Key | Mechanism |
+|-------------------------------------------------------------------------------------------------------------|------------|-----------|
+| [Cilium](https://github.com/giantswarm/cilium-app)                                                          | `cilium` | `HelmRelease` |
+| [CoreDNS](https://github.com/giantswarm/coredns-app)                                                        | `coreDns` | `HelmRelease` |
+| [Network Policies](https://github.com/giantswarm/network-policies-app)                                      | `networkPolicies` | `HelmRelease` |
+| [Node Problem Detector](https://github.com/giantswarm/node-problem-detector-app)                            | `nodeProblemDetector` | `HelmRelease` |
+| [Vertical Pod autoscaler CRD](https://github.com/giantswarm/vertical-pod-autoscaler-crd)                    | `verticalPodAutoscalerCrd` | `HelmRelease` |
+| [cert-exporter](https://github.com/giantswarm/cert-exporter)                                                | `certExporter` | `App` |
+| [cert-manager](https://github.com/giantswarm/cert-manager-app)                                              | `certManager` | `App` |
+| [Chart Operator Extensions](https://github.com/giantswarm/chart-operator-extensions)                        | `chartOperatorExtensions` | `App` |
+| [Cilium ServiceMonitors](https://github.com/giantswarm/cilium-servicemonitors-app)                          | `ciliumServiceMonitors` | `App` |
+| [Cluster autoscaler](https://github.com/giantswarm/cluster-autoscaler-app)                                  | `clusterAutoscaler` | `App` |
+| [CoreDNS Extensions](https://github.com/giantswarm/coredns-extensions)                                      | `coreDnsExtensions` | `App` |
+| [etcd Defrag](https://github.com/giantswarm/etcd-defrag-app)                                                | `etcdDefrag` | `App` |
+| [etcd k8s Resources Count Exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter) | `etcdKubernetesResourcesCountExporter` | `App` |
+| [External DNS](https://github.com/giantswarm/external-dns-app)                                              | `externalDns` | `App` |
+| [k8s Audit Metrics](https://github.com/giantswarm/k8s-audit-metrics)                                        | `k8sAuditMetrics` | `App` |
+| [k8s DNS Node Cache](https://github.com/giantswarm/k8s-dns-node-cache-app)                                  | `k8sDnsNodeCache` | `App` |
+| [Metrics Server](https://github.com/giantswarm/metrics-server-app)                                          | `metricsServer` | `App` |
+| [Net Exporter](https://github.com/giantswarm/net-exporter)                                                  | `netExporter` | `App` |
+| [Node Exporter](https://github.com/giantswarm/node-exporter-app)                                            | `nodeExporter` | `App` |
+| [Observability Bundle](https://github.com/giantswarm/observability-bundle)                                  | `observabilityBundle` | `App` |
+| [Observability Policies](https://github.com/giantswarm/observability-policies-app)                          | `observabilityPolicies` | `App` |
+| [Prometheus Blackbox Exporter](https://github.com/giantswarm/prometheus-blackbox-exporter)                  | `prometheusBlackboxExporter` | `App` |
+| [Security Bundle](https://github.com/giantswarm/security-bundle)                                            | `securityBundle` | `App` |
+| [Teleport Kube Agent](https://github.com/giantswarm/teleport-kube-agent-app)                                | `teleportKubeAgent` | `App` |
+| [Vertical Pod autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app)                        | `verticalPodAutoscaler` | `App` |
 
 ### AWS provider apps
 

@@ -40,6 +40,9 @@ CAPZ
 CIDR[s]?
 CLI
 CNAME
+cluster-aws
+cluster-azure
+cluster-cloud-director
 cluster-vsphere
 [Cc]ontainerd
 [Cc]rossplane
