@@ -42,42 +42,42 @@ These apps are deployed on all clusters regardless of the infrastructure provide
 |-------------------------------------------------------------------------------------------------------------|------------|-----------|
 | [Cilium](https://github.com/giantswarm/cilium-app)                                                          | `cilium` | `HelmRelease` |
 | [CoreDNS](https://github.com/giantswarm/coredns-app)                                                        | `coreDns` | `HelmRelease` |
-| [Network Policies](https://github.com/giantswarm/network-policies-app)                                      | `networkPolicies` | `HelmRelease` |
-| [Node Problem Detector](https://github.com/giantswarm/node-problem-detector-app)                            | `nodeProblemDetector` | `HelmRelease` |
-| [Vertical Pod autoscaler CRD](https://github.com/giantswarm/vertical-pod-autoscaler-crd)                    | `verticalPodAutoscalerCrd` | `HelmRelease` |
+| [network-policies-app](https://github.com/giantswarm/network-policies-app)                                      | `networkPolicies` | `HelmRelease` |
+| [node-problem-detector-app](https://github.com/giantswarm/node-problem-detector-app)                            | `nodeProblemDetector` | `HelmRelease` |
+| [vertical-pod-autoscaler-crd](https://github.com/giantswarm/vertical-pod-autoscaler-crd)                    | `verticalPodAutoscalerCrd` | `HelmRelease` |
 | [cert-exporter](https://github.com/giantswarm/cert-exporter)                                                | `certExporter` | `App` |
 | [cert-manager](https://github.com/giantswarm/cert-manager-app)                                              | `certManager` | `App` |
-| [Chart Operator Extensions](https://github.com/giantswarm/chart-operator-extensions)                        | `chartOperatorExtensions` | `App` |
-| [Cilium ServiceMonitors](https://github.com/giantswarm/cilium-servicemonitors-app)                          | `ciliumServiceMonitors` | `App` |
-| [Cluster autoscaler](https://github.com/giantswarm/cluster-autoscaler-app)                                  | `clusterAutoscaler` | `App` |
-| [CoreDNS Extensions](https://github.com/giantswarm/coredns-extensions)                                      | `coreDnsExtensions` | `App` |
-| [etcd Defrag](https://github.com/giantswarm/etcd-defrag-app)                                                | `etcdDefrag` | `App` |
-| [etcd k8s Resources Count Exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter) | `etcdKubernetesResourcesCountExporter` | `App` |
-| [External DNS](https://github.com/giantswarm/external-dns-app)                                              | `externalDns` | `App` |
-| [k8s Audit Metrics](https://github.com/giantswarm/k8s-audit-metrics)                                        | `k8sAuditMetrics` | `App` |
-| [k8s DNS Node Cache](https://github.com/giantswarm/k8s-dns-node-cache-app)                                  | `k8sDnsNodeCache` | `App` |
-| [Metrics Server](https://github.com/giantswarm/metrics-server-app)                                          | `metricsServer` | `App` |
-| [Net Exporter](https://github.com/giantswarm/net-exporter)                                                  | `netExporter` | `App` |
-| [Node Exporter](https://github.com/giantswarm/node-exporter-app)                                            | `nodeExporter` | `App` |
-| [Observability Bundle](https://github.com/giantswarm/observability-bundle)                                  | `observabilityBundle` | `App` |
-| [Observability Policies](https://github.com/giantswarm/observability-policies-app)                          | `observabilityPolicies` | `App` |
-| [Prometheus Blackbox Exporter](https://github.com/giantswarm/prometheus-blackbox-exporter)                  | `prometheusBlackboxExporter` | `App` |
-| [Security Bundle](https://github.com/giantswarm/security-bundle)                                            | `securityBundle` | `App` |
-| [Teleport Kube Agent](https://github.com/giantswarm/teleport-kube-agent-app)                                | `teleportKubeAgent` | `App` |
-| [Vertical Pod autoscaler](https://github.com/giantswarm/vertical-pod-autoscaler-app)                        | `verticalPodAutoscaler` | `App` |
+| [chart-operator-extensions](https://github.com/giantswarm/chart-operator-extensions)                        | `chartOperatorExtensions` | `App` |
+| [cilium-servicemonitors-app](https://github.com/giantswarm/cilium-servicemonitors-app)                          | `ciliumServiceMonitors` | `App` |
+| [cluster-autoscaler-app](https://github.com/giantswarm/cluster-autoscaler-app)                                  | `clusterAutoscaler` | `App` |
+| [coredns-extensions](https://github.com/giantswarm/coredns-extensions)                                      | `coreDnsExtensions` | `App` |
+| [etcd-defrag](https://github.com/giantswarm/etcd-defrag-app)                                                | `etcdDefrag` | `App` |
+| [etcd-kubernetes-resources-count-exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter) | `etcdKubernetesResourcesCountExporter` | `App` |
+| [external-dns-app](https://github.com/giantswarm/external-dns-app)                                              | `externalDns` | `App` |
+| [k8s-audit-metrics](https://github.com/giantswarm/k8s-audit-metrics)                                        | `k8sAuditMetrics` | `App` |
+| [k8s-dns-node-cache-app](https://github.com/giantswarm/k8s-dns-node-cache-app)                                  | `k8sDnsNodeCache` | `App` |
+| [metrics-server-app](https://github.com/giantswarm/metrics-server-app)                                          | `metricsServer` | `App` |
+| [net-exporter](https://github.com/giantswarm/net-exporter)                                                  | `netExporter` | `App` |
+| [node-exporter-app](https://github.com/giantswarm/node-exporter-app)                                            | `nodeExporter` | `App` |
+| [observability-bundle](https://github.com/giantswarm/observability-bundle)                                  | `observabilityBundle` | `App` |
+| [observability-policies-app](https://github.com/giantswarm/observability-policies-app)                          | `observabilityPolicies` | `App` |
+| [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter)                  | `prometheusBlackboxExporter` | `App` |
+| [security-bundle](https://github.com/giantswarm/security-bundle)                                            | `securityBundle` | `App` |
+| [teleport-kube-agent-app](https://github.com/giantswarm/teleport-kube-agent-app)                                | `teleportKubeAgent` | `App` |
+| [vertical-pod-autoscaler-app](https://github.com/giantswarm/vertical-pod-autoscaler-app)                        | `verticalPodAutoscaler` | `App` |
 
 ### AWS provider apps
 
 These apps are specific to clusters running on AWS:
 
-| Application | Config Key | Mechanism |
-|-------------|------------|-----------|
-| [AWS Cloud Controller Manager](https://github.com/giantswarm/aws-cloud-controller-manager-app) | `awsCloudControllerManager` | `HelmRelease` |
-| [AWS EBS CSI Driver](https://github.com/giantswarm/aws-ebs-csi-driver-app) | `awsEbsCsiDriver` | `HelmRelease` |
-| [Karpenter](https://github.com/giantswarm/karpenter-app) | `karpenter` | `HelmRelease` |
-| [AWS EBS CSI Driver ServiceMonitors](https://github.com/giantswarm/aws-ebs-csi-driver-servicemonitors) | `awsEbsCsiDriverServiceMonitors` | `App` |
-| [AWS Pod Identity Webhook](https://github.com/giantswarm/aws-pod-identity-webhook) | `awsPodIdentityWebhook` | `App` |
-| [IRSA ServiceMonitors](https://github.com/giantswarm/irsa-servicemonitors) | `irsaServiceMonitors` | `App` |
+| Application                                                                                            | Config Key | Mechanism |
+|--------------------------------------------------------------------------------------------------------|------------|-----------|
+| [aws-cloud-controller-manager-app](https://github.com/giantswarm/aws-cloud-controller-manager-app)     | `awsCloudControllerManager` | `HelmRelease` |
+| [aws-ebs-csi-driver-app](https://github.com/giantswarm/aws-ebs-csi-driver-app)                         | `awsEbsCsiDriver` | `HelmRelease` |
+| [Karpenter](https://github.com/giantswarm/karpenter-app)                                               | `karpenter` | `HelmRelease` |
+| [aws-ebs-csi-driver-servicemonitors](https://github.com/giantswarm/aws-ebs-csi-driver-servicemonitors) | `awsEbsCsiDriverServiceMonitors` | `App` |
+| [aws-pod-identity-webhook](https://github.com/giantswarm/aws-pod-identity-webhook)                     | `awsPodIdentityWebhook` | `App` |
+| [IRSA-servicemonitors](https://github.com/giantswarm/irsa-servicemonitors)                             | `irsaServiceMonitors` | `App` |
 
 ### Azure provider apps
 
@@ -85,10 +85,10 @@ These apps are specific to clusters running on Azure:
 
 | Application | Config Key | Mechanism |
 |-------------|------------|-----------|
-| [Azure Cloud Controller Manager](https://github.com/giantswarm/azure-cloud-controller-manager-app) | `azureCloudControllerManager` | `HelmRelease` |
-| [Azure Cloud Node Manager](https://github.com/giantswarm/azure-cloud-node-manager-app) | `azureCloudNodeManager` | `HelmRelease` |
-| [Azure Disk CSI Driver](https://github.com/giantswarm/azuredisk-csi-driver-app) | `azureDiskCsiDriver` | `HelmRelease` |
-| [Azure File CSI Driver](https://github.com/giantswarm/azurefile-csi-driver-app) | `azureFileCsiDriver` | `HelmRelease` |
+| [azure-cloud-controller-manager-app](https://github.com/giantswarm/azure-cloud-controller-manager-app) | `azureCloudControllerManager` | `HelmRelease` |
+| [azure-cloud-node-manager-app](https://github.com/giantswarm/azure-cloud-node-manager-app) | `azureCloudNodeManager` | `HelmRelease` |
+| [azuredisk-csi-driver-app](https://github.com/giantswarm/azuredisk-csi-driver-app) | `azureDiskCsiDriver` | `HelmRelease` |
+| [azurefile-csi-driver-app](https://github.com/giantswarm/azurefile-csi-driver-app) | `azureFileCsiDriver` | `HelmRelease` |
 
 ### vSphere provider apps
 
@@ -96,10 +96,10 @@ These apps are specific to clusters running on vSphere:
 
 | Application | Config Key | Mechanism |
 |-------------|------------|-----------|
-| [Cloud Provider vSphere](https://github.com/giantswarm/cloud-provider-vsphere-app) | `cloudProviderVsphere` | `HelmRelease` |
+| [cloud-provider-vsphere-app](https://github.com/giantswarm/cloud-provider-vsphere-app) | `cloudProviderVsphere` | `HelmRelease` |
 | [kube-vip](https://github.com/giantswarm/kube-vip-app) | `kubeVip` | `HelmRelease` |
 | [kube-vip Cloud Provider](https://github.com/giantswarm/kube-vip-cloud-provider-app) | `kubeVipCloudProvider` | `HelmRelease` |
-| [vSphere CSI Driver](https://github.com/giantswarm/vsphere-csi-driver-app) | `vsphereCsiDriver` | `HelmRelease` |
+| [vsphere-csi-driver-app](https://github.com/giantswarm/vsphere-csi-driver-app) | `vsphereCsiDriver` | `HelmRelease` |
 
 ### VMware Cloud Director provider apps
 
@@ -107,7 +107,7 @@ These apps are specific to clusters running on VMware Cloud Director:
 
 | Application | Config Key | Mechanism |
 |-------------|------------|-----------|
-| [Cloud Provider Cloud Director](https://github.com/giantswarm/cloud-provider-cloud-director-app) | `cloudProviderCloudDirector` | `HelmRelease` |
+| [cloud-provider-cloud-director-app](https://github.com/giantswarm/cloud-provider-cloud-director-app) | `cloudProviderCloudDirector` | `HelmRelease` |
 
 For a complete and up-to-date list, check the `values.schema.json` in your provider's cluster chart.
 
