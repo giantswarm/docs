@@ -27,6 +27,7 @@ While the default configuration works for most cases, sometimes customization is
 ## App deployment mechanism
 
 Default applications are deployed using two mechanisms:
+
 - **App CR** - Giant Swarm's in-house app management
 - **HelmRelease CR** - Flux CD's Helm controller
 
@@ -153,15 +154,17 @@ The referenced resource must:
 - Exist in the same namespace as the cluster
 - Have values under a key named `values`
 
-#### For HelmRelease-based Apps
+### For HelmRelease-based Apps
 
 The `extraConfigs` field uses:
+
 - `kind`: `ConfigMap` or `Secret` (PascalCase)
 - `optional`: boolean - if `true`, missing resources are ignored
 
-#### For App CR-based Apps
+### For App CR-based Apps
 
 The `extraConfigs` field uses:
+
 - `kind`: `configMap` or `secret` (camelCase)
 - `priority`: integer (1-150, default 25) - higher priority values override lower ones
 
