@@ -28,7 +28,6 @@ While the default configuration works for most cases, sometimes customization is
 
 Default applications are deployed using two mechanisms:
 
-
 - **App CR** - Giant Swarm's in-house app management
 - **HelmRelease CR** - Flux CD's Helm controller
 
