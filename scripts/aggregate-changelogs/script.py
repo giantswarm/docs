@@ -37,6 +37,7 @@ def get_releases(client, repo_shortname):
     """
     print(f'Getting releases for {repo_shortname}')
     repo = client.get_repo(repo_shortname)
+    default_branch = repo.default_branch
 
     for release in repo.get_releases():
         # skip unpublished releases
@@ -47,6 +48,7 @@ def get_releases(client, repo_shortname):
         if release.body is not None:
             body = link_pull_requests(release.body, repo_shortname)
             body = link_commit_hashes(body, repo_shortname)
+            body = resolve_relative_links(body, repo_shortname, default_branch)
 
         yield {
             'repository': repo_shortname,
@@ -57,14 +59,17 @@ def get_releases(client, repo_shortname):
         }
 
 def get_changelog_file(client, repo_shortname):
+    """
+    Returns a tuple of (changelog_content, default_branch) or (None, None) if not found.
+    """
     repo = client.get_repo(repo_shortname)
     try:
         remote_file = repo.get_contents('CHANGELOG.md')
-        return remote_file.decoded_content.decode('utf-8')
+        return (remote_file.decoded_content.decode('utf-8'), repo.default_branch)
     except (UnknownObjectException, GithubException) as e:
-        return None
+        return (None, None)
 
-def parse_changelog(body, repo_shortname):
+def parse_changelog(body, repo_shortname, default_branch):
     # Cut off the link reference at the end
     try:
         (good, bad) = body.split("[Unreleased]: ", maxsplit=1)
@@ -93,10 +98,11 @@ def parse_changelog(body, repo_shortname):
         version = f'{match.group(1)}.{match.group(2)}.{match.group(3)}'
 
         anchor = lines[0].replace(' ', '-').replace('.', '').replace('[', '').replace(']', '')
-        url = f'https://github.com/{repo_shortname}/blob/master/CHANGELOG.md#{anchor}'
+        url = f'https://github.com/{repo_shortname}/blob/{default_branch}/CHANGELOG.md#{anchor}'
 
         # Omit first line and sanitize
         body = '\n'.join(lines[1:]).strip()
+        body = resolve_relative_links(body, repo_shortname, default_branch)
 
         release = {
             'body': body,
@@ -227,6 +233,33 @@ def link_commit_hashes(mkdwn, repo_shortname):
     result = re.sub(r'\b([a-f0-9]{40})\b', replace_hash, mkdwn)
     return result
 
+def resolve_relative_links(mkdwn, repo_shortname, default_branch):
+    """
+    Resolves relative links in markdown to absolute GitHub URLs.
+
+    Converts links like [text](./path) or [text](path) to
+    [text](https://github.com/{repo_shortname}/blob/{default_branch}/{path})
+    """
+    def replace_link(match):
+        text = match.group(1)
+        url = match.group(2)
+
+        # Skip absolute URLs, anchors, and protocol-relative URLs
+        if url.startswith(('http://', 'https://', '#', '//', 'mailto:')):
+            return match.group(0)
+
+        # Remove leading ./ if present
+        if url.startswith('./'):
+            url = url[2:]
+
+        # Build the absolute GitHub URL
+        github_url = f'https://github.com/{repo_shortname}/blob/{default_branch}/{url}'
+        return f'[{text}]({github_url})'
+
+    # Match markdown links: [text](url)
+    result = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', replace_link, mkdwn)
+    return result
+
 def generate_release_file(repo_shortname, repo_config, release, delete):
     """
     Write a release file with YAML front matter and Markdown body
@@ -332,8 +365,8 @@ if __name__ == "__main__":
             # Attempt to get GitHub releases (based on tags in the repo).
             releases = list(get_releases(g, repo_short))
 
-            # Attempt to get releas einfo from CHANGELOG.md.
-            changelog = get_changelog_file(g, repo_short)
+            # Attempt to get release info from CHANGELOG.md.
+            (changelog, default_branch) = get_changelog_file(g, repo_short)
 
             # Match release tags and changelog versions and
             # enhance release data with descriptions from CHANGELOG.md.
@@ -341,7 +374,7 @@ if __name__ == "__main__":
                 print(f'INFO: repository {repo_short} has no CHANGELOG.md file.')
             else:
                 changelog_entries = {}
-                for (version, release) in parse_changelog(changelog, repo_short):
+                for (version, release) in parse_changelog(changelog, repo_short, default_branch):
                     v = normalize_version(version)
                     changelog_entries[v] = release
 
