@@ -484,31 +484,6 @@ spec:
 
 You can run both ingress-nginx and Gateway API simultaneously, which is recommended for gradual migration. This allows you to migrate one application at a time without downtime.
 
-```mermaid
-graph TD
-    User[User Traffic]
-    LB_Nginx[Classic Load Balancer]
-    LB_Envoy[Network Load Balancer]
-
-    Ingress[ingress-nginx]
-    Gateway[Envoy Gateway]
-
-    App[Target Application]
-
-    User -->|v1.api.com| LB_Nginx
-    User -->|v2-beta.api.com| LB_Envoy
-
-    LB_Nginx --> Ingress
-    LB_Envoy --> Gateway
-
-    Ingress --> App
-    Gateway --> App
-
-    style LB_Envoy fill:#d4f1f9,stroke:#333,stroke-width:2px
-    style Gateway fill:#d4f1f9,stroke:#333,stroke-width:2px
-
-```
-
 ### Migration workflow
 
 1. **Install Gateway API**: It creates a new Load Balancer separate from ingress-nginx.
