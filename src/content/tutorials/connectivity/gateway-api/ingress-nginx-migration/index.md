@@ -490,7 +490,7 @@ graph TD
     LB_Nginx[Classic Load Balancer]
     LB_Envoy[Network Load Balancer]
 
-    Ingress[Ingress NGINX]
+    Ingress[ingress-nginx]
     Gateway[Envoy Gateway]
 
     App[Target Application]
@@ -511,10 +511,10 @@ graph TD
 
 ### Migration workflow
 
-1. **Install Gateway API**: It creates a new Load Balancer separate from NGINX.
+1. **Install Gateway API**: It creates a new Load Balancer separate from ingress-nginx.
 2. **Dual Expose**: Configure your app with *both* an `Ingress` (old domain) and an `HTTPRoute` (new/test domain).
 3. **Validate**: Test the application via the Gateway API path.
-4. **Cutover**: Update DNS to point the main domain to the Gateway Load Balancer, or update the `HTTPRoute` to take over the main hostname.
+4. **Switch**: Update DNS to point the main domain to the Gateway Load Balancer, or update the `HTTPRoute` to take over the main hostname.
 
 ## Troubleshooting
 
