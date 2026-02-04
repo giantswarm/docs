@@ -28,7 +28,7 @@ aliases:
   - /vintage/advanced/cluster-management/node-pools-vintage
   - /vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types
   - /vintage/advanced/cluster-management/upgrades/upgrade-disruption
-last_review_date: 2025-11-21
+last_review_date: 2026-02-04
 ---
 
 A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
@@ -91,61 +91,70 @@ worker  mycluster-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 In your workload cluster values, you can specify the node pool configuration to use Karpenter
 
 ```yaml
-global:
-  metadata:
-    name: test-cluster
-    organization: giantswarm
-  nodePools:
-    pool0:
-      type: karpenter # This is the key difference that will make karpenter manage your worker nodes
-      consolidateAfter: 6h
-      consolidationPolicy: WhenEmptyOrUnderutilized
-      consolidationBudgets: # You can control when and how nodes will be updated / rolled with the budgets
-        - nodes: "20%"
-        - schedule: "0 9 * * mon-fri"
-          duration: "8h"
-          nodes: "0"
-          reasons:
-            - "Drifted"
-      customNodeLabels:
-        - yourcustomlabel=canbeconfiguredhere
-      customNodeTaints:
-        - key: example.com/special-taint
-          effect: NoSchedule
-      expireAfter: 20h # The amount of time a Node can live on the cluster before being deleted by Karpenter
-      requirements: # In the 'requirements' you can specify which nodes you want karpenter to consider or to ignore for your node pool
-        - key: karpenter.k8s.aws/instance-cpu
-          operator: In
-          values:
-            - "4"
-            - "8"
-            - "16"
-            - "32"
-        - key: karpenter.k8s.aws/instance-hypervisor
-          operator: In
-          values:
-            - nitro
-        - key: kubernetes.io/arch
-          operator: In
-          values:
-            - amd64
-        - key: karpenter.sh/capacity-type
-          operator: In
-          values:
-            - spot
-            - on-demand
-        - key: kubernetes.io/os
-          operator: In
-          values:
-            - linux
-      terminationGracePeriod: 30m # The amount of time a Node can be draining before Karpenter forcibly cleans up the node
-      limits: # Maximum amount of resources that the node pool can consume
-        cpu: 1000
-        memory: 1000Gi
-  providerSpecific:
-    region: "eu-west-1"
-  release:
-    version: 33.0.0
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        pool0:
+          type: karpenter # This is the key difference that will make karpenter manage your worker nodes
+          consolidateAfter: 6h
+          consolidationPolicy: WhenEmptyOrUnderutilized
+          consolidationBudgets: # You can control when and how nodes will be updated / rolled with the budgets
+            - nodes: "20%"
+            - schedule: "0 9 * * mon-fri"
+              duration: "8h"
+              nodes: "0"
+              reasons:
+                - "Drifted"
+          customNodeLabels:
+            - yourcustomlabel=canbeconfiguredhere
+          customNodeTaints:
+            - key: example.com/special-taint
+              effect: NoSchedule
+          expireAfter: 20h # The amount of time a Node can live on the cluster before being deleted by Karpenter
+          requirements: # In the 'requirements' you can specify which nodes you want karpenter to consider or to ignore for your node pool
+            - key: karpenter.k8s.aws/instance-cpu
+              operator: In
+              values:
+                - "4"
+                - "8"
+                - "16"
+                - "32"
+            - key: karpenter.k8s.aws/instance-hypervisor
+              operator: In
+              values:
+                - nitro
+            - key: kubernetes.io/arch
+              operator: In
+              values:
+                - amd64
+            - key: karpenter.sh/capacity-type
+              operator: In
+              values:
+                - spot
+                - on-demand
+            - key: kubernetes.io/os
+              operator: In
+              values:
+                - linux
+          terminationGracePeriod: 30m # The amount of time a Node can be draining before Karpenter forcibly cleans up the node
+          limits: # Maximum amount of resources that the node pool can consume
+            cpu: 1000
+            memory: 1000Gi
+      providerSpecific:
+        region: "eu-west-1"
+      release:
+        version: 33.0.0
 ```
 
 A node pool is identified by a name that you can pick as a cluster administrator. The name must follow these rules:
@@ -279,39 +288,59 @@ You can add new node pools at any time. You just need to update the cluster conf
 For example, if this was the cluster configuration
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  description: "my cluster"
-  name: test-cluster
-  organization: giantswarm
-nodePools:
-  nodepool0:
-    maxSize: 4
-    minSize: 3
-    instanceTypeOverrides:
-    - r6i.xlarge
-    - r5.xlarge
-    - m5.xlarge
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        description: "my cluster"
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        nodepool0:
+          maxSize: 4
+          minSize: 3
+          instanceTypeOverrides:
+            - r6i.xlarge
+            - r5.xlarge
+            - m5.xlarge
 ```
 
 You can add a new node pool like this:
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  description: "my cluster"
-  name: test-cluster
-  organization: giantswarm
-nodePools:
-  nodepool0:
-    maxSize: 4
-    minSize: 3
-    instanceTypeOverrides:
-      - r6i.xlarge
-      - r5.xlarge
-      - m5.xlarge
-  nodepool1:
-    instanceType: m5.xlarge
-    maxSize: 3
-    minSize: 1
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        description: "my cluster"
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        nodepool0:
+          maxSize: 4
+          minSize: 3
+          instanceTypeOverrides:
+            - r6i.xlarge
+            - r5.xlarge
+            - m5.xlarge
+        nodepool1:
+          instanceType: m5.xlarge
+          maxSize: 3
+          minSize: 1
 ```
 
 ## Updating an existing node pool
@@ -404,18 +433,28 @@ This can provide `Amazon EC2 Auto Scaling` with a larger selection of instance t
 You can set the `instanceTypeOverrides` value when defining your node pool in the cluster values. For example:
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  description: "my cluster"
-  name: test-cluster
-  organization: giantswarm
-nodePools:
-  nodepool0:
-    maxSize: 4
-    minSize: 3
-    instanceTypeOverrides:
-    - r6i.xlarge
-    - r5.xlarge
-    - m5.xlarge
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        description: "my cluster"
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        nodepool0:
+          maxSize: 4
+          minSize: 3
+          instanceTypeOverrides:
+            - r6i.xlarge
+            - r5.xlarge
+            - m5.xlarge
 ```
 
 Please notice that when setting `instanceTypeOverrides`, the `instanceType` value will be ignored, and the instance types defined in `instanceTypeOverrides` will be used instead.
@@ -463,17 +502,27 @@ Not supported at the moment.
 Node pools can make use of [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). On the node pool definition, you can enable it and select the maximum price to pay.
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  description: "my cluster"
-  name: test-cluster
-  organization: giantswarm
-nodePools:
-  pool0:
-    maxSize: 2
-    minSize: 2
-    spotInstances:
-      enabled: true
-      maxPrice: 1.2
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        description: "my cluster"
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        pool0:
+          maxSize: 2
+          minSize: 2
+          spotInstances:
+            enabled: true
+            maxPrice: 1.2
 ```
 
 {{< /tab >}}
@@ -482,23 +531,32 @@ nodePools:
 Node pools may use [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/). On the node pool definition, you can enable it in the `requirements` field
 
 ```yaml
-global:
-  metadata:
-    name: test-cluster
-    organization: giantswarm
-  nodePools:
-    pool0:
-      type: karpenter
-      requirements:
-        - key: karpenter.sh/capacity-type
-          operator: In
-          values:
-            - spot
-            - on-demand
-  providerSpecific:
-    region: "eu-west-1"
-  release:
-    version: 33.0.0
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        pool0:
+          type: karpenter
+          requirements:
+            - key: karpenter.sh/capacity-type
+              operator: In
+              values:
+                - spot
+                - on-demand
+      providerSpecific:
+        region: "eu-west-1"
+      release:
+        version: 33.0.0
 ```
 
 {{< /tab >}}
@@ -530,42 +588,51 @@ The node's health status is used to determine if a node needs to be terminated. 
 
 For tuning the behavior of automatic node termination on AWS, you can configure your cluster-aws `App` with these values (see [documentation](https://github.com/giantswarm/cluster-aws/tree/main/helm/cluster-aws#node-pools)):
 
-```highlight
-global:
-  # For worker nodes, the check is *disabled* by default
-  nodePools:
-    pool0:
-      type: machinepool # not yet supported for Karpenter pools
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      # For worker nodes, the check is *disabled* by default
+      nodePools:
+        pool0:
+          type: machinepool # not yet supported for Karpenter pools
 
-      minSize: 3
-      maxSize: 15
+          minSize: 3
+          maxSize: 15
 
-      machineHealthCheck:
-        # This is the only required field, since the check is disabled by default
-        # for workers
-        enabled: true
+          machineHealthCheck:
+            # This is the only required field, since the check is disabled by default
+            # for workers
+            enabled: true
 
-        # maxUnhealthy says to not delete any nodes if more than this value
-        # (in this example: 20%; for 15 nodes that would be 3 nodes) are unhealthy.
-        # This is a safety guard in case many nodes become unhealthy at the same
-        # time. Deleting them would exacerbate the problem or even bring all
-        # workloads down. Please adjust the value according to your pool size.
-        maxUnhealthy: 20%
+            # maxUnhealthy says to not delete any nodes if more than this value
+            # (in this example: 20%; for 15 nodes that would be 3 nodes) are unhealthy.
+            # This is a safety guard in case many nodes become unhealthy at the same
+            # time. Deleting them would exacerbate the problem or even bring all
+            # workloads down. Please adjust the value according to your pool size.
+            maxUnhealthy: 20%
 
-        # Checks using built-in status fields of Node objects.
-        # All of these are enabled by default with reasonable defaults,
-        # i.e. the time until a node gets deleted if it stays in this bad condition.
-        # We recommend to use the defaults (don't set the fields at all):
-        nodeStartupTimeout: 8m0s
-        unhealthyNotReadyTimeout: 10m0s
-        unhealthyUnknownTimeout: 10m0s
+            # Checks using built-in status fields of Node objects.
+            # All of these are enabled by default with reasonable defaults,
+            # i.e. the time until a node gets deleted if it stays in this bad condition.
+            # We recommend to use the defaults (don't set the fields at all):
+            nodeStartupTimeout: 8m0s
+            unhealthyNotReadyTimeout: 10m0s
+            unhealthyUnknownTimeout: 10m0s
 
-        # Optional, these enable custom checks for certain disks, using
-        # the component "node-problem-detector". Disabled by default if you don't
-        # set any of these fields.
-        diskFullContainerdTimeout: "15m"
-        diskFullKubeletTimeout: "15m"
-        diskFullVarLogTimeout: "15m"
+            # Optional, these enable custom checks for certain disks, using
+            # the component "node-problem-detector". Disabled by default if you don't
+            # set any of these fields.
+            diskFullContainerdTimeout: "15m"
+            diskFullKubeletTimeout: "15m"
+            diskFullVarLogTimeout: "15m"
 ```
 
 {{< /tab >}}
