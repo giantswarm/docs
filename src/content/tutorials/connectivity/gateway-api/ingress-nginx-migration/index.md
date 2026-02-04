@@ -16,32 +16,39 @@ user_questions:
   - What ingress-nginx annotations are supported when migrating to Gateway API?
   - How do I configure DNS and TLS certificates for Gateway API?
   - Can I run ingress-nginx and Gateway API at the same time?
-last_review_date: 2026-02-03
+last_review_date: 2026-02-04
 ---
 
-[Gateway API](https://gateway-api.sigs.k8s.io/) is the successor to the Kubernetes Ingress API, offering a more expressive and extensible model for managing traffic routing. This guide walks you through migrating from using Ingress resources to Gateway API with Envoy Gateway on Giant Swarm clusters.
+[Gateway API](https://gateway-api.sigs.k8s.io/) is the successor to the Kubernetes Ingress API, offering a more expressive and extensible model for managing traffic routing. This guide walks you through migrating from Ingress resources to Gateway API with Envoy Gateway on Giant Swarm clusters.
 
 ## Why migrate to Gateway API
 
-- **Future standard**: Gateway API is the emerging standard for Kubernetes ingress, with active development and broad industry adoption
-- **More expressive routing**: Gateway API supports advanced traffic management like traffic splitting, header-based routing, and URL rewrites natively
-- **Better role separation**: Gateway API separates infrastructure concerns (Gateway) from application routing (HTTPRoute), enabling better multi-team workflows
-- **Extensibility**: Policy attachment model allows adding capabilities like rate limiting, authentication, and retries without modifying routes
-
-Both your Ingress controller and Gateway API can run in parallel during migration, allowing you to migrate workloads gradually.
+- **Future standard**: Gateway API is the emerging standard for Kubernetes ingress, with active development and broad industry adoption.
+- **More expressive routing**: It natively supports advanced traffic management like traffic splitting, header-based routing, and URL rewrites.
+- **Better role separation**: It separates infrastructure concerns (Gateway) from application routing (HTTPRoute), enabling better multi-team workflows.
+- **Extensibility**: The Policy attachment model allows adding capabilities like rate limiting, authentication, and retries without modifying routes.
 
 ## Prerequisites
 
-Before starting the migration, ensure you have:
+Before starting, ensure you have:
 
-- An existing Giant Swarm workload cluster with an Ingress controller installed
-- `kubectl` configured to access your workload cluster
-- Access to the Giant Swarm platform API (management cluster) for app installation
-- On AWS-based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) installed for AWS Network Load Balancers
+- An existing Giant Swarm workload cluster with an Ingress controller installed.
+- `kubectl` configured to access your workload cluster.
+- Access to the Giant Swarm platform API (management cluster) for app installation.
+- On AWS-based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) installed for AWS Network Load Balancers.
 
 ## Understanding your current Ingress setup
 
 Before migrating, it's helpful to understand how Ingress controller ingress-nginx works in Giant Swarm clusters. For detailed information, see the [exposing workloads guide]({{< relref "/tutorials/connectivity/ingress/exposing-workloads" >}}).
+
+Migrating involves a conceptual shift from the monolithic `Ingress` resource to the distributed Gateway API model.
+
+| Feature | Ingress (Legacy) | Gateway API (New) |
+| :--- | :--- | :--- |
+| **Routing Resource** | `Ingress` (All-in-one) | `HTTPRoute` (Just routing rules) |
+| **Infrastructure** | Implicit (Controller flags) | `Gateway` & `GatewayClass` (Explicit) |
+| **Traffic Policies** | Annotations (`nginx.ingress...`) | Dedicated Resources (`BackendTrafficPolicy`, `SecurityPolicy`) |
+| **DNS/TLS** | Annotations on Ingress | Configured on the `Gateway` listeners |
 
 ### DNS schema
 
@@ -86,7 +93,7 @@ spec:
 
 ## Installing the Gateway API bundle
 
-The Giant Swarm Gateway API bundle includes Gateway API CRDs, Envoy Gateway, and a pre-configured default Gateway
+The Giant Swarm Gateway API bundle includes Gateway API CRDs, Envoy Gateway, and a pre-configured default Gateway.
 
 To install the Giant Swarm Gateway API Bundle on one of your workload clusters:
 
@@ -473,18 +480,56 @@ spec:
       port: 80
 ```
 
-## Parallel operation during migration
+## Parallel Operation Strategy
 
-You can run both ingress-nginx and Gateway API simultaneously, which is recommended for gradual migration.
+You can run both ingress-nginx and Gateway API simultaneously, which is recommended for gradual migration. This allows you to migrate one application at a time without downtime.
+
+```mermaid
+graph TD
+    User[User Traffic]
+    LB_Nginx[Classic Load Balancer]
+    LB_Envoy[Network Load Balancer]
+
+    Ingress[Ingress NGINX]
+    Gateway[Envoy Gateway]
+
+    App[Target Application]
+
+    User -->|v1.api.com| LB_Nginx
+    User -->|v2-beta.api.com| LB_Envoy
+
+    LB_Nginx --> Ingress
+    LB_Envoy --> Gateway
+
+    Ingress --> App
+    Gateway --> App
+
+    style LB_Envoy fill:#d4f1f9,stroke:#333,stroke-width:2px
+    style Gateway fill:#d4f1f9,stroke:#333,stroke-width:2px
+
+```
 
 ### Migration workflow
 
-1. **Install Gateway API bundle** alongside your existing ingress-nginx setup
-2. **Configure subdomains** in the Gateway API bundle for your test applications
-3. **Convert and deploy HTTPRoutes** for a few test workloads using ingress2eg
-4. **Validate functionality** by testing the new endpoints
-5. **Gradually migrate** remaining workloads, converting Ingress resources to HTTPRoutes
-6. **Remove ingress-nginx** after all workloads are migrated and validated
+1. **Install Gateway API**: It creates a new Load Balancer separate from NGINX.
+2. **Dual Expose**: Configure your app with *both* an `Ingress` (old domain) and an `HTTPRoute` (new/test domain).
+3. **Validate**: Test the application via the Gateway API path.
+4. **Cutover**: Update DNS to point the main domain to the Gateway Load Balancer, or update the `HTTPRoute` to take over the main hostname.
+
+## Troubleshooting
+
+If your new route isn't working, check the status of the `HTTPRoute` object. It is the single source of truth for configuration errors.
+
+```bash
+kubectl describe httproute <your-route-name> -n <namespace>
+```
+
+**Common Status Messages:**
+
+- **`Condition: Accepted, Status: True`**: The route is valid and attached to the Gateway.
+- **`Condition: ResolvedRefs, Status: False`**: The `backendRef` (Service) cannot be found. Check the service name and port.
+- **`Reason: NotAllowedByListeners`**: The Gateway exists, but no listener matches your hostname, or the listener blocks this namespace.
+- **`Reason: Detached`**: The route references a Gateway that doesn't exist or isn't programmed.
 
 ### DNS considerations
 
