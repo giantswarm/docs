@@ -8,7 +8,7 @@ aliases:
   - /getting-started/create-workload-cluster
   - /getting-started/kubectl-gs/
   - /vintage/getting-started/create-workload-cluster
-last_review_date: 2024-11-28
+last_review_date: 2026-02-04
 menu:
   principal:
     parent: getting-started
@@ -139,7 +139,7 @@ This will create a `cluster.yaml` file containing all the Custom Resources (CRs)
 
 You will notice that clusters are templated exactly like [managed apps]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io/" >}}) (as `App` resource), with `kubectl-gs` filling certain default values into the configuration. Using an `App` custom resource for cluster templating allow us to keep consistency and simplicity using the platform API.
 
-In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product.
+In Cluster API the node pools are defined inside the `App` chart. For example, see [nodePools configuration for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools) when using the CAPA-based product. For a detailed guide on configuring node pools, see [Node pools]({{< relref "/tutorials/fleet-management/cluster-management/node-pools" >}}).
 
 __Note__: Templating these and other resources as YAML files is reasonable when you prefer deployments using GitOps (YAML manifests committed and deployed from a Git control repository). We recommend running `kubectl gs template --help` and the online [reference]({{< relref "/reference/kubectl-gs" >}}) to see available parameters. For clusters and node pools, you probably want to choose a different instance size (varies in CPU, memory, pricing), maximum number of nodes, cloud provider region, or IP CIDRs. Instead of the kubectl-gs command line, you can also manually edit the YAML file with the help of our documentation for cluster configuration options (example: [configuration options for cluster-aws](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md)).
 

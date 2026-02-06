@@ -1,6 +1,11 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 [Aa][Ww][Ss]
 [Aa]gent
+# Gateway API ecosystem terms
+[Gg]ateway[ -][Aa][Pp][Ii]
+gateway-api-bundle
+gateway-api-config-app
+envoy-gateway-app
 [Aa]lert
 Autoscaling
 Autoscaler
