@@ -165,6 +165,7 @@ spec:
 Replace `<base-domain>` with your installation's base domain (for example, `k8s.gigantic.io`). The Mimir endpoint is accessible at `https://observability.<base-domain>/prometheus`.
 
 The `ScaledObject` configures two triggers:
+
 - One for GPU utilization (`DCGM_FI_DEV_GPU_UTIL`) with a threshold of 70%
 - Another for GPU memory utilization (`DCGM_FI_DEV_MEM_COPY_UTIL`) with a threshold of 80%
 
