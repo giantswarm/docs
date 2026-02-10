@@ -104,6 +104,7 @@ jq
 JSON
 k8s
 [K|k]arpenter
+KEDA
 Keybase
 keyless
 Kinvolk
