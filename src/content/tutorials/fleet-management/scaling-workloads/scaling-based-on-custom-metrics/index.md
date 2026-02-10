@@ -94,7 +94,7 @@ Giant Swarm automatically provides a `ClusterTriggerAuthentication` that allows 
 kubectl label cluster ${CLUSTER} giantswarm.io/keda-authentication=true
 ```
 
-2. **(Optional) If KEDA is not running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed:
+1. **(Optional) If KEDA is not running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed:
 
 ```bash
 # Only needed if KEDA runs in a different namespace than 'keda'
@@ -102,6 +102,7 @@ kubectl annotate cluster ${CLUSTER} giantswarm.io/keda-namespace=<your-keda-name
 ```
 
 Once enabled, the observability operator automatically creates:
+
 - A `giantswarm-mimir-auth` `ClusterTriggerAuthentication` resource in the KEDA namespace
 - A backing credentials `Secret` with the necessary authentication details
 
