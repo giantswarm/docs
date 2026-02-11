@@ -167,7 +167,7 @@ spec:
         name: giantswarm-mimir-auth
 ```
 
-Replace `<base-domain>` with your installation's base domain (for example, `k8s.gigantic.io`). The Mimir endpoint is accessible at `https://observability.<base-domain>/prometheus`.
+Replace `<base-domain>` with your installation's base domain (for example, `k8s.gigantic.io`). The Mimir endpoint is accessible at `https://mimir.<base-domain>/prometheus`.
 
 The `ScaledObject` configures two triggers:
 
