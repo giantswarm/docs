@@ -69,8 +69,8 @@ If you use [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/tem
 
 ```nohighlight
 kubectl gs template cluster \
-  --label giantswarm.io/service-priority lowest \
-  --label example.tld/environment testing \
+  --label giantswarm.io/service-priority=lowest \
+  --label example.tld/environment=testing \
   ...
 ```
 
