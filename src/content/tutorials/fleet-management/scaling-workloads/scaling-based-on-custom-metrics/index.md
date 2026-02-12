@@ -145,25 +145,29 @@ spec:
   triggers:
     - type: prometheus
       metadata:
-        serverAddress: https://observability.<base-domain>/prometheus
-        query: avg(DCGM_FI_DEV_GPU_UTIL{namespace!="",pod!=""}) by (pod)
-        threshold: "70"
         authModes: "basic"
+        customHeaders: "X-Scope-OrgID=giantswarm"
+        query: avg(DCGM_FI_DEV_GPU_UTIL{namespace!="",pod!=""}) by (pod)
+        serverAddress: https://mimir.<base-domain>/prometheus
+        threshold: "70"
         unsafeSsl: "false"
       authenticationRef:
+        kind: ClusterTriggerAuthentication
         name: giantswarm-mimir-auth
     - type: prometheus
       metadata:
-        serverAddress: https://observability.<base-domain>/prometheus
-        query: avg(DCGM_FI_DEV_MEM_COPY_UTIL{namespace!="",pod!=""}) by (pod)
-        threshold: "80"
         authModes: "basic"
+        customHeaders: "X-Scope-OrgID=giantswarm"
+        query: avg(DCGM_FI_DEV_MEM_COPY_UTIL{namespace!="",pod!=""}) by (pod)
+        serverAddress: https://mimir.<base-domain>/prometheus
+        threshold: "80"
         unsafeSsl: "false"
       authenticationRef:
+        kind: ClusterTriggerAuthentication
         name: giantswarm-mimir-auth
 ```
 
-Replace `<base-domain>` with your installation's base domain (for example, `k8s.gigantic.io`). The Mimir endpoint is accessible at `https://observability.<base-domain>/prometheus`.
+Replace `<base-domain>` with your installation's base domain (for example, `k8s.gigantic.io`). The Mimir endpoint is accessible at `https://mimir.<base-domain>/prometheus`.
 
 The `ScaledObject` configures two triggers:
 
