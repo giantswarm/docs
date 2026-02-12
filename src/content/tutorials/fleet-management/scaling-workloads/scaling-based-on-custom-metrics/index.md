@@ -84,7 +84,29 @@ kubectl get crd | grep keda
 # triggerauthentications.keda.sh
 ```
 
-Since the metrics are stored in Mimir central deployment running in the management cluster, you need an ingress to expose the endpoint to enable KEDA query for the metrics. Talk to us to make ingress endpoint available. In this example, the Mimir endpoint is exposed like `mimir.mc.aws.gigantic.io`.
+## Step 3: Enable Mimir authentication for KEDA
+
+Giant Swarm automatically provides a `ClusterTriggerAuthentication` that allows KEDA to authenticate with Mimir to query metrics. To enable this feature for your cluster:
+
+1. **Label your Cluster CR** to enable KEDA authentication support:
+
+```bash
+kubectl label cluster ${CLUSTER} giantswarm.io/keda-authentication=true
+```
+
+1. **(Optional) If KEDA is not running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed:
+
+```bash
+# Only needed if KEDA runs in a different namespace than 'keda'
+kubectl annotate cluster ${CLUSTER} giantswarm.io/keda-namespace=<your-keda-namespace>
+```
+
+Once enabled, the observability operator automatically creates:
+
+- A `giantswarm-mimir-auth` `ClusterTriggerAuthentication` resource in the KEDA namespace
+- A backing credentials `Secret` with the necessary authentication details
+
+These resources enable your KEDA `ScaledObjects` to query Mimir metrics with proper authentication.
 
 ## Step 4: Deploy a test workload
 
@@ -123,27 +145,38 @@ spec:
   triggers:
     - type: prometheus
       metadata:
-        serverAddress: https://mimir.mc.aws.gigantic.io/prometheus
-        query: avg(DCGM_FI_DEV_GPU_UTIL{namespace!="",pod!=""}) by (pod)
-        threshold: "70"
         authModes: "basic"
+        customHeaders: "X-Scope-OrgID=giantswarm"
+        query: avg(DCGM_FI_DEV_GPU_UTIL{namespace!="",pod!=""}) by (pod)
+        serverAddress: https://mimir.<base-domain>/prometheus
+        threshold: "70"
         unsafeSsl: "false"
       authenticationRef:
-        name: mimir-auth-trigger
+        kind: ClusterTriggerAuthentication
+        name: giantswarm-mimir-auth
     - type: prometheus
       metadata:
-        serverAddress: https://mimir.mc.aws.gigantic.io/prometheus
-        query: avg(DCGM_FI_DEV_MEM_COPY_UTIL{namespace!="",pod!=""}) by (pod)
-        threshold: "80"
         authModes: "basic"
+        customHeaders: "X-Scope-OrgID=giantswarm"
+        query: avg(DCGM_FI_DEV_MEM_COPY_UTIL{namespace!="",pod!=""}) by (pod)
+        serverAddress: https://mimir.<base-domain>/prometheus
+        threshold: "80"
         unsafeSsl: "false"
       authenticationRef:
-        name: mimir-auth-trigger
+        kind: ClusterTriggerAuthentication
+        name: giantswarm-mimir-auth
 ```
 
-**Note**: You have to preconfigure a `TriggerAuthentication` KEDA resource to authenticate against the Mimir endpoint. The values will be given by Giant Swarm when setting the Mimir endpoint.
+Replace `<base-domain>` with your installation's base domain (for example, `k8s.gigantic.io`). The Mimir endpoint is accessible at `https://mimir.<base-domain>/prometheus`.
 
-You can see how the `ScaledObject` configures two triggers, one for GPU memory and another one for GPU utilization, establishing some reasonable thresholds. Together, it defines an HPA based on that metrics to select the percentage that will scale up or down the replicas.
+The `ScaledObject` configures two triggers:
+
+- One for GPU utilization (`DCGM_FI_DEV_GPU_UTIL`) with a threshold of 70%
+- Another for GPU memory utilization (`DCGM_FI_DEV_MEM_COPY_UTIL`) with a threshold of 80%
+
+Both triggers reference the `giantswarm-mimir-auth` `ClusterTriggerAuthentication` that was automatically created in Step 3. This authentication uses basic auth with the `X-Scope-OrgID: giantswarm` header to query metrics from the Giant Swarm observability platform.
+
+Together, these triggers define an HPA that scales the number of replicas up or down based on GPU resource utilization.
 
 Let's apply the manifests and check how those behave.
 
