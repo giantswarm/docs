@@ -9,16 +9,17 @@ menu:
     identifier: tutorials-access-management-azwi
 user_questions:
   - How can I use Azure Workload Identity?
+last_review_date: 2026-02-12
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
 This tutorial is adapted from [Azure's documentation](https://azure.github.io/azure-workload-identity/docs/introduction.html).
 
-Azure Workload Identity is a mechanism for configuring a Kubernetes cluster to use Azure Entra ID as a fedarated credential provider through the OpenID Connect (OIDC) protocol.
+Azure Workload Identity is a mechanism for configuring a Kubernetes cluster to use Azure Entra ID as a federated credential provider through the OpenID Connect (OIDC) protocol.
 It is the successor of Azure AD Pod Identity offering broader support, better scaling, and simpler usage.
 
-Configuring a workload cluster to enable Azure Workload Identity is unfortunately not yet automated in the Giant Swarm platform.
+Configuring a workload cluster to enable Azure Workload Identity is not yet automated in the Giant Swarm platform.
 However, customers that require it can configure their clusters manually.
 These manual actions only need to be taken once for the lifecycle of each workload cluster, and do not require maintenance.
 
@@ -43,11 +44,11 @@ Cluster workloads exchange a service account token projected to its volume for a
 * [Azure CLI (`az`)](https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)
 * [Azure AD Workload CLI (`azwi`)](https://azure.github.io/azure-workload-identity/docs/installation/azwi.html)
 
-### Service Account Public Key
+### Retrieve service account public key
 
 The Kubernetes API server issues tokens for service accounts.
-The public part of the API server's keypair must be published in the OIDC JWKS document.
-This public key must be retrieved so that we can generate the JWKS document in the next step.
+The public part of the API server's key pair must be published in the OIDC JWKS document.
+This public key must be retrieved so that we can generate the JSON Web Key Sets (JWKS) document in the next step.
 
 Make sure that your `kubectl` context is set to your management cluster.
 Then run the following command:
@@ -65,7 +66,7 @@ kubectl --context ${MANAGEMENT_CLUSTER_CONTEXT} \
 
 The following section assumes that the public key is available in the `sa.pub` file.
 
-### OpenID Connect Issuer
+### Setup OpenID Connect issuer
 
 We first need a way to host the discovery and JWKS documents required by OpenID Connect.
 These documents do not contain sensitive information, and must be hosted on a publicly accessible endpoint.
@@ -139,7 +140,7 @@ echo "Done! Your OIDC Issuer is located at:"
 echo "${AZURE_WEB_ENDPOINT}"
 ```
 
-### Cluster Configuration
+### Configure workload cluster
 
 Once the OIDC Issuer is created, you must configure it as a service account issuer in your workload cluster.
 You can do so by adding the following workload cluster configuration:
@@ -162,7 +163,7 @@ cluster:
 Applying this configuration will roll the control plane.
 After the configuration is done, applications in your cluster can use Azure Workload Identity.
 
-### Mutating Admission Webhook
+### Deploy Mutating Admission Webhook controller
 
 <!-- 
     TODO: This is packaged as an App for use on MCs.
@@ -180,7 +181,7 @@ helm install azure-workload-identity-webhook azure-workload-identity/workload-id
    --set azureTenantID="$AZURE_TENANT_ID"
 ```
 
-## Example Usage
+## Example usage
 
 This section is based on [Azure's quick start guide](https://azure.github.io/azure-workload-identity/docs/quick-start.html).
 
@@ -307,7 +308,7 @@ EOF
 
 If the test is successful, the `quick-start` Pod should periodically log something like this:
 
-```
+```console
 I0210 15:46:04.114179       1 main.go:63] "successfully got secret" secret="Hello\\!"
 I0210 15:47:04.274439       1 main.go:63] "successfully got secret" secret="Hello\\!"
 I0210 15:48:04.404953       1 main.go:63] "successfully got secret" secret="Hello\\!"
