@@ -15,6 +15,78 @@ description: Release notes for CAPV workload cluster release vsphere-34.0.0, pub
 title: Workload cluster release vsphere-34.0.0 for CAPV
 ---
 
+## :warning: Important Note for Upgrading to this Release :warning:
+
+_tl;dr_: Please first upgrade your existing cluster to Giant Swarm Release v33.1.1 for vSphere or newer before upgrading to this release! Otherwise, you risk service outage and severe issues.
+
+Giant Swarm Release v34.0.0 for vSphere comes with Kubernetes v1.34. This version contains etcd v3.6, which makes use of the so-called v3 store by default. Before, with etcd v3.5, the v2 store was used by default and synchronized to the already existing v3 store.
+
+Different flaws could lead to an inconsistency between the old v2 store and the already present but unused standby v3 store in etcd v3.5 and before. Because of this, new etcd v3.6 members, which first start to use this v3 store, might suffer from these inconsistencies.
+
+This can come into play when upgrading a cluster to this and future releases from any release older than Giant Swarm Release v33.1.1 for vSphere. For this reason, we require you to first upgrade your cluster to Giant Swarm Release v33.1.1 for vSphere or newer before upgrading to this or future releases.
+
+## OIDC Structured Authentication (optional)
+
+This release introduces optional support for Kubernetes Structured Authentication Configuration for OIDC providers. We recommend testing this feature on a non-production cluster first.
+
+### Minimal example
+
+```yaml
+global:
+  controlPlane:
+    oidc:
+      structuredAuthentication:
+        enabled: true
+        issuers:
+          - issuerUrl: https://your-idp.example.com
+            clientId: kubernetes
+```
+
+### Example with customization
+
+```yaml
+global:
+  controlPlane:
+    oidc:
+      structuredAuthentication:
+        enabled: true
+        issuers:
+          - issuerUrl: https://your-idp.example.com
+            clientId: kubernetes
+            usernameClaim: email          # Optional: use 'email' instead of 'sub'
+            groupsClaim: roles            # Optional: use 'roles' instead of 'groups'
+            usernamePrefix: "oidc:"       # Optional: prefix usernames
+            groupsPrefix: "oidc:"         # Optional: prefix groups
+```
+
+### Migration from legacy OIDC configuration
+
+If you already use OIDC with the legacy configuration, add `structuredAuthentication.enabled: true` to migrate:
+
+```yaml
+global:
+  controlPlane:
+    oidc:
+      issuerUrl: https://your-idp.example.com
+      clientId: kubernetes
+      structuredAuthentication:
+        enabled: true
+```
+
+This will automatically convert your legacy configuration to the new structured format.
+
+### Advanced options
+
+Additional configuration options are available for more complex setups, including:
+
+- Multiple audiences (`audiences`, `audienceMatchPolicy`)
+- Custom discovery URL (`discoveryUrl`)
+- Custom CA certificate (`caPem`)
+- CEL expressions for claim and user validation (`claimValidationRules`, `userValidationRules`)
+- Advanced claim mappings with CEL expressions (`claimMappings`)
+
+Refer to the [Kubernetes Structured Authentication documentation](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#using-authentication-configuration) for details.
+
 ## Changes compared to v33.1.1
 
 ### Components
