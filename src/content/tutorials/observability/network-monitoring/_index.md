@@ -12,7 +12,7 @@ user_questions:
   - How do I enable network monitoring?
   - How can I see cross-AZ traffic in my cluster?
   - Where can I find network traffic dashboards?
-last_review_date: 2025-02-11
+last_review_date: 2025-02-13
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
@@ -117,21 +117,53 @@ Key panels:
 
 ### Example scenario: High cross-AZ traffic between services
 
-/!\ WIP /!\
+In this scenario, your cloud bill shows unexpectedly high network costs. You suspect cross-AZ traffic but need to identify which services are responsible and how to fix it.
 
-This is a example scenario where network monitoring helps you identify and reduce costs for cross-AZ traffic.
+**The problem**: A `payments` service frequently queries a `database` service. Because pods are distributed across availability zones for high availability, many of these requests cross zone boundaries. At $0.01/GB, a service transferring 50 GB/day across zones costs approximately $15/month - and this adds up quickly across multiple services.
 
-**What to look for**: In the Overview dashboard, check the "Average Cross-AZ Network Traffic" panel. Namespaces with consistently high cross-AZ traffic are candidates for optimization.
+#### Step 1: Identify high cross-AZ namespaces
 
-**Investigation**: Switch to the detailed dashboard and filter by the namespace. Review the traffic patterns and destinations to understand which services are communicating across zones.
+1. Open the **Network Traffic Analysis - Overview** dashboard in Grafana
+2. Look at the **Average Cross-AZ Network Traffic** panel
+3. Identify namespaces with consistently high cross-AZ traffic
+4. Note the traffic volume for the `payments` namespace shows 13.7 MiB/s of cross-AZ traffic, that's approximately $330 / month in unnecessary costs
 
-**Optimization strategies**:
+![network traffic analysis - overview](./network-monitoring-overview.png)
 
-- **Topology-aware scheduling**: Configure your deployments to prefer scheduling pods in the same availability zone as the services they communicate with frequently. Kubernetes supports [topology spread constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) for this purpose.
-- **Service topology**: For services with high internal traffic, consider using [topology-aware routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/) to prefer same-zone endpoints.
-- **Co-location**: If two services communicate heavily, consider deploying them with pod affinity rules to increase the chance they run on the same node or in the same zone.
+#### Step 2: Investigate the traffic source
 
-/!\ WIP /!\
+1. Open the **Network Traffic Analysis** dashboard (the detailed view)
+2. Use the namespace filter to select the `payments` namespace we identified
+3. Check the **Top 10 Private known destinations** panel to see which services are receiving traffic from this namespace
+4. Review the time series panels to understand if the traffic is constant or occurs in bursts
+
+![network traffic analysis - details](./network-monitoring-details.png)
+
+For advanced investigation, you can explore specific panel queries, for example to see cross-AZ traffic:
+
+![network traffic analysis - details to explore](./network-monitoring-details-to-explore.png)
+
+![network traffic analysis - explore](./network-monitoring-explore.png)
+
+#### Step 3: Apply optimization strategies
+
+Based on your investigation, choose one or more of the following strategies to reduce cross-AZ traffic:
+
+- [Kubernetes topology-aware routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/) to configure the destination service to prefer same-zone endpoints
+- [Topology spread constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) to ensure your workload is which maximizes the chance of same-zone communication when combined with topology-aware routing
+- [Pod affinity for co-location](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity): for services that communicate heavily, use pod affinity to prefer scheduling them in the same zone.
+
+#### Step 4: Verify the optimization
+
+After applying changes, allow some time for traffic patterns to stabilize, then verify the improvement:
+
+1. Return to the **Network Traffic Analysis - Overview** dashboard
+2. Compare the cross-AZ traffic for your namespace before and after the change
+3. You should see a reduction in the **Average Cross-AZ Network Traffic** panel
+
+{{< note >}}
+Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not eliminate it entirely.
+{{< /note >}}
 
 ## Understanding the metrics {#metrics}
 
@@ -139,16 +171,14 @@ Network monitoring collects data using the `beyla_network_flow_bytes_total` metr
 
 | Label | Description |
 |-------|-------------|
-| `src.namespace` / `dst.namespace` | Source and destination Kubernetes namespaces |
-| `src.name` / `dst.name` | Source and destination pod names |
-| `src.zone` / `dst.zone` | Availability zones (critical for cross-AZ analysis) |
+| `k8s_src_namespace` / `k8s_dst_namespace` | Source and destination Kubernetes namespaces |
+| `src_name` / `dst_name` | Source and destination pod names |
+| `src_zone` / `dst_zone` | Availability zones (critical for cross-AZ analysis) |
 | `direction` | Traffic direction (ingress/egress) |
 | `transport` | Transport protocol (TCP/UDP) |
 
-Traffic is classified as "cross-AZ" when `src.zone` and `dst.zone` have different values.
+Traffic is classified as "cross-AZ" when `src_zone` and `dst_zone` have different values.
 
 ## Next steps
 
 - Review the [network monitoring reference documentation]({{< relref "/reference/observability/network-monitoring" >}}) for detailed configuration options
-- Learn about [Kubernetes topology-aware routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/) for reducing cross-AZ traffic
-- Explore [topology spread constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) for workload placement optimization
