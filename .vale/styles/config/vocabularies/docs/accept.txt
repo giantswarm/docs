@@ -77,7 +77,7 @@ effectively
 [E|e]dgedb
 ELB[s]?
 ENI[s]?
-Entra ID
+Entra
 ESXi
 [E|e]tcd
 [E|e]xtract

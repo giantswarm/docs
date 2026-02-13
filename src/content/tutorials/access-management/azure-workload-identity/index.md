@@ -23,10 +23,6 @@ Configuring a workload cluster to enable Azure Workload Identity is not yet auto
 However, customers that require it can configure their clusters manually.
 These manual actions only need to be taken once for the lifecycle of each workload cluster, and do not require maintenance.
 
-If you do manually enable Azure Workload Identity on your clusters, please follow these steps as closely as possible.
-This will make it easier for Giant Swarm to adopt manually configured clusters when we do automate the process.
-If these steps do not work for your case, please reach out to support so that we can work with you to solve the issue.
-
 ## How it works
 
 The Kubernetes cluster issues tokens to Service Accounts.
@@ -163,7 +159,7 @@ cluster:
 Applying this configuration will roll the control plane.
 After the configuration is done, applications in your cluster can use Azure Workload Identity.
 
-### Deploy Mutating Admission Webhook controller
+### Deploy mutating admission webhook controller
 
 <!-- 
     TODO: This is packaged as an App for use on MCs.
