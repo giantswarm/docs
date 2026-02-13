@@ -110,7 +110,7 @@ source_repositories:
   - url: https://github.com/giantswarm/organization-operator
     organization: giantswarm
     short_name: organization-operator
-    commit_reference: v2.1.2
+    commit_reference: v2.1.3
     crd_paths:
       - config/crd
     cr_paths:
