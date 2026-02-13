@@ -174,7 +174,3 @@ Network monitoring collects data using the `beyla_network_flow_bytes_total` metr
 | `transport` | Transport protocol (TCP/UDP) |
 
 Traffic is classified as "cross-AZ" when `src_zone` and `dst_zone` have different values.
-
-## Next steps
-
-- Review the [network monitoring reference documentation]({{< relref "/reference/observability/network-monitoring" >}}) for detailed configuration options
