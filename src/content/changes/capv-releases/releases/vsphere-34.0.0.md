@@ -15,7 +15,7 @@ description: Release notes for CAPV workload cluster release vsphere-34.0.0, pub
 title: Workload cluster release vsphere-34.0.0 for CAPV
 ---
 
-## :warning: Important Note for Upgrading to this Release :warning:
+## Warning: Important Note for Upgrading to this Release
 
 _tl;dr_: Please first upgrade your existing cluster to Giant Swarm Release v33.1.1 for vSphere or newer before upgrading to this release! Otherwise, you risk service outage and severe issues.
 

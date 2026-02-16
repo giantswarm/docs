@@ -15,7 +15,7 @@ description: Release notes for CAPVCD workload cluster release cloud-director-34
 title: Workload cluster release cloud-director-34.0.0 for CAPVCD
 ---
 
-## :warning: Important Note for Upgrading to this Release :warning:
+## Warning: Important Note for Upgrading to this Release
 
 _tl;dr_: Please first upgrade your existing cluster to Giant Swarm Release v33.2.0 for VMware Cloud Director or newer before upgrading to this release! Otherwise, you risk service outage and severe issues.
 
