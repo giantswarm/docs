@@ -43,8 +43,8 @@ Cluster workloads exchange a service account token projected to its volume for a
 ### Retrieve service account public key
 
 The Kubernetes API server issues tokens for service accounts.
-The public part of the API server's key pair must be published in the OIDC JWKS document.
-This public key must be retrieved so that we can generate the JSON Web Key Sets (JWKS) document in the next step.
+The public part of the API server's key pair must be published in the OIDC JSON Web Key Sets (JWKS) document.
+This public key must be retrieved so that we can generate the JWKS document in the next step.
 
 Make sure that your `kubectl` context is set to your management cluster.
 Then run the following command:
@@ -136,6 +136,9 @@ echo "Done! Your OIDC Issuer is located at:"
 echo "${AZURE_WEB_ENDPOINT}"
 ```
 
+Be sure to copy the URL of your OIDC issuer shown at the end of the script output.
+You will need it in the next steps.
+
 ### Configure workload cluster
 
 Once the OIDC Issuer is created, you must configure it as a service account issuer in your workload cluster.
@@ -161,21 +164,51 @@ After the configuration is done, applications in your cluster can use Azure Work
 
 ### Deploy mutating admission webhook controller
 
-<!-- 
-    TODO: This is packaged as an App for use on MCs.
-    How to reuse this app for the WC instead of doing it manually?
--->
+The Azure Workload Identity webhook mutates Pods to include the necessary configuration for Azure Workload Identity.
 
 ```bash
-#!/usr/bin/env bash
+export MANAGEMENT_CLUSTER_CONTEXT="mc-context"
+export ORGANIZATION_NAME="your-org"
+export CLUSTER_NAME="your-workload-cluster"
 export AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)
-helm repo add azure-workload-identity https://azure.github.io/azure-workload-identity/charts
-helm repo update
-helm install azure-workload-identity-webhook azure-workload-identity/workload-identity-webhook \
-   --namespace azure-workload-identity-system \
-   --create-namespace \
-   --set azureTenantID="$AZURE_TENANT_ID"
+
+cat <<EOF | kubectl --context ${MANAGEMENT_CLUSTER_CONTEXT} apply -f -
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: azure-workload-identity-webhook
+  namespace: org-${ORGANIZATION_NAME}
+spec:
+  url: oci://gsoci.azurecr.io/charts/giantswarm/azure-workload-identity-webhook
+  ref:
+    tag: 1.0.3
+  interval: 60m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ${CLUSTER_NAME}-azure-workload-identity-webhook
+  namespace: org-${ORGANIZATION_NAME}
+spec:
+  chartRef:
+    apiVersion: source.toolkit.fluxcd.io/v1beta2
+    kind: OCIRepository
+    name: azure-workload-identity-webhook
+    namespace: org-${ORGANIZATION_NAME}
+  interval: 60m
+  kubeConfig:
+    secretRef:
+      name: ${CLUSTER_NAME}-kubeconfig
+  releaseName: azure-workload-identity-webhook
+  storageNamespace: giantswarm
+  targetNamespace: giantswarm
+  values:
+    azureTenantID: ${AZURE_TENANT_ID}
+EOF
 ```
+
+Once the webhook has finished installing, your workload cluster supports Azure Workload Identity.
 
 ## Example usage
 
@@ -188,6 +221,8 @@ Running the following script will:
 * Grant permission to the identity to read secrets from the Key Vault
 * Deploy an example application to your workload cluster to read a secret
 
+Please make sure that you review the variables at the beginning of the script and make the necessary changes.
+
 ```bash
 #!/usr/bin/env bash
 
@@ -196,11 +231,11 @@ set -o nounset
 set -o pipefail
 
 # The name of your workload cluster.
-export CLUSTER_NAME="robin02"
+export CLUSTER_NAME="your-workload-cluster"
 # Azure location of your workload cluster resources.
 export LOCATION="westeurope"
 # HTTPS URL to the OIDC issuer that was created in the previous section.
-export SERVICE_ACCOUNT_ISSUER="https://oidcissuer85517dcb.z6.web.core.windows.net/"
+export SERVICE_ACCOUNT_ISSUER=""
 # The name of the resource group that contains the workload cluster.
 export RESOURCE_GROUP="${CLUSTER_NAME}"
 
@@ -250,13 +285,7 @@ az role assignment create \
   --role "Key Vault Secrets User" \
   --scope $VAULT_ID
   
-echo "Creating Kubernetes service account..."
-
-kubectl create serviceaccount $SERVICE_ACCOUNT_NAME
-kubectl annotate serviceaccount $SERVICE_ACCOUNT_NAME azure.workload.identity/client-id=$USER_ASSIGNED_IDENTITY_CLIENT_ID
-
 echo "Creating federated credential..."
-
 az identity federated-credential create \
   --name "workload-identity-fc" \
   --identity-name $USER_ASSIGNED_IDENTITY_NAME \
@@ -272,6 +301,15 @@ KEYVAULT_URL=$(az keyvault show \
     --query properties.vaultUri -o tsv)
 
 cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${SERVICE_ACCOUNT_NAME}
+  namespace: ${SERVICE_ACCOUNT_NAMESPACE}
+  annotations:
+    azure.workload.identity/client-id: ${USER_ASSIGNED_IDENTITY_CLIENT_ID}
+---
 apiVersion: v1
 kind: Pod
 metadata:
