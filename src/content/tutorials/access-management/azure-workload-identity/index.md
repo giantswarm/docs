@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-access-management-azwi
 user_questions:
   - How can I use Azure Workload Identity?
-last_review_date: 2026-02-13
+last_review_date: 2026-02-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
