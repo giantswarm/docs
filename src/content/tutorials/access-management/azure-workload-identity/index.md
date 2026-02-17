@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-access-management-azwi
 user_questions:
   - How can I use Azure Workload Identity?
-last_review_date: 2026-02-16
+last_review_date: 2026-02-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
@@ -40,6 +40,8 @@ Cluster workloads exchange a service account token projected to its volume for a
 * [Azure CLI (`az`)](https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)
 * [Azure AD Workload CLI (`azwi`)](https://azure.github.io/azure-workload-identity/docs/installation/azwi.html)
 
+Make sure that your Azure CLI is logged in and configured to use the subscription that your workload cluster is running in.
+
 ### Retrieve service account public key
 
 The Kubernetes API server issues tokens for service accounts.
@@ -68,73 +70,12 @@ We first need a way to host the discovery and JWKS documents required by OpenID 
 These documents do not contain sensitive information, and must be hosted on a publicly accessible endpoint.
 For this we will use an Azure Storage Account.
 
-The following script will:
+Download [`setup-oidc-issuer.sh`](./setup-oidc-issuer.sh) and review the variables at the beginning of the script.
+The script will:
 
   1. Deploy an Azure Storage Account.
   2. Generate and publish the OIDC discovery document.
   3. Generate and publish the OIDC JWKS document.
-
-```bash
-#!/usr/bin/env bash
-
-set -o errexit
-set -o nounset
-set -o pipefail
-
-# Resource group that contains the workload cluster.
-# By default, it is the same name as the cluster.
-export RESOURCE_GROUP="${CLUSTER_NAME}"
-export LOCATION="westeurope"
-# Randomly generate a storage account name.
-# Be sure to manually set the name if you need to re-run the script.
-export AZURE_STORAGE_ACCOUNT="oidcissuer$(openssl rand -hex 4)"
-# A special container that is always publicly accessible,
-# even when the storage account is private.
-export AZURE_STORAGE_CONTAINER="\$web"
-
-echo "Deploying Azure Storage Account..."
-
-az storage account create --resource-group $RESOURCE_GROUP --name $AZURE_STORAGE_ACCOUNT
-az storage container create --name $AZURE_STORAGE_CONTAINER
-az storage blob service-properties update --account-name $AZURE_STORAGE_ACCOUNT --static-website
-
-AZURE_WEB_ENDPOINT=$(az storage account show --query "primaryEndpoints.web" --output tsv --name $AZURE_STORAGE_ACCOUNT)
-
-echo "Generating and publishing the OIDC discovery document..."
-
-cat <<EOF > openid-configuration.json
-{
-    "issuer": "${AZURE_WEB_ENDPOINT}",
-    "jwks_uri": "${AZURE_WEB_ENDPOINT}openid/v1/jwks",
-    "response_types_supported": [
-        "id_token"
-    ],
-        "subject_types_supported": [
-        "public"
-    ],
-    "id_token_signing_alg_values_supported": [
-        "RS256"
-    ]
-}
-EOF
-
-az storage blob upload \
-  --container-name "${AZURE_STORAGE_CONTAINER}" \
-  --file openid-configuration.json \
-  --name .well-known/openid-configuration
-
-echo "Generating and publishing the OIDC JWKS document..."
-
-azwi jwks --public-keys sa.pub --output-file jwks.json
-
-az storage blob upload \
-  --container-name "${AZURE_STORAGE_CONTAINER}" \
-  --file jwks.json \
-  --name openid/v1/jwks
-  
-echo "Done! Your OIDC Issuer is located at:"
-echo "${AZURE_WEB_ENDPOINT}"
-```
 
 Be sure to copy the URL of your OIDC issuer shown at the end of the script output.
 You will need it in the next steps.
@@ -166,47 +107,7 @@ After the configuration is done, applications in your cluster can use Azure Work
 
 The Azure Workload Identity webhook mutates Pods to include the necessary configuration for Azure Workload Identity.
 
-```bash
-export MANAGEMENT_CLUSTER_CONTEXT="mc-context"
-export ORGANIZATION_NAME="your-org"
-export CLUSTER_NAME="your-workload-cluster"
-export AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)
-
-cat <<EOF | kubectl --context ${MANAGEMENT_CLUSTER_CONTEXT} apply -f -
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: OCIRepository
-metadata:
-  name: azure-workload-identity-webhook
-  namespace: org-${ORGANIZATION_NAME}
-spec:
-  url: oci://gsoci.azurecr.io/charts/giantswarm/azure-workload-identity-webhook
-  ref:
-    tag: 1.0.3
-  interval: 60m
----
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: ${CLUSTER_NAME}-azure-workload-identity-webhook
-  namespace: org-${ORGANIZATION_NAME}
-spec:
-  chartRef:
-    apiVersion: source.toolkit.fluxcd.io/v1beta2
-    kind: OCIRepository
-    name: azure-workload-identity-webhook
-    namespace: org-${ORGANIZATION_NAME}
-  interval: 60m
-  kubeConfig:
-    secretRef:
-      name: ${CLUSTER_NAME}-kubeconfig
-  releaseName: azure-workload-identity-webhook
-  storageNamespace: giantswarm
-  targetNamespace: giantswarm
-  values:
-    azureTenantID: ${AZURE_TENANT_ID}
-EOF
-```
+You can deploy it using [`deploy-mutating-admission-webhook-controller.sh`](./deploy-mutating-admission-webhook-controller.sh).
 
 Once the webhook has finished installing, your workload cluster supports Azure Workload Identity.
 
@@ -214,7 +115,9 @@ Once the webhook has finished installing, your workload cluster supports Azure W
 
 This section is based on [Azure's quick start guide](https://azure.github.io/azure-workload-identity/docs/quick-start.html).
 
-Running the following script will:
+You can run the [example script](./azwi-example.sh) to test your setup.
+
+Running the script will:
 
 * Deploy an Azure Key Vault
 * Create a user-assigned managed identity
@@ -222,123 +125,6 @@ Running the following script will:
 * Deploy an example application to your workload cluster to read a secret
 
 Please make sure that you review the variables at the beginning of the script and make the necessary changes.
-
-```bash
-#!/usr/bin/env bash
-
-set -o errexit
-set -o nounset
-set -o pipefail
-
-# The name of your workload cluster.
-export CLUSTER_NAME="your-workload-cluster"
-# Azure location of your workload cluster resources.
-export LOCATION="westeurope"
-# HTTPS URL to the OIDC issuer that was created in the previous section.
-export SERVICE_ACCOUNT_ISSUER=""
-# The name of the resource group that contains the workload cluster.
-export RESOURCE_GROUP="${CLUSTER_NAME}"
-
-export KEYVAULT_NAME="azwi-kv-${CLUSTER_NAME}"
-export KEYVAULT_SECRET_NAME="my-secret"
-
-export USER_ASSIGNED_IDENTITY_NAME="${CLUSTER_NAME}-msal"
-export SERVICE_ACCOUNT_NAMESPACE="default"
-export SERVICE_ACCOUNT_NAME="workload-identity-msal"
-
-echo "Creating the Azure Key Vault and Secret..."
-
-VAULT_ID=$(az keyvault create --resource-group "$RESOURCE_GROUP" \
-   --location "$LOCATION" \
-   --name "$KEYVAULT_NAME" \
-   --query id -o tsv )
-
-# Assign the logged-in user permissions to manage secrets in the Key Vault.
-ASSIGNEE_OBJECT_ID=$(az ad signed-in-user show --query id -o tsv)
-az role assignment create \
-  --assignee-object-id $ASSIGNEE_OBJECT_ID \
-  --assignee-principal-type User \
-  --role "Key Vault Secrets Officer" \
-  --scope $VAULT_ID
-
-echo "Waiting for Azure Key Vault RBAC permissions to apply..."
-sleep 60
-
-az keyvault secret set --vault-name "$KEYVAULT_NAME" \
-   --name "$KEYVAULT_SECRET_NAME" \
-   --value "Hello\!"
-
-echo "Creating user-assigned managed identity..."
-USER_ASSIGNED_IDENTITY_CLIENT_ID=$(az identity create \
-    --name "$USER_ASSIGNED_IDENTITY_NAME" \
-    --resource-group "$RESOURCE_GROUP" \
-    --query clientId -o tsv)
-
-USER_ASSIGNED_IDENTITY_OBJECT_ID=$(az identity show \
-    --name $USER_ASSIGNED_IDENTITY_NAME \
-    --resource-group $RESOURCE_GROUP \
-    --query principalId -o tsv)
-
-az role assignment create \
-  --assignee-object-id $USER_ASSIGNED_IDENTITY_OBJECT_ID \
-  --assignee-principal-type ServicePrincipal \
-  --role "Key Vault Secrets User" \
-  --scope $VAULT_ID
-  
-echo "Creating federated credential..."
-az identity federated-credential create \
-  --name "workload-identity-fc" \
-  --identity-name $USER_ASSIGNED_IDENTITY_NAME \
-  --resource-group $RESOURCE_GROUP \
-  --issuer $SERVICE_ACCOUNT_ISSUER \
-  --subject system:serviceaccount:${SERVICE_ACCOUNT_NAMESPACE}:${SERVICE_ACCOUNT_NAME}
-  
-echo "Creating example workload..."
-
-KEYVAULT_URL=$(az keyvault show \
-    --resource-group $RESOURCE_GROUP \
-    --name $KEYVAULT_NAME \
-    --query properties.vaultUri -o tsv)
-
-cat <<EOF | kubectl apply -f -
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: ${SERVICE_ACCOUNT_NAME}
-  namespace: ${SERVICE_ACCOUNT_NAMESPACE}
-  annotations:
-    azure.workload.identity/client-id: ${USER_ASSIGNED_IDENTITY_CLIENT_ID}
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: quick-start
-  namespace: ${SERVICE_ACCOUNT_NAMESPACE}
-  labels:
-    azure.workload.identity/use: "true"
-spec:
-  serviceAccountName: ${SERVICE_ACCOUNT_NAME}
-  containers:
-    - image: ghcr.io/azure/azure-workload-identity/msal-go
-      name: oidc
-      env:
-        - name: KEYVAULT_URL
-          value: ${KEYVAULT_URL}
-        - name: SECRET_NAME
-          value: ${KEYVAULT_SECRET_NAME}
-      securityContext:
-        allowPrivilegeEscalation: false
-        capabilities:
-          drop: [ALL]
-  nodeSelector:
-    kubernetes.io/os: linux
-  securityContext:
-    runAsNonRoot: true
-    seccompProfile:
-      type: RuntimeDefault
-EOF
-```
 
 If the test is successful, the `quick-start` Pod should periodically log something like this:
 
