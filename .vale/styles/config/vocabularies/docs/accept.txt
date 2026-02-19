@@ -1,6 +1,7 @@
 # Please keep this list sorted (alphabetically, case-insensitive)
 [Aa][Ww][Ss]
 [Aa]gent
+AZ
 # Gateway API ecosystem terms
 [Gg]ateway[ -][Aa][Pp][Ii]
 gateway-api-bundle
