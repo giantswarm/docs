@@ -30,8 +30,8 @@ This flow made it difficult to use standard Flux automation because Flux manages
 
 With `release-<provider>` charts:
 
-- The App CR's **`.spec.version` is the actual release version** (for example `34.0.0`), not the internal chart version (for example `7.2.5`)
-- **Standard Flux/Helm upgrade patterns work**: bumping `.spec.version` from `34.0.0` to `34.1.0` triggers an upgrade
+- The App CR's **`.spec.version` is the actual release version** (for example `35.0.0`), not the internal chart version (for example `7.2.5`)
+- **Standard Flux/Helm upgrade patterns work**: bumping `.spec.version` from `35.0.0` to `35.1.0` triggers an upgrade
 - **No mutating webhook interference**: the App Admission Controller only intercepts charts named `cluster-*`, so `release-*` charts pass through unmodified
 - **No ConfigMap version override needed**: the release version is baked into the chart's `values.yaml` as `global.release.version`
 
