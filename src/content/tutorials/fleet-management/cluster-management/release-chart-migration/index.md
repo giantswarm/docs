@@ -18,7 +18,7 @@ user_questions:
 
 Starting with release version 35, cluster charts are published under a new naming scheme: `release-<provider>` (for example `release-aws`) instead of `cluster-<provider>` (for example `cluster-aws`). This enables automated cluster upgrades through standard Flux/Helm patterns.
 
-## Why release charts?
+## Why release charts
 
 With the previous `cluster-<provider>` charts, upgrading a cluster required coordinating multiple pieces:
 
@@ -55,7 +55,7 @@ The result is a chart that is functionally identical to the original `cluster-aw
 | Azure | `cluster-azure` | `release-azure` |
 | vSphere | `cluster-vsphere` | `release-vsphere` |
 | Cloud Director | `cluster-cloud-director` | `release-cloud-director` |
-| EKS | `cluster-eks` | `release-eks` |
+| Elastic Kubernetes Service (EKS) | `cluster-eks` | `release-eks` |
 
 ## New clusters
 
@@ -115,7 +115,7 @@ Confirm that:
 - `.spec.version` matches the target release version
 - `.status.release.status` shows the deployment progressing
 
-## Automating upgrades with Flux
+## Automating upgrades with flux
 
 Once a cluster uses `release-<provider>` charts, you can automate upgrades with Flux by updating `.spec.version` in your GitOps repository. For example, changing the App CR's version from `35.0.0` to `35.1.0` triggers an upgrade to the new release.
 
