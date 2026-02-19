@@ -111,6 +111,7 @@ kubectl get app my-cluster -n org-myorg -o yaml
 ```
 
 Confirm that:
+
 - `.spec.name` is `release-<provider>`
 - `.spec.version` matches the target release version
 - `.status.release.status` shows the deployment progressing
