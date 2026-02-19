@@ -92,6 +92,6 @@ Confirm that:
 - `.spec.version` matches the target release version
 - `.status.release.status` shows the deployment progressing
 
-## Automating upgrades with Flux
+## Automating upgrades with flux
 
 Once a cluster uses `release-<provider>` charts, you can automate upgrades by updating `.spec.version` in your GitOps repository. For example, changing the version from `35.0.0` to `35.1.0` triggers an upgrade to the new release.
