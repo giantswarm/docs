@@ -61,9 +61,9 @@ spec:
   # ... rest of spec unchanged
 ```
 
-### 2. Remove the version override from the ConfigMap (optional)
+### 2. Remove the version override from the ConfigMap
 
-If your user ConfigMap contains a `global.release.version` override, you can remove it since the value is now included in the chart:
+If your user ConfigMap contains a `global.release.version` override, you should remove it since the value is now included in the chart:
 
 ```yaml
 apiVersion: v1
@@ -76,7 +76,7 @@ data:
     # global.release.version is no longer needed here
 ```
 
-If you keep the ConfigMap value, it takes precedence over the chart default. This is harmless as long as the version matches.
+If you keep the ConfigMap value, it takes precedence over the chart default. This can result in undesired behavior if the value is not updated regularly.
 
 ### 3. Verify
 
