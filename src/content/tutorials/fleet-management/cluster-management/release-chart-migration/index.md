@@ -76,7 +76,7 @@ data:
     # global.release.version is no longer needed here
 ```
 
-If you keep the ConfigMap value, it takes precedence over the chart default. This can result in undesired behavior if the value is not updated regularly.
+**Warning**: If you keep the ConfigMap value, it takes precedence over the chart default. This can result in undesired behavior if the value is not updated regularly.
 
 ### 3. Verify
 
