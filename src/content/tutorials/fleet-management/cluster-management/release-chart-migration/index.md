@@ -16,7 +16,7 @@ user_questions:
   - What is the difference between cluster-provider and release-provider charts?
 ---
 
-Starting with release version 35, cluster charts are published under a new naming scheme: `release-<provider>` (for example `release-aws`) instead of `cluster-<provider>` (for example `cluster-aws`). This change simplifies cluster upgrades and enables automation through standard Flux/Helm patterns.
+Starting with Giant Swarm release version 35, cluster charts are published under a new naming scheme: `release-<provider>` (for example `release-aws`) instead of `cluster-<provider>` (for example `cluster-aws`). This change simplifies cluster upgrades and enables automation through standard Flux/Helm patterns.
 
 ## What changed
 
