@@ -31,7 +31,7 @@ Before starting this tutorial, ensure you have:
 
 **Important**: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
 
-## Enable Network Monitoring
+## Enable network monitoring
 
 Network monitoring is not enabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
