@@ -31,7 +31,7 @@ Before starting this tutorial, ensure you have:
 
 **Important**: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
 
-## Enable network monitoring
+## Enable Network Monitoring
 
 Network monitoring is not enabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
@@ -43,7 +43,7 @@ kubectl label cluster <cluster-name> giantswarm.io/network-monitoring=true
 
 After applying the label, the platform automatically deploys the network monitoring components. The collector runs within the existing `alloy-logs` DaemonSet in the `kube-system` namespace, with one collector instance per node.
 
-### Verify monitoring is active
+### Verify Monitoring Is Active
 
 You can verify that network monitoring is active by checking if the `beyla_network_flow_bytes_total` metric is being collected. In Grafana, navigate to **Explore** and run the following query:
 
@@ -53,11 +53,11 @@ beyla_network_flow_bytes_total{cluster_id="<your-cluster-id>"}
 
 If data is returned, network monitoring is working correctly. Allow a few minutes after enabling for data to start appearing.
 
-## Understanding the dashboards
+## Understanding the Dashboards
 
 Two Grafana dashboards are available for analyzing network traffic. You can find them by searching for the tag `topic:networking-traffic-analysis` in Grafana.
 
-### Network traffic analysis - overview
+### Network Traffic Analysis - Overview
 
 This dashboard provides a high-level view of network traffic patterns over the **last 7 days**, aggregated at the namespace level. Use this dashboard for:
 
@@ -74,7 +74,7 @@ Key panels:
 | Total Public Traffic | Time series of aggregate public traffic |
 | Total Cross-AZ Private Traffic | Time series of cross-AZ internal traffic |
 
-### Network traffic analysis
+### Network Traffic Analysis
 
 This dashboard provides detailed, real-time visibility into network traffic over a **30-minute window**. Use this dashboard for:
 
@@ -92,7 +92,7 @@ Key panels:
 | Time Series | Graphs for public, private, in-AZ, and cross-AZ traffic over time |
 
 
-### Example scenario: high cross-AZ traffic between services
+### Example Scenario: High Cross-AZ Traffic Between Services
 
 In this scenario, your cloud bill shows high network costs. You suspect cross-AZ traffic but need to identify which services are responsible and how to fix it.
 
@@ -107,7 +107,7 @@ In this scenario, your cloud bill shows high network costs. You suspect cross-AZ
 
 ![network traffic analysis - overview](./network-monitoring-overview.png)
 
-#### Step 2: Investigate traffic source
+#### Step 2: Investigate Traffic Source
 
 1. Open the **Network Traffic Analysis** dashboard (the detailed view)
 2. Use the namespace filter to select the `payments` namespace we identified
@@ -122,7 +122,7 @@ For advanced investigation, you can explore specific panel queries, for example 
 
 ![network traffic analysis - explore](./network-monitoring-explore.png)
 
-#### Step 3: Apply optimizations
+#### Step 3: Apply Optimizations
 
 Based on your investigation, choose one or more of the following strategies to reduce cross-AZ traffic:
 
@@ -140,7 +140,7 @@ After applying changes, allow some time for traffic patterns to stabilize, then 
 
 **Important**: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not remove it entirely.
 
-## Understanding the metrics
+## Understanding the Metrics
 
 Network monitoring collects data using the `beyla_network_flow_bytes_total` metric. Key labels include:
 
