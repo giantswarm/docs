@@ -21,12 +21,6 @@ Network traffic, particularly cross-availability zone (cross-AZ) and egress traf
 
 This tutorial shows you how to enable network traffic monitoring on your clusters, interpret the provided dashboards, and identify opportunities to reduce your infrastructure costs.
 
-## What you will learn
-
-- How to enable network traffic monitoring on a workload cluster
-- How to access and interpret the network traffic dashboards
-- How to identify costly traffic patterns and optimization opportunities
-
 ## Prerequisites
 
 Before starting this tutorial, ensure you have:
