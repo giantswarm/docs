@@ -37,7 +37,7 @@ Before starting this tutorial, ensure you have:
 
 __Note__: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
 
-## Enable Network Monitoring {#enable}
+## Enable Network Monitoring
 
 Network monitoring is disabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
@@ -161,7 +161,7 @@ After applying changes, allow some time for traffic patterns to stabilize, then 
 
 __Note__: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not eliminate it entirely.
 
-## Understanding the metrics {#metrics}
+## Understanding the metrics
 
 Network monitoring collects data using the `beyla_network_flow_bytes_total` metric. Key labels include:
 
