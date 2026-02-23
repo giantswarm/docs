@@ -17,7 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
 
-Network traffic, particularly cross-availability zone (cross-AZ) and egress traffic, is often a hidden but significant cost driver in cloud environments. Cloud providers typically charge for data transfer between availability zones (for example, AWS charges approximately $0.01/GB for cross-AZ traffic), and these costs can add up quickly in distributed systems.
+Network traffic, particularly cross-availability zone (cross-AZ) and egress traffic, is often a hidden but significant cost driver in cloud environments. Cloud providers typically charge for data transfer between availability zones. For example, AWS charges approximately $0.01/GB for cross-AZ traffic, and these costs can add up quickly in distributed systems.
 
 This tutorial shows you how to enable network traffic monitoring on your clusters, interpret the provided dashboards, and identify opportunities to reduce your infrastructure costs.
 
@@ -31,9 +31,9 @@ Before starting this tutorial, ensure you have:
 
 **Important**: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
 
-## Enable Network Monitoring
+## Enable network monitoring
 
-Network monitoring is disabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
+Network monitoring is not enabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
 For example using kubectl:
 
@@ -43,7 +43,7 @@ kubectl label cluster <cluster-name> giantswarm.io/network-monitoring=true
 
 After applying the label, the platform automatically deploys the network monitoring components. The collector runs within the existing `alloy-logs` DaemonSet in the `kube-system` namespace, with one collector instance per node.
 
-### Verify Monitoring Is Active
+### Verify monitoring is active
 
 You can verify that network monitoring is active by checking if the `beyla_network_flow_bytes_total` metric is being collected. In Grafana, navigate to **Explore** and run the following query:
 
@@ -53,11 +53,11 @@ beyla_network_flow_bytes_total{cluster_id="<your-cluster-id>"}
 
 If data is returned, network monitoring is working correctly. Allow a few minutes after enabling for data to start appearing.
 
-## Understanding The Dashboards
+## Understanding the dashboards
 
 Two Grafana dashboards are available for analyzing network traffic. You can find them by searching for the tag `topic:networking-traffic-analysis` in Grafana.
 
-### Network Traffic Analysis - Overview
+### Network traffic analysis - overview
 
 This dashboard provides a high-level view of network traffic patterns over the **last 7 days**, aggregated at the namespace level. Use this dashboard for:
 
@@ -74,7 +74,7 @@ Key panels:
 | Total Public Traffic | Time series of aggregate public traffic |
 | Total Cross-AZ Private Traffic | Time series of cross-AZ internal traffic |
 
-### Network Traffic Analysis
+### Network traffic analysis
 
 This dashboard provides detailed, real-time visibility into network traffic over a **30-minute window**. Use this dashboard for:
 
@@ -92,9 +92,9 @@ Key panels:
 | Time Series | Graphs for public, private, in-AZ, and cross-AZ traffic over time |
 
 
-### Example scenario: High cross-AZ traffic between services
+### Example scenario: high cross-AZ traffic between services
 
-In this scenario, your cloud bill shows unexpectedly high network costs. You suspect cross-AZ traffic but need to identify which services are responsible and how to fix it.
+In this scenario, your cloud bill shows high network costs. You suspect cross-AZ traffic but need to identify which services are responsible and how to fix it.
 
 **The problem**: A `payments` service frequently queries a `database` service. Because pods are distributed across availability zones for high availability, many of these requests cross zone boundaries. At $0.01/GB, a service transferring 50 GB/day across zones costs approximately $15/month - and this adds up quickly across multiple services.
 
@@ -107,7 +107,7 @@ In this scenario, your cloud bill shows unexpectedly high network costs. You sus
 
 ![network traffic analysis - overview](./network-monitoring-overview.png)
 
-#### Step 2: Investigate the traffic source
+#### Step 2: Investigate traffic source
 
 1. Open the **Network Traffic Analysis** dashboard (the detailed view)
 2. Use the namespace filter to select the `payments` namespace we identified
@@ -122,13 +122,13 @@ For advanced investigation, you can explore specific panel queries, for example 
 
 ![network traffic analysis - explore](./network-monitoring-explore.png)
 
-#### Step 3: Apply optimization strategies
+#### Step 3: Apply optimizations
 
 Based on your investigation, choose one or more of the following strategies to reduce cross-AZ traffic:
 
 - [Kubernetes topology-aware routing](https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/) to configure the destination service to prefer same-zone endpoints
 - [Topology spread constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) to ensure your workload is which maximizes the chance of same-zone communication when combined with topology-aware routing
-- [Pod affinity for co-location](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity): for services that communicate heavily, use pod affinity to prefer scheduling them in the same zone.
+- [Pod affinity for co-location](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity): for services that communicate frequently, use pod affinity to prefer scheduling them in the same zone.
 
 #### Step 4: Verify the optimization
 
@@ -138,9 +138,9 @@ After applying changes, allow some time for traffic patterns to stabilize, then 
 2. Compare the cross-AZ traffic for your namespace before and after the change
 3. You should see a reduction in the **Average Cross-AZ Network Traffic** panel
 
-**Important**: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not eliminate it entirely.
+**Important**: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not remove it entirely.
 
-## Understanding The Metrics
+## Understanding the metrics
 
 Network monitoring collects data using the `beyla_network_flow_bytes_total` metric. Key labels include:
 
