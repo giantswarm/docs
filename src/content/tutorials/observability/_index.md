@@ -6,7 +6,7 @@ menu:
   principal:
     parent: tutorials
     identifier: tutorials-observability
-last_review_date: 2025-02-11
+last_review_date: 2026-02-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
