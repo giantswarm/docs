@@ -12,7 +12,7 @@ user_questions:
   - How do I enable network monitoring?
   - How can I see cross-AZ traffic in my cluster?
   - Where can I find network traffic dashboards?
-last_review_date: 2025-02-13
+last_review_date: 2026-02-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
