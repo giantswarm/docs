@@ -41,21 +41,6 @@ For example using kubectl:
 kubectl label cluster <cluster-name> giantswarm.io/network-monitoring=true
 ```
 
-### Using a manifest
-
-If you manage your cluster declaratively, add the label to your `Cluster` resource:
-
-```yaml
-apiVersion: cluster.x-k8s.io/v1beta1
-kind: Cluster
-metadata:
-  name: my-cluster
-  labels:
-    giantswarm.io/network-monitoring: "true"
-spec:
-  # ... rest of your cluster configuration
-```
-
 After applying the label, the platform automatically deploys the network monitoring components. The collector runs within the existing `alloy-logs` DaemonSet in the `kube-system` namespace, with one collector instance per node.
 
 ### Verify monitoring is active
