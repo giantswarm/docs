@@ -74,7 +74,7 @@ beyla_network_flow_bytes_total{cluster_id="<your-cluster-id>"}
 
 If data is returned, network monitoring is working correctly. Allow a few minutes after enabling for data to start appearing.
 
-## Understanding the dashboards {#dashboards}
+## Understanding the dashboards
 
 Two Grafana dashboards are available for analyzing network traffic. You can find them by searching for the tag `topic:networking-traffic-analysis` in Grafana.
 
