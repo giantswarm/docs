@@ -39,7 +39,7 @@ __Note__: Network monitoring produces a significant amount of monitoring data, w
 
 ## Enable Network Monitoring {#enable}
 
-Network monitoring is disabled by default and requires explicit opt-in. To enable it, add a label to your workload cluster's `Cluster` resource.
+Network monitoring is disabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
 ### Using kubectl
 
