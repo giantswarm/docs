@@ -37,7 +37,7 @@ Before starting this tutorial, ensure you have:
 
 __Note__: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
 
-## Enable network monitoring {#enable}
+## Enable Network Monitoring {#enable}
 
 Network monitoring is disabled by default and requires explicit opt-in. To enable it, add a label to your workload cluster's `Cluster` resource.
 
