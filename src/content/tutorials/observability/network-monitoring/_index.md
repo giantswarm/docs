@@ -53,7 +53,7 @@ beyla_network_flow_bytes_total{cluster_id="<your-cluster-id>"}
 
 If data is returned, network monitoring is working correctly. Allow a few minutes after enabling for data to start appearing.
 
-## Understanding the dashboards
+## Understanding The Dashboards
 
 Two Grafana dashboards are available for analyzing network traffic. You can find them by searching for the tag `topic:networking-traffic-analysis` in Grafana.
 
@@ -140,7 +140,7 @@ After applying changes, allow some time for traffic patterns to stabilize, then 
 
 **Important**: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not eliminate it entirely.
 
-## Understanding the metrics
+## Understanding The Metrics
 
 Network monitoring collects data using the `beyla_network_flow_bytes_total` metric. Key labels include:
 
