@@ -43,7 +43,7 @@ kubectl label cluster <cluster-name> giantswarm.io/network-monitoring=true
 
 After applying the label, the platform automatically deploys the network monitoring components. The collector runs within the existing `alloy-logs` DaemonSet in the `kube-system` namespace, with one collector instance per node.
 
-### Verify monitoring is active
+### Verify Monitoring Is Active
 
 You can verify that network monitoring is active by checking if the `beyla_network_flow_bytes_total` metric is being collected. In Grafana, navigate to **Explore** and run the following query:
 
