@@ -29,7 +29,7 @@ Before starting this tutorial, ensure you have:
 - The `observability-bundle` version 2.3.0 or later installed
 - Access to Grafana dashboards in the platform
 
-__Note__: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
+**Important**: Network monitoring produces a significant amount of monitoring data, which may increase resource consumption on the management cluster. Consider this when enabling the feature on many clusters simultaneously.
 
 ## Enable Network Monitoring
 
@@ -153,7 +153,7 @@ After applying changes, allow some time for traffic patterns to stabilize, then 
 2. Compare the cross-AZ traffic for your namespace before and after the change
 3. You should see a reduction in the **Average Cross-AZ Network Traffic** panel
 
-__Note__: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not eliminate it entirely.
+**Important**: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not eliminate it entirely.
 
 ## Understanding the metrics
 
