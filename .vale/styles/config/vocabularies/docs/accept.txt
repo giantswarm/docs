@@ -42,6 +42,7 @@ az
 azure-cloud-controller-manager-app
 azure-cloud-node-manager-app
 Azure
+Azure Workload Identity
 backbone
 beta
 boolean
@@ -77,6 +78,7 @@ effectively
 [E|e]dgedb
 ELB[s]?
 ENI[s]?
+Entra
 ESXi
 [E|e]tcd
 [E|e]xtract
@@ -128,6 +130,7 @@ OCI
 OCIRepository
 OIDC
 onboarding
+OpenID Connect
 OTLP
 PagerDuty
 passthrough
@@ -145,6 +148,7 @@ rollouts
 rulesets
 runbook[s]?
 [s|S]ample
+SDKs
 SemVer
 separately
 Sigstore

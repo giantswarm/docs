@@ -15,7 +15,7 @@ description: Release notes for CAPZ workload cluster release azure-34.0.0, publi
 title: Workload cluster release azure-34.0.0 for CAPZ
 ---
 
-## :warning: Important Note for Upgrading to this Release :warning:
+## Warning: Important Note for Upgrading to this Release
 
 _tl;dr_: Please first upgrade your existing cluster to Giant Swarm Release v33.1.1 for Azure or newer before upgrading to this release! Otherwise, you risk service outage and severe issues.
 
