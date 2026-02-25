@@ -22,7 +22,7 @@ This guide provides the necessary steps to prepare your AWS accounts to run our 
 
 ## Requirements
 
-You can run the management and workload clusters in the same account or separate accounts in AWS environments. To help you take the decision, please read our [multi-account article]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/multi-account" >}}), where we explain the pros and cons of both approaches. Most requirements are related to configuring initial _Identity and Access Management (IAM)_ roles which are then used by Giant Swarmm to automatically configure and update your accounts for full compatibility. 
+You can run the management and workload clusters in the same account or separate accounts in AWS environments. To help you take the decision, please read our [multi-account article]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/multi-account" >}}), where we explain the pros and cons of both approaches. Most requirements are related to configuring initial _Identity and Access Management (IAM)_ roles which are then used by Giant Swarm to automatically configure and update your accounts for full compatibility.
 
 ![AWS Setup Diagram](aws_onboarding.png)
 
@@ -36,8 +36,7 @@ To onboard a new AWS account to use with the Giant Swarm platform, for both Mana
 
 After that, make sure to notify your Giant Swarm account engineer to provide the new AWS account ID so we can bootstrap the rest of the required IAM resources.
 
-In case you have already set up the management cluster and Giant Swamr has confirmed configuration of the new AWS account, you can [configure cluster role identity](#configure-cluster-role-identity}) for your Workload Cluster. With this in place you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}). 
-
+In case you have already set up the management cluster and Giant Swarm has confirmed configuration of the new AWS account, you can [configure cluster role identity](#configure-cluster-role-identity}) for your Workload Cluster. With this in place you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
 ## Step 2: Configure the cluster role identity for Workload Clusters {#configure-cluster-role-identity}
 
@@ -100,7 +99,7 @@ It is also used by our account automation to plan and validate changes during pu
 
 Name: `GiantSwarmReadOnly`
 
-## Automated Service quotas {#quotas}
+## Service quotas {#quotas}
 
 AWS establishes default quotas for all your cloud services as described in the [provider documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html). 
 
