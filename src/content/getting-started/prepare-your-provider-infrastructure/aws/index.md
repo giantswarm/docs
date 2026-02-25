@@ -3,7 +3,7 @@ title: Prepare your AWS account
 linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2025-10-01
+last_review_date: 2026-02-25
 layout: single
 menu:
   principal:
