@@ -40,7 +40,7 @@ In case you have already set up the management cluster and Giant Swarm has confi
 
 ## Step 2: Configure the cluster role identity for Workload Clusters {#configure-cluster-role-identity}
 
-This step involves storing the AWS credentials in the platform to allow the CAPA controller to manage your account's infrastructure. In Cluster API there is a custom resource called `AWSClusterRoleIdentity` that stores the AWS role ARN and the role's name. Take into account that this resource is namespaced.
+This step involves storing the AWS credentials in the platform to allow the CAPA controller to manage your account's infrastructure. In Cluster API there is a custom namespaced resource called `AWSClusterRoleIdentity` that stores the AWS role ARN and the role's name.
 
 By default, the controller uses a `default` configuration, which points to the role in the management cluster account. If you want to create a new workload cluster in a new AWS account, you need to create a new `AWSClusterRoleIdentity` resource that references the role of that AWS account. Example:
 
