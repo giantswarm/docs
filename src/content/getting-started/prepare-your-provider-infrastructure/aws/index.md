@@ -103,4 +103,4 @@ Name: `GiantSwarmReadOnly`
 
 AWS establishes default quotas for all your cloud services as described in the [provider documentation](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
 
-On top of the default quotas, Giant Swarm requires some additional resources for running your clusters. After successful [IAM configuration](#iam-setup) we are fully taking care of managing limits of all necessary services automatically. Full list of all required quotas can be found in our OpenTofu [configuration](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/blob/main/service-quotas/variables.tf)
+On top of the default quotas, Giant Swarm requires some additional resources for running your clusters. After successful [IAM configuration](#iam-setup) we are fully taking care of managing limits of all necessary services automatically. Full list of all required quotas can be found in our OpenTofu [configuration](https://github.com/giantswarm/giantswarm-aws-account-prerequisites/blob/main/service-quotas/variables.tf).
