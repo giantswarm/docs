@@ -17,7 +17,7 @@ user_questions:
   - How do I authenticate with Muster?
 ---
 
-Giant Swarm platform is ready to be used by AI agents, its integration lets you query Kubernetes resources across all your management clusters using plain language — directly from your IDE. Instead of switching between terminals and dashboards, you can ask your AI assistant things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
+The Giant Swarm platform is ready to be used by AI agents. Its integration lets you query Kubernetes resources across all your management clusters using plain language — directly from your IDE. Instead of switching between terminals and dashboards, you can ask your AI assistant things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
 
 ## How it works
 
@@ -50,7 +50,7 @@ The agent handles authentication transparently, so your AI assistant never needs
 You'll need:
 
 - Access to a Giant Swarm installation with mcp-kubernetes and Muster deployed. Ask your Giant Swarm account engineer for your Muster endpoint URL — it looks like `https://muster.<management-cluster>.<base-domain>/mcp`.
-- Have it configured `dex` in your management cluster(s) with the proper identity provider. Contact our support if it is not the case.
+- Ensure `dex` is configured in your management cluster(s) with a supported identity provider. Contact Giant Swarm support if this is not the case.
 - VS Code with the GitHub Copilot extension, or Cursor.
 
 ## Step 1: Install Muster
@@ -69,7 +69,7 @@ muster context use my-platform
 You can verify the context is set correctly:
 
 ```bash
-muster context show
+muster context show my-platform
 ```
 
 ## Step 3: Authenticate
@@ -161,13 +161,13 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 - "Show me the resource requests and limits for pods in the default namespace."
 - "What Helm releases are installed on cluster A?"
 
-Muster uses a meta-tool architecture — instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of discovery and execution tools: `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`. Your AI assistant uses these automatically. You don't need to know the tool names — just describe what you want in plain language.
+Muster uses a meta-tool architecture — instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools — including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool` — that your AI assistant uses automatically. You don't need to know the tool names — just describe what you want in plain language.
 
 ## Session management
 
 - **Token expiry:** Access tokens expire roughly every 30 minutes, but the agent refreshes them automatically in the background.
 - **Session duration:** Your overall session lasts approximately 30 days before you need to log in again.
-- **Re-authentication:** If your session expires, the agent detects it and prompts re-authentication. In VS Code, the `authenticate_muster` tool reappears; in Cursor, you'll see an authentication prompt.
+- **Re-authentication:** If your session expires, the agent automatically detects it and initiates re-authentication by opening your browser. In VS Code, the `authenticate_muster` tool reappears; in Cursor, you'll see an authentication prompt.
 
 ## Troubleshooting
 
