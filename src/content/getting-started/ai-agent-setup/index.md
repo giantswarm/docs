@@ -64,7 +64,6 @@ A context tells Muster which aggregator endpoint to connect to. Add one with the
 ```bash
 muster context add my-platform --endpoint https://muster.<management-cluster>.<base-domain>/mcp
 muster context use my-platform
-```
 
 You can verify the context is set correctly:
 
