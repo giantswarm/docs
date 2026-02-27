@@ -103,7 +103,7 @@ MCP Servers
 
 ## Step 4: Configure your code editor
 
-### VS Code (GitHub Copilot)
+### VS code (GitHub Copilot)
 
 Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP settings) and add:
 
