@@ -161,7 +161,7 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 - "What are the resource requests and limits for pods in the default namespace?"
 - "What Helm releases are installed on cluster A?"
 
-Muster uses a meta-tool architecture—instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools—including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`—that your AI assistant uses automatically. You don't need to know the tool names—just describe what you want in plain language.
+Muster uses a meta-tool architecture—instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools (including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`) that your AI assistant uses automatically. You don't need to know the tool names—just describe what you want in plain language.
 
 ## Session management
 

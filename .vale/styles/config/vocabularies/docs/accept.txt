@@ -179,5 +179,6 @@ VM[s]?
 VMware
 VPC
 vs.
+VS Code
 [V|v]Sphere
 Zot
