@@ -1,7 +1,7 @@
 extends: occurrence
-message: "Try to keep sentences short (< 30 words)."
+message: "Try to keep sentences short (< 50 words)."
 scope: sentence
 level: suggestion
-max: 30
+max: 50
 token: \b(\w+)\b
 
