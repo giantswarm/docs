@@ -22,7 +22,7 @@ Below you will learn how to manage infrastructure and applications in the Giant 
 
 In the following example, based on the [`GitOps template`](https://github.com/giantswarm/gitops-template), you will find all the resources used in this section.
 
-It's necessary to have [`Flux` CLI](https://fluxcd.io/docs/cmd/) and [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs) installed in your machine. Also you installed [`gpg`](https://gnupg.org/) to encrypt and decrypt secrets.
+It's necessary to have [`Flux` CLI](https://fluxcd.io/flux/cmd/) and [`kubectl-gs`](https://github.com/giantswarm/kubectl-gs) installed in your machine. Also you installed [`gpg`](https://gnupg.org/) to encrypt and decrypt secrets.
 
 ## Organization access control
 
@@ -134,7 +134,7 @@ flux-demo       True    Fetched revision: main/74f8d19cc2ac9bee6f45660236344a054
 
 ### Setting up secrets {#setting-up-secrets}
 
-The next step, you configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. Our recommendation is to keep secrets encrypted in the repository together with your applications but if your company policy doesn't allow it you can use [`external secret operator`]({{< relref "/vintage/advanced/security/external-secrets-operator/" >}}) to use different sources.
+The next step is to configure the keys used by `Flux` in the management cluster to decipher secrets kept in the repository. We recommend maintaining secrets encrypted in the repository alongside your applications. But if your company policy doesn't allow it, you can use [`external secret operator`]({{< relref "/tutorials/security/external-secrets-operator/" >}}) to use different sources.
 
 Giant Swarm uses `sops` with `pgp` for key management, creating master keys for all the `kustomizations` in the management cluster. In `kubectl-gs` you can generate a master and public key for the management cluster.
 

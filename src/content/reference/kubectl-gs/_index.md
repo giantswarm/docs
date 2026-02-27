@@ -38,7 +38,6 @@ aliases:
 | [`template app`][6]           | [Create manifests for an app][6]                                 |
 | [`template catalog`][7]       | [Create manifests for a catalog][7]                              |
 | [`template cluster`][8]       | [Create manifests for a cluster][8]                              |
-| [`template nodepool`][9]      | [Create manifests for a node pool][9]                            |
 | [`template organization`][10] | [Create manifest for an organization][10]                        |
 | [`update app`][12]            | [Update given App][12]                                           |
 | [`update cluster`][13]        | [Schedule a cluster update][13]                                  |
@@ -111,7 +110,6 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [6]: {{< relref "/reference/kubectl-gs/template-app" >}}
 [7]: {{< relref "/reference/kubectl-gs/template-catalog" >}}
 [8]: {{< relref "/reference/kubectl-gs/template-cluster" >}}
-[9]: {{< relref "/reference/kubectl-gs/template-nodepool" >}}
 [10]: {{< relref "/reference/kubectl-gs/template-organization" >}}
 [11]: {{< relref "/reference/kubectl-gs/get-releases" >}}
 [12]: {{< relref "/reference/kubectl-gs/update-app" >}}

@@ -12,9 +12,10 @@ crd:
   technical_name: grafanaorganizations.observability.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/observability-operator
-  source_repository_ref: v0.33.1
+  source_repository_ref: v0.59.2
   versions:
     - v1alpha1
+    - v1alpha2
   topics:
     - managementcluster
     - observability
@@ -25,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
 technical_name: grafanaorganizations.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/observability-operator
-source_repository_ref: v0.33.1
+source_repository_ref: v0.59.2
 ---
 
 # GrafanaOrganization
@@ -44,7 +45,7 @@ source_repository_ref: v0.33.1
 <dt class="scope">Scope:</dt>
 <dd class="scope">Cluster</dd>
 <dt class="versions">Versions:</dt>
-<dd class="versions"><a class="version" href="#v1alpha1" title="Show schema for version v1alpha1">v1alpha1</a></dd>
+<dd class="versions"><a class="version" href="#v1alpha1" title="Show schema for version v1alpha1">v1alpha1</a><a class="version" href="#v1alpha2" title="Show schema for version v1alpha2">v1alpha2</a></dd>
 </dl>
 
 
@@ -421,6 +422,420 @@ Forbidden value: &ldquo;__mimir_cluster&rdquo; (enforced by validating webhook)<
 <div class="property depth-1">
 <div class="property-header">
 <h3 class="property-path" id="v1alpha1-.status.orgID">.status.orgID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>OrgID is the actual organisation ID in grafana.</p>
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+</div>
+<div class="crd-schema-version">
+<h2 id="v1alpha2">Version v1alpha2</h2>
+
+
+
+<h3 id="property-details-v1alpha2">Properties</h3>
+
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.apiVersion">.apiVersion</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>APIVersion defines the versioned schema of this representation of an object.
+Servers should convert recognized schemas to the latest internal value, and
+may reject unrecognized values.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.kind">.kind</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Kind is a string value representing the REST resource this object represents.
+Servers may infer this from the endpoint the client submits requests to.
+Cannot be updated.
+In CamelCase.
+More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.metadata">.metadata</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec">.spec</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>GrafanaOrganizationSpec defines the desired state of GrafanaOrganization</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.displayName">.spec.displayName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>DisplayName is the name displayed when viewing the organization in Grafana. It can be different from the actual org&rsquo;s name.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac">.spec.rbac</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Access rules defines user permissions for interacting with the organization in Grafana.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac.admins">.spec.rbac.admins</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Admins is a list of user organizations that have admin access to the grafanaorganization.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac.admins[*]">.spec.rbac.admins[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac.editors">.spec.rbac.editors</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Editors is a list of user organizations that have editor access to the grafanaorganization.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac.editors[*]">.spec.rbac.editors[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac.viewers">.spec.rbac.viewers</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Viewers is a list of user organizations that have viewer access to the grafanaorganization.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.rbac.viewers[*]">.spec.rbac.viewers[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.tenants">.spec.tenants</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Tenants is a list of tenants that are associated with the Grafana organization.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.tenants[*]">.spec.tenants[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>TenantConfig defines configuration for a specific tenant</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.tenants[*].name">.spec.tenants[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the unique identifier for the tenant</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.tenants[*].types">.spec.tenants[*].types</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>Types defines what kind of access this tenant has</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.tenants[*].types[*]">.spec.tenants[*].types[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TenantType represents the type of access a tenant has</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-0">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status">.status</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>GrafanaOrganizationStatus defines the observed state of GrafanaOrganization</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.dataSources">.status.dataSources</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>DataSources is a list of grafana data sources that are available to the Grafana organization.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.dataSources[*]">.status.dataSources[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>DataSource defines the name and id for data sources.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.dataSources[*].ID">.status.dataSources[*].ID</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ID is the unique id of the data source.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.dataSources[*].name">.status.dataSources[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the data source.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.orgID">.status.orgID</h3>
 </div>
 <div class="property-body">
 <div class="property-meta">

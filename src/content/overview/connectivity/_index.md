@@ -7,9 +7,11 @@ menu:
   principal:
     parent: overview
     identifier: overview-connectivity
-last_review_date: 2024-06-07
+last_review_date: 2025-09-22
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
+aliases:
+  - /vintage/platform-overview/connectivity
 ---
 
 In today's digital landscape, efficient and secure connectivity is crucial for any enterprise. At Giant Swarm, we understand this necessity and offer a comprehensive solution designed to meet your networking needs. Whether managing public and private clusters, enforcing network policies, or routing traffic, our platform provides the tools and capabilities to ensure robust and secure connectivity.
@@ -35,9 +37,9 @@ Our platform leverages various projects under the cloud-native initiative that h
 - **Kubernetes**: the backbone of our platform, Kubernetes give a good foundation for container communication and networking discovery.
 - **Cilium**: a container network interface providing reliable and secure communication between your pods and scales with your cluster.
 - **Kong**: an open-source API gateway that helps you manage your API traffic efficiently and ensures reliable external traffic routing to your services.
-- **Nginx**: an ingress controller that helps to manage and route external traffic to your services with robustness and stability.
+- **ingress-nginx**: an ingress controller that helps to manage and route external traffic to your services with robustness and stability.
 - **CoreDNS**: flexible DNS server improves service discovery within your clusters, aiding in efficient internal DNS management.
 - **Node Local DNS**: an extension to CoreDNS that provides a scalable DNS solution regardless of the cluster's size. It improves the speed and reliability of DNS resolution for your workloads while reducing the load on CoreDNS.
 - **External DNS**: extends Kubernetes resources, adding the option to manage DNS records for external services.
 
-Learn how to expose your workloads on Giant Swarm by visiting our [getting started page]({{< relref "getting-started/understand-connectivity/" >}}).
+Learn how to expose your workloads on Giant Swarm by visiting our [getting started page]({{< relref "/getting-started/understand-connectivity/" >}}).

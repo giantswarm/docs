@@ -34,7 +34,7 @@ Cloud providers, and on-premise installations, supports availability zones withi
 Your cluster nodes have labels that indicate which availability zone they're running in. You can influence the scheduling of your pods via node affinity and/or inter-pod affinity or anti-affinity.
 
 - [Affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
-- [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
+- [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/)
 
 This enables use cases such as:
 
@@ -58,11 +58,11 @@ This enables use cases such as:
 
 - To make sure your pods and volumes end up on the same nodes, our recommendation is to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 
-Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/vintage/advanced/cluster-management/node-pools-vintage" >}}) and independent of the choice of a single control plane node vs. using multiple control plane nodes (currently multiple control plane nodes are only supported on AWS).
+Spreading worker nodes over multiple availability zones can be configured per [node pool]({{< relref "/tutorials/fleet-management/cluster-management/node-pools" >}}) and independent of the choice of a single control plane node vs. using multiple control plane nodes (currently multiple control plane nodes are only supported on AWS).
 
 ## Example pod topology spread constraints and affinity
 
-To make sure your workload gets scheduled over available worker nodes over availability zones you can make use of [`Pod Topology Spread Constraints`](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/) and [affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
+To make sure your workload gets scheduled over available worker nodes over availability zones you can make use of [`Pod Topology Spread Constraints`](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) and [affinity and anti-affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
 
 In this example, the two constraints make sure, pods with the given labels are distributed across available zones. The first constraint makes sure the number of pods across nodes with the same `topology.kubernetes.io/zone` label is one at max. The second constraint picks the Node with the lowest number of Pods still across all nodes and all zones. This might collide with the first constraint and no schedule would happen at all unless `whenUnsatisfiable` is set to `ScheduleAnyway`. The `affinity` makes sure to not schedule any Pods on `master` Nodes.
 

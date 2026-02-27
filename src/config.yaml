@@ -53,6 +53,18 @@ taxonomies:
 permalinks:
   changes_categories: /changes/:slug
 
+outputFormats:
+  llmstxt:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+    notAlternative: false
+
+outputs:
+  home:
+    - html
+    - llmstxt
+
 # Populate the `.Site.Params` variable for use in templates and shortcodes
 params:
   impl_titles:
@@ -68,6 +80,7 @@ params:
 
     # Provider and implementation specific
     capa_ec2: "CAPA (AWS EC2)"
+    capa_ec2_karpenter: "CAPA (AWS EC2 Karpenter)"
     capa_eks: "CAPA (AWS EKS)"
     capv: "CAPV (VMware vSphere)"
     capvcd: "CAPVCD (VMware Cloud Director)"

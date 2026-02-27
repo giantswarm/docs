@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/giantswarm/crd-docs-generator/refs/heads/main/config-schema.json
 template_path: ./crd.template
 # List of repositories containing CRDs.
 # Sequence is important here if several repos provide the same CRD (based on the full name).
@@ -27,21 +28,29 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
       apps.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
       catalogs.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
       charts.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
+        deprecation:
+          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
   - url: https://github.com/giantswarm/config-controller
     organization: giantswarm
     short_name: config-controller
@@ -56,13 +65,13 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.16.1
+    commit_reference: v0.20.1
     crd_paths:
       - config/crd
     cr_paths:
       - docs/cr
     metadata:
-      silences.monitoring.giantswarm.io:
+      silences.observability.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-atlas
         topics:
@@ -71,7 +80,7 @@ source_repositories:
   - url: https://github.com/giantswarm/observability-operator
     organization: giantswarm
     short_name: observability-operator
-    commit_reference: v0.33.1
+    commit_reference: v0.59.2
     crd_paths:
       - config/crd/bases
     cr_paths:
@@ -101,7 +110,7 @@ source_repositories:
   - url: https://github.com/giantswarm/organization-operator
     organization: giantswarm
     short_name: organization-operator
-    commit_reference: v2.1.0
+    commit_reference: v2.1.3
     crd_paths:
       - config/crd
     cr_paths:
@@ -257,7 +266,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.42.0
+    commit_reference: v0.42.4
     crd_paths:
       - config/crd
     cr_paths:
@@ -271,7 +280,7 @@ source_repositories:
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.1.4
+    commit_reference: v0.1.6
     crd_paths:
       - helm
     metadata:
@@ -288,3 +297,22 @@ source_repositories:
       policyexceptiondrafts.policy.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-shield
+  - url: https://github.com/giantswarm/konfigure-operator
+    organization: giantswarm
+    short_name: konfigure-operator
+    commit_reference: v1.1.0
+    crd_paths:
+      - config/crd/bases
+    cr_paths:
+      - docs/examples/crs
+    metadata:
+      konfigurationschemas.konfigure.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-honeybadger
+        topics:
+          - configuration
+      konfigurations.konfigure.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-honeybadger
+        topics:
+          - configuration

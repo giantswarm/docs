@@ -5,7 +5,9 @@ menu:
   principal:
     identifier: overview
 weight: 10
-last_review_date: 2024-03-07
+aliases:
+  - /platform-overview/why-do-you-need-a-developer-platform
+last_review_date: 2025-09-19
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 ---

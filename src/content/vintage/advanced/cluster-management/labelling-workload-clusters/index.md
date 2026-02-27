@@ -25,7 +25,7 @@ owner:
 
 Workload clusters, like any other Kubernetes resource, can be enriched with [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/). Labels are key-value-pairs, where each key can be used only once per object (here: per workload cluster).
 
-Workload clusters are defined by a main Cluster resource ([`clusters.cluster.x-k8s.io`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}})). Accordingly, the labels we refer to in this article are those on that resource type only.
+Workload clusters are defined by a main Cluster resource ([`clusters.cluster.x-k8s.io`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1)). Accordingly, the labels we refer to in this article are those on that resource type only.
 
 ## Special purpose labels
 
@@ -62,18 +62,6 @@ If a cluster resource does not carry the `giantswarm.io/service-priority` label,
 
 Other values than the three mentioned above are not permitted and will be rejected by the Management API's admission controller. Also note that the label is only meant to be used on the main cluster resource. It will be ignored on other resource types, and we may also prevent setting it on other resource types in the future.
 
-### Monitoring
-
-By default each cluster is being monitored by Giant Swarm to ensure 24/7 support.
-
-This can be disabled using the following label:
-
-```yaml
-giantswarm.io/monitoring: "false"
-```
-
-You can find more details about this in the [Disable Monitoring]({{< relref "/vintage/getting-started/observability/monitoring/disable" >}}) article.
-
 ### Deletion Prevention
 
 To protect clusters from accidental deletion you can use the following label:
@@ -82,7 +70,7 @@ To protect clusters from accidental deletion you can use the following label:
 giantswarm.io/prevent-deletion: ""
 ```
 
-For more information, please read the [Deletion Prevention]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}) article.
+For more information, please read the [Deletion Prevention]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}) article.
 
 ## Setting labels when creating a cluster
 
@@ -92,8 +80,8 @@ If you use [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/tem
 
 ```nohighlight
 kubectl gs template cluster \
-  --label giantswarm.io/service-priority lowest \
-  --label example.tld/environment testing \
+  --label giantswarm.io/service-priority=lowest \
+  --label example.tld/environment=testing \
   ...
 ```
 
@@ -101,13 +89,13 @@ kubectl gs template cluster \
 
 To modify labels on a cluster, several methods are supported:
 
-- Our [web UI]({{< relref "/vintage/platform-overview/web-interface" >}}) allows adding, modifying, and deleting labels interactively.
+- Our web UI allows adding, modifying, and deleting labels interactively.
 - The `kubectl label` command can be used with the cluster resource. See below for details.
 
 ### Modify cluster labels using `kubectl` {#modify-using-kubectl}
 
 With access to the management cluster, you are able to use `kubectl` to manage workload cluster labels.
-The underlying resource to operate on is [`clusters.cluster.x-k8s.io`]({{< relref "/vintage/use-the-api/management-api/crd/clusters.cluster.x-k8s.io.md" >}}) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
+The underlying resource to operate on is [`clusters.cluster.x-k8s.io`](https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api/cluster.x-k8s.io/Cluster/v1beta1) from the upstream [cluster-api](https://cluster-api.sigs.k8s.io/) project.
 
 The [`kubectl label`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#label) command is the most convenient way to set, modify, and delete labels of a cluster resource.
 

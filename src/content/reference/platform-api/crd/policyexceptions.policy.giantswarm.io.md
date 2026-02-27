@@ -12,7 +12,7 @@ crd:
   technical_name: policyexceptions.policy.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/kyverno-policy-operator
-  source_repository_ref: v0.1.4
+  source_repository_ref: v0.1.6
   versions:
     - v1alpha1
   topics:
@@ -23,7 +23,7 @@ aliases:
   - /use-the-api/management-api/crd/policyexceptions.policy.giantswarm.io/
 technical_name: policyexceptions.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/kyverno-policy-operator
-source_repository_ref: v0.1.4
+source_repository_ref: v0.1.6
 ---
 
 # PolicyException

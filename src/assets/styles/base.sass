@@ -7,7 +7,6 @@
 
 @import chart.css
 @import crd.css
-@import vintage.css
 
 #wrapper
   padding: 60px 0 48px
@@ -42,6 +41,11 @@
 
 html
   font-size: 18px
+
+body
+  background-color: #ffffff
+  color: #333333
+  transition: background-color 0.3s ease, color 0.3s ease
 
 @media (max-width: 1139px)
   body.mnav-active
@@ -467,7 +471,7 @@ a.item .hellip
 .nav-pills > li.active > a
   background-color: #3e83ac
 
-.content img
+.content img, .list-content img
   max-width: 100%
   height: auto
   margin-top: 20px
@@ -493,7 +497,7 @@ ul.links li
     margin-top: 0
 
 .breadcrumb
-  background-color: #fff !important
+  background-color: #fff
   padding-left: 0px !important
   margin-top: 0px
   margin-bottom: 15px

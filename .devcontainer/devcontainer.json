@@ -3,7 +3,7 @@
 {
 	"name": "Docs",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:4-22-bookworm",
 
 	"runArgs": [
 		// Delete the container after the session ends.

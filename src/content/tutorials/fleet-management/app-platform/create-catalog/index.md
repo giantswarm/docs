@@ -3,6 +3,9 @@ linkTitle: Creating an app catalog
 title: Creating an app catalog
 description: How to create a custom app catalog for use with app platform and push helm charts to it.
 weight: 50
+aliases:
+  - /getting-started/app-platform/create-catalog
+  - /vintage/getting-started/app-platform/create-catalog
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform
@@ -36,7 +39,7 @@ These files must be served over HTTP. You can register community `helm` chart re
 You can search for `helm` charts from the community using [Artifact Hub](https://artifacthub.io/). Not all community chart repositories are currently supported. If you encounter a problem installing an app please let us know. If you're registering a community catalog you can skip to the section [`Register the catalog`]({{< relref "#register-the-catalog" >}}).
 
 When creating your own app catalog we recommend using our [app-build-suite](https://github.com/giantswarm/app-build-suite/) tool to publish apps to your catalog. It adds additional metadata files that
-allows app platform to extend `helm`. Such as only allowing an app to be installed once in a cluster. You can learn more about the tool by reading its [tutorial](https://github.com/giantswarm/app-build-suite/blob/master/docs/tutorial.md).
+allows app platform to extend `helm`. Such as only allowing an app to be installed once in a cluster. You can learn more about the tool by reading its [tutorial](https://github.com/giantswarm/app-build-suite/blob/main/docs/tutorial.md).
 
 These metadata files and the `helm` `index.yaml` are used to generate app metadata that's stored in the platform  as an [`AppCatalogEntry`]({{< relref "/reference/platform-api/crd/appcatalogentries.application.giantswarm.io.md" >}}) resource.
 
@@ -50,7 +53,7 @@ Create the `Git` repository in GitHub as a public repository and enable [GitHub 
 
 ## Publish an app to the app catalog
 
-Now you can configure your apps to be published to your catalog. There is a GitHub [action](https://github.com/giantswarm/app-build-suite/blob/master/.github/workflows/push-to-app-catalog.yaml) for `app-build-suite` which automate the process.
+Now you can configure your apps to be published to your catalog. There is a GitHub [action](https://github.com/giantswarm/app-build-suite/blob/main/.github/workflows/push-to-app-catalog.yaml) for `app-build-suite` which automate the process.
 
 ```yaml
 # .github/workflows/push-to-app-catalog.yaml
@@ -72,9 +75,9 @@ jobs:
       envPAT: ${{ secrets.PAT }}
 ```
 
-To configure the action you need to add a secret called `PAT` to the app's `Git` repository. This must contain a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) that has write permission to the app catalog git repository.
+To configure the action you need to add a secret called `PAT` to the app's `Git` repository. This must contain a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) that has write permission to the app catalog git repository.
 
-The recommendation is to use [`dependabot`](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/keeping-your-actions-up-to-date-with-dependabot) to keep the GitHub action up to date.
+The recommendation is to use [`dependabot`](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot) to keep the GitHub action up to date.
 
 ## Register the catalog {#register-the-catalog}
 

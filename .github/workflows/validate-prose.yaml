@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Execute Vale
         run: |
@@ -16,18 +16,18 @@ jobs:
           mkdir bin && tar -xvzf vale_3.4.1_Linux_64-bit.tar.gz -C bin
           ls -la bin
           bin/vale --config=./.vale.ini \
-            --glob '!{src/content/vintage/**,src/content/changes/**}' \
+            --glob '!{src/content/changes/**}' \
             --no-exit \
             --output ./.vale/styles/rdjsonl.tmpl \
             src/content > out.jsonl
 
       - name: Install reviewdog
-        uses: reviewdog/action-setup@e04ffabe3898a0af8d0fb1af00c188831c4b5893 # v1.3.2
+        uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
         with:
           reviewdog_version: latest
-      
+
       - name: Create annotations on touched files
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -f=rdjsonl -name=Vale -reporter=github-pr-annotations -fail-on-error=true -filter-mode=added -level=info < out.jsonl
+          reviewdog -f=rdjsonl -name=Vale -reporter=github-pr-annotations -fail-level=error -filter-mode=added -level=info < out.jsonl

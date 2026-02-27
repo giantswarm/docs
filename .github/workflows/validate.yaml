@@ -6,23 +6,34 @@ on:
   pull_request:
     branches:
       - main
+  merge_group:
+    types:
+      - checks_requested
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Install dependencies
-        run: pip3 install click colored
+      - name: Install frontmatter-validator
+        uses: giantswarm/install-binary-action@c94c7adadeb14af4bdbdd601f9a6e7f69638134c # v4.0.0
+        with:
+          binary: frontmatter-validator
+          version: "0.2.0"
+          smoke_test: frontmatter-validator --help
 
       - name: Validate front matter for changed files
         run: |
+          echo "Detecting changed files:"
           git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
           git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
           if [ -s files.txt ]; then
-            cat files.txt | python3 scripts/validate-front-matter/script.py
+            # Validate the changed files
+            echo "Validating front matter for changed files:"
+            cat files.txt | frontmatter-validator --config ./scripts/frontmatter-validator/config-default.yaml
+
             # Print for debugging
             printf "\nAnnotations JSON:\n"
             cat ./annotations.json
@@ -92,34 +103,48 @@ jobs:
           allowed_chars_static = re.compile(r'^[a-z0-9-\._]+$') # images etc. may use the underscore
 
           content_dir = 'src/content'
-          errors = []
+          errors_badchars = []
+          errors_index = []
           for root, dirs, files in os.walk(content_dir):
-            for file in files:
-              full_path = Path(root, file)
-              if full_path.name == '_index.md':
-                continue
-              if full_path.name == '_template.md.tpl':
-                continue
-              
-              if full_path.suffix.lower() == '.md':
-                if not allowed_chars.match(full_path.stem):
-                  errors.append(f"- FILE {full_path}")
-              else:
-                # static files
-                if not allowed_chars_static.match(full_path.name):
-                  errors.append(f"- FILE {full_path}")
-
-            for dir in dirs:
-              if not allowed_chars.match(dir):
-                errors.append(f"- DIR {Path(root, dir)}")
+              markown_files = [f for f in files if f.endswith('.md')]
+              for file in files:
+                  full_path = Path(root, file)
+                  if full_path.name == '_template.md.tpl':
+                      continue
           
-          if len(errors) > 0:
-            sys.stderr.write("The following file/folder names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n")
-            for error in errors:
-              sys.stderr.write(error + "\n")
-            sys.exit(1)
+                  # Verify use of _index.md (list) vs. index.md (leaf article) file names
+                  if full_path.name == '_index.md':
+                      num_siblings = len(dirs) + len(markown_files) - 1
+                      if num_siblings == 0:
+                          errors_index.append(f"- {full_path}")
+                      continue
+
+                  # Verify file name character set
+                  if full_path.suffix.lower() == '.md':
+                      if not allowed_chars.match(full_path.stem):
+                          errors_badchars.append(f"- FILE {full_path}")
+                  else:
+                      # static files
+                      if not allowed_chars_static.match(full_path.name):
+                          errors_badchars.append(f"- FILE {full_path}")
+
+              for dir in dirs:
+                  if not allowed_chars.match(dir):
+                      errors_badchars.append(f"- DIR {Path(root, dir)}")
+
+          if (len(errors_badchars) + len(errors_index)) > 0:
+              if len(errors_badchars) > 0:
+                  sys.stderr.write("The following file/folder names use invalid characters. Only lowercase letters, digits, hyphens and period are allowed.\n")
+                  for error in errors_badchars:
+                      sys.stderr.write(error + "\n")
+              if len(errors_index) > 0:
+                  sys.stderr.write("These _index.md files should be named index.md (if not empty) or deleted.\n")
+                  for error in errors_index:
+                      sys.stderr.write(error + "\n")
+              sys.exit(1)
 
       - name: Check for moved or deleted files
+        if: ${{ github.event_name == 'pull_request' }}
         run: |
           git --no-pager diff --name-status --diff-filter=RD "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
 
@@ -183,12 +208,14 @@ jobs:
           mode: delete
 
       - name: Setup Hugo
+        if: ${{ github.event_name == 'pull_request' }}
         uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f # v3.0.0
         with:
           hugo-version: "0.125.5"
           extended: true
       
       - id: hugobuild
+        if: ${{ github.event_name == 'pull_request' }}
         name: Build Hugo site
         run: |
           hugo --source ./src --printPathWarnings --printUnusedTemplates --renderToMemory | tee hugo.out

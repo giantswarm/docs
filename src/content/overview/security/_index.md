@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-security
-last_review_date: 2024-05-21
+last_review_date: 2025-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -41,4 +41,4 @@ Our platform leverages several cloud-native technologies to deliver these securi
 
 - **Cilium**: Container networking plugin that provides advanced network capabilities, including DNS-based network policies and traffic encryption to secure communication within your clusters.
 
-Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "vintage/platform-overview/security/platform-security/" >}}).
+Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "/overview/security/platform-security/" >}}).

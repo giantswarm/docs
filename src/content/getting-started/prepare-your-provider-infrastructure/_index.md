@@ -17,6 +17,7 @@ aliases:
   - /getting-started/cloud-provider-accounts/cluster-api/
   - /vintage/getting-started/cloud-provider-accounts
   - /vintage/getting-started/cloud-provider-accounts/cluster-api/
+  - /vintage/use-the-api/management-api/credentials/
 ---
 
 <!-- Mention in the end of article that next step is provisioning a management cluster and it is done by Giant Swarm. Until it is done, the platform API is not accessible. -->

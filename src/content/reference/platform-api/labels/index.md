@@ -1,5 +1,5 @@
 ---
-linkTitle: Labels
+linkTitle: K8s labels
 title: Kubernetes resource labels reference
 description: Overview of Kubernetes resource labels used by Giant Swarm, and their meaning.
 menu:
@@ -10,6 +10,7 @@ weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-11-27
+user_questions: []
 ---
 
 **Notice:** Labels on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of labels, and which values or value format is expected. If you are missing information, please consult upstream documentation  from Kubernetes etc., or ask a Giant Swarm contact for more information. Also check our corresponding [annotations]({{< relref "/reference/platform-api/annotations" >}}) reference page.
@@ -78,10 +79,6 @@ The label of the format `OPERATOR_NAME.giantswarm.io/watching` is used on resour
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.0/pkg/label/app.go#L9)
 
-### giantswarm.io/aws-ebs-limit
-
-This label is set on EBS CSI driver pods (on AWS) by [aws-ebs-csi-volume-limiter](https://github.com/giantswarm/aws-ebs-csi-volume-limiter/blob/v0.1.0/main.go#L86-L90). It informs about the maximum number of EBS volumes that can be attached to the respective node.
-
 ### giantswarm.io/cluster
 
 Used on a variety of resources to associate the resource with a specific cluster. The value is the name of the cluster.
@@ -121,7 +118,7 @@ An organization is a key concept in the Giant Swarm platform, used to isolate [t
 
 ### giantswarm.io/prevent-deletion
 
-Can be set on certain resource types to prevent deletion. See [Prevent accidental deletion of resources]({{< relref "/vintage/advanced/app-platform/deletion-prevention" >}}).
+Can be set on certain resource types to prevent deletion. See [Prevent accidental deletion of resources]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}).
 
 ### giantswarm.io/service-type
 

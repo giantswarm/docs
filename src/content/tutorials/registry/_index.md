@@ -2,7 +2,7 @@
 linkTitle: Container registries
 title: Container registries
 description: How to reduce cost for container registries and improve performance and reliability.
-weight: 70
+weight: 40
 aliases:
   - /tutorials/registry
 menu:

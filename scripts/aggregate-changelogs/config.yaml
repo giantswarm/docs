@@ -18,8 +18,10 @@ repositories:
     category: Observability
   giantswarm/aws-admission-controller:
     category: Fleet Management
+    delete: true
   giantswarm/azure-admission-controller:
     category: Fleet Management
+    delete: true
   giantswarm/athena:
     category: Security
   giantswarm/auth-bundle:
@@ -111,6 +113,7 @@ repositories:
     category: Observability
   giantswarm/management-cluster-admission:
     category: Platform API
+    delete: true
   giantswarm/mimir-app:
     category: Observability
   giantswarm/observability-bundle:
@@ -156,29 +159,29 @@ repositories:
 
 # Here we define the colors for categories.
 categories:
-  - name: Fleet Management
-    color: "#b47fb0"
-  - name: Documentation
-    color: "#9aa48e"
-  - name: Highlights
-    color: "#f1dd55"
-  - name: Security
-    color: "#8081b2"
-  - name: Connectivity
-    color: "#7ac271"
-  - name: Observability
-    color: "#f69917"
-  - name: Continuous Deployment
-    color: "#f22917"
-  - name: Developer Portal
-    color: "#8098b2"
   - name: CAPA releases
     color: "#ff9900"
-  - name: CAPZ releases
-    color: "#ff9933"
   - name: CAPV releases
-    color: "#ff9966"
+    color: "#9bcaa2"
   - name: CAPVCD releases
-    color: "#ff9999"
+    color: "#99ddff"
+  - name: CAPZ releases
+    color: "#43b6f0"
+  - name: Connectivity
+    color: "#9cab85"
+  - name: Continuous Deployment
+    color: "#a28766"
+  - name: Developer Portal
+    color: "#6ac8ba"
+  - name: Documentation
+    color: "#e2c451"
+  - name: Fleet Management
+    color: "#9a8aa7"
+  - name: Highlights
+    color: "#f1dd55"
+  - name: Observability
+    color: "#b756b0"
+  - name: Security
+    color: "#d55f5d"
   - name: Others
-    color: "#ee0099"
+    color: "#cccccc"

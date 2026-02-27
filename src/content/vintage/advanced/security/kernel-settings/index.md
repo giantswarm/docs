@@ -9,10 +9,6 @@ menu:
 user_questions:
   - How is the Linux kernel of cluster nodes configured?
 last_review_date: 2023-11-07
-aliases:
-  - /advanced/security/kernel-settings
-  - /guides/kernel-settings/
-  - /advanced/kernel-settings/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
   - https://github.com/orgs/giantswarm/teams/team-rocket

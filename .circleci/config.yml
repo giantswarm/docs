@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  architect: giantswarm/architect@4.35.6
+  architect: giantswarm/architect@6.13.0
 
 jobs:
   test:
@@ -31,16 +31,14 @@ workflows:
     - architect/push-to-registries:
         name: push-to-registries
         context: architect
-        push-to-aliyun: false
-        push-to-docker: false
+        registries-data: |-
+          public gsoci.azurecr.io ACR_GSOCI_USERNAME ACR_GSOCI_PASSWORD true
         filters:
           tags:
             only: /^v.*/
-
           branches:
             ignore:
-            - main
-            - master
+              - main
     - architect/push-to-app-catalog:
         context: architect
         executor: app-build-suite
@@ -49,15 +47,13 @@ workflows:
         app_catalog_test: giantswarm-operations-platform-test-catalog
         chart: docs-app
         requires:
-        - push-to-registries
+          - push-to-registries
         filters:
           tags:
             only: /^v.*/
-
           branches:
             ignore:
             - main
-            - master
     - test:
         requires:
-        - push-to-app-catalog
+          - push-to-app-catalog
