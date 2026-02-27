@@ -23,9 +23,9 @@ The Giant Swarm platform is ready to be used by AI agents. Its integration lets 
 
 Two components work together to make this possible:
 
-**mcp-kubernetes** runs on each management cluster and exposes Kubernetes resources—pods, deployments, services, logs, events, and more—through a secure, OAuth-protected API using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+- **mcp-kubernetes** runs on each management cluster and exposes Kubernetes resources—pods, deployments, services, logs, events, and more—through a secure, OAuth-protected API using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
-**Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
+- **Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
 
 The `muster` CLI runs locally as a lightweight agent that bridges your AI assistant (via stdio) with the Muster aggregator (via HTTPS):
 
