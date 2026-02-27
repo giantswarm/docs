@@ -17,13 +17,13 @@ user_questions:
   - How do I authenticate with Muster?
 ---
 
-The Giant Swarm platform is ready to be used by AI agents. Its integration lets you query Kubernetes resources across all your management clusters using plain language — directly from your IDE. Instead of switching between terminals and dashboards, you can ask your AI assistant things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
+The Giant Swarm platform is ready to be used by AI agents. Its integration lets you query Kubernetes resources across all your management clusters using plain language—directly from your IDE. Instead of switching between terminals and dashboards, you can ask your AI assistant things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
 
 ## How it works
 
 Two components work together to make this possible:
 
-**mcp-kubernetes** runs on each management cluster and exposes Kubernetes resources — pods, deployments, services, logs, events, and more — through a secure, OAuth-protected API using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+**mcp-kubernetes** runs on each management cluster and exposes Kubernetes resources—pods, deployments, services, logs, events, and more—through a secure, OAuth-protected API using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
 **Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
 
@@ -49,13 +49,13 @@ The agent handles authentication transparently, so your AI assistant never needs
 
 You'll need:
 
-- Access to a Giant Swarm installation with mcp-kubernetes and Muster deployed. Ask your Giant Swarm account engineer for your Muster endpoint URL — it looks like `https://muster.<management-cluster>.<base-domain>/mcp`.
+- Access to a Giant Swarm installation with mcp-kubernetes and Muster deployed. Ask your Giant Swarm account engineer for your Muster endpoint URL—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`.
 - Ensure `dex` is configured in your management cluster(s) with a supported identity provider. Contact Giant Swarm support if this is not the case.
 - VS Code with the GitHub Copilot extension, or Cursor.
 
 ## Step 1: Install Muster
 
-Download the `muster` binary from the [GitHub releases page](https://github.com/giantswarm/muster/releases). It's a single binary with no additional dependencies — just put it somewhere on your `PATH`.
+Download the `muster` binary from the [GitHub releases page](https://github.com/giantswarm/muster/releases). It's a single binary with no additional dependencies—just put it somewhere on your `PATH`.
 
 ## Step 2: Configure your context
 
@@ -120,7 +120,7 @@ Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP sett
 }
 ```
 
-The agent uses the active context you set in Step 2, so no endpoint flag is needed here. The first time Copilot connects, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Copilot calls this tool automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available — no restart needed.
+The agent uses the active context you set in Step 2, so no endpoint flag is needed here. The first time Copilot connects, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Copilot calls this tool automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available—no restart needed.
 
 ### Cursor
 
@@ -161,7 +161,7 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 - "Show me the resource requests and limits for pods in the default namespace."
 - "What Helm releases are installed on cluster A?"
 
-Muster uses a meta-tool architecture — instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools — including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool` — that your AI assistant uses automatically. You don't need to know the tool names — just describe what you want in plain language.
+Muster uses a meta-tool architecture—instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools—including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`—that your AI assistant uses automatically. You don't need to know the tool names—just describe what you want in plain language.
 
 ## Session management
 
