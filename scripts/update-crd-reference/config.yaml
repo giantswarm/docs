@@ -280,7 +280,7 @@ source_repositories:
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.1.6
+    commit_reference: v0.2.2
     crd_paths:
       - helm
     metadata:
