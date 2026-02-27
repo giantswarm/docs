@@ -113,14 +113,14 @@ Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP sett
     "muster": {
       "type": "stdio",
       "command": "muster",
-      "args": ["agent", "--mcp-server", "--endpoint=https://muster.<management-cluster>.<base-domain>/mcp"]
+      "args": ["agent", "--mcp-server"]
     }
   },
   "inputs": []
 }
 ```
 
-The first time Copilot connects, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Copilot calls this tool automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available — no restart needed.
+The agent uses the active context you set in Step 2, so no endpoint flag is needed here. The first time Copilot connects, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Copilot calls this tool automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available — no restart needed.
 
 ### Cursor
 
@@ -131,13 +131,13 @@ Create or edit `~/.cursor/mcp.json` (for global settings) or `.cursor/mcp.json` 
   "mcpServers": {
     "muster": {
       "command": "muster",
-      "args": ["agent", "--mcp-server", "--endpoint=https://muster.<management-cluster>.<base-domain>/mcp"]
+      "args": ["agent", "--mcp-server"]
     }
   }
 }
 ```
 
-Make sure MCP is enabled in Cursor's settings. After saving the configuration, restart the MCP server from Cursor's MCP panel to pick up the changes.
+The agent uses the active context you set in Step 2. Make sure MCP is enabled in Cursor's settings. After saving the configuration, you can toggle the MCP server off and on from Cursor's MCP settings panel to pick up the changes.
 
 ## What you can ask
 
@@ -166,8 +166,22 @@ Muster uses a meta-tool architecture — instead of exposing hundreds of individ
 ## Session management
 
 - **Token expiry:** Access tokens expire roughly every 30 minutes, but the agent refreshes them automatically in the background.
-- **Session duration:** Your overall session lasts approximately 30 days before you need to log in again.
-- **Re-authentication:** If your session expires, the agent automatically detects it and initiates re-authentication by opening your browser. In VS Code, the `authenticate_muster` tool reappears; in Cursor, you'll see an authentication prompt.
+- **Session duration:** Your overall session lasts approximately 30 days (the default) before you need to log in again. This can vary by installation.
+- **Re-authentication:** If your session expires, the agent automatically detects it and initiates re-authentication by opening your browser.
+
+## CLI quick reference
+
+| Command | Purpose |
+|---|---|
+| `muster auth login` | Authenticate via SSO |
+| `muster auth status` | Check connectivity to all MCP servers |
+| `muster auth whoami` | Show the currently authenticated identity |
+| `muster auth logout` | Clear stored tokens |
+| `muster context add` | Register a new Muster endpoint |
+| `muster context use` | Switch active context |
+| `muster context current` | Show the name of the active context |
+| `muster context show <name>` | Show a specific context's configuration |
+| `muster context list` | List all contexts |
 
 ## Troubleshooting
 
