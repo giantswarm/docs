@@ -50,7 +50,7 @@ The agent handles authentication transparently, so your AI assistant never needs
 You'll need:
 
 - Access to a Giant Swarm installation with mcp-kubernetes and Muster deployed. Ask your Giant Swarm account engineer for your Muster endpoint URL—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`.
-- Ensure `dex` is configured in your management cluster(s) with a supported identity provider. Contact Giant Swarm support if this is not the case.
+- Ensure `dex` is configured in your management clusters with a supported identity provider. Contact Giant Swarm support if not.
 - VS Code with the GitHub Copilot extension, or Cursor.
 
 ## Step 1: Install Muster
@@ -101,7 +101,7 @@ MCP Servers
   cluster-c-mcp-kubernetes   Connected [SSO: Exchanged]
 ```
 
-## Step 4: Configure your IDE
+## Step 4: Configure your code editor
 
 ### VS Code (GitHub Copilot)
 
@@ -146,7 +146,7 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 **Cluster overview:**
 
 - "List all pods in the monitoring namespace on cluster A."
-- "Show me the status of all deployments across all clusters."
+- "What's the status of all deployments across all clusters?"
 - "Are there any pods in CrashLoopBackOff on any cluster?"
 
 **Troubleshooting:**
@@ -158,14 +158,14 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 **Resource inspection:**
 
 - "List all services of type LoadBalancer across all clusters."
-- "Show me the resource requests and limits for pods in the default namespace."
+- "What are the resource requests and limits for pods in the default namespace?"
 - "What Helm releases are installed on cluster A?"
 
 Muster uses a meta-tool architecture—instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools—including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`—that your AI assistant uses automatically. You don't need to know the tool names—just describe what you want in plain language.
 
 ## Session management
 
-- **Token expiry:** Access tokens expire roughly every 30 minutes, but the agent refreshes them automatically in the background.
+- **Token expiry:** Access tokens expire every 30 minutes, but the agent refreshes them automatically in the background.
 - **Session duration:** Your overall session lasts approximately 30 days (the default) before you need to log in again. This can vary by installation.
 - **Re-authentication:** If your session expires, the agent automatically detects it and initiates re-authentication by opening your browser.
 
@@ -185,24 +185,26 @@ Muster uses a meta-tool architecture—instead of exposing hundreds of individua
 
 ## Troubleshooting
 
-**`authenticate_muster` keeps reappearing in your IDE**
+### `authenticate_muster` keeps reappearing in your IDE
 
 Your session has likely expired. Run `muster auth login` in a terminal to re-authenticate, then restart the MCP server in your IDE.
 
-**Lack of permissions on the cluster**
+### Lack of permissions on the cluster
 
-You may encounter a message like (in agent output)
-```
+You may encounter a message like this in the agent output:
+
+```text
 Failed to list resources: failed to list networkpolicies: networkpolicies.networking.k8s.io is forbidden: User "fernando@example.com" cannot list resource "networkpolicies" in API group "networking.k8s.io" in the namespace "kube-system"
 ```
-You have to make sure the user has the correct group attached in the identity provider (Azure AD, GitHub,...) which is bound to a role in the cluster to perform those actions.
 
-**A cluster shows as disconnected in `muster auth status`**
+Make sure the user has the correct group attached in the identity provider (Azure AD, GitHub, and similar) which is bound to a role in the cluster to perform those actions.
+
+### A cluster shows as disconnected in `muster auth status`
 
 The mcp-kubernetes instance on that cluster may be temporarily unavailable. Other clusters aren't affected. If the issue persists, contact Giant Swarm support.
 
-**Tools aren't showing up in your IDE**
+### Tools aren't showing up in your editor
 
 1. Verify authentication: `muster auth status`
-2. Check that the MCP server is enabled in your IDE's MCP settings.
-3. Restart the MCP server from your IDE's MCP panel.
+2. Check that the MCP server is enabled in your editor's MCP settings.
+3. Restart the MCP server from your editor's MCP panel.
