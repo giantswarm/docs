@@ -99,6 +99,7 @@ htpasswd
 HTTP
 HTTPRoute[s]?
 hyperparameter
+IDE[s']?
 impl_title
 IP[s]?
 IPAM
@@ -120,8 +121,10 @@ Kueue
 [K|k]yverno
 liveness
 LogQL
+mcp-kubernetes
 mimirtool
 MIG
+[Mm]uster
 namespace[s]?
 NLB[s]?
 node[pP]ool[s]?
@@ -176,5 +179,6 @@ VM[s]?
 VMware
 VPC
 vs.
+VS Code
 [V|v]Sphere
 Zot
