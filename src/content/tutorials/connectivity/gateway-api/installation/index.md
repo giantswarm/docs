@@ -212,3 +212,13 @@ data:
 ```
 
 You can add multiple listeners to the same Gateway to accept traffic from different domains. Each listener can have its own configuration for TLS certificates, DNS endpoints, and subdomain lists, allowing you to manage multiple domains within a single Gateway resource. The `giantswarm-default` gateway comes with 2 listeners enabled by default: one on port 80 (HTTP) and one on port 443 (HTTPS). Keep in mind that there is a limit of 64 listeners per Gateway, and each listener must have a unique combination of port, protocol, and hostname.
+
+## Troubleshooting
+
+Envoy Gateway provides the `egctl` command-line tool for diagnostics. To get an overview of the status of all Gateway API resources across all namespaces, run:
+
+```bash
+egctl x status all -A
+```
+
+This displays the status conditions (such as `Accepted`, `Programmed`, or `ResolvedRefs`) for GatewayClasses, Gateways, HTTPRoutes, and other Gateway API resources, making it easier to spot misconfigurations or issues.
