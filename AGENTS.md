@@ -201,9 +201,9 @@ Before writing observability documentation, consult:
 
 ---
 
-## Slash commands
+## Skills
 
-These are available as Claude slash commands in `.claude/commands/`.
+These are available as Claude slash commands, defined as skills in `.claude/skills/`.
 
 ### `/fix-internal-links`
 

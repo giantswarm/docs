@@ -1,3 +1,7 @@
+---
+description: Find and fix broken internal links in the docs site using linkchecker
+---
+
 # Fix broken internal links
 
 Find and fix all broken internal links in the docs site.

@@ -1,3 +1,7 @@
+---
+description: Find and fix broken external links in the docs site using linkchecker
+---
+
 # Fix broken external links
 
 Find and fix all broken external links in the docs site.

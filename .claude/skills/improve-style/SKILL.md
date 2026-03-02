@@ -1,3 +1,8 @@
+---
+description: Apply style fixes and run Vale prose linting on modified or added pages
+argument-hint: [file-path]
+---
+
 # Improve writing style and formatting
 
 Apply style fixes and run Vale prose linting on modified or added pages.

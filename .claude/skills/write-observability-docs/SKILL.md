@@ -1,3 +1,8 @@
+---
+description: Create or edit a page in the observability section of the Giant Swarm docs
+argument-hint: [file-path-or-topic]
+---
+
 # Write observability documentation
 
 Create or edit a page in the observability section of the Giant Swarm docs.
