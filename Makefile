@@ -106,7 +106,7 @@ validate-front-matter:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.3.1 \
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.3.2 \
 			--path ./src/content \
 			--config ./scripts/frontmatter-validator/config-default.yaml
 
