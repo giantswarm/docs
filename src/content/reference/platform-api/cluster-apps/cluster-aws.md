@@ -28,7 +28,7 @@ The `cluster-aws` chart templates all the AWS infrastructure resources that are 
 
 **Type:** `object`
 
-**Additional resource tags**
+**Additional resource tags:**
 
 Additional tags to add to AWS resources created by the cluster.
 
@@ -38,7 +38,7 @@ Additional tags to add to AWS resources created by the cluster.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -48,7 +48,7 @@ Additional tags to add to AWS resources created by the cluster.
 
 **Type:** `string`
 
-**Amazon machine image (AMI)**
+**Amazon machine image (AMI):**
 
 If specified, this image will be used to provision EC2 instances.
 
@@ -58,7 +58,7 @@ If specified, this image will be used to provision EC2 instances.
 
 **Type:** `string`
 
-**Cluster role identity name**
+**Cluster role identity name:**
 
 Name of an AWSClusterRoleIdentity object. Learn more at https://docs.giantswarm.io/getting-started/cloud-provider-accounts/cluster-api/aws/#configure-the-awsclusterroleidentity .
 
@@ -72,7 +72,7 @@ Name of an AWSClusterRoleIdentity object. Learn more at https://docs.giantswarm.
 
 **Type:** `string`
 
-**AWS account owning Flatcar image**
+**AWS account owning Flatcar image:**
 
 AWS account ID owning the Flatcar Container Linux AMI.
 
@@ -84,9 +84,11 @@ AWS account ID owning the Flatcar Container Linux AMI.
 
 **Type:** `string`
 
-**Region**
+**Region:**
 
-### Apps {#apps}Configuration of apps that are part of the cluster.
+### Apps {#apps}
+
+Configuration of apps that are part of the cluster.
 
 ---
 
@@ -94,7 +96,7 @@ AWS account ID owning the Flatcar Container Linux AMI.
 
 **Type:** `object`
 
-**App**
+**App:**
 
 Configuration of an default app that is part of the cluster.
 
@@ -104,7 +106,7 @@ Configuration of an default app that is part of the cluster.
 
 **Type:** `array`
 
-**Extra config maps or secrets**
+**Extra config maps or secrets:**
 
 Extra config maps or secrets that will be used to customize to the app. The desired values must be under configmap or secret key 'values'. The values are merged in the order given, with the later values overwriting earlier, and then inline values overwriting those. Resources must be in the same namespace as the cluster.
 
@@ -114,7 +116,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `object`
 
-**Config map or secret**
+**Config map or secret:**
 
 ---
 
@@ -122,7 +124,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `string`
 
-**Kind**
+**Kind:**
 
 Specifies whether the resource is a config map or a secret.
 
@@ -134,7 +136,7 @@ Specifies whether the resource is a config map or a secret.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the config map or secret. The object must exist in the same namespace as the cluster App.
 
@@ -144,7 +146,7 @@ Name of the config map or secret. The object must exist in the same namespace as
 
 **Type:** `boolean`
 
-**Optional**
+**Optional:**
 
 Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.
 
@@ -154,7 +156,7 @@ Optional marks this ValuesReference as optional. When set, a not found error for
 
 **Type:** `object`
 
-**Values**
+**Values:**
 
 Values to be passed to the app. Values will have higher priority than values from configmaps.
 
@@ -164,7 +166,7 @@ Values to be passed to the app. Values will have higher priority than values fro
 
 **Type:** `object`
 
-**App**
+**App:**
 
 Configuration of an default app that is part of the cluster.
 
@@ -174,7 +176,7 @@ Configuration of an default app that is part of the cluster.
 
 **Type:** `array`
 
-**Extra config maps or secrets**
+**Extra config maps or secrets:**
 
 Extra config maps or secrets that will be used to customize to the app. The desired values must be under configmap or secret key 'values'. The values are merged in the order given, with the later values overwriting earlier, and then inline values overwriting those. Resources must be in the same namespace as the cluster.
 
@@ -184,7 +186,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `object`
 
-**Config map or secret**
+**Config map or secret:**
 
 ---
 
@@ -192,7 +194,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `string`
 
-**Kind**
+**Kind:**
 
 Specifies whether the resource is a config map or a secret.
 
@@ -204,7 +206,7 @@ Specifies whether the resource is a config map or a secret.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the config map or secret. The object must exist in the same namespace as the cluster App.
 
@@ -214,7 +216,7 @@ Name of the config map or secret. The object must exist in the same namespace as
 
 **Type:** `boolean`
 
-**Optional**
+**Optional:**
 
 Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.
 
@@ -224,7 +226,7 @@ Optional marks this ValuesReference as optional. When set, a not found error for
 
 **Type:** `object`
 
-**Values**
+**Values:**
 
 Values to be passed to the app. Values will have higher priority than values from configmaps.
 
@@ -234,7 +236,7 @@ Values to be passed to the app. Values will have higher priority than values fro
 
 **Type:** `object`
 
-**App**
+**App:**
 
 Configuration of an default app that is part of the cluster.
 
@@ -244,7 +246,7 @@ Configuration of an default app that is part of the cluster.
 
 **Type:** `array`
 
-**Extra config maps or secrets**
+**Extra config maps or secrets:**
 
 Extra config maps or secrets that will be used to customize to the app. The desired values must be under configmap or secret key 'values'. The values are merged in the order given, with the later values overwriting earlier, and then inline values overwriting those. Resources must be in the same namespace as the cluster.
 
@@ -254,7 +256,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `object`
 
-**Config map or secret**
+**Config map or secret:**
 
 ---
 
@@ -262,7 +264,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `string`
 
-**Kind**
+**Kind:**
 
 Specifies whether the resource is a config map or a secret.
 
@@ -274,7 +276,7 @@ Specifies whether the resource is a config map or a secret.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the config map or secret. The object must exist in the same namespace as the cluster App.
 
@@ -284,7 +286,7 @@ Name of the config map or secret. The object must exist in the same namespace as
 
 **Type:** `boolean`
 
-**Optional**
+**Optional:**
 
 Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.
 
@@ -294,7 +296,7 @@ Optional marks this ValuesReference as optional. When set, a not found error for
 
 **Type:** `object`
 
-**Values**
+**Values:**
 
 Values to be passed to the app. Values will have higher priority than values from configmaps.
 
@@ -304,7 +306,7 @@ Values to be passed to the app. Values will have higher priority than values fro
 
 **Type:** `object`
 
-**App**
+**App:**
 
 Configuration of an default app that is part of the cluster.
 
@@ -314,7 +316,7 @@ Configuration of an default app that is part of the cluster.
 
 **Type:** `array`
 
-**Extra config maps or secrets**
+**Extra config maps or secrets:**
 
 Extra config maps or secrets that will be used to customize to the app. The desired values must be under configmap or secret key 'values'. The values are merged in the order given, with the later values overwriting earlier, and then inline values overwriting those. Resources must be in the same namespace as the cluster.
 
@@ -324,7 +326,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `object`
 
-**Config map or secret**
+**Config map or secret:**
 
 ---
 
@@ -332,7 +334,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `string`
 
-**Kind**
+**Kind:**
 
 Specifies whether the resource is a config map or a secret.
 
@@ -344,7 +346,7 @@ Specifies whether the resource is a config map or a secret.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the config map or secret. The object must exist in the same namespace as the cluster App.
 
@@ -354,7 +356,7 @@ Name of the config map or secret. The object must exist in the same namespace as
 
 **Type:** `boolean`
 
-**Optional**
+**Optional:**
 
 Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.
 
@@ -364,7 +366,7 @@ Optional marks this ValuesReference as optional. When set, a not found error for
 
 **Type:** `object`
 
-**Values**
+**Values:**
 
 Values to be passed to the app. Values will have higher priority than values from configmaps.
 
@@ -374,7 +376,7 @@ Values to be passed to the app. Values will have higher priority than values fro
 
 **Type:** `object`
 
-**App**
+**App:**
 
 Configuration of an default app that is part of the cluster.
 
@@ -384,7 +386,7 @@ Configuration of an default app that is part of the cluster.
 
 **Type:** `array`
 
-**Extra config maps or secrets**
+**Extra config maps or secrets:**
 
 Extra config maps or secrets that will be used to customize to the app. The desired values must be under configmap or secret key 'values'. The values are merged in the order given, with the later values overwriting earlier, and then inline values overwriting those. Resources must be in the same namespace as the cluster.
 
@@ -394,7 +396,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `object`
 
-**Config map or secret**
+**Config map or secret:**
 
 ---
 
@@ -402,7 +404,7 @@ Extra config maps or secrets that will be used to customize to the app. The desi
 
 **Type:** `string`
 
-**Kind**
+**Kind:**
 
 Specifies whether the resource is a config map or a secret.
 
@@ -414,7 +416,7 @@ Specifies whether the resource is a config map or a secret.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the config map or secret. The object must exist in the same namespace as the cluster App.
 
@@ -424,7 +426,7 @@ Name of the config map or secret. The object must exist in the same namespace as
 
 **Type:** `boolean`
 
-**Optional**
+**Optional:**
 
 Optional marks this ValuesReference as optional. When set, a not found error for the values reference is ignored, but any ValuesKey, TargetPath or transient error will still result in a reconciliation failure.
 
@@ -434,11 +436,13 @@ Optional marks this ValuesReference as optional. When set, a not found error for
 
 **Type:** `object`
 
-**Values**
+**Values:**
 
 Values to be passed to the app. Values will have higher priority than values from configmaps.
 
-### Components {#components}Advanced configuration of components that are running on all nodes.
+### Components {#components}
+
+Advanced configuration of components that are running on all nodes.
 
 ---
 
@@ -446,7 +450,7 @@ Values to be passed to the app. Values will have higher priority than values fro
 
 **Type:** `object`
 
-**Containerd**
+**Containerd:**
 
 Configuration of containerd.
 
@@ -456,7 +460,7 @@ Configuration of containerd.
 
 **Type:** `object`
 
-**Container registries**
+**Container registries:**
 
 Endpoints and credentials configuration for container registries.
 
@@ -468,7 +472,7 @@ Endpoints and credentials configuration for container registries.
 
 **Type:** `array`
 
-**Registries**
+**Registries:**
 
 Container registries and mirrors
 
@@ -478,7 +482,7 @@ Container registries and mirrors
 
 **Type:** `object`
 
-**Registry**
+**Registry:**
 
 ---
 
@@ -486,7 +490,7 @@ Container registries and mirrors
 
 **Type:** `object`
 
-**Credentials**
+**Credentials:**
 
 ---
 
@@ -494,7 +498,7 @@ Container registries and mirrors
 
 **Type:** `string`
 
-**Auth**
+**Auth:**
 
 Base64-encoded string from the concatenation of the username, a colon, and the password.
 
@@ -504,7 +508,7 @@ Base64-encoded string from the concatenation of the username, a colon, and the p
 
 **Type:** `string`
 
-**Identity token**
+**Identity token:**
 
 Used to authenticate the user and obtain an access token for the registry.
 
@@ -514,7 +518,7 @@ Used to authenticate the user and obtain an access token for the registry.
 
 **Type:** `string`
 
-**Password**
+**Password:**
 
 Used to authenticate for the registry with username/password.
 
@@ -524,7 +528,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Username**
+**Username:**
 
 Used to authenticate for the registry with username/password.
 
@@ -534,7 +538,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Endpoint**
+**Endpoint:**
 
 Endpoint for the container registry.
 
@@ -546,7 +550,7 @@ Endpoint for the container registry.
 
 **Type:** `integer`
 
-**Availability zones**
+**Availability zones:**
 
 Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.
 
@@ -558,7 +562,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 ---
 
@@ -566,7 +570,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `object`
 
-**DNS**
+**DNS:**
 
 ---
 
@@ -574,7 +578,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `string`
 
-**Resolver rules owner**
+**Resolver rules owner:**
 
 ID of the AWS account that created the resolver rules to be associated with the workload cluster VPC.
 
@@ -596,7 +600,7 @@ ID of the AWS account that created the resolver rules to be associated with the 
 
 **Type:** `object`
 
-**Network**
+**Network:**
 
 ---
 
@@ -604,7 +608,7 @@ ID of the AWS account that created the resolver rules to be associated with the 
 
 **Type:** `string`
 
-**Internet Gateway ID**
+**Internet Gateway ID:**
 
 ID of the Internet gateway for the VPC.
 
@@ -614,7 +618,7 @@ ID of the Internet gateway for the VPC.
 
 **Type:** `object`
 
-**Pods**
+**Pods:**
 
 ---
 
@@ -622,7 +626,7 @@ ID of the Internet gateway for the VPC.
 
 **Type:** `array`
 
-**Pod subnets**
+**Pod subnets:**
 
 **Default:** `["100.64.0.0/12"]`
 
@@ -632,7 +636,7 @@ ID of the Internet gateway for the VPC.
 
 **Type:** `string`
 
-**Pod subnet**
+**Pod subnet:**
 
 IPv4 address range for pods, in CIDR notation.
 
@@ -644,7 +648,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `object`
 
-**Services**
+**Services:**
 
 ---
 
@@ -652,7 +656,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `array`
 
-**K8s Service subnets**
+**K8s Service subnets:**
 
 **Default:** `["172.31.0.0/16"]`
 
@@ -662,7 +666,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `string`
 
-**Service subnet**
+**Service subnet:**
 
 IPv4 address range for kubernetes services, in CIDR notation.
 
@@ -674,7 +678,7 @@ IPv4 address range for kubernetes services, in CIDR notation.
 
 **Type:** `string`
 
-**VPC subnet**
+**VPC subnet:**
 
 IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
@@ -686,7 +690,7 @@ IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
 **Type:** `string`
 
-**VPC id**
+**VPC id:**
 
 ID of the VPC, where the cluster will be deployed. The VPC must exist and it case this is set, VPC wont be created by controllers.
 
@@ -696,7 +700,7 @@ ID of the VPC, where the cluster will be deployed. The VPC must exist and it cas
 
 **Type:** `object`
 
-**Proxy**
+**Proxy:**
 
 Whether/how outgoing traffic is routed through proxy servers.
 
@@ -706,7 +710,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 ---
 
@@ -714,7 +718,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `string`
 
-**HTTP proxy**
+**HTTP proxy:**
 
 To be passed to the HTTP_PROXY environment variable in all hosts.
 
@@ -724,7 +728,7 @@ To be passed to the HTTP_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**HTTPS proxy**
+**HTTPS proxy:**
 
 To be passed to the HTTPS_PROXY environment variable in all hosts.
 
@@ -734,7 +738,7 @@ To be passed to the HTTPS_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**No proxy**
+**No proxy:**
 
 To be passed to the NO_PROXY environment variable in all hosts.
 
@@ -744,7 +748,7 @@ To be passed to the NO_PROXY environment variable in all hosts.
 
 **Type:** `array`
 
-**Subnets**
+**Subnets:**
 
 Subnets are created and tagged based on this definition.
 
@@ -756,7 +760,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `object`
 
-**Subnet**
+**Subnet:**
 
 ---
 
@@ -764,7 +768,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `array`
 
-**Network**
+**Network:**
 
 ---
 
@@ -778,7 +782,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Example:** `"a"`
 
@@ -788,7 +792,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `string`
 
-**Address range**
+**Address range:**
 
 IPv4 address range, in CIDR notation.
 
@@ -798,7 +802,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to this subnet.
 
@@ -808,7 +812,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -818,7 +822,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `string`
 
-**ID of the subnet**
+**ID of the subnet:**
 
 ID of an existing subnet. When set, this subnet will be used instead of creating a new one.
 
@@ -828,7 +832,7 @@ ID of an existing subnet. When set, this subnet will be used instead of creating
 
 **Type:** `boolean`
 
-**Public**
+**Public:**
 
 ---
 
@@ -836,7 +840,7 @@ ID of an existing subnet. When set, this subnet will be used instead of creating
 
 **Type:** `string`
 
-**ID of the NAT Gateway**
+**ID of the NAT Gateway:**
 
 ID of the NAT Gateway used for this existing subnet.
 
@@ -846,7 +850,7 @@ ID of the NAT Gateway used for this existing subnet.
 
 **Type:** `string`
 
-**ID of route table**
+**ID of route table:**
 
 ID of the route table, assigned to the existing subnet. Must be provided when defining subnet via ID.
 
@@ -856,7 +860,7 @@ ID of the route table, assigned to the existing subnet. Must be provided when de
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to this CIDR block.
 
@@ -866,7 +870,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -876,7 +880,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Type:** `object`
 
-**Topology**
+**Topology:**
 
 Networking architecture between management cluster and workload cluster.
 
@@ -886,7 +890,7 @@ Networking architecture between management cluster and workload cluster.
 
 **Type:** `string`
 
-**Mode**
+**Mode:**
 
 Valid values: GiantSwarmManaged, UserManaged, None.
 
@@ -900,7 +904,7 @@ Valid values: GiantSwarmManaged, UserManaged, None.
 
 **Type:** `string`
 
-**Prefix list ID**
+**Prefix list ID:**
 
 ID of the managed prefix list to use when the topology mode is set to 'UserManaged'.
 
@@ -910,7 +914,7 @@ ID of the managed prefix list to use when the topology mode is set to 'UserManag
 
 **Type:** `string`
 
-**Transit gateway ID**
+**Transit gateway ID:**
 
 If the topology mode is set to 'UserManaged', this can be used to specify the transit gateway to use.
 
@@ -920,7 +924,7 @@ If the topology mode is set to 'UserManaged', this can be used to specify the tr
 
 **Type:** `string`
 
-**VPC endpoint mode**
+**VPC endpoint mode:**
 
 Who is reponsible for creation and management of VPC endpoints.
 
@@ -934,7 +938,7 @@ Who is reponsible for creation and management of VPC endpoints.
 
 **Type:** `string`
 
-**VPC mode**
+**VPC mode:**
 
 Whether the cluser's VPC is created with public, internet facing resources (public subnets, NAT gateway) or not (private).
 
@@ -950,7 +954,7 @@ Whether the cluser's VPC is created with public, internet facing resources (publ
 
 **Type:** `array`
 
-**Control Plane additional security groups**
+**Control Plane additional security groups:**
 
 Additional security groups that will be added to the control plane nodes.
 
@@ -960,7 +964,7 @@ Additional security groups that will be added to the control plane nodes.
 
 **Type:** `object`
 
-**Security group**
+**Security group:**
 
 ---
 
@@ -968,7 +972,7 @@ Additional security groups that will be added to the control plane nodes.
 
 **Type:** `string`
 
-**Id of the security group**
+**Id of the security group:**
 
 ID of the security group that will be added to the control plane nodes. The security group must exist.
 
@@ -978,7 +982,7 @@ ID of the security group that will be added to the control plane nodes. The secu
 
 **Type:** `object`
 
-**API extra arguments**
+**API extra arguments:**
 
 Extra arguments passed to the kubernetes API server.
 
@@ -988,7 +992,7 @@ Extra arguments passed to the kubernetes API server.
 
 **Type:** `string`
 
-**argument**
+**argument:**
 
 **Key pattern:** `PATTERN`=`^.+:.+$`
 
@@ -998,7 +1002,7 @@ Extra arguments passed to the kubernetes API server.
 
 **Type:** `array`
 
-**API extra cert SANs**
+**API extra cert SANs:**
 
 Extra certs SANs passed to the kubeadmcontrolplane CR.
 
@@ -1008,7 +1012,7 @@ Extra certs SANs passed to the kubeadmcontrolplane CR.
 
 **Type:** `string`
 
-**cert SAN**
+**cert SAN:**
 
 ---
 
@@ -1016,7 +1020,7 @@ Extra certs SANs passed to the kubeadmcontrolplane CR.
 
 **Type:** `string`
 
-**API mode**
+**API mode:**
 
 Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).
 
@@ -1030,7 +1034,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Type:** `integer`
 
-**API server port**
+**API server port:**
 
 The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIServerPort field on the Cluster CR. In CAPI this field isn't used currently. It is instead used in providers. In CAPA this sets only the public facing port of the Load Balancer. In CAPZ both the public facing and the destination port are set to this value. CAPV and CAPVCD do not use it.
 
@@ -1042,7 +1046,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `integer`
 
-**Containerd volume size (GB)**
+**Containerd volume size (GB):**
 
 **Default:** `100`
 
@@ -1052,7 +1056,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `integer`
 
-**Etcd volume size (GB)**
+**Etcd volume size (GB):**
 
 **Default:** `100`
 
@@ -1062,7 +1066,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Default:** `"r6i.xlarge"`
 
@@ -1072,7 +1076,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `integer`
 
-**Kubelet volume size (GB)**
+**Kubelet volume size (GB):**
 
 **Default:** `100`
 
@@ -1082,7 +1086,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `array`
 
-**Load balancer allow list**
+**Load balancer allow list:**
 
 IPv4 address ranges that are allowed to connect to the control plane load balancer, in CIDR notation. When setting this field, remember to add the Management cluster Nat Gateway IPs provided by Giant Swarm so that the cluster can still be managed. These Nat Gateway IPs can be found in the Management Cluster AWSCluster '.status.networkStatus.natGatewaysIPs' field.
 
@@ -1092,7 +1096,7 @@ IPv4 address ranges that are allowed to connect to the control plane load balanc
 
 **Type:** `string`
 
-**Address range**
+**Address range:**
 
 ---
 
@@ -1100,7 +1104,7 @@ IPv4 address ranges that are allowed to connect to the control plane load balanc
 
 **Type:** `object`
 
-**Machine health check**
+**Machine health check:**
 
 ---
 
@@ -1108,7 +1112,7 @@ IPv4 address ranges that are allowed to connect to the control plane load balanc
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Default:** `true`
 
@@ -1118,7 +1122,7 @@ IPv4 address ranges that are allowed to connect to the control plane load balanc
 
 **Type:** `string`
 
-**Maximum unhealthy nodes**
+**Maximum unhealthy nodes:**
 
 **Example:** `"40%"`
 
@@ -1130,7 +1134,7 @@ IPv4 address ranges that are allowed to connect to the control plane load balanc
 
 **Type:** `string`
 
-**Node startup timeout**
+**Node startup timeout:**
 
 Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.
 
@@ -1144,7 +1148,7 @@ Determines how long a machine health check should wait for a node to join the cl
 
 **Type:** `string`
 
-**Timeout for ready**
+**Timeout for ready:**
 
 If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.
 
@@ -1158,7 +1162,7 @@ If a node is not in condition 'Ready' after this timeout, it will be considered 
 
 **Type:** `string`
 
-**Timeout for unknown condition**
+**Timeout for unknown condition:**
 
 If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.
 
@@ -1172,7 +1176,7 @@ If a node is in 'Unknown' condition after this timeout, it will be considered un
 
 **Type:** `object`
 
-**OIDC authentication**
+**OIDC authentication:**
 
 ---
 
@@ -1180,7 +1184,7 @@ If a node is in 'Unknown' condition after this timeout, it will be considered un
 
 **Type:** `string`
 
-**Certificate authority**
+**Certificate authority:**
 
 Identity provider's CA certificate in PEM format.
 
@@ -1190,7 +1194,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Client ID**
+**Client ID:**
 
 ---
 
@@ -1198,7 +1202,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Groups claim**
+**Groups claim:**
 
 ---
 
@@ -1206,7 +1210,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Issuer URL**
+**Issuer URL:**
 
 Exact issuer URL that will be included in identity tokens.
 
@@ -1216,7 +1220,7 @@ Exact issuer URL that will be included in identity tokens.
 
 **Type:** `string`
 
-**Username claim**
+**Username claim:**
 
 ---
 
@@ -1224,7 +1228,7 @@ Exact issuer URL that will be included in identity tokens.
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 **Default:** `120`
 
@@ -1234,7 +1238,7 @@ Exact issuer URL that will be included in identity tokens.
 
 **Type:** `array`
 
-**Subnet tags**
+**Subnet tags:**
 
 Tags to select AWS resources for the control plane by.
 
@@ -1244,7 +1248,7 @@ Tags to select AWS resources for the control plane by.
 
 **Type:** `object`
 
-**Subnet tag**
+**Subnet tag:**
 
 ---
 
@@ -1252,11 +1256,13 @@ Tags to select AWS resources for the control plane by.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
-### Internal {#internal}For Giant Swarm internal use only, not stable, or not supported by UIs.
+### Internal {#internal}
+
+For Giant Swarm internal use only, not stable, or not supported by UIs.
 
 ---
 
@@ -1264,7 +1270,7 @@ Tags to select AWS resources for the control plane by.
 
 **Type:** `boolean`
 
-**CGroups v1**
+**CGroups v1:**
 
 Force use of CGroups v1 for whole cluster.
 
@@ -1276,7 +1282,7 @@ Force use of CGroups v1 for whole cluster.
 
 **Type:** `string`
 
-**Hash salt**
+**Hash salt:**
 
 If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.
 
@@ -1286,7 +1292,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Kubernetes version**
+**Kubernetes version:**
 
 **Example:** `"1.24.7"`
 
@@ -1298,7 +1304,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `object`
 
-**Migration values**
+**Migration values:**
 
 Section used for migration of cluster from vintage to CAPI
 
@@ -1308,7 +1314,7 @@ Section used for migration of cluster from vintage to CAPI
 
 **Type:** `integer`
 
-**Kubernetes API bind port**
+**Kubernetes API bind port:**
 
 Kubernetes API bind port used for kube api pod
 
@@ -1320,7 +1326,7 @@ Kubernetes API bind port used for kube api pod
 
 **Type:** `array`
 
-**Control Plane extra files**
+**Control Plane extra files:**
 
 Additional fiels that will be provisioned to control-plane nodes, reference is from secret in the same namespace.
 
@@ -1330,7 +1336,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `object`
 
-**file**
+**file:**
 
 ---
 
@@ -1338,7 +1344,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `object`
 
-**content from**
+**content from:**
 
 ---
 
@@ -1346,7 +1352,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `object`
 
-**secret**
+**secret:**
 
 ---
 
@@ -1354,7 +1360,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `string`
 
-**secret key for file content**
+**secret key for file content:**
 
 ---
 
@@ -1362,7 +1368,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `string`
 
-**secret name for file content**
+**secret name for file content:**
 
 ---
 
@@ -1370,7 +1376,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `string`
 
-**file path**
+**file path:**
 
 ---
 
@@ -1378,7 +1384,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `string`
 
-**file permissions in form 0644**
+**file permissions in form 0644:**
 
 **Default:** `"0644"`
 
@@ -1388,7 +1394,7 @@ Additional fiels that will be provisioned to control-plane nodes, reference is f
 
 **Type:** `array`
 
-**Control Plane Post Kubeadm Commands**
+**Control Plane Post Kubeadm Commands:**
 
 Additional Post-Kubeadm Commands executed on the control plane node.
 
@@ -1398,7 +1404,7 @@ Additional Post-Kubeadm Commands executed on the control plane node.
 
 **Type:** `string`
 
-**command**
+**command:**
 
 ---
 
@@ -1406,7 +1412,7 @@ Additional Post-Kubeadm Commands executed on the control plane node.
 
 **Type:** `array`
 
-**Control Plane Pre Kubeadm Commands**
+**Control Plane Pre Kubeadm Commands:**
 
 Additional Pre-Kubeadm Commands executed on the control plane node.
 
@@ -1416,7 +1422,7 @@ Additional Pre-Kubeadm Commands executed on the control plane node.
 
 **Type:** `string`
 
-**command**
+**command:**
 
 ---
 
@@ -1424,7 +1430,7 @@ Additional Pre-Kubeadm Commands executed on the control plane node.
 
 **Type:** `object`
 
-**Etcd extra arguments**
+**Etcd extra arguments:**
 
 ---
 
@@ -1432,7 +1438,7 @@ Additional Pre-Kubeadm Commands executed on the control plane node.
 
 **Type:** `string`
 
-**argument**
+**argument:**
 
 **Key pattern:** `PATTERN`=`^.+:.+$`
 
@@ -1442,7 +1448,7 @@ Additional Pre-Kubeadm Commands executed on the control plane node.
 
 **Type:** `string`
 
-**IRSA additional domain**
+**IRSA additional domain:**
 
 Additional domain to be added to IRSA trust relationship.
 
@@ -1452,7 +1458,7 @@ Additional domain to be added to IRSA trust relationship.
 
 **Type:** `object`
 
-**Default node pool**
+**Default node pool:**
 
 **Default:** `{"def00":{"customNodeLabels":["label=default"],"instanceType":"r6i.xlarge","maxSize":3,"minSize":3}}`
 
@@ -1462,7 +1468,7 @@ Additional domain to be added to IRSA trust relationship.
 
 **Type:** `object`
 
-**Node pool**
+**Node pool:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1472,7 +1478,7 @@ Additional domain to be added to IRSA trust relationship.
 
 **Type:** `array`
 
-**Machine pool additional security groups**
+**Machine pool additional security groups:**
 
 Additional security groups that will be added to the machine pool nodes.
 
@@ -1484,7 +1490,7 @@ Additional security groups that will be added to the machine pool nodes.
 
 **Type:** `object`
 
-**security group**
+**security group:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1494,7 +1500,7 @@ Additional security groups that will be added to the machine pool nodes.
 
 **Type:** `string`
 
-**Id of the security group**
+**Id of the security group:**
 
 ID of the security group that will be added to the machine pool nodes. The security group must exist.
 
@@ -1506,7 +1512,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Availability zones**
+**Availability zones:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1516,7 +1522,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1526,7 +1532,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Custom node labels**
+**Custom node labels:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1536,7 +1542,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1546,7 +1552,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1564,7 +1570,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1576,7 +1582,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1586,7 +1592,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1596,7 +1602,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1606,7 +1612,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Instance type overrides**
+**Instance type overrides:**
 
 Ordered list of instance types to be used for the machine pool. The first instance type that is available in the region will be used. Read more in our docs https://docs.giantswarm.io/advanced/cluster-management/node-pools-capi/
 
@@ -1620,7 +1626,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1630,7 +1636,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `integer`
 
-**Maximum number of nodes**
+**Maximum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1640,7 +1646,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `integer`
 
-**Minimum number of nodes**
+**Minimum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1650,7 +1656,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1660,7 +1666,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `object`
 
-**Spot instances**
+**Spot instances:**
 
 Compared to on-demand instances, spot instances can help you save cost.
 
@@ -1672,7 +1678,7 @@ Compared to on-demand instances, spot instances can help you save cost.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1684,7 +1690,7 @@ Compared to on-demand instances, spot instances can help you save cost.
 
 **Type:** `number`
 
-**Maximum price to pay per instance per hour, in USD.**
+**Maximum price to pay per instance per hour, in USD.:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1694,7 +1700,7 @@ Compared to on-demand instances, spot instances can help you save cost.
 
 **Type:** `array`
 
-**Subnet tags**
+**Subnet tags:**
 
 Tags to filter which AWS subnets will be used for this node pool.
 
@@ -1706,7 +1712,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `object`
 
-**Subnet tag**
+**Subnet tag:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1716,7 +1722,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1728,7 +1734,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `object`
 
-**Sandbox image**
+**Sandbox image:**
 
 The image used by sandbox / pause container
 
@@ -1738,7 +1744,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/pause"`
 
@@ -1748,7 +1754,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"gsoci.azurecr.io"`
 
@@ -1758,7 +1764,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"3.9"`
 
@@ -1768,7 +1774,7 @@ The image used by sandbox / pause container
 
 **Type:** `object`
 
-**Teleport**
+**Teleport:**
 
 ---
 
@@ -1776,7 +1782,7 @@ The image used by sandbox / pause container
 
 **Type:** `boolean`
 
-**Enable teleport**
+**Enable teleport:**
 
 **Default:** `true`
 
@@ -1786,7 +1792,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Teleport proxy address**
+**Teleport proxy address:**
 
 **Default:** `"teleport.giantswarm.io:443"`
 
@@ -1796,7 +1802,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Teleport version**
+**Teleport version:**
 
 **Default:** `"14.1.3"`
 
@@ -1808,7 +1814,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/kubectl"`
 
@@ -1818,7 +1824,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"gsoci.azurecr.io"`
 
@@ -1828,7 +1834,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"1.23.5"`
 
@@ -1840,7 +1846,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Cluster description**
+**Cluster description:**
 
 User-friendly description of the cluster's purpose.
 
@@ -1850,7 +1856,7 @@ User-friendly description of the cluster's purpose.
 
 **Type:** `string`
 
-**Cluster name**
+**Cluster name:**
 
 Unique identifier, cannot be changed after creation.
 
@@ -1860,7 +1866,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 ---
 
@@ -1868,7 +1874,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `boolean`
 
-**Prevent cluster deletion**
+**Prevent cluster deletion:**
 
 **Default:** `false`
 
@@ -1878,7 +1884,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Service priority**
+**Service priority:**
 
 The relative importance of this cluster.
 
@@ -1886,7 +1892,9 @@ The relative importance of this cluster.
 
 **Default:** `"highest"`
 
-### Node pools {#node-pools}Node pools of the cluster. If not specified, this defaults to the value of `internal.nodePools`.
+### Node pools {#node-pools}
+
+Node pools of the cluster. If not specified, this defaults to the value of `internal.nodePools`.
 
 ---
 
@@ -1894,7 +1902,7 @@ The relative importance of this cluster.
 
 **Type:** `object`
 
-**Node pool**
+**Node pool:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1904,7 +1912,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Machine pool additional security groups**
+**Machine pool additional security groups:**
 
 Additional security groups that will be added to the machine pool nodes.
 
@@ -1916,7 +1924,7 @@ Additional security groups that will be added to the machine pool nodes.
 
 **Type:** `object`
 
-**security group**
+**security group:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1926,7 +1934,7 @@ Additional security groups that will be added to the machine pool nodes.
 
 **Type:** `string`
 
-**Id of the security group**
+**Id of the security group:**
 
 ID of the security group that will be added to the machine pool nodes. The security group must exist.
 
@@ -1938,7 +1946,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Availability zones**
+**Availability zones:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1948,7 +1956,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1958,7 +1966,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Custom node labels**
+**Custom node labels:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1968,7 +1976,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1978,7 +1986,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1996,7 +2004,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2008,7 +2016,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2018,7 +2026,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2028,7 +2036,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2038,7 +2046,7 @@ ID of the security group that will be added to the machine pool nodes. The secur
 
 **Type:** `array`
 
-**Instance type overrides**
+**Instance type overrides:**
 
 Ordered list of instance types to be used for the machine pool. The first instance type that is available in the region will be used. Read more in our docs https://docs.giantswarm.io/advanced/cluster-management/node-pools-capi/
 
@@ -2052,7 +2060,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2062,7 +2070,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `integer`
 
-**Maximum number of nodes**
+**Maximum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2072,7 +2080,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `integer`
 
-**Minimum number of nodes**
+**Minimum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2082,7 +2090,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2092,7 +2100,7 @@ Ordered list of instance types to be used for the machine pool. The first instan
 
 **Type:** `object`
 
-**Spot instances**
+**Spot instances:**
 
 Compared to on-demand instances, spot instances can help you save cost.
 
@@ -2104,7 +2112,7 @@ Compared to on-demand instances, spot instances can help you save cost.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2116,7 +2124,7 @@ Compared to on-demand instances, spot instances can help you save cost.
 
 **Type:** `number`
 
-**Maximum price to pay per instance per hour, in USD.**
+**Maximum price to pay per instance per hour, in USD.:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2126,7 +2134,7 @@ Compared to on-demand instances, spot instances can help you save cost.
 
 **Type:** `array`
 
-**Subnet tags**
+**Subnet tags:**
 
 Tags to filter which AWS subnets will be used for this node pool.
 
@@ -2138,7 +2146,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `object`
 
-**Subnet tag**
+**Subnet tag:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2148,7 +2156,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -2162,7 +2170,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Management cluster**
+**Management cluster:**
 
 Name of the Cluster API cluster managing this workload cluster.
 
@@ -2174,7 +2182,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `boolean`
 
-**Enforced**
+**Enforced:**
 
 **Default:** `true`
 
@@ -2186,7 +2194,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 ---
 
@@ -2194,7 +2202,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `object`
 
-**Cluster**
+**Cluster:**
 
 Helm values for the provider-independent cluster chart
 
@@ -2206,7 +2214,7 @@ Helm values for the provider-independent cluster chart
 
 **Type:** `object`
 
-**Library chart**
+**Library chart:**
 
 ---
 
@@ -2214,7 +2222,7 @@ Helm values for the provider-independent cluster chart
 
 **Type:** `string`
 
-**Management cluster**
+**Management cluster:**
 
 Name of the Cluster API cluster managing this workload cluster.
 
@@ -2224,7 +2232,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `string`
 
-**Cluster API provider name**
+**Cluster API provider name:**
 
 <!-- DOCS_END -->
 
