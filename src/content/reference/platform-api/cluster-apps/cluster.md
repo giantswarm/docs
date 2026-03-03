@@ -20,7 +20,9 @@ The `cluster` chart is the main entry point for the Giant Swarm platform. It is 
 
 ## Chart configuration reference
 
-### Components {#components}Advanced configuration of components that are running on all nodes.
+### Components {#components}
+
+Advanced configuration of components that are running on all nodes.
 
 ---
 
@@ -28,7 +30,7 @@ The `cluster` chart is the main entry point for the Giant Swarm platform. It is 
 
 **Type:** `object`
 
-**Containerd**
+**Containerd:**
 
 Configuration of containerd.
 
@@ -38,7 +40,7 @@ Configuration of containerd.
 
 **Type:** `object`
 
-**Container registries**
+**Container registries:**
 
 Endpoints and credentials configuration for container registries.
 
@@ -50,7 +52,7 @@ Endpoints and credentials configuration for container registries.
 
 **Type:** `array`
 
-**Registries**
+**Registries:**
 
 Container registries and mirrors
 
@@ -60,7 +62,7 @@ Container registries and mirrors
 
 **Type:** `object`
 
-**Registry**
+**Registry:**
 
 ---
 
@@ -68,7 +70,7 @@ Container registries and mirrors
 
 **Type:** `object`
 
-**Credentials**
+**Credentials:**
 
 ---
 
@@ -76,7 +78,7 @@ Container registries and mirrors
 
 **Type:** `string`
 
-**Auth**
+**Auth:**
 
 Base64-encoded string from the concatenation of the username, a colon, and the password.
 
@@ -86,7 +88,7 @@ Base64-encoded string from the concatenation of the username, a colon, and the p
 
 **Type:** `string`
 
-**Identity token**
+**Identity token:**
 
 Used to authenticate the user and obtain an access token for the registry.
 
@@ -96,7 +98,7 @@ Used to authenticate the user and obtain an access token for the registry.
 
 **Type:** `string`
 
-**Password**
+**Password:**
 
 Used to authenticate for the registry with username/password.
 
@@ -106,7 +108,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Username**
+**Username:**
 
 Used to authenticate for the registry with username/password.
 
@@ -116,11 +118,13 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Endpoint**
+**Endpoint:**
 
 Endpoint for the container registry.
 
-### Connectivity {#connectivity}Configuration of connectivity and networking options.
+### Connectivity {#connectivity}
+
+Configuration of connectivity and networking options.
 
 ---
 
@@ -128,7 +132,7 @@ Endpoint for the container registry.
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 ---
 
@@ -136,7 +140,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Bastion host**
+**Bastion host:**
 
 ---
 
@@ -144,7 +148,7 @@ Endpoint for the container registry.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Default:** `true`
 
@@ -154,7 +158,7 @@ Endpoint for the container registry.
 
 **Type:** `integer`
 
-**Number of hosts**
+**Number of hosts:**
 
 **Default:** `1`
 
@@ -164,7 +168,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Network**
+**Network:**
 
 ---
 
@@ -172,7 +176,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Pods**
+**Pods:**
 
 ---
 
@@ -180,7 +184,7 @@ Endpoint for the container registry.
 
 **Type:** `array`
 
-**Pod subnets**
+**Pod subnets:**
 
 **Default:** `["100.64.0.0/12"]`
 
@@ -190,7 +194,7 @@ Endpoint for the container registry.
 
 **Type:** `string`
 
-**Pod subnet**
+**Pod subnet:**
 
 IPv4 address range for pods, in CIDR notation.
 
@@ -202,7 +206,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `object`
 
-**Services**
+**Services:**
 
 ---
 
@@ -210,7 +214,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `array`
 
-**Kubernetes Service subnets**
+**Kubernetes Service subnets:**
 
 **Default:** `["172.31.0.0/16"]`
 
@@ -220,7 +224,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `string`
 
-**Service subnet**
+**Service subnet:**
 
 IPv4 address range for kubernetes services, in CIDR notation.
 
@@ -232,7 +236,7 @@ IPv4 address range for kubernetes services, in CIDR notation.
 
 **Type:** `object`
 
-**Proxy**
+**Proxy:**
 
 Whether/how outgoing traffic is routed through proxy servers.
 
@@ -244,7 +248,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 ---
 
@@ -252,7 +256,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `string`
 
-**HTTP proxy**
+**HTTP proxy:**
 
 To be passed to the HTTP_PROXY environment variable in all hosts.
 
@@ -262,7 +266,7 @@ To be passed to the HTTP_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**HTTPS proxy**
+**HTTPS proxy:**
 
 To be passed to the HTTPS_PROXY environment variable in all hosts.
 
@@ -272,11 +276,13 @@ To be passed to the HTTPS_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**No proxy**
+**No proxy:**
 
 Comma-separated addresses to be passed to the NO_PROXY environment variable in all hosts.
 
-### Control plane {#control-plane}Configuration of the control plane.
+### Control plane {#control-plane}
+
+Configuration of the control plane.
 
 ---
 
@@ -284,7 +290,7 @@ Comma-separated addresses to be passed to the NO_PROXY environment variable in a
 
 **Type:** `integer`
 
-**API server port**
+**API server port:**
 
 The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIServerPort field on the Cluster CR. In CAPI this field isn't used currently. It is instead used in providers. In CAPA this sets only the public facing port of the Load Balancer. In CAPZ both the public facing and the destination port are set to this value. CAPV and CAPVCD do not use it.
 
@@ -296,7 +302,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 ---
 
@@ -310,7 +316,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Allowed values:** `NoSchedule`, `PreferNoSchedule`, `NoExecute`
 
@@ -320,7 +326,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 ---
 
@@ -328,7 +334,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 ---
 
@@ -336,7 +342,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `object`
 
-**Machine health check**
+**Machine health check:**
 
 ---
 
@@ -344,7 +350,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Default:** `true`
 
@@ -354,7 +360,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `string`
 
-**Maximum unhealthy nodes**
+**Maximum unhealthy nodes:**
 
 **Example:** `"40%"`
 
@@ -366,7 +372,7 @@ The API server Load Balancer port. This option sets the Spec.ClusterNetwork.APIS
 
 **Type:** `string`
 
-**Node startup timeout**
+**Node startup timeout:**
 
 Determines how long a machine health check should wait for a node to join the cluster, before considering a machine unhealthy.
 
@@ -380,7 +386,7 @@ Determines how long a machine health check should wait for a node to join the cl
 
 **Type:** `string`
 
-**Timeout for ready**
+**Timeout for ready:**
 
 If a node is not in condition 'Ready' after this timeout, it will be considered unhealthy.
 
@@ -394,7 +400,7 @@ If a node is not in condition 'Ready' after this timeout, it will be considered 
 
 **Type:** `string`
 
-**Timeout for unknown condition**
+**Timeout for unknown condition:**
 
 If a node is in 'Unknown' condition after this timeout, it will be considered unhealthy.
 
@@ -408,7 +414,7 @@ If a node is in 'Unknown' condition after this timeout, it will be considered un
 
 **Type:** `object`
 
-**OIDC authentication**
+**OIDC authentication:**
 
 ---
 
@@ -416,7 +422,7 @@ If a node is in 'Unknown' condition after this timeout, it will be considered un
 
 **Type:** `string`
 
-**Certificate authority**
+**Certificate authority:**
 
 Identity provider's CA certificate in PEM format.
 
@@ -426,7 +432,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Client ID**
+**Client ID:**
 
 ---
 
@@ -434,7 +440,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Groups claim**
+**Groups claim:**
 
 ---
 
@@ -442,7 +448,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Issuer URL**
+**Issuer URL:**
 
 Exact issuer URL that will be included in identity tokens.
 
@@ -452,7 +458,7 @@ Exact issuer URL that will be included in identity tokens.
 
 **Type:** `string`
 
-**Username claim**
+**Username claim:**
 
 ---
 
@@ -460,7 +466,7 @@ Exact issuer URL that will be included in identity tokens.
 
 **Type:** `integer`
 
-**Replicas**
+**Replicas:**
 
 The number of control plane nodes.
 
@@ -468,7 +474,9 @@ The number of control plane nodes.
 
 **Default:** `3`
 
-### Internal {#internal}For Giant Swarm internal use only, not stable, or not supported by UIs.
+### Internal {#internal}
+
+For Giant Swarm internal use only, not stable, or not supported by UIs.
 
 ---
 
@@ -476,7 +484,7 @@ The number of control plane nodes.
 
 **Type:** `object`
 
-**Advanced configuration**
+**Advanced configuration:**
 
 Advanced configuration of cluster components, to be configured by Giant Swarm staff only.
 
@@ -486,7 +494,7 @@ Advanced configuration of cluster components, to be configured by Giant Swarm st
 
 **Type:** `boolean`
 
-**CGroups v1**
+**CGroups v1:**
 
 Force use of CGroups v1 for whole cluster.
 
@@ -498,7 +506,7 @@ Force use of CGroups v1 for whole cluster.
 
 **Type:** `object`
 
-**Control plane**
+**Control plane:**
 
 Advanced configuration of control plane components.
 
@@ -508,7 +516,7 @@ Advanced configuration of control plane components.
 
 **Type:** `object`
 
-**API server**
+**API server:**
 
 Advanced configuration of API server.
 
@@ -518,7 +526,7 @@ Advanced configuration of API server.
 
 **Type:** `integer`
 
-**Bind port**
+**Bind port:**
 
 Kubernetes API bind port used for API server pod.
 
@@ -528,7 +536,7 @@ Kubernetes API bind port used for API server pod.
 
 **Type:** `string`
 
-**etcd prefix**
+**etcd prefix:**
 
 The prefix to prepend to all resource paths in etcd. If nothing is specified, the API server uses '/registry' prefix by default.
 
@@ -538,7 +546,7 @@ The prefix to prepend to all resource paths in etcd. If nothing is specified, th
 
 **Type:** `object`
 
-**Extra CLI args**
+**Extra CLI args:**
 
 A map with the additional CLI flags that are appended to the default flags. Use with caution, as there is no validation for these values, so you can set incorrect or duplicate flags.
 
@@ -548,7 +556,7 @@ A map with the additional CLI flags that are appended to the default flags. Use 
 
 **Type:** `array`
 
-**Extra certificate SANs**
+**Extra certificate SANs:**
 
 The additional certificate SANs that are appended to the default SANs. Use with caution, as there is no validation for these values, so you can set incorrect or duplicate certificates.
 
@@ -558,7 +566,7 @@ The additional certificate SANs that are appended to the default SANs. Use with 
 
 **Type:** `string`
 
-**Extra certificate SAN**
+**Extra certificate SAN:**
 
 ---
 
@@ -566,7 +574,7 @@ The additional certificate SANs that are appended to the default SANs. Use with 
 
 **Type:** `object`
 
-**etcd**
+**etcd:**
 
 Configuration of etcd
 
@@ -576,7 +584,7 @@ Configuration of etcd
 
 **Type:** `object`
 
-**Experimental**
+**Experimental:**
 
 ---
 
@@ -584,7 +592,7 @@ Configuration of etcd
 
 **Type:** `boolean`
 
-**Peer skip client SAN verification**
+**Peer skip client SAN verification:**
 
 Skip verification of SAN field in client certificate for peer connections.
 
@@ -594,7 +602,7 @@ Skip verification of SAN field in client certificate for peer connections.
 
 **Type:** `object`
 
-**Extra args**
+**Extra args:**
 
 ---
 
@@ -602,7 +610,7 @@ Skip verification of SAN field in client certificate for peer connections.
 
 **Type:** `string`
 
-**Initial cluster**
+**Initial cluster:**
 
 Initial cluster configuration for bootstrapping.
 
@@ -612,7 +620,7 @@ Initial cluster configuration for bootstrapping.
 
 **Type:** `string`
 
-**Initial cluster state**
+**Initial cluster state:**
 
 **Allowed values:** `new`, `existing`
 
@@ -622,7 +630,7 @@ Initial cluster configuration for bootstrapping.
 
 **Type:** `integer`
 
-**Quota backend bytes in GiB**
+**Quota backend bytes in GiB:**
 
 Raise the etcd default backend bytes limit up to 16GiB.
 
@@ -634,7 +642,7 @@ Raise the etcd default backend bytes limit up to 16GiB.
 
 **Type:** `array`
 
-**Files**
+**Files:**
 
 Custom cluster-specific files that are deployed to control plane nodes.
 
@@ -644,7 +652,7 @@ Custom cluster-specific files that are deployed to control plane nodes.
 
 **Type:** `object`
 
-**File from secret**
+**File from secret:**
 
 It defines a file with content in a Secret
 
@@ -654,7 +662,7 @@ It defines a file with content in a Secret
 
 **Type:** `object`
 
-**Content from**
+**Content from:**
 
 It specifies where the file content is coming from.
 
@@ -664,7 +672,7 @@ It specifies where the file content is coming from.
 
 **Type:** `object`
 
-**Secret**
+**Secret:**
 
 Kubernetes Secret resource with the file content.
 
@@ -674,7 +682,7 @@ Kubernetes Secret resource with the file content.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 Secret key where the file content is.
 
@@ -684,7 +692,7 @@ Secret key where the file content is.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the Secret resource.
 
@@ -694,7 +702,7 @@ Name of the Secret resource.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 File path on the node.
 
@@ -704,7 +712,7 @@ File path on the node.
 
 **Type:** `string`
 
-**Permissions**
+**Permissions:**
 
 File permissions in form 0644
 
@@ -716,7 +724,7 @@ File permissions in form 0644
 
 **Type:** `array`
 
-**Post-kubeadm commands**
+**Post-kubeadm commands:**
 
 Extra commands to run after kubeadm runs.
 
@@ -732,7 +740,7 @@ Extra commands to run after kubeadm runs.
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 
@@ -748,7 +756,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `array`
 
-**Files**
+**Files:**
 
 Custom cluster-specific files that are deployed to all nodes.
 
@@ -758,7 +766,7 @@ Custom cluster-specific files that are deployed to all nodes.
 
 **Type:** `object`
 
-**File from secret**
+**File from secret:**
 
 It defines a file with content in a Secret
 
@@ -768,7 +776,7 @@ It defines a file with content in a Secret
 
 **Type:** `object`
 
-**Content from**
+**Content from:**
 
 It specifies where the file content is coming from.
 
@@ -778,7 +786,7 @@ It specifies where the file content is coming from.
 
 **Type:** `object`
 
-**Secret**
+**Secret:**
 
 Kubernetes Secret resource with the file content.
 
@@ -788,7 +796,7 @@ Kubernetes Secret resource with the file content.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 Secret key where the file content is.
 
@@ -798,7 +806,7 @@ Secret key where the file content is.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the Secret resource.
 
@@ -808,7 +816,7 @@ Name of the Secret resource.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 File path on the node.
 
@@ -818,7 +826,7 @@ File path on the node.
 
 **Type:** `string`
 
-**Permissions**
+**Permissions:**
 
 File permissions in form 0644
 
@@ -830,7 +838,7 @@ File permissions in form 0644
 
 **Type:** `array`
 
-**Post-kubeadm commands**
+**Post-kubeadm commands:**
 
 Extra commands to run after kubeadm runs.
 
@@ -846,7 +854,7 @@ Extra commands to run after kubeadm runs.
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 
@@ -862,7 +870,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `object`
 
-**Workers**
+**Workers:**
 
 Advanced configuration of worker nodes.
 
@@ -872,7 +880,7 @@ Advanced configuration of worker nodes.
 
 **Type:** `array`
 
-**Files**
+**Files:**
 
 Custom cluster-specific files that are deployed to worker nodes.
 
@@ -882,7 +890,7 @@ Custom cluster-specific files that are deployed to worker nodes.
 
 **Type:** `object`
 
-**File from secret**
+**File from secret:**
 
 It defines a file with content in a Secret
 
@@ -892,7 +900,7 @@ It defines a file with content in a Secret
 
 **Type:** `object`
 
-**Content from**
+**Content from:**
 
 It specifies where the file content is coming from.
 
@@ -902,7 +910,7 @@ It specifies where the file content is coming from.
 
 **Type:** `object`
 
-**Secret**
+**Secret:**
 
 Kubernetes Secret resource with the file content.
 
@@ -912,7 +920,7 @@ Kubernetes Secret resource with the file content.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 Secret key where the file content is.
 
@@ -922,7 +930,7 @@ Secret key where the file content is.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the Secret resource.
 
@@ -932,7 +940,7 @@ Name of the Secret resource.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 File path on the node.
 
@@ -942,7 +950,7 @@ File path on the node.
 
 **Type:** `string`
 
-**Permissions**
+**Permissions:**
 
 File permissions in form 0644
 
@@ -954,7 +962,7 @@ File permissions in form 0644
 
 **Type:** `array`
 
-**Post-kubeadm commands**
+**Post-kubeadm commands:**
 
 Extra commands to run after kubeadm runs.
 
@@ -970,7 +978,7 @@ Extra commands to run after kubeadm runs.
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 
@@ -988,7 +996,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `object`
 
-**Annotations**
+**Annotations:**
 
 These annotations are added to all Kubernetes resources defining this cluster.
 
@@ -998,7 +1006,7 @@ These annotations are added to all Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Annotation**
+**Annotation:**
 
 **Key pattern:** `PATTERN`=`^([a-zA-Z0-9\.-]{1,253}/)?[a-zA-Z0-9\._-]{1,63}$`
 
@@ -1008,7 +1016,7 @@ These annotations are added to all Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Cluster description**
+**Cluster description:**
 
 User-friendly description of the cluster's purpose.
 
@@ -1018,7 +1026,7 @@ User-friendly description of the cluster's purpose.
 
 **Type:** `object`
 
-**Labels**
+**Labels:**
 
 These labels are added to all Kubernetes resources defining this cluster.
 
@@ -1028,7 +1036,7 @@ These labels are added to all Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-zA-Z0-9/\._-]+$`
 
@@ -1040,7 +1048,7 @@ These labels are added to all Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Cluster name**
+**Cluster name:**
 
 Unique identifier, cannot be changed after creation.
 
@@ -1050,7 +1058,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 The name of organization that owns the cluster.
 
@@ -1060,7 +1068,7 @@ The name of organization that owns the cluster.
 
 **Type:** `boolean`
 
-**Prevent cluster deletion**
+**Prevent cluster deletion:**
 
 Setting this to true will set giantswarm.io/prevent-deletion label to true, which will block cluster deletion.
 
@@ -1072,7 +1080,7 @@ Setting this to true will set giantswarm.io/prevent-deletion label to true, whic
 
 **Type:** `string`
 
-**Service priority**
+**Service priority:**
 
 The relative importance of this cluster.
 
@@ -1088,7 +1096,7 @@ The relative importance of this cluster.
 
 **Type:** `object`
 
-**Node pool**
+**Node pool:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1098,7 +1106,7 @@ The relative importance of this cluster.
 
 **Type:** `object`
 
-**Annotations**
+**Annotations:**
 
 These annotations are added to all Kubernetes resources defining this node pool.
 
@@ -1110,7 +1118,7 @@ These annotations are added to all Kubernetes resources defining this node pool.
 
 **Type:** `string`
 
-**Annotation**
+**Annotation:**
 
 **Key patterns:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`, `PATTERN_2`=`^([a-zA-Z0-9\.-]{1,253}/)?[a-zA-Z0-9\._-]{1,63}$`
 
@@ -1120,7 +1128,7 @@ These annotations are added to all Kubernetes resources defining this node pool.
 
 **Type:** `object`
 
-**Labels**
+**Labels:**
 
 These labels are added to all Kubernetes resources defining this node pool.
 
@@ -1132,7 +1140,7 @@ These labels are added to all Kubernetes resources defining this node pool.
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key patterns:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`, `PATTERN_2`=`^[a-zA-Z0-9/\._-]+$`
 
@@ -1144,7 +1152,7 @@ These labels are added to all Kubernetes resources defining this node pool.
 
 **Type:** `object`
 
-**Node labels**
+**Node labels:**
 
 Labels that are passed to kubelet argument 'node-labels'.
 
@@ -1164,7 +1172,7 @@ Labels that are passed to kubelet argument 'node-labels'.
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1182,7 +1190,7 @@ Labels that are passed to kubelet argument 'node-labels'.
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1194,7 +1202,7 @@ Labels that are passed to kubelet argument 'node-labels'.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1204,7 +1212,7 @@ Labels that are passed to kubelet argument 'node-labels'.
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1214,7 +1222,7 @@ Labels that are passed to kubelet argument 'node-labels'.
 
 **Type:** `integer`
 
-**Replicas**
+**Replicas:**
 
 The number of node pool nodes.
 
@@ -1228,7 +1236,7 @@ The number of node pool nodes.
 
 **Type:** `string`
 
-**Management cluster**
+**Management cluster:**
 
 Name of the Cluster API cluster managing this workload cluster.
 
@@ -1240,11 +1248,13 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `boolean`
 
-**Enforced**
+**Enforced:**
 
 **Default:** `false`
 
-### Provider integration {#provider-integration}Provider-specific properties that can be set by cluster-$provider chart in order to render correct templates for the provider.
+### Provider integration {#provider-integration}
+
+Provider-specific properties that can be set by cluster-$provider chart in order to render correct templates for the provider.
 
 ---
 
@@ -1252,7 +1262,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `object`
 
-**Internal bastion configuration**
+**Internal bastion configuration:**
 
 ---
 
@@ -1260,7 +1270,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `object`
 
-**Kubeadm config**
+**Kubeadm config:**
 
 Configuration of bastion nodes.
 
@@ -1270,7 +1280,7 @@ Configuration of bastion nodes.
 
 **Type:** `object`
 
-**Ignition**
+**Ignition:**
 
 Ignition-specific configuration.
 
@@ -1280,7 +1290,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Container Linux configuration**
+**Container Linux configuration:**
 
 ---
 
@@ -1288,7 +1298,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Additional config**
+**Additional config:**
 
 Additional configuration to be merged with the Ignition. More info: https://coreos.github.io/ignition/operator-notes/#config-merging.
 
@@ -1298,7 +1308,7 @@ Additional configuration to be merged with the Ignition. More info: https://core
 
 **Type:** `object`
 
-**Storage**
+**Storage:**
 
 It describes the desired state of the system’s storage devices.
 
@@ -1308,7 +1318,7 @@ It describes the desired state of the system’s storage devices.
 
 **Type:** `array`
 
-**Directories**
+**Directories:**
 
 The list of directories to be created.
 
@@ -1318,7 +1328,7 @@ The list of directories to be created.
 
 **Type:** `object`
 
-**Directory**
+**Directory:**
 
 The directory to be created.
 
@@ -1328,7 +1338,7 @@ The directory to be created.
 
 **Type:** `string`
 
-**Filesystem**
+**Filesystem:**
 
 The internal identifier of the filesystem in which to create the directory. This matches the last filesystem with the given identifier.
 
@@ -1338,7 +1348,7 @@ The internal identifier of the filesystem in which to create the directory. This
 
 **Type:** `object`
 
-**Group**
+**Group:**
 
 It specifies the group of the owner.
 
@@ -1348,7 +1358,7 @@ It specifies the group of the owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The group ID of the owner.
 
@@ -1358,7 +1368,7 @@ The group ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The group name of the owner.
 
@@ -1368,7 +1378,7 @@ The group name of the owner.
 
 **Type:** `integer`
 
-**Mode**
+**Mode:**
 
 The directory’s permission mode.
 
@@ -1378,7 +1388,7 @@ The directory’s permission mode.
 
 **Type:** `boolean`
 
-**Overwrite**
+**Overwrite:**
 
 Whether to delete preexisting nodes at the path.
 
@@ -1388,7 +1398,7 @@ Whether to delete preexisting nodes at the path.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The absolute path to the directory.
 
@@ -1398,7 +1408,7 @@ The absolute path to the directory.
 
 **Type:** `object`
 
-**User**
+**User:**
 
 It specifies the directory’s owner.
 
@@ -1408,7 +1418,7 @@ It specifies the directory’s owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The user ID of the owner.
 
@@ -1418,7 +1428,7 @@ The user ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The user name of the owner.
 
@@ -1428,7 +1438,7 @@ The user name of the owner.
 
 **Type:** `array`
 
-**File systems**
+**File systems:**
 
 The list of filesystems to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -1438,7 +1448,7 @@ The list of filesystems to be configured and/or used in the “files” section.
 
 **Type:** `object`
 
-**File system**
+**File system:**
 
 The filesystem to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -1448,7 +1458,7 @@ The filesystem to be configured and/or used in the “files” section. Either �
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 It contains the set of mount and formatting options for the filesystem. A non-null entry indicates that the filesystem should be mounted before it is used by Ignition.
 
@@ -1458,7 +1468,7 @@ It contains the set of mount and formatting options for the filesystem. A non-nu
 
 **Type:** `string`
 
-**Device**
+**Device:**
 
 The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.
 
@@ -1468,7 +1478,7 @@ The absolute path to the device. Devices are typically referenced by the "/dev/d
 
 **Type:** `string`
 
-**Format**
+**Format:**
 
 The filesystem format (ext4, btrfs, or xfs).
 
@@ -1480,7 +1490,7 @@ The filesystem format (ext4, btrfs, or xfs).
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 The label of the filesystem.
 
@@ -1490,7 +1500,7 @@ The label of the filesystem.
 
 **Type:** `array`
 
-**Options**
+**Options:**
 
 Any additional options to be passed to the format-specific mkfs utility.
 
@@ -1508,7 +1518,7 @@ An additional option to be passed to the format-specific mkfs utility.
 
 **Type:** `string`
 
-**UUID**
+**UUID:**
 
 The uuid of the filesystem.
 
@@ -1518,7 +1528,7 @@ The uuid of the filesystem.
 
 **Type:** `boolean`
 
-**Wipe filesystem**
+**Wipe filesystem:**
 
 Whether or not to wipe the device before filesystem creation, see Ignition’s documentation on filesystems for more information https://github.com/coreos/ignition/blob/main/docs/operator-notes.md#filesystem-reuse-semantics.
 
@@ -1528,7 +1538,7 @@ Whether or not to wipe the device before filesystem creation, see Ignition’s d
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The identifier for the filesystem, internal to Ignition. This is only required if the filesystem needs to be referenced in the “files” section.
 
@@ -1538,7 +1548,7 @@ The identifier for the filesystem, internal to Ignition. This is only required i
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The mount-point of the filesystem. A non-null entry indicates that the filesystem has already been mounted by the system at the specified path. This is really only useful for “/sysroot”.
 
@@ -1548,7 +1558,7 @@ The mount-point of the filesystem. A non-null entry indicates that the filesyste
 
 **Type:** `object`
 
-**systemd**
+**systemd:**
 
 It describes the desired state of the systemd units.
 
@@ -1558,7 +1568,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `array`
 
-**Units**
+**Units:**
 
 ---
 
@@ -1566,7 +1576,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**systemd unit**
+**systemd unit:**
 
 ---
 
@@ -1574,7 +1584,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**Contents**
+**Contents:**
 
 The contents of the unit.
 
@@ -1584,7 +1594,7 @@ The contents of the unit.
 
 **Type:** `object`
 
-**Install**
+**Install:**
 
 Configuration of the [Install] section.
 
@@ -1594,7 +1604,7 @@ Configuration of the [Install] section.
 
 **Type:** `array`
 
-**WantedBy**
+**WantedBy:**
 
 Units with (weak) requirement dependencies on this unit.
 
@@ -1610,7 +1620,7 @@ Units with (weak) requirement dependencies on this unit.
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 Configuration of the [Mount] section.
 
@@ -1620,7 +1630,7 @@ Configuration of the [Mount] section.
 
 **Type:** `string`
 
-**Type**
+**Type:**
 
 A file system type to mount.
 
@@ -1630,7 +1640,7 @@ A file system type to mount.
 
 **Type:** `string`
 
-**What**
+**What:**
 
 An absolute path of a device node, file or other resource to mount.
 
@@ -1640,7 +1650,7 @@ An absolute path of a device node, file or other resource to mount.
 
 **Type:** `string`
 
-**Where**
+**Where:**
 
 An absolute path of a file or directory for the mount point; in particular, the destination cannot be a symbolic link.
 
@@ -1650,7 +1660,7 @@ An absolute path of a file or directory for the mount point; in particular, the 
 
 **Type:** `object`
 
-**Unit**
+**Unit:**
 
 Configuration of the [Unit] section.
 
@@ -1660,7 +1670,7 @@ Configuration of the [Unit] section.
 
 **Type:** `boolean`
 
-**DefaultDependencies**
+**DefaultDependencies:**
 
 Flag that indicates if this systemd unit should have the default systemd unit dependencies.
 
@@ -1670,7 +1680,7 @@ Flag that indicates if this systemd unit should have the default systemd unit de
 
 **Type:** `string`
 
-**Description**
+**Description:**
 
 systemd unit description.
 
@@ -1680,7 +1690,7 @@ systemd unit description.
 
 **Type:** `array`
 
-**Unit drop-ins**
+**Unit drop-ins:**
 
 The list of drop-ins for the unit
 
@@ -1690,7 +1700,7 @@ The list of drop-ins for the unit
 
 **Type:** `object`
 
-**Unit drop-in**
+**Unit drop-in:**
 
 ---
 
@@ -1698,7 +1708,7 @@ The list of drop-ins for the unit
 
 **Type:** `string`
 
-**Contents**
+**Contents:**
 
 The contents of the drop-in.
 
@@ -1708,7 +1718,7 @@ The contents of the drop-in.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the drop-in. This must be suffixed with “.conf”
 
@@ -1720,7 +1730,7 @@ The name of the drop-in. This must be suffixed with “.conf”
 
 **Type:** `boolean`
 
-**Enabled?**
+**Enabled?:**
 
 Whether or not the service shall be enabled. When true, the service is enabled. When false, the service is disabled. When omitted, the service is unmodified. In order for this to have any effect, the unit must have an install section.
 
@@ -1730,7 +1740,7 @@ Whether or not the service shall be enabled. When true, the service is enabled. 
 
 **Type:** `boolean`
 
-**Masked?**
+**Masked?:**
 
 Whether or not the service shall be masked. When true, the service is masked by symlinking it to /dev/null.
 
@@ -1740,7 +1750,7 @@ Whether or not the service shall be masked. When true, the service is masked by 
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the unit. This must be suffixed with a valid unit type (e.g. “thing.service”).
 
@@ -1750,7 +1760,7 @@ The name of the unit. This must be suffixed with a valid unit type (e.g. “thin
 
 **Type:** `boolean`
 
-**Strict**
+**Strict:**
 
 It controls if AdditionalConfig should be strictly parsed. If so, warnings are treated as errors.
 
@@ -1760,7 +1770,7 @@ It controls if AdditionalConfig should be strictly parsed. If so, warnings are t
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 
@@ -1776,7 +1786,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `string`
 
-**Cluster annotations template name**
+**Cluster annotations template name:**
 
 The name of the template that renders provider-specific annotations for the Cluster resource
 
@@ -1786,7 +1796,7 @@ The name of the template that renders provider-specific annotations for the Clus
 
 **Type:** `object`
 
-**Components**
+**Components:**
 
 Internal configuration of various components that form the Kubernetes cluster.
 
@@ -1796,7 +1806,7 @@ Internal configuration of various components that form the Kubernetes cluster.
 
 **Type:** `object`
 
-**Containerd**
+**Containerd:**
 
 Configuration of containerd.
 
@@ -1806,7 +1816,7 @@ Configuration of containerd.
 
 **Type:** `object`
 
-**Sandbox image**
+**Sandbox image:**
 
 The image used by sandbox / pause container
 
@@ -1816,7 +1826,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/pause"`
 
@@ -1826,7 +1836,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"gsoci.azurecr.io"`
 
@@ -1836,7 +1846,7 @@ The image used by sandbox / pause container
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"3.9"`
 
@@ -1844,7 +1854,7 @@ The image used by sandbox / pause container
 
 `.providerIntegration.components.systemd`
 
-**systemd**
+**systemd:**
 
 **Default:** `null`
 
@@ -1866,7 +1876,7 @@ The image used by sandbox / pause container
 
 **Type:** `object`
 
-**timesyncd**
+**timesyncd:**
 
 systemd-timesyncd is a system service that may be used to synchronize the local system clock with a remote Network Time Protocol (NTP) server.
 
@@ -1876,7 +1886,7 @@ systemd-timesyncd is a system service that may be used to synchronize the local 
 
 **Type:** `array`
 
-**NTP**
+**NTP:**
 
 A list of NTP server host names or IP addresses.
 
@@ -1892,7 +1902,7 @@ A list of NTP server host names or IP addresses.
 
 **Type:** `object`
 
-**Connectivity**
+**Connectivity:**
 
 Internal connectivity configuration.
 
@@ -1902,7 +1912,7 @@ Internal connectivity configuration.
 
 **Type:** `object`
 
-**Proxy**
+**Proxy:**
 
 Whether/how outgoing traffic is routed through proxy servers.
 
@@ -1912,7 +1922,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `object`
 
-**No proxy**
+**No proxy:**
 
 To be passed to the NO_PROXY environment variable in all hosts.
 
@@ -1922,7 +1932,7 @@ To be passed to the NO_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**Template name**
+**Template name:**
 
 Name of Helm template that renders a YAML array with NO_PROXY addresses.
 
@@ -1932,7 +1942,7 @@ Name of Helm template that renders a YAML array with NO_PROXY addresses.
 
 **Type:** `array`
 
-**Value**
+**Value:**
 
 Pre-defined static NO_PROXY values.
 
@@ -1948,7 +1958,7 @@ Pre-defined static NO_PROXY values.
 
 **Type:** `string`
 
-**SSH public key for single sign-on**
+**SSH public key for single sign-on:**
 
 **Default:** `"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4cvZ01fLmO9cJbWUj7sfF+NhECgy+Cl0bazSrZX7sU vault-ca@vault.operations.giantswarm.io"`
 
@@ -1958,7 +1968,7 @@ Pre-defined static NO_PROXY values.
 
 **Type:** `object`
 
-**Provider-specific control plane configuration**
+**Provider-specific control plane configuration:**
 
 ---
 
@@ -1966,7 +1976,7 @@ Pre-defined static NO_PROXY values.
 
 **Type:** `object`
 
-**Kubeadm config**
+**Kubeadm config:**
 
 Configuration of control plane nodes.
 
@@ -1976,7 +1986,7 @@ Configuration of control plane nodes.
 
 **Type:** `object`
 
-**Cluster configuration**
+**Cluster configuration:**
 
 Configuration of Kubernetes components.
 
@@ -1986,7 +1996,7 @@ Configuration of Kubernetes components.
 
 **Type:** `object`
 
-**API server**
+**API server:**
 
 Configuration of API server.
 
@@ -1998,7 +2008,7 @@ Configuration of API server.
 
 **Type:** `array`
 
-**Additional admission plugins**
+**Additional admission plugins:**
 
 A list of plugins to enable, in addition to the default ones that include DefaultStorageClass, DefaultTolerationSeconds, LimitRanger, MutatingAdmissionWebhook, NamespaceLifecycle, PersistentVolumeClaimResize, Priority, ResourceQuota, ServiceAccount and ValidatingAdmissionWebhook.
 
@@ -2008,13 +2018,13 @@ A list of plugins to enable, in addition to the default ones that include Defaul
 
 **Type:** `string`
 
-**Additional admission plugin**
+**Additional admission plugin:**
 
 ---
 
 `.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.apiAudiences`
 
-**API audiences**
+**API audiences:**
 
 Identifiers of the API. The service account token authenticator will validate that tokens used against the API are bound to at least one of these audiences. If the --service-account-issuer flag is configured and this flag is not, 'api-audiences' field defaults to a single element list containing the issuer URL.
 
@@ -2036,7 +2046,7 @@ Identifiers of the API. The service account token authenticator will validate th
 
 **Type:** `string`
 
-**Template name**
+**Template name:**
 
 The name of the Helm template which renders the 'api-audiences' value
 
@@ -2046,7 +2056,7 @@ The name of the Helm template which renders the 'api-audiences' value
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 Static value for api-audiences.
 
@@ -2064,7 +2074,7 @@ Static value for api-audiences.
 
 **Type:** `array`
 
-**Feature gates**
+**Feature gates:**
 
 ---
 
@@ -2072,7 +2082,7 @@ Static value for api-audiences.
 
 **Type:** `object`
 
-**Feature gate**
+**Feature gate:**
 
 ---
 
@@ -2080,7 +2090,7 @@ Static value for api-audiences.
 
 **Type:** `boolean`
 
-**Enabled**
+**Enabled:**
 
 ---
 
@@ -2088,13 +2098,13 @@ Static value for api-audiences.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 ---
 
 `.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuer`
 
-**Service account issuer**
+**Service account issuer:**
 
 Configuration of the identifier of the service account token issuer. You must specify either URL or clusterDomainPrefix (only one, not both).
 
@@ -2116,7 +2126,7 @@ Configuration of the identifier of the service account token issuer. You must sp
 
 **Type:** `string`
 
-**Cluster domain prefix**
+**Cluster domain prefix:**
 
 Prefix that is prepended to the cluster domain name, so that resulting URL is used as the identifier of the service account token issuer.
 
@@ -2126,7 +2136,7 @@ Prefix that is prepended to the cluster domain name, so that resulting URL is us
 
 **Type:** `string`
 
-**URL**
+**URL:**
 
 This URL is used as the identifier of the service account token issuer.
 
@@ -2144,7 +2154,7 @@ This URL is used as the identifier of the service account token issuer.
 
 **Type:** `array`
 
-**Files**
+**Files:**
 
 Provider-specific files that are deployed to control plane nodes. They are specified in the cluster-<provider> apps.
 
@@ -2154,7 +2164,7 @@ Provider-specific files that are deployed to control plane nodes. They are speci
 
 **Type:** `object`
 
-**File from secret**
+**File from secret:**
 
 It defines a file with content in a Secret
 
@@ -2164,7 +2174,7 @@ It defines a file with content in a Secret
 
 **Type:** `object`
 
-**Content from**
+**Content from:**
 
 It specifies where the file content is coming from.
 
@@ -2174,7 +2184,7 @@ It specifies where the file content is coming from.
 
 **Type:** `object`
 
-**Secret**
+**Secret:**
 
 Kubernetes Secret resource with the file content.
 
@@ -2184,7 +2194,7 @@ Kubernetes Secret resource with the file content.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 Secret key where the file content is.
 
@@ -2194,7 +2204,7 @@ Secret key where the file content is.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the Secret resource.
 
@@ -2204,7 +2214,7 @@ Name of the Secret resource.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 File path on the node.
 
@@ -2214,7 +2224,7 @@ File path on the node.
 
 **Type:** `string`
 
-**Permissions**
+**Permissions:**
 
 File permissions in form 0644
 
@@ -2226,7 +2236,7 @@ File permissions in form 0644
 
 **Type:** `object`
 
-**Ignition**
+**Ignition:**
 
 Ignition-specific configuration.
 
@@ -2236,7 +2246,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Container Linux configuration**
+**Container Linux configuration:**
 
 ---
 
@@ -2244,7 +2254,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Additional config**
+**Additional config:**
 
 Additional configuration to be merged with the Ignition. More info: https://coreos.github.io/ignition/operator-notes/#config-merging.
 
@@ -2254,7 +2264,7 @@ Additional configuration to be merged with the Ignition. More info: https://core
 
 **Type:** `object`
 
-**Storage**
+**Storage:**
 
 It describes the desired state of the system’s storage devices.
 
@@ -2264,7 +2274,7 @@ It describes the desired state of the system’s storage devices.
 
 **Type:** `array`
 
-**Directories**
+**Directories:**
 
 The list of directories to be created.
 
@@ -2274,7 +2284,7 @@ The list of directories to be created.
 
 **Type:** `object`
 
-**Directory**
+**Directory:**
 
 The directory to be created.
 
@@ -2284,7 +2294,7 @@ The directory to be created.
 
 **Type:** `string`
 
-**Filesystem**
+**Filesystem:**
 
 The internal identifier of the filesystem in which to create the directory. This matches the last filesystem with the given identifier.
 
@@ -2294,7 +2304,7 @@ The internal identifier of the filesystem in which to create the directory. This
 
 **Type:** `object`
 
-**Group**
+**Group:**
 
 It specifies the group of the owner.
 
@@ -2304,7 +2314,7 @@ It specifies the group of the owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The group ID of the owner.
 
@@ -2314,7 +2324,7 @@ The group ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The group name of the owner.
 
@@ -2324,7 +2334,7 @@ The group name of the owner.
 
 **Type:** `integer`
 
-**Mode**
+**Mode:**
 
 The directory’s permission mode.
 
@@ -2334,7 +2344,7 @@ The directory’s permission mode.
 
 **Type:** `boolean`
 
-**Overwrite**
+**Overwrite:**
 
 Whether to delete preexisting nodes at the path.
 
@@ -2344,7 +2354,7 @@ Whether to delete preexisting nodes at the path.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The absolute path to the directory.
 
@@ -2354,7 +2364,7 @@ The absolute path to the directory.
 
 **Type:** `object`
 
-**User**
+**User:**
 
 It specifies the directory’s owner.
 
@@ -2364,7 +2374,7 @@ It specifies the directory’s owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The user ID of the owner.
 
@@ -2374,7 +2384,7 @@ The user ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The user name of the owner.
 
@@ -2384,7 +2394,7 @@ The user name of the owner.
 
 **Type:** `array`
 
-**File systems**
+**File systems:**
 
 The list of filesystems to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -2394,7 +2404,7 @@ The list of filesystems to be configured and/or used in the “files” section.
 
 **Type:** `object`
 
-**File system**
+**File system:**
 
 The filesystem to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -2404,7 +2414,7 @@ The filesystem to be configured and/or used in the “files” section. Either �
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 It contains the set of mount and formatting options for the filesystem. A non-null entry indicates that the filesystem should be mounted before it is used by Ignition.
 
@@ -2414,7 +2424,7 @@ It contains the set of mount and formatting options for the filesystem. A non-nu
 
 **Type:** `string`
 
-**Device**
+**Device:**
 
 The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.
 
@@ -2424,7 +2434,7 @@ The absolute path to the device. Devices are typically referenced by the "/dev/d
 
 **Type:** `string`
 
-**Format**
+**Format:**
 
 The filesystem format (ext4, btrfs, or xfs).
 
@@ -2436,7 +2446,7 @@ The filesystem format (ext4, btrfs, or xfs).
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 The label of the filesystem.
 
@@ -2446,7 +2456,7 @@ The label of the filesystem.
 
 **Type:** `array`
 
-**Options**
+**Options:**
 
 Any additional options to be passed to the format-specific mkfs utility.
 
@@ -2464,7 +2474,7 @@ An additional option to be passed to the format-specific mkfs utility.
 
 **Type:** `string`
 
-**UUID**
+**UUID:**
 
 The uuid of the filesystem.
 
@@ -2474,7 +2484,7 @@ The uuid of the filesystem.
 
 **Type:** `boolean`
 
-**Wipe filesystem**
+**Wipe filesystem:**
 
 Whether or not to wipe the device before filesystem creation, see Ignition’s documentation on filesystems for more information https://github.com/coreos/ignition/blob/main/docs/operator-notes.md#filesystem-reuse-semantics.
 
@@ -2484,7 +2494,7 @@ Whether or not to wipe the device before filesystem creation, see Ignition’s d
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The identifier for the filesystem, internal to Ignition. This is only required if the filesystem needs to be referenced in the “files” section.
 
@@ -2494,7 +2504,7 @@ The identifier for the filesystem, internal to Ignition. This is only required i
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The mount-point of the filesystem. A non-null entry indicates that the filesystem has already been mounted by the system at the specified path. This is really only useful for “/sysroot”.
 
@@ -2504,7 +2514,7 @@ The mount-point of the filesystem. A non-null entry indicates that the filesyste
 
 **Type:** `object`
 
-**systemd**
+**systemd:**
 
 It describes the desired state of the systemd units.
 
@@ -2514,7 +2524,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `array`
 
-**Units**
+**Units:**
 
 ---
 
@@ -2522,7 +2532,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**systemd unit**
+**systemd unit:**
 
 ---
 
@@ -2530,7 +2540,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**Contents**
+**Contents:**
 
 The contents of the unit.
 
@@ -2540,7 +2550,7 @@ The contents of the unit.
 
 **Type:** `object`
 
-**Install**
+**Install:**
 
 Configuration of the [Install] section.
 
@@ -2550,7 +2560,7 @@ Configuration of the [Install] section.
 
 **Type:** `array`
 
-**WantedBy**
+**WantedBy:**
 
 Units with (weak) requirement dependencies on this unit.
 
@@ -2566,7 +2576,7 @@ Units with (weak) requirement dependencies on this unit.
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 Configuration of the [Mount] section.
 
@@ -2576,7 +2586,7 @@ Configuration of the [Mount] section.
 
 **Type:** `string`
 
-**Type**
+**Type:**
 
 A file system type to mount.
 
@@ -2586,7 +2596,7 @@ A file system type to mount.
 
 **Type:** `string`
 
-**What**
+**What:**
 
 An absolute path of a device node, file or other resource to mount.
 
@@ -2596,7 +2606,7 @@ An absolute path of a device node, file or other resource to mount.
 
 **Type:** `string`
 
-**Where**
+**Where:**
 
 An absolute path of a file or directory for the mount point; in particular, the destination cannot be a symbolic link.
 
@@ -2606,7 +2616,7 @@ An absolute path of a file or directory for the mount point; in particular, the 
 
 **Type:** `object`
 
-**Unit**
+**Unit:**
 
 Configuration of the [Unit] section.
 
@@ -2616,7 +2626,7 @@ Configuration of the [Unit] section.
 
 **Type:** `boolean`
 
-**DefaultDependencies**
+**DefaultDependencies:**
 
 Flag that indicates if this systemd unit should have the default systemd unit dependencies.
 
@@ -2626,7 +2636,7 @@ Flag that indicates if this systemd unit should have the default systemd unit de
 
 **Type:** `string`
 
-**Description**
+**Description:**
 
 systemd unit description.
 
@@ -2636,7 +2646,7 @@ systemd unit description.
 
 **Type:** `array`
 
-**Unit drop-ins**
+**Unit drop-ins:**
 
 The list of drop-ins for the unit
 
@@ -2646,7 +2656,7 @@ The list of drop-ins for the unit
 
 **Type:** `object`
 
-**Unit drop-in**
+**Unit drop-in:**
 
 ---
 
@@ -2654,7 +2664,7 @@ The list of drop-ins for the unit
 
 **Type:** `string`
 
-**Contents**
+**Contents:**
 
 The contents of the drop-in.
 
@@ -2664,7 +2674,7 @@ The contents of the drop-in.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the drop-in. This must be suffixed with “.conf”
 
@@ -2676,7 +2686,7 @@ The name of the drop-in. This must be suffixed with “.conf”
 
 **Type:** `boolean`
 
-**Enabled?**
+**Enabled?:**
 
 Whether or not the service shall be enabled. When true, the service is enabled. When false, the service is disabled. When omitted, the service is unmodified. In order for this to have any effect, the unit must have an install section.
 
@@ -2686,7 +2696,7 @@ Whether or not the service shall be enabled. When true, the service is enabled. 
 
 **Type:** `boolean`
 
-**Masked?**
+**Masked?:**
 
 Whether or not the service shall be masked. When true, the service is masked by symlinking it to /dev/null.
 
@@ -2696,7 +2706,7 @@ Whether or not the service shall be masked. When true, the service is masked by 
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the unit. This must be suffixed with a valid unit type (e.g. “thing.service”).
 
@@ -2706,7 +2716,7 @@ The name of the unit. This must be suffixed with a valid unit type (e.g. “thin
 
 **Type:** `boolean`
 
-**Strict**
+**Strict:**
 
 It controls if AdditionalConfig should be strictly parsed. If so, warnings are treated as errors.
 
@@ -2716,7 +2726,7 @@ It controls if AdditionalConfig should be strictly parsed. If so, warnings are t
 
 **Type:** `array`
 
-**Post-kubeadm commands**
+**Post-kubeadm commands:**
 
 Extra commands to run after kubeadm runs.
 
@@ -2732,7 +2742,7 @@ Extra commands to run after kubeadm runs.
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 
@@ -2748,7 +2758,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `object`
 
-**Resources configuration**
+**Resources configuration:**
 
 GVK and other configuration for control plane resources.
 
@@ -2758,7 +2768,7 @@ GVK and other configuration for control plane resources.
 
 **Type:** `object`
 
-**Control plane resource config**
+**Control plane resource config:**
 
 **Default:** `{"api":{"group":"controlplane.cluster.x-k8s.io","kind":"KubeadmControlPlane","version":"v1beta1"}}`
 
@@ -2768,7 +2778,7 @@ GVK and other configuration for control plane resources.
 
 **Type:** `object`
 
-**Schema for Kubernetes API group, version and kind**
+**Schema for Kubernetes API group, version and kind:**
 
 It can be used to specify which CustomResourceDefinition is used.
 
@@ -2778,7 +2788,7 @@ It can be used to specify which CustomResourceDefinition is used.
 
 **Type:** `string`
 
-**API group**
+**API group:**
 
 **Examples:** `"cluster.x-k8s.io"`, `"controlplane.cluster.x-k8s.io"`, `"infrastructure.cluster.x-k8s.io"`
 
@@ -2788,7 +2798,7 @@ It can be used to specify which CustomResourceDefinition is used.
 
 **Type:** `string`
 
-**API kind**
+**API kind:**
 
 **Examples:** `"Cluster"`, `"KubeadmControlPlane"`
 
@@ -2798,7 +2808,7 @@ It can be used to specify which CustomResourceDefinition is used.
 
 **Type:** `string`
 
-**API version**
+**API version:**
 
 **Examples:** `"v1alpha1"`, `"v1alpha2"`, `"v1beta1"`, `"v1"`
 
@@ -2808,7 +2818,7 @@ It can be used to specify which CustomResourceDefinition is used.
 
 **Type:** `object`
 
-**Infrastructure Machine template**
+**Infrastructure Machine template:**
 
 Group, version and kind of provider-specific infrastructure Machine template resource.
 
@@ -2818,7 +2828,7 @@ Group, version and kind of provider-specific infrastructure Machine template res
 
 **Type:** `string`
 
-**API group**
+**API group:**
 
 **Example:** `"infrastructure.cluster.x-k8s.io"`
 
@@ -2828,7 +2838,7 @@ Group, version and kind of provider-specific infrastructure Machine template res
 
 **Type:** `string`
 
-**API kind**
+**API kind:**
 
 **Examples:** `"AWSMachineTemplate"`, `"AzureMachineTemplate"`
 
@@ -2838,7 +2848,7 @@ Group, version and kind of provider-specific infrastructure Machine template res
 
 **Type:** `string`
 
-**API version**
+**API version:**
 
 **Examples:** `"v1alpha1"`, `"v1beta1"`, `"v1beta2"`, `"v1"`, `"v2"`
 
@@ -2848,7 +2858,7 @@ Group, version and kind of provider-specific infrastructure Machine template res
 
 **Type:** `string`
 
-**Infrastructure Machine template spec template name**
+**Infrastructure Machine template spec template name:**
 
 The name of Helm template that renders Infrastructure Machine template spec.
 
@@ -2858,7 +2868,7 @@ The name of Helm template that renders Infrastructure Machine template spec.
 
 **Type:** `string`
 
-**Hash salt**
+**Hash salt:**
 
 If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.
 
@@ -2868,7 +2878,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `object`
 
-**Provider-specific kubeadm config**
+**Provider-specific kubeadm config:**
 
 Provider-specific kubeadm config that is common for all nodes, including both control plane and workers.
 
@@ -2878,7 +2888,7 @@ Provider-specific kubeadm config that is common for all nodes, including both co
 
 **Type:** `array`
 
-**Files**
+**Files:**
 
 Provider-specific files that are deployed to all nodes. They are specified in the cluster-<provider> apps.
 
@@ -2888,7 +2898,7 @@ Provider-specific files that are deployed to all nodes. They are specified in th
 
 **Type:** `object`
 
-**File from secret**
+**File from secret:**
 
 It defines a file with content in a Secret
 
@@ -2898,7 +2908,7 @@ It defines a file with content in a Secret
 
 **Type:** `object`
 
-**Content from**
+**Content from:**
 
 It specifies where the file content is coming from.
 
@@ -2908,7 +2918,7 @@ It specifies where the file content is coming from.
 
 **Type:** `object`
 
-**Secret**
+**Secret:**
 
 Kubernetes Secret resource with the file content.
 
@@ -2918,7 +2928,7 @@ Kubernetes Secret resource with the file content.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 Secret key where the file content is.
 
@@ -2928,7 +2938,7 @@ Secret key where the file content is.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the Secret resource.
 
@@ -2938,7 +2948,7 @@ Name of the Secret resource.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 File path on the node.
 
@@ -2948,7 +2958,7 @@ File path on the node.
 
 **Type:** `string`
 
-**Permissions**
+**Permissions:**
 
 File permissions in form 0644
 
@@ -2960,7 +2970,7 @@ File permissions in form 0644
 
 **Type:** `object`
 
-**Ignition**
+**Ignition:**
 
 Ignition-specific configuration.
 
@@ -2970,7 +2980,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Container Linux configuration**
+**Container Linux configuration:**
 
 ---
 
@@ -2978,7 +2988,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Additional config**
+**Additional config:**
 
 Additional configuration to be merged with the Ignition. More info: https://coreos.github.io/ignition/operator-notes/#config-merging.
 
@@ -2988,7 +2998,7 @@ Additional configuration to be merged with the Ignition. More info: https://core
 
 **Type:** `object`
 
-**Storage**
+**Storage:**
 
 It describes the desired state of the system’s storage devices.
 
@@ -2998,7 +3008,7 @@ It describes the desired state of the system’s storage devices.
 
 **Type:** `array`
 
-**Directories**
+**Directories:**
 
 The list of directories to be created.
 
@@ -3008,7 +3018,7 @@ The list of directories to be created.
 
 **Type:** `object`
 
-**Directory**
+**Directory:**
 
 The directory to be created.
 
@@ -3018,7 +3028,7 @@ The directory to be created.
 
 **Type:** `string`
 
-**Filesystem**
+**Filesystem:**
 
 The internal identifier of the filesystem in which to create the directory. This matches the last filesystem with the given identifier.
 
@@ -3028,7 +3038,7 @@ The internal identifier of the filesystem in which to create the directory. This
 
 **Type:** `object`
 
-**Group**
+**Group:**
 
 It specifies the group of the owner.
 
@@ -3038,7 +3048,7 @@ It specifies the group of the owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The group ID of the owner.
 
@@ -3048,7 +3058,7 @@ The group ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The group name of the owner.
 
@@ -3058,7 +3068,7 @@ The group name of the owner.
 
 **Type:** `integer`
 
-**Mode**
+**Mode:**
 
 The directory’s permission mode.
 
@@ -3068,7 +3078,7 @@ The directory’s permission mode.
 
 **Type:** `boolean`
 
-**Overwrite**
+**Overwrite:**
 
 Whether to delete preexisting nodes at the path.
 
@@ -3078,7 +3088,7 @@ Whether to delete preexisting nodes at the path.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The absolute path to the directory.
 
@@ -3088,7 +3098,7 @@ The absolute path to the directory.
 
 **Type:** `object`
 
-**User**
+**User:**
 
 It specifies the directory’s owner.
 
@@ -3098,7 +3108,7 @@ It specifies the directory’s owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The user ID of the owner.
 
@@ -3108,7 +3118,7 @@ The user ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The user name of the owner.
 
@@ -3118,7 +3128,7 @@ The user name of the owner.
 
 **Type:** `array`
 
-**File systems**
+**File systems:**
 
 The list of filesystems to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -3128,7 +3138,7 @@ The list of filesystems to be configured and/or used in the “files” section.
 
 **Type:** `object`
 
-**File system**
+**File system:**
 
 The filesystem to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -3138,7 +3148,7 @@ The filesystem to be configured and/or used in the “files” section. Either �
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 It contains the set of mount and formatting options for the filesystem. A non-null entry indicates that the filesystem should be mounted before it is used by Ignition.
 
@@ -3148,7 +3158,7 @@ It contains the set of mount and formatting options for the filesystem. A non-nu
 
 **Type:** `string`
 
-**Device**
+**Device:**
 
 The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.
 
@@ -3158,7 +3168,7 @@ The absolute path to the device. Devices are typically referenced by the "/dev/d
 
 **Type:** `string`
 
-**Format**
+**Format:**
 
 The filesystem format (ext4, btrfs, or xfs).
 
@@ -3170,7 +3180,7 @@ The filesystem format (ext4, btrfs, or xfs).
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 The label of the filesystem.
 
@@ -3180,7 +3190,7 @@ The label of the filesystem.
 
 **Type:** `array`
 
-**Options**
+**Options:**
 
 Any additional options to be passed to the format-specific mkfs utility.
 
@@ -3198,7 +3208,7 @@ An additional option to be passed to the format-specific mkfs utility.
 
 **Type:** `string`
 
-**UUID**
+**UUID:**
 
 The uuid of the filesystem.
 
@@ -3208,7 +3218,7 @@ The uuid of the filesystem.
 
 **Type:** `boolean`
 
-**Wipe filesystem**
+**Wipe filesystem:**
 
 Whether or not to wipe the device before filesystem creation, see Ignition’s documentation on filesystems for more information https://github.com/coreos/ignition/blob/main/docs/operator-notes.md#filesystem-reuse-semantics.
 
@@ -3218,7 +3228,7 @@ Whether or not to wipe the device before filesystem creation, see Ignition’s d
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The identifier for the filesystem, internal to Ignition. This is only required if the filesystem needs to be referenced in the “files” section.
 
@@ -3228,7 +3238,7 @@ The identifier for the filesystem, internal to Ignition. This is only required i
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The mount-point of the filesystem. A non-null entry indicates that the filesystem has already been mounted by the system at the specified path. This is really only useful for “/sysroot”.
 
@@ -3238,7 +3248,7 @@ The mount-point of the filesystem. A non-null entry indicates that the filesyste
 
 **Type:** `object`
 
-**systemd**
+**systemd:**
 
 It describes the desired state of the systemd units.
 
@@ -3248,7 +3258,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `array`
 
-**Units**
+**Units:**
 
 ---
 
@@ -3256,7 +3266,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**systemd unit**
+**systemd unit:**
 
 ---
 
@@ -3264,7 +3274,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**Contents**
+**Contents:**
 
 The contents of the unit.
 
@@ -3274,7 +3284,7 @@ The contents of the unit.
 
 **Type:** `object`
 
-**Install**
+**Install:**
 
 Configuration of the [Install] section.
 
@@ -3284,7 +3294,7 @@ Configuration of the [Install] section.
 
 **Type:** `array`
 
-**WantedBy**
+**WantedBy:**
 
 Units with (weak) requirement dependencies on this unit.
 
@@ -3300,7 +3310,7 @@ Units with (weak) requirement dependencies on this unit.
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 Configuration of the [Mount] section.
 
@@ -3310,7 +3320,7 @@ Configuration of the [Mount] section.
 
 **Type:** `string`
 
-**Type**
+**Type:**
 
 A file system type to mount.
 
@@ -3320,7 +3330,7 @@ A file system type to mount.
 
 **Type:** `string`
 
-**What**
+**What:**
 
 An absolute path of a device node, file or other resource to mount.
 
@@ -3330,7 +3340,7 @@ An absolute path of a device node, file or other resource to mount.
 
 **Type:** `string`
 
-**Where**
+**Where:**
 
 An absolute path of a file or directory for the mount point; in particular, the destination cannot be a symbolic link.
 
@@ -3340,7 +3350,7 @@ An absolute path of a file or directory for the mount point; in particular, the 
 
 **Type:** `object`
 
-**Unit**
+**Unit:**
 
 Configuration of the [Unit] section.
 
@@ -3350,7 +3360,7 @@ Configuration of the [Unit] section.
 
 **Type:** `boolean`
 
-**DefaultDependencies**
+**DefaultDependencies:**
 
 Flag that indicates if this systemd unit should have the default systemd unit dependencies.
 
@@ -3360,7 +3370,7 @@ Flag that indicates if this systemd unit should have the default systemd unit de
 
 **Type:** `string`
 
-**Description**
+**Description:**
 
 systemd unit description.
 
@@ -3370,7 +3380,7 @@ systemd unit description.
 
 **Type:** `array`
 
-**Unit drop-ins**
+**Unit drop-ins:**
 
 The list of drop-ins for the unit
 
@@ -3380,7 +3390,7 @@ The list of drop-ins for the unit
 
 **Type:** `object`
 
-**Unit drop-in**
+**Unit drop-in:**
 
 ---
 
@@ -3388,7 +3398,7 @@ The list of drop-ins for the unit
 
 **Type:** `string`
 
-**Contents**
+**Contents:**
 
 The contents of the drop-in.
 
@@ -3398,7 +3408,7 @@ The contents of the drop-in.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the drop-in. This must be suffixed with “.conf”
 
@@ -3410,7 +3420,7 @@ The name of the drop-in. This must be suffixed with “.conf”
 
 **Type:** `boolean`
 
-**Enabled?**
+**Enabled?:**
 
 Whether or not the service shall be enabled. When true, the service is enabled. When false, the service is disabled. When omitted, the service is unmodified. In order for this to have any effect, the unit must have an install section.
 
@@ -3420,7 +3430,7 @@ Whether or not the service shall be enabled. When true, the service is enabled. 
 
 **Type:** `boolean`
 
-**Masked?**
+**Masked?:**
 
 Whether or not the service shall be masked. When true, the service is masked by symlinking it to /dev/null.
 
@@ -3430,7 +3440,7 @@ Whether or not the service shall be masked. When true, the service is masked by 
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the unit. This must be suffixed with a valid unit type (e.g. “thing.service”).
 
@@ -3440,7 +3450,7 @@ The name of the unit. This must be suffixed with a valid unit type (e.g. “thin
 
 **Type:** `boolean`
 
-**Strict**
+**Strict:**
 
 It controls if AdditionalConfig should be strictly parsed. If so, warnings are treated as errors.
 
@@ -3450,7 +3460,7 @@ It controls if AdditionalConfig should be strictly parsed. If so, warnings are t
 
 **Type:** `array`
 
-**Post-kubeadm commands**
+**Post-kubeadm commands:**
 
 Extra commands to run after kubeadm runs.
 
@@ -3466,7 +3476,7 @@ Extra commands to run after kubeadm runs.
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 
@@ -3482,7 +3492,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `string`
 
-**Kubernetes version**
+**Kubernetes version:**
 
 **Default:** `"1.25.16"`
 
@@ -3492,7 +3502,7 @@ Extra commands to run before kubeadm runs.
 
 **Type:** `object`
 
-**Pause properties**
+**Pause properties:**
 
 A map of property names and their values that will affect setting pause annotation
 
@@ -3508,7 +3518,7 @@ A map of property names and their values that will affect setting pause annotati
 
 **Type:** `string`
 
-**Provider**
+**Provider:**
 
 The name of the Cluster API provider. The name here must match the name of the provider in cluster-<provider> app name.
 
@@ -3518,7 +3528,7 @@ The name of the Cluster API provider. The name here must match the name of the p
 
 **Type:** `boolean`
 
-**Bastion resource enabled**
+**Bastion resource enabled:**
 
 Flag that indicates if the Bastion resource is enabled and templated. This is meant only for the initial development purposes for the sake of incrementally integrating cluster chart into cluster-$provider apps.
 
@@ -3530,7 +3540,7 @@ Flag that indicates if the Bastion resource is enabled and templated. This is me
 
 **Type:** `boolean`
 
-**Cluster resource enabled**
+**Cluster resource enabled:**
 
 Flag that indicates if the Cluster resource is enabled and templated. This is meant only for the initial development purposes for the sake of incrementally integrating cluster chart into cluster-$provider apps.
 
@@ -3542,7 +3552,7 @@ Flag that indicates if the Cluster resource is enabled and templated. This is me
 
 **Type:** `boolean`
 
-**Control plane resource enabled**
+**Control plane resource enabled:**
 
 Flag that indicates if the control plane resource is enabled and templated. This is meant only for the initial development purposes for the sake of incrementally integrating cluster chart into cluster-$provider apps.
 
@@ -3554,7 +3564,7 @@ Flag that indicates if the control plane resource is enabled and templated. This
 
 **Type:** `object`
 
-**Infrastructure cluster**
+**Infrastructure cluster:**
 
 Group, version and kind of provider-specific infrastructure cluster resource.
 
@@ -3564,7 +3574,7 @@ Group, version and kind of provider-specific infrastructure cluster resource.
 
 **Type:** `string`
 
-**API group**
+**API group:**
 
 **Example:** `"infrastructure.cluster.x-k8s.io"`
 
@@ -3574,7 +3584,7 @@ Group, version and kind of provider-specific infrastructure cluster resource.
 
 **Type:** `string`
 
-**API kind**
+**API kind:**
 
 **Examples:** `"AWSCluster"`, `"AzureCluster"`, `"VCDCluster"`, `"VSphereCluster"`
 
@@ -3584,7 +3594,7 @@ Group, version and kind of provider-specific infrastructure cluster resource.
 
 **Type:** `string`
 
-**API version**
+**API version:**
 
 **Examples:** `"v1alpha1"`, `"v1beta1"`, `"v1beta2"`, `"v1"`, `"v2"`
 
@@ -3594,7 +3604,7 @@ Group, version and kind of provider-specific infrastructure cluster resource.
 
 **Type:** `boolean`
 
-**MachineHealthCheck resource enabled**
+**MachineHealthCheck resource enabled:**
 
 Flag that indicates if the MachineHealthCheck resource is enabled and templated. This is meant only for the initial development purposes for the sake of incrementally integrating cluster chart into cluster-$provider apps.
 
@@ -3606,7 +3616,7 @@ Flag that indicates if the MachineHealthCheck resource is enabled and templated.
 
 **Type:** `boolean`
 
-**Machine pool resources enabled**
+**Machine pool resources enabled:**
 
 Flag that indicates if the machine pool resources are enabled and templated. This is meant only for the initial development purposes for the sake of incrementally integrating cluster chart into cluster-$provider apps.
 
@@ -3618,7 +3628,7 @@ Flag that indicates if the machine pool resources are enabled and templated. Thi
 
 **Type:** `object`
 
-**Teleport**
+**Teleport:**
 
 ---
 
@@ -3626,7 +3636,7 @@ Flag that indicates if the machine pool resources are enabled and templated. Thi
 
 **Type:** `boolean`
 
-**Enable teleport**
+**Enable teleport:**
 
 **Default:** `true`
 
@@ -3636,7 +3646,7 @@ Flag that indicates if the machine pool resources are enabled and templated. Thi
 
 **Type:** `string`
 
-**Teleport proxy address**
+**Teleport proxy address:**
 
 **Default:** `"teleport.giantswarm.io:443"`
 
@@ -3646,7 +3656,7 @@ Flag that indicates if the machine pool resources are enabled and templated. Thi
 
 **Type:** `string`
 
-**Teleport version**
+**Teleport version:**
 
 **Default:** `"14.1.3"`
 
@@ -3656,7 +3666,7 @@ Flag that indicates if the machine pool resources are enabled and templated. Thi
 
 **Type:** `object`
 
-**Provider-specific workers configuration**
+**Provider-specific workers configuration:**
 
 ---
 
@@ -3664,7 +3674,7 @@ Flag that indicates if the machine pool resources are enabled and templated. Thi
 
 **Type:** `object`
 
-**Kubeadm config**
+**Kubeadm config:**
 
 Configuration of workers nodes.
 
@@ -3674,7 +3684,7 @@ Configuration of workers nodes.
 
 **Type:** `array`
 
-**Files**
+**Files:**
 
 Provider-specific files that are deployed to worker nodes. They are specified in the cluster-<provider> apps.
 
@@ -3684,7 +3694,7 @@ Provider-specific files that are deployed to worker nodes. They are specified in
 
 **Type:** `object`
 
-**File from secret**
+**File from secret:**
 
 It defines a file with content in a Secret
 
@@ -3694,7 +3704,7 @@ It defines a file with content in a Secret
 
 **Type:** `object`
 
-**Content from**
+**Content from:**
 
 It specifies where the file content is coming from.
 
@@ -3704,7 +3714,7 @@ It specifies where the file content is coming from.
 
 **Type:** `object`
 
-**Secret**
+**Secret:**
 
 Kubernetes Secret resource with the file content.
 
@@ -3714,7 +3724,7 @@ Kubernetes Secret resource with the file content.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 Secret key where the file content is.
 
@@ -3724,7 +3734,7 @@ Secret key where the file content is.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the Secret resource.
 
@@ -3734,7 +3744,7 @@ Name of the Secret resource.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 File path on the node.
 
@@ -3744,7 +3754,7 @@ File path on the node.
 
 **Type:** `string`
 
-**Permissions**
+**Permissions:**
 
 File permissions in form 0644
 
@@ -3756,7 +3766,7 @@ File permissions in form 0644
 
 **Type:** `object`
 
-**Ignition**
+**Ignition:**
 
 Ignition-specific configuration.
 
@@ -3766,7 +3776,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Container Linux configuration**
+**Container Linux configuration:**
 
 ---
 
@@ -3774,7 +3784,7 @@ Ignition-specific configuration.
 
 **Type:** `object`
 
-**Additional config**
+**Additional config:**
 
 Additional configuration to be merged with the Ignition. More info: https://coreos.github.io/ignition/operator-notes/#config-merging.
 
@@ -3784,7 +3794,7 @@ Additional configuration to be merged with the Ignition. More info: https://core
 
 **Type:** `object`
 
-**Storage**
+**Storage:**
 
 It describes the desired state of the system’s storage devices.
 
@@ -3794,7 +3804,7 @@ It describes the desired state of the system’s storage devices.
 
 **Type:** `array`
 
-**Directories**
+**Directories:**
 
 The list of directories to be created.
 
@@ -3804,7 +3814,7 @@ The list of directories to be created.
 
 **Type:** `object`
 
-**Directory**
+**Directory:**
 
 The directory to be created.
 
@@ -3814,7 +3824,7 @@ The directory to be created.
 
 **Type:** `string`
 
-**Filesystem**
+**Filesystem:**
 
 The internal identifier of the filesystem in which to create the directory. This matches the last filesystem with the given identifier.
 
@@ -3824,7 +3834,7 @@ The internal identifier of the filesystem in which to create the directory. This
 
 **Type:** `object`
 
-**Group**
+**Group:**
 
 It specifies the group of the owner.
 
@@ -3834,7 +3844,7 @@ It specifies the group of the owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The group ID of the owner.
 
@@ -3844,7 +3854,7 @@ The group ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The group name of the owner.
 
@@ -3854,7 +3864,7 @@ The group name of the owner.
 
 **Type:** `integer`
 
-**Mode**
+**Mode:**
 
 The directory’s permission mode.
 
@@ -3864,7 +3874,7 @@ The directory’s permission mode.
 
 **Type:** `boolean`
 
-**Overwrite**
+**Overwrite:**
 
 Whether to delete preexisting nodes at the path.
 
@@ -3874,7 +3884,7 @@ Whether to delete preexisting nodes at the path.
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The absolute path to the directory.
 
@@ -3884,7 +3894,7 @@ The absolute path to the directory.
 
 **Type:** `object`
 
-**User**
+**User:**
 
 It specifies the directory’s owner.
 
@@ -3894,7 +3904,7 @@ It specifies the directory’s owner.
 
 **Type:** `integer`
 
-**ID**
+**ID:**
 
 The user ID of the owner.
 
@@ -3904,7 +3914,7 @@ The user ID of the owner.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The user name of the owner.
 
@@ -3914,7 +3924,7 @@ The user name of the owner.
 
 **Type:** `array`
 
-**File systems**
+**File systems:**
 
 The list of filesystems to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -3924,7 +3934,7 @@ The list of filesystems to be configured and/or used in the “files” section.
 
 **Type:** `object`
 
-**File system**
+**File system:**
 
 The filesystem to be configured and/or used in the “files” section. Either “mount” or “path” needs to be specified.
 
@@ -3934,7 +3944,7 @@ The filesystem to be configured and/or used in the “files” section. Either �
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 It contains the set of mount and formatting options for the filesystem. A non-null entry indicates that the filesystem should be mounted before it is used by Ignition.
 
@@ -3944,7 +3954,7 @@ It contains the set of mount and formatting options for the filesystem. A non-nu
 
 **Type:** `string`
 
-**Device**
+**Device:**
 
 The absolute path to the device. Devices are typically referenced by the "/dev/disk/by-*" symlinks.
 
@@ -3954,7 +3964,7 @@ The absolute path to the device. Devices are typically referenced by the "/dev/d
 
 **Type:** `string`
 
-**Format**
+**Format:**
 
 The filesystem format (ext4, btrfs, or xfs).
 
@@ -3966,7 +3976,7 @@ The filesystem format (ext4, btrfs, or xfs).
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 The label of the filesystem.
 
@@ -3976,7 +3986,7 @@ The label of the filesystem.
 
 **Type:** `array`
 
-**Options**
+**Options:**
 
 Any additional options to be passed to the format-specific mkfs utility.
 
@@ -3994,7 +4004,7 @@ An additional option to be passed to the format-specific mkfs utility.
 
 **Type:** `string`
 
-**UUID**
+**UUID:**
 
 The uuid of the filesystem.
 
@@ -4004,7 +4014,7 @@ The uuid of the filesystem.
 
 **Type:** `boolean`
 
-**Wipe filesystem**
+**Wipe filesystem:**
 
 Whether or not to wipe the device before filesystem creation, see Ignition’s documentation on filesystems for more information https://github.com/coreos/ignition/blob/main/docs/operator-notes.md#filesystem-reuse-semantics.
 
@@ -4014,7 +4024,7 @@ Whether or not to wipe the device before filesystem creation, see Ignition’s d
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The identifier for the filesystem, internal to Ignition. This is only required if the filesystem needs to be referenced in the “files” section.
 
@@ -4024,7 +4034,7 @@ The identifier for the filesystem, internal to Ignition. This is only required i
 
 **Type:** `string`
 
-**Path**
+**Path:**
 
 The mount-point of the filesystem. A non-null entry indicates that the filesystem has already been mounted by the system at the specified path. This is really only useful for “/sysroot”.
 
@@ -4034,7 +4044,7 @@ The mount-point of the filesystem. A non-null entry indicates that the filesyste
 
 **Type:** `object`
 
-**systemd**
+**systemd:**
 
 It describes the desired state of the systemd units.
 
@@ -4044,7 +4054,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `array`
 
-**Units**
+**Units:**
 
 ---
 
@@ -4052,7 +4062,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**systemd unit**
+**systemd unit:**
 
 ---
 
@@ -4060,7 +4070,7 @@ It describes the desired state of the systemd units.
 
 **Type:** `object`
 
-**Contents**
+**Contents:**
 
 The contents of the unit.
 
@@ -4070,7 +4080,7 @@ The contents of the unit.
 
 **Type:** `object`
 
-**Install**
+**Install:**
 
 Configuration of the [Install] section.
 
@@ -4080,7 +4090,7 @@ Configuration of the [Install] section.
 
 **Type:** `array`
 
-**WantedBy**
+**WantedBy:**
 
 Units with (weak) requirement dependencies on this unit.
 
@@ -4096,7 +4106,7 @@ Units with (weak) requirement dependencies on this unit.
 
 **Type:** `object`
 
-**Mount**
+**Mount:**
 
 Configuration of the [Mount] section.
 
@@ -4106,7 +4116,7 @@ Configuration of the [Mount] section.
 
 **Type:** `string`
 
-**Type**
+**Type:**
 
 A file system type to mount.
 
@@ -4116,7 +4126,7 @@ A file system type to mount.
 
 **Type:** `string`
 
-**What**
+**What:**
 
 An absolute path of a device node, file or other resource to mount.
 
@@ -4126,7 +4136,7 @@ An absolute path of a device node, file or other resource to mount.
 
 **Type:** `string`
 
-**Where**
+**Where:**
 
 An absolute path of a file or directory for the mount point; in particular, the destination cannot be a symbolic link.
 
@@ -4136,7 +4146,7 @@ An absolute path of a file or directory for the mount point; in particular, the 
 
 **Type:** `object`
 
-**Unit**
+**Unit:**
 
 Configuration of the [Unit] section.
 
@@ -4146,7 +4156,7 @@ Configuration of the [Unit] section.
 
 **Type:** `boolean`
 
-**DefaultDependencies**
+**DefaultDependencies:**
 
 Flag that indicates if this systemd unit should have the default systemd unit dependencies.
 
@@ -4156,7 +4166,7 @@ Flag that indicates if this systemd unit should have the default systemd unit de
 
 **Type:** `string`
 
-**Description**
+**Description:**
 
 systemd unit description.
 
@@ -4166,7 +4176,7 @@ systemd unit description.
 
 **Type:** `array`
 
-**Unit drop-ins**
+**Unit drop-ins:**
 
 The list of drop-ins for the unit
 
@@ -4176,7 +4186,7 @@ The list of drop-ins for the unit
 
 **Type:** `object`
 
-**Unit drop-in**
+**Unit drop-in:**
 
 ---
 
@@ -4184,7 +4194,7 @@ The list of drop-ins for the unit
 
 **Type:** `string`
 
-**Contents**
+**Contents:**
 
 The contents of the drop-in.
 
@@ -4194,7 +4204,7 @@ The contents of the drop-in.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the drop-in. This must be suffixed with “.conf”
 
@@ -4206,7 +4216,7 @@ The name of the drop-in. This must be suffixed with “.conf”
 
 **Type:** `boolean`
 
-**Enabled?**
+**Enabled?:**
 
 Whether or not the service shall be enabled. When true, the service is enabled. When false, the service is disabled. When omitted, the service is unmodified. In order for this to have any effect, the unit must have an install section.
 
@@ -4216,7 +4226,7 @@ Whether or not the service shall be enabled. When true, the service is enabled. 
 
 **Type:** `boolean`
 
-**Masked?**
+**Masked?:**
 
 Whether or not the service shall be masked. When true, the service is masked by symlinking it to /dev/null.
 
@@ -4226,7 +4236,7 @@ Whether or not the service shall be masked. When true, the service is masked by 
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 The name of the unit. This must be suffixed with a valid unit type (e.g. “thing.service”).
 
@@ -4236,7 +4246,7 @@ The name of the unit. This must be suffixed with a valid unit type (e.g. “thin
 
 **Type:** `boolean`
 
-**Strict**
+**Strict:**
 
 It controls if AdditionalConfig should be strictly parsed. If so, warnings are treated as errors.
 
@@ -4246,7 +4256,7 @@ It controls if AdditionalConfig should be strictly parsed. If so, warnings are t
 
 **Type:** `array`
 
-**Post-kubeadm commands**
+**Post-kubeadm commands:**
 
 Extra commands to run after kubeadm runs.
 
@@ -4262,7 +4272,7 @@ Extra commands to run after kubeadm runs.
 
 **Type:** `array`
 
-**Pre-kubeadm commands**
+**Pre-kubeadm commands:**
 
 Extra commands to run before kubeadm runs.
 

@@ -28,7 +28,7 @@ The `cluster-azure` chart templates all the Azure infrastructure resources that 
 
 **Type:** `object`
 
-**Identity**
+**Identity:**
 
 AzureClusterIdentity resource to use for this cluster.
 
@@ -38,7 +38,7 @@ AzureClusterIdentity resource to use for this cluster.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 **Default:** `"cluster-identity"`
 
@@ -48,7 +48,7 @@ AzureClusterIdentity resource to use for this cluster.
 
 **Type:** `string`
 
-**Namespace**
+**Namespace:**
 
 **Default:** `"org-giantswarm"`
 
@@ -58,7 +58,7 @@ AzureClusterIdentity resource to use for this cluster.
 
 **Type:** `string`
 
-**Location**
+**Location:**
 
 **Allowed values:** `eastus`, `germanywestcentral`, `northeurope`, `westeurope`, `westus2`
 
@@ -70,7 +70,7 @@ AzureClusterIdentity resource to use for this cluster.
 
 **Type:** `object`
 
-**Azure network settings**
+**Azure network settings:**
 
 Azure VNet peering and other Azure-specific network settings.
 
@@ -80,7 +80,7 @@ Azure VNet peering and other Azure-specific network settings.
 
 **Type:** `array`
 
-**VNet peerings**
+**VNet peerings:**
 
 Specifying VNets (their resource groups and names) to which the peering is established.
 
@@ -92,7 +92,7 @@ Specifying VNets (their resource groups and names) to which the peering is estab
 
 **Type:** `object`
 
-**VNet peering**
+**VNet peering:**
 
 ---
 
@@ -100,7 +100,7 @@ Specifying VNets (their resource groups and names) to which the peering is estab
 
 **Type:** `string`
 
-**VNet name**
+**VNet name:**
 
 Name of the remote VNet to which the peering is established.
 
@@ -112,7 +112,7 @@ Name of the remote VNet to which the peering is established.
 
 **Type:** `string`
 
-**Resource group name**
+**Resource group name:**
 
 Resource group for the remote VNet to which the peering is established.
 
@@ -124,7 +124,7 @@ Resource group for the remote VNet to which the peering is established.
 
 **Type:** `string`
 
-**Subscription ID**
+**Subscription ID:**
 
 ID of the Azure subscription this cluster will run in.
 
@@ -140,7 +140,7 @@ ID of the Azure subscription this cluster will run in.
 
 **Type:** `array`
 
-**List of CIDRs which have to been allowed to connect to the API Server endpoint**
+**List of CIDRs which have to been allowed to connect to the API Server endpoint:**
 
 **Default:** `[]`
 
@@ -156,7 +156,7 @@ ID of the Azure subscription this cluster will run in.
 
 **Type:** `object`
 
-**Container registries**
+**Container registries:**
 
 Endpoints and credentials configuration for container registries.
 
@@ -168,7 +168,7 @@ Endpoints and credentials configuration for container registries.
 
 **Type:** `array`
 
-**Registries**
+**Registries:**
 
 Container registries and mirrors
 
@@ -178,7 +178,7 @@ Container registries and mirrors
 
 **Type:** `object`
 
-**Registry**
+**Registry:**
 
 ---
 
@@ -186,7 +186,7 @@ Container registries and mirrors
 
 **Type:** `object`
 
-**Credentials**
+**Credentials:**
 
 ---
 
@@ -194,7 +194,7 @@ Container registries and mirrors
 
 **Type:** `string`
 
-**Auth**
+**Auth:**
 
 Base64-encoded string from the concatenation of the username, a colon, and the password.
 
@@ -204,7 +204,7 @@ Base64-encoded string from the concatenation of the username, a colon, and the p
 
 **Type:** `string`
 
-**Identity token**
+**Identity token:**
 
 Used to authenticate the user and obtain an access token for the registry.
 
@@ -214,7 +214,7 @@ Used to authenticate the user and obtain an access token for the registry.
 
 **Type:** `string`
 
-**Password**
+**Password:**
 
 Used to authenticate for the registry with username/password.
 
@@ -224,7 +224,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Username**
+**Username:**
 
 Used to authenticate for the registry with username/password.
 
@@ -234,7 +234,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Endpoint**
+**Endpoint:**
 
 Endpoint for the container registry.
 
@@ -244,7 +244,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Network**
+**Network:**
 
 ---
 
@@ -252,7 +252,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Control plane**
+**Control plane:**
 
 ---
 
@@ -260,7 +260,7 @@ Endpoint for the container registry.
 
 **Type:** `string`
 
-**Subnet**
+**Subnet:**
 
 **Default:** `"10.0.0.0/20"`
 
@@ -270,7 +270,7 @@ Endpoint for the container registry.
 
 **Type:** `string`
 
-**Node subnet**
+**Node subnet:**
 
 IPv4 address range for nodes, in CIDR notation.
 
@@ -282,7 +282,7 @@ IPv4 address range for nodes, in CIDR notation.
 
 **Type:** `string`
 
-**Network mode**
+**Network mode:**
 
 Specifying if the cluster resources are publicly accessible or not.
 
@@ -296,7 +296,7 @@ Specifying if the cluster resources are publicly accessible or not.
 
 **Type:** `string`
 
-**Pod subnet**
+**Pod subnet:**
 
 IPv4 address range for pods, in CIDR notation.
 
@@ -308,7 +308,7 @@ IPv4 address range for pods, in CIDR notation.
 
 **Type:** `string`
 
-**Service subnet**
+**Service subnet:**
 
 IPv4 address range for services, in CIDR notation.
 
@@ -320,7 +320,7 @@ IPv4 address range for services, in CIDR notation.
 
 **Type:** `object`
 
-**Workers**
+**Workers:**
 
 ---
 
@@ -328,7 +328,7 @@ IPv4 address range for services, in CIDR notation.
 
 **Type:** `string`
 
-**Subnet**
+**Subnet:**
 
 **Default:** `"10.0.16.0/20"`
 
@@ -340,7 +340,7 @@ IPv4 address range for services, in CIDR notation.
 
 **Type:** `integer`
 
-**Containerd volume size (GB)**
+**Containerd volume size (GB):**
 
 **Default:** `100`
 
@@ -350,7 +350,7 @@ IPv4 address range for services, in CIDR notation.
 
 **Type:** `boolean`
 
-**Encryption at host**
+**Encryption at host:**
 
 Enable encryption at host for the control plane nodes.
 
@@ -362,7 +362,7 @@ Enable encryption at host for the control plane nodes.
 
 **Type:** `integer`
 
-**Etcd volume size (GB)**
+**Etcd volume size (GB):**
 
 **Default:** `100`
 
@@ -372,7 +372,7 @@ Enable encryption at host for the control plane nodes.
 
 **Type:** `string`
 
-**Node VM size**
+**Node VM size:**
 
 **Default:** `"Standard_D4s_v3"`
 
@@ -382,7 +382,7 @@ Enable encryption at host for the control plane nodes.
 
 **Type:** `integer`
 
-**Kubelet volume size (GB)**
+**Kubelet volume size (GB):**
 
 **Default:** `100`
 
@@ -392,7 +392,7 @@ Enable encryption at host for the control plane nodes.
 
 **Type:** `object`
 
-**OIDC authentication**
+**OIDC authentication:**
 
 ---
 
@@ -400,7 +400,7 @@ Enable encryption at host for the control plane nodes.
 
 **Type:** `string`
 
-**Certificate authority**
+**Certificate authority:**
 
 Identity provider's CA certificate in PEM format.
 
@@ -412,7 +412,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Client ID**
+**Client ID:**
 
 **Default:** `""`
 
@@ -422,7 +422,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Groups claim**
+**Groups claim:**
 
 **Default:** `""`
 
@@ -432,7 +432,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Issuer URL**
+**Issuer URL:**
 
 **Default:** `""`
 
@@ -442,7 +442,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Username claim**
+**Username claim:**
 
 **Default:** `""`
 
@@ -452,7 +452,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `integer`
 
-**Number of nodes**
+**Number of nodes:**
 
 **Default:** `3`
 
@@ -462,7 +462,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 **Default:** `50`
 
@@ -474,7 +474,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `object`
 
-**Default settings**
+**Default settings:**
 
 ---
 
@@ -482,7 +482,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Default settings for eviction minimum reclaim**
+**Default settings for eviction minimum reclaim:**
 
 **Default:** `"imagefs.available=5%,memory.available=100Mi,nodefs.available=5%"`
 
@@ -492,7 +492,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Default settings for hard eviction thresholds**
+**Default settings for hard eviction thresholds:**
 
 **Default:** `"memory.available\u003c200Mi,nodefs.available\u003c10%,nodefs.inodesFree\u003c3%,imagefs.available\u003c10%,pid.available\u003c20%"`
 
@@ -502,7 +502,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Default settings for soft eviction grace period**
+**Default settings for soft eviction grace period:**
 
 **Default:** `"memory.available=30s,nodefs.available=2m,nodefs.inodesFree=1m,imagefs.available=2m,pid.available=1m"`
 
@@ -512,7 +512,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Default settings for soft eviction thresholds**
+**Default settings for soft eviction thresholds:**
 
 **Default:** `"memory.available\u003c500Mi,nodefs.available\u003c15%,nodefs.inodesFree\u003c5%,imagefs.available\u003c15%,pid.available\u003c30%"`
 
@@ -522,7 +522,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `boolean`
 
-**Enable VPA Resources in helmreleases**
+**Enable VPA Resources in helmreleases:**
 
 **Default:** `true`
 
@@ -532,7 +532,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `object`
 
-**Identity**
+**Identity:**
 
 ---
 
@@ -540,7 +540,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `boolean`
 
-**Attach CAPZ controller UserAssigned identity**
+**Attach CAPZ controller UserAssigned identity:**
 
 **Default:** `false`
 
@@ -550,7 +550,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Scope of SystemAssignedIdentity**
+**Scope of SystemAssignedIdentity:**
 
 **Allowed values:** `Subscription`, `ResourceGroup`
 
@@ -562,7 +562,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Type of Identity**
+**Type of Identity:**
 
 **Allowed values:** `SystemAssigned`, `UserAssigned`
 
@@ -574,7 +574,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `array`
 
-**List of custom UserAssigned Identities to attach to all nodes**
+**List of custom UserAssigned Identities to attach to all nodes:**
 
 **Default:** `[]`
 
@@ -584,7 +584,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `object`
 
-**Node Image**
+**Node Image:**
 
 ---
 
@@ -592,7 +592,7 @@ Identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Gallery**
+**Gallery:**
 
 Name of the community gallery hosting the image
 
@@ -604,7 +604,7 @@ Name of the community gallery hosting the image
 
 **Type:** `string`
 
-**Image Definition**
+**Image Definition:**
 
 Name of the image definition in the Gallery
 
@@ -616,7 +616,7 @@ Name of the image definition in the Gallery
 
 **Type:** `string`
 
-**Image version**
+**Image version:**
 
 **Default:** `"3510.2.5"`
 
@@ -626,7 +626,7 @@ Name of the image definition in the Gallery
 
 **Type:** `object`
 
-**Kubectl Image settings**
+**Kubectl Image settings:**
 
 ---
 
@@ -634,7 +634,7 @@ Name of the image definition in the Gallery
 
 **Type:** `string`
 
-**Image name**
+**Image name:**
 
 Name of the image Registry
 
@@ -646,7 +646,7 @@ Name of the image Registry
 
 **Type:** `string`
 
-**Kubectl Image Registry**
+**Kubectl Image Registry:**
 
 Registry for the kubectl image
 
@@ -658,7 +658,7 @@ Registry for the kubectl image
 
 **Type:** `string`
 
-**Image tag**
+**Image tag:**
 
 **Default:** `"1.23.5"`
 
@@ -668,7 +668,7 @@ Registry for the kubectl image
 
 **Type:** `string`
 
-**Kubernetes version**
+**Kubernetes version:**
 
 **Default:** `"1.24.17"`
 
@@ -678,7 +678,7 @@ Registry for the kubectl image
 
 **Type:** `object`
 
-**Network configuration**
+**Network configuration:**
 
 Internal network configuration that is susceptible to more frequent change
 
@@ -688,7 +688,7 @@ Internal network configuration that is susceptible to more frequent change
 
 **Type:** `object`
 
-**VNet spec**
+**VNet spec:**
 
 Customize subnets configuration
 
@@ -700,7 +700,7 @@ Customize subnets configuration
 
 **Type:** `string`
 
-**ControlPlane subnet name**
+**ControlPlane subnet name:**
 
 Name of the control plane subnet.
 
@@ -712,7 +712,7 @@ Name of the control plane subnet.
 
 **Type:** `string`
 
-**Nodes subnet nat-gateway name**
+**Nodes subnet nat-gateway name:**
 
 Name of the nat gateway on the nodes subnet.
 
@@ -724,7 +724,7 @@ Name of the nat gateway on the nodes subnet.
 
 **Type:** `string`
 
-**Nodes subnet name**
+**Nodes subnet name:**
 
 Name of the nodes subnet.
 
@@ -736,7 +736,7 @@ Name of the nodes subnet.
 
 **Type:** `object`
 
-**VNet spec**
+**VNet spec:**
 
 Existing VNet configuration. This is susceptible to more frequent change or removal.
 
@@ -748,7 +748,7 @@ Existing VNet configuration. This is susceptible to more frequent change or remo
 
 **Type:** `string`
 
-**VNet name**
+**VNet name:**
 
 Name of the existing VNet.
 
@@ -760,7 +760,7 @@ Name of the existing VNet.
 
 **Type:** `string`
 
-**Resource group name**
+**Resource group name:**
 
 Resource group where the existing VNet is deployed.
 
@@ -772,7 +772,7 @@ Resource group where the existing VNet is deployed.
 
 **Type:** `object`
 
-**VPN configuration**
+**VPN configuration:**
 
 Internal VPN configuration that is susceptible to more frequent change
 
@@ -782,7 +782,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**VPN gateway mode**
+**VPN gateway mode:**
 
 **Allowed values:** `local`, `none`, `remote`
 
@@ -794,7 +794,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `object`
 
-**The image used by sandbox / pause container**
+**The image used by sandbox / pause container:**
 
 ---
 
@@ -802,7 +802,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/pause"`
 
@@ -812,7 +812,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"gsoci.azurecr.io"`
 
@@ -822,7 +822,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"3.9"`
 
@@ -832,7 +832,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `object`
 
-**Teleport**
+**Teleport:**
 
 ---
 
@@ -840,7 +840,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `boolean`
 
-**Enable teleport**
+**Enable teleport:**
 
 **Default:** `true`
 
@@ -850,7 +850,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**Teleport proxy address**
+**Teleport proxy address:**
 
 **Default:** `"teleport.giantswarm.io:443"`
 
@@ -860,7 +860,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**Teleport version**
+**Teleport version:**
 
 **Default:** `"14.1.3"`
 
@@ -872,7 +872,7 @@ Internal VPN configuration that is susceptible to more frequent change
 
 **Type:** `string`
 
-**Cluster description**
+**Cluster description:**
 
 User-friendly description of the cluster's purpose.
 
@@ -882,7 +882,7 @@ User-friendly description of the cluster's purpose.
 
 **Type:** `object`
 
-**Labels**
+**Labels:**
 
 These labels are added to the Kubernetes resources defining this cluster.
 
@@ -892,7 +892,7 @@ These labels are added to the Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-zA-Z0-9/\._-]+$`
 
@@ -904,7 +904,7 @@ These labels are added to the Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Cluster name**
+**Cluster name:**
 
 Unique identifier, cannot be changed after creation.
 
@@ -914,7 +914,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 ---
 
@@ -922,7 +922,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Service priority**
+**Service priority:**
 
 The relative importance of this cluster.
 
@@ -938,7 +938,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Custom node labels**
+**Custom node labels:**
 
 ---
 
@@ -946,7 +946,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 ---
 
@@ -954,7 +954,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 ---
 
@@ -962,7 +962,7 @@ The relative importance of this cluster.
 
 **Type:** `object`
 
-**Node taint**
+**Node taint:**
 
 ---
 
@@ -970,7 +970,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Allowed values:** `NoSchedule`, `PreferNoSchedule`, `NoExecute`
 
@@ -980,7 +980,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 ---
 
@@ -988,7 +988,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 ---
 
@@ -996,7 +996,7 @@ The relative importance of this cluster.
 
 **Type:** `boolean`
 
-**Disable HealthChecks for the MachineDeployment**
+**Disable HealthChecks for the MachineDeployment:**
 
 ---
 
@@ -1004,7 +1004,7 @@ The relative importance of this cluster.
 
 **Type:** `boolean`
 
-**Encryption at host**
+**Encryption at host:**
 
 Enable encryption at host for the worker nodes.
 
@@ -1016,7 +1016,7 @@ Enable encryption at host for the worker nodes.
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Allowed values:** `1`, `2`, `3`
 
@@ -1026,7 +1026,7 @@ Enable encryption at host for the worker nodes.
 
 **Type:** `string`
 
-**VM size**
+**VM size:**
 
 ---
 
@@ -1034,7 +1034,7 @@ Enable encryption at host for the worker nodes.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Unique identifier, cannot be changed after creation.
 
@@ -1046,7 +1046,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `integer`
 
-**Number of nodes**
+**Number of nodes:**
 
 ---
 
@@ -1054,7 +1054,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 ### Pod Security Standards {#pod-security-standards}
 
@@ -1064,7 +1064,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `boolean`
 
-**Enforced Pod Security Standards**
+**Enforced Pod Security Standards:**
 
 Use PSSs instead of PSPs.
 
@@ -1078,7 +1078,7 @@ Use PSSs instead of PSPs.
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 **Default:** `"azuretest.gigantic.io"`
 
@@ -1088,7 +1088,7 @@ Use PSSs instead of PSPs.
 
 **Type:** `object`
 
-**Library chart**
+**Library chart:**
 
 ---
 
@@ -1096,7 +1096,7 @@ Use PSSs instead of PSPs.
 
 **Type:** `string`
 
-**The capi MC managing this cluster**
+**The capi MC managing this cluster:**
 
 ---
 
@@ -1104,7 +1104,7 @@ Use PSSs instead of PSPs.
 
 **Type:** `string`
 
-**Cluster API provider name**
+**Cluster API provider name:**
 
 <!-- DOCS_END -->
 

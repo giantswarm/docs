@@ -20,84 +20,6 @@ The `cluster-vsphere` chart templates all the VMware infrastructure resources th
 
 ## Chart configuration reference
 
-###  {#}
-
----
-
-`.internal.sandboxContainerImage`
-
-**Type:** `object`
-
-**Sandbox Container image**
-
----
-
-`.internal.sandboxContainerImage.name`
-
-**Type:** `string`
-
-**Repository**
-
-**Default:** `"tkg/pause"`
-
----
-
-`.internal.sandboxContainerImage.registry`
-
-**Type:** `string`
-
-**Registry**
-
-**Default:** `"projects.registry.vmware.com/"`
-
----
-
-`.internal.sandboxContainerImage.tag`
-
-**Type:** `string`
-
-**Tag**
-
-**Default:** `"3.7"`
-
----
-
-`.internal.teleport`
-
-**Type:** `object`
-
-**Teleport**
-
----
-
-`.internal.teleport.enabled`
-
-**Type:** `boolean`
-
-**Enable teleport**
-
-**Default:** `true`
-
----
-
-`.internal.teleport.proxyAddr`
-
-**Type:** `string`
-
-**Teleport proxy address**
-
-**Default:** `"teleport.giantswarm.io:443"`
-
----
-
-`.internal.teleport.version`
-
-**Type:** `string`
-
-**Teleport version**
-
-**Default:** `"14.1.3"`
-
 ### Cluster {#cluster}
 
 ---
@@ -106,7 +28,7 @@ The `cluster-vsphere` chart templates all the VMware infrastructure resources th
 
 **Type:** `string`
 
-**Kubernetes version**
+**Kubernetes version:**
 
 ### Connectivity {#connectivity}
 
@@ -116,7 +38,7 @@ The `cluster-vsphere` chart templates all the VMware infrastructure resources th
 
 **Type:** `object`
 
-**Network**
+**Network:**
 
 ---
 
@@ -124,7 +46,7 @@ The `cluster-vsphere` chart templates all the VMware infrastructure resources th
 
 **Type:** `boolean`
 
-**Allow all egress**
+**Allow all egress:**
 
 **Default:** `false`
 
@@ -134,7 +56,7 @@ The `cluster-vsphere` chart templates all the VMware infrastructure resources th
 
 **Type:** `object`
 
-**Container registries**
+**Container registries:**
 
 Endpoints and credentials configuration for container registries.
 
@@ -158,7 +80,7 @@ Endpoints and credentials configuration for container registries.
 
 **Type:** `object`
 
-**Credentials**
+**Credentials:**
 
 Credentials for the endpoint.
 
@@ -168,7 +90,7 @@ Credentials for the endpoint.
 
 **Type:** `string`
 
-**Auth**
+**Auth:**
 
 Base64-encoded string from the concatenation of the username, a colon, and the password.
 
@@ -178,7 +100,7 @@ Base64-encoded string from the concatenation of the username, a colon, and the p
 
 **Type:** `string`
 
-**Identity token**
+**Identity token:**
 
 Used to authenticate the user and obtain an access token for the registry.
 
@@ -188,7 +110,7 @@ Used to authenticate the user and obtain an access token for the registry.
 
 **Type:** `string`
 
-**Password**
+**Password:**
 
 Used to authenticate for the registry with username/password.
 
@@ -198,7 +120,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Username**
+**Username:**
 
 Used to authenticate for the registry with username/password.
 
@@ -208,7 +130,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Endpoint**
+**Endpoint:**
 
 Endpoint for the container registry.
 
@@ -218,7 +140,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Endpoint**
+**Endpoint:**
 
 Kubernetes API configuration.
 
@@ -228,7 +150,7 @@ Kubernetes API configuration.
 
 **Type:** `string`
 
-**Host**
+**Host:**
 
 IP for access to the Kubernetes API.
 
@@ -238,7 +160,7 @@ IP for access to the Kubernetes API.
 
 **Type:** `string`
 
-**Ip Pool Name**
+**Ip Pool Name:**
 
 Ip for control plane will be drawn from this GlobalInClusterIPPool resource.
 
@@ -252,7 +174,7 @@ Ip for control plane will be drawn from this GlobalInClusterIPPool resource.
 
 **Type:** `integer`
 
-**Port number**
+**Port number:**
 
 Port for access to the Kubernetes API.
 
@@ -262,7 +184,7 @@ Port for access to the Kubernetes API.
 
 **Type:** `object`
 
-**Load balancers**
+**Load balancers:**
 
 ---
 
@@ -270,7 +192,7 @@ Port for access to the Kubernetes API.
 
 **Type:** `object`
 
-**Pods**
+**Pods:**
 
 ---
 
@@ -296,7 +218,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `object`
 
-**Services**
+**Services:**
 
 ---
 
@@ -324,7 +246,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `object`
 
-**Etcd**
+**Etcd:**
 
 ---
 
@@ -332,7 +254,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `string`
 
-**Image repository**
+**Image repository:**
 
 ---
 
@@ -340,7 +262,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `string`
 
-**Image tag**
+**Image tag:**
 
 ---
 
@@ -348,7 +270,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `integer`
 
-**Number of nodes**
+**Number of nodes:**
 
 ### Kubeadm {#kubeadm}
 
@@ -358,7 +280,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `array`
 
-**Users**
+**Users:**
 
 ---
 
@@ -372,7 +294,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `array`
 
-**Authorized keys**
+**Authorized keys:**
 
 ---
 
@@ -380,7 +302,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 ---
 
@@ -388,9 +310,11 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
-### Kubectl image {#kubectl-image}Used by cluster-shared library chart to configure coredns in-cluster.
+### Kubectl image {#kubectl-image}
+
+Used by cluster-shared library chart to configure coredns in-cluster.
 
 ---
 
@@ -418,7 +342,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `array`
 
-**Subject alternative names (SAN)**
+**Subject alternative names (SAN):**
 
 Alternative names to encode in the API server's certificate.
 
@@ -430,7 +354,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**SAN**
+**SAN:**
 
 ---
 
@@ -438,7 +362,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Admission plugins**
+**Admission plugins:**
 
 Comma-separated list of admission plugins to enable.
 
@@ -450,7 +374,7 @@ Comma-separated list of admission plugins to enable.
 
 **Type:** `string`
 
-**Feature gates**
+**Feature gates:**
 
 Enabled feature gates, as a comma-separated list.
 
@@ -464,13 +388,15 @@ Enabled feature gates, as a comma-separated list.
 
 **Type:** `string`
 
-**Feature gates**
+**Feature gates:**
 
 Enabled feature gates, as a comma-separated list.
 
 **Default:** `""`
 
-### Node template {#node-template}Provisioning options for node templates.
+### Node template {#node-template}
+
+Provisioning options for node templates.
 
 ---
 
@@ -478,7 +404,7 @@ Enabled feature gates, as a comma-separated list.
 
 **Type:** `string`
 
-**Clone mode**
+**Clone mode:**
 
 Method used to clone template image.
 
@@ -488,7 +414,7 @@ Method used to clone template image.
 
 **Type:** `integer`
 
-**Disk size (GB)**
+**Disk size (GB):**
 
 Node disk size in GB. Must be at least as large as the source image.
 
@@ -498,7 +424,7 @@ Node disk size in GB. Must be at least as large as the source image.
 
 **Type:** `string`
 
-**Folder**
+**Folder:**
 
 VSphere folder to deploy instances in. Must already exist.
 
@@ -508,7 +434,7 @@ VSphere folder to deploy instances in. Must already exist.
 
 **Type:** `integer`
 
-**Memory (MB)**
+**Memory (MB):**
 
 Node memory allocation in MB.
 
@@ -518,7 +444,7 @@ Node memory allocation in MB.
 
 **Type:** `string`
 
-**Segment name**
+**Segment name:**
 
 Segment name to attach nodes to. Must already exist.
 
@@ -528,7 +454,7 @@ Segment name to attach nodes to. Must already exist.
 
 **Type:** `integer`
 
-**CPU cores**
+**CPU cores:**
 
 Number of CPUs to assign per node.
 
@@ -538,7 +464,7 @@ Number of CPUs to assign per node.
 
 **Type:** `string`
 
-**Resource pool**
+**Resource pool:**
 
 Resource pool to allocate nodes from. Must already exist.
 
@@ -548,7 +474,7 @@ Resource pool to allocate nodes from. Must already exist.
 
 **Type:** `string`
 
-**Storage policy**
+**Storage policy:**
 
 Storage policy to use. If specified, it must already exist.
 
@@ -558,11 +484,13 @@ Storage policy to use. If specified, it must already exist.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Image template name to use for nodes.
 
-### VCenter {#vcenter}Configuration for vSphere API access.
+### VCenter {#vcenter}
+
+Configuration for vSphere API access.
 
 ---
 
@@ -570,7 +498,7 @@ Image template name to use for nodes.
 
 **Type:** `string`
 
-**Datacenter**
+**Datacenter:**
 
 Name of the datacenter to deploy nodes into.
 
@@ -580,7 +508,7 @@ Name of the datacenter to deploy nodes into.
 
 **Type:** `string`
 
-**Datastore**
+**Datastore:**
 
 Name of the datastore for node disk storage.
 
@@ -590,7 +518,7 @@ Name of the datastore for node disk storage.
 
 **Type:** `string`
 
-**Password**
+**Password:**
 
 Password for the VSphere API.
 
@@ -600,7 +528,7 @@ Password for the VSphere API.
 
 **Type:** `string`
 
-**Region**
+**Region:**
 
 Category name in VSphere for topology.kubernetes.io/region labels.
 
@@ -610,7 +538,7 @@ Category name in VSphere for topology.kubernetes.io/region labels.
 
 **Type:** `string`
 
-**Server**
+**Server:**
 
 URL of the VSphere API.
 
@@ -620,7 +548,7 @@ URL of the VSphere API.
 
 **Type:** `string`
 
-**Thumbprint**
+**Thumbprint:**
 
 TLS certificate signature of the VSphere API.
 
@@ -630,7 +558,7 @@ TLS certificate signature of the VSphere API.
 
 **Type:** `string`
 
-**Username**
+**Username:**
 
 Username for the VSphere API.
 
@@ -640,7 +568,7 @@ Username for the VSphere API.
 
 **Type:** `string`
 
-**Zone**
+**Zone:**
 
 Category name in VSphere for topology.kubernetes.io/zone labels.
 
@@ -652,7 +580,85 @@ Category name in VSphere for topology.kubernetes.io/zone labels.
 
 **Type:** `integer`
 
-**Number of nodes**
+**Number of nodes:**
+
+### internal {#internal}
+
+---
+
+`.internal.sandboxContainerImage`
+
+**Type:** `object`
+
+**Sandbox Container image:**
+
+---
+
+`.internal.sandboxContainerImage.name`
+
+**Type:** `string`
+
+**Repository:**
+
+**Default:** `"tkg/pause"`
+
+---
+
+`.internal.sandboxContainerImage.registry`
+
+**Type:** `string`
+
+**Registry:**
+
+**Default:** `"projects.registry.vmware.com/"`
+
+---
+
+`.internal.sandboxContainerImage.tag`
+
+**Type:** `string`
+
+**Tag:**
+
+**Default:** `"3.7"`
+
+---
+
+`.internal.teleport`
+
+**Type:** `object`
+
+**Teleport:**
+
+---
+
+`.internal.teleport.enabled`
+
+**Type:** `boolean`
+
+**Enable teleport:**
+
+**Default:** `true`
+
+---
+
+`.internal.teleport.proxyAddr`
+
+**Type:** `string`
+
+**Teleport proxy address:**
+
+**Default:** `"teleport.giantswarm.io:443"`
+
+---
+
+`.internal.teleport.version`
+
+**Type:** `string`
+
+**Teleport version:**
+
+**Default:** `"14.1.3"`
 
 ### Other {#other}
 
@@ -662,7 +668,7 @@ Category name in VSphere for topology.kubernetes.io/zone labels.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 <!-- DOCS_END -->
 

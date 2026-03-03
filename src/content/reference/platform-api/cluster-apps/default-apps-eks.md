@@ -20,7 +20,35 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
 
 ## Chart configuration reference
 
-###  {#}
+### AWS settings {#aws-settings}
+
+---
+
+`.providerSpecific.awsAccountId`
+
+**Type:** `string`
+
+**AWS account ID:**
+
+AWS Account ID of the AWSClusterRoleIdentity IAM role, recommendation is to leave this value empty as it will be automatically calculated. This value is needed for tests.
+
+**Value pattern:** `^[0-9]{0,12}$`
+
+**Default:** `""`
+
+---
+
+`.providerSpecific.awsClusterRoleIdentityName`
+
+**Type:** `string`
+
+**Cluster role identity name:**
+
+Name of an AWSClusterRoleIdentity object. Recommendation is to leave this value empty as it will be automatically calculated.
+
+**Default:** `""`
+
+### apps {#apps}
 
 ---
 
@@ -706,7 +734,7 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
 
 **Type:** `string`
 
-###  {#}
+### userConfig {#userconfig}
 
 ---
 
@@ -779,34 +807,6 @@ The `default-apps-eks` chart templates all the standard apps deployed to AWS EKS
 `.userConfig.netExporter.configMap.values`
 
 **Types:** `string`, `object`
-
-### AWS settings {#aws-settings}
-
----
-
-`.providerSpecific.awsAccountId`
-
-**Type:** `string`
-
-**AWS account ID**
-
-AWS Account ID of the AWSClusterRoleIdentity IAM role, recommendation is to leave this value empty as it will be automatically calculated. This value is needed for tests.
-
-**Value pattern:** `^[0-9]{0,12}$`
-
-**Default:** `""`
-
----
-
-`.providerSpecific.awsClusterRoleIdentityName`
-
-**Type:** `string`
-
-**Cluster role identity name**
-
-Name of an AWSClusterRoleIdentity object. Recommendation is to leave this value empty as it will be automatically calculated.
-
-**Default:** `""`
 
 ### Other {#other}
 
