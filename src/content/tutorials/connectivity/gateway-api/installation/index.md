@@ -222,3 +222,5 @@ egctl x status all -A
 ```
 
 This displays the status conditions (such as `Accepted`, `Programmed`, or `ResolvedRefs`) for GatewayClasses, Gateways, HTTPRoutes, and other Gateway API resources, making it easier to spot misconfigurations or issues.
+
+Find more information about the command in the [official documentation](https://gateway.envoyproxy.io/docs/tasks/operations/egctl/).
