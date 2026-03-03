@@ -30,7 +30,21 @@ default_rules:
 # Directory-specific overrides
 # Rules are applied in order, with later matches taking precedence
 directory_overrides:
-  - path: ".cursor/**"
+  - path: ".claude/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - NO_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+      - NO_LAST_REVIEW_DATE
+      - NO_FULL_STOP_DESCRIPTION
+      - UNKNOWN_ATTRIBUTE
+
+  - path: "AGENTS.md"
+    disabled_checks:
+      - NO_FRONT_MATTER
+
+  - path: "CLAUDE.md"
     disabled_checks:
       - NO_FRONT_MATTER
 
