@@ -91,7 +91,6 @@ Key panels:
 | Top Destinations | Most common traffic destinations |
 | Time Series | Graphs for public, private, in-AZ, and cross-AZ traffic over time |
 
-
 ### Example Scenario: High Cross-AZ Traffic Between Services
 
 In this scenario, your cloud bill shows high network costs. You suspect cross-AZ traffic but need to identify which services are responsible and how to fix it.
