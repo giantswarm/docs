@@ -91,14 +91,14 @@ Giant Swarm automatically provides a `ClusterTriggerAuthentication` that allows 
 1. **Label your Cluster CR** to enable KEDA authentication support:
 
 ```bash
-kubectl label cluster ${CLUSTER} giantswarm.io/keda-authentication=true
+kubectl label cluster ${CLUSTER} observability.giantswarm.io/keda-authentication=true
 ```
 
 1. **(Optional) If KEDA is not running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed:
 
 ```bash
 # Only needed if KEDA runs in a different namespace than 'keda'
-kubectl annotate cluster ${CLUSTER} giantswarm.io/keda-namespace=<your-keda-namespace>
+kubectl annotate cluster ${CLUSTER} observability.giantswarm.io/keda-namespace=<your-keda-namespace>
 ```
 
 Once enabled, the observability operator automatically creates:
