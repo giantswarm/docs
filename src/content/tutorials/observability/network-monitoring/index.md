@@ -33,12 +33,12 @@ Before starting this tutorial, ensure you have:
 
 ## Enable Network Monitoring
 
-Network monitoring is not enabled by default and requires explicit opt-in. To enable it, add the label `giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
+Network monitoring is not enabled by default and requires explicit opt-in. To enable it, add the label `observability.giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
 For example using kubectl:
 
 ```sh
-kubectl label cluster <cluster-name> giantswarm.io/network-monitoring=true
+kubectl label cluster <cluster-name> observability.giantswarm.io/network-monitoring=true
 ```
 
 After applying the label, the platform automatically deploys the network monitoring components. The collector runs within the existing `alloy-logs` DaemonSet in the `kube-system` namespace, with one collector instance per node.
