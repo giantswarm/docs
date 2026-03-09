@@ -25,7 +25,7 @@ To run the Giant Swarm platform on Proxmox VE, you must satisfy several prerequi
 
 Proxmox VE 7.0 or later is required. Proxmox VE 8.0 or later is recommended.
 
-### Resource Pools
+### Step 1: Resource Pools
 
 Giant Swarm recommends creating two dedicated resource pools:
 
@@ -34,9 +34,18 @@ Giant Swarm recommends creating two dedicated resource pools:
 
 Using dedicated pools allows fine-grained access control and keeps cluster workloads isolated from other Proxmox resources.
 
-You can also ensure even tighter isolation by using separate Proxmox pools for each cluster.
+You can also ensure even tighter isolation by using separate Proxmox pools for each cluster, however the templates folder is typically shared across clusters to avoid unnecessary duplication of templates.
 
-## Step 1: Networking
+#### Create resource pools
+
+ollow these steps on your Proxmox VE node, or replicate them via the Proxmox web UI.
+
+```bash
+pveum pool add capi
+pveum pool add templates
+```
+
+## Step 2: Networking
 
 Network requirements include:
 
@@ -61,16 +70,9 @@ When deploying a Cluster API cluster, it automatically selects an IP from the IP
 
 Learn more about how to configure `kube-vip` in the [advanced documentation]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}).
 
-## Step 2: Permissions
+## Step 3: Permissions
 
 CAPMOX requires a dedicated Proxmox user and API token with least-privilege access. Follow these steps on your Proxmox VE node, or replicate them via the Proxmox web UI.
-
-### Create resource pools
-
-```bash
-pveum pool add capi
-pveum pool add templates
-```
 
 ### Create custom roles
 
@@ -83,6 +85,8 @@ pveum role add CAPMOXDatastoreAlloc -privs "Datastore.AllocateSpace"
 
 ### Create the user and API token
 
+**Note:** Giant Swarm recommends creating a separate user for each Workload Cluster. This allows you to manage permissions on a per-cluster basis and revoke access if needed without affecting other clusters.
+
 ```bash
 pveum user add capmox@pve
 pveum user token add capmox@pve capi -privsep 0
@@ -92,7 +96,7 @@ Make a note of the generated token secret — it is only displayed once and will
 
 ### Assign permissions
 
-Apply the following ACLs. The paths should be adjusted to match your environment (storage names, pool names, and optional VLAN IDs):
+Apply the following ACLs. The paths should be adjusted to match your environment (storage names, pool names, and optional VLAN IDs).
 
 ```bash
 pveum aclmod / -user capmox@pve -role CAPMOXAudit
@@ -120,7 +124,7 @@ The table below summarises each permission and its purpose:
 
 By default, CAPMOX skips TLS verification when communicating with the Proxmox API. For production environments, Giant Swarm recommends enabling TLS verification using a valid certificate or your internal CA. Provide the root certificate path to the CAPMOX controller at deployment time.
 
-## Step 3: Virtual Machine Templates
+## Step 4: Virtual Machine Templates
 
 Giant Swarm uploads VM templates to Proxmox following a naming convention that includes the Linux distribution and Kubernetes version, for example:
 
@@ -128,15 +132,17 @@ Giant Swarm uploads VM templates to Proxmox following a naming convention that i
 flatcar-stable-xxxx.y.z-kube-x.yy.zz-tooling-x.yy.1-gs
 ```
 
-Templates must be placed in the `templates` resource pool created in Step 2 so that the `capmox@pve` user can clone them. Ensure sufficient storage is available on the Proxmox node designated as the template source.
+Templates must be placed in the `templates` resource pool created in Step 1 so that the `capmox@pve` user can clone them. Ensure sufficient storage is available on the Proxmox node designated as the template source.
 
-## Step 4: Additional Application Credentials
+## Step 5: Additional Application Credentials
 
 Two applications run inside workload clusters and require their own access to the Proxmox API: the Proxmox CSI Plugin (for persistent volume management) and the Proxmox Cloud Controller Manager (for node lifecycle integration). Each requires a dedicated user and token with its own minimal set of privileges.
 
 ### Proxmox CSI Plugin
 
-The CSI plugin attaches and detaches Proxmox storage volumes to cluster nodes. Create a dedicated role, user, and token:
+The CSI plugin attaches and detaches Proxmox storage volumes to cluster nodes. Create a dedicated role, user, and token.
+
+**Note:** Giant Swarm recommends creating a separate user for each Workload Cluster CSI deployment. This allows you to manage permissions on a per-cluster basis and revoke access if needed without affecting other clusters.
 
 ```bash
 pveum role add CSI -privs "VM.Audit VM.Config.Disk Datastore.Allocate Datastore.AllocateSpace Datastore.Audit"
@@ -147,11 +153,11 @@ pveum user token add kubernetes-csi@pve csi -privsep 0
 
 The token identifier will be `kubernetes-csi@pve!csi`. Record the generated token secret for use during cluster configuration.
 
-**Note:** All virtual machines in the cluster must have their SCSI controller set to **VirtIO SCSI single** or **VirtIO SCSI** to enable disk attachment.
-
 ### Proxmox Cloud Controller Manager
 
-The Cloud Controller Manager synchronises Proxmox node metadata with Kubernetes. Create a dedicated role, user, and token:
+The Cloud Controller Manager synchronises Proxmox node metadata with Kubernetes. Create a dedicated role, user, and token.
+
+**Note:** Giant Swarm recommends creating a separate user for each Workload Cluster Cloud Controller Manager deployment. This allows you to manage permissions on a per-cluster basis and revoke access if needed without affecting other clusters.
 
 ```bash
 pveum role add CCM -privs "VM.Audit VM.GuestAgent.Audit Sys.Audit"
