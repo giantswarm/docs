@@ -38,7 +38,7 @@ You can also ensure even tighter isolation by using separate Proxmox pools for e
 
 #### Create resource pools
 
-ollow these steps on your Proxmox VE node, or replicate them via the Proxmox web UI.
+Follow these steps on your Proxmox VE node, or replicate them via the Proxmox web UI.
 
 ```bash
 pveum pool add capi
