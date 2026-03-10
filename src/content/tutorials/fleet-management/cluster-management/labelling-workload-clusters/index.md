@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-fleet-management-clusters-labelling-clusters
 user_questions:
   - How can I assign metadata to cluster?
-last_review_date: 2024-11-29
+last_review_date: 2026-03-10
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
