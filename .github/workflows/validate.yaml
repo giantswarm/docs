@@ -16,9 +16,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
 
       - name: Execute pre-commit hooks
         uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+        with:
+          # Compiles list of changed files in this PR
+          extra_args: >-
+            ${{ github.event_name == 'pull_request'
+              && format('--from-ref {0} --to-ref {1}', github.event.pull_request.base.sha, github.event.pull_request.head.sha)
+              || '--all-files' }}
 
       - name: Check file and folder names in content
         shell: python {0}
