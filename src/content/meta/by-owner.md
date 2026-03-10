@@ -5,5 +5,6 @@ layout: list-by-owner
 search: false
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
-user_questions: []
+user_questions:
+  - Which team owns what pages?
 ---
