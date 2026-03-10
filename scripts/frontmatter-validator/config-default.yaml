@@ -1,6 +1,11 @@
 # Frontmatter Validator configuration
 # This file defines which validation checks are enabled and how they apply to different directories.
 
+ignore_paths:
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+
 # Default rules applied to all files unless overridden
 default_rules:
   enabled_checks:
@@ -39,14 +44,6 @@ directory_overrides:
       - NO_LAST_REVIEW_DATE
       - NO_FULL_STOP_DESCRIPTION
       - UNKNOWN_ATTRIBUTE
-
-  - path: "AGENTS.md"
-    disabled_checks:
-      - NO_FRONT_MATTER
-
-  - path: "CLAUDE.md"
-    disabled_checks:
-      - NO_FRONT_MATTER
 
   - path: "src/content/reference/platform-api/crd/**"
     disabled_checks:
