@@ -25,7 +25,7 @@ To run the Giant Swarm platform on Proxmox VE, you must satisfy several prerequi
 
 Proxmox VE 7.0 or later is required. Proxmox VE 8.0 or later is recommended.
 
-### Step 1: Resource Pools
+### Step 1: Resource pools
 
 Giant Swarm recommends creating two dedicated resource pools:
 
@@ -50,7 +50,7 @@ pveum pool add templates
 Network requirements include:
 
 - A Proxmox network bridge (for example, `vmbr0`) with an IP range available for cluster VMs.
-- Static IP address management — CAPMOX uses an in-cluster IPAM provider rather than DHCP. You must provide Giant Swarm with one or more IP ranges for node addresses.
+- Static IP address management: CAPMOX uses an in-cluster IPAM provider rather than DHCP. You must provide Giant Swarm with one or more IP ranges for node addresses.
 - Access to the Proxmox VE API endpoint (port 8006) from both the Management Cluster and Workload Clusters.
 - Internet access on port 443 for artifact retrieval and container images. You can whitelist the domains in this [domain allow list]({{ relref "/overview/security/domain-allowlist" }}). Note that we also support authenticated HTTP proxies.
 
@@ -58,7 +58,7 @@ Network requirements include:
 
 Since Proxmox has no concept of load balancers out of the box, CAPMOX ships with [kube-vip]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}), a layer two load balancer which utilises [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) or [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol).
 
-`kube-vip` uses ARP or BGP to inform the network of the route to the loadbalanced IP. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its upstream servers.
+`kube-vip` uses ARP or BGP to inform the network of the route to the load-balanced IP. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its upstream servers.
 
 ![CAPMOX kube-vip](capmox-kubevip-excalidraw.png)
 
@@ -92,7 +92,7 @@ pveum user add capmox@pve
 pveum user token add capmox@pve capi -privsep 0
 ```
 
-Make a note of the generated token secret — it is only displayed once and will be required when configuring the management cluster.
+Make a note of the generated token secret. It is only displayed once and will be required when configuring the management cluster.
 
 ### Assign permissions
 
@@ -111,12 +111,12 @@ The table below summarises each permission and its purpose:
 
 | Path | Role | Propagate | Purpose |
 |------|------|-----------|---------|
-| `/` | CAPMOXAudit | No | Top-level system visibility |
-| `/nodes` | CAPMOXAudit | Yes | Node-level system visibility |
-| `/pool/capi` | PVEVMAdmin | No | Full VM management within the cluster pool |
-| `/pool/templates` | PVETemplateUser | No | Read and clone VM templates |
-| `/storage/capi_files` | PVEDataStoreAdmin | No | Manage cloud-init ISO images |
-| `/storage/shared_block` | CAPMOXDatastoreAlloc | No | Allocate space on shared block storage |
+| `/` | `CAPMOXAudit` | No | Top-level system visibility |
+| `/nodes` | `CAPMOXAudit` | Yes | Node-level system visibility |
+| `/pool/capi` | `PVEVMAdmin` | No | Full VM management within the cluster pool |
+| `/pool/templates` | `PVETemplateUser` | No | Read and clone VM templates |
+| `/storage/capi_files` | `PVEDataStoreAdmin` | No | Manage cloud-init ISO images |
+| `/storage/shared_block` | `CAPMOXDatastoreAlloc` | No | Allocate space on shared block storage |
 
 **Note:** If you use SDN with VLANs, additionally grant `PVESDNUser` on the relevant SDN zone path, for example `/sdn/zones/localnetwork/vmbr0/1234`.
 
@@ -124,21 +124,21 @@ The table below summarises each permission and its purpose:
 
 By default, CAPMOX skips TLS verification when communicating with the Proxmox API. For production environments, Giant Swarm recommends enabling TLS verification using a valid certificate or your internal CA. Provide the root certificate path to the CAPMOX controller at deployment time.
 
-## Step 4: Virtual Machine Templates
+## Step 4: Virtual machine templates
 
 Giant Swarm uploads VM templates to Proxmox following a naming convention that includes the Linux distribution and Kubernetes version, for example:
 
-```
+```nohighlight
 flatcar-stable-xxxx.y.z-kube-x.yy.zz-tooling-x.yy.1-gs
 ```
 
 Templates must be placed in the `templates` resource pool created in Step 1 so that the `capmox@pve` user can clone them. Ensure sufficient storage is available on the Proxmox node designated as the template source.
 
-## Step 5: Additional Application Credentials
+## Step 5: Additional application credentials
 
 Two applications run inside workload clusters and require their own access to the Proxmox API: the Proxmox CSI Plugin (for persistent volume management) and the Proxmox Cloud Controller Manager (for node lifecycle integration). Each requires a dedicated user and token with its own minimal set of privileges.
 
-### Proxmox CSI Plugin
+### Proxmox CSI plugin
 
 The CSI plugin attaches and detaches Proxmox storage volumes to cluster nodes. Create a dedicated role, user, and token.
 
@@ -168,7 +168,7 @@ pveum user token add kubernetes-ccm@pve ccm -privsep 0
 
 The token identifier will be `kubernetes-ccm@pve!ccm`. Record the generated token secret for use during cluster configuration.
 
-## Next Steps
+## Next steps
 
 For first-time setup without an existing management cluster, Giant Swarm will provide one within a few days. Review the [secret sharing procedures](/overview/security/sharing-secrets/) before sharing your API tokens with Giant Swarm.
 
