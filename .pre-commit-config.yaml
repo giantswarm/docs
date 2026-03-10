@@ -14,7 +14,7 @@ repos:
         files: "^src/content/.*\\.md$"
 
   - repo: https://github.com/giantswarm/frontmatter-validator
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
       - id: frontmatter-validator
         args: ['--config=./scripts/frontmatter-validator/config-default.yaml']
