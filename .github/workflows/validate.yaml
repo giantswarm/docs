@@ -24,71 +24,8 @@ jobs:
           version: "0.5.0"
           smoke_test: frontmatter-validator --help
 
-      - name: Validate front matter for changed files
-        run: |
-          echo "Detecting changed files:"
-          git fetch --no-tags origin "${GITHUB_BASE_REF}":"${GITHUB_BASE_REF}"
-          git diff --name-only "refs/heads/${GITHUB_BASE_REF}" -- . | tee files.txt
-          if [ -s files.txt ]; then
-            # Validate the changed files
-            echo "Validating front matter for changed files:"
-            cat files.txt | frontmatter-validator --config ./scripts/frontmatter-validator/config-default.yaml
-
-            # Print for debugging
-            printf "\nAnnotations JSON:\n"
-            cat ./annotations.json
-
-            # Save as environment variable for next step
-            if [ $(jq length < ./annotations.json) -gt 0 ]; then
-              echo "found_front_matter_issues=true" >> $GITHUB_ENV
-            fi
-          fi
-          rm files.txt
-
-      - name: Send front matter annotations
-        if: ${{ env.found_front_matter_issues == 'true' }}
-        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          title: Front matter problems
-          input: ./annotations.json
-
-      - name: markdownlint
-        run: |
-          make RUNNING_IN_CI=true lint-markdown || true
-
-          # Only fail if the run didn't work for technical reasons
-          if [ ! -e markdownlint.out ]; then
-            echo "ERROR: Linting did not write output file with findings"
-            exit 1
-          fi
-
-          # Otherwise create annotations
-          cat markdownlint.out \
-            | jq -nR '[inputs | (. | capture("(?<filename>[^:]+):(?<line>[0-9]+)(:(?<col>[0-9]+))?\\s+(?<description>.+)") | {"file": .filename, "line": (.line | tonumber), "end_line": (.line | tonumber), "title": "markdownlint problem", "message": .description, "annotation_level": "error"})]' \
-            > markdownlint-annotations.json
-          
-          # Print for debugging
-          printf "\nAnnotations JSON:\n"
-          cat ./markdownlint-annotations.json
-          
-          if [ $(jq length < ./markdownlint-annotations.json) -gt 0 ]; then
-            echo "found_markdown_issues=true" >> $GITHUB_ENV
-          fi
-
-      - name: Send markdownlint annotations
-        if: ${{ env.found_markdown_issues == 'true' }}
-        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          title: markdownlint problems
-          input: ./markdownlint-annotations.json
-
-      - name: Fail if markdownlint had findings
-        if: ${{ env.found_markdown_issues == 'true' }}
-        run: |
-          echo "ERROR: See markdownlint findings (annotated as errors in the PR when you click on 'Files changed')"
-          exit 1
+      - name: Execute pre-commit hooks
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
 
       - name: Check file and folder names in content
         shell: python {0}
