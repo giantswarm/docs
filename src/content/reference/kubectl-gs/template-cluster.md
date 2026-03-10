@@ -34,6 +34,8 @@ It supports the following flags:
   Can be retrieved with `kubectl get releases` for your installation.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
+- `--label` (optional) - Label in the form `key=value` to set on the cluster. Can be specified multiple times. These labels are applied to the Cluster CR (via Helm values `global.metadata.labels`), the App CR, and the ConfigMap.
+- `--service-priority` (optional) - Service priority of the cluster (one of: `highest`, `medium`, `lowest`).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
 - `--oidc-issuer-url` (optional - CAPI) - This is the issuer URL for configuring OpenID connect in the cluster API.
 - `--oidc-ca-file` (optional - CAPI) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.

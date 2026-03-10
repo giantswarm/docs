@@ -8,6 +8,8 @@
 gateway-api-bundle
 gateway-api-config-app
 envoy-gateway-app
+ACL
+ACLs
 [Aa]lert
 Autoscaling
 Autoscaler
@@ -140,6 +142,7 @@ passthrough
 perfectly
 Planeteers
 PromQL
+Proxmox
 [P|p]romtail
 quickly
 randomly
@@ -175,6 +178,8 @@ upstream[s]?
 vApp
 vCenter
 very
+VLAN
+VLANs
 VM[s]?
 VMware
 VPC
