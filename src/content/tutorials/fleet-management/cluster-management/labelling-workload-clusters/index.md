@@ -74,6 +74,48 @@ kubectl gs template cluster \
   ...
 ```
 
+### Setting labels via App CR YAML (GitOps) {#setting-labels-gitops}
+
+When managing clusters via GitOps, labels are set in the ConfigMap that holds the Helm values for the cluster App CR. Add your labels under `global.metadata.labels`:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-cluster-userconfig
+  namespace: org-my-org
+data:
+  values: |
+    global:
+      metadata:
+        name: my-cluster
+        organization: my-org
+        labels:
+          giantswarm.io/service-priority: highest
+          example.tld/environment: production
+```
+
+If you use Kustomize to manage your cluster definitions, you can patch the ConfigMap values to add labels:
+
+```yaml
+patches:
+  - target:
+      kind: ConfigMap
+      name: my-cluster-userconfig
+    patch: |
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: my-cluster-userconfig
+      data:
+        values: |
+          global:
+            metadata:
+              labels:
+                giantswarm.io/service-priority: highest
+                example.tld/environment: production
+```
+
 ## Modifying cluster labels
 
 To modify labels on a cluster, use  `kubectl label` command towards the cluster resource. See below for details.
