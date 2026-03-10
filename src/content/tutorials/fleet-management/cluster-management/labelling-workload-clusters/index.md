@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-fleet-management-clusters-labelling-clusters
 user_questions:
   - How can I assign metadata to cluster?
-last_review_date: 2024-11-29
+last_review_date: 2026-03-10
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
@@ -72,6 +72,48 @@ kubectl gs template cluster \
   --label giantswarm.io/service-priority=lowest \
   --label example.tld/environment=testing \
   ...
+```
+
+### Setting labels via App CR YAML (GitOps) {#setting-labels-gitops}
+
+When managing clusters via GitOps, labels are set in the ConfigMap that holds the Helm values for the cluster App CR. Add your labels under `global.metadata.labels`:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-cluster-userconfig
+  namespace: org-my-org
+data:
+  values: |
+    global:
+      metadata:
+        name: my-cluster
+        organization: my-org
+        labels:
+          giantswarm.io/service-priority: highest
+          example.tld/environment: production
+```
+
+If you use Kustomize to manage your cluster definitions, you can patch the ConfigMap values to add labels:
+
+```yaml
+patches:
+  - target:
+      kind: ConfigMap
+      name: my-cluster-userconfig
+    patch: |
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: my-cluster-userconfig
+      data:
+        values: |
+          global:
+            metadata:
+              labels:
+                giantswarm.io/service-priority: highest
+                example.tld/environment: production
 ```
 
 ## Modifying cluster labels
