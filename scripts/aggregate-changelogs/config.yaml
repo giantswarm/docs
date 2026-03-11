@@ -91,6 +91,20 @@ repositories:
     category: Connectivity
   giantswarm/jiralert-app:
     category: Others
+  giantswarm/klaus:
+    category: AI Agents
+  giantswarm/klaus-operator:
+    category: AI Agents
+  giantswarm/klausctl:
+    category: AI Agents
+  giantswarm/klaus-oci:
+    category: AI Agents
+  giantswarm/klaus-toolchains:
+    category: AI Agents
+  giantswarm/klaus-personalities:
+    category: AI Agents
+  giantswarm/klaus-plugins:
+    category: AI Agents
   giantswarm/k8s-dns-node-cache-app:
     category: Connectivity
   giantswarm/karpenter-bundle:
@@ -116,6 +130,8 @@ repositories:
     delete: true
   giantswarm/mimir-app:
     category: Observability
+  giantswarm/muster:
+    category: AI Agents
   giantswarm/observability-bundle:
     category: Observability
   giantswarm/observability-platform-api:
@@ -159,6 +175,8 @@ repositories:
 
 # Here we define the colors for categories.
 categories:
+  - name: AI Agents
+    color: "#667eea"
   - name: CAPA releases
     color: "#ff9900"
   - name: CAPV releases
