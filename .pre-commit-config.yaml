@@ -1,0 +1,20 @@
+repos:
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.45.0
+    hooks:
+      - id: markdownlint
+        args: ["--config", ".markdownlint.yaml"]
+        exclude: "^(README\\.md|src/content/changes/|src/content/vintage/|src/content/reference/platform-api/crd/)"
+
+  - repo: https://github.com/errata-ai/vale
+    rev: v3.11.2
+    hooks:
+      - id: vale
+        args: ["--config", ".vale.ini", "--no-wrap"]
+        files: "^src/content/.*\\.md$"
+
+  - repo: https://github.com/giantswarm/frontmatter-validator
+    rev: v0.5.0
+    hooks:
+      - id: frontmatter-validator
+        args: ['--config=./scripts/frontmatter-validator/config-default.yaml']

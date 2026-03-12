@@ -1,0 +1,106 @@
+name: Monthly Top Contributors
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'  # 1st of every month at 9:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify-top-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get top contributors and send Slack notification
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # Calculate date 30 days ago
+          SINCE=$(date -u -d '30 days ago' '+%Y-%m-%dT%H:%M:%SZ')
+          # Fetch merged PRs from the last 30 days, paginating through all results
+          PAGE=1
+          ALL_PRS=""
+          while true; do
+            RESPONSE=$(gh api "repos/${{ github.repository }}/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=${PAGE}" \
+              --jq '[.[] | select(.merged_at != null and .merged_at >= "'"${SINCE}"'" and .user.type == "User" and (.user.login | endswith("[bot]") | not)) | .user.login]')
+            # Break if no more results
+            if [ "$RESPONSE" = "[]" ] || [ -z "$RESPONSE" ]; then
+              break
+            fi
+            ALL_PRS="${ALL_PRS}${RESPONSE}"
+            PAGE=$((PAGE + 1))
+            # Safety limit
+            if [ "$PAGE" -gt 20 ]; then
+              break
+            fi
+          done
+          # Count PRs per author, sort, and take top 5
+          TOP_CONTRIBUTORS=$(echo "$ALL_PRS" | jq -s 'add // [] | group_by(.) | map({login: .[0], count: length}) | sort_by(-.count) | .[0:5]')
+          CONTRIBUTOR_COUNT=$(echo "$TOP_CONTRIBUTORS" | jq 'length')
+          if [ "$CONTRIBUTOR_COUNT" -eq 0 ]; then
+            echo "No contributors found in the last 30 days. Skipping notification."
+            exit 0
+          fi
+          # Build Slack Block Kit message
+          MONTH=$(date -u -d '1 month ago' '+%B %Y')
+          BLOCKS=$(jq -n --arg month "$MONTH" '{
+            blocks: [
+              {
+                type: "header",
+                text: {
+                  type: "plain_text",
+                  text: ("🏆 Top Contributors — " + $month),
+                  emoji: true
+                }
+              },
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: ("Congratulations to our top contributors by merged PRs last month!")
+                }
+              }
+            ]
+          }')
+          # Add each contributor as a section
+          MEDALS=("🥇" "🥈" "🥉" "4." "5.")
+          for i in $(seq 0 $((CONTRIBUTOR_COUNT - 1))); do
+            LOGIN=$(echo "$TOP_CONTRIBUTORS" | jq -r ".[$i].login")
+            COUNT=$(echo "$TOP_CONTRIBUTORS" | jq -r ".[$i].count")
+            MEDAL="${MEDALS[$i]}"
+            if [ "$COUNT" -eq 1 ]; then
+              PR_WORD="PR"
+            else
+              PR_WORD="PRs"
+            fi
+            BLOCKS=$(echo "$BLOCKS" | jq --arg medal "$MEDAL" --arg login "$LOGIN" --arg count "$COUNT" --arg pr_word "$PR_WORD" \
+              '.blocks += [{
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: ($medal + " <https://github.com/" + $login + "|" + $login + "> — *" + $count + "* merged " + $pr_word)
+                }
+              }]')
+          done
+          # Add footer
+          BLOCKS=$(echo "$BLOCKS" | jq '.blocks += [{type: "divider"}, {
+            type: "context",
+            elements: [{
+              type: "mrkdwn",
+              text: "Keep up the great work! 🎉"
+            }]
+          }]')
+          # Send to Slack
+          HTTP_STATUS=$(curl -s -o /tmp/slack_response.txt -w "%{http_code}" \
+            -X POST -H 'Content-type: application/json' \
+            --data "$BLOCKS" \
+            "$SLACK_WEBHOOK_URL")
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "::error::Slack notification failed with HTTP $HTTP_STATUS"
+            cat /tmp/slack_response.txt
+            exit 1
+          fi
+          echo "Slack notification sent successfully!"
+          echo "$TOP_CONTRIBUTORS" | jq -r '.[] | "  \(.login): \(.count) merged PRs"'
