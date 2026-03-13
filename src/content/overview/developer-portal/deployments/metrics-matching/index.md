@@ -33,7 +33,7 @@ These are derived differently for HelmRelease and App CRs.
 Identifies *which* cluster the workload runs on. Mimir stores metrics from multiple clusters, distinguished by `cluster_id`.
 
 **HelmRelease CRs:**
-- If the HelmRelease has no `spec.kubeConfig`, it targets the management cluster. The cluster name is the installation name (i.e. the cluster the CR was fetched from).
+- If the HelmRelease has no `spec.kubeConfig`, it targets the management cluster. The cluster name is the installation name (that is, the cluster the CR was fetched from).
 - Otherwise, the cluster name comes from the `giantswarm.io/cluster` label.
 
 **App CRs:**
@@ -49,7 +49,7 @@ The namespace where the workload pods actually run. This is **not** the same as 
 - Falls back to the CR's own `metadata.namespace`
 
 **App CRs:**
-- `spec.namespace` (the target deployment namespace, e.g. `kube-system`)
+- `spec.namespace` (the target deployment namespace, for example `kube-system`)
 - Falls back to the CR's own `metadata.namespace`
 
 For example, an App CR in namespace `org-team-tinkerers` can deploy workloads to `kube-system`.
@@ -63,10 +63,10 @@ The prefix used to match workload names via regex (`prefix.*`).
 - Falls back to the CR's `metadata.name`
 
 **App CRs:**
-- `spec.name` (the Helm chart/release name, e.g. `cert-manager-app`)
+- `spec.name` (the Helm chart/release name, for example `cert-manager-app`)
 - Falls back to the CR's `metadata.name`
 
-For App CRs, `spec.name` is critical because `metadata.name` is typically prefixed with the cluster name (e.g. `cicddev-cert-manager`) and does not match the actual workload names.
+For App CRs, `spec.name` is critical because `metadata.name` is typically prefixed with the cluster name (for example `cicddev-cert-manager`) and does not match the actual workload names.
 
 ## Metrics queries
 
@@ -99,7 +99,7 @@ Uses label regex matches based on the name prefix like `deployment=~"prefix.*"` 
 
 ## Examples
 
-### HelmRelease: mimir
+### HelmRelease: `mimir`
 
 | Field | Value |
 |-------|-------|
@@ -107,13 +107,13 @@ Uses label regex matches based on the name prefix like `deployment=~"prefix.*"` 
 | `spec.releaseName` | `mimir` |
 | `spec.targetNamespace` | `mimir` |
 | `giantswarm.io/cluster` | `graveler` |
-| **Resolved cluster_id** | `graveler` |
+| **Resolved `cluster_id`** | `graveler` |
 | **Resolved namespace** | `mimir` |
 | **Resolved prefix** | `mimir` |
 
 Matches: Deployments `mimir-distributor`, `mimir-gateway`, etc. StatefulSets `mimir-ingester`, `mimir-compactor`, etc.
 
-### App CR: cicddev-cert-manager
+### App CR: `cicddev-cert-manager`
 
 | Field | Value |
 |-------|-------|
@@ -122,13 +122,13 @@ Matches: Deployments `mimir-distributor`, `mimir-gateway`, etc. StatefulSets `mi
 | `spec.name` | `cert-manager-app` |
 | `spec.namespace` | `kube-system` |
 | `giantswarm.io/cluster` | `cicddev` |
-| **Resolved cluster_id** | `cicddev` |
+| **Resolved `cluster_id`** | `cicddev` |
 | **Resolved namespace** | `kube-system` |
 | **Resolved prefix** | `cert-manager-app` |
 
 Matches: Deployments `cert-manager-app`, `cert-manager-app-cainjector`, `cert-manager-app-webhook`.
 
-### App CR: cicddev-alloy-logs
+### App CR: `cicddev-alloy-logs`
 
 | Field | Value |
 |-------|-------|
@@ -136,13 +136,13 @@ Matches: Deployments `cert-manager-app`, `cert-manager-app-cainjector`, `cert-ma
 | `spec.name` | `alloy` |
 | `spec.namespace` | `kube-system` |
 | `giantswarm.io/cluster` | `cicddev` |
-| **Resolved cluster_id** | `cicddev` |
+| **Resolved `cluster_id`** | `cicddev` |
 | **Resolved namespace** | `kube-system` |
 | **Resolved prefix** | `alloy` |
 
 Matches: DaemonSet `alloy-logs`, but also DaemonSet/Deployment `alloy-events` (belonging to a different App CR). This is a known limitation of the prefix-based matching approach.
 
-## Known Limitations
+## Known limitations
 
-- **Prefix over-matching**: When `spec.name` is generic (e.g. `alloy`), the `prefix.*` regex may match workloads belonging to sibling App CRs (e.g. `alloy-logs` and `alloy-events` both match `alloy.*`).
+- **Prefix over-matching**: When `spec.name` is generic (for example `alloy`), the `prefix.*` regex may match workloads belonging to sibling App CRs (for example `alloy-logs` and `alloy-events` both match `alloy.*`).
 - **List page deduplication by exact name**: The deployments list page matches CRDs to Mimir workloads by exact chart name or CR name. If the chart name differs from the primary workload name (unusual but possible), the match fails and both appear as separate entries.
