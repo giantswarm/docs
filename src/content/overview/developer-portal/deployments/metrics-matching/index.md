@@ -33,10 +33,12 @@ These are derived differently for HelmRelease and App CRs.
 Identifies *which* cluster the workload runs on. Mimir stores metrics from multiple clusters, distinguished by `cluster_id`.
 
 **HelmRelease CRs:**
+
 - If the HelmRelease has no `spec.kubeConfig`, it targets the management cluster. The cluster name is the installation name (that is, the cluster the CR was fetched from).
 - Otherwise, the cluster name comes from the `giantswarm.io/cluster` label.
 
 **App CRs:**
+
 - If `spec.kubeConfig.inCluster` is `true`, or `spec.kubeConfig.secret.name` equals `{installation}-kubeconfig`, the app targets the management cluster. The cluster name is the installation name.
 - Otherwise, the cluster name comes from the `giantswarm.io/cluster` label.
 
@@ -45,10 +47,12 @@ Identifies *which* cluster the workload runs on. Mimir stores metrics from multi
 The namespace where the workload pods actually run. This is **not** the same as the CR's own namespace.
 
 **HelmRelease CRs:**
+
 - `spec.targetNamespace` (the namespace where Helm installs resources)
 - Falls back to the CR's own `metadata.namespace`
 
 **App CRs:**
+
 - `spec.namespace` (the target deployment namespace, for example `kube-system`)
 - Falls back to the CR's own `metadata.namespace`
 
@@ -59,10 +63,12 @@ For example, an App CR in namespace `org-team-tinkerers` can deploy workloads to
 The prefix used to match workload names via regex (`prefix.*`).
 
 **HelmRelease CRs:**
+
 - `spec.releaseName` (the Helm release name)
 - Falls back to the CR's `metadata.name`
 
 **App CRs:**
+
 - `spec.name` (the Helm chart/release name, for example `cert-manager-app`)
 - Falls back to the CR's `metadata.name`
 
