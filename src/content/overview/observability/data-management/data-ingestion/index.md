@@ -1,12 +1,12 @@
 ---
 title: Data ingestion
-description: Learn how to ingest metrics and logs into the Giant Swarm observability platform.
+description: Learn how to ingest metrics, logs, and traces into the Giant Swarm observability platform.
 weight: 20
 menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-ingestion
-last_review_date: 2025-10-20
+last_review_date: 2026-03-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -15,6 +15,11 @@ user_questions:
   - How do I configure logs, metrics, and traces ingestion?
   - How do I use ServiceMonitors and PodMonitors?
   - How do I configure tracing with OpenTelemetry?
+  - How do I send metrics via OTLP?
+  - How do I send logs via OTLP?
+  - How do I use the OTLP gateway?
+  - How do I configure multi-tenancy for OTLP ingestion?
+  - What is the X-Scope-OrgID header and how do I use it?
 ---
 
 The Giant Swarm Observability Platform provides flexible, self-service data ingestion capabilities for logs, metrics, and traces. By default, all clusters are equipped with the necessary components to collect and forward observability data to the central platform.
@@ -24,7 +29,8 @@ The Giant Swarm Observability Platform provides flexible, self-service data inge
 Each Giant Swarm cluster comes pre-configured with:
 
 - **[Prometheus Operator](https://prometheus-operator.dev/)**: Manages Prometheus instances and provides CRDs for metric collection configuration
-- **[Grafana Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/)**: Acts as the monitoring agent for metrics, logs, and traces collection
+- **[Grafana Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/)**: Acts as the observability agent for metrics, logs, and traces collection
+- **OTLP Gateway** (`otlp-gateway.kube-system.svc`): Accepts OpenTelemetry Protocol (OTLP) data for metrics, logs, and traces and forwards it to the central storage
 - **Central storage**: Metrics are stored in [Grafana Mimir](https://grafana.com/oss/mimir/), logs in [Grafana Loki](https://grafana.com/docs/loki/latest/), and traces in [Grafana Tempo](https://grafana.com/oss/tempo/)
 
 This architecture allows you to configure data collection declaratively using Kubernetes Custom Resources, making it easy to integrate into your existing deployment workflows.
@@ -148,57 +154,75 @@ System logs are automatically collected from these namespaces:
 
 These are managed through predefined PodLogs resources and shouldn't be modified.
 
-## Trace ingestion
+## OTLP ingestion
 
-Starting from cluster release v31 (alpha) and fully supported from v33, the observability platform supports distributed tracing through OpenTelemetry Protocol (OTLP). Traces help you understand request flow and performance across your distributed applications.
+Starting from cluster release v31 (alpha) and fully supported from v33, the observability platform supports ingesting metrics, logs, and traces via the OpenTelemetry Protocol (OTLP) through a cluster-local gateway.
 
-**Important**: Distributed tracing must be enabled through your Account Engineer before configuration.
+**Important**: OTLP ingestion must be enabled through your Account Engineer before use.
 
-### OpenTelemetry instrumentation
+### Endpoint
 
-Before ingesting traces, ensure your application is [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) with OpenTelemetry libraries for your programming language.
+Send OTLP data to:
 
-#### SDK configuration options
+- **gRPC**: `otlp-gateway.kube-system.svc:4317`
+- **HTTP**: `http://otlp-gateway.kube-system.svc:4318`
 
-The OpenTelemetry SDK supports configuration via [standard environment variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration), making it easy to control trace export and resource attributes without code changes. Common options include:
+### SDK configuration
 
-- `OTEL_EXPORTER_OTLP_ENDPOINT`: Sets the OTLP endpoint for trace export (for example `http://otlp-gateway.kube-system.svc:4318`)
-- `OTEL_RESOURCE_ATTRIBUTES`: Defines resource attributes such as `service.name`, `deployment.environment`, etc. Example:
+Before sending data, ensure your application is [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) with OpenTelemetry libraries for your programming language.
 
-  ```yaml
-  env:
-    - name: OTEL_RESOURCE_ATTRIBUTES
-      value: "service.name=shoot"
-  ```
+The OpenTelemetry SDK supports configuration via [standard environment variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration). Common options include:
 
-- `OTEL_TRACES_SAMPLER`: Controls trace sampling strategy (for example `always_on`, `parentbased_always_on`, etc.)
-- `OTEL_TRACES_SAMPLER_ARG`: Additional arguments for the sampler
+| Variable | Description |
+|---|---|
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP gateway endpoint (e.g. `http://otlp-gateway.kube-system.svc:4318`) |
+| `OTEL_METRICS_EXPORTER` | Set to `otlp` to enable metrics export |
+| `OTEL_LOGS_EXPORTER` | Set to `otlp` to enable log export |
+| `OTEL_TRACES_EXPORTER` | Set to `otlp` to enable trace export (usually the SDK default) |
+| `OTEL_RESOURCE_ATTRIBUTES` | Resource attributes such as `service.name`, `deployment.environment` |
+| `OTEL_TRACES_SAMPLER` | Trace sampling strategy (e.g. `always_on`, `parentbased_always_on`) |
+| `OTEL_TRACES_SAMPLER_ARG` | Additional arguments for the sampler |
 
-Refer to the [OpenTelemetry Environment Variable Specification](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) for a full list of supported options.
+### Tenancy
 
-### Configuration
+OTLP data is routed to a tenant using one of two mechanisms:
 
-Once tracing is enabled for your cluster, configure your OpenTelemetry instrumentation to send traces to the cluster-local OTLP endpoint:
+**Option 1: HTTP header** (OTLP/HTTP only, port 4318):
 
-**Endpoint**: `otlp-gateway.kube-system.svc:4317` (gRPC) or `otlp-gateway.kube-system.svc:4318` (HTTP)
+Set the `X-Scope-OrgID` header via the `OTEL_EXPORTER_OTLP_HEADERS` environment variable:
 
-### Pod labeling for traces
+```yaml
+env:
+  - name: OTEL_EXPORTER_OTLP_HEADERS
+    value: "X-Scope-OrgID=my_tenant"
+```
 
-Similar to metrics and logs, traces require proper tenant labeling for data isolation and routing. Add the tenant label to pods that send traces:
+**Option 2: Pod label** (works with both gRPC and HTTP):
+
+Add the tenant label to the pods sending OTLP data:
+
+```yaml
+metadata:
+  labels:
+    observability.giantswarm.io/tenant: my_tenant
+```
+
+The `X-Scope-OrgID` header takes precedence over the pod label when both are present.
+
+### Example
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traced-app
+  name: my-app
   namespace: example-namespace
 spec:
   template:
     metadata:
       labels:
-        # Required for trace data routing
         observability.giantswarm.io/tenant: my_tenant
-        app: traced-app
+        app: my-app
     spec:
       containers:
       - name: app
@@ -206,18 +230,20 @@ spec:
         env:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: "http://otlp-gateway.kube-system.svc:4318"
+        - name: OTEL_METRICS_EXPORTER
+          value: "otlp"
+        - name: OTEL_LOGS_EXPORTER
+          value: "otlp"
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: "service.name=traced-app"
+          value: "service.name=my-app"
 ```
 
-### Supported trace formats
+### Supported formats
 
-The platform supports traces in the following formats:
+- **OTLP/gRPC**: port 4317
+- **OTLP/HTTP**: port 4318
 
-- **OTLP/gRPC**: Native OpenTelemetry protocol over gRPC (port 4317)
-- **OTLP/HTTP**: OpenTelemetry protocol over HTTP (port 4318)
-
-### Trace data considerations
+### Trace-specific considerations
 
 - **Service graphs**: Tempo automatically generates service topology maps from trace data
 - **Metrics generation**: Tempo can generate rate, error, and duration (RED) metrics from spans
@@ -229,7 +255,7 @@ All observability data types use tenant-based routing to ensure data isolation:
 
 - **Metrics**: Use `observability.giantswarm.io/tenant` label on ServiceMonitors/PodMonitors
 - **Logs**: Use `observability.giantswarm.io/tenant` pod label or `giantswarm_observability_tenant` relabeling in PodLogs
-- **Traces**: Use `observability.giantswarm.io/tenant` pod label on trace-producing pods
+- **Metrics, logs, and traces (OTLP)**: Use `X-Scope-OrgID` HTTP header (OTLP/HTTP) or `observability.giantswarm.io/tenant` pod label (gRPC and HTTP). The header takes precedence when both are set.
 
 **Important**: Data sent to non-existent tenants will be dropped. Ensure your tenant exists in a Grafana Organization before configuring data collection.
 
