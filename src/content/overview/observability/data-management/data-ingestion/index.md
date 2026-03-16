@@ -197,7 +197,7 @@ env:
     value: "X-Scope-OrgID=my_tenant"
 ```
 
-**Option 2 — Pod label** (works with both gRPC and HTTP):
+**Option 2: Pod label** (works with both gRPC and HTTP):
 
 Add the tenant label to the pods sending OTLP data:
 
