@@ -187,7 +187,7 @@ The OpenTelemetry SDK supports configuration via [standard environment variables
 
 OTLP data is routed to a tenant using one of two mechanisms:
 
-**Option 1 — HTTP header** (OTLP/HTTP only, port 4318):
+**Option 1: HTTP header** (OTLP/HTTP only, port 4318):
 
 Set the `X-Scope-OrgID` header via the `OTEL_EXPORTER_OTLP_HEADERS` environment variable:
 
