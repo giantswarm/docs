@@ -1,4 +1,4 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:v0.139.3-full AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:v0.146.4-full AS build
 
 WORKDIR /docs
 
