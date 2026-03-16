@@ -254,7 +254,7 @@ spec:
 All observability data types use tenant-based routing to ensure data isolation:
 
 - **Metrics (Prometheus)**: Use `observability.giantswarm.io/tenant` label on ServiceMonitors/PodMonitors
-- **Logs (Alloy)**: Use `observability.giantswarm.io/tenant` pod label or `giantswarm_observability_tenant` relabeling in PodLogs
+- **Logs**: Use `observability.giantswarm.io/tenant` pod label or `giantswarm_observability_tenant` relabeling in PodLogs
 - **Metrics, logs, and traces (OTLP)**: Use `X-Scope-OrgID` HTTP header (OTLP/HTTP) or `observability.giantswarm.io/tenant` pod label (gRPC and HTTP). The header takes precedence when both are set.
 
 **Important**: Data sent to non-existent tenants will be dropped. Ensure your tenant exists in a Grafana Organization before configuring data collection.
