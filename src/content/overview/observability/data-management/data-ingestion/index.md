@@ -28,7 +28,6 @@ The Giant Swarm Observability Platform provides flexible, self-service data inge
 
 Each Giant Swarm cluster comes pre-configured with:
 
-- **[Prometheus Operator](https://prometheus-operator.dev/)**: Manages Prometheus instances and provides CRDs for metric collection configuration
 - **[Grafana Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/)**: Acts as the observability agent for metrics, logs, and traces collection
 - **OTLP Gateway** (`otlp-gateway.kube-system.svc`): Accepts OpenTelemetry Protocol (OTLP) data for metrics, logs, and traces and forwards it to the central storage
 - **Central storage**: Metrics are stored in [Grafana Mimir](https://grafana.com/oss/mimir/), logs in [Grafana Loki](https://grafana.com/docs/loki/latest/), and traces in [Grafana Tempo](https://grafana.com/oss/tempo/)
@@ -39,11 +38,11 @@ This architecture allows you to configure data collection declaratively using Ku
 
 ### Application instrumentation
 
-Before ingesting metrics, ensure your application is properly [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to expose metrics in Prometheus format.
+Before ingesting metrics, ensure your application is properly [instrumented](https://prometheus.io/docs/instrumenting/clientlibs/) to expose metrics in Prometheus format.
 
 ### Using ServiceMonitors
 
-[ServiceMonitors](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml) are the primary way to configure metric collection for applications that expose metrics through a Kubernetes Service.
+[ServiceMonitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.ServiceMonitor) are the primary way to configure metric collection for applications that expose metrics through a Kubernetes Service.
 
 Here's a basic ServiceMonitor example:
 
@@ -69,13 +68,35 @@ spec:
 
 ### Using PodMonitors
 
-[PodMonitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#podmonitorspec) are useful for collecting metrics directly from pods when a Service isn't necessary or doesn't exist.
+[PodMonitors](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.PodMonitor) are useful for collecting metrics directly from pods when a Service isn't necessary or doesn't exist.
 
 Use PodMonitors when:
 
 - Your application doesn't require a Service for its primary function
 - You need to collect metrics from specific pod instances
 - You want more granular control over pod selection
+
+Here is a basic PodMonitor example:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  labels:
+    # Required for discovery by the metrics agent
+    observability.giantswarm.io/tenant: my_tenant
+    app.kubernetes.io/instance: my-app
+  name: my-app
+  namespace: monitoring
+spec:
+  podMetricsEndpoints:
+  - interval: 60s   # Collection frequency
+    path: /metrics  # Metrics endpoint path
+    port: http      # Named port exposing metrics
+  selector:         # Pod label selector
+    matchLabels:
+      app.kubernetes.io/instance: my-app
+```
 
 ### Key requirements
 
