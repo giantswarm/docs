@@ -24,7 +24,7 @@ jobs:
           ALL_PRS=""
           while true; do
             RESPONSE=$(gh api "repos/${{ github.repository }}/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=${PAGE}" \
-              --jq '[.[] | select(.merged_at != null and .merged_at >= "'"${SINCE}"'" and .user.type == "User" and (.user.login | endswith("[bot]") | not)) | .user.login]')
+              --jq '[.[] | select(.merged_at != null and .merged_at >= "'"${SINCE}"'" and .user.type == "User" and (.user.login | test("bot$|\\[bot\\]$"; "i") | not)) | .user.login]')
             # Break if no more results
             if [ "$RESPONSE" = "[]" ] || [ -z "$RESPONSE" ]; then
               break
@@ -89,7 +89,7 @@ jobs:
             type: "context",
             elements: [{
               type: "mrkdwn",
-              text: "Keep up the great work! 🎉"
+              text: "Your work will be rewarded by Docs God in next life! 🎉"
             }]
           }]')
           # Send to Slack
