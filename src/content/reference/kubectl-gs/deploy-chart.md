@@ -15,7 +15,7 @@ user_questions:
 
 The `deploy chart` command allows to deploy a Helm chart in a Giant Swarm workload or management cluster.
 
-The command makes two key assumtions:
+The command makes two key assumptions:
 
 1. Your current kubectl context is the Giant Swarm management cluster of the installation to deploy to (regardless whether you deploy to a workload cluster or the management cluster).
 2. You use an OCI registry as the source of the chart.
@@ -74,7 +74,7 @@ If the command knows the values schema of the chart to deploy, it will use it to
 
 **Note**: Values in ConfigMap and Secret resources referenced via `--values-from` are not validated by the command.
 
-To find the values schema for the chart, the command looks for the annotation `io.giantswarm.application.values-schema` in the chart's OCI repository manifest, specifically for the tag specified via the `--version` flag (or the latest, if not given). The command expects to find a HTTP(s) URL pointing to the schema.
+To find the values schema for the chart, the command looks for the annotation `io.giantswarm.application.values-schema` in the chart's OCI repository manifest, specifically for the tag specified via the `--version` flag (or the latest, if not given). The command expects to find an HTTP(s) URL pointing to the schema.
 
 For example, the chart `oci://gsoci.azurecr.io/charts/giantswarm/hello-world:3.0.0` has this annotation:
 
@@ -97,7 +97,7 @@ kubectl gs deploy chart \
   --target-namespace hello
 ```
 
-**Note:** If the `--version` flag is ommitted, the latest version will be found and deployed. "Latest" here means the highest version number in the [Semantic Versioning](https://semver.org/) sense.
+**Note:** If the `--version` flag is omitted, the latest version will be found and deployed. "Latest" here means the highest version number in the [Semantic Versioning](https://semver.org/) sense.
 
 ### Deploy a chart from a custom registry
 

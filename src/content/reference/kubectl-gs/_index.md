@@ -34,6 +34,7 @@ aliases:
 | [`get nodepools`][5]          | [List node pools or get details on a single node pool][5]        |
 | [`get organizations`][15]     | [List organizations or get details on a single organization][15] |
 | [`get releases`][11]          | [List releases or get details on a single release][11]           |
+| [`deploy chart`][16]          | [Deploys a Helm chart in a cluster][16]                          |
 | [`gitops`][14]                | [Gathers GitOps related subcommands][14]                          |
 | [`template app`][6]           | [Create manifests for an app][6]                                 |
 | [`template catalog`][7]       | [Create manifests for a catalog][7]                              |
@@ -116,3 +117,4 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [13]: {{< relref "/reference/kubectl-gs/update-cluster" >}}
 [14]: {{< relref "/reference/kubectl-gs/gitops" >}}
 [15]: {{< relref "/reference/kubectl-gs/get-organizations" >}}
+[16]: {{< relref "/reference/kubectl-gs/deploy-chart" >}}
