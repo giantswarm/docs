@@ -53,7 +53,7 @@ These flags are optional:
 
 The command prints the latest version found and reports once resources are created. Example:
 
-```
+```nohighlight
 Resolved latest version: 0.2.11
 Applied Secret org-marian/mg23c-mychart-registry
 Applied OCIRepository org-marian/mg23c-mychart
