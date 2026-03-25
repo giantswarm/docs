@@ -10,7 +10,7 @@ menu:
   principal:
     identifier: reference-kubectlgs
     parent: reference
-last_review_date: 2024-11-25
+last_review_date: 2026-03-25
 user_questions:
   - Which commands does kubectl-gs offer?
 owner:
@@ -35,8 +35,7 @@ aliases:
 | [`get organizations`][15]     | [List organizations or get details on a single organization][15] |
 | [`get releases`][11]          | [List releases or get details on a single release][11]           |
 | [`deploy chart`][16]          | [Deploys a Helm chart in a cluster][16]                          |
-| [`gitops`][14]                | [Gathers GitOps related subcommands][14]                          |
-| [`template app`][6]           | [Create manifests for an app][6]                                 |
+| [`gitops`][14]                | [Gathers GitOps related subcommands][14]                         |
 | [`template catalog`][7]       | [Create manifests for a catalog][7]                              |
 | [`template cluster`][8]       | [Create manifests for a cluster][8]                              |
 | [`template organization`][10] | [Create manifest for an organization][10]                        |
@@ -108,7 +107,6 @@ As a Giant Swarm customer, feel free to use your Slack channel to give feedback,
 [3]: {{< relref "/reference/kubectl-gs/get-catalogs" >}}
 [4]: {{< relref "/reference/kubectl-gs/get-clusters" >}}
 [5]: {{< relref "/reference/kubectl-gs/get-nodepools" >}}
-[6]: {{< relref "/reference/kubectl-gs/template-app" >}}
 [7]: {{< relref "/reference/kubectl-gs/template-catalog" >}}
 [8]: {{< relref "/reference/kubectl-gs/template-cluster" >}}
 [10]: {{< relref "/reference/kubectl-gs/template-organization" >}}
