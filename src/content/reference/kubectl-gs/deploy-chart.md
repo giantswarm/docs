@@ -2,7 +2,7 @@
 linkTitle: deploy chart
 title: "'kubectl gs deploy chart' command reference"
 description: Reference documentation on how to deploy a Helm chart using 'kubectl gs'.
-weight: 15
+weight: 19
 menu:
   principal:
     parent: reference-kubectlgs
