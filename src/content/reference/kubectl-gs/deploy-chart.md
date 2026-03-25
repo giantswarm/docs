@@ -38,29 +38,26 @@ It requires the following flags:
 
 These flags are optional:
 
-- `--auto-upgrade` - Auto-upgrade strategy (one of: `all`, `minor`, `patch`).
+- `--auto-upgrade` - Auto-upgrade strategy (one of: `all`, `minor`, `patch`). More details in the [auto-upgrade section](#auto-upgrade) below.
 - `--dry-run` - Perform server-side validation and configuration validation against schema without applying. Prints manifests to stdout.
-- `--interval` - Reconciliation interval for OCIRepository and HelmRelease (default: `10m`).
-- `--name` - Override the resource name (default: `<cluster>-<chart-name>`).
-- `--oci-url-prefix` - OCI URL prefix for the chart registry (default: `oci://gsoci.azurecr.io/charts/giantswarm/`).
-- `--registry-provider` - Cloud provider for registry authentication via workload identity (one of: `aws`, `azure`, `gcp`). When set, no registry Secret is created.
-- `--registry-username` - Username for private OCI registry authentication. Password is read from `KUBECTL_GS_REGISTRY_PASSWORD` or prompted interactively.
+- `--interval` - Reconciliation interval for OCIRepository and HelmRelease (default: `10m` for ten minutes). Also accepts units `s` and `h`.
+- `--name` - Override the name for generated resources. As a default, OCIRepository and Helmreleases will be named using the pattern `<cluster>-<chart-name>`. Also Secrets for registry access (if generated) have that name prefix, with the `-registry` suffix. This flag allows to customize these names. When in doubt, use `--dry-run` and check the outcome.
+- `--oci-url-prefix` - OCI URL prefix for the chart registry. Prepended to the `--chart-name` value, this should result in a valid OCI repository URL. Defaults to `oci://gsoci.azurecr.io/charts/giantswarm/` for public Giant Swarm charts.
+- `--registry-provider` - Allows Flux to use other authentication means than username/password for private registries on AWS, Azure, and GCP. Hence value can be one of `aws`, `azure`, `gcp`. The value is applied to the [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/#provider) attribute `.spec.provider`.
+- `--registry-username` - Username for "generic" (in Flux terms) private OCI registry authentication. Password is read from `KUBECTL_GS_REGISTRY_PASSWORD` or prompted interactively.
 - `--values-file` - Path to a YAML file with chart values.
 - `--values-from` - Reference to a ConfigMap or Secret containing chart values (format: `ConfigMap/name` or `Secret/name`). Can be specified multiple times.
 - `--version` - Chart version to deploy. If not specified, the latest version found in the registry is used.
 
-## Output
+## Auto-upgrade options {#auto-upgrade}
 
-The command prints the latest version found and reports once resources are created. Example:
+The `--auto-upgrade` flag accepts three values:
 
-```nohighlight
-Resolved latest version: 0.2.11
-Applied Secret org-marian/mg23c-mychart-registry
-Applied OCIRepository org-marian/mg23c-mychart
-Applied HelmRelease org-marian/mg23c-mychart
-```
+- `all`: All future versions will be picked up, as long as they have a higher version number in a SemVer sense.
+- `minor`: Minor and patch upgrades will be deployed automatically.
+- `patch`: Only patch upgrades will be deployed automatically.
 
-With the `--dry-run` flag set, the command will print the manifest to STDOUT instead of creating resources. Progress output is written to STDERR.
+If you need an upgrade logic that is not provided here, you might want to first run the command with `--dry-run` to create a manifest and then edit the `.spec.ref.semver` field in the [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/#reference) resource manifest to fit your needs.
 
 ## Configuration
 
@@ -83,6 +80,19 @@ For example, the chart `oci://gsoci.azurecr.io/charts/giantswarm/hello-world:3.0
 ```
 
 For charts that don't provide this annotation, the validation is skipped.
+
+## Output
+
+The command prints the latest version found and reports once resources are created. Example:
+
+```nohighlight
+Resolved latest version: 0.2.11
+Applied Secret org-marian/mg23c-mychart-registry
+Applied OCIRepository org-marian/mg23c-mychart
+Applied HelmRelease org-marian/mg23c-mychart
+```
+
+With the `--dry-run` flag set, the command will print the manifest to STDOUT instead of creating resources. Progress output is written to STDERR.
 
 ## Examples
 
