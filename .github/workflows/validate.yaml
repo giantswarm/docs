@@ -47,7 +47,7 @@ jobs:
 
       - name: Send front matter annotations
         if: ${{ env.found_front_matter_issues == 'true' }}
-        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+        uses: yuzutech/annotations-action@00b2d488bcba3bd01014dc073d276ef4a45d5c6c # v0.6.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: Front matter problems
@@ -78,7 +78,7 @@ jobs:
 
       - name: Send markdownlint annotations
         if: ${{ env.found_markdown_issues == 'true' }}
-        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+        uses: yuzutech/annotations-action@00b2d488bcba3bd01014dc073d276ef4a45d5c6c # v0.6.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           title: markdownlint problems
@@ -182,7 +182,7 @@ jobs:
 
       - name: Send annotations for moved or deleted files
         if: ${{ env.deletes_or_moves_files == 'true' }}
-        uses: yuzutech/annotations-action@0e061a6e3ac848299310b6429b60d67cafd4e7f8 # v0.5.0
+        uses: yuzutech/annotations-action@00b2d488bcba3bd01014dc073d276ef4a45d5c6c # v0.6.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           input: ./mvdel-annotations.json
