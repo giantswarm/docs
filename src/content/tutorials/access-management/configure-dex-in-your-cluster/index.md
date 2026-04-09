@@ -122,6 +122,7 @@ oidc:
         - email
         - groups
         - profile
+        - offline_access
         issuer: https://KEYCLOAK_HOST/realms/master
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
@@ -214,6 +215,7 @@ oidc:
         - email
         - groups
         - profile
+        - offline_access
         issuer: https://OKTA_OIDC_ENDPOINT
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
