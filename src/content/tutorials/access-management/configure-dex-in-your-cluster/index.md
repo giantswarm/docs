@@ -10,9 +10,9 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2025-01-09
+last_review_date: 2026-04-09
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-bigmac
+  - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
 ## Introduction
@@ -122,6 +122,7 @@ oidc:
         - email
         - groups
         - profile
+        - offline_access
         issuer: https://KEYCLOAK_HOST/realms/master
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
@@ -214,6 +215,7 @@ oidc:
         - email
         - groups
         - profile
+        - offline_access
         issuer: https://OKTA_OIDC_ENDPOINT
         redirectURI: https://dex.CLUSTER_NAME.BASE_DOMAIN/callback
 ```
