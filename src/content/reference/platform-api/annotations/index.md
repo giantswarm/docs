@@ -67,6 +67,12 @@ Found on the AWSCluster resource for Cluster API provider AWS (CAPA) clusters. S
 
 More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.25.0/pkg/annotation/capa.go#L37-L39)
 
+### network.giantswarm.io/wildcard-cname-target
+
+Used on a cluster resource to define the CNAME target for the wildcard domain created by Giant Swarm operators in the cluster's DNS zone. The annotation value is the subdomain part only — operators construct the full target by appending the cluster's base domain.
+
+For example, setting this annotation to `gateway` results in the wildcard DNS record pointing to `gateway.<baseDomain>`. The default value is `ingress`.
+
 ### reconcile.fluxcd.io/requestedAt
 
 On a Flux resource, this annotation indicates that a Flux reconciliation has been requested. More info in the [Flux docs on HelmReleases, for example](https://fluxcd.io/flux/components/helm/helmreleases/#triggering-a-reconcile).
