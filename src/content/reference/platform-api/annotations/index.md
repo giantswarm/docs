@@ -10,7 +10,7 @@ menu:
 weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2025-02-20
+last_review_date: 2026-04-14
 user_questions:
   - What annotations are used in Kubernetes resources by Giant Swarm?
 ---
