@@ -135,7 +135,7 @@ spec:
     configMap:
       name: <CLUSTER_NAME>-gateway-api-bundle
       namespace: org-<ORGANIZATION>
-  version: 1.10.2
+  version: 1.15.0
 ```
 
 Check the [bundle repository](https://github.com/giantswarm/gateway-api-bundle) for the latest version of the `gateway-api-bundle`. For all available configuration options, see the `values.yaml` files in the [gateway-api-bundle repository](https://github.com/giantswarm/gateway-api-bundle/blob/main/helm/gateway-api-bundle/values.yaml), [gateway-api-config-app repository](https://github.com/giantswarm/gateway-api-config-app/blob/main/helm/gateway-api-config/values.yaml) and [envoy-gateway-app repository](https://github.com/giantswarm/envoy-gateway-app/blob/main/helm/envoy-gateway/values.yaml).
