@@ -47,7 +47,7 @@ The legacy `--oidc-*` flags only allowed a single issuer per API server and offe
 - Multiple issuers on the same API server, so you can serve internal and external users from different Identity Providers (IdPs) at once.
 - Common Expression Language (CEL) expressions for validating tokens and mapping claims, including conditional logic on arbitrary claims.
 - Per-issuer CA bundles and discovery URLs, useful for private providers whose issuer URL doesn't match the discovery endpoint.
-- Declarative configuration that ships via a `ConfigMap` and is picked up by the API server on a rolling restart.
+- Declarative configuration using a specific file `AuthenticationConfiguration` templated via cluster app.
 
 **Note**: Before Kubernetes v1.34, clusters could use [Dex (Auth Bundle)](https://docs.giantswarm.io/tutorials/access-management/configure-dex-in-your-cluster/) to plug more than one IdPs to authenticate your users. The solution will still work with newer versions but it is encouraged to switch to standard method and avoid maintain multiple on-top components. In case of migration feel free to contact your account engineer to assists on the steps.
 
