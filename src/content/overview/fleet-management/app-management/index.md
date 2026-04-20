@@ -95,8 +95,6 @@ Giant Swarm makes sure all the main components of the app are running and that t
 
 In case of an alert, operations team perform an root cause analysis (RCA) to understand if it's a Giant Swarm or customer-inflicted issue that broke the application.
 
-__Note__: In general, Giant Swarm doesn't fix bugs in upstream projects, however our team will always try to find a solution to an issue, or the root cause of the issue and submit a ticket to the upstream project when relevant to do so. In certain instances, our engineers may attempt to fix the bug where it's necessary and possible for us, and provide the fix to the upstream project. This can result in Giant Swarm temporarily running an intermediate patch version whilst waiting for upstream to release a new version containing our patch. Customers can expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
-
 - Configurations and plugins
 
 The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app. The application configuration is the customer's responsibility. In other words, configurations that derail from the default ones have to be tested and maintained by the customer. Giant Swarm is always happy to help in validating whether those configurations adhere to best-practices and test them together with the customer, but it's the latter's responsibility to actually deploy those configurations in their environments according to their deployment processes and maintenance windows.
