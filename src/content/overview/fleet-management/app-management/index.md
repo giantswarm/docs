@@ -21,7 +21,7 @@ user_questions:
   - How can I create an organizational app catalog?
   - How can I interact with the Giant Swarm App Platform?
   - Can I create an app catalog?
-last_review_date: 2024-10-22
+last_review_date: 2026-04-20
 ---
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as `prometheus`) from a single place; the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
