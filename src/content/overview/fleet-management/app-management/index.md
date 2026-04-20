@@ -21,7 +21,7 @@ user_questions:
   - How can I create an organizational app catalog?
   - How can I interact with the Giant Swarm App Platform?
   - Can I create an app catalog?
-last_review_date: 2024-10-22
+last_review_date: 2026-04-20
 ---
 
 The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as `prometheus`) from a single place; the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
@@ -94,8 +94,6 @@ The `helm` chart is ready to use and tested, either sanitizing the upstream fork
 Giant Swarm makes sure all the main components of the app are running and that the app is working as expected. At the same time, our automation set up monitoring and alerting on necessary metrics to ensure our service level agreements.
 
 In case of an alert, operations team perform an root cause analysis (RCA) to understand if it's a Giant Swarm or customer-inflicted issue that broke the application.
-
-__Note__: In general, Giant Swarm doesn't fix bugs in upstream projects, however our team will always try to find a solution to an issue, or the root cause of the issue and submit a ticket to the upstream project when relevant to do so. In certain instances, our engineers may attempt to fix the bug where it's necessary and possible for us, and provide the fix to the upstream project. This can result in Giant Swarm temporarily running an intermediate patch version whilst waiting for upstream to release a new version containing our patch. Customers can expect the same level of service for a managed optional app as they get with "default" apps such as `coredns`.
 
 - Configurations and plugins
 
