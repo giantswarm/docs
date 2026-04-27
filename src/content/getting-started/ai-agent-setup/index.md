@@ -9,7 +9,7 @@ menu:
     identifier: getting-started-ai-agent-setup
 last_review_date: 2026-02-27
 owner:
-  - https://github.com/orgs/giantswarm/teams/sig-docs
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How do I use AI assistants with my Kubernetes clusters?
   - How do I set up Muster with VS Code or Cursor?
