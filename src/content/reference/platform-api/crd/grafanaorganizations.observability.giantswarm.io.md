@@ -12,7 +12,7 @@ crd:
   technical_name: grafanaorganizations.observability.giantswarm.io
   scope: Cluster
   source_repository: https://github.com/giantswarm/observability-operator
-  source_repository_ref: v0.67.2
+  source_repository_ref: v0.68.0
   versions:
     - v1alpha1
     - v1alpha2
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
 technical_name: grafanaorganizations.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/observability-operator
-source_repository_ref: v0.67.2
+source_repository_ref: v0.68.0
 ---
 
 # GrafanaOrganization
@@ -413,6 +413,25 @@ Forbidden value: &ldquo;__mimir_cluster&rdquo; (enforced by validating webhook)<
 
 <div class="property-description">
 <p>Name is the name of the data source.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.displayName">.status.displayName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>DisplayName records the last display name successfully applied to the Grafana
+organization referenced by OrgID.</p>
 
 </div>
 
@@ -827,6 +846,27 @@ More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architec
 
 <div class="property-description">
 <p>Name is the name of the data source.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.status.displayName">.status.displayName</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>DisplayName records the last display name successfully applied to the Grafana
+organization referenced by OrgID. The reconciler uses it to tell a legitimate
+CR rename (status.displayName matches what is currently in Grafana at that ID)
+apart from a stale OrgID that now points to an organization owned by another CR.</p>
 
 </div>
 
