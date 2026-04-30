@@ -163,7 +163,7 @@ When you deploy a `PrometheusRule` in a management cluster, rules target all clu
 
 ## Tenant federation
 
-With Alloy 1.9, the platform supports tenant federation, letting you create rules based on other tenants' data without duplicating data intake. Just add the `monitoring.grafana.com/source_tenants` label to your `PrometheusRule`.
+With Alloy 1.9, the platform supports tenant federation, letting you create rules based on other tenants' data without duplicating data intake. Just add the `monitoring.grafana.com/source_tenants` annotation to your `PrometheusRule`.
 
 ### Example: System metrics alerting
 
@@ -171,10 +171,11 @@ With Alloy 1.9, the platform supports tenant federation, letting you create rule
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  labels:
-    observability.giantswarm.io/tenant: my_tenant
+  annotations:
     # Define the source tenant for metrics used in the alert
     monitoring.grafana.com/source_tenants: giantswarm
+  labels:
+    observability.giantswarm.io/tenant: my_tenant
   name: system-node-alerts
   namespace: my-namespace
 spec:
