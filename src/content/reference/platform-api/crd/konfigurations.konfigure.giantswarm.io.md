@@ -12,7 +12,7 @@ crd:
   technical_name: konfigurations.konfigure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/konfigure-operator
-  source_repository_ref: v1.1.0
+  source_repository_ref: v1.2.1
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /use-the-api/management-api/crd/konfigurations.konfigure.giantswarm.io/
 technical_name: konfigurations.konfigure.giantswarm.io
 source_repository: https://github.com/giantswarm/konfigure-operator
-source_repository_ref: v1.1.0
+source_repository_ref: v1.2.1
 ---
 
 # Konfiguration

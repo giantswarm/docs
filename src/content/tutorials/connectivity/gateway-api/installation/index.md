@@ -59,7 +59,7 @@ spec:
     configMap:
       name: <CLUSTER_NAME>-gateway-api-bundle
       namespace: org-<ORGANIZATION>
-  version: 1.4.0
+  version: 1.15.0
 ```
 
 Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until the child apps are deployed (CRDs, Envoy Gateway, and Gateway default config).
