@@ -19,7 +19,7 @@ owner:
 ---
 
 {{% notice warning %}}
-**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
 {{% /notice %}}
 
 Next to using the default ingress-nginx controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using services of type `LoadBalancer`.

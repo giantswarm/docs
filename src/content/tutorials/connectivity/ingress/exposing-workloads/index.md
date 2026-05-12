@@ -13,7 +13,7 @@ user_questions:
 ---
 
 {{% notice warning %}}
-**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
 {{% /notice %}}
 
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:

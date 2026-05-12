@@ -20,7 +20,7 @@ owner:
 ---
 
 {{% notice warning %}}
-**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
 {{% /notice %}}
 
 ingress-nginx controller handles [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
@@ -140,5 +140,5 @@ For the second ingress-nginx controller installation, ingress class name and hos
 - [Services of type LoadBalancer]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}})
 - [Installing an ingress controller]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}})
 - [Ingress nginx controller configuration options](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml)
-- [Upstream ingress-nginx controller configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
-- [Upstream ingress-nginx controller multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)
+- [upstream ingress-nginx controller configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [upstream ingress-nginx controller multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)

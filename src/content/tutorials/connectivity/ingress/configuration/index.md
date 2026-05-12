@@ -33,7 +33,7 @@ owner:
 ---
 
 {{% notice warning %}}
-**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
 {{% /notice %}}
 
 The [ingress-nginx controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
