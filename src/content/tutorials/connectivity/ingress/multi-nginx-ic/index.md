@@ -46,7 +46,7 @@ Further information on configuring ingress-nginx controller can be found on the 
 
 ## Set the ingress class name of each ingress
 
-__Note__: if you are running multiple ingress controllers, you need to use the appropriate `ingressClassName` in your ingress resources, for example.
+**Note**: if you are running multiple ingress controllers, you need to use the appropriate `ingressClassName` in your ingress resources, for example.
 
 ```yaml
 ...

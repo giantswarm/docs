@@ -26,7 +26,7 @@ Next to using the default ingress-nginx controller, on cloud providers (currentl
 
 You can use this to [expose single services](#service-of-type-lb) to the internet. It's also possible, to [install additional ingress-nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
 
-__Note__: that this functionality can't be used on premises in most of the occasions.
+**Note**: that this functionality can't be used on premises in most of the occasions.
 
 ## Exposing a single service {#service-of-type-lb}
 
