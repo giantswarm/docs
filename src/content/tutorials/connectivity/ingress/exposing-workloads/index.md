@@ -5,16 +5,16 @@ weight: 10
 aliases:
   - /getting-started/connectivity/exposing-workloads
   - /vintage/getting-started/connectivity/exposing-workloads
-menu:
-  principal:
-    parent: tutorials-connectivity-ingress
-    identifier: tutorials-connectivity-ingress-ic
 last_review_date: 2025-09-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How can I connect my applications to the internet using an ingress controller?
 ---
+
+{{% notice warning %}}
+**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+{{% /notice %}}
 
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:
 

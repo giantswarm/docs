@@ -2,10 +2,6 @@
 title: Advanced ingress configuration
 description: Here we describe how you can customize and enable specific features for the ingress-nginx controller.
 weight: 20
-menu:
-  principal:
-    parent: tutorials-connectivity-ingress
-    identifier: tutorials-connectivity-ingress-configuration
 user_questions:
   - How can I allow only certain IPs for ingress access?
   - How can I assign requests to different services, based on the address path?
@@ -35,6 +31,10 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
+
+{{% notice warning %}}
+**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+{{% /notice %}}
 
 The [ingress-nginx controller](https://github.com/kubernetes/ingress-nginx) has additional configuration options and features that can be customized. The functionality is split into two categories:
 

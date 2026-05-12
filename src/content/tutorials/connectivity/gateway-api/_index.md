@@ -2,7 +2,7 @@
 linkTitle: Gateway API
 title: Gateway API
 description: Learn how to use the Kubernetes Gateway API with Envoy Gateway in Giant Swarm workload clusters for advanced traffic management, load balancing, and API gateway functionality.
-weight: 25
+weight: 15
 menu:
   principal:
     parent: tutorials-connectivity

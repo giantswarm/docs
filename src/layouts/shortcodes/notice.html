@@ -1,0 +1,5 @@
+{{ $type := .Get 0 | default "warning" }}
+<div class="well disclaimer notice--{{ $type }}">
+  <i class="fa fa-warning"></i>
+  {{ .Inner }}
+</div>

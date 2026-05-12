@@ -3,10 +3,6 @@ linkTitle: Multiple ingress-nginx controllers
 title: Running multiple ingress-nginx controllers
 description: Deploy multiple ingress-nginx controllers in a Kubernetes cluster to separate different ingress traffic classes.
 weight: 20
-menu:
-  principal:
-    parent: tutorials-connectivity-ingress
-    identifier: tutorials-connectivity-ingress-multi-ic
 user_questions:
   - How do I install multiple ingress-nginx controllers?
   - How do I separate internal and external Services?
@@ -22,6 +18,10 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
+
+{{% notice warning %}}
+**Deprecated:** Ingress NGINX is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+{{% /notice %}}
 
 ingress-nginx controller handles [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
