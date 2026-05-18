@@ -110,20 +110,20 @@ nodePools:
 
 ### NVIDIA GPU DRA driver
 
-Install the NVIDIA DRA driver using Helm:
+Giant Swarm publishes a downstream build of the NVIDIA DRA driver, [`dra-driver-nvidia-gpu`](https://github.com/giantswarm/dra-driver-nvidia-gpu), that is patched to work on the Flatcar Container Linux NVIDIA bundle shipped with current Giant Swarm releases. The upstream chart's kubelet-plugin container hits dangling absolute symlinks inside its driver-root bind mount and fails to locate `nvidia-smi`; this build adds optional extra search paths and host mounts to resolve them. Install it from the `giantswarm` catalog:
 
-1. Add the NVIDIA Helm repository:
+1. Add the Giant Swarm catalog Helm repository:
 
 ```bash
-helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
+helm repo add giantswarm-catalog https://giantswarm.github.io/giantswarm-catalog
 helm repo update
 ```
 
-1. Install the NVIDIA DRA driver:
+1. Install the DRA driver:
 
 ```bash
-helm install nvidia-dra-driver-gpu nvidia/nvidia-dra-driver-gpu \
-  --version="25.3.2" \
+helm install dra-driver-nvidia-gpu giantswarm-catalog/dra-driver-nvidia-gpu \
+  --version="25.3.2-flatcar.1" \
   --namespace kube-system \
   --set kubeletPlugin.tolerations[0].key="nvidia.com/gpu" \
   --set kubeletPlugin.tolerations[0].operator="Exists" \
@@ -138,14 +138,14 @@ helm install nvidia-dra-driver-gpu nvidia/nvidia-dra-driver-gpu \
 Verify that the DRA driver pods are running:
 
 ```bash
-kubectl get pods -n kube-system -l app.kubernetes.io/name=nvidia-dra-driver-gpu
+kubectl get pods -n kube-system -l app.kubernetes.io/name=dra-driver-nvidia-gpu
 ```
 
 Expected output:
 
 ```text
 NAME                                         READY   STATUS    RESTARTS   AGE
-nvidia-dra-driver-gpu-kubelet-plugin-52cdm   1/1     Running   0          46s
+dra-driver-nvidia-gpu-kubelet-plugin-52cdm   1/1     Running   0          46s
 ```
 
 ### Verify ResourceSlice objects
