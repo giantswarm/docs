@@ -116,17 +116,24 @@ Giant Swarm publishes a downstream build of the NVIDIA DRA driver, [`dra-driver-
 
 ```bash
 cat > dra-values.yaml <<EOF
-  kubeletPlugin:
-    tolerations:
-    - key: "nvidia.com/gpu"
-      operator: "Exists"
-      effect: "NoSchedule"
-  resources:
-    gpus:
-      enabled: false
+kubeletPlugin:
+  tolerations:
+  - key: "nvidia.com/gpu"
+    operator: "Exists"
+    effect: "NoSchedule"
+resources:
+  gpus:
+    enabled: false
 EOF
 ```
 
+1. Create a configmap with the values in the organization namespace:
+
+```bash
+kubectl create configmap dra-driver-nvidia-gpu-user-values \
+  --from-file=values=dra-values.yaml \
+  --namespace=org-ORGANIZATION
+```
 
 1. Install the DRA driver:
 
@@ -136,7 +143,8 @@ kubectl gs template app \
   --cluster-name=CLUSTER_NAME \
   --organization=ORGANIZATION \
   --name=dra-driver-nvidia-gpu \
-  --user-configmap=dra-values.yaml
+  --app-name=dra-driver-nvidia-gpu \
+  --user-configmap=dra-driver-nvidia-gpu-user-values \
   --target-namespace=kube-system \
   --version=25.3.2-flatcar.1 > dra-driver.yaml
 
