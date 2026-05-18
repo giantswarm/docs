@@ -22,7 +22,7 @@ user_questions:
   - How can I use ingress-nginx controller as a Web Application Firewall?
   - How can I protect my workload from malicious requests?
   - How can I enable & configure ModSecurity inside of the ingress-nginx controller?
-last_review_date: 2025-09-22
+last_review_date: 2026-05-18
 aliases:
   - /vintage/advanced/connectivity/ingress/configuration
   - /advanced/connectivity/ingress/configuration

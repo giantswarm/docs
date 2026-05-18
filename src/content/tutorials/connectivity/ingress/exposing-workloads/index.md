@@ -5,7 +5,7 @@ weight: 10
 aliases:
   - /getting-started/connectivity/exposing-workloads
   - /vintage/getting-started/connectivity/exposing-workloads
-last_review_date: 2025-09-22
+last_review_date: 2026-05-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:

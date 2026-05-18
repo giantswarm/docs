@@ -7,7 +7,7 @@ aliases:
   - /getting-started/connectivity/ingress-controller
   - /vintage/getting-started/connectivity/ingress-controller
   - /advanced/connectivity/ingress
-last_review_date: 2026-05-12
+last_review_date: 2026-05-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:

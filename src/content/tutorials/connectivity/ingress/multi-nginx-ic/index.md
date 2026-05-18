@@ -9,7 +9,7 @@ user_questions:
   - How do I configure ingress-nginx controller for internal traffic?
   - How do I override the NodePorts on KVM ingresses?
   - How do I configure ingress-nginx controller to allow weak ciphers?
-last_review_date: 2025-09-22
+last_review_date: 2026-05-18
 aliases:
   - /vintage/advanced/connectivity/ingress/multi-nginx-ic
   - /advanced/connectivity/ingress/multi-nginx-ic
