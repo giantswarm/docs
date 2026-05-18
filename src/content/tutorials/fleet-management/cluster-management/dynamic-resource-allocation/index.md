@@ -14,7 +14,7 @@ user_questions:
   - What is Dynamic Resource Allocation and how does it differ from traditional GPU scheduling?
   - How can I use DRA for GPU workloads in Kubernetes?
   - What are the prerequisites for enabling DRA in my workload cluster?
-last_review_date: 2025-10-14
+last_review_date: 2026-05-18
 ---
 
 Dynamic Resource Allocation (DRA) is a Kubernetes feature that provides a more flexible and extensible way to request and allocate hardware resources like GPUs. Unlike traditional device plugins that only support simple counting of identical resources, DRA enables fine-grained resource selection based on device attributes and capabilities.
@@ -110,25 +110,37 @@ nodePools:
 
 ### NVIDIA GPU DRA driver
 
-Giant Swarm publishes a downstream build of the NVIDIA DRA driver, [`dra-driver-nvidia-gpu`](https://github.com/giantswarm/dra-driver-nvidia-gpu), that is patched to work on the Flatcar Container Linux NVIDIA bundle shipped with current Giant Swarm releases. The upstream chart's kubelet-plugin container hits dangling absolute symlinks inside its driver-root bind mount and fails to locate `nvidia-smi`; this build adds optional extra search paths and host mounts to resolve them. Install it from the `giantswarm` catalog:
+Giant Swarm publishes a downstream build of the NVIDIA DRA driver, [`dra-driver-nvidia-gpu`](https://github.com/giantswarm/dra-driver-nvidia-gpu), that is patched to work on the Flatcar Container Linux shipped with current Giant Swarm releases. Install it from the `giantswarm` catalog:
 
-1. Add the Giant Swarm catalog Helm repository:
+1. Create the configuration values:
 
 ```bash
-helm repo add giantswarm-catalog https://giantswarm.github.io/giantswarm-catalog
-helm repo update
+cat > dra-values.yaml <<EOF
+  kubeletPlugin:
+    tolerations:
+    - key: "nvidia.com/gpu"
+      operator: "Exists"
+      effect: "NoSchedule"
+  resources:
+    gpus:
+      enabled: false
+EOF
 ```
+
 
 1. Install the DRA driver:
 
 ```bash
-helm install dra-driver-nvidia-gpu giantswarm-catalog/dra-driver-nvidia-gpu \
-  --version="25.3.2-flatcar.1" \
-  --namespace kube-system \
-  --set kubeletPlugin.tolerations[0].key="nvidia.com/gpu" \
-  --set kubeletPlugin.tolerations[0].operator="Exists" \
-  --set kubeletPlugin.tolerations[0].effect="NoSchedule" \
-  --set resources.gpus.enabled=false
+kubectl gs template app \
+  --catalog=giantswarm \
+  --cluster-name=CLUSTER_NAME \
+  --organization=ORGANIZATION \
+  --name=dra-driver-nvidia-gpu \
+  --user-configmap=dra-values.yaml
+  --target-namespace=kube-system \
+  --version=25.3.2-flatcar.1 > dra-driver.yaml
+
+kubectl apply -f dra-driver.yaml
 ```
 
 ## Verify DRA setup
