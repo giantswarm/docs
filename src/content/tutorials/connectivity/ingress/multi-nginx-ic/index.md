@@ -3,17 +3,13 @@ linkTitle: Multiple ingress-nginx controllers
 title: Running multiple ingress-nginx controllers
 description: Deploy multiple ingress-nginx controllers in a Kubernetes cluster to separate different ingress traffic classes.
 weight: 20
-menu:
-  principal:
-    parent: tutorials-connectivity-ingress
-    identifier: tutorials-connectivity-ingress-multi-ic
 user_questions:
   - How do I install multiple ingress-nginx controllers?
   - How do I separate internal and external Services?
   - How do I configure ingress-nginx controller for internal traffic?
   - How do I override the NodePorts on KVM ingresses?
   - How do I configure ingress-nginx controller to allow weak ciphers?
-last_review_date: 2025-09-22
+last_review_date: 2026-05-18
 aliases:
   - /vintage/advanced/connectivity/ingress/multi-nginx-ic
   - /advanced/connectivity/ingress/multi-nginx-ic
@@ -22,6 +18,10 @@ aliases:
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
+
+{{% notice warning %}}
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+{{% /notice %}}
 
 ingress-nginx controller handles [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources, routing traffic from outside the Kubernetes cluster to services within the cluster.
 
@@ -46,7 +46,7 @@ Further information on configuring ingress-nginx controller can be found on the 
 
 ## Set the ingress class name of each ingress
 
-__Note__: if you are running multiple ingress controllers, you need to use the appropriate `ingressClassName` in your ingress resources, for example.
+**Note**: if you are running multiple ingress controllers, you need to use the appropriate `ingressClassName` in your ingress resources, for example.
 
 ```yaml
 ...
@@ -140,5 +140,5 @@ For the second ingress-nginx controller installation, ingress class name and hos
 - [Services of type LoadBalancer]({{< relref "/tutorials/connectivity/ingress/service-type-loadbalancer" >}})
 - [Installing an ingress controller]({{< relref "/getting-started/install-an-application#install-ingress-controller" >}})
 - [Ingress nginx controller configuration options](https://github.com/giantswarm/ingress-nginx-app/blob/main/helm/ingress-nginx/values.yaml)
-- [Upstream ingress-nginx controller configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
-- [Upstream ingress-nginx controller multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)
+- [upstream ingress-nginx controller configuration documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+- [upstream ingress-nginx controller multi-nginx documentation](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/)

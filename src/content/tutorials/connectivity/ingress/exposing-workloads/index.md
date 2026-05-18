@@ -5,16 +5,16 @@ weight: 10
 aliases:
   - /getting-started/connectivity/exposing-workloads
   - /vintage/getting-started/connectivity/exposing-workloads
-menu:
-  principal:
-    parent: tutorials-connectivity-ingress
-    identifier: tutorials-connectivity-ingress-ic
-last_review_date: 2025-09-22
+last_review_date: 2026-05-18
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
   - How can I connect my applications to the internet using an ingress controller?
 ---
+
+{{% notice warning %}}
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+{{% /notice %}}
 
 Once you have some workload running on your cluster, you might want to access it from outside your cluster. Creating an Ingress resource is the canonical way to do that:
 
@@ -26,7 +26,7 @@ Before we explain how to set up ingress for a service, please read the next sect
 
 Setting up ingress means to make services publicly available via DNS names. For an application facing the public, you will eventually want to set up names ending in your own domain.
 
-However, for development or test purposes, you can use the fact that every Giant Swarm installation maps to a DNS zone. We call this the __ingress base domain__.
+However, for development or test purposes, you can use the fact that every Giant Swarm installation maps to a DNS zone. We call this the **ingress base domain**.
 
 In our cloud installation, for example, the ingress base domain is
 

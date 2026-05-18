@@ -2,7 +2,7 @@
 linkTitle: Gateway API
 title: Gateway API
 description: Learn how to use the Kubernetes Gateway API with Envoy Gateway in Giant Swarm workload clusters for advanced traffic management, load balancing, and API gateway functionality.
-weight: 25
+weight: 15
 menu:
   principal:
     parent: tutorials-connectivity
@@ -14,7 +14,7 @@ user_questions:
   - What is the difference between Gateway API and Ingress?
   - How do I configure Envoy Gateway for my workloads?
   - What are the Gateway API components and how do they work together?
-last_review_date: 2025-10-17
+last_review_date: 2026-05-18
 ---
 
 The Kubernetes Gateway API is the next-generation standard for managing ingress traffic in Kubernetes clusters. It provides a more expressive, extensible, and role-oriented approach to traffic management compared to traditional Ingress resources. Giant Swarm supports Gateway API through Envoy Gateway, providing advanced load balancing, traffic routing, and API gateway capabilities.

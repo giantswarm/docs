@@ -3,17 +3,13 @@ linkTitle: Load balancer services
 title: Services of type LoadBalancer
 description: Learn how to expose services directly on cloud providers through services of type LoadBalancer.
 weight: 30
-menu:
-  principal:
-    parent: tutorials-connectivity-ingress
-    identifier: tutorials-connectivity-ingress-lb
 user_questions:
   - How can I expose services to the internet?
   - How do I configure an ingress controller behind an ELB for traffic between services within the VPC?
   - How do I configure an ingress controller behind an ELB that terminates SSL?
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
-last_review_date: 2025-09-22
+last_review_date: 2026-05-18
 aliases:
   - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
@@ -22,11 +18,15 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
 
+{{% notice warning %}}
+**Deprecated:** Ingress Nginx is no longer offered by Giant Swarm. This page is kept for reference. Migrate to [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/" >}}) — see the [migration guide]({{< relref "/tutorials/connectivity/gateway-api/ingress-nginx-migration/" >}}).
+{{% /notice %}}
+
 Next to using the default ingress-nginx controller, on cloud providers (currently AWS and Azure), you can expose services directly outside your cluster by using services of type `LoadBalancer`.
 
 You can use this to [expose single services](#service-of-type-lb) to the internet. It's also possible, to [install additional ingress-nginx controllers]({{< relref "/tutorials/connectivity/ingress/multi-nginx-ic" >}}) to expose a subset of your services with a different ingress controller configuration.
 
-__Note__: that this functionality can't be used on premises in most of the occasions.
+**Note**: that this functionality can't be used on premises in most of the occasions.
 
 ## Exposing a single service {#service-of-type-lb}
 
