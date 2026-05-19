@@ -51,16 +51,12 @@ kubectl gs template app \
   --name=kuberay-operator \
   --organization=${ORGANIZATION} \
   --target-namespace=kuberay-system \
-  --version=1.1.0 > kuberay-operator.yaml
+  --version=1.1.0 2>/dev/null > kuberay-operator.yaml
 
 kubectl apply -f kuberay-operator.yaml
 ```
 
-{{< notice tip >}}
-`kubectl gs template app` prints a deprecation banner to stdout in recent releases of `kubectl gs`. The `2>/dev/null` redirect drops the banner so it doesn't end up in the generated YAML and break `kubectl apply`. The newer `kubectl gs deploy chart` subcommand also works.
-{{< /notice >}}
-
-Check [the catalog](https://github.com/giantswarm/giantswarm-catalog) for the latest published `kuberay-operator` chart version and bump `--version` accordingly.
+**Note**: `kubectl gs template app` may print a deprecation banner in latest releases of `kubectl gs` related to a transition how apps are deployed. That is why we are redirecting the stderr.
 
 ### Verifying the installation
 
@@ -194,9 +190,8 @@ Save this configuration as `ray-cluster.yaml` and apply it:
 kubectl apply -f ray-cluster.yaml
 ```
 
-{{< notice info >}}
-**GPU workloads.** The manifest above schedules Ray workers on any node. If you want workers to land on GPU nodes, add a `runtimeClassName: nvidia` plus a toleration for the `nvidia.com/gpu` taint to the worker `template.spec`. Drop those settings on non-GPU clusters — they prevent scheduling there.
-{{< /notice >}}
+**Note**:  The manifest above schedules `Ray` workers on any node. If you want workers to land on GPU nodes, add a `runtimeClassName: nvidia` plus a toleration for the `nvidia.com/gpu` taint to the worker `template.spec`. Drop those settings on non-GPU clusters, they prevent scheduling there.
+
 
 ### Verifying the Ray cluster deployment
 
