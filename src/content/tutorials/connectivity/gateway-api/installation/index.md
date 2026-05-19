@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2025-12-04
+last_review_date: 2026-05-18
 ---
 
 ## Prerequisites
@@ -23,9 +23,7 @@ Before setting up Gateway API, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
 - Basic understanding of Kubernetes networking concepts
-- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) is required for configuring AWS Network Load Balancers.
-
-In case you can not install `aws-load-balancer-controller` or don't want to use AWS Network Load Balancers, you can set `gateways.default.provider.aws.useNetworkLoadBalancer=false` in `gatewayApiConfig.userConfig.configMap` of the bundle.
+- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers.
 
 ## Installation
 
