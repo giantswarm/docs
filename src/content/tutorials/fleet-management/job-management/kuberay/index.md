@@ -51,7 +51,7 @@ kubectl gs template app \
   --name=kuberay-operator \
   --organization=${ORGANIZATION} \
   --target-namespace=kuberay-system \
-  --version=1.0.0 2>/dev/null > kuberay-operator.yaml
+  --version=1.1.0 > kuberay-operator.yaml
 
 kubectl apply -f kuberay-operator.yaml
 ```
