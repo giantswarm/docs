@@ -84,7 +84,7 @@ Output:
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/automatic-updates
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/automatic-updates/imageupdate.yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: demomc-updates
@@ -114,7 +114,7 @@ spec:
     strategy: Setters
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world/imagepolicy.yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: demowc-hello-world
@@ -126,7 +126,7 @@ spec:
       range: '>=0.0.0'
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world/imagerepository.yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: demowc-hello-world

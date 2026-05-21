@@ -109,7 +109,7 @@ metadata:
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-clusters-demowc
@@ -198,7 +198,7 @@ metadata:
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-clusters-demowc
@@ -266,7 +266,7 @@ resources:
 - demowc.yaml
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-clusters-demowc
@@ -329,7 +329,7 @@ metadata:
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-clusters-demowc
@@ -423,7 +423,7 @@ resources:
 - demowc.yaml
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-clusters-demowc

@@ -59,7 +59,7 @@ mkdir automatic-updates
 Later on, define the image update configuration in the `imageupdate.yaml` file on the new folder:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: ${WC_NAME}-updates
@@ -88,7 +88,7 @@ spec:
 Now, in the app folder create the `imagerepository.yaml` file to configure registry to scan for new tags:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: ${APP_NAME}
@@ -101,7 +101,7 @@ spec:
 In the same app folder also create the `imagepolicy.yaml` file with tag selection rules:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
@@ -184,7 +184,7 @@ resources:
 Last step, you can create the `imagerepository.yaml` file referencing the newly created secret:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: ${cluster_name}-hello-world

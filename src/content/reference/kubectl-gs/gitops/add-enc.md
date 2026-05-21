@@ -107,7 +107,7 @@ l4tii6CxXhmtEgs=
 
 ## MODIFY ##
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-gitops
@@ -193,7 +193,7 @@ metadata:
   name: sops-gpg-master
 
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-gitops
@@ -272,7 +272,7 @@ metadata:
   name: sops-gpg-demowc
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-clusters-demowc

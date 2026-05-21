@@ -77,7 +77,7 @@ Output:
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-gitops
@@ -123,7 +123,7 @@ Output:
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-gitops
