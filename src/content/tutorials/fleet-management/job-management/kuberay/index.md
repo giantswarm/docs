@@ -56,7 +56,7 @@ kubectl gs template app \
 kubectl apply -f kuberay-operator.yaml
 ```
 
-**Note**: `kubectl gs template app` may print a deprecation banner in latest releases of `kubectl gs` related to a transition how apps are deployed. That is why we are redirecting the stderr.
+**Note**: `kubectl gs template app` may print a deprecation banner in latest releases of `kubectl gs` related to a transition how apps are deployed. That is why we are redirecting the `stderr`.
 
 ### Verifying the installation
 
@@ -191,7 +191,6 @@ kubectl apply -f ray-cluster.yaml
 ```
 
 **Note**:  The manifest above schedules `Ray` workers on any node. If you want workers to land on GPU nodes, add a `runtimeClassName: nvidia` plus a toleration for the `nvidia.com/gpu` taint to the worker `template.spec`. Drop those settings on non-GPU clusters, they prevent scheduling there.
-
 
 ### Verifying the Ray cluster deployment
 
