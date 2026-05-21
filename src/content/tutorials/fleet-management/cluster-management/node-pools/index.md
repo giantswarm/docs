@@ -476,7 +476,7 @@ Using multiple instance types in a node pool has some benefits:
 
 On {{% impl_title "capa_ec2" %}}, you can run worker nodes on the AWS Graviton (arm64) instance families by setting the `architecture` field on a node pool. The cluster's control plane is always x86_64. This applies to worker pools only.
 
-Available starting with Giant Swarm release version 35 (`cluster-aws` v8.5.0).
+Available starting with Giant Swarm release version 35.
 
 Three settings must stay aligned for an arm64 pool to come up:
 
