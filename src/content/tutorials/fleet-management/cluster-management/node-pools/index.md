@@ -472,7 +472,7 @@ Using multiple instance types in a node pool has some benefits:
 
 - Even without spot instances, AWS has a limited number of instances per type in each Availability Zone. It can happen that your selected instance type is temporarily out of stock just in the moment you are in demand of more worker nodes. Allowing the node pool to use multiple instance types reduces this risk and increases the likelihood that your node pool can grow when in need.
 
-## Using arm64 worker nodes (only {{% impl_title "capa_ec2" %}}) {#arm64-nodes}
+## Using arm64 worker nodes {#arm64-nodes}
 
 On {{% impl_title "capa_ec2" %}}, you can run worker nodes on the AWS Graviton (arm64) instance families by setting the `architecture` field on a node pool. The cluster's control plane is always x86_64. This applies to worker pools only.
 
