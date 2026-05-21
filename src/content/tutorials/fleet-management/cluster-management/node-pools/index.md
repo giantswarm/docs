@@ -85,6 +85,8 @@ worker  mycluster-pool0  ip-10-1-6-225.eu-central-1.compute.internal
 worker  mycluster-pool0  ip-10-1-6-67.eu-central-1.compute.internal
 ```
 
+To run a pool on AWS Graviton (arm64) instance types, see [Using arm64 worker nodes](#arm64-nodes) below.
+
 {{< /tab >}}
 {{< tab id="nodepool-capa-karpenter-config" for-impl="capa_ec2_karpenter" >}}
 
@@ -469,6 +471,67 @@ Using multiple instance types in a node pool has some benefits:
 - Together with spot instances, using multiple instance types allows better price optimization. Popular instance types tend to have more price adjustments. Allowing older-generation instance types that are less popular tends to result in lower costs and fewer interruptions.
 
 - Even without spot instances, AWS has a limited number of instances per type in each Availability Zone. It can happen that your selected instance type is temporarily out of stock just in the moment you are in demand of more worker nodes. Allowing the node pool to use multiple instance types reduces this risk and increases the likelihood that your node pool can grow when in need.
+
+## Using arm64 worker nodes (only {{% impl_title "capa_ec2" %}}) {#arm64-nodes}
+
+On {{% impl_title "capa_ec2" %}}, you can run worker nodes on the AWS Graviton (arm64) instance families by setting the `architecture` field on a node pool. The cluster's control plane is always x86_64; this applies to worker pools only.
+
+Available starting with Giant Swarm release version 35 (`cluster-aws` v8.5.0).
+
+Three settings must stay aligned for an arm64 pool to come up:
+
+- **`architecture: arm64`** — selects the matching CAPI Flatcar arm64 AMI.
+- **`instanceType`** — must be an arm64 family (for example `m7g.xlarge`, `t4g.medium`). x86_64 instance types will fail to boot.
+- **A `kubernetes.io/arch=arm64:NoSchedule` taint** under `customNodeTaints` — prevents amd64-only workloads from being scheduled onto the pool. This taint is not auto-injected, intentionally, so it doesn't override existing taint configuration.
+
+Example values mixing x86_64 and arm64 pools in the same cluster:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    giantswarm.io/cluster: test-cluster
+  name: test-cluster-userconfig
+  namespace: org-giantswarm
+data:
+  values: |
+    global:
+      metadata:
+        name: test-cluster
+        organization: giantswarm
+      nodePools:
+        worker-amd:
+          instanceType: m5.xlarge
+          minSize: 1
+          maxSize: 3
+        worker-arm:
+          instanceType: m7g.xlarge
+          architecture: arm64
+          minSize: 1
+          maxSize: 3
+          customNodeTaints:
+          - key: kubernetes.io/arch
+            value: arm64
+            effect: NoSchedule
+      providerSpecific:
+        region: "eu-west-1"
+      release:
+        version: 35.0.0
+```
+
+Pods that should run on the arm64 pool need a matching toleration and a `kubernetes.io/arch: arm64` `nodeSelector` (or `nodeAffinity`):
+
+```yaml
+spec:
+  tolerations:
+  - key: kubernetes.io/arch
+    operator: Equal
+    value: arm64
+    effect: NoSchedule
+  nodeSelector:
+    kubernetes.io/arch: arm64
+```
 
 ## Node pools and autoscaling {#autoscaling}
 
