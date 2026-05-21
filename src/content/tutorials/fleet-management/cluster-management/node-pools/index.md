@@ -474,15 +474,15 @@ Using multiple instance types in a node pool has some benefits:
 
 ## Using arm64 worker nodes (only {{% impl_title "capa_ec2" %}}) {#arm64-nodes}
 
-On {{% impl_title "capa_ec2" %}}, you can run worker nodes on the AWS Graviton (arm64) instance families by setting the `architecture` field on a node pool. The cluster's control plane is always x86_64; this applies to worker pools only.
+On {{% impl_title "capa_ec2" %}}, you can run worker nodes on the AWS Graviton (arm64) instance families by setting the `architecture` field on a node pool. The cluster's control plane is always x86_64. This applies to worker pools only.
 
 Available starting with Giant Swarm release version 35 (`cluster-aws` v8.5.0).
 
 Three settings must stay aligned for an arm64 pool to come up:
 
-- **`architecture: arm64`** — selects the matching CAPI Flatcar arm64 AMI.
-- **`instanceType`** — must be an arm64 family (for example `m7g.xlarge`, `t4g.medium`). x86_64 instance types will fail to boot.
-- **A `kubernetes.io/arch=arm64:NoSchedule` taint** under `customNodeTaints` — prevents amd64-only workloads from being scheduled onto the pool. This taint is not auto-injected, intentionally, so it doesn't override existing taint configuration.
+- **`architecture: arm64`**: selects the matching CAPI Flatcar arm64 Amazon Machine Image (AMI).
+- **`instanceType`**: must be an arm64 family (for example `m7g.xlarge`, `t4g.medium`). x86_64 instance types will fail to boot.
+- **A `kubernetes.io/arch=arm64:NoSchedule` taint** under `customNodeTaints`: prevents amd64-only workloads from being scheduled onto the pool. This taint is not added automatically, intentionally, so it doesn't override existing taint configuration.
 
 Example values mixing x86_64 and arm64 pools in the same cluster:
 
