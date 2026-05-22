@@ -484,7 +484,7 @@ Three settings must stay aligned for an arm64 pool to come up:
 - **`instanceType`**: must be an arm64 family (for example `m7g.xlarge`, `t4g.medium`). x86_64 instance types will fail to boot.
 - **A `kubernetes.io/arch=arm64:NoSchedule` taint** under `customNodeTaints`: prevents amd64-only workloads from being scheduled onto the pool. This taint is not added automatically, intentionally, so it doesn't override existing taint configuration.
 
-Example values mixing x86_64 and arm64 pools in the same cluster:
+An example of configuration values mixing x86_64 and arm64 pools in the same cluster:
 
 ```yaml
 apiVersion: v1
