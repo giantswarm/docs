@@ -11,7 +11,7 @@ user_questions:
   - How can I enable and configure auto update for apps deployment with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-05-21
 ---
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
