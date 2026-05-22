@@ -6,7 +6,7 @@ weight: 15
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2024-11-25
+last_review_date: 2026-05-21
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -77,7 +77,7 @@ Output:
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-gitops
@@ -123,7 +123,7 @@ Output:
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc
 /tmp/gitops-demo/management-clusters/demomc/demomc.yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: demomc-gitops
