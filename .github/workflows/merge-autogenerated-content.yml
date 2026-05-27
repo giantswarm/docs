@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Update self-generated content branch with main branch changes
-        uses: prompt/actions-merge-branch@701d2a3e181424b84ebb58c95531d1d64fc3eccc # v2
+        uses: prompt/actions-merge-branch@701d2a3e181424b84ebb58c95531d1d64fc3eccc # v2.1.0
         with:
           from: "origin/main"
 
