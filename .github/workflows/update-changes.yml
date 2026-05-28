@@ -43,9 +43,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          title: "Semi-automatic update of generated content"
+          title: "chore: update generated content"
           branch: "automatic-update-of-generated-content"
-          commit-message: "Update self-generated content"
+          commit-message: "chore: update generated content"
           assignees: taylorbot
           reviewers: pipo02mix
           body: |
