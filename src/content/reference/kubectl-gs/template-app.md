@@ -6,7 +6,7 @@ weight: 70
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-11-25
+last_review_date: 2026-03-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -15,6 +15,8 @@ user_questions:
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-app/
 ---
+
+**This command is deprecated and will be removed in a future version of kubectl-gs.**
 
 The `template app` command allows to create a manifest for an app to be installed in a workload cluster. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 

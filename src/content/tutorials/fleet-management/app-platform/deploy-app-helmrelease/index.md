@@ -14,6 +14,8 @@ user_questions:
 last_review_date: 2025-12-05
 ---
 
+**Note:** The CLI command [kubectl gs deploy chart]({{< relref "/reference/kubectl-gs/deploy-chart" >}}) simplifies deploying a chart as described on this page a lot. We recommend that you look into the CLI command first, and come back here if your find that your use case is not covered by the CLI command.
+
 ## Background
 
 Giant Swarm management clusters use Flux and Helm to deliver resources to clusters. This may be used as an alternative to [App resources]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for more advanced control.

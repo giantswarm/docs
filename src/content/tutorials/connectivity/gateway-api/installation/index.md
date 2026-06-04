@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2025-12-04
+last_review_date: 2026-05-18
 ---
 
 ## Prerequisites
@@ -23,9 +23,7 @@ Before setting up Gateway API, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
 - Basic understanding of Kubernetes networking concepts
-- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) is required for configuring AWS Network Load Balancers.
-
-In case you can not install `aws-load-balancer-controller` or don't want to use AWS Network Load Balancers, you can set `gateways.default.provider.aws.useNetworkLoadBalancer=false` in `gatewayApiConfig.userConfig.configMap` of the bundle.
+- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers.
 
 ## Installation
 
@@ -59,7 +57,7 @@ spec:
     configMap:
       name: <CLUSTER_NAME>-gateway-api-bundle
       namespace: org-<ORGANIZATION>
-  version: 1.4.0
+  version: 1.15.0
 ```
 
 Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until the child apps are deployed (CRDs, Envoy Gateway, and Gateway default config).
@@ -212,3 +210,15 @@ data:
 ```
 
 You can add multiple listeners to the same Gateway to accept traffic from different domains. Each listener can have its own configuration for TLS certificates, DNS endpoints, and subdomain lists, allowing you to manage multiple domains within a single Gateway resource. The `giantswarm-default` gateway comes with 2 listeners enabled by default: one on port 80 (HTTP) and one on port 443 (HTTPS). Keep in mind that there is a limit of 64 listeners per Gateway, and each listener must have a unique combination of port, protocol, and hostname.
+
+## Troubleshooting
+
+Envoy Gateway provides the `egctl` command-line tool for diagnostics. To get an overview of the status of all Gateway API resources across all namespaces, run:
+
+```bash
+egctl x status all -A
+```
+
+This displays the status conditions (such as `Accepted`, `Programmed`, or `ResolvedRefs`) for GatewayClasses, Gateways, HTTPRoutes, and other Gateway API resources, making it easier to spot misconfigurations or issues.
+
+Find more information about the command in the [official documentation](https://gateway.envoyproxy.io/docs/tasks/operations/egctl/).

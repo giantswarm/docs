@@ -75,11 +75,13 @@ A shortcode is used in a markdown file like this:
 
 ### Content linting
 
-When writing docs content, the linter can help you a great deal to keep the content consistent and clean. You can run the linter with:
+When writing docs content, the linters can help you a great deal to keep the content consistent and clean. Ideally run the linters as pre-commit hooks.
 
-```sh
-make lint-prose
-```
+To install: `pre-commit install --install-hooks`.
+
+Linters will then be executed automatically before committing.
+
+The `vale` linter will check spelling. If vale complaints about a word that is spelled correctly, add it to the [dictionary](.vale/styles/config/vocabularies/docs/accept.txt). If the term is a technical identifier like `CAPMOXDatastoreAlloc`, don't add it to the dictionary, and wrap it in backticks instead.
 
 When editing content in Microsoft Visual Studio Code, you can also use the [vale-vscode](https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vale-vscode) extension to see errors and editing suggestions while you write.
 

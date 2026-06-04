@@ -20,233 +20,9 @@ The `cluster-cloud-director` chart templates all the VMware infrastructure resou
 
 ## Chart configuration reference
 
-###  {#}
+### Connectivity {#connectivity}
 
----
-
-`.internal.apiServer`
-
-**Type:** `object`
-
----
-
-`.internal.apiServer.enableAdmissionPlugins`
-
-**Type:** `array`
-
-**Admission plugins**
-
-List of admission plugins to be passed to the API server via the --enable-admission-plugins flag.
-
-**Default:** `["DefaultStorageClass","DefaultTolerationSeconds","LimitRanger","MutatingAdmissionWebhook","NamespaceLifecycle","PersistentVolumeClaimResize","Priority","ResourceQuota","ServiceAccount","ValidatingAdmissionWebhook"]`
-
----
-
-`.internal.apiServer.enableAdmissionPlugins[*]`
-
-**Type:** `string`
-
-**Plugin**
-
-**Examples:** `"DefaultStorageClass"`, `"Priority"`
-
-**Value pattern:** `^[A-Za-z0-9]+$`
-
----
-
-`.internal.apiServer.featureGates`
-
-**Type:** `array`
-
-**Feature gates**
-
-API server feature gate activation/deactivation.
-
-**Default:** `[]`
-
----
-
-`.internal.apiServer.featureGates[*]`
-
-**Type:** `object`
-
-**Feature gate**
-
----
-
-`.internal.apiServer.featureGates[*].enabled`
-
-**Type:** `boolean`
-
-**Enabled**
-
----
-
-`.internal.apiServer.featureGates[*].name`
-
-**Type:** `string`
-
-**Name**
-
-**Example:** `"UserNamespacesStatelessPodsSupport"`
-
-**Value pattern:** `^[A-Za-z0-9]+$`
-
----
-
-`.internal.ciliumNetworkPolicy`
-
-**Type:** `object`
-
-**CiliumNetworkPolicies**
-
----
-
-`.internal.ciliumNetworkPolicy.enabled`
-
-**Type:** `boolean`
-
-**Enable CiliumNetworkPolicies**
-
-Installs the network-policies-app (deny all by default) if set to true
-
-**Default:** `true`
-
----
-
-`.internal.controllerManager`
-
-**Type:** `object`
-
-**Controller manager**
-
----
-
-`.internal.controllerManager.featureGates`
-
-**Type:** `array`
-
-**Feature gates**
-
-Controller manager feature gate activation/deactivation.
-
-**Default:** `[]`
-
----
-
-`.internal.controllerManager.featureGates[*]`
-
-**Type:** `object`
-
-**Feature gate**
-
----
-
-`.internal.controllerManager.featureGates[*].enabled`
-
-**Type:** `boolean`
-
-**Enabled**
-
----
-
-`.internal.controllerManager.featureGates[*].name`
-
-**Type:** `string`
-
-**Name**
-
-**Example:** `"UserNamespacesStatelessPodsSupport"`
-
-**Value pattern:** `^[A-Za-z0-9]+$`
-
----
-
-`.internal.kubernetesVersion`
-
-**Type:** `string`
-
-**Kubernetes version**
-
----
-
-`.internal.parentUid`
-
-**Type:** `string`
-
-**Management cluster UID**
-
-If set, create the cluster from a specific management cluster associated with this UID.
-
----
-
-`.internal.rdeId`
-
-**Type:** `string`
-
-**Runtime defined entity (RDE) identifier**
-
-This cluster's RDE ID in the VCD API.
-
----
-
-`.internal.sandboxContainerImage`
-
-**Type:** `object`
-
-**Sandbox Container image (pause container)**
-
----
-
-`.internal.sandboxContainerImage.name`
-
-**Type:** `string`
-
-**Repository**
-
-**Default:** `"giantswarm/pause"`
-
----
-
-`.internal.sandboxContainerImage.registry`
-
-**Type:** `string`
-
-**Registry**
-
-**Default:** `"quay.io"`
-
----
-
-`.internal.sandboxContainerImage.tag`
-
-**Type:** `string`
-
-**Tag**
-
-**Default:** `"3.9"`
-
----
-
-`.internal.skipRde`
-
-**Type:** `boolean`
-
-**Skip RDE**
-
-Set to true if the API schema extension is installed in the correct version in VCD to create CAPVCD entities in the API. Set to false otherwise.
-
----
-
-`.internal.useAsManagementCluster`
-
-**Type:** `boolean`
-
-**Display as management cluster**
-
-**Default:** `false`
-
-### Connectivity {#connectivity}Configurations related to cluster connectivity such as container registries.
+Configurations related to cluster connectivity such as container registries.
 
 ---
 
@@ -254,7 +30,7 @@ Set to true if the API schema extension is installed in the correct version in V
 
 **Type:** `object`
 
-**Container registries**
+**Container registries:**
 
 Endpoints and credentials configuration for container registries.
 
@@ -278,7 +54,7 @@ Endpoints and credentials configuration for container registries.
 
 **Type:** `object`
 
-**Credentials**
+**Credentials:**
 
 Credentials for the endpoint.
 
@@ -288,7 +64,7 @@ Credentials for the endpoint.
 
 **Type:** `string`
 
-**Auth**
+**Auth:**
 
 Base64-encoded string from the concatenation of the username, a colon, and the password.
 
@@ -298,7 +74,7 @@ Base64-encoded string from the concatenation of the username, a colon, and the p
 
 **Type:** `string`
 
-**Identity token**
+**Identity token:**
 
 Used to authenticate the user and obtain an access token for the registry.
 
@@ -308,7 +84,7 @@ Used to authenticate the user and obtain an access token for the registry.
 
 **Type:** `string`
 
-**Password**
+**Password:**
 
 Used to authenticate for the registry with username/password.
 
@@ -318,7 +94,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Username**
+**Username:**
 
 Used to authenticate for the registry with username/password.
 
@@ -328,7 +104,7 @@ Used to authenticate for the registry with username/password.
 
 **Type:** `string`
 
-**Endpoint**
+**Endpoint:**
 
 Endpoint for the container registry.
 
@@ -338,7 +114,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Network**
+**Network:**
 
 ---
 
@@ -346,7 +122,7 @@ Endpoint for the container registry.
 
 **Type:** `object`
 
-**Control plane endpoint**
+**Control plane endpoint:**
 
 Kubernetes API endpoint.
 
@@ -356,7 +132,7 @@ Kubernetes API endpoint.
 
 **Type:** `string`
 
-**Host**
+**Host:**
 
 ---
 
@@ -364,7 +140,7 @@ Kubernetes API endpoint.
 
 **Type:** `integer`
 
-**Port number**
+**Port number:**
 
 **Default:** `6443`
 
@@ -374,7 +150,7 @@ Kubernetes API endpoint.
 
 **Type:** `array`
 
-**Extra OVDC networks**
+**Extra OVDC networks:**
 
 OVDC networks to attach VMs to, additionally.
 
@@ -390,7 +166,7 @@ OVDC networks to attach VMs to, additionally.
 
 **Type:** `array`
 
-**Host entries**
+**Host entries:**
 
 ---
 
@@ -404,7 +180,7 @@ OVDC networks to attach VMs to, additionally.
 
 **Type:** `string`
 
-**FQDN**
+**FQDN:**
 
 ---
 
@@ -412,7 +188,7 @@ OVDC networks to attach VMs to, additionally.
 
 **Type:** `string`
 
-**IP address**
+**IP address:**
 
 ---
 
@@ -420,7 +196,7 @@ OVDC networks to attach VMs to, additionally.
 
 **Type:** `object`
 
-**Load Balancers**
+**Load Balancers:**
 
 ---
 
@@ -428,7 +204,7 @@ OVDC networks to attach VMs to, additionally.
 
 **Type:** `string`
 
-**Virtual IP subnet**
+**Virtual IP subnet:**
 
 Virtual IP CIDR for the external network.
 
@@ -438,7 +214,7 @@ Virtual IP CIDR for the external network.
 
 **Type:** `object`
 
-**Pods**
+**Pods:**
 
 ---
 
@@ -462,7 +238,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `object`
 
-**Services**
+**Services:**
 
 ---
 
@@ -486,7 +262,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `array`
 
-**Static routes**
+**Static routes:**
 
 ---
 
@@ -500,7 +276,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `string`
 
-**Destination**
+**Destination:**
 
 IPv4 address range in CIDR notation.
 
@@ -512,7 +288,7 @@ IPv4 address range in CIDR notation.
 
 **Type:** `string`
 
-**Via**
+**Via:**
 
 ---
 
@@ -520,7 +296,7 @@ IPv4 address range in CIDR notation.
 
 **Type:** `object`
 
-**Time synchronization (NTP)**
+**Time synchronization (NTP):**
 
 Servers/pools to synchronize this cluster's clocks with.
 
@@ -530,7 +306,7 @@ Servers/pools to synchronize this cluster's clocks with.
 
 **Type:** `array`
 
-**Pools**
+**Pools:**
 
 ---
 
@@ -538,7 +314,7 @@ Servers/pools to synchronize this cluster's clocks with.
 
 **Type:** `string`
 
-**Pool**
+**Pool:**
 
 **Example:** `"ntp.ubuntu.com"`
 
@@ -548,7 +324,7 @@ Servers/pools to synchronize this cluster's clocks with.
 
 **Type:** `array`
 
-**Servers**
+**Servers:**
 
 ---
 
@@ -556,7 +332,7 @@ Servers/pools to synchronize this cluster's clocks with.
 
 **Type:** `string`
 
-**Server**
+**Server:**
 
 ---
 
@@ -564,7 +340,7 @@ Servers/pools to synchronize this cluster's clocks with.
 
 **Type:** `object`
 
-**Proxy**
+**Proxy:**
 
 Whether/how outgoing traffic is routed through proxy servers.
 
@@ -574,7 +350,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 ---
 
@@ -582,7 +358,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `string`
 
-**Secret name**
+**Secret name:**
 
 Name of a secret resource used by containerd to obtain the HTTP_PROXY, HTTPS_PROXY, and NO_PROXY environment variables. If empty the value will be defaulted to <clusterName>-cluster-values.
 
@@ -594,7 +370,7 @@ Name of a secret resource used by containerd to obtain the HTTP_PROXY, HTTPS_PRO
 
 **Type:** `object`
 
-**Shell access**
+**Shell access:**
 
 ---
 
@@ -602,7 +378,7 @@ Name of a secret resource used by containerd to obtain the HTTP_PROXY, HTTPS_PRO
 
 **Type:** `array`
 
-**OS Users**
+**OS Users:**
 
 Configuration for OS users in cluster nodes.
 
@@ -614,7 +390,7 @@ Configuration for OS users in cluster nodes.
 
 **Type:** `object`
 
-**User**
+**User:**
 
 ---
 
@@ -622,7 +398,7 @@ Configuration for OS users in cluster nodes.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Username of the user.
 
@@ -634,7 +410,7 @@ Username of the user.
 
 **Type:** `string`
 
-**Sudoers configuration**
+**Sudoers configuration:**
 
 Permissions string to add to /etc/sudoers for this user.
 
@@ -644,7 +420,7 @@ Permissions string to add to /etc/sudoers for this user.
 
 **Type:** `array`
 
-**Trusted SSH cert issuers**
+**Trusted SSH cert issuers:**
 
 CA certificates of issuers that are trusted to sign SSH user certificates.
 
@@ -664,7 +440,7 @@ CA certificates of issuers that are trusted to sign SSH user certificates.
 
 **Type:** `string`
 
-**Catalog**
+**Catalog:**
 
 Name of the VCD catalog in which the VM template is stored.
 
@@ -676,7 +452,7 @@ Name of the VCD catalog in which the VM template is stored.
 
 **Type:** `array`
 
-**Subject alternative names (SAN)**
+**Subject alternative names (SAN):**
 
 Alternative names to encode in the API server's certificate.
 
@@ -686,7 +462,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**SAN**
+**SAN:**
 
 ---
 
@@ -694,7 +470,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `array`
 
-**Node labels**
+**Node labels:**
 
 ---
 
@@ -702,7 +478,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Custom node label**
+**Custom node label:**
 
 **Example:** `"key=value"`
 
@@ -714,7 +490,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `integer`
 
-**Disk size**
+**Disk size:**
 
 **Example:** `30`
 
@@ -724,7 +500,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `object`
 
-**DNS container image**
+**DNS container image:**
 
 ---
 
@@ -732,7 +508,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Example:** `"projects.registry.vmware.com/tkg"`
 
@@ -744,7 +520,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Example:** `"v1.7.0_vmware.12"`
 
@@ -756,7 +532,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `object`
 
-**Etcd container image**
+**Etcd container image:**
 
 ---
 
@@ -764,7 +540,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Example:** `"giantswarm"`
 
@@ -776,7 +552,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Example:** `"3.5.4-0-k8s"`
 
@@ -788,7 +564,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `object`
 
-**Node container image**
+**Node container image:**
 
 ---
 
@@ -796,7 +572,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Example:** `"projects.registry.vmware.com/tkg"`
 
@@ -808,7 +584,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `object`
 
-**OIDC authentication**
+**OIDC authentication:**
 
 ---
 
@@ -816,7 +592,7 @@ Alternative names to encode in the API server's certificate.
 
 **Type:** `string`
 
-**Certificate authority file**
+**Certificate authority file:**
 
 Path to identity provider's CA certificate in PEM format.
 
@@ -826,7 +602,7 @@ Path to identity provider's CA certificate in PEM format.
 
 **Type:** `string`
 
-**Client ID**
+**Client ID:**
 
 OIDC client identifier to identify with.
 
@@ -836,7 +612,7 @@ OIDC client identifier to identify with.
 
 **Type:** `string`
 
-**Groups claim**
+**Groups claim:**
 
 Name of the identity token claim bearing the user's group memberships.
 
@@ -846,7 +622,7 @@ Name of the identity token claim bearing the user's group memberships.
 
 **Type:** `string`
 
-**Groups prefix**
+**Groups prefix:**
 
 Prefix prepended to groups values to prevent clashes with existing names.
 
@@ -856,7 +632,7 @@ Prefix prepended to groups values to prevent clashes with existing names.
 
 **Type:** `string`
 
-**Issuer URL**
+**Issuer URL:**
 
 URL of the provider which allows the API server to discover public signing keys, not including any path. Discovery URL without the '/.well-known/openid-configuration' part.
 
@@ -866,7 +642,7 @@ URL of the provider which allows the API server to discover public signing keys,
 
 **Type:** `string`
 
-**Username claim**
+**Username claim:**
 
 Name of the identity token claim bearing the unique user identifier.
 
@@ -876,7 +652,7 @@ Name of the identity token claim bearing the unique user identifier.
 
 **Type:** `string`
 
-**Username prefix**
+**Username prefix:**
 
 Prefix prepended to username values to prevent clashes with existing names.
 
@@ -886,7 +662,7 @@ Prefix prepended to username values to prevent clashes with existing names.
 
 **Type:** `string`
 
-**VM placement policy**
+**VM placement policy:**
 
 Name of the VCD VM placement policy to use.
 
@@ -896,7 +672,7 @@ Name of the VCD VM placement policy to use.
 
 **Type:** `integer`
 
-**Number of nodes**
+**Number of nodes:**
 
 Number of control plane instances to create. Must be an odd number.
 
@@ -908,7 +684,7 @@ Number of control plane instances to create. Must be an odd number.
 
 **Type:** `integer`
 
-**Resource ratio**
+**Resource ratio:**
 
 Ratio between node resources and apiserver resource requests.
 
@@ -920,7 +696,7 @@ Ratio between node resources and apiserver resource requests.
 
 **Type:** `string`
 
-**Sizing policy**
+**Sizing policy:**
 
 Name of the VCD sizing policy to use.
 
@@ -932,7 +708,7 @@ Name of the VCD sizing policy to use.
 
 **Type:** `string`
 
-**Storage profile**
+**Storage profile:**
 
 Name of the VCD storage profile to use.
 
@@ -942,13 +718,15 @@ Name of the VCD storage profile to use.
 
 **Type:** `string`
 
-**Template**
+**Template:**
 
 Name of the template used to create the node VMs.
 
 **Example:** `"ubuntu-2004-kube-v1.22.5"`
 
-### Kubectl image {#kubectl-image}Used by cluster-shared library chart to configure coredns in-cluster.
+### Kubectl image {#kubectl-image}
+
+Used by cluster-shared library chart to configure coredns in-cluster.
 
 ---
 
@@ -956,7 +734,7 @@ Name of the template used to create the node VMs.
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/kubectl"`
 
@@ -966,7 +744,7 @@ Name of the template used to create the node VMs.
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"quay.io"`
 
@@ -976,7 +754,7 @@ Name of the template used to create the node VMs.
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"1.23.5"`
 
@@ -988,7 +766,7 @@ Name of the template used to create the node VMs.
 
 **Type:** `string`
 
-**Cluster description**
+**Cluster description:**
 
 User-friendly description of the cluster's purpose.
 
@@ -998,7 +776,7 @@ User-friendly description of the cluster's purpose.
 
 **Type:** `object`
 
-**Labels**
+**Labels:**
 
 These labels are added to the Kubernetes resources defining this cluster.
 
@@ -1008,7 +786,7 @@ These labels are added to the Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-zA-Z0-9/\._-]+$`
 
@@ -1020,7 +798,7 @@ These labels are added to the Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 ---
 
@@ -1028,7 +806,7 @@ These labels are added to the Kubernetes resources defining this cluster.
 
 **Type:** `boolean`
 
-**Prevent cluster deletion**
+**Prevent cluster deletion:**
 
 **Default:** `false`
 
@@ -1038,7 +816,7 @@ These labels are added to the Kubernetes resources defining this cluster.
 
 **Type:** `string`
 
-**Service priority**
+**Service priority:**
 
 The relative importance of this cluster.
 
@@ -1046,7 +824,9 @@ The relative importance of this cluster.
 
 **Default:** `"highest"`
 
-### Node pools {#node-pools}Groups of worker nodes with identical configuration.
+### Node pools {#node-pools}
+
+Groups of worker nodes with identical configuration.
 
 ---
 
@@ -1062,7 +842,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Node class**
+**Node class:**
 
 A valid node class name, as specified in VMware Cloud Director (VCD) settings > Node classes.
 
@@ -1076,7 +856,7 @@ A valid node class name, as specified in VMware Cloud Director (VCD) settings > 
 
 **Type:** `integer`
 
-**Number of nodes**
+**Number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9-]{3,10}$`
 
@@ -1090,7 +870,7 @@ A valid node class name, as specified in VMware Cloud Director (VCD) settings > 
 
 **Type:** `object`
 
-**Cloud provider interface (CPI)**
+**Cloud provider interface (CPI):**
 
 ---
 
@@ -1098,7 +878,7 @@ A valid node class name, as specified in VMware Cloud Director (VCD) settings > 
 
 **Type:** `boolean`
 
-**Share IPs in virtual services**
+**Share IPs in virtual services:**
 
 If enabled, multiple virtual services can share the same virtual IP address.
 
@@ -1110,7 +890,7 @@ If enabled, multiple virtual services can share the same virtual IP address.
 
 **Type:** `object`
 
-**One-arm**
+**One-arm:**
 
 If enabled, use an internal IP for the virtual service with a NAT rule to expose the external IP. Otherwise the virtual service will be exposed directly with the external IP.
 
@@ -1120,7 +900,7 @@ If enabled, use an internal IP for the virtual service with a NAT rule to expose
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Default:** `false`
 
@@ -1130,7 +910,7 @@ If enabled, use an internal IP for the virtual service with a NAT rule to expose
 
 **Type:** `object`
 
-**Container storage interface (CSI)**
+**Container storage interface (CSI):**
 
 ---
 
@@ -1138,7 +918,7 @@ If enabled, use an internal IP for the virtual service with a NAT rule to expose
 
 **Type:** `object`
 
-**Pre-create storage class**
+**Pre-create storage class:**
 
 Pre-create storage class for the VCD CSI.
 
@@ -1148,7 +928,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `object`
 
-**Pre-create delete storage class**
+**Pre-create delete storage class:**
 
 ---
 
@@ -1156,7 +936,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `boolean`
 
-**Default storage class**
+**Default storage class:**
 
 **Default:** `true`
 
@@ -1166,7 +946,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `string`
 
-**Name of storage profile in VCD**
+**Name of storage profile in VCD:**
 
 **Default:** `""`
 
@@ -1176,7 +956,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 **Default:** `true`
 
@@ -1186,7 +966,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `object`
 
-**Pre-create retain storage class**
+**Pre-create retain storage class:**
 
 ---
 
@@ -1194,7 +974,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `boolean`
 
-**Default storage class**
+**Default storage class:**
 
 **Default:** `false`
 
@@ -1204,7 +984,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `string`
 
-**Name of storage profile in VCD**
+**Name of storage profile in VCD:**
 
 **Default:** `""`
 
@@ -1214,7 +994,7 @@ Pre-create storage class for the VCD CSI.
 
 **Type:** `object`
 
-**Node classes**
+**Node classes:**
 
 Re-usable node configuration.
 
@@ -1232,7 +1012,7 @@ Re-usable node configuration.
 
 **Type:** `string`
 
-**Catalog**
+**Catalog:**
 
 Name of the VCD catalog in which the VM template is stored.
 
@@ -1246,7 +1026,7 @@ Name of the VCD catalog in which the VM template is stored.
 
 **Type:** `array`
 
-**Node labels**
+**Node labels:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9-]+$`
 
@@ -1256,7 +1036,7 @@ Name of the VCD catalog in which the VM template is stored.
 
 **Type:** `string`
 
-**Custom node label**
+**Custom node label:**
 
 **Example:** `"key=value"`
 
@@ -1270,7 +1050,7 @@ Name of the VCD catalog in which the VM template is stored.
 
 **Type:** `array`
 
-**Node taints**
+**Node taints:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9-]+$`
 
@@ -1280,7 +1060,7 @@ Name of the VCD catalog in which the VM template is stored.
 
 **Type:** `object`
 
-**Custom node taint**
+**Custom node taint:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9-]+$`
 
@@ -1322,7 +1102,7 @@ value of the label identified by the key
 
 **Type:** `integer`
 
-**Disk size**
+**Disk size:**
 
 **Example:** `30`
 
@@ -1334,7 +1114,7 @@ value of the label identified by the key
 
 **Type:** `string`
 
-**VM placement policy**
+**VM placement policy:**
 
 Name of the VCD VM placement policy to use.
 
@@ -1346,7 +1126,7 @@ Name of the VCD VM placement policy to use.
 
 **Type:** `string`
 
-**Sizing policy**
+**Sizing policy:**
 
 Name of the VCD sizing policy to use.
 
@@ -1360,7 +1140,7 @@ Name of the VCD sizing policy to use.
 
 **Type:** `string`
 
-**Storage profile**
+**Storage profile:**
 
 Name of the VCD storage profile to use.
 
@@ -1372,7 +1152,7 @@ Name of the VCD storage profile to use.
 
 **Type:** `string`
 
-**Template**
+**Template:**
 
 Name of the template used to create the node VMs.
 
@@ -1386,7 +1166,7 @@ Name of the template used to create the node VMs.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 VCD organization name.
 
@@ -1396,7 +1176,7 @@ VCD organization name.
 
 **Type:** `string`
 
-**OvDC name**
+**OvDC name:**
 
 Name of the organization virtual datacenter (OvDC) to create this cluster in.
 
@@ -1406,7 +1186,7 @@ Name of the organization virtual datacenter (OvDC) to create this cluster in.
 
 **Type:** `string`
 
-**OvDC network**
+**OvDC network:**
 
 VCD network to connect VMs.
 
@@ -1416,7 +1196,7 @@ VCD network to connect VMs.
 
 **Type:** `string`
 
-**Endpoint**
+**Endpoint:**
 
 VCD endpoint URL in the format https://VCD_HOST, without trailing slash.
 
@@ -1426,7 +1206,7 @@ VCD endpoint URL in the format https://VCD_HOST, without trailing slash.
 
 **Type:** `object`
 
-**VCD API access token**
+**VCD API access token:**
 
 ---
 
@@ -1434,7 +1214,7 @@ VCD endpoint URL in the format https://VCD_HOST, without trailing slash.
 
 **Type:** `object`
 
-**Secret reference**
+**Secret reference:**
 
 ---
 
@@ -1442,7 +1222,7 @@ VCD endpoint URL in the format https://VCD_HOST, without trailing slash.
 
 **Type:** `string`
 
-**Name**
+**Name:**
 
 Name of the secret containing the VCD API token.
 
@@ -1452,11 +1232,237 @@ Name of the secret containing the VCD API token.
 
 **Type:** `string`
 
-**VM naming template**
+**VM naming template:**
 
 Go template to specify the VM naming convention.
 
 **Example:** `"mytenant-{{ .machine.Name | sha256sum | trunc 7 }}"`
+
+### internal {#internal}
+
+---
+
+`.internal.apiServer`
+
+**Type:** `object`
+
+---
+
+`.internal.apiServer.enableAdmissionPlugins`
+
+**Type:** `array`
+
+**Admission plugins:**
+
+List of admission plugins to be passed to the API server via the --enable-admission-plugins flag.
+
+**Default:** `["DefaultStorageClass","DefaultTolerationSeconds","LimitRanger","MutatingAdmissionWebhook","NamespaceLifecycle","PersistentVolumeClaimResize","Priority","ResourceQuota","ServiceAccount","ValidatingAdmissionWebhook"]`
+
+---
+
+`.internal.apiServer.enableAdmissionPlugins[*]`
+
+**Type:** `string`
+
+**Plugin:**
+
+**Examples:** `"DefaultStorageClass"`, `"Priority"`
+
+**Value pattern:** `^[A-Za-z0-9]+$`
+
+---
+
+`.internal.apiServer.featureGates`
+
+**Type:** `array`
+
+**Feature gates:**
+
+API server feature gate activation/deactivation.
+
+**Default:** `[]`
+
+---
+
+`.internal.apiServer.featureGates[*]`
+
+**Type:** `object`
+
+**Feature gate:**
+
+---
+
+`.internal.apiServer.featureGates[*].enabled`
+
+**Type:** `boolean`
+
+**Enabled:**
+
+---
+
+`.internal.apiServer.featureGates[*].name`
+
+**Type:** `string`
+
+**Name:**
+
+**Example:** `"UserNamespacesStatelessPodsSupport"`
+
+**Value pattern:** `^[A-Za-z0-9]+$`
+
+---
+
+`.internal.ciliumNetworkPolicy`
+
+**Type:** `object`
+
+**CiliumNetworkPolicies:**
+
+---
+
+`.internal.ciliumNetworkPolicy.enabled`
+
+**Type:** `boolean`
+
+**Enable CiliumNetworkPolicies:**
+
+Installs the network-policies-app (deny all by default) if set to true
+
+**Default:** `true`
+
+---
+
+`.internal.controllerManager`
+
+**Type:** `object`
+
+**Controller manager:**
+
+---
+
+`.internal.controllerManager.featureGates`
+
+**Type:** `array`
+
+**Feature gates:**
+
+Controller manager feature gate activation/deactivation.
+
+**Default:** `[]`
+
+---
+
+`.internal.controllerManager.featureGates[*]`
+
+**Type:** `object`
+
+**Feature gate:**
+
+---
+
+`.internal.controllerManager.featureGates[*].enabled`
+
+**Type:** `boolean`
+
+**Enabled:**
+
+---
+
+`.internal.controllerManager.featureGates[*].name`
+
+**Type:** `string`
+
+**Name:**
+
+**Example:** `"UserNamespacesStatelessPodsSupport"`
+
+**Value pattern:** `^[A-Za-z0-9]+$`
+
+---
+
+`.internal.kubernetesVersion`
+
+**Type:** `string`
+
+**Kubernetes version:**
+
+---
+
+`.internal.parentUid`
+
+**Type:** `string`
+
+**Management cluster UID:**
+
+If set, create the cluster from a specific management cluster associated with this UID.
+
+---
+
+`.internal.rdeId`
+
+**Type:** `string`
+
+**Runtime defined entity (RDE) identifier:**
+
+This cluster's RDE ID in the VCD API.
+
+---
+
+`.internal.sandboxContainerImage`
+
+**Type:** `object`
+
+**Sandbox Container image (pause container):**
+
+---
+
+`.internal.sandboxContainerImage.name`
+
+**Type:** `string`
+
+**Repository:**
+
+**Default:** `"giantswarm/pause"`
+
+---
+
+`.internal.sandboxContainerImage.registry`
+
+**Type:** `string`
+
+**Registry:**
+
+**Default:** `"quay.io"`
+
+---
+
+`.internal.sandboxContainerImage.tag`
+
+**Type:** `string`
+
+**Tag:**
+
+**Default:** `"3.9"`
+
+---
+
+`.internal.skipRde`
+
+**Type:** `boolean`
+
+**Skip RDE:**
+
+Set to true if the API schema extension is installed in the correct version in VCD to create CAPVCD entities in the API. Set to false otherwise.
+
+---
+
+`.internal.useAsManagementCluster`
+
+**Type:** `boolean`
+
+**Display as management cluster:**
+
+**Default:** `false`
 
 ### Other {#other}
 
@@ -1466,7 +1472,7 @@ Go template to specify the VM naming convention.
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 **Default:** `"k8s.test"`
 
@@ -1476,7 +1482,7 @@ Go template to specify the VM naming convention.
 
 **Type:** `object`
 
-**Library chart**
+**Library chart:**
 
 ---
 
@@ -1484,7 +1490,7 @@ Go template to specify the VM naming convention.
 
 **Type:** `string`
 
-**Management cluster name**
+**Management cluster name:**
 
 The Cluster API management cluster that manages this cluster.
 
@@ -1494,7 +1500,7 @@ The Cluster API management cluster that manages this cluster.
 
 **Type:** `string`
 
-**Cluster API provider name**
+**Cluster API provider name:**
 
 <!-- DOCS_END -->
 

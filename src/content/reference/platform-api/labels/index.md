@@ -10,7 +10,8 @@ weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-11-27
-user_questions: []
+user_questions:
+  - What's the meaning of a specific Kubernetes resource label?
 ---
 
 **Notice:** Labels on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of labels, and which values or value format is expected. If you are missing information, please consult upstream documentation  from Kubernetes etc., or ask a Giant Swarm contact for more information. Also check our corresponding [annotations]({{< relref "/reference/platform-api/annotations" >}}) reference page.
@@ -83,10 +84,6 @@ More information: [Source](https://github.com/giantswarm/k8smetadata/blob/v0.24.
 
 Used on a variety of resources to associate the resource with a specific cluster. The value is the name of the cluster.
 
-### giantswarm.io/logging
-
-With this label on the Cluster resource, logging via Loki can be disabled. The default value `true` means that logging is enabled. Setting it to `false` disables logging for the entire cluster.
-
 ### giantswarm.io/machine-pool
 
 Associates the resource or the node with a node pool, using the name of the node pool as the value.
@@ -105,12 +102,6 @@ Defines which operator is in charge of the resource. Common examples:
     - Value `flux` on an App resource indicates that the App is reconciled by Flux.
     - Name of a bundle on an App resource indicates that the App has been installed by a bundle.
 -->
-
-### giantswarm.io/monitoring
-
-This label set on the Cluster resource with the value `false` can be used to disable the gathering of Prometheus metrics for the entire cluster, and id prevents deployment of Prometheus for this cluster.
-
-On other resources, the label serves as a discovery mechanism for metrics scraping. We're replacing this mechanism by service monitors.
 
 ### giantswarm.io/organization
 
@@ -136,6 +127,30 @@ Value is mostly `managed`
 ### giantswarm.io/service-priority
 
 Used on cluster-related resources to indicate the [service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
+
+### observability.giantswarm.io/logging
+
+Set on the Cluster resource to control log collection via Loki. The default value `true` means that logging is enabled. Setting it to `false` disables logging for the entire cluster.
+
+The legacy label `giantswarm.io/logging` is still accepted during the migration period.
+
+### observability.giantswarm.io/monitoring
+
+Set on the Cluster resource with the value `false` to disable the gathering of Prometheus metrics for the entire cluster, preventing deployment of Prometheus for this cluster.
+
+The legacy label `giantswarm.io/monitoring` is still accepted during the migration period.
+
+### observability.giantswarm.io/network-monitoring
+
+Set on the Cluster resource to opt in to network traffic monitoring. When set to `true`, the platform deploys eBPF-based network flow collection on the cluster to expose cross-AZ and egress traffic metrics in Grafana. Disabled by default. See the [network monitoring tutorial]({{< relref "/tutorials/observability/network-monitoring" >}}).
+
+The legacy label `giantswarm.io/network-monitoring` is still accepted during the migration period.
+
+### observability.giantswarm.io/tracing
+
+Set on the Cluster resource to control distributed tracing support in Grafana. The default value `true` means tracing is enabled for the cluster. Setting it to `false` disables tracing data sources for that cluster.
+
+The legacy label `giantswarm.io/tracing` is still accepted during the migration period.
 
 ### policy.giantswarm.io/resource-kind
 

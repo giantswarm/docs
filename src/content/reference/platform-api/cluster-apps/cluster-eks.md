@@ -28,7 +28,7 @@ The `cluster-eks` chart templates all the AWS infrastructure resources that are 
 
 **Type:** `object`
 
-**Additional resource tags**
+**Additional resource tags:**
 
 Additional tags to add to AWS resources created by the cluster.
 
@@ -38,7 +38,7 @@ Additional tags to add to AWS resources created by the cluster.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -48,7 +48,7 @@ Additional tags to add to AWS resources created by the cluster.
 
 **Type:** `string`
 
-**Amazon machine image (AMI)**
+**Amazon machine image (AMI):**
 
 If specified, this image will be used to provision EC2 instances.
 
@@ -58,7 +58,7 @@ If specified, this image will be used to provision EC2 instances.
 
 **Type:** `string`
 
-**AWS account ID**
+**AWS account ID:**
 
 AWS Account ID of the AWSClusterRoleIdentity IAM role, recommendation is to leave this value empty as it will be automatically calculated. This value is needed for tests.
 
@@ -72,7 +72,7 @@ AWS Account ID of the AWSClusterRoleIdentity IAM role, recommendation is to leav
 
 **Type:** `string`
 
-**Cluster role identity name**
+**Cluster role identity name:**
 
 Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account. Note: This name does not refer directly to an IAM role name/ARN.
 
@@ -86,7 +86,7 @@ Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role us
 
 **Type:** `string`
 
-**Region**
+**Region:**
 
 ### Connectivity {#connectivity}
 
@@ -96,7 +96,7 @@ Name of an AWSClusterRoleIdentity object. This in turn refers to the IAM role us
 
 **Type:** `integer`
 
-**Availability zones**
+**Availability zones:**
 
 Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets.
 
@@ -108,7 +108,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 ---
 
@@ -116,7 +116,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `object`
 
-**Network**
+**Network:**
 
 ---
 
@@ -124,7 +124,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `object`
 
-**Pods**
+**Pods:**
 
 ---
 
@@ -132,7 +132,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `array`
 
-**Pod subnets**
+**Pod subnets:**
 
 **Default:** `["100.64.0.0/16"]`
 
@@ -142,7 +142,7 @@ Maximum number of availability zones (AZ) that should be used in a region. If a 
 
 **Type:** `string`
 
-**Pod subnet**
+**Pod subnet:**
 
 IPv4 address range for pods, in CIDR notation. Must be within the 100.64.0.0/10 or 198.19.0.0/16 range. The CIDR block size must be betwen /16 and /28.
 
@@ -154,7 +154,7 @@ IPv4 address range for pods, in CIDR notation. Must be within the 100.64.0.0/10 
 
 **Type:** `object`
 
-**Services**
+**Services:**
 
 ---
 
@@ -162,7 +162,7 @@ IPv4 address range for pods, in CIDR notation. Must be within the 100.64.0.0/10 
 
 **Type:** `array`
 
-**K8s Service subnets**
+**K8s Service subnets:**
 
 **Default:** `["172.31.0.0/16"]`
 
@@ -172,7 +172,7 @@ IPv4 address range for pods, in CIDR notation. Must be within the 100.64.0.0/10 
 
 **Type:** `string`
 
-**Service subnet**
+**Service subnet:**
 
 IPv4 address range for kubernetes services, in CIDR notation.
 
@@ -186,7 +186,7 @@ IPv4 address range for kubernetes services, in CIDR notation.
 
 **Type:** `string`
 
-**VPC subnet**
+**VPC subnet:**
 
 IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
@@ -198,7 +198,7 @@ IPv4 address range to assign to this cluster's VPC, in CIDR notation.
 
 **Type:** `array`
 
-**Pod Subnets**
+**Pod Subnets:**
 
 Pod Subnets are created and tagged based on this definition.
 
@@ -210,7 +210,7 @@ Pod Subnets are created and tagged based on this definition.
 
 **Type:** `object`
 
-**Subnet**
+**Subnet:**
 
 ---
 
@@ -218,7 +218,7 @@ Pod Subnets are created and tagged based on this definition.
 
 **Type:** `array`
 
-**Network**
+**Network:**
 
 ---
 
@@ -232,7 +232,7 @@ Pod Subnets are created and tagged based on this definition.
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Example:** `"a"`
 
@@ -242,7 +242,7 @@ Pod Subnets are created and tagged based on this definition.
 
 **Type:** `string`
 
-**Address range**
+**Address range:**
 
 IPv4 address range, in CIDR notation.
 
@@ -252,7 +252,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to this subnet.
 
@@ -262,7 +262,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -272,7 +272,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to this CIDR block.
 
@@ -282,7 +282,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -292,7 +292,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Type:** `object`
 
-**Proxy**
+**Proxy:**
 
 Whether/how outgoing traffic is routed through proxy servers.
 
@@ -302,7 +302,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `boolean`
 
-**Enable**
+**Enable:**
 
 ---
 
@@ -310,7 +310,7 @@ Whether/how outgoing traffic is routed through proxy servers.
 
 **Type:** `string`
 
-**HTTP proxy**
+**HTTP proxy:**
 
 To be passed to the HTTP_PROXY environment variable in all hosts.
 
@@ -320,7 +320,7 @@ To be passed to the HTTP_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**HTTPS proxy**
+**HTTPS proxy:**
 
 To be passed to the HTTPS_PROXY environment variable in all hosts.
 
@@ -330,7 +330,7 @@ To be passed to the HTTPS_PROXY environment variable in all hosts.
 
 **Type:** `string`
 
-**No proxy**
+**No proxy:**
 
 To be passed to the NO_PROXY environment variable in all hosts.
 
@@ -340,7 +340,7 @@ To be passed to the NO_PROXY environment variable in all hosts.
 
 **Type:** `array`
 
-**Subnets**
+**Subnets:**
 
 Subnets are created and tagged based on this definition.
 
@@ -352,7 +352,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `object`
 
-**Subnet**
+**Subnet:**
 
 ---
 
@@ -360,7 +360,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `array`
 
-**Network**
+**Network:**
 
 ---
 
@@ -374,7 +374,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Example:** `"a"`
 
@@ -384,7 +384,7 @@ Subnets are created and tagged based on this definition.
 
 **Type:** `string`
 
-**Address range**
+**Address range:**
 
 IPv4 address range, in CIDR notation.
 
@@ -394,7 +394,7 @@ IPv4 address range, in CIDR notation.
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to this subnet.
 
@@ -404,7 +404,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -414,7 +414,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `boolean`
 
-**Public**
+**Public:**
 
 ---
 
@@ -422,7 +422,7 @@ AWS resource tags to assign to this subnet.
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to this CIDR block.
 
@@ -432,7 +432,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -444,7 +444,7 @@ AWS resource tags to assign to this CIDR block.
 
 **Type:** `string`
 
-**API mode**
+**API mode:**
 
 Whether the Kubernetes API server load balancer should be reachable from the internet (public) or internal only (private).
 
@@ -458,7 +458,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Type:** `object`
 
-**Logging**
+**Logging:**
 
 ---
 
@@ -466,7 +466,7 @@ Whether the Kubernetes API server load balancer should be reachable from the int
 
 **Type:** `boolean`
 
-**Api Server**
+**Api Server:**
 
 Enable or disable Api server logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).
 
@@ -478,7 +478,7 @@ Enable or disable Api server logging to CloudWatch (https://docs.aws.amazon.com/
 
 **Type:** `boolean`
 
-**Audit**
+**Audit:**
 
 Enable or disable audit logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).
 
@@ -490,7 +490,7 @@ Enable or disable audit logging to CloudWatch (https://docs.aws.amazon.com/eks/l
 
 **Type:** `boolean`
 
-**Authenticator**
+**Authenticator:**
 
 Enable or disable IAM Authenticator logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).
 
@@ -502,7 +502,7 @@ Enable or disable IAM Authenticator logging to CloudWatch (https://docs.aws.amaz
 
 **Type:** `boolean`
 
-**Controller Manager**
+**Controller Manager:**
 
 Enable or disable Controller Manager logging to CloudWatch (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html).
 
@@ -514,7 +514,7 @@ Enable or disable Controller Manager logging to CloudWatch (https://docs.aws.ama
 
 **Type:** `object`
 
-**OIDC identity provider config**
+**OIDC identity provider config:**
 
 OIDC identity provider configuration for the Kubernetes API server.
 
@@ -524,7 +524,7 @@ OIDC identity provider configuration for the Kubernetes API server.
 
 **Type:** `string`
 
-**Client ID**
+**Client ID:**
 
 Client ID of the OIDC identity provider.
 
@@ -534,7 +534,7 @@ Client ID of the OIDC identity provider.
 
 **Type:** `string`
 
-**Groups claim**
+**Groups claim:**
 
 Claim to use for mapping groups.
 
@@ -544,7 +544,7 @@ Claim to use for mapping groups.
 
 **Type:** `string`
 
-**Groups prefix**
+**Groups prefix:**
 
 Prefix to use for mapping groups.
 
@@ -554,7 +554,7 @@ Prefix to use for mapping groups.
 
 **Type:** `string`
 
-**Identity provider config name**
+**Identity provider config name:**
 
 Name of the OIDC identity provider config.
 
@@ -564,7 +564,7 @@ Name of the OIDC identity provider config.
 
 **Type:** `string`
 
-**Issuer URL**
+**Issuer URL:**
 
 URL of the OIDC identity provider.
 
@@ -574,7 +574,7 @@ URL of the OIDC identity provider.
 
 **Type:** `object`
 
-**Required claims**
+**Required claims:**
 
 Required claims for the OIDC identity provider.
 
@@ -584,7 +584,7 @@ Required claims for the OIDC identity provider.
 
 **Type:** `string`
 
-**Claim**
+**Claim:**
 
 ---
 
@@ -592,7 +592,7 @@ Required claims for the OIDC identity provider.
 
 **Type:** `object`
 
-**Tags**
+**Tags:**
 
 AWS resource tags to assign to the IAM OIDC provider.
 
@@ -602,7 +602,7 @@ AWS resource tags to assign to the IAM OIDC provider.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Value pattern:** `^[ a-zA-Z0-9\._:/=+-@]+$`
 
@@ -612,7 +612,7 @@ AWS resource tags to assign to the IAM OIDC provider.
 
 **Type:** `string`
 
-**Username claim**
+**Username claim:**
 
 Claim to use for mapping usernames.
 
@@ -622,7 +622,7 @@ Claim to use for mapping usernames.
 
 **Type:** `string`
 
-**Username prefix**
+**Username prefix:**
 
 Prefix to use for mapping usernames.
 
@@ -632,7 +632,7 @@ Prefix to use for mapping usernames.
 
 **Type:** `array`
 
-**Role mappings**
+**Role mappings:**
 
 ---
 
@@ -640,7 +640,7 @@ Prefix to use for mapping usernames.
 
 **Type:** `object`
 
-**Role mapping**
+**Role mapping:**
 
 Maps AWS IAM role to Kubernetes role.
 
@@ -650,7 +650,7 @@ Maps AWS IAM role to Kubernetes role.
 
 **Type:** `array`
 
-**Groups**
+**Groups:**
 
 Kubernetes groups.
 
@@ -660,7 +660,7 @@ Kubernetes groups.
 
 **Type:** `string`
 
-**Group**
+**Group:**
 
 Kubernetes group, for example `system:masters`.
 
@@ -670,7 +670,7 @@ Kubernetes group, for example `system:masters`.
 
 **Type:** `string`
 
-**AWS Role ARN**
+**AWS Role ARN:**
 
 Full ARN of the AWS IAM role.
 
@@ -680,11 +680,13 @@ Full ARN of the AWS IAM role.
 
 **Type:** `string`
 
-**Kubernetes username**
+**Kubernetes username:**
 
 Kubernetes username, for example `cluster-admin`.
 
-### Internal {#internal}For Giant Swarm internal use only, not stable, or not supported by UIs.
+### Internal {#internal}
+
+For Giant Swarm internal use only, not stable, or not supported by UIs.
 
 ---
 
@@ -692,7 +694,7 @@ Kubernetes username, for example `cluster-admin`.
 
 **Type:** `string`
 
-**Hash salt**
+**Hash salt:**
 
 If specified, this token is used as a salt to the hash suffix of some resource names. Can be used to force-recreate some resources.
 
@@ -702,7 +704,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Kubernetes version**
+**Kubernetes version:**
 
 **Example:** `"1.24.7"`
 
@@ -714,7 +716,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `object`
 
-**Default node pool**
+**Default node pool:**
 
 **Default:** `{"def00":{"customNodeLabels":["label=default"],"instanceType":"r6i.xlarge","maxSize":4,"minSize":3}}`
 
@@ -724,7 +726,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `object`
 
-**Node pool**
+**Node pool:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -734,7 +736,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `array`
 
-**Availability zones**
+**Availability zones:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -744,7 +746,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -754,7 +756,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `array`
 
-**Custom node labels**
+**Custom node labels:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -764,7 +766,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -774,7 +776,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -792,7 +794,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -804,7 +806,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -814,7 +816,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -824,7 +826,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -834,7 +836,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `integer`
 
-**Maximum number of nodes**
+**Maximum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -844,7 +846,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `integer`
 
-**Minimum number of nodes**
+**Minimum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -854,7 +856,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -864,7 +866,7 @@ If specified, this token is used as a salt to the hash suffix of some resource n
 
 **Type:** `array`
 
-**Subnet tags**
+**Subnet tags:**
 
 Tags to filter which AWS subnets will be used for this node pool.
 
@@ -876,7 +878,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `object`
 
-**Subnet tag**
+**Subnet tag:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -886,7 +888,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -898,7 +900,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `object`
 
-**Kubectl image**
+**Kubectl image:**
 
 ---
 
@@ -906,7 +908,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/pause"`
 
@@ -916,7 +918,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"quay.io"`
 
@@ -926,7 +928,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"3.9"`
 
@@ -938,7 +940,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Repository**
+**Repository:**
 
 **Default:** `"giantswarm/kubectl"`
 
@@ -948,7 +950,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Registry**
+**Registry:**
 
 **Default:** `"quay.io"`
 
@@ -958,7 +960,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Tag**
+**Tag:**
 
 **Default:** `"1.23.5"`
 
@@ -970,7 +972,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Cluster description**
+**Cluster description:**
 
 User-friendly description of the cluster's purpose.
 
@@ -980,7 +982,7 @@ User-friendly description of the cluster's purpose.
 
 **Type:** `string`
 
-**Cluster name**
+**Cluster name:**
 
 Unique identifier, cannot be changed after creation.
 
@@ -990,7 +992,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Organization**
+**Organization:**
 
 ---
 
@@ -998,7 +1000,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `boolean`
 
-**Prevent cluster deletion**
+**Prevent cluster deletion:**
 
 **Default:** `false`
 
@@ -1008,7 +1010,7 @@ Unique identifier, cannot be changed after creation.
 
 **Type:** `string`
 
-**Service priority**
+**Service priority:**
 
 The relative importance of this cluster.
 
@@ -1016,7 +1018,9 @@ The relative importance of this cluster.
 
 **Default:** `"highest"`
 
-### Node pools {#node-pools}Node pools of the cluster. If not specified, this defaults to the value of `internal.nodePools`.
+### Node pools {#node-pools}
+
+Node pools of the cluster. If not specified, this defaults to the value of `internal.nodePools`.
 
 ---
 
@@ -1024,7 +1028,7 @@ The relative importance of this cluster.
 
 **Type:** `object`
 
-**Node pool**
+**Node pool:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1034,7 +1038,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Availability zones**
+**Availability zones:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1044,7 +1048,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Availability zone**
+**Availability zone:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1054,7 +1058,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Custom node labels**
+**Custom node labels:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1064,7 +1068,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Label**
+**Label:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1074,7 +1078,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Custom node taints**
+**Custom node taints:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1092,7 +1096,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Effect**
+**Effect:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1104,7 +1108,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Key**
+**Key:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1114,7 +1118,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**Value**
+**Value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1124,7 +1128,7 @@ The relative importance of this cluster.
 
 **Type:** `string`
 
-**EC2 instance type**
+**EC2 instance type:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1134,7 +1138,7 @@ The relative importance of this cluster.
 
 **Type:** `integer`
 
-**Maximum number of nodes**
+**Maximum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1144,7 +1148,7 @@ The relative importance of this cluster.
 
 **Type:** `integer`
 
-**Minimum number of nodes**
+**Minimum number of nodes:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1154,7 +1158,7 @@ The relative importance of this cluster.
 
 **Type:** `integer`
 
-**Root volume size (GB)**
+**Root volume size (GB):**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1164,7 +1168,7 @@ The relative importance of this cluster.
 
 **Type:** `array`
 
-**Subnet tags**
+**Subnet tags:**
 
 Tags to filter which AWS subnets will be used for this node pool.
 
@@ -1176,7 +1180,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `object`
 
-**Subnet tag**
+**Subnet tag:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1186,7 +1190,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Tag value**
+**Tag value:**
 
 **Key pattern:** `PATTERN`=`^[a-z0-9][-a-z0-9]{3,18}[a-z0-9]$`
 
@@ -1200,7 +1204,7 @@ Tags to filter which AWS subnets will be used for this node pool.
 
 **Type:** `string`
 
-**Management cluster**
+**Management cluster:**
 
 Name of the Cluster API cluster managing this workload cluster.
 
@@ -1212,7 +1216,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `string`
 
-**Base DNS domain**
+**Base DNS domain:**
 
 ---
 
@@ -1220,7 +1224,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `object`
 
-**Library chart**
+**Library chart:**
 
 ---
 
@@ -1228,7 +1232,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `string`
 
-**Management cluster**
+**Management cluster:**
 
 Name of the Cluster API cluster managing this workload cluster.
 
@@ -1238,7 +1242,7 @@ Name of the Cluster API cluster managing this workload cluster.
 
 **Type:** `string`
 
-**Cluster API provider name**
+**Cluster API provider name:**
 
 <!-- DOCS_END -->
 

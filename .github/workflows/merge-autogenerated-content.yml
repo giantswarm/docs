@@ -16,24 +16,24 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: "automatic-update-of-generated-content"
           fetch-depth: 0
 
       - name: Update self-generated content branch with main branch changes
-        uses: prompt/actions-merge-branch@701d2a3e181424b84ebb58c95531d1d64fc3eccc # v2
+        uses: prompt/actions-merge-branch@701d2a3e181424b84ebb58c95531d1d64fc3eccc # v2.1.0
         with:
           from: "origin/main"
 
       - name: Find Pull Request
-        uses: juliangruber/find-pull-request-action@952b3bb1ddb2dcc0aa3479e98bb1c2d1a922f096 # v1.10.0
+        uses: juliangruber/find-pull-request-action@33d46d4ff90884bb23aaead16044125daaf733d8 # v1.11.0
         id: find-pull-request
         with:
           branch: automatic-update-of-generated-content
 
       - name: Approve Pull Request
-        uses: juliangruber/approve-pull-request-action@b71c44ff142895ba07fad34389f1938a4e8ee7b0 # v2.0.6
+        uses: juliangruber/approve-pull-request-action@68fcc9a5a73b5641cadf757cf99d73720dcb05d0 # v2.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.find-pull-request.outputs.number }}
@@ -44,7 +44,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge Pull Request
-        uses: juliangruber/merge-pull-request-action@9234b8714dda9a08f3d1df5b2a6a3abd7b695353 # v1.3.1
+        uses: juliangruber/merge-pull-request-action@8325c6102b479a25200b2ecbede066b1ac3e2feb # v1.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.find-pull-request.outputs.number }}
