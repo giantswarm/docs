@@ -5,7 +5,7 @@
     {{- with .Params.changes_categories }}
         {{- range . }}
             {{- $cat := urlize . }}
-            <span class="tag" style="background-color: {{ index $.Site.Data.changes_categories . }}"><a href="/changes/{{ $cat }}/">{{ . }}</a></span>
+            <span class="tag" style="background-color: {{ index hugo.Data.changes_categories . }}"><a href="/changes/{{ $cat }}/">{{ . }}</a></span>
         {{- end }}
     {{- end }}
     {{- with $entry.repository }}
