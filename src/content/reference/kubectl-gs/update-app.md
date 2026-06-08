@@ -6,7 +6,7 @@ weight: 120
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
