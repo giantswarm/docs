@@ -11,7 +11,7 @@ owner:
 user_questions:
   - How can I list apps using kubectl?
   - How can I inspect apps using kubectl?
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 aliases:
   - /vintage/use-the-api/kubectl-gs/get-apps/
 ---
