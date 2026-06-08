@@ -6,7 +6,7 @@ weight: 25
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-05-21
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -47,16 +47,14 @@ management-clusters/MC_NAME
                     └── cluster
                         ├── [kustomization.yaml]
                         ├── [cluster_userconfig.yaml]
-                        ├── [patch_cluster_userconfig.yaml]
-                        ├── [default_apps_userconfig.yaml]
-                        └── [patch_default_apps_userconfig.yaml]
+                        └── [patch_cluster_userconfig.yaml]
 ```
 
 The content of the `cluster` directory is optional because in its most basic form, the GitOps repository does not require you to
 put the cluster definition in there. It can be added later by re-running the command with additional flags. Re-running works
 in such case, because `cluster` directory is initially empty. Note however, in order to populate it, you must have a
 working base and reference it by the `--base` flag when running the command. You may customize the referenced base with
-the `--cluster-user-config` and `--default-apps-user-config` flags when needed.
+the `--cluster-user-config` flag when needed.
 
 **Note:** the latest recommendation mandates creation of the `mapi` directory. However, users who have not yet migrated to it,
 but still want to use automation for their repositories, may skip the `mapi` layer by using the `--skip-mapi` flag. Migration is
@@ -68,12 +66,12 @@ Basic command syntax: `kubectl gs gitops add workload-cluster <FLAGS>`
 
 ### Flags
 
-- `--release` -- [workload cluster release](https://github.com/giantswarm/releases) version (required)
 - `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
 - `--name` -- name of the workload cluster (required)
 - `--organization` -- name of the organization the workload cluster belongs to (required)
 - `--repository-name` -- name of the GitOps repository (required)
 - `--base` -- path to the base directory; must be relative to the repository root
+- `--release` -- [workload cluster release](https://github.com/giantswarm/releases) version; required when `--base` is set
 - `--cluster-user-config` -- cluster app user configuration to patch the base with
 - `--skip-mapi` -- skip mapi directory when adding the app
 
@@ -106,6 +104,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: sops-gpg-demowc
+    namespace: default
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
@@ -195,6 +194,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: sops-gpg-demowc
+    namespace: default
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
@@ -326,6 +326,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: sops-gpg-demowc
+    namespace: default
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
