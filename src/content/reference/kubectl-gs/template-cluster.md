@@ -10,7 +10,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2025-09-03
+last_review_date: 2026-06-08
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
@@ -28,30 +28,20 @@ The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (one of: `aws`, `azure`, `capa`, `vsphere`).
+- `--provider` - The infrastructure provider (one of: `capa`, `capz`, `vsphere`, `cloud-director`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
-  Can be retrieved with `kubectl get releases` for your installation.
+- `--release` - Workload cluster release version. Can be retrieved with `kubectl gs get releases`.
 - `--description` (optional) - User-friendly description of the cluster's purpose.
-- `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s).
-- `--label` (optional) - Label in the form `key=value` to set on the cluster. Can be specified multiple times. These labels are applied to the Cluster CR (via Helm values `global.metadata.labels`), the App CR, and the ConfigMap.
+- `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s). On AWS, must match the installation region (e.g. `eu-central-1a` for region `eu-central-1`). On Azure, can be any of `1`, `2`, `3`. Use the flag once for a single control plane node, or three times with distinct AZs for high-availability (AWS only).
+- `--label` (optional) - Label in the form `key=value` to set on the cluster. Can be specified multiple times.
 - `--service-priority` (optional) - Service priority of the cluster (one of: `highest`, `medium`, `lowest`).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
-- `--oidc-issuer-url` (optional - CAPI) - This is the issuer URL for configuring OpenID connect in the cluster API.
-- `--oidc-ca-file` (optional - CAPI) - This is the CA file path in case is not used a trusted Certificate Authority for OIDC endpoint.
-- `--oidc-client-id` (optional - CAPI) - This is the client ID that is configured in the OIDC endpoint.
-- `--oidc-username-claim` (optional - CAPI) - This is the claim used to map the username identity of the user.
-- `--oidc-groups-claim` (optional - CAPI) - This is the claim used to map the group identity of the user.
-
-  TODO: move the following content to the flag it belongs to.
-  
-  On AWS, it must be configured with AZ of the installation region. E.g. for region `eu-central-1`, a valid value is `eu-central-1a`.
-
-  On Azure, it can be any of the 3 zones: `1`, `2`, `3`.
-
-  Use the flag once with a single value to create a cluster with one control plane node (on both Azure and AWS). For high-availability control planes,
-  specify three distinct availability zones instead (AWS only). This can be done by separating AZ names with comma or using the flag
-  three times with a single AZ name.
+- `--oidc-issuer-url` (optional) - Issuer URL for configuring OpenID Connect in the cluster API.
+- `--oidc-ca-file` (optional) - CA file path for OIDC endpoint, when not using a trusted Certificate Authority.
+- `--oidc-client-id` (optional) - Client ID configured in the OIDC endpoint.
+- `--oidc-username-claim` (optional) - Claim used to map the username identity of the user.
+- `--oidc-groups-claim` (optional) - Claim used to map the group identity of the user.
 
 ### Flags specific to AWS {#flags-capa}
 
@@ -61,9 +51,9 @@ It supports the following flags:
 - `--bastion-replicas` (optional) - Number of bastion instances to run.
 - `--control-plane-instance-type` (optional) - Instance type used for Control plane nodes (default: `r6i.xlarge`).
 - `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
-- `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--cluster-version` (optional) - Version of `cluster-aws` helm chart to use. If not provided, the latest version will be used.
 - `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
-- `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--default-apps-version` (optional) - Version of `default-apps-aws` helm chart to use. If not provided, the latest version will be used.
 - `--machine-pool-azs` (optional) - Availability zones for the machine pool.
 - `--machine-pool-custom-node-labels` (optional) - Labels to add to the nodes in the machine pool.
 - `--machine-pool-instance-type` (optional) - Instance type to use for the machine pool.
@@ -80,10 +70,10 @@ It supports the following flags:
 - `--azure-subscription-id` - Azure subscription ID to use.
 - `--bastion-instance-type` (optional) - Instance type used for the bastion machine (default: `Standard_D2s_v5`).
 - `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
-- `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--cluster-version` (optional) - Version of `cluster-azure` helm chart to use. If not provided, the latest version will be used.
 - `--control-plane-instance-type` (optional) - Instance type used for Control plane nodes (default: `Standard_D4s_v3`).
 - `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
-- `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
+- `--default-apps-version` (optional) - Version of `default-apps-azure` helm chart to use. If not provided, the latest version will be used.
 - `--name` - must only contain alphanumeric characters, start with a letter, and be no longer than 20 characters in length.
 - `--region` - Azure region where cluster will be created.
 
@@ -138,6 +128,7 @@ Example command for an Azure CAPI cluster:
 ```nohighlight
 kubectl gs template cluster \
   --provider capz \
+  --release 29.0.0 \
   --region germanywestcentral \
   --azure-subscription-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --description "Development Cluster" \
@@ -201,7 +192,6 @@ data:
         version: 31.1.1
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     giantswarm.io/cluster: dev01
   name: dev01-userconfig
@@ -247,18 +237,21 @@ spec:
 apiVersion: v1
 data:
   values: |
-    connectivity:
-      bastion:
-        enabled: true
-    controlPlane:
-      replicas: 3
-    metadata:
-      description: Development Cluster
-      name: dev01
-      organization: acme
-    providerSpecific:
-      location: germanywestcentral
-      subscriptionId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    global:
+      connectivity:
+        bastion:
+          enabled: true
+      controlPlane:
+        replicas: 3
+      metadata:
+        description: Development Cluster
+        name: dev01
+        organization: acme
+      providerSpecific:
+        location: germanywestcentral
+        subscriptionId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      release:
+        version: 29.0.0
 kind: ConfigMap
 metadata:
   labels:
@@ -295,44 +288,7 @@ spec:
     configMap:
       name: dev01-userconfig
       namespace: org-acme
-  version: 0.0.29
----
-apiVersion: v1
-data:
-  values: |
-    clusterName: dev01
-    organization: acme
-kind: ConfigMap
-metadata:
-  labels:
-    giantswarm.io/cluster: dev01
-  name: dev01-default-apps-userconfig
-  namespace: org-acme
----
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-    giantswarm.io/cluster: dev01
-    giantswarm.io/managed-by: cluster
-  name: dev01-default-apps
-  namespace: org-acme
-spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: dev01-cluster-values
-      namespace: org-acme
-  kubeConfig:
-    inCluster: true
-  name: default-apps-azure
-  namespace: org-acme
-  userConfig:
-    configMap:
-      name: dev01-default-apps-userconfig
-      namespace: org-acme
-  version: 0.4.0
+  version: ""
 ```
 
 {{< /tab >}}
@@ -390,7 +346,6 @@ data:
           replicas: 3
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     giantswarm.io/cluster: demo1
   name: demo1-userconfig
@@ -442,7 +397,6 @@ data:
     organization: multi-project
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     giantswarm.io/cluster: demo1
   name: demo1-default-apps-userconfig
