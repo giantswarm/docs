@@ -11,7 +11,7 @@ user_questions:
   - How can I inspect clusters using kubectl?
 last_review_date: 2024-11-25
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
   - /vintage/use-the-api/kubectl-gs/get-clusters/
 ---

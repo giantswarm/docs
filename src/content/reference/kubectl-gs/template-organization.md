@@ -8,7 +8,7 @@ menu:
     parent: reference-kubectlgs
 last_review_date: 2024-11-25
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create an organization manifest for the platform API?
 aliases:

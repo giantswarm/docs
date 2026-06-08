@@ -13,7 +13,7 @@ user_questions:
   - How can I create a node pool manifest for the platform API?
 last_review_date: 2024-11-25
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-nodepool/
 ---
