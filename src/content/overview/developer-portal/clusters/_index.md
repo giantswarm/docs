@@ -9,7 +9,7 @@ menu:
     identifier: overview-developer-portal-clusters
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - What information is there with regard to clusters in the developer portal?
 ---
