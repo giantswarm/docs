@@ -7,7 +7,7 @@ menu:
   principal:
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I list organizations in the management API using kubectl?
   - How can I inspect organizations using kubectl?

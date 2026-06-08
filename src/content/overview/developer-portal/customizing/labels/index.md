@@ -9,7 +9,7 @@ menu:
     identifier: overview-developer-portal-customizing-labels
 last_review_date: 2025-06-24
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I configure and customize the display of labels in the developer portal?
 ---

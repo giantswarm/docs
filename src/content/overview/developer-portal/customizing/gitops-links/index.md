@@ -9,7 +9,7 @@ menu:
     identifier: overview-developer-portal-customizing-gitopslinks
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I have links to GitOps sources in the developer portal?
 ---

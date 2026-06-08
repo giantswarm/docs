@@ -8,7 +8,7 @@ menu:
     parent: reference-kubectlgs
 last_review_date: 2026-06-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I list catalogs using kubectl?
   - How can I inspect catalogs using kubectl?
