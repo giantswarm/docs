@@ -9,7 +9,7 @@ menu:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
@@ -30,19 +30,12 @@ kubectl gs get clusters
 
 to list some information on all clusters available to you in the current installation. Use `--all-namespace` (if you have the permission to do so) or specify a namespace using the `--namespace` flag.
 
-For a Cluster API management cluster, the result looks like this:
+Here is some example output:
 
 ```nohighlight
-NAMESPACE                   NAME         AGE    CONDITION   RELEASE   SERVICE PRIORITY   ORGANIZATION            DESCRIPTION
-org-giantswarm-production   operations   270d   READY       28.1.0    highest            giantswarm-production   Operations Cluster
-org-giantswarm              gazelle      296d   READY       25.0.0    highest            giantswarm              Management Cluster
-```
-
-Here is some example output from a vintage management cluster:
-
-```nohighlight
-NAME    AGE  CONDITION   RELEASE   SERVICE PRIORITY   ORGANIZATION   DESCRIPTION
-3i99p   1d   CREATED     12.1.4    highest            giantswarm     ced0ps kong pm
+NAMESPACE                   NAME         AGE      PHASE         RELEASE   SERVICE PRIORITY   ORGANIZATION            DESCRIPTION
+org-giantswarm-production   operations   2y206d   Provisioned   34.4.0    highest            giantswarm-production   Operations Cluster
+org-giantswarm              gazelle      2y232d   Provisioned   34.0.0    highest            giantswarm              gazelle MC
 ```
 
 ### Get specific cluster
@@ -61,19 +54,16 @@ The standard tabular output format features these columns:
 
 - `NAME`: Unique identifier of the cluster.
 - `AGE`: How long ago was the cluster created.
-- `CONDITION`: Latest condition reported for the cluster. Either of:
-    - `CREATING`: The cluster is currently being created.
-    - `CREATED`: Cluster creation is finished (on vintage only).
-    - `UPDATING`: The cluster is currently being updated, e. g. during an upgrade.
-    - `UPDATED`: The cluster update is finished.
-    - `DELETING`: The cluster is being deleted.
-    - `READY`: The cluster is running (on Cluster API only).
-- `RELEASE`: Workload cluster release version of the cluster. Only on vintage management clusters.
-- `SERVICE PRIORITY`: [Service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}) of the cluster.
+- `PHASE`: Current lifecycle phase of the cluster. Either of:
+    - `Pending`: The cluster is not yet being provisioned.
+    - `Provisioning`: The cluster is currently being created or updated.
+    - `Provisioned`: The cluster is running.
+    - `Deleting`: The cluster is being deleted.
+    - `Failed`: The cluster encountered an error.
+- `RELEASE`: Workload cluster release version of the cluster.
+- `SERVICE PRIORITY`: Service priority level of the cluster.
 - `ORGANIZATION`: Organization owning the cluster.
 - `DESCRIPTION`: User-friendly description for the cluster.
-
-The columns `CLUSTER VERSION` and `PREINSTALLED APPS VERSION` shown on Cluster API are currently not used.
 
 ## Flags {#flags}
 
