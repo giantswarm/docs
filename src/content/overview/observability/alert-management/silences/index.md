@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-alert-management
     identifier: overview-observability-alert-management-silences
-last_review_date: 2025-07-17
+last_review_date: 2026-06-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
