@@ -7,7 +7,7 @@ menu:
   principal:
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 last_review_date: 2024-11-25
 user_questions:
   - Where can I find the Giant Swarm plugin for kubectl?
