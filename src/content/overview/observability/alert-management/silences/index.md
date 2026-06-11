@@ -130,7 +130,7 @@ Silences in the v1alpha2 API use a simple timing model:
 
 This design keeps the API simple while supporting the most common use cases. For precise timing, create the silence CRD exactly when you want it to start.
 
-### Forcing complete inhibition
+### Forcing complete silence
 
 By default, the platform protects your most important notifications from being suppressed by mistake. Every silence automatically excludes alerts that target all notification pipelines (the most critical, system-wide alerts) and the `Heartbeat` alert. This means a broad silence won't take down the alerts you most need to keep flowing.
 
@@ -157,7 +157,7 @@ spec:
 
 With this annotation, the all-pipelines protection is skipped, so critical alerts matching the silence are suppressed too. The `Heartbeat` alert is always preserved, even in this mode.
 
-**Warning:** Forcing complete inhibition removes the safety net that would normally page you when something goes wrong. Before using `force-all`, make sure nothing in the silenced scope can cause real harm while unobserved. For example, a component stuck in a crash loop that re-reads large amounts of data from object storage (such as S3) on every restart can generate significant cloud costs that no alert will warn you about. Keep `force-all` silences as narrowly scoped and short-lived as possible.
+**Warning:** Forcing complete silence removes the safety net that would normally page you when something goes wrong. Before using `force-all`, make sure nothing in the silenced scope can cause real harm while unobserved. For example, a component stuck in a crash loop that re-reads large amounts of data from object storage (such as S3) on every restart can generate significant cloud costs that no alert will warn you about. Keep `force-all` silences as narrowly scoped and short-lived as possible.
 
 ### Deployment patterns
 
