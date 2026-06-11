@@ -9,7 +9,7 @@ menu:
     identifier: overview-developer-portal-access
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I find the Giant Swarm developer portal?
   - How can I log in to the Giant Swarm developer portal?

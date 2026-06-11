@@ -9,7 +9,7 @@ menu:
     identifier: overview-developer-portal-clusters-list
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I access clusters in the developer portal?
   - How can I navigate to details for a particular cluster in the developer portal?

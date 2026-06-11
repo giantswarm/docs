@@ -8,7 +8,7 @@ menu:
     parent: reference-kubectlgs
 last_review_date: 2026-06-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster or node pool with kubectl-gs?
   - How can I install an app in a workload cluster with kubectl-gs?

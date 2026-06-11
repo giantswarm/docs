@@ -6,7 +6,7 @@ weight: 35
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-05-21
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -55,7 +55,8 @@ Basic command syntax: `kubectl gs gitops add automatic-update FLAGS`.
 - `--app` -- name of the App in the repository to configure automatic update for (required)
 - `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
 - `--organization` -- name of the organization the workload cluster belongs to (required)
-- `--version-repository` -- the container image repository to update the version from. (required)
+- `--repository` -- name of the GitOps repository (required)
+- `--version-repository` -- the OCI image repository to watch for new versions (required)
 - `--workload-cluster` -- name of the workload cluster to configure the app for (required)
 - `--skip-mapi` -- skip mapi directory when adding the app
 

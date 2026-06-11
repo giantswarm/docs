@@ -9,7 +9,7 @@ menu:
     identifier: overview-developer-portal-deployments-metricsmatching
 last_review_date: 2026-03-13
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How do I need to label workloads so that I see metrics in the developer portal?
 ---

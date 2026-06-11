@@ -14,7 +14,7 @@ last_review_date: 2026-03-25
 user_questions:
   - Which commands does kubectl-gs offer?
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
   - /vintage/use-the-api/kubectl-gs/
 ---
