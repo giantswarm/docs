@@ -8,7 +8,7 @@ menu:
     identifier: reference-kubectlgs-login
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I log in with kubectl for the platform API?
   - How can I create a workload cluster client certificate?

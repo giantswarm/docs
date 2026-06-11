@@ -8,7 +8,7 @@ menu:
     identifier: reference-kubectlgs-telemetry
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - What usage data does kubectl-gs collect?
   - How does Giant Swarm use the usage data collected from kubectl-gs?
