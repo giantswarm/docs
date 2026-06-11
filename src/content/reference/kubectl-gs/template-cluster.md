@@ -10,7 +10,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2026-06-08
+last_review_date: 2026-06-11
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
@@ -28,7 +28,7 @@ The command to execute is `kubectl gs template cluster`.
 
 It supports the following flags:
 
-- `--provider` - The infrastructure provider (one of: `capa`, `capz`, `vsphere`, `cloud-director`).
+- `--provider` - The infrastructure provider (one of: `capa`, `capz`, `vsphere`, `cloud-director`, `eks`).
 - `--name` - Unique name of the cluster. If not provided, a random alphanumeric name will be generated.
 - `--organization` - Name of the organization that will own the cluster. Determines the namespace where resources will be created.
 - `--release` - Workload cluster release version. Can be retrieved with `kubectl gs get releases`.
