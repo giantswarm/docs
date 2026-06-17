@@ -23,7 +23,7 @@ user_questions:
 last_review_date: 2026-06-17
 ---
 
-The _Giant Swarm App Platform_ is the set of features that help you browse, install, and manage applications across your clusters — from curated Giant Swarm-managed apps such as `prometheus`, `ingress-nginx`, or `cert-manager`, to your own internal services.
+The _Giant Swarm App Platform_ is the set of features that help you browse, install, and manage applications across your clusters. It covers both curated Giant Swarm-managed apps (such as `prometheus`, `ingress-nginx`, or `cert-manager`) and your own internal services.
 
 Applications are packaged as [Helm](https://helm.sh/) charts. You deploy them by creating Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources on the management cluster, which Flux reconciles into the target workload cluster. Every Giant Swarm management cluster runs Flux out of the box, so there's nothing extra to install.
 
@@ -89,9 +89,9 @@ Giant Swarm publishes a catalog of cloud-native applications that we operate and
 
 The maturity levels of apps in this catalog are expressed through semantic versioning:
 
-- **`-alpha` or `-beta` suffix** — basic maturity. No stable release. Best-effort support.
-- **`-rc*` suffix** — preview maturity. Lets you preview a new release and evaluate new features. Best-effort support.
-- **Version `>= v1.0.0`, no suffix** — stable maturity. Available as a managed offering with support and SLA.
+- **`-alpha` or `-beta` suffix.** Basic maturity. No stable release. Best-effort support.
+- **`-rc*` suffix.** Preview maturity. Lets you preview a new release and evaluate new features. Best-effort support.
+- **Version `>= v1.0.0`, no suffix.** Stable maturity. Available as a managed offering with support and SLA.
 
 ### Managed app definition
 
@@ -99,7 +99,7 @@ A _managed app_ is an app in our Giant Swarm catalog that comes with:
 
 - **Safe and tested deployment.** The Helm chart is ready to use and tested. We [build apps a common way](https://github.com/giantswarm/app-build-suite) and validate them through a [testing framework](https://github.com/giantswarm/app-test-suite) that checks deployability, basic functionality, security, and upgrade viability.
 - **Monitoring.** Giant Swarm makes sure the main components of the app run and that the app behaves as expected. Our automation sets up monitoring and alerting on the metrics needed to honor our SLAs. When an alert fires, the operations team performs root cause analysis to determine whether the issue is on Giant Swarm's side or originates from customer configuration.
-- **Configurations and plugins.** You can configure and extend the app freely. Configurations that deviate from the defaults are your responsibility to test and maintain — we're always happy to help validate them against best practices, but rolling them out is your call. Giant Swarm tests upgrades only against default values; if you've customized configuration, validate the upgrade in a lower environment first.
+- **Configurations and plugins.** You can configure and extend the app freely. Configurations that deviate from the defaults are your responsibility to test and maintain. We're always happy to help validate them against best practices, but rolling them out is your call. Giant Swarm tests upgrades only against default values; if you've customized configuration, validate the upgrade in a lower environment first.
 - **Upgrades.** We follow semantic versioning:
 
   1. Patch releases (for example, `2.1.1 → 2.1.2`) roll automatically; we log them and communicate the changes.
@@ -112,7 +112,7 @@ A _managed app_ is an app in our Giant Swarm catalog that comes with:
 
 ## Hosting your own catalog
 
-You don't need a Giant Swarm-specific catalog mechanism to host your own charts — you can publish them to any OCI registry your management cluster and workload clusters can reach. Once they're there, point an OCIRepository at the registry and reference it from a HelmRelease. The same applies to HTTP-based Helm repositories: Flux supports those via the [HelmRepository](https://fluxcd.io/flux/components/source/helmrepositories/) source.
+You don't need a Giant Swarm-specific catalog mechanism to host your own charts. Publish them to any OCI registry your management cluster and workload clusters can reach. Once they're there, point an OCIRepository at the registry and reference it from a HelmRelease. The same applies to HTTP-based Helm repositories: Flux supports those via the [HelmRepository](https://fluxcd.io/flux/components/source/helmrepositories/) source.
 
 If you'd like Giant Swarm to host your charts alongside ours, ask your account engineer.
 
@@ -120,14 +120,14 @@ If you'd like Giant Swarm to host your charts alongside ours, ask your account e
 
 Manage HelmRelease and OCIRepository resources with whatever tool fits your workflow:
 
-- **`kubectl`** — apply manifests directly to the management cluster's [platform API]({{< relref "/overview/architecture#platform-api" >}}).
-- **The [Flux CLI](https://fluxcd.io/flux/cmd/)** — `flux create source oci`, `flux create helmrelease`, `flux get helmreleases`, `flux suspend`, `flux reconcile`, and so on.
-- **GitOps** — store your HelmRelease YAML in a Git repository and let Flux apply changes when you commit. See [FluxCD]({{< relref "/tutorials/continuous-deployment/flux" >}}) for an introduction and [continuous deployment tutorials]({{< relref "/tutorials/continuous-deployment/" >}}) for end-to-end workflows.
-- **The [developer portal]({{< relref "/overview/developer-portal/" >}})** — browse catalogs, inspect deployed releases, and view their status from a web UI.
+- **`kubectl`**: apply manifests directly to the management cluster's [platform API]({{< relref "/overview/architecture#platform-api" >}}).
+- **The [Flux CLI](https://fluxcd.io/flux/cmd/)**: `flux create source oci`, `flux create helmrelease`, `flux get helmreleases`, `flux suspend`, `flux reconcile`.
+- **GitOps**: store your HelmRelease YAML in a Git repository and let Flux apply changes when you commit. See [FluxCD]({{< relref "/tutorials/continuous-deployment/flux" >}}) for an introduction and [continuous deployment tutorials]({{< relref "/tutorials/continuous-deployment/" >}}) for end-to-end workflows.
+- **The [developer portal]({{< relref "/overview/developer-portal/" >}})**: browse catalogs, inspect deployed releases, and view their status from a web UI.
 
 ## Legacy: the App custom resource
 
-Deployments managed via the Giant Swarm `App` CR continue to work without changes. The conceptual model is similar to the Flux-based one — an App CR points at a chart in a `Catalog` and Helm installs it — but the underlying API is Giant Swarm-specific. For example:
+Deployments managed via the Giant Swarm `App` CR continue to work without changes. The conceptual model is similar to the Flux-based one (an App CR points at a chart in a `Catalog` and Helm installs it), but the underlying API is Giant Swarm-specific. For example:
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -157,4 +157,4 @@ The diagram below shows the components and resources that make up the Giant Swar
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 <!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
 
-We're building a migration CLI that converts an App CR — together with its associated ConfigMaps and Secrets — into an equivalent HelmRelease and OCIRepository bundle. For the timeline and reasoning, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}). For the legacy walkthrough, see [Getting started deploying an app with the App Platform]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) and [the App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
+We're building a migration CLI that converts an App CR (together with its associated ConfigMaps and Secrets) into an equivalent HelmRelease and OCIRepository bundle. For the timeline and reasoning, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}). For the legacy walkthrough, see [Getting started deploying an app with the App Platform]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) and [the App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
