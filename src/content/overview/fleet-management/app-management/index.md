@@ -69,9 +69,9 @@ spec:
   interval: 60m
 ```
 
-For a step-by-step walkthrough, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
+For a step-by-step guide, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
-### Why Flux HelmRelease
+### Key features
 
 A few features customers tell us matter most:
 
@@ -125,7 +125,7 @@ Manage HelmRelease and OCIRepository resources with whatever tool fits your work
 - **GitOps**: store your HelmRelease YAML in a Git repository and let Flux apply changes when you commit. See [FluxCD]({{< relref "/tutorials/continuous-deployment/flux" >}}) for an introduction and [continuous deployment tutorials]({{< relref "/tutorials/continuous-deployment/" >}}) for end-to-end workflows.
 - **The [developer portal]({{< relref "/overview/developer-portal/" >}})**: browse catalogs, inspect deployed releases, and view their status from a web UI.
 
-## Legacy: the App custom resource
+## Legacy App custom resource
 
 Deployments managed via the Giant Swarm `App` CR continue to work without changes. The conceptual model is similar to the Flux-based one (an App CR points at a chart in a `Catalog` and Helm installs it), but the underlying API is Giant Swarm-specific. For example:
 
@@ -157,4 +157,4 @@ The diagram below shows the components and resources that make up the Giant Swar
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 <!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
 
-We're building a migration CLI that converts an App CR (together with its associated ConfigMaps and Secrets) into an equivalent HelmRelease and OCIRepository bundle. For the timeline and reasoning, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}). For the legacy walkthrough, see [Getting started deploying an app with the App Platform]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) and [the App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
+We're building a migration CLI that converts an App CR (together with its associated ConfigMaps and Secrets) into an equivalent HelmRelease and OCIRepository bundle. For the timeline and reasoning, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}). For the legacy guide, see [Getting started deploying an app with the App Platform]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) and [the App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
