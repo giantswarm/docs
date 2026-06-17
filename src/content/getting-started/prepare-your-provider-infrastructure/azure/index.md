@@ -18,13 +18,13 @@ aliases:
   - /vintage/getting-started/cloud-provider-accounts/cluster-api/azure
 ---
 
-When running the Giant Swarm platform in your Azure subscription, several prerequisites must be satisfied to support Cluster API Provider Azure (CAPZ). In the current implementation, management and workload clusters must run in the same subscription.
+When running the Giant Swarm platform in your Azure subscription, several prerequisites must be satisfied to support Cluster API Provider Azure (CAPZ). In the current implementation, **management and workload clusters must run in the same subscription**.
 
-In addition to the following prerequisites, your account engineer will provide you with a pre-installation checklist that you must complete before starting the installation process.
+Besides the following prerequisites, your account engineer will provide you with a pre-installation checklist that you must complete before starting the installation process.
 
 ## Requirements
 
-1. The Azure subscription must be chosen from existing ones or created if needed in the customer's Azure account. For security reasons regarding sensitive data stored within customer accounts, the advice is to use a subscription-only designated for Giant Swarm Azure resources management.
+1. The Azure subscription must be chosen from existing ones or created if needed in the customer's Azure account. For security reasons regarding sensitive data stored within customer accounts, the advice is to use a subscription designated only for Giant Swarm Azure resource management.
 
 2. An individual has to have the following permissions and tools working within the designated Azure subscription:
 
@@ -37,7 +37,7 @@ Azure enforces [service quota through all cloud services](https://learn.microsof
 
 ![Azure quotas list](./quotas_general.png)
 
-Access to the [Quotas portal service](https://portal.azure.com/#view/Microsoft_Azure_Capacity/QuotaMenuBlade/~/myQuotas) to check and adjust quotas as required. You can also use the Azure CLI to check quotas like:
+Use the [Quotas portal service](https://portal.azure.com/#view/Microsoft_Azure_Capacity/QuotaMenuBlade/~/myQuotas) to check and adjust quotas as required. You can also use the Azure CLI to check quotas like:
 
 ```sh
 az vm list-usage --location <region>
@@ -47,7 +47,7 @@ If your current quotas are insufficient, you can request an increase. In the Azu
 
 1. Go to the **Quotas** section in the [Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Capacity/QuotaMenuBlade/~/myQuotas).
 2. Click on the pencil button to **request an update**.
-3. Fill the new limit and submit the request.
+3. Fill in the new limit and submit the request.
 
 ![Azure quotas edit](quota_editing.png)
 
@@ -61,13 +61,13 @@ Two permission roles need to be created in the Azure subscription: one for the G
 
 Firstly, you need to grant access to Giant Swarm ops/support to your Azure subscription. Access to the portal is essential for our everyday support, where investigation and manual interventions are sometimes necessary.
 
-The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must allow the `Giant Swarm Staff` group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription, instead you add a managed group that's kept up to date by Giant Swarm. There is a solution available called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which allows resource management to be delegated to service providers such as Giant Swarm.
+The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must allow the `Giant Swarm Staff` group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription. Instead, you add a managed group that's **kept up to date by Giant Swarm**. There is a solution available called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which allows resource management to be delegated to service providers such as Giant Swarm.
 
 The recommendation is to choose Azure's [built-in role `Contributor`](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) to give Giant Swarm access and deployment permissions for resources within your subscription.
 
 Alternatively, you can create your role assignment with restricted access to specific Resource Groups. However, it must be kept up to date so that Giant Swarm can also provide full support for newly created clusters.
 
-#### Create a Deployment Environment
+#### Create a deployment environment
 
 * Download the template file [delegatedResourceManagement](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json). This file is left unchanged.
 * Download the parameters example file [delegatedResourceManagement.parameters](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) and fill in the required fields:
@@ -75,14 +75,15 @@ Alternatively, you can create your role assignment with restricted access to spe
     * Replace `<GiantSwarmTenantID>` and `<GiantSwarmPrincipalID>` with the values provided by Giant Swarm's Account Engineer
     * Keep the value of `roleDefinitionId` if you are fine assigning the `Contributor` role. If a custom role is desired, please replace the value.
 
-* Now you can run this command to create the Deployment Environment:
+* Now you can run this command to create the deployment environment:
 
     ```sh
-    $ az deployment create --name "giantswarm-access" \
-                          --location <AzureRegion> \
-                          --template-file delegatedResourceManagement.json \
-                          --parameters delegatedResourceManagement.parameters.json \
-                          --verbose
+    az deployment create \
+      --name "giantswarm-access" \
+      --location <AzureRegion> \
+      --template-file delegatedResourceManagement.json \
+      --parameters delegatedResourceManagement.parameters.json \
+      --verbose
     ```
 
     The `--name` value can be freely chosen if you prefer another name.
@@ -100,13 +101,16 @@ The _Giant Swarm Service Principal_ can be created in two different ways: via th
 Please run the following command and keep the output for later usage.
 
 ```text
-# Please fill in the details of the management cluster (MC) and Azure subscription
+# Please fill in the details of the management cluster
+# (MC) and Azure subscription
 MC_SUBSCRIPTION_ID=XXXX-XXXX-XXXX-XXX
 MC_NAME=ZZZZ
 
 az login
 az account set -s ${MC_SUBSCRIPTION_ID}
-az ad sp create-for-rbac --role contributor --scopes="/subscriptions/${MC_SUBSCRIPTION_ID}" --display-name "${MC_NAME}-bootstrap"
+az ad sp create-for-rbac --role contributor \
+    --scopes="/subscriptions/${MC_SUBSCRIPTION_ID}" \
+    --display-name "${MC_NAME}-bootstrap"
 az role assignment create \
     --assignee "<please fill in the app ID from the previous command output>" \
     --role "User Access Administrator" \
@@ -115,7 +119,7 @@ az role assignment create \
 
 **Note**: Store the output of `az ad sp create-for-rbac`. This needs to be provided to Giant Swarm in step 2.
 
-##### Using Azure Portal
+##### Using the Azure portal
 
 * Login to the [Azure Portal](https://portal.azure.com/)
 * Go to the "Azure Active Directory" service
@@ -149,18 +153,21 @@ The following information needs to be provided to Giant Swarm:
 
 Once all necessary information is provided, our engineers create the management cluster. The provided permissions work within your subscription to provision and validate the infrastructure, ensuring a seamless and efficient process.
 
-When Giant Swarm completes the management cluster provisioning, our engineers can clean up part of the initial setup. The _Giant Swarm Service Principal_ can be deleted as it's used only for the initial bootstrap, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp) is created.
+When Giant Swarm completes the management cluster provisioning, our engineers can clean up part of the initial setup. The _Giant Swarm Service Principal_ **can be deleted as it's used only for the initial bootstrap**, during which an [Azure user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal?pivots=identity-mi-methods-azp) is created.
 
 ## Step 3: Virtual machine templates
 
 ### Accept legal terms for Flatcar Linux
 
-Giant Swarm deploys [Flatcar Linux](https://www.flatcar-linux.org/) images for Kubernetes cluster nodes. It's developed by Kinvolk and taken from the Azure Marketplace. In order to be able to run the images, Azure requires customers to accept the legal terms.
+Giant Swarm deploys [Flatcar Linux](https://www.flatcar-linux.org/) images for Kubernetes cluster nodes. It's developed by Kinvolk and taken from the Azure Marketplace. To run the images, Azure requires customers to accept the legal terms.
 
 Please run the following command before creating a cluster on a given subscription:
 
 ```sh
-az vm image terms accept --offer flatcar-container-linux-free --plan stable --publisher kinvolk
+az vm image terms accept \
+  --offer flatcar-container-linux-free \
+  --plan stable \
+  --publisher kinvolk
 ```
 
 **Note**: This acceptance needs to be performed only once for a subscription that's used to run Giant Swarm workload clusters.
@@ -172,7 +179,10 @@ If your security requirements demand this, you can enable [encryption of data st
 Please run the following command before creating a cluster on a given subscription:
 
 ```sh
-az feature register --name EncryptionAtHost  --namespace Microsoft.Compute --subscription $YOUR_SUBSCRIPTION_ID
+az feature register \
+  --name EncryptionAtHost \
+  --namespace Microsoft.Compute \
+  --subscription $YOUR_SUBSCRIPTION_ID
 ```
 
 ## Step 4: Configure the cluster role identity {#configure-cluster-role-identity}

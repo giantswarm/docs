@@ -14,9 +14,9 @@ user_questions:
 - How to migrate the OIDC service account issuer from vintage to CAPA?
 ---
 
-From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to manage Kubernetes lifecycle across a fleet of clusters. We built our own tooling, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a standardized method for cluster lifecycle management. [Cluster API]({{< relref "/overview/fleet-management/cluster-management/introduction-cluster-api" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
+From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to manage Kubernetes lifecycle across a fleet of clusters. We **built our own tooling**, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a **standardized method for cluster lifecycle management**. [Cluster API]({{< relref "/overview/fleet-management/cluster-management/introduction-cluster-api" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
 
-**Giant Swarm has finished the migration from the previous "vintage" product generation to Cluster API based cluster management for all customers in 2025, seamlessly and without downtime. This guide is only relevant for customers with clusters that were migrated to CAPA**, as during migration, certain old cloud resources needed to be kept. Here, we explain the steps to take to switch to new variants and clean up old resources. **If you are not using IRSA for your own applications, or for any managed apps, this guide is not relevant for you.**
+**Giant Swarm has finished the migration from the previous "vintage" product generation to Cluster API-based cluster management for all customers in 2025, seamlessly and without downtime. This guide is only relevant for customers with clusters that were migrated to CAPA**, as during migration, certain old cloud resources needed to be kept. Here, we explain the steps to take to switch to new variants and clean up old resources. **If you are not using IRSA for your own applications, or for any managed apps, this guide is not relevant for you.**
 
 For each of the cleanup steps, which can be done independently of each other, feel free to coordinate with Giant Swarm support to ensure a smooth cleanup.
 
@@ -32,7 +32,7 @@ A migrated cluster, for example, can look like this before cleanup:
 - Secondary URL/domain, only used to validate tokens (but none are issued by this provider yet): `https://irsa.<workload cluster name>.some-subdomain.example.com`
 - Note: Clusters in China cannot use a CloudFront deployment with domain `irsa.<cluster domain>`. The S3 buckets storing the key information are used directly as service account issuer URLs, for example `s3.cn-northwest-1.amazonaws.com.cn/123456123456-g8s-mycluster-oidc-pod-identity-v2` for vintage, and `-v3` suffix for CAPI. The instructions below need to be adapted for that special case.
 
-The vintage service account issuer (first in the list above) needs to be phased out, since it's tied to the vintage cluster base domain which will also be phased out eventually (see section [DNS hosted zones](#dns-hosted-zones-and-kubernetes-api-endpoint)).
+The vintage service account issuer (the first one in the preceding list) needs to be phased out, since it's tied to the vintage cluster base domain which will also be phased out eventually (see section [DNS hosted zones](#dns-hosted-zones-and-kubernetes-api-endpoint)).
 
 Two things need to happen to achieve that without downtime:
 
@@ -45,13 +45,20 @@ Two things need to happen to achieve that without downtime:
 2. Find all the AWS IAM Roles used by a `ServiceAccount` via IRSA:
 
    ```sh
-   kubectl get ServiceAccount -A -o jsonpath='{range .items[?(@.metadata.annotations contains "eks.amazonaws.com/role-arn")]}{ .metadata.annotations.eks\.amazonaws\.com/role-arn }{"\n"}{ end }' | sort | uniq > /tmp/service-accounts.txt
+   kubectl get ServiceAccount -A \
+     -o jsonpath='{range .items[?(@.metadata.annotations contains "eks.amazonaws.com/role-arn")]}{ .metadata.annotations.eks\.amazonaws\.com/role-arn }{"\n"}{ end }' \
+     | sort | uniq > /tmp/service-accounts.txt
    ```
 
 3. List which AWS accounts you will have to look through:
 
    ```sh
-   echo "### Affected AWS accounts ### "; echo; grep -oE ':[0-9]{12,}:' /tmp/service-accounts.txt | tr -d ':' | sort | uniq > /tmp/affected-accounts.txt; cat /tmp/affected-accounts.txt; echo; echo "### Unknown roles, please manually check to which account each of them belongs ###"; grep -vE ':[0-9]{12,}:' /tmp/service-accounts.txt || echo '(none)'
+   echo "### Affected AWS accounts ### "; echo
+   grep -oE ':[0-9]{12,}:' /tmp/service-accounts.txt \
+     | tr -d ':' | sort | uniq > /tmp/affected-accounts.txt
+   cat /tmp/affected-accounts.txt; echo
+   echo "### Unknown roles, please manually check to which account each of them belongs ###"
+   grep -vE ':[0-9]{12,}:' /tmp/service-accounts.txt || echo '(none)'
    ```
 
 4. Find out the CAPI base domain which we'll need in a few moments. You're still logged into the workload cluster's Kubernetes API, right? Then run the following command. The expected output is shown as well:
@@ -65,7 +72,7 @@ Two things need to happen to achieve that without downtime:
 
    In the output, you can see the CAPI base domain `capi.acme.net`, the vintage base domain `k8s.myoldmanagementcluster.vintage.acme.net` and a combination of your cluster name (here: `mycluster`) with those domains. Remember the base domain _without_ the cluster name for the next step.
 
-5. Find trust policies that only allow the vintage OIDC issuer. You can do this manually using the AWS Console, or somewhat automated using aws-cli. In both cases, if you have roles in multiple accounts, you need to go through all accounts. The file `/tmp/affected-accounts.txt` lists all affected account numbers ‒ **please perform the next steps for each account**. The below instructions are for aws-cli and also require [jq](https://jqlang.org/) to be installed.
+5. Find trust policies that only allow the vintage OIDC issuer. You can do this manually using the AWS Console, or somewhat automated using the AWS CLI. In both cases, if you have roles in multiple accounts, you need to go through all accounts. The file `/tmp/affected-accounts.txt` lists all affected account numbers. **Please perform the next steps for each account.** The following instructions are for the AWS CLI and also require [jq](https://jqlang.org/) to be installed.
 
    ```sh
    # Use some way to tell aws-cli how to reach an account
@@ -80,7 +87,7 @@ Two things need to happen to achieve that without downtime:
 
    With this, you now have a list of affected IAM roles in _one_ account.
 
-6. Update trust policies of the affected IAM roles. They should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, the following block shows how the trust policy should look like. The order doesn't matter as long as you trust both the old and new issuer. Make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references.
+6. Update trust policies of the affected IAM roles. They should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, the following block shows what the trust policy should look like. The order doesn't matter as long as you trust both the old and new issuer. Make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references.
 
    ```json
    {
@@ -121,7 +128,7 @@ Two things need to happen to achieve that without downtime:
 7. Switch the order of the service account issuers in the cluster values (the values for the cluster-aws chart; specifically `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers`). This will instruct the Kubernetes API to start issuing service account tokens using the CAPI issuer, while still accepting tokens from the vintage issuer. Important notes:
    - This needs to be done **after** all IAM role trust policies have been updated.
    - This will roll the control plane nodes of the cluster.
-   - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
+   - This could be done as part of a planned major cluster upgrade, to use an already planned node roll.
 
    Before:
 
@@ -156,7 +163,9 @@ Two things need to happen to achieve that without downtime:
    Make sure you apply the cluster values. To verify that the new values actually arrived on the cluster, you can check if the control plane nodes rolled, or to be very exact, run:
 
    ```sh
-   kubectl get pod -n kube-system -l component=kube-apiserver -o yaml | grep -E 'name: kube-apiserver-|--service-account-issuer'
+   kubectl get pod -n kube-system \
+     -l component=kube-apiserver -o yaml \
+     | grep -E 'name: kube-apiserver-|--service-account-issuer'
    ```
 
 8. Wait until all service account tokens have been renewed:
@@ -165,17 +174,17 @@ Two things need to happen to achieve that without downtime:
 9. Remove the vintage issuer from the cluster configuration values. Specifically, you want to use the default, so please completely **remove** the whole array `cluster.providerIntegration.controlPlane.kubeadmConfig.clusterConfiguration.apiServer.serviceAccountIssuers` from your cluster values. That means to only use the new issuer. Some clusters may still have the older key name `internal.migration.irsaAdditionalDomain` which you should also remove now. Important notes:
    - All Service Account tokens issued by the vintage issuer will no longer be accepted by the cluster's Kubernetes API, so make sure to wait until all tokens are renewed (see previous step).
    - This will roll the control plane nodes of the cluster.
-   - This could be done as part of a planned major cluster upgrade, to make use of an already planned node roll.
+   - This could be done as part of a planned major cluster upgrade, to use an already planned node roll.
 10. (Optional) Update all the AWS IAM Roles used by a `ServiceAccount` via IRSA, to remove the vintage issuer from their trust policy.
 
 ## DNS hosted zones and Kubernetes API endpoint
 
-The DNS setup changes for the workload clusters. The new management cluster has a new DNS hosted zone allocated in AWS. In the vintage setup, the hosted zone contained the management and the workload cluster name in the domain (example: `irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net`), for API and other components, meanwhile in the CAPI setup the DNS structure is more flexible not containing the management cluster name (example: `irsa.mycluster.capi.acme.net`). Both the old and new hosted zones will be available for a while to ensure a smooth transition, but customers should migrate the DNS records to the new zone.
+The DNS setup changes for the workload clusters. The new management cluster has a new DNS hosted zone allocated in AWS. In the vintage setup, the hosted zone contained the management and the workload cluster name in the domain (example: `irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net`), for API and other components, while in the CAPI setup the DNS structure is more flexible, not containing the management cluster name (example: `irsa.mycluster.capi.acme.net`). Both the old and new hosted zones will be available for a while to ensure a smooth transition, but **customers should migrate the DNS records to the new zone**.
 
 Examples:
 
 - `api.<cluster domain>` for Kubernetes API access, for example in your existing kubeconfigs (in CI/CD/GitOps pipeline configs, on users' computers, etc.)
-- `irsa.<cluster domain>` is covered by the above section
+- `irsa.<cluster domain>` is covered by the preceding section
 - `*.<cluster domain>` is typically configured as the wildcard domain of the cluster and used for `Ingress` resources. That means any application subdomains could be served in the old hosted zone but should be migrated to the new one. It depends on your applications how that can be done. Feel free to contact Giant Swarm engineers for tips and help.
 
 ### Cluster manifest cleanup
