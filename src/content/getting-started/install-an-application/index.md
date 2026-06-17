@@ -1,7 +1,7 @@
 ---
 title: Install an application
 linkTitle: Install an application
-description: Deploy applications to your workload cluster using Flux HelmRelease.
+description: Deploy applications to your workload cluster using Flux HelmRelease and expose them with Envoy Gateway.
 weight: 40
 last_review_date: 2026-06-17
 menu:
@@ -14,21 +14,21 @@ user_questions:
   - How do I deploy applications on Giant Swarm?
   - How do I install an application with Flux HelmRelease?
   - How do I configure an app's Helm values?
-  - How do I expose an app over HTTPS?
+  - How do I expose an app through Envoy Gateway?
 ---
 
-Giant Swarm runs Flux on every management cluster, and Flux HelmRelease is the recommended way to deploy applications to your workload clusters. This guide walks you through installing two apps end to end: an ingress controller (so HTTP traffic reaches your cluster) and a hello-world demo behind it.
+Giant Swarm runs Flux on every management cluster, and Flux HelmRelease is the recommended way to deploy applications to your workload clusters. This guide walks you through installing a hello-world demo and exposing it through Envoy Gateway (the Giant Swarm default for ingress traffic) with a Gateway API `HTTPRoute`.
 
 **Note:** If you have existing deployments using the legacy Giant Swarm `App` custom resource, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the migration path. For new deployments, follow this guide.
 
-For a deeper reference covering every flag and option, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
+For a deeper reference covering every Flux flag and option, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
 ## Requirements
 
-First, you need a running workload cluster. If you don't have one, follow [Provision your first workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+You need:
 
-You also need:
-
+- A running workload cluster. If you don't have one, follow [Provision your first workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+- Gateway API and Envoy Gateway installed in that cluster. The quickest way is the Gateway API bundle. See [Installing Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}). Once installed, the bundle creates a default Gateway named `giantswarm-default` that your routes can attach to.
 - The [Flux CLI](https://fluxcd.io/flux/cmd/) installed locally.
 - Access to the management cluster (see [kubectl gs login]({{< relref "/reference/kubectl-gs/login" >}})).
 - Access to the organization namespace where your cluster lives.
@@ -57,53 +57,17 @@ flux get helmreleases \
   --selector giantswarm.io/cluster=${CLUSTER}
 ```
 
-You'll see the apps that ship with the cluster (default-apps bundle, observability tooling, and so on). If you already have an ingress controller running, skip ahead to Step 4.
+You'll see the apps that ship with the cluster (default-apps bundle, observability tooling, and so on). Confirm the Gateway API bundle is among them. If it isn't, install it first using the [Gateway API installation guide]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}).
 
-## Step 2: Install ingress-nginx
-
-The hello-world app needs an ingress controller so it can be reached from outside the cluster. Install one with two Flux resources: an `OCIRepository` that points at the chart in Giant Swarm's registry, and a `HelmRelease` that installs it into the workload cluster.
-
-Create the OCIRepository first:
+You can also confirm the default Gateway is ready, from your workload cluster:
 
 ```sh
-flux create source oci ${CLUSTER}-ingress-nginx \
-  --url oci://gsoci.azurecr.io/charts/giantswarm/ingress-nginx \
-  --tag 3.9.2 \
-  --namespace ${NAMESPACE} \
-  --interval 60m
+kubectl get gateway --namespace envoy-gateway-system giantswarm-default
 ```
 
-Then create the HelmRelease:
+The `PROGRAMMED` column should read `True` once the Gateway is reconciled.
 
-```sh
-flux create helmrelease ${CLUSTER}-ingress-nginx \
-  --namespace ${NAMESPACE} \
-  --chart-ref OCIRepository/${CLUSTER}-ingress-nginx \
-  --kubeconfig-secret-ref ${CLUSTER}-kubeconfig \
-  --target-namespace kube-system \
-  --label giantswarm.io/cluster=${CLUSTER} \
-  --release-name ${CLUSTER}-ingress-nginx \
-  --interval 60m
-```
-
-What each flag does:
-
-- `--chart-ref` points at the OCIRepository created in the previous command.
-- `--kubeconfig-secret-ref` tells Flux which workload cluster to install into. The Secret is created for you alongside the cluster and follows the `<cluster>-kubeconfig` naming convention.
-- `--target-namespace` is the namespace in the workload cluster where the chart's resources are created.
-- `--label giantswarm.io/cluster=${CLUSTER}` makes the resource show up under the correct cluster in the developer portal.
-
-After a few seconds, check the status:
-
-```sh
-flux get helmrelease \
-  --namespace ${NAMESPACE} \
-  ${CLUSTER}-ingress-nginx
-```
-
-You should see `True` under the `Ready` column.
-
-## Step 3: Find your cluster's base domain
+## Step 2: Find your cluster's base domain
 
 Every workload cluster comes with a wildcard DNS record, so apps you expose are reachable at `<name>.${CLUSTER}.<base-domain>`. Read the base domain from the cluster values ConfigMap:
 
@@ -116,21 +80,13 @@ kubectl get configmap \
 
 You'll see something like `baseDomain: test01.capi.aws.k8s.gigantic.io`. Save that for the next step.
 
-## Step 4: Deploy the hello-world app
+## Step 3: Deploy the hello-world app
 
-Create a `values.yaml` with the ingress hostname for the hello-world app (replace the base domain with yours):
+The hello-world chart includes an `Ingress` resource by default. Since we're routing through Gateway API instead, disable that with a small `values.yaml`:
 
 ```yaml
 ingress:
-  hosts:
-    - host: hello.test01.capi.aws.k8s.gigantic.io
-      paths:
-        - path: /
-          pathType: Prefix
-  tls:
-    - secretName: hello-world-tls
-      hosts:
-        - hello.test01.capi.aws.k8s.gigantic.io
+  enabled: false
 ```
 
 Create the OCIRepository for the chart:
@@ -157,26 +113,84 @@ flux create helmrelease ${CLUSTER}-hello-world \
   --interval 60m
 ```
 
-Once the HelmRelease reports `Ready=True`, the app is reachable at the host you configured. Try it:
+What each flag does:
+
+- `--chart-ref` points at the OCIRepository created in the previous command.
+- `--kubeconfig-secret-ref` tells Flux which workload cluster to install into. The Secret is created for you alongside the cluster and follows the `<cluster>-kubeconfig` naming convention.
+- `--target-namespace` is the namespace in the workload cluster where the chart's resources are created.
+- `--label giantswarm.io/cluster=${CLUSTER}` makes the resource show up under the correct cluster in the developer portal.
+
+Wait for the HelmRelease to report `Ready=True`:
 
 ```sh
-curl -Is https://hello.test01.capi.aws.k8s.gigantic.io
+flux get helmrelease \
+  --namespace ${NAMESPACE} \
+  ${CLUSTER}-hello-world
 ```
 
-You should get back `HTTP/1.1 200 OK`. The TLS certificate is issued by cert-manager (installed by default) through Let's Encrypt, so your browser treats the site as secure.
+At this point, the hello-world Service is running in the workload cluster but isn't reachable from outside yet.
+
+## Step 4: Create an HTTPRoute
+
+Apply an `HTTPRoute` to the workload cluster that attaches to the default Gateway and routes `hello.<base-domain>` to the hello-world Service. Replace the base domain with yours:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: hello-world
+  namespace: default
+spec:
+  parentRefs:
+    - name: giantswarm-default
+      namespace: envoy-gateway-system
+  hostnames:
+    - hello.test01.capi.aws.k8s.gigantic.io
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: hello-world
+          port: 80
+```
+
+Save it as `hello-world-route.yaml` and apply it against the workload cluster:
+
+```sh
+kubectl apply -f hello-world-route.yaml
+```
+
+Check that the route is accepted by the Gateway:
+
+```sh
+kubectl describe httproute --namespace default hello-world
+```
+
+Look for `Condition: Accepted, Status: True` in the output.
+
+## Step 5: Try it out
+
+Curl the hello-world endpoint over HTTP:
+
+```sh
+curl -Is http://hello.test01.capi.aws.k8s.gigantic.io
+```
+
+You should get back `HTTP/1.1 200 OK`. To enable HTTPS, add the `hello` subdomain to your Gateway's HTTPS listener and configure cert-manager for Gateway API. See [Installing Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}).
 
 ![Hello world page](hello-world.png)
 
-## Step 5: Clean up
+## Step 6: Clean up
 
-To remove the demo, delete the HelmRelease and OCIRepository for each app in reverse order of creation:
+To remove the demo, delete the HTTPRoute from the workload cluster, then the HelmRelease and OCIRepository from the management cluster:
 
 ```sh
+kubectl delete -f hello-world-route.yaml
+
 flux delete helmrelease --namespace ${NAMESPACE} ${CLUSTER}-hello-world
 flux delete source oci  --namespace ${NAMESPACE} ${CLUSTER}-hello-world
-
-flux delete helmrelease --namespace ${NAMESPACE} ${CLUSTER}-ingress-nginx
-flux delete source oci  --namespace ${NAMESPACE} ${CLUSTER}-ingress-nginx
 ```
 
 ## Next step
