@@ -14,13 +14,9 @@ Apply style fixes and run Vale prose linting on modified or added pages.
    - If a file path was passed as an argument (`$ARGUMENTS`), use that file
    - Otherwise, check git to find pages that were added or modified compared to the base branch
 
-2. Fix obvious grammar problems. When in doubt, explain the issue to the user and let them decide.
-
-3. Run Vale linting on the target file(s):
+2. Run Vale linting on the target file(s). For this, read the `VALE_IMAGE` from `Makefile` first. Then:
 
    ```bash
-   VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.11.2@sha256:27aab968708850a6cc7369dc1325f1812e2c3de0741327fa0aed832e328357d7
-
    docker run --rm \
      -v $PWD:/workdir \
      -w /workdir \
@@ -30,7 +26,9 @@ Apply style fixes and run Vale prose linting on modified or added pages.
      <relative-path-to-markdown-file>
    ```
 
-4. Resolve Vale findings in order of severity: **errors first**, then **warnings**, then **suggestions**.
+3. Resolve Vale findings in order of severity: **errors first**, then **warnings**, then **suggestions**.
+
+4. Fix obvious grammar problems. When in doubt, explain the issue to the user and let them decide.
 
 5. Make sure longer paragraphs provide some anchors for the eye, by emphasizing a few key words or key phrases.
 

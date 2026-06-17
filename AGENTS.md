@@ -217,7 +217,7 @@ Finds and fixes broken external links by running the linkchecker Docker image wi
 
 Applies style fixes and runs Vale prose linting on modified/added pages (or a specified file path). Fixes grammar issues, then resolves Vale errors → warnings → suggestions in order. Does not modify the meaning of the content or remove any detail.
 
-Vale image: `gsoci.azurecr.io/giantswarm/vale:v3.11.2@sha256:27aab968708850a6cc7369dc1325f1812e2c3de0741327fa0aed832e328357d7`
+Vale image: see Makefile (VALE_IMAGE)
 
 ### `/write-observability-docs`
 
