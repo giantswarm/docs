@@ -27,6 +27,16 @@ The Giant Swarm App custom resource (`App`, in the `application.giantswarm.io` A
 - **More expressive feature set.** HelmRelease offers dependency ordering (`dependsOn`), drift detection, post-renderers, fine-grained install/upgrade/rollback policies, and `valuesFrom` with explicit merge order. These features map onto things we've layered on top of App CRs over the years.
 - **Simpler stack.** Collapsing the Giant Swarm app-operator pipeline into one well-understood upstream controller reduces moving parts on the management cluster.
 
+## Notable capabilities HelmRelease adds
+
+These features either have no App CR equivalent or previously required custom tooling to approximate. See the upstream [HelmRelease reference](https://fluxcd.io/flux/components/helm/helmreleases/) for the full specification.
+
+- **Post-renderers.** Apply Kustomize patches to a rendered chart so you can adjust upstream charts (image references, annotations, individual fields) without forking. Patches are persisted to the release, so drift detection accounts for them.
+- **Drift detection.** Reverts out-of-band changes (`kubectl edit`, console edits) back to the declared manifest on each reconcile, with ignore rules for fields that legitimately change at runtime.
+- **Readiness-gated dependencies.** `dependsOn` blocks a release until other HelmReleases report `Ready`. This solves the common case of installing a controller (and its custom resource definitions) before any custom resources that depend on it.
+- **Configurable failure remediation.** Declarative retry counts, choice of rollback or uninstall on failure, and `cleanupOnFail`, all surfaced as spec fields.
+- **Flexible chart sources.** Pull charts from `HelmRepository`, `OCIRepository`, `GitRepository`, or `Bucket`, including OCI references with semver ranges for controlled auto-upgrades.
+
 ## Timeline
 
 _Specific dates to be confirmed._ Until the timeline is finalized:
