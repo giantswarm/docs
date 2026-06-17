@@ -126,7 +126,7 @@ Value is mostly `managed`
 
 ### giantswarm.io/service-priority
 
-Used on cluster-related resources to indicate the [service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
+Used on cluster-related resources to indicate the [service priority]({{< relref "/tutorials/fleet-management/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
 
 ### observability.giantswarm.io/logging
 
