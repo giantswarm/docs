@@ -35,7 +35,7 @@ These features either have no App CR equivalent or previously required custom to
 - **Drift detection.** Reverts out-of-band changes (`kubectl edit`, console edits) back to the declared manifest on each reconcile, with ignore rules for fields that legitimately change at runtime.
 - **Readiness-gated dependencies.** `dependsOn` blocks a release until other HelmReleases report `Ready`. This solves the common case of installing a controller (and its custom resource definitions) before any custom resources that depend on it.
 - **Configurable failure remediation.** Declarative retry counts, choice of rollback or uninstall on failure, and `cleanupOnFail`, all surfaced as spec fields.
-- **Flexible chart sources.** Pull charts from `HelmRepository`, `OCIRepository`, `GitRepository`, or `Bucket`, including OCI references with semver ranges for controlled auto-upgrades.
+- **Flexible chart sources.** Pull charts from `HelmRepository`, `OCIRepository`, `GitRepository`, or `Bucket`, including OCI references with SemVer ranges for controlled auto upgrades.
 
 ## Timeline
 
