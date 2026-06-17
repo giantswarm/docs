@@ -53,7 +53,7 @@ export CHART_VERSION=CHART_VERSION
 export APP_NAMESPACE=APP_NAMESPACE
 ```
 
-Render the OCIRepository manifest with `--export` so it lands as YAML in your repo:
+Render the OCIRepository manifest with `--export` so it lands as YAML in your repository:
 
 ```sh
 flux create source oci ${APP_NAME} \
