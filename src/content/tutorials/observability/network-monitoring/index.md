@@ -97,7 +97,9 @@ In this scenario, your cloud bill shows high network costs. You suspect cross-AZ
 
 **The problem**: A `payments` service frequently queries a `database` service. Because pods are distributed across availability zones for high availability, many of these requests cross zone boundaries. At $0.01/GB, a service transferring 50 GB/day across zones costs approximately $15/month - and this adds up quickly across multiple services.
 
-#### Step 1: Identify high cross-AZ namespaces
+{{% steps %}}
+
+{{% step title="Identify high cross-AZ namespaces" %}}
 
 1. Open the **Network Traffic Analysis - Overview** dashboard in Grafana
 2. Look at the **Average Cross-AZ Network Traffic** panel
@@ -106,7 +108,9 @@ In this scenario, your cloud bill shows high network costs. You suspect cross-AZ
 
 ![network traffic analysis - overview](./network-monitoring-overview.png)
 
-#### Step 2: Investigate Traffic Source
+{{% /step %}}
+
+{{% step title="Investigate traffic source" %}}
 
 1. Open the **Network Traffic Analysis** dashboard (the detailed view)
 2. Use the namespace filter to select the `payments` namespace we identified
@@ -121,7 +125,9 @@ For advanced investigation, you can explore specific panel queries, for example 
 
 ![network traffic analysis - explore](./network-monitoring-explore.png)
 
-#### Step 3: Apply Optimizations
+{{% /step %}}
+
+{{% step title="Apply optimizations" %}}
 
 Based on your investigation, choose one or more of the following strategies to reduce cross-AZ traffic:
 
@@ -129,7 +135,9 @@ Based on your investigation, choose one or more of the following strategies to r
 - [Topology spread constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) to ensure your workload is which maximizes the chance of same-zone communication when combined with topology-aware routing
 - [Pod affinity for co-location](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity): for services that communicate frequently, use pod affinity to prefer scheduling them in the same zone.
 
-#### Step 4: Verify the optimization
+{{% /step %}}
+
+{{% step title="Verify the optimization" %}}
 
 After applying changes, allow some time for traffic patterns to stabilize, then verify the improvement:
 
@@ -138,6 +146,10 @@ After applying changes, allow some time for traffic patterns to stabilize, then 
 3. You should see a reduction in the **Average Cross-AZ Network Traffic** panel
 
 **Important**: Some cross-AZ traffic is expected and healthy - it ensures your application remains available if a zone fails. The goal is to reduce unnecessary cross-AZ traffic, not remove it entirely.
+
+{{% /step %}}
+
+{{% /steps %}}
 
 ## Understanding the Metrics
 
