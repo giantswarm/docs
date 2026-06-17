@@ -23,8 +23,8 @@ The Giant Swarm App custom resource (`App`, in the `application.giantswarm.io` A
 
 ## Why we're making this change
 
-- **Standard upstream API.** HelmRelease is a widely adopted CNCF API. You can use the same tooling on Giant Swarm that you use elsewhere, with no proprietary CRD to learn.
-- **More expressive feature set.** HelmRelease offers dependency ordering (`dependsOn`), drift detection, post-renderers, fine-grained install/upgrade/rollback policies, and `valuesFrom` with explicit merge order. These features map naturally onto things we've layered on top of App CRs over the years.
+- **Standard upstream API.** HelmRelease is a widely adopted upstream API. You can use the same tooling on Giant Swarm that you use elsewhere, with no proprietary CRD to learn.
+- **More expressive feature set.** HelmRelease offers dependency ordering (`dependsOn`), drift detection, post-renderers, fine-grained install/upgrade/rollback policies, and `valuesFrom` with explicit merge order. These features map onto things we've layered on top of App CRs over the years.
 - **Simpler stack.** Collapsing the Giant Swarm app-operator pipeline into one well-understood upstream controller reduces moving parts on the management cluster.
 
 ## Timeline
@@ -37,7 +37,7 @@ _Specific dates to be confirmed._ Until the timeline is finalized:
 - **Phase 3 (TBD).** App CR sunset announced with a long deprecation window. Existing deployments continue to work; new App CR creation may be restricted.
 - **Phase 4 (TBD).** App CR support ends. All workloads expected to run as HelmReleases.
 
-We'll update this page as the timeline is firmed up. If you're planning a major rollout, contact your account engineer or [support](mailto:support@giantswarm.io) and we'll factor your schedule in.
+We'll update this page as the timeline is firmed up. If you're planning a major deployment, contact your account engineer or [support](mailto:support@giantswarm.io) and we'll factor your schedule in.
 
 ## What this means for you
 
