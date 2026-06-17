@@ -203,9 +203,9 @@ flux delete source oci \
     helloworld-marian
 ```
 
-## Using GitOps
+## GitOps workflow
 
-To manage these resources from a Git repository instead of applying them directly, render the YAML with the `--export` flag. Both `flux create source oci` and `flux create helmrelease` print the resource manifest to stdout when given `--export`:
+To manage these resources from a Git repository instead of applying them directly, render the YAML with the `--export` flag. Both `flux create source oci` and `flux create helmrelease` print the resource manifest to standard output when given `--export`:
 
 ```nohighlight
 flux create source oci dev01-hello-world \
