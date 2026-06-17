@@ -7,7 +7,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-clusters-multi-az
-last_review_date: 2024-11-29
+last_review_date: 2026-06-17
 user_questions:
 - Does Giant Swarm support multiple availability zones (AZ)?
 - What are the benefits of using multiple availability zones (AZ)?

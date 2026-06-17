@@ -9,7 +9,7 @@ menu:
 weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-27
+last_review_date: 2026-06-17
 user_questions:
   - What's the meaning of a specific Kubernetes resource label?
 ---
