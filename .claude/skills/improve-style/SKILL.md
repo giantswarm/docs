@@ -1,7 +1,7 @@
 ---
 name: improve-style
 description: Apply style fixes and run Vale prose linting on modified or added pages
-argument-hint: [file-path]
+argument-hint: '[file-path]'
 ---
 
 # Improve writing style and formatting
