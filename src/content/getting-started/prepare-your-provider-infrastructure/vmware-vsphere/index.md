@@ -3,7 +3,7 @@ title: Prepare your provider environment for VMware vSphere
 linkTitle: VMware vSphere
 description: Prepare your VMware vSphere setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 40
-last_review_date: 2025-04-09
+last_review_date: 2026-06-17
 layout: single
 menu:
   principal:
@@ -52,7 +52,7 @@ A vSphere environment has no concept of load balancer, which Kubernetes requires
 
 {{< tabs >}}
 {{< tab id="flags-kubevip" title="kube-vip">}}
-Since vSphere has no concept of load balancers out of the box, Cluster API ships with [kube-vip]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}), a layer two load balancer that works with [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) requests. By default, `kube-vip` only handles the Kubernetes API access. Still, at Giant Swarm, we also deploy the `kube-vip` provider to offer the capability to create services of type load balancer.
+Since vSphere has no concept of load balancers out of the box, Cluster API ships with [kube-vip](https://kube-vip.io), a layer two load balancer that works with [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) requests. By default, `kube-vip` only handles the Kubernetes API access. Still, at Giant Swarm, we also deploy the `kube-vip` provider to offer the capability to create services of type load balancer.
 
 The ARP layer two protocol informs the network of the location of a new host address. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its upstream servers.
 
@@ -63,8 +63,6 @@ Due to the in-cluster operation of `kube-vip`, the cluster network where this co
 ![CAPV kube-vip IPAM](capv-kubevip-ipam-excalidraw.png)
 
 When deploying a Cluster API cluster, it automatically selects an IP from the IP pool by default. However, to have available IPs for services of type load balancer in the workload cluster, you must explicitly set a CIDR in the nodes' subnet.
-
-Learn more about how to configure `kube-vip` in the [advanced documentation]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}).
 {{< /tab >}}
 
 {{< tab id="flags-nsxalb" title="NSX ALB">}}
