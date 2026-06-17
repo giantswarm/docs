@@ -9,7 +9,7 @@ menu:
 weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-27
+last_review_date: 2026-06-17
 user_questions:
   - What's the meaning of a specific Kubernetes resource label?
 ---
@@ -126,7 +126,7 @@ Value is mostly `managed`
 
 ### giantswarm.io/service-priority
 
-Used on cluster-related resources to indicate the [service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
+Used on cluster-related resources to indicate the [service priority]({{< relref "/tutorials/fleet-management/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
 
 ### observability.giantswarm.io/logging
 
