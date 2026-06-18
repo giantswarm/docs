@@ -12,14 +12,20 @@ from pprint import pprint
 
 PATH = 'src/content'
 
+# Top-level sections (path_l1) excluded from the export by default.
+EXCLUDED_SECTIONS = {'changes'}
+
 def main():
     fpaths = []
-    for root, _, files in os.walk(PATH):
+    for root, dirs, files in os.walk(PATH):
+            # Don't descend into excluded top-level sections.
+            if os.path.relpath(root, PATH) == '.':
+                dirs[:] = [d for d in dirs if d not in EXCLUDED_SECTIONS]
             for file in files:
                 if not file.endswith('.md'):
                     continue
                 fpaths.append(os.path.join(root, file))
-    
+
     export_paths(fpaths)
 
 
@@ -27,7 +33,11 @@ def export_paths(paths):
     """Export data on the list of paths provided"""
     with open('./export.csv', 'w') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(['title', 'path_l1', 'path_l2', 'path_l3', 'url'])
+        writer.writerow([
+            'title',
+            'path_l1', 'path_l2', 'path_l3', 'path_l4', 'path_l5', 'path_l6',
+            'url',
+        ])
 
         for p in paths:
             frontmatter = frontmatter_for_path(p)
@@ -41,6 +51,9 @@ def export_paths(paths):
                 path_level(relpath, 0),
                 path_level(relpath, 1),
                 path_level(relpath, 2),
+                path_level(relpath, 3),
+                path_level(relpath, 4),
+                path_level(relpath, 5),
                 f'https://docs.giantswarm.io/{relpath}',
             ])
 
