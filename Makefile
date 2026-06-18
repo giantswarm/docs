@@ -3,7 +3,7 @@ COMPANY=giantswarm
 REGISTRY=gsoci.azurecr.io
 SHELL=bash
 MARKDOWNLINT_IMAGE=ghcr.io/igorshubovych/markdownlint-cli:v0.45.0@sha256:27eadb7b23b79b4b01b9220e18467d041804e632f41cf69b9c1613b48ed72749
-VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.11.2@sha256:27aab968708850a6cc7369dc1325f1812e2c3de0741327fa0aed832e328357d7
+VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.15.1@sha256:1e4449aba172e268fcb40fad8fa47a3c713c568154afe0fcb5bc2a0a42420efe
 APPLICATION=docs-app
 RUNNING_IN_CI ?= false
 

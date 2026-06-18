@@ -32,8 +32,8 @@ import sys
 from dataclasses import dataclass, field
 
 VALE_IMAGE = (
-    "gsoci.azurecr.io/giantswarm/vale:v3.11.2@sha256:"
-    "27aab968708850a6cc7369dc1325f1812e2c3de0741327fa0aed832e328357d7"
+    "gsoci.azurecr.io/giantswarm/vale:v3.15.1@sha256:"
+    "1e4449aba172e268fcb40fad8fa47a3c713c568154afe0fcb5bc2a0a42420efe"
 )
 
 # Proper nouns, brand names and acronyms that may legitimately be capitalized
