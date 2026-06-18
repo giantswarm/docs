@@ -51,7 +51,7 @@ spec:
 
 Commit and push. Flux notices the tag change, pulls the new chart artifact, and the HelmRelease reconciles it onto the workload cluster.
 
-**Note:** If you want Flux to roll patches and minor versions on its own without manual tag bumps, use a SemVer range instead of a pinned tag. That's covered in the upcoming automatic-updates guide; for now see the [OCIRepository SemVer example](https://fluxcd.io/flux/components/source/ocirepositories/#semver-example).
+**Note:** If you want Flux to roll patches and minor versions on its own without manual tag bumps, use a SemVer range instead of a pinned tag. That's covered in the upcoming automatic-updates guide. For now see the [OCIRepository SemVer example](https://fluxcd.io/flux/components/source/ocirepositories/#semver-example).
 
 ## Change install or upgrade behavior
 
@@ -124,7 +124,7 @@ Re-encrypt the file:
 sops --encrypt --in-place secret.enc.yaml
 ```
 
-It's a good practice to clear the imported private key from your keyring afterwards:
+It's a good practice to clear the imported private key from your keyring afterward:
 
 ```sh
 gpg --delete-secret-keys "${KEY_FP}"
