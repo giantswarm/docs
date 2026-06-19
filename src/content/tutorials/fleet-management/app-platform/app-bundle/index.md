@@ -20,6 +20,8 @@ user_questions:
 last_review_date: 2025-11-28
 ---
 
+**Deprecated:** App bundles ship as charts containing `App` custom resources. The `App` CR is being phased out in favor of Flux HelmRelease, so this pattern has no direct Flux equivalent. The closest equivalents for new deployments are Helm umbrella charts (one chart declaring sub-charts as dependencies) and Kustomize over multiple HelmReleases. See [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}) for both patterns, and [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
+
 ## App bundle definition {#app-bundle-definition}
 
 As stated in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}), all managed apps are packaged, maintained, and offered as `helm` charts, and it's no different for app bundles. What makes them special compared to solitary apps is that the bundle `helm` chart, instead of carrying regular resources composing the actual application, carries [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which, once delivered and consumed by the app platform, install the expected applications and their resources.

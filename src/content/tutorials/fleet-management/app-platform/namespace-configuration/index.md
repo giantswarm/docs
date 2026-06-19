@@ -18,6 +18,8 @@ user_questions:
 last_review_date: 2024-10-28
 ---
 
+**Deprecated:** This feature (`spec.namespaceConfig`) is specific to the Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. HelmRelease has no direct equivalent for managing target-namespace metadata: for new deployments, set the labels and annotations from inside the Helm chart's templates, with a [post-renderer Kustomize patch](https://fluxcd.io/flux/components/helm/helmreleases/#post-renderers) on the HelmRelease, or with a separate policy tool such as Kyverno. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
+
 When installation apps through the app platform, you might want to add specific labels or annotations to an app's target namespace (for example to allow `loki` to scrape logs from a specific namespace).
 
 The [`App` custom resource]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) allows you to configure the target namespace via the spec.
