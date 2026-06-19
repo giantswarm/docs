@@ -17,7 +17,7 @@ aliases:
   - /vintage/use-the-api/kubectl-gs/template-app/
 ---
 
-**This command is deprecated and will be removed in a future version of kubectl-gs.**
+**Deprecated:** This command produces a manifest for the legacy `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, use the [Flux CLI](https://fluxcd.io/flux/cmd/): `flux create source oci --export` and `flux create helmrelease --export`. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview and [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) for a worked example.
 
 The `template app` command allows to create a manifest for an app to be installed in a workload cluster. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
