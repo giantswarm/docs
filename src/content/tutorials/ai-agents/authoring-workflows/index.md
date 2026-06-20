@@ -23,7 +23,9 @@ This guide documents what the engine implements. Write against these fields and 
 
 ## The execution model
 
-A workflow is an ordered list of steps that Muster runs server-side, returning one condensed JSON document. Top-level steps run **sequentially**, but a step isn't always a single tool call. Each top-level step is exactly one of a plain `tool` call, a `forEach` loop, or a `parallel` group. A workflow-level `onFailure` block can run best-effort cleanup when a step fails. Design every workflow around one fact: it collapses many agent round-trips into a single call, and its response cost is the sum over everything it runs.
+A workflow is an ordered list of steps that Muster runs server-side, returning one JSON document. Top-level steps run **sequentially**, but a step isn't always a single tool call. Each top-level step is exactly one of a plain `tool` call, a `forEach` loop, or a `parallel` group. A workflow-level `onFailure` block can run best-effort cleanup when a step fails. Design every workflow around one fact: it collapses many agent round-trips into a single call, and its response cost is the sum over everything it returns.
+
+Every step's result is **always** available to later steps and the response projection through `{{ .results.<id>.<field> }}`. That holds regardless of any flag. You separately control what the *agent* sees back. The per-step `output` flag picks which step results land in the returned document. The workflow-level `spec.output` projection replaces that document with a shape you define.
 
 > Control flow (`forEach`, `parallel`, `onFailure`, and template conditions) requires Muster 0.8.0 or later. Plain sequential `tool` steps work on every version.
 
@@ -60,7 +62,7 @@ spec:
         fieldSelector: "status.phase!=Running"
         output: slim
         limit: 25
-      store: true
+      output: true
     - id: backoff_events
       tool: x_kubernetes_list
       args:
@@ -70,7 +72,7 @@ spec:
         fieldSelector: "reason=BackOff"
         fullOutput: true
         limit: 10
-      store: true
+      output: true
       allowFailure: true
 ```
 
@@ -98,9 +100,37 @@ A workflow described only as `"check the pods in <mc>"` is invisible to a search
 
 Each entry in `spec.args` is typed (`string`, `integer`, `boolean`, `number`, `object`, or `array`), can be `required`, and can carry a `default` and a `description`. Muster validates and defaults the inputs before the first step runs. A missing required argument fails execution immediately. Extra arguments that aren't in the schema are tolerated.
 
-### `store: true` is load-bearing
+### `output: true` selects what the agent sees
 
-Without `store: true`, a step still runs, but Muster emits only `{id, tool, status}` for it—the actual data is discarded before the agent sees the response. Set `store: true` on every step whose data the agent must read. Only the last step's result is merged into the top level automatically if it isn't stored. When in doubt, store it.
+Every step result is recorded. Later steps and the response projection can read it through `{{ .results.<id>.<field> }}`, with or without a flag. The per-step `output` flag controls one thing: whether the step's data lands in the document the agent receives. Without it, Muster emits only `{id, tool, status}` for the step and drops the data before the response. Set `output: true` on every step whose data the agent must read. The last step's result is merged into the top level even when you set no flag.
+
+The step-level `output` boolean differs from the `output: slim` argument inside `args`. That argument is a tool's own response knob. In the earlier example, `not_running` sets both. `output: slim` trims the Kubernetes payload, and step-level `output: true` returns the trimmed result.
+
+`store: true` is deprecated. It's the older name for `output: true` and still works. Muster logs a deprecation warning for each step that uses it. Referencing a step result no longer needs it, so prefer `output`. When a step sets neither, `output` wins if present, and `store` is the fallback. The warning fires on the create or validate path and on the CRD reconciler.
+
+### Shape the response with `spec.output`
+
+For the tightest response, declare a workflow-level `spec.output` projection. It's a templated map, rendered once after every step completes. It **replaces** the default `{execution_id, workflow, status, input, steps[], ...}` envelope with the shape you define. It reads `.input`, `.results`, and `.vars`. Every step result is available to it, no matter how you flag the step.
+
+```yaml
+spec:
+  steps:
+    - id: not_running
+      tool: x_kubernetes_list
+      args: { management_cluster: "{{ .input.management_cluster }}", resourceType: pods, fieldSelector: "status.phase!=Running", output: slim, limit: 25 }
+    - id: backoff_events
+      tool: x_kubernetes_list
+      args: { management_cluster: "{{ .input.management_cluster }}", resourceType: events, fieldSelector: "reason=BackOff", fullOutput: true, limit: 10 }
+      allowFailure: true
+  output:
+    not_running_pods: "{{ .results.not_running.items }}"
+    backoff_count: "{{ len .results.backoff_events.items }}"
+    cluster: "{{ .input.management_cluster }}"
+```
+
+The projection **preserves JSON types**. A leaf's type comes from the value it evaluates to, not from how the rendered text looks. A single bare reference like `{{ .results.not_running.items }}` keeps its real type, so an array stays an array. A `{{ len ... }}` leaf is a number. A leaf that mixes literal text with an action, such as `"cluster {{ .input.management_cluster }}"`, renders to a string. Values whose form matters survive without coercion, including leading zeros, versions, and IDs like `08` and `1.20`.
+
+When `spec.output` is declared, the per-step `output` and `store` flags no longer affect the returned document. The projection defines it in full. Muster logs a one-line warning naming any flags it made inert. Drop those flags, or drop the projection. The projection is the strongest token lever a workflow has, since it returns a small, shaped payload instead of the full step envelope.
 
 ### `allowFailure: true` for legitimately optional steps
 
@@ -129,7 +159,7 @@ Beyond plain `tool` steps, a top-level step can be a loop or a concurrent group,
           resourceType: pods
           output: slim
           limit: 25
-        store: true
+        output: true
 ```
 
 - `items` must be a reference that resolves to an array. A scalar, or a string built from a richer template, is rejected at runtime.
@@ -149,27 +179,27 @@ A loop multiplies cost: the per-step budget caps below apply to **every** iterat
     - id: nodes
       tool: x_kubernetes_list
       args: { management_cluster: "{{ .input.management_cluster }}", resourceType: nodes, output: slim }
-      store: true
+      output: true
     - id: events
       tool: x_kubernetes_list
       args: { management_cluster: "{{ .input.management_cluster }}", resourceType: events, fullOutput: true, limit: 10 }
-      store: true
+      output: true
 ```
 
 - Each sub-step sees a snapshot of the results as they were **before** the group started, so siblings can't read each other's output. A sub-step that needs another sub-step's result must be a later top-level step.
-- Stored sub-step results merge back into the workflow after the join, so later steps see them normally.
+- Sub-step results merge back into the workflow after the join, so later steps reference them normally; flag the ones you want in the response with `output: true`.
 - Only latency is parallelized; response **size** is still the sum, so the per-step caps still apply.
 
 ### `onFailure` cleanup
 
-A workflow-level `onFailure` block lists sub-steps that run best-effort when the workflow fails on a step that isn't marked `allowFailure`. Each handler can read `{{ .results.<id> }}` from any step that stored a result before the failure, so a rollback can reference what it must undo:
+A workflow-level `onFailure` block lists sub-steps that run best-effort when the workflow fails on a step that isn't marked `allowFailure`. Each handler can read `{{ .results.<id> }}` from any step that ran before the failure, so a rollback can reference what it must undo:
 
 ```yaml
 spec:
   steps:
     - id: backup
       tool: postgres_backup
-      store: true
+      output: true
     - id: migrate
       tool: postgres_migrate
   onFailure:
@@ -186,7 +216,7 @@ spec:
 Step arguments are Go templates resolved server-side per step. Rendering uses `missingkey=error`, so referencing an undefined key **fails the step** rather than rendering an empty string. Four roots are in scope:
 
 - `{{ .input.<arg> }}`: a workflow argument. It's always `.input.<arg>`, never a bare `{{ .<arg> }}`. The bare form fails with a missing-key error.
-- `{{ .results.<stepID>.<field> }}`: a field from a prior step that set `store: true`. Nested map navigation works.
+- `{{ .results.<stepID>.<field> }}`: a field from any prior step, available regardless of that step's `output` flag. Nested map navigation and array indexing both work (`{{ (index .results.list.items 0).name }}`).
 - `{{ .vars.<name> }}`: a `forEach` loop variable: the loop item `{{ .vars.<as> }}` and its index `{{ .vars.<as>_index }}`. There's no other way to set `.vars`.
 - `{{ .context.<x> }}`: another name for `.results`.
 
@@ -221,7 +251,7 @@ Alternatively, run a tool or reference a prior stored step and test the outcome.
         "type": "production"
 ```
 
-The `jsonPath` is a **simple dotted path** over the result object: `data.field` works, but array indexing such as `items[0].name` doesn't. For the read-only health digests that AI agents call most, conditions are seldom needed. Prefer `allowFailure` for the case where a resource might not exist.
+The `jsonPath` uses the same path navigator as step arguments and templates. It accepts two interchangeable forms. The first is a dotted or bracketed path over the result object, with array indexing. Paths like `data.field`, `items[0].name`, and plain dotted paths all work. The second is a Go-template expression that exposes the condition result as `.result`, alongside the usual roots. An example is `"{{ (index .result.items 0).name }}"`. For the read-only health digests that agents call most, conditions are seldom needed. Prefer `allowFailure` for the case where a resource might not exist.
 
 ## Budget for cost
 
@@ -246,7 +276,7 @@ These look plausible but are rejected at apply time or ignored. Avoid them:
 | Looks plausible | Reality |
 |---|---|
 | `{{ .<arg> }}` | Always `{{ .input.<arg> }}`; the bare form fails. |
-| `outputs:` on a step | Removed from the schema; use `store: true`. |
+| `outputs:` on a step | Removed from the schema; use the `output` flag, or `spec.output` to shape the response. |
 | `spec.name`, custom annotations to steer the agent | Not part of the schema; pruned or ignored. |
 | Directives on a step's `description` | Never reach the agent; move them to `spec.description`. |
 | `and`/`or` in a condition | One source per condition; compose logic in a `template`. |

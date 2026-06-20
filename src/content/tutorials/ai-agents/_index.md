@@ -23,6 +23,7 @@ For the concepts behind everything here, see the [AI agents overview]({{< relref
 ## In this section
 
 - [Author a workflow]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}): package a multi-step operation as a single `workflow_<name>` tool, written the code-grounded way.
+- [Save tokens with workflows]({{< relref "/tutorials/ai-agents/saving-tokens-with-workflows" >}}): why one workflow call is dramatically cheaper than a raw-tool loop, with the measured numbers and the design rules that maximize the saving.
 - [Manage MCP servers]({{< relref "/tutorials/ai-agents/managing-mcp-servers" >}}): add and configure downstream servers with `MCPServer` resources.
 - [Connect custom MCP servers]({{< relref "/tutorials/ai-agents/connecting-custom-mcp-servers" >}}): bring third-party servers behind the gateway, including ones that don't publish standard discovery metadata.
 - [Give agents multi-cluster access]({{< relref "/tutorials/ai-agents/multi-cluster-access" >}}): expose a whole fleet through one central Muster.
