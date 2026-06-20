@@ -45,6 +45,8 @@ Muster aggregator (management cluster)
 
 The agent handles authentication transparently, so your AI assistant never needs to manage tokens or cluster credentials directly.
 
+For the bigger picture—what Muster is, how the aggregator works, and how it stays secure—see the [AI agents overview]({{< relref "/overview/ai-agents" >}}). If you'd rather ask questions in the browser instead of your IDE, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) is powered by the same Muster aggregator.
+
 ## Before you start
 
 You'll need:
@@ -64,6 +66,7 @@ A context tells Muster which aggregator endpoint to connect to. Add one with the
 ```bash
 muster context add my-platform --endpoint https://muster.<management-cluster>.<base-domain>/mcp
 muster context use my-platform
+```
 
 You can verify the context is set correctly:
 
@@ -160,7 +163,7 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 - "What are the resource requests and limits for pods in the default namespace?"
 - "What Helm releases are installed on cluster A?"
 
-Muster uses a meta-tool architecture—instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools (including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`) that your AI assistant uses automatically. You don't need to know the tool names—just describe what you want in plain language.
+Muster uses a meta-tool architecture—instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools (including `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`) that your AI assistant uses automatically. You don't need to know the tool names—just describe what you want in plain language. See [Meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) for how this keeps the assistant's context lean.
 
 ## Session management
 
@@ -207,3 +210,10 @@ The mcp-kubernetes instance on that cluster may be temporarily unavailable. Othe
 1. Verify authentication: `muster auth status`
 2. Check that the MCP server is enabled in your editor's MCP settings.
 3. Restart the MCP server from your editor's MCP panel.
+
+## Learn more
+
+- [AI agents overview]({{< relref "/overview/ai-agents" >}}): what AI agents on the platform are and the pieces involved.
+- [Architecture]({{< relref "/overview/ai-agents/architecture" >}}): how the central aggregator gives you unified access to your whole fleet.
+- [Security]({{< relref "/overview/ai-agents/security" >}}): OAuth 2.1, per-user tool visibility, and how single sign-on works across clusters.
+- [Developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}): ask the same questions in the browser instead of your IDE.
