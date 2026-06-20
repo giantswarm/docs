@@ -59,11 +59,11 @@ If a workflow returns a clean result and the agent keeps investigating anyway, t
 
 ## A long chain drops with a network error
 
-A single agent turn that runs many tool calls back to back can drop with a streaming network error before producing an answer—the HTTP response succeeds, but the stream aborts partway. Fewer, cheaper calls reduce this exposure, which is one more reason to encapsulate multi-step investigations as a [workflow]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}) rather than letting the agent run the whole discover-query-correlate loop itself.
+A single agent turn that runs many tool calls back to back can drop with a streaming network error before producing an answer. The HTTP response succeeds, but the stream aborts partway. Fewer, cheaper calls reduce this exposure. That's one more reason to encapsulate multi-step investigations as a [workflow]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}) rather than letting the agent run the whole discover-query-correlate loop itself.
 
 ## Authentication fails for users in many groups
 
-If a user can authenticate from one account but fails from one that belongs to many identity-provider groups, suspect token size limits: ingress header buffers and the group-count limit. See [RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}#large-tokens).
+If a user can authenticate from one account but fails from one that belongs to many identity-provider groups, suspect token size limits. The usual causes are ingress header buffers and the group-count limit. See [RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}#large-tokens).
 
 ## Related
 

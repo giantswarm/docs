@@ -23,7 +23,7 @@ This guide documents what the engine implements. Write against these fields and 
 
 ## The execution model
 
-A workflow is an ordered list of steps that Muster runs server-side, returning one condensed JSON document. Top-level steps run **sequentially**, but a step isn't always a single tool call: each top-level step is exactly one of a plain `tool` call, a `forEach` loop, or a `parallel` group. A workflow-level `onFailure` block can run best-effort cleanup when a step fails. Design every workflow around one fact: it collapses many agent round-trips into a single call, and its response cost is the sum over everything it runs.
+A workflow is an ordered list of steps that Muster runs server-side, returning one condensed JSON document. Top-level steps run **sequentially**, but a step isn't always a single tool call. Each top-level step is exactly one of a plain `tool` call, a `forEach` loop, or a `parallel` group. A workflow-level `onFailure` block can run best-effort cleanup when a step fails. Design every workflow around one fact: it collapses many agent round-trips into a single call, and its response cost is the sum over everything it runs.
 
 > Control flow (`forEach`, `parallel`, `onFailure`, and template conditions) requires Muster 0.8.0 or later. Plain sequential `tool` steps work on every version.
 
@@ -104,7 +104,7 @@ Without `store: true`, a step still runs, but Muster emits only `{id, tool, stat
 
 ### `allowFailure: true` for legitimately optional steps
 
-By default, a single step error fails the whole workflow and flips its result to an error, which sends the agent chasing the failure with expensive discovery calls. Set `allowFailure: true` on steps that may legitimately fail or return nothing: a resource type not every cluster uses, an optional backend such as the metrics server (`x_prometheus_*`), or a list that depends on RBAC that might be scoped differently. In the earlier example, the events list is marked optional so a cluster without recent crash-loop events still returns a clean digest.
+By default, a single step error fails the whole workflow and flips its result to an error, which sends the agent chasing the failure with expensive discovery calls. Set `allowFailure: true` on steps that may legitimately fail or return nothing. Examples are a resource type not every cluster uses, an optional backend such as the metrics server (`x_prometheus_*`), or a list that depends on RBAC that might be scoped differently. In the earlier example, the events list is marked optional so a cluster without recent crash-loop events still returns a clean digest.
 
 A workflow can mix servers in one digest, for example correlating Kubernetes state with an `x_prometheus_query` step, so a single call returns both the failing pods and the matching metrics. Mark the metrics step `allowFailure: true` so a cluster without `mcp-prometheus` deployed still returns the Kubernetes half.
 
@@ -225,7 +225,7 @@ The `jsonPath` is a **simple dotted path** over the result object: `data.field` 
 
 ## Budget for cost
 
-Total response size is the **sum** over everything the workflow runs, including each `forEach` iteration and every `parallel` sub-step, so an unbounded step is what eventually produces a multi-million-token outlier even when the typical run is small. Latency is the sum for sequential steps but the max within a `parallel` group. Cap every list, get, and log step:
+Total response size is the **sum** over everything the workflow runs, including each `forEach` iteration and every `parallel` sub-step. An unbounded step is what eventually produces a multi-million-token outlier even when the typical run is small. Latency is the sum for sequential steps but the max within a `parallel` group. Cap every list, get, and log step:
 
 - Set `limit:` on every list. Ten events is plenty; more just feeds noise.
 - Set `tailLines: 30` on any log fetch. The default is 100 and the maximum is 1000—enough to blow the prompt window on a healthy system.

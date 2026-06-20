@@ -50,7 +50,7 @@ spec:
     type: oauth
 ```
 
-The first time a user calls a tool from this server, Muster detects the `401` challenge, hands the agent an authorization URL, and—after the user authenticates in the browser—retries the call with the acquired token. The [security model]({{< relref "/overview/ai-agents/security" >}}) walks through this exchange.
+The first time a user calls a tool from this server, Muster detects the `401` challenge and hands the agent an authorization URL. After the user authenticates in the browser, Muster retries the call with the acquired token. The [security model]({{< relref "/overview/ai-agents/security" >}}) walks through this exchange.
 
 ## A server that doesn't publish RFC 9728 metadata
 

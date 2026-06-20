@@ -16,7 +16,7 @@ user_questions:
   - What do the x_, core_, and workflow_ tool prefixes mean?
 ---
 
-A single management cluster can expose hundreds of MCP tools—one per Kubernetes operation, per cluster, plus everything from any other server behind the gateway. Loading them all into an AI assistant's context window at startup is wasteful: it pollutes the context and inflates the token cost of every interaction, most of it for tools the assistant never uses.
+A single management cluster can expose hundreds of MCP tools—one per Kubernetes operation, per cluster, plus everything from any other server behind the gateway. Loading them all into an AI assistant's context window at startup is wasteful. It pollutes the context and inflates the token cost of every interaction, most of it for tools the assistant never uses.
 
 Muster avoids this with **meta-tool indirection**. Instead of exposing every underlying tool, it exposes a small, fixed set of meta-tools. The assistant uses these to discover and invoke the full set of capabilities on demand.
 
@@ -53,6 +53,6 @@ Several mechanisms work together so that an agent pays context cost only for the
 - **Dynamic registration.** When a server starts—manually, or as part of a workflow—its tools are discovered, prefixed, and registered immediately. The agent's next `list_tools` call reflects the new capabilities, no IDE restart required.
 - **Prerequisite encapsulation.** Complex setups such as port forwarding or authentication are encapsulated so that the relevant tools only become available once their prerequisites are satisfied.
 
-The combined effect: an assistant interacting with Muster carries a tiny, stable tool surface, and the cost of any given task scales with what that task touches—not with the size of the whole platform.
+The combined effect: an assistant interacting with Muster carries a tiny, stable tool surface. The cost of any given task scales with what that task touches—not with the size of the whole platform.
 
 To see these meta-tools in action from your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).

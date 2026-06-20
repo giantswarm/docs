@@ -23,7 +23,7 @@ Muster treats authentication as a first-class concern at two levels: protecting 
 
 The aggregator requires the OAuth 2.1 authorization code flow with PKCE. The first time your AI assistant connects—or when you run `muster auth login` from the CLI—your browser opens for SSO against your enterprise identity provider. Tokens are stored locally with restricted file permissions. Access tokens are short-lived—30 minutes by default—and your MCP client refreshes them automatically in the background, so you stay connected without re-authenticating.
 
-Because authentication happens over the OAuth 2.1 flow, an assistant that supports remote MCP servers natively (such as VS Code or Cursor) can connect straight to the aggregator's HTTPS URL and run this flow itself, with no local bridge process. Production deployments require HTTPS for all OAuth endpoints.
+Because authentication uses the OAuth 2.1 flow, an assistant that supports remote MCP servers natively can connect straight to the aggregator's HTTPS URL. Examples include VS Code and Cursor. They run this flow themselves, with no local bridge process. Production deployments require HTTPS for all OAuth endpoints.
 
 ## Muster-to-downstream authentication
 
@@ -41,13 +41,13 @@ flowchart TB
   s1 --> s2 --> s3 --> s4 --> s5 --> s6 --> s7
 {{< /mermaid >}}
 
-When a downstream server returns a `401`, Muster detects the challenge, hands back an "authentication required" response with an authorization URL, and—once you authenticate in the browser—exchanges the code for tokens scoped to your session. Subsequent calls to that server carry the token automatically.
+When a downstream server returns a `401`, Muster detects the challenge and hands back an "authentication required" response with an authorization URL. Once you authenticate in the browser, it exchanges the code for tokens scoped to your session. Subsequent calls to that server carry the token automatically.
 
 ## Per-user tool visibility
 
 Per-user state is keyed by the OAuth `sub` (subject) claim extracted from each authenticated request. There is no separate session-ID layer. The access token itself identifies the user.
 
-A direct benefit is **per-user tool visibility**: each user only sees tools from the MCP servers they have personally authenticated with. If you haven't authenticated to a given cluster—or your identity provider doesn't grant you access to it—its tools simply don't appear in your `list_tools` results. Cluster-level authorization is still enforced by each cluster's own Kubernetes RBAC: a tool call you aren't permitted to make is rejected by the cluster, not allowed by the gateway.
+A direct benefit is **per-user tool visibility**: each user only sees tools from the MCP servers they have personally authenticated with. If you haven't authenticated to a given cluster—or your identity provider doesn't grant you access to it—its tools simply don't appear in your `list_tools` results. Cluster-level authorization is still enforced by each cluster's own Kubernetes RBAC. A tool call you aren't permitted to make is rejected by the cluster, not allowed by the gateway.
 
 ## Single sign-on across clusters
 

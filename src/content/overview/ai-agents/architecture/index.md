@@ -21,6 +21,7 @@ Muster runs as a central **aggregator**, the `muster serve` process, that holds 
 
 ## The aggregator
 
+<!-- vale off -->
 {{< mermaid >}}
 flowchart TB
   client["AI assistant<br/>(VS Code / Cursor / portal chat)"]
@@ -34,6 +35,7 @@ flowchart TB
   serve --> k8sB
   serve --> other
 {{< /mermaid >}}
+<!-- vale on -->
 
 `muster serve` is the central component, typically running on a management cluster. It hosts all business logic, manages the lifecycle of downstream MCP server processes, monitors their health, and exposes a [meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) interface over HTTPS, using the MCP HTTP and SSE transports.
 
@@ -63,6 +65,7 @@ The aggregator resolves tool-name conflicts by prefixing external tools with the
 
 For a customer operating several management clusters, a **central** Muster instance aggregates the `mcp-kubernetes` and `mcp-prometheus` servers on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
 
+<!-- vale off -->
 {{< mermaid >}}
 flowchart LR
   user["SRE / developer"]
@@ -76,8 +79,9 @@ flowchart LR
   central --> mcpB
   central --> mcpC
 {{< /mermaid >}}
+<!-- vale on -->
 
-The user authenticates once through their enterprise identity provider. Muster bridges that identity to each remote cluster—reusing the same token where the issuer is trusted, or exchanging it for one valid on the remote cluster where the issuer differs. The [Security]({{< relref "/overview/ai-agents/security" >}}) page covers this token handling in detail.
+The user authenticates once through their enterprise identity provider. Muster bridges that identity to each remote cluster. It reuses the same token where the issuer is trusted, or exchanges it for one valid on the remote cluster where the issuer differs. The [Security]({{< relref "/overview/ai-agents/security" >}}) page covers this token handling in detail.
 
 Two deployment shapes are supported:
 
@@ -88,7 +92,7 @@ Two deployment shapes are supported:
 
 Muster can package a multi-step operation—authenticate, port-forward, query, correlate—as a single named **workflow** that an agent invokes with one call. It's not just convenient. It makes the AI assistant dramatically cheaper, because one workflow call replaces the whole discover-query-correlate loop the agent would otherwise run itself.
 
-A paired A/B trial measured this directly on four real management-cluster alerts, using the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool:
+A paired A/B trial measured this directly on four real management-cluster alerts. It used the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool:
 
 | Metric | Raw aggregated tools | Workflow tool | Reduction |
 |---|--:|--:|--:|

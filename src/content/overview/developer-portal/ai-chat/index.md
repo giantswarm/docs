@@ -32,7 +32,7 @@ The chat answers questions about your clusters and about the portal and platform
 - `what applications are available for deployment?`
 - `what can I do here in the portal?`
 
-For cluster questions, the assistant turns your request into live tool calls against the relevant cluster, reads the results, and replies with a focused answer rather than a raw resource dump. For platform and portal questions, it answers from the portal's own context without touching any cluster.
+For cluster questions, the assistant turns your request into live tool calls against the relevant cluster. It reads the results and replies with a focused answer rather than a raw resource dump. For platform and portal questions, it answers from the portal's own context without touching any cluster.
 
 A focused question costs less and answers faster than a broad one. Asking about a specific cluster, app, or symptom lets the assistant go straight to the relevant data. An open-ended "what's broken everywhere?" makes it cast a much wider net.
 

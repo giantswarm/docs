@@ -72,7 +72,7 @@ spec:
 
 ## Group equivalent servers with `family`
 
-When you run several instances of the same server—for example, one `mcp-kubernetes` per management cluster—a **family** exposes them under one tool name with a required argument that selects the instance. Without it, an agent would see one prefixed copy of every tool per cluster, multiplying the surface.
+When you run several instances of the same server—for example, one `mcp-kubernetes` per management cluster—a **family** exposes them under one tool name. A required argument selects the instance. Without it, an agent would see one prefixed copy of every tool per cluster, multiplying the surface.
 
 ```yaml
 spec:
@@ -89,7 +89,7 @@ The per-cluster `mcp-prometheus` servers follow the same pattern in their own `p
 
 ## Control startup with `autoStart`
 
-`autoStart: false` (the default) means the server is defined but not started until it's needed, so Muster doesn't spin up a process or load tool definitions for a server irrelevant to the current task. Set `autoStart: true` for servers that should always be available, such as the per-cluster `mcp-kubernetes`. When a server starts, its tools are discovered and registered immediately, and the agent's next discovery call reflects them.
+`autoStart: false` (the default) means the server is defined but not started until it's needed. Muster doesn't spin up a process or load tool definitions for a server irrelevant to the current task. Set `autoStart: true` for servers that should always be available, such as the per-cluster `mcp-kubernetes`. When a server starts, its tools are discovered and registered immediately, and the agent's next discovery call reflects them.
 
 ## Configure authentication
 

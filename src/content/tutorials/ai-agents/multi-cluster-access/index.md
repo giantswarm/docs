@@ -19,6 +19,7 @@ user_questions:
 
 A customer running several management clusters doesn't want a separate connection per cluster. A **central** Muster aggregates the `mcp-kubernetes` (and `mcp-prometheus`) servers on each management cluster and gives every user one endpoint and one login for the whole fleet.
 
+<!-- vale off -->
 {{< mermaid >}}
 flowchart LR
   user["SRE / developer"]
@@ -32,6 +33,7 @@ flowchart LR
   central --> mcpB
   central --> mcpC
 {{< /mermaid >}}
+<!-- vale on -->
 
 This guide assumes the central Muster and the per-cluster `mcp-kubernetes` servers are already deployed. It covers how to wire them together so an agent can reach the whole fleet.
 
@@ -104,11 +106,11 @@ The value an agent passes for `management_cluster` is the **full MCP server name
 management_cluster: cluster-a-mcp-kubernetes
 ```
 
-This trips up agents in practice: a model often guesses the bare cluster name first and gets a wrong-argument error, then retries. The same rule applies to the `prometheus` family, where the value is the full Prometheus server name (`<cluster>-mcp-prometheus`). If you author [workflows]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}) for a fleet, document this contract in the workflow's argument description, and have the workflow take the full server name. Naming servers consistently (always `<cluster>-mcp-kubernetes` and `<cluster>-mcp-prometheus`) makes the value predictable.
+This trips up agents in practice: a model often guesses the bare cluster name first and gets a wrong-argument error, then retries. The same rule applies to the `prometheus` family, where the value is the full Prometheus server name (`<cluster>-mcp-prometheus`). If you write [workflows]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}) for a fleet, document this contract in the workflow's argument description, and have the workflow take the full server name. Naming servers consistently (always `<cluster>-mcp-kubernetes` and `<cluster>-mcp-prometheus`) makes the value predictable.
 
 ## Cross-cluster single sign-on with token exchange
 
-When remote clusters run their own identity provider, the user's central token isn't valid on them directly. Muster uses **RFC 8693 token exchange**: it exchanges the user's central token for one the remote cluster's identity provider issues, so the user authenticates once and reaches every cluster.
+When remote clusters run their own identity provider, the user's central token isn't valid on them directly. Muster uses **RFC 8693 token exchange**: it exchanges the user's central token for one the remote cluster's identity provider issues. The user authenticates once and reaches every cluster.
 
 The `tokenExchange` block on each remote server's `auth` configures this:
 
