@@ -11,6 +11,7 @@ envoy-gateway-app
 ACL
 ACLs
 [Aa]lert
+Atlassian
 Autoscaling
 Autoscaler
 [Bb]ackend
@@ -33,6 +34,7 @@ API[s]?
 ARN[s]?
 ASGs?
 auditable
+authorizationServer
 autoscaler
 autoscaling
 aws-cli
@@ -68,6 +70,7 @@ CRs
 declaratively
 deduplication
 descheduler
+discoverability
 [Dd]ex
 [Dd][Nn][Ss]
 configmap[s]?
@@ -127,6 +130,7 @@ liveness
 LogQL
 mcp-kubernetes
 mcp-prometheus
+MCPServer
 mimirtool
 MIG
 [Mm]uster
@@ -169,6 +173,7 @@ SRE[s]?
 SSL
 SSO
 subnets?
+substring
 [T|t]eleport
 templated
 TLS
