@@ -126,6 +126,7 @@ Kueue
 liveness
 LogQL
 mcp-kubernetes
+mcp-prometheus
 mimirtool
 MIG
 [Mm]uster

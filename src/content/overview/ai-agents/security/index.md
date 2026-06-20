@@ -27,7 +27,7 @@ Because authentication happens over the OAuth 2.1 flow, an assistant that suppor
 
 ## Muster-to-downstream authentication
 
-The downstream MCP servers behind Muster (such as `mcp-kubernetes` on each cluster) are themselves protected. Muster acts as an OAuth proxy on your behalf:
+The downstream MCP servers behind Muster (such as `mcp-kubernetes` and `mcp-prometheus` on each cluster) are themselves protected. Muster acts as an OAuth proxy on your behalf:
 
 {{< mermaid >}}
 flowchart TB

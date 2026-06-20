@@ -25,9 +25,9 @@ Muster runs as a central **aggregator**, the `muster serve` process, that holds 
 flowchart TB
   client["AI assistant<br/>(VS Code / Cursor / portal chat)"]
   serve["muster serve<br/>(aggregator, management cluster)"]
-  k8sA["mcp-kubernetes<br/>(management cluster A)"]
-  k8sB["mcp-kubernetes<br/>(management cluster B)"]
-  other["other MCP servers<br/>(Prometheus, Teleport)"]
+  k8sA["mcp-kubernetes + mcp-prometheus<br/>(management cluster A)"]
+  k8sB["mcp-kubernetes + mcp-prometheus<br/>(management cluster B)"]
+  other["other MCP servers<br/>(Grafana, Teleport)"]
 
   client -- "HTTPS (MCP, OAuth)" --> serve
   serve --> k8sA
@@ -61,15 +61,15 @@ The aggregator resolves tool-name conflicts by prefixing external tools with the
 
 ## Fleet-wide aggregation
 
-For a customer operating several management clusters, a **central** Muster instance aggregates the `mcp-kubernetes` server on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
+For a customer operating several management clusters, a **central** Muster instance aggregates the `mcp-kubernetes` and `mcp-prometheus` servers on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
 
 {{< mermaid >}}
 flowchart LR
   user["SRE / developer"]
   central["Central Muster<br/>(management cluster)"]
-  mcpA["mcp-kubernetes<br/>(MC A)"]
-  mcpB["mcp-kubernetes<br/>(MC B)"]
-  mcpC["mcp-kubernetes<br/>(MC C)"]
+  mcpA["mcp-kubernetes + mcp-prometheus<br/>(MC A)"]
+  mcpB["mcp-kubernetes + mcp-prometheus<br/>(MC B)"]
+  mcpC["mcp-kubernetes + mcp-prometheus<br/>(MC C)"]
 
   user -- "one SSO login,<br/>one endpoint" --> central
   central --> mcpA
@@ -81,8 +81,8 @@ The user authenticates once through their enterprise identity provider. Muster b
 
 Two deployment shapes are supported:
 
-- **Single management cluster**: Muster and `mcp-kubernetes` on one management cluster. The simplest setup.
-- **Multiple management clusters**: a central Muster that bridges SSO to `mcp-kubernetes` on remote management clusters. Required when a customer runs more than one management cluster.
+- **Single management cluster**: Muster with `mcp-kubernetes` and `mcp-prometheus` on one management cluster. The simplest setup.
+- **Multiple management clusters**: a central Muster that bridges SSO to the `mcp-kubernetes` and `mcp-prometheus` servers on remote management clusters. Required when a customer runs more than one management cluster.
 
 ## Workflows cut agent token cost
 
