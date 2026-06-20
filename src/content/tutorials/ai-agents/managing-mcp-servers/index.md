@@ -26,7 +26,7 @@ Every `MCPServer` declares a `type`:
 - `streamable-http`: a remote server reachable over HTTP. Use it for servers that run as their own service, including `mcp-kubernetes` and `mcp-prometheus`. Requires `url`.
 - `sse`: a remote server using the Server-Sent Events transport. Requires `url`.
 
-A stdio server must set `command`; a remote server must set `url`. Muster's admission rules reject a resource that mixes them. The `args` and `command` fields apply only to stdio, and `headers` applies only to remote servers.
+A stdio server must set `command`, and a remote server must set `url`. Muster's admission rules reject a resource that mixes them. The `args` and `command` fields apply only to stdio, and `headers` applies only to remote servers.
 
 ### A stdio server
 
@@ -89,7 +89,7 @@ The per-cluster `mcp-prometheus` servers follow the same pattern in their own `p
 
 ## Control startup with `autoStart`
 
-`autoStart: false` (the default) means the server is defined but not started until it's needed, so Muster doesn't spin up a process or load tool definitions for a server irrelevant to the current task. Set `autoStart: true` for servers that should always be available, such as per-cluster `mcp-kubernetes`. When a server starts, its tools are discovered and registered immediately, and the agent's next discovery call reflects them.
+`autoStart: false` (the default) means the server is defined but not started until it's needed, so Muster doesn't spin up a process or load tool definitions for a server irrelevant to the current task. Set `autoStart: true` for servers that should always be available, such as the per-cluster `mcp-kubernetes`. When a server starts, its tools are discovered and registered immediately, and the agent's next discovery call reflects them.
 
 ## Configure authentication
 
@@ -121,7 +121,7 @@ kubectl get mcpservers -n muster
 - Stdio servers report `Running`, `Starting`, `Stopped`, or `Failed`.
 - Remote servers report `Connected`, `Auth Required`, `Connecting`, `Disconnected`, or `Failed`.
 
-`Auth Required` means the server is reachable but needs a login—it's a normal first-connect state for a protected server, not an error. A user authenticates with `muster auth login` and the server moves to `Connected` for that user. The resource-level `state` reflects infrastructure; whether a specific user is authenticated and which tools they see is tracked per user. See the [security model]({{< relref "/overview/ai-agents/security" >}}) for how per-user visibility works.
+`Auth Required` means the server is reachable but needs a login—it's a normal first-connect state for a protected server, not an error. A user authenticates with `muster auth login` and the server moves to `Connected` for that user. The resource-level `state` reflects infrastructure. Whether a specific user is authenticated and which tools they see is tracked per user. See the [security model]({{< relref "/overview/ai-agents/security" >}}) for how per-user visibility works.
 
 ## Apply and iterate
 

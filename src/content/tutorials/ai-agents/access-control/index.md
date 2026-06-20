@@ -16,7 +16,7 @@ user_questions:
   - Why do users with many groups fail to authenticate?
 ---
 
-An AI agent acting through Muster has exactly the permissions of the person driving it—no more. Authorization isn't something Muster grants; it flows from the user's identity-provider groups through to each cluster's Kubernetes RBAC. This guide explains how that chain works and how to keep it healthy.
+An AI agent acting through Muster has exactly the permissions of the person driving it—no more. Authorization isn't something Muster grants. It flows from the user's identity-provider groups through to each cluster's Kubernetes RBAC. This guide explains how that chain works and how to keep it healthy.
 
 ## The permission chain
 
@@ -83,9 +83,9 @@ The user authenticated fine, but their groups aren't bound to a role that allows
 Enterprise tokens that carry many group claims can break two limits:
 
 - **Ingress header buffers.** A token with many groups can exceed the default nginx header buffer, and the request is rejected before it reaches the server. Raise `large_client_header_buffers` on the `mcp-kubernetes` ingress to accept large tokens.
-- **Group count.** Users in a very large number of groups were once rejected outright. The OAuth layer now truncates excessive groups to a configurable limit instead of rejecting the request, so heavily-grouped users can still authenticate. If a user belongs to more groups than the limit, make sure the groups that matter for cluster RBAC are within it.
+- **Group count.** Users in a very large number of groups were once rejected outright. The OAuth layer now truncates excessive groups to a configurable limit instead of rejecting the request, so users in many groups can still authenticate. If a user belongs to more groups than the limit, make sure the groups that matter for cluster RBAC are within it.
 
-If a user can authenticate from a small account but fails from a heavily-grouped one, suspect these limits first.
+If a user can authenticate from a small account but fails from one that belongs to many groups, suspect these limits first.
 
 ## Related
 

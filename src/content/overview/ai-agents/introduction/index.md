@@ -22,7 +22,7 @@ Muster is a universal control plane built on the [Model Context Protocol (MCP)](
 
 MCP lets an AI assistant call tools exposed by an MCP server—for example, "list the pods in this namespace" against a Kubernetes cluster. That works well for a single server. It breaks down quickly once you have many.
 
-A Giant Swarm customer typically operates a fleet: several management clusters, each with its own Kubernetes API, plus supporting systems such as Prometheus for metrics or Teleport for access. Wiring an assistant directly to all of these means:
+A Giant Swarm customer typically operates a fleet: several management clusters, each with its own Kubernetes API, plus supporting systems such as Prometheus for metrics or Teleport for access. Wiring an assistant directly to these means:
 
 - A separate MCP server connection to configure and maintain for every cluster and every system.
 - Separate credentials and authentication flows for each one.

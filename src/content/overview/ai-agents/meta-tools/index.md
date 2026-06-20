@@ -16,7 +16,7 @@ user_questions:
   - What do the x_, core_, and workflow_ tool prefixes mean?
 ---
 
-A single management cluster can expose hundreds of MCP tools—one per Kubernetes operation, per cluster, plus everything from any other server behind the gateway. Loading all of them into an AI assistant's context window at startup is wasteful: it pollutes the context and inflates the token cost of every interaction, most of it for tools the assistant never uses.
+A single management cluster can expose hundreds of MCP tools—one per Kubernetes operation, per cluster, plus everything from any other server behind the gateway. Loading them all into an AI assistant's context window at startup is wasteful: it pollutes the context and inflates the token cost of every interaction, most of it for tools the assistant never uses.
 
 Muster avoids this with **meta-tool indirection**. Instead of exposing every underlying tool, it exposes a small, fixed set of meta-tools. The assistant uses these to discover and invoke the full set of capabilities on demand.
 

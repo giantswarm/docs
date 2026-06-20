@@ -17,9 +17,9 @@ user_questions:
   - How do I keep a workflow's token cost low?
 ---
 
-A workflow packages a multi-step operation into a single named tool. You write it as a `Workflow` custom resource; Muster registers it as a `workflow_<name>` tool that an agent discovers and calls with one request. Muster runs the steps server-side and returns one shaped result. That's the whole value: it collapses what would otherwise be many agent round-trips—each one paying prompt tokens both ways—into a single call. A paired trial measured roughly a 10x reduction in cache-read tokens when an agent used a workflow instead of the raw tools; see [why workflows cut agent cost]({{< relref "/overview/ai-agents/architecture" >}}#workflows-cut-agent-token-cost).
+A workflow packages a multi-step operation into a single named tool. You write it as a `Workflow` custom resource, and Muster registers it as a `workflow_<name>` tool that an agent discovers and calls with one request. Muster runs the steps server-side and returns one shaped result. That's the whole value: it collapses what would otherwise be many agent round-trips, each paying prompt tokens both ways, into a single call. A paired trial measured a 10x reduction in cache-read tokens when an agent used a workflow instead of the raw tools. See [why workflows cut agent cost]({{< relref "/overview/ai-agents/architecture" >}}#workflows-cut-agent-token-cost).
 
-This guide documents what the engine implements. Author against these fields and your workflow behaves predictably.
+This guide documents what the engine implements. Write against these fields and your workflow behaves predictably.
 
 ## The execution model
 
@@ -80,7 +80,7 @@ The sections below explain why each field is there.
 
 ### `spec.description` is the only text the agent sees
 
-When an agent lists tools, the **only** workflow text it gets is `spec.description` (maximum 1000 characters). The step-level `description` fields are stored on the resource but never reach the agent, so a directive placed there silently does nothing. Put everything you want the agent to know in `spec.description`.
+When an agent lists tools, the **only** workflow text it gets is `spec.description` (maximum 1000 characters). The step-level `description` fields are stored on the resource but never reach the agent, so a directive placed there does nothing. Put everything you want the agent to know in `spec.description`.
 
 Three blocks belong in most descriptions:
 
@@ -92,7 +92,7 @@ Three blocks belong in most descriptions:
 
 An agent finds a workflow through the `filter_tools` meta-tool, whose description filter is a **case-insensitive substring match** over `spec.description`. There's no stemming, ranking, or synonym matching. So the description must literally contain the terms an agent searches by.
 
-A workflow described only as `"check the pods in <mc>"` is invisible to a search for `"pod health"`, because that phrase isn't a substring of the description—and the agent silently falls back to raw tools. Lead the description with **both** the topic keyword (`pod health`, `cluster health`, `failing pods`) **and** the natural question phrasing. The 1000-character budget is large enough for both.
+A workflow described only as `"check the pods in <mc>"` is invisible to a search for `"pod health"`, because that phrase isn't a substring of the description, and the agent falls back to raw tools. Lead the description with **both** the topic keyword (`pod health`, `cluster health`, `failing pods`) **and** the natural question phrasing. The 1000-character budget is large enough for both.
 
 ### `args` define and validate the inputs
 
@@ -104,13 +104,13 @@ Without `store: true`, a step still runs, but Muster emits only `{id, tool, stat
 
 ### `allowFailure: true` for legitimately optional steps
 
-By default, a single step error fails the whole workflow and flips its result to an error, which sends the agent chasing the failure with expensive discovery calls. Set `allowFailure: true` on steps that may legitimately fail or return nothing: a resource type not every cluster uses, an optional backend such as the metrics server (`x_prometheus_*`), or a list that depends on RBAC that might be scoped differently. In the example above, the events list is marked optional so a cluster without recent crash-loop events still returns a clean digest.
+By default, a single step error fails the whole workflow and flips its result to an error, which sends the agent chasing the failure with expensive discovery calls. Set `allowFailure: true` on steps that may legitimately fail or return nothing: a resource type not every cluster uses, an optional backend such as the metrics server (`x_prometheus_*`), or a list that depends on RBAC that might be scoped differently. In the earlier example, the events list is marked optional so a cluster without recent crash-loop events still returns a clean digest.
 
 A workflow can mix servers in one digest, for example correlating Kubernetes state with an `x_prometheus_query` step, so a single call returns both the failing pods and the matching metrics. Mark the metrics step `allowFailure: true` so a cluster without `mcp-prometheus` deployed still returns the Kubernetes half.
 
 ## Control flow
 
-Beyond plain `tool` steps, a top-level step can be a loop or a concurrent group, and the workflow can declare cleanup. These need Muster 0.8.0 or later. A step sets **exactly one** of `tool`, `forEach`, or `parallel`; setting none or more than one is rejected at apply time.
+Beyond plain `tool` steps, a top-level step can be a loop or a concurrent group, and the workflow can declare cleanup. These need Muster 0.8.0 or later. A step sets **exactly one** of `tool`, `forEach`, or `parallel`. Setting none or more than one is rejected at apply time.
 
 ### `forEach` loops
 
@@ -162,7 +162,7 @@ A loop multiplies cost: the per-step budget caps below apply to **every** iterat
 
 ### `onFailure` cleanup
 
-A workflow-level `onFailure` block lists sub-steps that run best-effort when the workflow fails on a step that doesn't allow failure. Each handler can read `{{ .results.<id> }}` from any step that stored a result before the failure, so a rollback can reference what it must undo:
+A workflow-level `onFailure` block lists sub-steps that run best-effort when the workflow fails on a step that isn't marked `allowFailure`. Each handler can read `{{ .results.<id> }}` from any step that stored a result before the failure, so a rollback can reference what it must undo:
 
 ```yaml
 spec:
@@ -179,7 +179,7 @@ spec:
         backup_name: "{{ .results.backup.backup_name }}"
 ```
 
-`onFailure` is workflow-level only; there's no per-step failure handler. For read-only health digests you rarely need it; `allowFailure` already covers the case where a resource might not exist. It earns its place in imperative pipelines such as deploy, migrate, and rollback.
+`onFailure` is workflow-level only. There's no per-step failure handler. For read-only health digests you seldom need it, and `allowFailure` already covers the case where a resource might not exist. It earns its place in imperative pipelines such as deploy, migrate, and rollback.
 
 ## Templating
 
@@ -188,7 +188,7 @@ Step arguments are Go templates resolved server-side per step. Rendering uses `m
 - `{{ .input.<arg> }}`: a workflow argument. It's always `.input.<arg>`, never a bare `{{ .<arg> }}`. The bare form fails with a missing-key error.
 - `{{ .results.<stepID>.<field> }}`: a field from a prior step that set `store: true`. Nested map navigation works.
 - `{{ .vars.<name> }}`: a `forEach` loop variable: the loop item `{{ .vars.<as> }}` and its index `{{ .vars.<as>_index }}`. There's no other way to set `.vars`.
-- `{{ .context.<x> }}`: an alias for `.results`.
+- `{{ .context.<x> }}`: another name for `.results`.
 
 A template that's a **single bare access** (`{{ .input.port }}`) preserves the original type, so an integer stays an integer. Any richer template—string concatenation such as `"{{ .input.host }}:{{ .input.port }}"`, or one using a [sprig](https://masterminds.github.io/sprig/) function—renders to a string. Keep that in mind for tools that type-check their arguments. The full sprig function set is available.
 
@@ -221,7 +221,7 @@ Alternatively, run a tool or reference a prior stored step and test the outcome.
         "type": "production"
 ```
 
-The `jsonPath` is a **simple dotted path** over the result object: `data.field` works, but array indexing such as `items[0].name` doesn't. For the read-only health digests that AI agents call most, conditions are rarely needed; prefer `allowFailure` for the case where a resource might not exist.
+The `jsonPath` is a **simple dotted path** over the result object: `data.field` works, but array indexing such as `items[0].name` doesn't. For the read-only health digests that AI agents call most, conditions are seldom needed. Prefer `allowFailure` for the case where a resource might not exist.
 
 ## Budget for cost
 
@@ -241,7 +241,7 @@ These bite every workflow that reads Kubernetes:
 
 ## What the engine doesn't support
 
-These look plausible but are rejected at apply time or silently ignored. Avoid them:
+These look plausible but are rejected at apply time or ignored. Avoid them:
 
 | Looks plausible | Reality |
 |---|---|

@@ -55,13 +55,13 @@ A related symptom: an agent told to "discover workflows" with a broad glob can p
 
 ## A workflow runs but the agent over-explores
 
-If a workflow returns a clean result and the agent keeps investigating anyway, the description is missing a **stop-when-healthy rule**. Without an explicit rule to write a one-line summary and stop when the result is empty, an agent treats a clean digest as a starting point. Add the rule to `spec.description`; this single change has swung a probe by an order of magnitude in token cost.
+If a workflow returns a clean result and the agent keeps investigating anyway, the description is missing a **stop-when-healthy rule**. Without an explicit rule to write a one-line summary and stop when the result is empty, an agent treats a clean digest as a starting point. Add the rule to `spec.description`. This single change has swung a probe by an order of magnitude in token cost.
 
 ## A long chain drops with a network error
 
 A single agent turn that runs many tool calls back to back can drop with a streaming network error before producing an answer—the HTTP response succeeds, but the stream aborts partway. Fewer, cheaper calls reduce this exposure, which is one more reason to encapsulate multi-step investigations as a [workflow]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}) rather than letting the agent run the whole discover-query-correlate loop itself.
 
-## Authentication fails for heavily-grouped users
+## Authentication fails for users in many groups
 
 If a user can authenticate from one account but fails from one that belongs to many identity-provider groups, suspect token size limits: ingress header buffers and the group-count limit. See [RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}#large-tokens).
 

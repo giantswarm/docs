@@ -45,9 +45,9 @@ When a downstream server returns a `401`, Muster detects the challenge, hands ba
 
 ## Per-user tool visibility
 
-Per-user state is keyed by the OAuth `sub` (subject) claim extracted from each authenticated request. There is no separate session-ID layer; the access token itself identifies the user.
+Per-user state is keyed by the OAuth `sub` (subject) claim extracted from each authenticated request. There is no separate session-ID layer. The access token itself identifies the user.
 
-A direct benefit is **per-user tool visibility**: each user only sees tools from the MCP servers they have personally authenticated with. If you haven't authenticated to a given cluster—or your identity provider doesn't grant you access to it—its tools simply don't appear in your `list_tools` results. Cluster-level authorization is still enforced by each cluster's own Kubernetes RBAC: a tool call you aren't permitted to make is rejected by the cluster, not silently allowed by the gateway.
+A direct benefit is **per-user tool visibility**: each user only sees tools from the MCP servers they have personally authenticated with. If you haven't authenticated to a given cluster—or your identity provider doesn't grant you access to it—its tools simply don't appear in your `list_tools` results. Cluster-level authorization is still enforced by each cluster's own Kubernetes RBAC: a tool call you aren't permitted to make is rejected by the cluster, not allowed by the gateway.
 
 ## Single sign-on across clusters
 

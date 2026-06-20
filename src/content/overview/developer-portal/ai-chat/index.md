@@ -34,7 +34,7 @@ The chat answers questions about your clusters and about the portal and platform
 
 For cluster questions, the assistant turns your request into live tool calls against the relevant cluster, reads the results, and replies with a focused answer rather than a raw resource dump. For platform and portal questions, it answers from the portal's own context without touching any cluster.
 
-A focused question costs less and answers faster than a broad one. Asking about a specific cluster, app, or symptom lets the assistant go straight to the relevant data; an open-ended "what's broken everywhere?" makes it cast a much wider net.
+A focused question costs less and answers faster than a broad one. Asking about a specific cluster, app, or symptom lets the assistant go straight to the relevant data. An open-ended "what's broken everywhere?" makes it cast a much wider net.
 
 ## How it works
 
@@ -63,7 +63,7 @@ To keep responses fast and cheap, Muster doesn't load every cluster tool into th
 The chat acts as you, not as a shared service account. It uses your portal sign-on to authenticate to Muster, and you only see and reach the clusters your identity is allowed to.
 
 - **Per-user visibility**: you only see tools from the clusters you've authenticated with and that your identity provider grants you access to. Clusters you can't reach simply don't appear.
-- **Cluster RBAC still applies**: a request you aren't permitted to make is rejected by the cluster's own Kubernetes RBAC, not silently allowed by the gateway.
+- **Cluster RBAC still applies**: a request you aren't permitted to make is rejected by the cluster's own Kubernetes RBAC, not allowed by the gateway.
 
 The [AI agent security page]({{< relref "/overview/ai-agents/security" >}}) explains the OAuth flow, per-user tool visibility, and single sign-on across clusters.
 
