@@ -29,3 +29,9 @@ For the concepts behind everything here, see the [AI agents overview]({{< relref
 - [Give agents multi-cluster access]({{< relref "/tutorials/ai-agents/multi-cluster-access" >}}): expose a whole fleet through one central Muster.
 - [Map RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}): connect identity-provider groups to cluster permissions.
 - [Troubleshoot agent access]({{< relref "/tutorials/ai-agents/troubleshooting" >}}): work through authentication loops, missing tools, and disconnected clusters.
+
+## Self-hosting and operations
+
+- [Deploy Muster]({{< relref "/tutorials/ai-agents/deploy-muster" >}}): install the CRD and application Helm charts and run the aggregator in custom-resource discovery mode.
+- [Set up OAuth]({{< relref "/tutorials/ai-agents/oauth-setup" >}}): protect the endpoint with Dex and configure the proxy that authenticates to downstream servers.
+- [Multi-cluster token exchange]({{< relref "/tutorials/ai-agents/multi-mc-token-exchange" >}}): bridge single sign-on to remote management clusters with RFC 8693.

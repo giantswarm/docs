@@ -183,6 +183,7 @@ TraceQL
 UDP
 unmanaged
 upstream[s]?
+Valkey
 vApp
 vCenter
 very
