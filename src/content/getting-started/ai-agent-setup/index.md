@@ -3,6 +3,7 @@ linkTitle: Set up your AI agent
 title: Set up your AI agent for Kubernetes operations
 description: Learn how to use Muster and mcp-kubernetes to interact with your Giant Swarm management clusters through AI assistants like GitHub Copilot or Cursor.
 weight: 80
+mermaid: true
 menu:
   principal:
     parent: getting-started
@@ -27,23 +28,22 @@ Two components work together to make this possible:
 
 - **Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
 
-The `muster` CLI runs locally as a lightweight agent that bridges your AI assistant (via stdio) with the Muster aggregator (via HTTPS):
+Modern AI assistants—VS Code with GitHub Copilot and Cursor—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login flow itself, with nothing to install or keep running locally:
 
-```text
-AI Assistant (VS Code / Cursor)
-      │ stdio (MCP protocol)
-      ▼
-muster agent (local CLI process)
-      │ HTTPS
-      ▼
-Muster aggregator (management cluster)
-      │
-      ├── mcp-kubernetes (cluster A)
-      ├── mcp-kubernetes (cluster B)
-      └── mcp-kubernetes (cluster C)
-```
+{{< mermaid >}}
+flowchart TB
+  client["AI assistant<br/>(VS Code / Cursor)"]
+  muster["Muster aggregator<br/>(management cluster)"]
+  k8sA["mcp-kubernetes (cluster A)"]
+  k8sB["mcp-kubernetes (cluster B)"]
+  k8sC["mcp-kubernetes (cluster C)"]
+  client -- "HTTPS (MCP, OAuth)" --> muster
+  muster --> k8sA
+  muster --> k8sB
+  muster --> k8sC
+{{< /mermaid >}}
 
-The agent handles authentication transparently, so your AI assistant never needs to manage tokens or cluster credentials directly.
+That direct connection is the recommended setup, and Muster handles authentication to each cluster on your behalf so your assistant never juggles tokens or credentials directly. For a client that can't reach a remote, OAuth-protected MCP server—one that only speaks stdio, or has no built-in OAuth flow—the `muster` CLI provides an optional local bridge (`muster agent`) that converts stdio to HTTPS and performs the login for you.
 
 For the bigger picture—what Muster is, how the aggregator works, and how it stays secure—see the [AI agents overview]({{< relref "/overview/ai-agents" >}}). If you'd rather ask questions in the browser instead of your IDE, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) is powered by the same Muster aggregator.
 
@@ -55,40 +55,68 @@ You'll need:
 - Ensure `dex` is configured in your management clusters with a supported identity provider. Contact Giant Swarm support if not.
 - VS Code with the GitHub Copilot extension, or Cursor.
 
-## Step 1: Install Muster
+## Connect your editor directly
+
+This is the recommended setup. Point your editor at the Muster endpoint your account engineer gave you—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`. The first time the editor connects, it opens your browser for SSO login. After you authenticate, the full set of Kubernetes tools becomes available with no restart.
+
+### Cursor
+
+Create or edit `~/.cursor/mcp.json` (for global settings) or `.cursor/mcp.json` in your project directory, and add:
+
+```json
+{
+  "mcpServers": {
+    "muster": {
+      "url": "https://muster.<management-cluster>.<base-domain>/mcp"
+    }
+  }
+}
+```
+
+Make sure MCP is enabled in Cursor's settings. Cursor opens your browser to authenticate on first connect.
+
+### VS Code (GitHub Copilot)
+
+Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP settings) and add:
+
+```json
+{
+  "servers": {
+    "muster": {
+      "type": "http",
+      "url": "https://muster.<management-cluster>.<base-domain>/mcp"
+    }
+  }
+}
+```
+
+VS Code opens your browser for SSO the first time Copilot connects. After authentication the Kubernetes tools become available—no restart needed.
+
+## Verify and manage with the muster CLI (optional)
+
+The direct connection above needs only your editor. Install the `muster` CLI when you want a terminal view of what you can reach, the `auth` and `context` commands, or the local bridge described below.
+
+### Install the CLI
 
 Download the `muster` binary from the [GitHub releases page](https://github.com/giantswarm/muster/releases). It's a single binary with no additional dependencies—just put it somewhere on your `PATH`.
 
-## Step 2: Configure your context
+### Point it at your endpoint
 
-A context tells Muster which aggregator endpoint to connect to. Add one with the endpoint URL your account engineer provided, then activate it:
+A context tells the CLI which aggregator endpoint to use. Add one with the endpoint URL your account engineer provided, then activate it:
 
 ```bash
 muster context add my-platform --endpoint https://muster.<management-cluster>.<base-domain>/mcp
 muster context use my-platform
 ```
 
-You can verify the context is set correctly:
-
-```bash
-muster context show my-platform
-```
-
-## Step 3: Authenticate
-
-Run the login command, which opens your browser for SSO authentication:
+### Check what you can reach
 
 ```bash
 muster auth login
-```
-
-After you authenticate, check that everything is connected:
-
-```bash
 muster auth status
 ```
 
-You should see all your MCP servers listed as `Connected`. The output looks something like this:
+`muster auth status` shows the aggregator and each downstream server's state:
 
 ```text
 Muster Aggregator
@@ -103,11 +131,26 @@ MCP Servers
   cluster-c-mcp-kubernetes   Connected [SSO: Exchanged]
 ```
 
-## Step 4: Configure your code editor
+## Connect through the local bridge (fallback)
 
-### VS Code (GitHub Copilot)
+For an editor that can't connect to a remote, OAuth-protected MCP server directly, bridge it with `muster agent`. This needs the CLI installed and a context set, as above. The bridge uses the active context, so no endpoint flag is needed in the editor config.
 
-Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP settings) and add:
+### Cursor through the bridge
+
+```json
+{
+  "mcpServers": {
+    "muster": {
+      "command": "muster",
+      "args": ["agent", "--mcp-server"]
+    }
+  }
+}
+```
+
+Make sure MCP is enabled in Cursor's settings. After saving the configuration, you can toggle the MCP server off and on from Cursor's MCP settings panel to pick up the changes.
+
+### VS Code through the bridge
 
 ```json
 {
@@ -122,24 +165,7 @@ Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP sett
 }
 ```
 
-The agent uses the active context you set in Step 2, so no endpoint flag is needed here. The first time Copilot connects, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Copilot calls this tool automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available—no restart needed.
-
-### Cursor
-
-Create or edit `~/.cursor/mcp.json` (for global settings) or `.cursor/mcp.json` in your project directory, and add:
-
-```json
-{
-  "mcpServers": {
-    "muster": {
-      "command": "muster",
-      "args": ["agent", "--mcp-server"]
-    }
-  }
-}
-```
-
-The agent uses the active context you set in Step 2. Make sure MCP is enabled in Cursor's settings. After saving the configuration, you can toggle the MCP server off and on from Cursor's MCP settings panel to pick up the changes.
+The first time your editor connects through the bridge, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Your assistant calls it automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available—no restart needed.
 
 ## What you can ask
 
@@ -167,9 +193,9 @@ Muster uses a meta-tool architecture. Instead of exposing hundreds of individual
 
 ## Session management
 
-- **Token expiry:** Access tokens expire every 30 minutes, but the agent refreshes them automatically in the background.
+- **Token expiry:** Access tokens expire every 30 minutes, but your editor (or the local bridge) refreshes them automatically in the background.
 - **Session duration:** Your overall session lasts approximately 30 days (the default) before you need to log in again. This can vary by installation.
-- **Re-authentication:** If your session expires, the agent automatically detects it and initiates re-authentication by opening your browser.
+- **Re-authentication:** If your session expires, your editor (or the bridge) detects it and re-authenticates by opening your browser.
 
 ## CLI quick reference
 
@@ -196,7 +222,7 @@ Your session has likely expired. Run `muster auth login` in a terminal to re-aut
 You may encounter a message like this in the agent output:
 
 ```text
-Failed to list resources: failed to list networkpolicies: networkpolicies.networking.k8s.io is forbidden: User "fernando@example.com" cannot list resource "networkpolicies" in API group "networking.k8s.io" in the namespace "kube-system"
+Failed to list resources: failed to list networkpolicies: networkpolicies.networking.k8s.io is forbidden: User "<user>" cannot list resource "networkpolicies" in API group "networking.k8s.io" in the namespace "kube-system"
 ```
 
 Make sure the user has the correct group attached in the identity provider (Azure AD, GitHub, and similar) which is bound to a role in the cluster to perform those actions.

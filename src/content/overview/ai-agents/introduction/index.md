@@ -41,7 +41,7 @@ Three properties make the aggregation "intelligent" rather than a simple proxy:
 ## What you get
 
 - **One endpoint, one login.** Authenticate once via your enterprise SSO and reach your whole fleet. Muster handles forwarding and exchanging tokens to downstream servers and clusters transparently—see [Security]({{< relref "/overview/ai-agents/security" >}}).
-- **Lower cost.** Because agents only load the tools they actually use, and because multi-step operations can be packaged as single [workflow]({{< relref "/overview/ai-agents/meta-tools" >}}) calls, the token cost of an AI interaction drops substantially.
+- **Lower cost.** Because agents only load the tools they actually use, and because multi-step operations can be packaged as single [workflow]({{< relref "/overview/ai-agents/architecture" >}}#workflows-cut-agent-token-cost) calls, the token cost of an AI interaction drops substantially.
 - **Capabilities beyond Kubernetes.** Any MCP server can sit behind Muster—metrics, dashboards, access brokers, and custom internal tools—all reachable through the same connection.
 
 Continue with the [architecture]({{< relref "/overview/ai-agents/architecture" >}}) to see how the gateway is structured, or jump straight to [setting up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
