@@ -11,6 +11,7 @@ envoy-gateway-app
 ACL
 ACLs
 [Aa]lert
+Atlassian
 Autoscaling
 Autoscaler
 [Bb]ackend
@@ -33,6 +34,7 @@ API[s]?
 ARN[s]?
 ASGs?
 auditable
+authorizationServer
 autoscaler
 autoscaling
 aws-cli
@@ -55,7 +57,11 @@ CAPI
 CAPV
 CAPVCD
 CAPZ
+ChatGPT
 CIDR[s]?
+Claude Code
+Claude Desktop
+Claude.ai
 CLI
 CNAME
 cluster-aws
@@ -68,6 +74,7 @@ CRs
 declaratively
 deduplication
 descheduler
+discoverability
 [Dd]ex
 [Dd][Nn][Ss]
 configmap[s]?
@@ -126,6 +133,9 @@ Kueue
 liveness
 LogQL
 mcp-kubernetes
+mcp-prometheus
+mcp-remote
+MCPServer
 mimirtool
 MIG
 [Mm]uster
@@ -168,6 +178,7 @@ SRE[s]?
 SSL
 SSO
 subnets?
+substring
 [T|t]eleport
 templated
 TLS
@@ -177,6 +188,7 @@ TraceQL
 UDP
 unmanaged
 upstream[s]?
+Valkey
 vApp
 vCenter
 very
