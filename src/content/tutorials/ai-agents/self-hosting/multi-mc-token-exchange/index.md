@@ -5,7 +5,7 @@ description: Compare the single-cluster and central deployment shapes, set up RF
 weight: 90
 menu:
   principal:
-    parent: tutorials-ai-agents
+    parent: tutorials-ai-agents-self-hosting
     identifier: tutorials-ai-agents-multi-mc-token-exchange
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
@@ -15,6 +15,10 @@ user_questions:
   - How does cross-cluster single sign-on work for AI agents?
   - What RBAC does mcp-kubernetes need to read kubeconfig secrets?
 ---
+
+{{% notice note %}}
+**Applies to self-hosted Muster only.** Follow this guide when you operate your own central Muster across several management clusters. On the managed Giant Swarm platform, multi-cluster wiring is handled for you.
+{{% /notice %}}
 
 A customer with more than one management cluster wants a single endpoint and a single login for the whole fleet. This guide covers the two deployment shapes, sets up the RFC 8693 token exchange that bridges single sign-on to remote clusters, and grants the cluster access each `mcp-kubernetes` needs.
 
@@ -89,12 +93,12 @@ An interim approach grants cluster-wide secret access. Per-namespace RBAC automa
 
 ## Operational notes
 
-- **Large tokens overflow ingress buffers.** Tokens that carry many group claims can exceed the default nginx header buffer on the `mcp-kubernetes` ingress. Raise `large_client_header_buffers`, as the [OAuth setup]({{< relref "/tutorials/ai-agents/oauth-setup" >}}) guide describes.
+- **Large tokens overflow ingress buffers.** Tokens that carry many group claims can exceed the default nginx header buffer on the `mcp-kubernetes` ingress. Raise `large_client_header_buffers`, as the [OAuth setup]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}) guide describes.
 - **A remote cluster can fail on its own.** A single cluster reporting `Disconnected` doesn't take the fleet down. Other clusters keep working while you fix the one. See [troubleshooting]({{< relref "/tutorials/ai-agents/troubleshooting" >}}#a-cluster-shows-as-disconnected).
 
 ## Related
 
 - [Multi-cluster access]({{< relref "/tutorials/ai-agents/multi-cluster-access" >}}): the `MCPServer` family and instance-selection contract.
-- [Deploy Muster]({{< relref "/tutorials/ai-agents/deploy-muster" >}}): install the central aggregator.
-- [Set up OAuth]({{< relref "/tutorials/ai-agents/oauth-setup" >}}): the central single sign-on this exchange extends.
+- [Deploy Muster]({{< relref "/tutorials/ai-agents/self-hosting/deploy-muster" >}}): install the central aggregator.
+- [Set up OAuth]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}): the central single sign-on this exchange extends.
 - [Map RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}): how identity maps to cluster permissions.

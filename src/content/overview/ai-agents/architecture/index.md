@@ -39,7 +39,7 @@ flowchart TB
 
 `muster serve` is the central component, typically running on a management cluster. It hosts all business logic, manages the lifecycle of downstream MCP server processes, monitors their health, and exposes a [meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) interface over HTTPS, using the MCP HTTP and SSE transports.
 
-Modern AI assistants—VS Code with GitHub Copilot, Cursor, and the developer portal chat—support remote, OAuth-protected MCP servers natively. You point them straight at the aggregator's URL and they handle the [OAuth flow]({{< relref "/overview/ai-agents/security" >}}) themselves:
+Modern AI assistants—Claude Code, Cursor, VS Code with GitHub Copilot, the developer portal chat, and other MCP-capable tools—support remote, OAuth-protected MCP servers natively. You point them straight at the aggregator's URL and they handle the [OAuth flow]({{< relref "/overview/ai-agents/security" >}}) themselves:
 
 ```json
 {

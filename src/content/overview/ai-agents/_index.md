@@ -24,7 +24,7 @@ The piece that makes this possible is **Muster**, a universal control plane buil
 - **Muster**: the MCP gateway. It aggregates downstream MCP servers, presents their combined capabilities through one connection, and handles authentication on your behalf.
 - **mcp-kubernetes**: runs on each management cluster and exposes Kubernetes resources (pods, deployments, services, logs, events, and more) through a secure MCP API.
 - **mcp-prometheus**: runs alongside it on each management cluster and exposes the cluster's metrics through MCP, so the assistant can correlate Kubernetes state with PromQL queries and alerts.
-- **Your AI assistant**: VS Code with GitHub Copilot, Cursor, or the developer portal's built-in chat. It talks MCP to Muster and turns your plain-language questions into tool calls.
+- **Your AI assistant**: Claude Code, Cursor, VS Code with GitHub Copilot, the developer portal's built-in chat, and other MCP-capable tools. It talks MCP to Muster and turns your plain-language questions into tool calls.
 
 ## In this section
 

@@ -76,7 +76,7 @@ Muster reads its configuration from `~/.config/muster` by default. Override the 
 └── workflows/       # Workflow definitions
 ```
 
-In Kubernetes mode, Muster reads `MCPServer` and `Workflow` custom resources from the cluster instead. See [Deploy Muster]({{< relref "/tutorials/ai-agents/deploy-muster" >}}).
+In Kubernetes mode, Muster reads `MCPServer` and `Workflow` custom resources from the cluster instead. See [Deploy Muster]({{< relref "/tutorials/ai-agents/self-hosting/deploy-muster" >}}).
 
 ## Contributing {#contributing}
 

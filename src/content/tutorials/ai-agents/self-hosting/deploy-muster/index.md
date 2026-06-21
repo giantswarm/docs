@@ -5,7 +5,7 @@ description: Install the CRD and application Helm charts for Muster on a managem
 weight: 70
 menu:
   principal:
-    parent: tutorials-ai-agents
+    parent: tutorials-ai-agents-self-hosting
     identifier: tutorials-ai-agents-deploy-muster
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
@@ -16,15 +16,19 @@ user_questions:
   - How does Muster read MCPServer and Workflow resources?
 ---
 
+{{% notice note %}}
+**Applies to self-hosted Muster only.** Follow this guide when you operate your own Muster. On the managed Giant Swarm platform, Muster is already deployed for you.
+{{% /notice %}}
+
 Muster ships as two Helm charts: `muster-crds`, which installs the `MCPServer` and `Workflow` CustomResourceDefinitions, and `muster`, which runs the aggregator itself. This guide installs both and explains the custom-resource discovery mode the aggregator runs in on a cluster.
 
-For the concepts behind the aggregator, see the [architecture overview]({{< relref "/overview/ai-agents/architecture" >}}). To protect the deployed endpoint with single sign-on, continue to [set up OAuth]({{< relref "/tutorials/ai-agents/oauth-setup" >}}).
+For the concepts behind the aggregator, see the [architecture overview]({{< relref "/overview/ai-agents/architecture" >}}). To protect the deployed endpoint with single sign-on, continue to [set up OAuth]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}).
 
 ## Prerequisites
 
 - A management cluster you can deploy to, with the Giant Swarm app platform or Helm available.
 - An ingress controller or Gateway API implementation to expose the aggregator. Production OAuth needs HTTPS.
-- An OIDC provider (Dex on a Giant Swarm cluster) if you plan to protect the endpoint, covered in [OAuth setup]({{< relref "/tutorials/ai-agents/oauth-setup" >}}).
+- An OIDC provider (Dex on a Giant Swarm cluster) if you plan to protect the endpoint, covered in [OAuth setup]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}).
 
 ## Install the CRDs first
 
@@ -96,7 +100,7 @@ ingress:
 
 For Gateway API, set `gatewayAPI.enabled: true` with a `parentRefs` entry and `hostnames`. On Envoy Gateway, also enable `gatewayAPI.backendTrafficPolicy` with `timeout: "0s"`, because the default fifteen-second backend timeout kills the long-lived streaming connections MCP relies on.
 
-Tokens from enterprise single sign-on can carry many group claims and overflow the default ingress header buffers. Raise `large_client_header_buffers` on the ingress that fronts Muster. The [OAuth setup]({{< relref "/tutorials/ai-agents/oauth-setup" >}}) guide covers the symptom and fix.
+Tokens from enterprise single sign-on can carry many group claims and overflow the default ingress header buffers. Raise `large_client_header_buffers` on the ingress that fronts Muster. The [OAuth setup]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}) guide covers the symptom and fix.
 
 ## Verify the deployment
 
@@ -116,6 +120,6 @@ A protected deployment rejects unauthenticated MCP calls, which is expected. The
 
 ## Next steps
 
-- [Set up OAuth]({{< relref "/tutorials/ai-agents/oauth-setup" >}}): protect the endpoint and proxy authentication to downstream servers.
+- [Set up OAuth]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}): protect the endpoint and proxy authentication to downstream servers.
 - [Manage MCP servers]({{< relref "/tutorials/ai-agents/managing-mcp-servers" >}}): register the downstream servers Muster aggregates.
-- [Multi-cluster token exchange]({{< relref "/tutorials/ai-agents/multi-mc-token-exchange" >}}): bridge single sign-on to remote management clusters.
+- [Multi-cluster token exchange]({{< relref "/tutorials/ai-agents/self-hosting/multi-mc-token-exchange" >}}): bridge single sign-on to remote management clusters.

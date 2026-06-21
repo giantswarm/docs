@@ -30,8 +30,8 @@ For the concepts behind everything here, see the [AI agents overview]({{< relref
 - [Map RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}): connect identity-provider groups to cluster permissions.
 - [Troubleshoot agent access]({{< relref "/tutorials/ai-agents/troubleshooting" >}}): work through authentication loops, missing tools, and disconnected clusters.
 
-## Self-hosting and operations
+## Operating the platform versus self-hosting
 
-- [Deploy Muster]({{< relref "/tutorials/ai-agents/deploy-muster" >}}): install the CRD and application Helm charts and run the aggregator in custom-resource discovery mode.
-- [Set up OAuth]({{< relref "/tutorials/ai-agents/oauth-setup" >}}): protect the endpoint with Dex and configure the proxy that authenticates to downstream servers.
-- [Multi-cluster token exchange]({{< relref "/tutorials/ai-agents/multi-mc-token-exchange" >}}): bridge single sign-on to remote management clusters with RFC 8693.
+The guides above are about **operating the platform**: authoring workflows, managing MCP servers, wiring multi-cluster access, mapping RBAC and SSO, and troubleshooting. They apply whether Muster is run for you on the managed Giant Swarm platform or you host it yourself.
+
+If you also **run your own Muster**, the [self-hosting]({{< relref "/tutorials/ai-agents/self-hosting" >}}) subsection covers deploying the Helm charts, protecting the endpoint with OAuth, and bridging single sign-on across multiple management clusters. Those guides don't apply on the managed Giant Swarm platform, where Muster is already deployed and protected for you.

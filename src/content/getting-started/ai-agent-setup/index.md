@@ -1,7 +1,7 @@
 ---
 linkTitle: Set up your AI agent
 title: Set up your AI agent for Kubernetes operations
-description: Learn how to use Muster and mcp-kubernetes to interact with your Giant Swarm management clusters through AI assistants like GitHub Copilot or Cursor.
+description: Learn how to use Muster and mcp-kubernetes to interact with your Giant Swarm management clusters through AI assistants like Claude Code, Cursor, or GitHub Copilot.
 weight: 80
 mermaid: true
 menu:
@@ -13,7 +13,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How do I use AI assistants with my Kubernetes clusters?
-  - How do I set up Muster with VS Code or Cursor?
+  - How do I set up Muster with Claude Code, Cursor, or VS Code?
   - What is mcp-kubernetes?
   - How do I authenticate with Muster?
 ---
@@ -28,11 +28,11 @@ Two components work together to make this possible:
 
 - **Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
 
-Modern AI assistants—VS Code with GitHub Copilot and Cursor—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login flow itself, with nothing to install or keep running locally:
+Modern AI assistants—Claude Code, Cursor, and VS Code with GitHub Copilot—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login flow itself, with nothing to install or keep running locally:
 
 {{< mermaid >}}
 flowchart TB
-  client["AI assistant<br/>(VS Code / Cursor)"]
+  client["AI assistant<br/>(Claude Code / Cursor / VS Code)"]
   muster["Muster aggregator<br/>(management cluster)"]
   k8sA["mcp-kubernetes (cluster A)"]
   k8sB["mcp-kubernetes (cluster B)"]
@@ -53,11 +53,32 @@ You'll need:
 
 - Access to a Giant Swarm installation with mcp-kubernetes and Muster deployed. Ask your Giant Swarm account engineer for your Muster endpoint URL—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`.
 - Ensure `dex` is configured in your management clusters with a supported identity provider. Contact Giant Swarm support if not.
-- VS Code with the GitHub Copilot extension, or Cursor.
+- An MCP-capable client: Claude Code, Cursor, or VS Code with the GitHub Copilot extension.
 
 ## Connect your editor directly
 
 This is the recommended setup. Point your editor at the Muster endpoint your account engineer gave you—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`. The first time the editor connects, it opens your browser for SSO login. After you authenticate, the full set of Kubernetes tools becomes available with no restart.
+
+### Claude Code
+
+Register the endpoint as an HTTP MCP server:
+
+```bash
+claude mcp add --transport http muster https://muster.<management-cluster>.<base-domain>/mcp
+```
+
+Then run `/mcp` in your session to complete the browser OAuth login. Alternatively, commit a project-level `.mcp.json` so your team shares the configuration:
+
+```json
+{
+  "mcpServers": {
+    "muster": {
+      "type": "http",
+      "url": "https://muster.<management-cluster>.<base-domain>/mcp"
+    }
+  }
+}
+```
 
 ### Cursor
 
@@ -135,6 +156,12 @@ MCP Servers
 
 For an editor that can't connect to a remote, OAuth-protected MCP server directly, bridge it with `muster agent`. This needs the CLI installed and a context set, as above. The bridge uses the active context, so no endpoint flag is needed in the editor config.
 
+### Claude Code through the bridge
+
+```bash
+claude mcp add muster -- muster agent --mcp-server
+```
+
 ### Cursor through the bridge
 
 ```json
@@ -166,6 +193,14 @@ Make sure MCP is enabled in Cursor's settings. After saving the configuration, y
 ```
 
 The first time your editor connects through the bridge, if you haven't authenticated yet, the agent exposes a single tool called `authenticate_muster`. Your assistant calls it automatically, which opens your browser for SSO login. After authentication succeeds, the full set of Kubernetes tools becomes available—no restart needed.
+
+## Connect from other MCP tools
+
+The Muster endpoint is a standard remote, OAuth-protected MCP server, so it works with any client that supports remote MCP and OAuth—not just code editors. Point the client at the same `https://muster.<management-cluster>.<base-domain>/mcp` URL and complete the browser SSO login.
+
+- **Claude.ai (web) and Claude Desktop**: open Settings -> Connectors, add a custom connector with the endpoint URL, and complete the browser OAuth login. Custom connectors are available on Pro, Max, Team, and Enterprise plans; on Team and Enterprise an organization owner has to add the connector before members can use it.
+- **ChatGPT**: in Connectors (developer mode, available on Business, Enterprise, and Pro), add the MCP server URL and authenticate. The tools then become available to the model.
+- **Any other MCP client**: use the same endpoint URL. For a client that only speaks stdio or has no built-in OAuth flow, bridge it with [`muster agent`](#connect-through-the-local-bridge-fallback) or a generic stdio bridge such as [`mcp-remote`](https://github.com/geelen/mcp-remote).
 
 ## What you can ask
 

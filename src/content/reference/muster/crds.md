@@ -97,7 +97,7 @@ All servers in a family must agree on `instanceArg`. When they diverge, Muster f
 | `scopes` | string | Scopes for the exchanged token. Defaults to `openid profile email groups` |
 | `clientCredentialsSecretRef` | object | Reference to a `Secret` with client credentials, when the remote Dex requires client authentication |
 
-`clientCredentialsSecretRef` takes `name`, optional `namespace` (defaults to the `MCPServer` namespace), `clientIdKey` (defaults to `client-id`), and `clientSecretKey` (defaults to `client-secret`). For a worked example, see [multi-cluster token exchange]({{< relref "/tutorials/ai-agents/multi-mc-token-exchange" >}}).
+`clientCredentialsSecretRef` takes `name`, optional `namespace` (defaults to the `MCPServer` namespace), `clientIdKey` (defaults to `client-id`), and `clientSecretKey` (defaults to `client-secret`). For a worked example, see [multi-cluster token exchange]({{< relref "/tutorials/ai-agents/self-hosting/multi-mc-token-exchange" >}}).
 
 #### Authorization server {#mcpserver-authz-server}
 

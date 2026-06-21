@@ -5,7 +5,7 @@ description: Protect the Muster endpoint with OAuth and Dex, configure the proxy
 weight: 80
 menu:
   principal:
-    parent: tutorials-ai-agents
+    parent: tutorials-ai-agents-self-hosting
     identifier: tutorials-ai-agents-oauth-setup
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
@@ -16,12 +16,16 @@ user_questions:
   - Why do users with many groups fail to authenticate?
 ---
 
+{{% notice note %}}
+**Applies to self-hosted Muster only.** Follow this guide when you operate your own Muster. On the managed Giant Swarm platform, the endpoint is already protected for you.
+{{% /notice %}}
+
 Muster runs two distinct OAuth roles, and you configure them independently:
 
 - **Resource server** (`oauth.server`): Muster protects its own MCP endpoint. Clients present a valid access token to reach any protected endpoint.
 - **Client proxy** (`oauth.mcpClient`): Muster authenticates to downstream MCP servers on a user's behalf, so tokens never reach the client directly.
 
-This guide assumes Muster is already [deployed]({{< relref "/tutorials/ai-agents/deploy-muster" >}}). For the security model behind it, see the [security overview]({{< relref "/overview/ai-agents/security" >}}).
+This guide assumes Muster is already [deployed]({{< relref "/tutorials/ai-agents/self-hosting/deploy-muster" >}}). For the security model behind it, see the [security overview]({{< relref "/overview/ai-agents/security" >}}).
 
 ## Protect the endpoint with the resource server
 
@@ -124,7 +128,7 @@ muster auth status
 
 ## Related
 
-- [Deploy Muster]({{< relref "/tutorials/ai-agents/deploy-muster" >}}): install the charts this guide configures.
+- [Deploy Muster]({{< relref "/tutorials/ai-agents/self-hosting/deploy-muster" >}}): install the charts this guide configures.
 - [Map RBAC and SSO]({{< relref "/tutorials/ai-agents/access-control" >}}): connect identity-provider groups to cluster permissions.
-- [Multi-cluster token exchange]({{< relref "/tutorials/ai-agents/multi-mc-token-exchange" >}}): cross-cluster single sign-on with RFC 8693.
+- [Multi-cluster token exchange]({{< relref "/tutorials/ai-agents/self-hosting/multi-mc-token-exchange" >}}): cross-cluster single sign-on with RFC 8693.
 - [Security model]({{< relref "/overview/ai-agents/security" >}}): per-user visibility and token handling.

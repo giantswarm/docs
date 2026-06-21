@@ -57,7 +57,11 @@ CAPI
 CAPV
 CAPVCD
 CAPZ
+ChatGPT
 CIDR[s]?
+Claude Code
+Claude Desktop
+Claude.ai
 CLI
 CNAME
 cluster-aws
@@ -130,6 +134,7 @@ liveness
 LogQL
 mcp-kubernetes
 mcp-prometheus
+mcp-remote
 MCPServer
 mimirtool
 MIG
