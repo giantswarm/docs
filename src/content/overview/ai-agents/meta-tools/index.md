@@ -77,4 +77,4 @@ Several mechanisms work together so that an agent pays context cost only for the
 
 The combined effect: an assistant interacting with Muster carries a tiny, stable tool surface. The cost of any given task scales with what that task touches—not with the size of the whole platform.
 
-To see these meta-tools in action from your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
+For the full argument and response schema of each meta-tool, see the [meta-tools reference]({{< relref "/reference/muster/meta-tools" >}}). To see these meta-tools in action from your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).

@@ -217,3 +217,4 @@ The mcp-kubernetes instance on that cluster may be temporarily unavailable. Othe
 - [Architecture]({{< relref "/overview/ai-agents/architecture" >}}): how the central aggregator gives you unified access to your whole fleet.
 - [Security]({{< relref "/overview/ai-agents/security" >}}): OAuth 2.1, per-user tool visibility, and how single sign-on works across clusters.
 - [Developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}): ask the same questions in the browser instead of your IDE.
+- [Muster CLI reference]({{< relref "/reference/muster/cli" >}}): every `muster` command, including `context` and `auth`.

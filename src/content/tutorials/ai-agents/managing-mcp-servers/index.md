@@ -16,7 +16,7 @@ user_questions:
   - How do I expose the same tools across multiple clusters?
 ---
 
-Muster aggregates downstream MCP servers and presents their combined tools through one endpoint. You register each server as an `MCPServer` resource. Muster's reconciler picks it up, connects or starts the server, prefixes its tools to avoid name clashes, and makes them discoverable through the [meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}). No agent restart is required.
+Muster aggregates downstream MCP servers and presents their combined tools through one endpoint. You register each server as an `MCPServer` resource. Muster's reconciler picks it up, connects or starts the server, prefixes its tools to avoid name clashes, and makes them discoverable through the [meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}). No agent restart is required. This guide walks the common fields by example; for the complete schema of the `MCPServer` resource, see the [Muster resource reference]({{< relref "/reference/muster" >}}).
 
 ## Choose a transport
 
@@ -130,3 +130,10 @@ kubectl apply -f mcpserver.yaml
 ```
 
 Muster reconciles within seconds. As with workflows, iterate directly while you're configuring, then manage the resource through your GitOps pipeline for production.
+
+## Related
+
+- [Muster resource reference]({{< relref "/reference/muster" >}}): the complete field-by-field schema for the `MCPServer` resource.
+- [Connect custom MCP servers]({{< relref "/tutorials/ai-agents/connecting-custom-mcp-servers" >}}): third-party servers, including ones without standard discovery metadata.
+- [Give agents multi-cluster access]({{< relref "/tutorials/ai-agents/multi-cluster-access" >}}): families and token exchange across a fleet.
+- [Meta-tools and discovery]({{< relref "/overview/ai-agents/meta-tools" >}}): how an agent finds the tools a server contributes.

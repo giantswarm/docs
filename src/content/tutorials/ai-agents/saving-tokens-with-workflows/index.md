@@ -35,16 +35,18 @@ Picture the same alert triage both ways:
 
 ## The measured saving
 
-A paired A/B trial ran the same agent, model, and prompt against four real management-cluster alerts. The only difference was the tool surface: one variant could use the raw aggregated tools (`x_kubernetes_*` and `x_prometheus_*`) but no workflow, the other could only call the matching `workflow_*` tool. Aggregated across the four alerts:
+The figures below come from one internal lab trial. Treat them as illustrative of the *shape* of the saving, not as a guarantee: the ratios hold across a range of investigations, but the absolute numbers depend on the model, its pricing, and how much work each alert needs.
+
+The trial was a paired A/B run: the same agent, model, and prompt against four real management-cluster alerts. The only difference was the tool surface—one variant could use the raw aggregated tools (`x_kubernetes_*` and `x_prometheus_*`) but no workflow, the other could only call the matching `workflow_*` tool. Aggregated across the four alerts:
 
 | Metric | Raw aggregated tools | Workflow tool | Reduction |
 |---|--:|--:|--:|
-| Total cost (USD) | $4.32 | $1.57 | 2.8x |
+| Cost | $4.32 | $1.57 | 2.8x |
 | Messages | 334 | 71 | 4.7x |
 | Cache-read input tokens | 11.0M | 1.1M | 9.6x |
 | Tool-call invocations | 68 | 4 | 17x |
 
-Read the tool-call row first: 68 calls became four, one per alert. That's the mechanism in a single number—the entire discover-query-correlate loop became one delegated call. The cache-read row is where the money is, because those tokens drive the dollar cost, and they fell by about 10x.
+Read the tool-call row first: 68 calls became four, one per alert. That's the mechanism in a single number—the entire discover-query-correlate loop became one delegated call. The cache-read row is where the durable saving lives: those tokens drive the dollar cost, and they fell by about 10x regardless of the per-token price.
 
 The saving scales with how much investigation an alert needs. The most exploratory alert saw a 4.7x message reduction at the high end of the run, and the most static one around 2.9x. Heavy, open-ended triage saves the most, while near-static checks save the least.
 

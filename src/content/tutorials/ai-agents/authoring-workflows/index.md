@@ -19,7 +19,7 @@ user_questions:
 
 A workflow packages a multi-step operation into a single named tool. You write it as a `Workflow` custom resource, and Muster registers it as a `workflow_<name>` tool that an agent discovers and calls with one request. Muster runs the steps server-side and returns one shaped result. That's the whole value: it collapses what would otherwise be many agent round-trips, each paying prompt tokens both ways, into a single call. A paired trial measured a 10x reduction in cache-read tokens when an agent used a workflow instead of the raw tools. See [why workflows cut agent cost]({{< relref "/overview/ai-agents/architecture" >}}#workflows-cut-agent-token-cost).
 
-This guide documents what the engine implements. Write against these fields and your workflow behaves predictably.
+This guide documents what the engine implements. Write against these fields and your workflow behaves predictably. For the complete field-by-field schema of the `Workflow` resource, see the [Muster resource reference]({{< relref "/reference/muster" >}}).
 
 ## The execution model
 
@@ -307,6 +307,7 @@ Iterate live, then promote to your GitOps pipeline:
 
 ## Related
 
+- [Muster resource reference]({{< relref "/reference/muster" >}}): the complete field-by-field schema for the `Workflow` resource.
 - [Manage MCP servers]({{< relref "/tutorials/ai-agents/managing-mcp-servers" >}}): the servers whose tools your workflow steps call.
 - [Meta-tools and discovery]({{< relref "/overview/ai-agents/meta-tools" >}}): how an agent finds and invokes a `workflow_<name>` tool.
 - [Troubleshooting]({{< relref "/tutorials/ai-agents/troubleshooting" >}}): when a workflow runs but the agent never picks it.

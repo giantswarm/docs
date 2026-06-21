@@ -92,15 +92,15 @@ Two deployment shapes are supported:
 
 Muster can package a multi-step operation—authenticate, port-forward, query, correlate—as a single named **workflow** that an agent invokes with one call. It's not just convenient. It makes the AI assistant dramatically cheaper, because one workflow call replaces the whole discover-query-correlate loop the agent would otherwise run itself.
 
-A paired A/B trial measured this directly on four real management-cluster alerts. It used the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool:
+One internal lab trial measured this directly on four real management-cluster alerts, with the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool. The numbers below are illustrative of the *shape* of the saving rather than a guarantee—the ratios hold across a range of investigations, but the absolute figures depend on the model and its pricing:
 
 | Metric | Raw aggregated tools | Workflow tool | Reduction |
 |---|--:|--:|--:|
-| Total cost (USD) | $4.32 | $1.57 | 2.8x |
+| Cost | $4.32 | $1.57 | 2.8x |
 | Messages | 334 | 71 | 4.7x |
 | Cache-read input tokens | 11.0M | 1.1M | 9.6x |
 | Tool-call invocations | 68 | 4 | 17x |
 
-Cache-read input tokens dominate the bill, so the 10x reduction there is the real cost lever. The savings scale with how much investigation an alert needs.
+Cache-read input tokens dominate the bill, so the 10x reduction there is the real cost lever, and it holds regardless of the per-token price. The savings scale with how much investigation an alert needs.
 
 The trade-off is scope: a workflow only checks what it was authored to check. For a first responder handling the specific alert that paged, that focus is a feature. For open-ended "what's broken here?" exploration, an agent with the raw tools surfaces more adjacent context at higher cost. Both modes run through the same gateway—see [meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) for how an agent reaches each one.
