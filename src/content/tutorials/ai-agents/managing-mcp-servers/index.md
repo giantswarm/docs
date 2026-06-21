@@ -31,12 +31,12 @@ Every `MCPServer` declares a `type`:
 A stdio server must set `command`, and a remote server must set `url`. Muster's admission rules reject a resource that mixes them. The `args` and `command` fields apply only to stdio, and `headers` applies only to remote servers.
 
 {{% notice note %}}
-**`stdio` is for local Muster only.** A `stdio` server runs as a child process **inside the Muster process or pod**. That works well when you run Muster yourself on your own machine (`muster serve`) for local development. It **doesn't** fit a Kubernetes Muster: on the managed Giant Swarm platform or a self-hosted Muster in a cluster, the container can only run the binaries baked into its image, and a single shared process serves every user, so there is nowhere to start a per-user `stdio` process. On those deployments, run each downstream server as its own service and connect to it with a remote transport (`streamable-http` or `sse`). Treat `stdio` as the local-development option and the remote transports as the cluster option.
+**`stdio` is for local Muster only.** A `stdio` server runs as a child process **inside the Muster process or pod**. That works well when you run Muster yourself on your own machine (`muster serve`) for local development. It **doesn't** fit a Kubernetes Muster. There the container runs only the binaries baked into its image, and one shared process serves every user. A Kubernetes deployment, whether the managed Giant Swarm platform or a self-hosted cluster, has nowhere to start a per-user `stdio` process. On those deployments, run each downstream server as its own service and connect to it with a remote transport (`streamable-http` or `sse`). Treat `stdio` as the local-development option and the remote transports as the cluster option.
 {{% /notice %}}
 
 ### A stdio server (local Muster only)
 
-This example assumes Muster runs locally on your own machine. On a Kubernetes Muster, use a remote transport instead (see the note above).
+This example assumes Muster runs locally on your own machine. On a Kubernetes Muster, use a remote transport instead (see the preceding note).
 
 ```yaml
 apiVersion: muster.giantswarm.io/v1alpha1
