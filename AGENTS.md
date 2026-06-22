@@ -100,6 +100,12 @@ Use **sentence case** everywhere (blog, website, docs, social media). Only capit
   - `https://docs.giantswarm.io/overview/security/platform-security/` → `src/content/overview/security/_index.md`
   - `https://docs.giantswarm.io/overview/observability/alert-management/alert-routing/` → `src/content/overview/observability/alert-management/alert-routing/index.md`
 
+### Section and list pages
+
+- An `_index.md` is a section's list page — it renders an auto-generated index of its child pages (their titles and `description`s). Keep it to frontmatter only; don't add a body
+- Put general or introductory content about a section on a dedicated overview or introduction page inside the section, sorted to the top of the menu with the lowest `weight` (use `linkTitle: Introduction` so the menu entry stays short). See `src/content/overview/developer-portal/` for the pattern
+- The list page's frontmatter `description` is what appears as the section summary, so make it a good standalone description
+
 ### Markdown
 
 - Leave a blank line between a heading and the following paragraph
