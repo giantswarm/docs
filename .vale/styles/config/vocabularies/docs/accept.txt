@@ -148,6 +148,7 @@ OCIRepository
 OIDC
 onboarding
 OpenID Connect
+Opsgenie
 OTLP
 PagerDuty
 passthrough
