@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 user_questions:
   - What is Continuous Deployment?
-  - How Giant Swarm supports Continuous Deployment?
+  - How does Giant Swarm support Continuous Deployment?
 ---
 
 Continuous Deployment (CD) is a **key practice** in modern software development. It lets teams deliver features, fixes, and updates to their users **fast and reliably**. Giant Swarm has built a platform around this capability. With it, you can deploy changes to your applications **seamlessly**, while keeping high quality and security standards.
