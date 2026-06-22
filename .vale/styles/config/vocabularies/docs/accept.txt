@@ -139,7 +139,7 @@ MCPServer
 mimirtool
 MIG
 [Mm]uster
-namespace[s]?
+namespace[ds]?
 NLB[s]?
 node[pP]ool[s]?
 OAuth
