@@ -47,7 +47,7 @@ The `spec` of the resource mainly consists of three parts:
 
 - `policyTypes`: Which could be `Ingress`, `Egress` or both. This field will determine whether the rules apply to incoming traffic, outgoing traffic, or both. If it's not defined, then `Ingress` will be enabled by default, and `Egress` will only be enabled when the rules are defined.
 
-- `ingress`/`egress`: these sections allow a list of `from` (Ingress) or `to` (Egress) and `ports` blocks. Each `from`/`to` block contains any combination of a range of IPs (`ipBlock`), a list of namespaces selected by label (`namespaceSelector`), and a list of pods by label (`podSelector`). These blocks declare which IPs, namespaces or pods can connect to the target pod or to which IPs, namespaces, or pods the target can connect. The `ports` block defines which ports are affected by this rule.
+- `ingress`/`egress`: these sections accept a list of `from` (Ingress) or `to` (Egress) and `ports` blocks. Each `from`/`to` block contains any combination of a range of IPs (`ipBlock`), a list of namespaces selected by label (`namespaceSelector`), and a list of pods by label (`podSelector`). These blocks declare which IPs, namespaces or pods can connect to the target pod or to which IPs, namespaces, or pods the target can connect. The `ports` block defines which ports are affected by this rule.
 
 ### Hello-world example
 
@@ -180,7 +180,7 @@ $ kubectl exec debug-toolbox -- nslookup hello-world
 ;; connection timed out; no servers could be reached
 ```
 
-## Step 4: Allow specific pod-to-pod access
+## Step 4: Enable specific pod-to-pod access
 
 Going a step further, pod-to-pod access can be enabled for specific pods. The following example allows the `debug-toolbox` pod to access the `hello-world` pod on port `8080` only, rejecting all other traffic.
 
@@ -215,7 +215,7 @@ $ kubectl exec -it debug-toolbox -- sh
 / [...]
 ```
 
-## Step 5: Allow pod-to-pod access within a namespace
+## Step 5: Enable pod-to-pod access within a namespace
 
 One last interesting scenario to explore is allowing pod-to-pod access within a namespace. Sometimes, like in a test environment, it may be necessary to enable all pods to communicate by default within the same namespace. The following example allows all pods in the `default` namespace to communicate with each other.
 
@@ -250,7 +250,7 @@ $ kubectl exec -it debug-toolbox -- sh
 / HTTP/1.1 200 OK
 ```
 
-This guide has introduced how network policies work and some peculiarities to be aware of when working in Giant Swarm clusters. However, the ideal configuration is to have a **default deny policy in all namespaces**, and allow only the necessary traffic to and from each application. This approach improves security, and ensures cluster traffic is intentionally and declaratively managed.
+This guide has introduced how network policies work and some peculiarities to be aware of when working in Giant Swarm clusters. However, the ideal configuration is to have a **default deny policy in all namespaces**, and permit only the necessary traffic to and from each application. This approach improves security, and ensures cluster traffic is intentionally and declaratively managed.
 
 ## Next step
 

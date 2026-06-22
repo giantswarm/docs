@@ -20,7 +20,7 @@ Giant Swarm's mission is to empower our customers to build their own cloud-nativ
 
 We believe that having a flexible, [unified cloud-native developer platform](https://tag-app-delivery.cncf.io/whitepapers/platforms/#why-platforms) plays a crucial role in growing your development organization efficiently. The platform not only helps to take [the toil](https://sre.google/sre-book/eliminating-toil/) out of the development teams to have **less cognitive load** but also enables capabilities to **manage security and governance more centrally**.
 
-Most of the developers want to deploy an app into production without having to worry too much about security or compliance, while maintaining control over deployment and monitoring options of their workloads. Our goal is to help the engineers who build and maintain the platform meet developers' expectations, **without compromising their organizations' security posture**.
+Most developers want to deploy an app into production without having to worry too much about security or compliance. At the same time, they want to keep control over the deployment and monitoring options of their workloads. Our goal is to help the engineers who build and maintain the platform meet developers' expectations, **without compromising their organizations' security posture**.
 
 Giant Swarm addresses this challenge by providing a flexible base platform. The platform enables technology departments to ensure governance and control over development processes and operations, while providing developers a smooth development cycle.
 

@@ -32,7 +32,7 @@ A migrated cluster, for example, can look like this before cleanup:
 - Secondary URL/domain, only used to validate tokens (but none are issued by this provider yet): `https://irsa.<workload cluster name>.some-subdomain.example.com`
 - Note: Clusters in China can't use a CloudFront deployment with domain `irsa.<cluster domain>`. The S3 buckets storing the key information are used directly as service account issuer URLs, for example `s3.cn-northwest-1.amazonaws.com.cn/123456123456-g8s-mycluster-oidc-pod-identity-v2` for vintage, and `-v3` suffix for CAPI. The instructions below need to be adapted for that special case.
 
-The vintage service account issuer (the first one in the preceding list) needs to be phased out, since it's tied to the vintage cluster base domain which will also be phased out eventually (see section [DNS hosted zones](#dns-hosted-zones-and-kubernetes-api-endpoint)).
+The vintage service account issuer (the first one in the preceding list) needs to be phased out. It's tied to the vintage cluster base domain, which will also be phased out eventually (see section [DNS hosted zones](#dns-hosted-zones-and-kubernetes-api-endpoint)).
 
 Two things need to happen to achieve that without downtime:
 
@@ -72,7 +72,7 @@ Two things need to happen to achieve that without downtime:
 
    In the output, you can see the CAPI base domain `capi.acme.net`, the vintage base domain `k8s.myoldmanagementcluster.vintage.acme.net` and a combination of your cluster name (here: `mycluster`) with those domains. Remember the base domain _without_ the cluster name for the next step.
 
-5. Find trust policies that only allow the vintage OIDC issuer. You can do this manually using the AWS Console, or somewhat automated using the AWS CLI. In both cases, if you have roles in multiple accounts, you need to go through all accounts. The file `/tmp/affected-accounts.txt` lists all affected account numbers. **Please perform the next steps for each account.** The following instructions are for the AWS CLI and also require [jq](https://jqlang.org/) to be installed.
+5. Find trust policies that only permit the vintage OIDC issuer. You can do this manually using the AWS Console, or somewhat automated using the AWS CLI. In both cases, if you have roles in multiple accounts, you need to go through all accounts. The file `/tmp/affected-accounts.txt` lists all affected account numbers. **Please perform the next steps for each account.** The following instructions are for the AWS CLI and also require [jq](https://jqlang.org/) to be installed.
 
    ```sh
    # Use some way to tell aws-cli how to reach an account
@@ -87,7 +87,7 @@ Two things need to happen to achieve that without downtime:
 
    With this, you now have a list of affected IAM roles in _one_ account.
 
-6. Update trust policies of the affected IAM roles. They should allow `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, the following block shows what the trust policy should look like. The order doesn't matter as long as you trust both the old and new issuer. Make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references.
+6. Update trust policies of the affected IAM roles. They should grant `sts:AssumeRoleWithWebIdentity` for both Vintage and CAPA issuers during the transition period. As an example, the following block shows what the trust policy should look like. The order doesn't matter as long as you trust both the old and new issuer. Make sure to use the correct AWS account ID, issuer domains and `ServiceAccount` references.
 
    ```json
    {
