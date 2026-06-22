@@ -17,7 +17,7 @@ export-csv:
 	  --volume=${PWD}:/workdir \
 	  -w /workdir \
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
-	  /workdir/scripts/export-csv/script.py
+	  /workdir/.claude/skills/export-csv/export_csv.py
 
 # Aggregate changelog entries from various repositories into our Changes section.
 changes:
