@@ -33,7 +33,7 @@ Before starting this tutorial, ensure you have:
 
 ## Enable network monitoring
 
-Network monitoring is not enabled by default and requires explicit opt-in. To enable it, add the label `observability.giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
+Network monitoring isn't enabled by default and requires explicit opt-in. To enable it, add the label `observability.giantswarm.io/network-monitoring=true` to your workload cluster's `Cluster` resource.
 
 For example using kubectl:
 

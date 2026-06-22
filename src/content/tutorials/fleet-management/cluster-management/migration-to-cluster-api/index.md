@@ -16,7 +16,7 @@ user_questions:
 
 From the outset, Giant Swarm has utilized Kubernetes to build platforms. In the early years, everybody was still figuring out how to manage Kubernetes lifecycle across a fleet of clusters. We **built our own tooling**, largely based on [operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), which worked well for us and our customers. As the Kubernetes project and the community around it evolved, it became clear that many companies in the ecosystem were trying to solve the same fundamental challenges regarding cluster lifecycle management. With our extensive experience, we saw an opportunity to contribute to a broader solution. We pushed for a joint effort to build a **standardized method for cluster lifecycle management**. [Cluster API]({{< relref "/overview/fleet-management/cluster-management/introduction-cluster-api" >}}) is backed by the Kubernetes community and covers different providers like AWS, Azure, GCP, and others.
 
-**Giant Swarm has finished the migration from the previous "vintage" product generation to Cluster API-based cluster management for all customers in 2025, seamlessly and without downtime. This guide is only relevant for customers with clusters that were migrated to CAPA**, as during migration, certain old cloud resources needed to be kept. Here, we explain the steps to take to switch to new variants and clean up old resources. **If you are not using IRSA for your own applications, or for any managed apps, this guide is not relevant for you.**
+**Giant Swarm has finished the migration from the previous "vintage" product generation to Cluster API-based cluster management for all customers in 2025, seamlessly and without downtime. This guide is only relevant for customers with clusters that were migrated to CAPA**, as during migration, certain old cloud resources needed to be kept. Here, we explain the steps to take to switch to new variants and clean up old resources. **If you aren't using IRSA for your own applications, or for any managed apps, this guide isn't relevant for you.**
 
 For each of the cleanup steps, which can be done independently of each other, feel free to coordinate with Giant Swarm support to ensure a smooth cleanup.
 
@@ -30,14 +30,14 @@ A migrated cluster, for example, can look like this before cleanup:
 
 - Primary URL/domain, used to issue and validate tokens: `https://irsa.<workload cluster name>.k8s.<management cluster name>.some-subdomain.example.com`
 - Secondary URL/domain, only used to validate tokens (but none are issued by this provider yet): `https://irsa.<workload cluster name>.some-subdomain.example.com`
-- Note: Clusters in China cannot use a CloudFront deployment with domain `irsa.<cluster domain>`. The S3 buckets storing the key information are used directly as service account issuer URLs, for example `s3.cn-northwest-1.amazonaws.com.cn/123456123456-g8s-mycluster-oidc-pod-identity-v2` for vintage, and `-v3` suffix for CAPI. The instructions below need to be adapted for that special case.
+- Note: Clusters in China can't use a CloudFront deployment with domain `irsa.<cluster domain>`. The S3 buckets storing the key information are used directly as service account issuer URLs, for example `s3.cn-northwest-1.amazonaws.com.cn/123456123456-g8s-mycluster-oidc-pod-identity-v2` for vintage, and `-v3` suffix for CAPI. The instructions below need to be adapted for that special case.
 
 The vintage service account issuer (the first one in the preceding list) needs to be phased out, since it's tied to the vintage cluster base domain which will also be phased out eventually (see section [DNS hosted zones](#dns-hosted-zones-and-kubernetes-api-endpoint)).
 
 Two things need to happen to achieve that without downtime:
 
 - You may have applications using the issuers for IRSA, meaning they authenticate to the AWS API through service accounts. In this case, AWS IAM trust relationships may still reference the old domain. You will change them with the below instructions to allow both old and new domains.
-- Kubernetes service account tokens must be re-issued by the new issuer domain. Kubernetes does this automatically, but only once a token expires. Therefore, both issuers must be kept for a certain time, but you will turn around their purpose: the vintage issuer will be switched to only validate (old, existing) tokens, while the CAPA issuer will be switched to become primary, meaning it is responsible to issue any new tokens once the old tokens expire, and is also used for validation.
+- Kubernetes service account tokens must be re-issued by the new issuer domain. Kubernetes does this automatically, but only once a token expires. Therefore, both issuers must be kept for a certain time, but you will turn around their purpose: the vintage issuer will be switched to only validate (old, existing) tokens, while the CAPA issuer will be switched to become primary, meaning it's responsible to issue any new tokens once the old tokens expire, and is also used for validation.
 
 **Let's start. These are the exact steps you need to follow:**
 
