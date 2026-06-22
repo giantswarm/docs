@@ -140,6 +140,7 @@ mimirtool
 MIG
 [Mm]uster
 namespace[ds]?
+Nirmata
 NLB[s]?
 node[pP]ool[s]?
 OAuth
@@ -179,6 +180,8 @@ SSL
 SSO
 subnets?
 substring
+syscall[s]?
+Sysdig
 [T|t]eleport
 templated
 TLS
