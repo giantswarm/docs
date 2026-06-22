@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-alert-management
     identifier: overview-observability-alert-management-alert-routing
-last_review_date: 2025-07-17
+last_review_date: 2026-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -19,7 +19,7 @@ aliases:
   - /tutorials/observability/alerting/configure-alertmanager/
 ---
 
-Alert routing determines how alerts flow from your [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) to the right teams through the right channels. The Giant Swarm Observability Platform uses Mimir Alertmanager to handle routing, grouping, and delivering notifications.
+Alert routing determines how alerts flow from your [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) to the **right teams** through the **right channels**. The Giant Swarm Observability Platform uses Mimir Alertmanager to handle routing, grouping, and delivering notifications.
 
 ## How alert routing works
 
@@ -232,7 +232,7 @@ mimirtool alertmanager verify --address=<your-mimir-url> config.yaml
 
 - Create reusable templates for consistent formatting
 - Include essential context: alert name, affected resources, and remediation links
-- Use clear, actionable language in notifications
+- Use clear, direct language in notifications
 
 ### Security considerations
 
