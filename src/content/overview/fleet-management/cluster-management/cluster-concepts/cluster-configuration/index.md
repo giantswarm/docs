@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-fleetmanagement-clustermanagement-concepts
     identifier: overview-fleetmanagement-clustermanagement-concepts-configuration
-last_review_date: 2024-08-28
+last_review_date: 2026-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -14,10 +14,10 @@ user_questions:
   - How can I customize the configuration of a cluster in the Giant Swarm platform?
 ---
 
-The cluster configuration is managed thanks to the [app platform]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) configuration options.
+Cluster configuration is managed through the [app platform]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) configuration options.
 
-In the cluster, there are 3 main configuration sources:
+A cluster has **three main configuration sources**:
 
-- Default provider-independent app configuration (comes from cluster chart; if some app has this, then this should probably be moved directly to the app repository itself)
-- Provider-specific app configuration (comes from cluster-<provider>)
-- Customer-specified app configuration (come from cluster-<provider> Helm values, it's probably specified in customer's GitOps repository).
+- **Default, provider-independent app configuration.** This comes from the cluster chart. If an app carries this configuration, you should probably move it directly to the app's own repository.
+- **Provider-specific app configuration.** This comes from `cluster-<provider>`.
+- **Customer-specified app configuration.** This comes from the `cluster-<provider>` Helm values. It's usually specified in the customer's GitOps repository.
