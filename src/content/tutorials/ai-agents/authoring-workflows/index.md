@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-ai-agents-authoring-workflows
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-06-23
 user_questions:
   - How do I author a Muster workflow?
   - What fields does a Muster Workflow support?
@@ -131,6 +131,20 @@ spec:
 The projection **preserves JSON types**. A leaf's type comes from the value it evaluates to, not from how the rendered text looks. A single bare reference like `{{ .results.not_running.items }}` keeps its real type, so an array stays an array. A `{{ len ... }}` leaf is a number. A leaf that mixes literal text with an action, such as `"cluster {{ .input.management_cluster }}"`, renders to a string. Values whose form matters survive without coercion, including leading zeros, versions, and IDs like `08` and `1.20`.
 
 When `spec.output` is declared, the per-step `output` and `store` flags no longer affect the returned document. The projection defines it in full. Muster logs a one-line warning naming any flags it made inert. Drop those flags, or drop the projection. The projection is the strongest token lever a workflow has, since it returns a small, shaped payload instead of the full step envelope.
+
+A projection render error no longer discards the step results that already succeeded. Because the projection renders with `missingkey=error`, a single bad reference (a typo, or a field that's absent on some runs) fails the render after every step has already run. The workflow still fails loud—the error is returned and the result is flagged as an error—but the response now carries the full envelope with **every** recorded step result plus an `output_error` message describing the render failure. The underlying data stays recoverable, so you can see what each step returned and fix the projection without re-running the workflow.
+
+### Inspect a projection with `_debug`
+
+A projection deliberately hides the step envelope, which is exactly what you don't want while you're debugging the projection itself. Rather than temporarily deleting the projection to see what each step returned, pass the reserved `_debug: true` execution argument:
+
+```bash
+muster call workflow_pod-health --arg management_cluster=my-cluster-mcp-kubernetes --arg _debug=true
+```
+
+In debug mode the response is the full envelope (`execution_id`, `status`, and `steps[]` with **every** recorded step result, not just the `output: true` ones), and the rendered projection rides along under `output`. Default execution still returns only the projection, so this is purely an inspection escape hatch.
+
+`_debug` is a reserved argument the executor strips before validation and step execution. It never collides with a workflow's own `args` and is never passed through to a step's tool, so you can add it to any workflow execution without declaring it. It applies to non-projection workflows too: there it forces the default envelope to surface every step result regardless of each step's `output` flag.
 
 ### `allowFailure: true` for legitimately optional steps
 
