@@ -79,7 +79,7 @@ Configure **[log ingestion]({{< relref "/overview/observability/data-management/
 - **PodLogs**: Select which pods to collect logs from using label selectors
 - **Pod labels**: Enable automatic log collection by labeling pods with tenant information
 - **Log parsing**: Configure structured parsing and label extraction from log content
-- **Namespace filtering**: Control log collection scope by namespace
+- **Filtering by namespace**: Control log collection scope by namespace
 
 ### External data sources
 
@@ -97,7 +97,7 @@ Once you've created Grafana organizations as part of your multi-tenancy setup, y
 
 **[Create custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}})** tailored to your specific monitoring needs:
 
-- **GitOps approach**: Version-controlled dashboard definitions using ConfigMaps
+- **GitOps approach**: Version-controlled dashboard definitions using configmaps
 - **Dashboard provisioning**: Automatically deploy dashboards to specific organizations
 - **UI creation**: Build dashboards directly in Grafana with persistent storage
 - **Cross-tenant dashboards**: Combine data from multiple tenants when authorized
