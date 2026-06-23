@@ -211,6 +211,6 @@ Now that you're monitoring your clusters and applications, here are some next st
 
 - **[Configure advanced alerting]({{< relref "/overview/observability/alert-management/alert-rules/" >}})** with complex conditions and routing
 - **[Manage alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}})** to ensure the right teams get notified
-- **[Organize teams]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}})** with separate Grafana organizations
+- **[Organize teams]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}})** with separate Grafana organizations
 
 The observability platform grows with your needs - start simple and add complexity as your monitoring requirements evolve.

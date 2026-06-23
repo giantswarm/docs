@@ -125,7 +125,7 @@ Each [tenant]({{< relref "/overview/observability/configuration/multi-tenancy/" 
 
 ## Getting started
 
-1. **Set up your tenant**: Ensure you have a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}) configured
+1. **Set up your tenant**: Ensure you have a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}}) configured
 2. **Create alert rules**: Define [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) for your applications and infrastructure
 3. **Configure routing**: Set up [alert routing]({{< relref "/overview/observability/alert-management/alert-routing/" >}}) to route alerts to your team
 4. **Test and monitor**: Use Grafana's alerting interface to monitor rule performance and alert delivery
