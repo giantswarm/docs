@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-ai-agents-saving-tokens-with-workflows
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-06-23
 user_questions:
   - Why do workflows make my AI agent cheaper?
   - How much do Muster workflows reduce token cost?
@@ -69,6 +69,8 @@ spec:
 ```
 
 The projection can read every step result through `{{ .results.<id>.<field> }}`, so you pull just the fields that matter and drop everything else. The projection preserves JSON types, so a bare reference stays an array and a `{{ len ... }}` leaf stays a number. When you declare it, the per-step flags below no longer shape the returned document, and Muster logs a one-line warning naming any flag it made inert. See [shape the response with `spec.output`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#shape-the-response-with-specoutput) for the full schema.
+
+Keeping the response this tight costs nothing when you need to debug: pass `_debug: true` on a single execution to see the full envelope and every step result alongside the projection, without widening what production callers receive. See [inspect a projection with `_debug`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#inspect-a-projection-with-_debug).
 
 Without a projection, the per-step `output` flag is the next lever. Set `output: true` only on the steps whose data the agent actually needs to read. A step without it still runs, and later steps can still read its result, but Muster keeps only its status in the returned document and drops the payload. `store: true` is the deprecated, older name for `output: true`: it still works but logs a warning, so prefer `output`.
 
