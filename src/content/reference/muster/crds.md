@@ -221,7 +221,7 @@ The per-step `output` flag controls only whether a result appears in the returne
 
 ### Output template {#workflow-output}
 
-`spec.output` is a templated object, rendered once after all steps complete, against `.input`, `.results`, and `.vars`. It replaces the default `{execution_id, workflow, status, input, steps[], ...}` envelope, so a workflow can return a small, shaped response. When omitted, the default envelope is returned unchanged.
+`spec.output` is a templated object, rendered once after all steps complete, against `.input`, `.results`, and `.vars`. It replaces the default `{execution_id, workflow, status, input, steps[], ...}` response with a small, shaped result of your own. When omitted, the default response is returned unchanged.
 
 The output template preserves JSON types: a leaf's type comes from the value it evaluates to, not from how its rendered text looks.
 
