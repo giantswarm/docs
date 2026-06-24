@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-management-data-transformation
     identifier: overview-observability-data-management-data-transformation-trace-derived-metrics
-last_review_date: 2025-09-29
+last_review_date: 2026-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -18,9 +18,9 @@ user_questions:
   - Why can't I alert directly on trace data?
 ---
 
-Giant Swarm's observability platform automatically generates metrics from your trace data using Tempo's metrics-generator. This transformation enables you to create alerts and dashboards based on distributed tracing insights while using familiar Prometheus/PromQL tooling.
+Giant Swarm's observability platform automatically generates metrics from your trace data using Tempo's metrics-generator. This lets you create **alerts and dashboards** from distributed tracing insights, using familiar Prometheus/PromQL tooling.
 
-You can't create alerts directly from trace data, so these automatically generated metrics bridge the gap between detailed trace analysis and reliable monitoring.
+You can't create alerts directly from trace data. So these generated metrics **bridge the gap** between detailed trace analysis and reliable monitoring.
 
 ## Understanding metrics derived from traces
 

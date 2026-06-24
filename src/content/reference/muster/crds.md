@@ -145,7 +145,7 @@ spec:
 | `args` | map | Argument schema, keyed by argument name. See [argument definitions](#workflow-args) |
 | `steps` | array | Required, at least one. The execution flow. See [steps](#workflow-step) |
 | `onFailure` | array | Best-effort cleanup sub-steps run when the workflow fails on a step that doesn't allow failure. They run sequentially and tolerate their own failures |
-| `output` | object | Templated projection that shapes the returned document. See [output projection](#workflow-output) |
+| `output` | object | Output template that shapes the returned document. See [output template](#workflow-output) |
 
 ### Argument definitions {#workflow-args}
 
@@ -219,11 +219,11 @@ As of version `0.10.0`, every step result is always referenceable by later steps
 
 The per-step `output` flag controls only whether a result appears in the returned document. `store` is a deprecated alias kept for backward compatibility: it affects visibility only, and a workflow that still uses it logs a one-line deprecation warning on both the structured authoring path and the reconciler. Prefer `output`.
 
-### Output projection {#workflow-output}
+### Output template {#workflow-output}
 
-`spec.output` is a templated object, rendered once after all steps complete, against `.input`, `.results`, and `.vars`. It replaces the default `{execution_id, workflow, status, input, steps[], ...}` envelope, so a workflow can return a small, shaped response. When omitted, the default envelope is returned unchanged.
+`spec.output` is a templated object, rendered once after all steps complete, against `.input`, `.results`, and `.vars`. It replaces the default `{execution_id, workflow, status, input, steps[], ...}` response with a small, shaped result of your own. When omitted, the default response is returned unchanged.
 
-The projection preserves JSON types: a leaf's type comes from the value it evaluates to, not from how its rendered text looks.
+The output template preserves JSON types: a leaf's type comes from the value it evaluates to, not from how its rendered text looks.
 
 - A bare reference such as `{{ .results.pods.items }}` keeps its original JSON type, so an array stays an array.
 - A computed leaf keeps its result type, so `{{ len .results.events.items }}` is a number.
