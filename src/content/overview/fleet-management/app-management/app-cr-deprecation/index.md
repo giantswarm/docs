@@ -41,11 +41,29 @@ These features either have no App CR equivalent or previously required custom to
 
 _Specific dates to be confirmed._ Until the timeline is finalized:
 
-- **Today.** Both App CRs and HelmRelease are fully supported. New deployments should prefer HelmRelease.
-- **Phase 1 (TBD).** App CR documentation moved to a legacy section; new tutorials default to HelmRelease.
-- **Phase 2 (TBD).** Migration CLI available; App CR reconciliation continues unchanged.
-- **Phase 3 (TBD).** App CR sunset announced with a long deprecation window. Existing deployments continue to work; new App CR creation may be restricted.
-- **Phase 4 (TBD).** App CR support ends. All workloads expected to run as HelmReleases.
+{{%/* steps */%}}
+
+{{% step title="Today" %}}
+Both App CRs and HelmRelease are fully supported. New deployments should prefer HelmRelease.
+{{% /step %}}
+
+{{% step title="Phase 1 (TBD)" %}}
+App CR documentation moved to a legacy section; new tutorials default to HelmRelease.
+{{% /step %}}
+
+{{% step title="Phase 2 (TBD)" %}}
+Migration CLI available; App CR reconciliation continues unchanged.
+{{% /step %}}
+
+{{% step title="Phase 3 (TBD)" %}}
+App CR sunset announced with a long deprecation window. Existing deployments continue to work; new App CR creation may be restricted.
+{{% /step %}}
+
+{{% step title="Phase 4 (TBD)" %}}
+App CR support ends. All workloads expected to run as HelmReleases.
+{{% /step %}}
+
+{{% /steps %}}
 
 We'll update this page as the timeline is firmed up. If you're planning a major deployment, contact your account engineer or [support](mailto:support@giantswarm.io) and we'll factor your schedule in.
 
