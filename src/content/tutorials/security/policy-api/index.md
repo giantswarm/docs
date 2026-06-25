@@ -87,7 +87,7 @@ When Pod Security Policies were removed, for example, many workloads had to be r
 Much effort was spent maintaining feature parity and avoiding security regressions as clusters upgraded to v1.25.
 Staying up to date is an important part of maintaining a system's security posture. Unfortunately, many organizations couldn't keep up with the PSP deprecation work, so they simply stopped enforcing Pod-level security policies.
 
-The Giant Swarm Policy API began with a clear goal. Its first implementation helped our customers migrate automatically (where possible) from PSP to a feature-equivalent implementation of Pod Security Standards. This avoided any **policy enforcement coverage gaps** during the migration.
+The first implementation of the Giant Swarm Policy API was created to help our customers migrate automatically (where possible) from PSP to a feature-equivalent implementation of Pod Security Standards. This avoided any policy enforcement coverage gaps during the migration.
 We expect that Kubernetes and third-party tooling will continue to evolve. We can help our customers move faster if they're not directly tied to tool-specific interfaces that they don't actually want to manage.
 
 So we created the Policy API for two reasons. The first is to let Giant Swarm move clusters between policy implementations more **seamlessly and transparently**. The second is to reduce the overall toil of dealing with common security configuration.
