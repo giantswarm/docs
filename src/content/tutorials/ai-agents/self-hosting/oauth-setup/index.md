@@ -1,5 +1,6 @@
 ---
 title: Set up OAuth for Muster
+diataxis_content_type: how-to-guide
 linkTitle: OAuth setup
 description: Protect the Muster endpoint with OAuth and Dex, configure the proxy that authenticates to downstream servers, and handle large enterprise tokens.
 weight: 80

@@ -1,6 +1,7 @@
 ---
 linkTitle: Target namespace metadata
 title: Configure an app's target namespace via its App CR
+diataxis_content_type: how-to-guide
 description: How to configure metadata for the target namespace of an app via its app CR. So it can be used by other tools.
 weight: 60
 aliases:

@@ -1,5 +1,6 @@
 ---
 title: GrafanaOrganization CRD schema reference (group observability.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: GrafanaOrganization
 description: |
   GrafanaOrganization is the Schema describing a Grafana organization. Its lifecycle is managed by the observability-operator.

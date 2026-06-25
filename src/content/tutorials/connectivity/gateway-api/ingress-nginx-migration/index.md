@@ -1,6 +1,7 @@
 ---
 linkTitle: Ingress nginx migration
 title: Ingress nginx to Gateway API migration guide
+diataxis_content_type: how-to-guide
 description: Learn how to migrate from ingress-nginx to Gateway API with Envoy Gateway on Giant Swarm.
 weight: 30
 menu:

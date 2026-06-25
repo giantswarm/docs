@@ -1,5 +1,6 @@
 ---
 title: Chart CRD schema reference (group application.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: Chart
 description: |
   Chart represents a Helm chart to be deployed as a Helm release. It is reconciled by chart-operator.

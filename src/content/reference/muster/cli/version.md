@@ -1,6 +1,7 @@
 ---
 linkTitle: version
 title: "'muster version' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster version' command, which prints the Muster CLI and server version.
 weight: 140
 menu:

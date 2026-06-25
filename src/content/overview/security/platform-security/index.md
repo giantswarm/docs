@@ -1,5 +1,6 @@
 ---
 title: Platform Security
+diataxis_content_type: explanation
 description: Architecture and configuration information for the collection of security-related platform features.
 weight: 10
 menu:

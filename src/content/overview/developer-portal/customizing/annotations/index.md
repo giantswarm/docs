@@ -1,5 +1,6 @@
 ---
 title: Friendly display of annotations
+diataxis_content_type: reference
 linkTitle: Annotations
 description: You can customize which annotations get displayed in the developer portal, and how they appear in the portal user interface.
 weight: 40

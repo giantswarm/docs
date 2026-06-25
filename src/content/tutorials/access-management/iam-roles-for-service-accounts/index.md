@@ -1,6 +1,7 @@
 ---
 linkTitle: IAM roles for service accounts
 title: AWS IAM roles for service accounts (IRSA)
+diataxis_content_type: how-to-guide
 description: This article describes how to use a new feature that allows binding of specific AWS IAM roles to a service account of a pod.
 weight: 60
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: auth
 title: "'muster auth' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster auth' command, which authenticates the Muster CLI to a remote OAuth-protected aggregator.
 weight: 50
 menu:

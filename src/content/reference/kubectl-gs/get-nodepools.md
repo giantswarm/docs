@@ -1,6 +1,7 @@
 ---
 linkTitle: get nodepools
 title: "'kubectl gs get nodepools' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list node pools and get details for a single node pool using 'kubectl gs'.
 weight: 50
 menu:

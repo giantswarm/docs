@@ -1,6 +1,7 @@
 ---
 linkTitle: add automatic-update
 title: "'kubectl gs gitops add automatic-update' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to configure automatic updates for an App to the GitOps repository.
 weight: 35
 menu:

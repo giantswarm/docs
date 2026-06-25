@@ -1,6 +1,7 @@
 ---
 linkTitle: Deploying an app
 title: Getting started deploying an app with the App Platform
+diataxis_content_type: how-to-guide
 description: Guide to deploying apps using kubectl gs and the Giant Swarm platform API.
 weight: 20
 aliases:

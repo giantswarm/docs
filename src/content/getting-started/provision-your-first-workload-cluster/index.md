@@ -1,5 +1,6 @@
 ---
 title: Create a first workload cluster
+diataxis_content_type: tutorial
 description: Experience configuring and provisioning your first workload cluster using the platform API.
 weight: 30
 aliases:

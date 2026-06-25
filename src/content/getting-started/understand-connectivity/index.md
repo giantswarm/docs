@@ -1,5 +1,6 @@
 ---
 title: Control the application connectivity
+diataxis_content_type: tutorial
 description: Understand how basic connectivity works in the platform and which options are available for exposing your app.
 weight: 50
 aliases:

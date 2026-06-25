@@ -1,6 +1,7 @@
 ---
 linkTitle: Meta-tools
 title: Muster meta-tools reference
+diataxis_content_type: reference
 description: Reference for the meta-tools Muster exposes to AI agents, the filter_tools discovery arguments and response shape, and the catalog of built-in tools.
 weight: 20
 menu:

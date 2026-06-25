@@ -1,5 +1,6 @@
 ---
 title: Separate the pod network on AWS using Cilium ENI IPAM mode
+diataxis_content_type: how-to-guide
 linkTitle: Cilium ENI IPAM mode
 description: Allocate pod IPs directly on the AWS network using a second VPC CIDR with separate security group and subnets.
 weight: 10

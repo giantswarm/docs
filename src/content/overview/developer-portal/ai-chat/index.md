@@ -1,5 +1,6 @@
 ---
 title: AI chat in the developer portal
+diataxis_content_type: explanation
 linkTitle: AI chat
 description: Ask plain-language questions about your clusters and platform directly in the developer portal, answered by an AI assistant powered by Muster.
 weight: 40

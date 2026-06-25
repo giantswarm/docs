@@ -1,5 +1,6 @@
 ---
 title: Post-migration guide for clusters migrated from vintage to Cluster API
+diataxis_content_type: how-to-guide
 linkTitle: Vintage-to-CAPI post-migration guide
 description: This only applies to clusters migrated from vintage to Cluster API, not to any newly created clusters. We explain cleanup and migration away from cloud resources previously used in the "vintage" product generation.
 weight: 20

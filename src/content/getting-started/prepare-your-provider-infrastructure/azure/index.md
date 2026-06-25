@@ -1,5 +1,6 @@
 ---
 title: Prepare your provider account for Azure
+diataxis_content_type: how-to-guide
 linkTitle: Azure
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20

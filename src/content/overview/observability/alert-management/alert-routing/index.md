@@ -1,5 +1,6 @@
 ---
 title: Alert routing
+diataxis_content_type: how-to-guide
 description: Learn how to configure alert routing and notification policies in the Giant Swarm observability platform.
 weight: 20
 menu:

@@ -1,5 +1,6 @@
 ---
 title: Advanced LogQL tutorial
+diataxis_content_type: how-to-guide
 description: Deep dive into advanced LogQL queries and techniques for log analysis in the Giant Swarm observability platform.
 weight: 20
 menu:
