@@ -6,7 +6,7 @@ weight: 35
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-06-08
+last_review_date: 2026-06-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -74,7 +74,7 @@ kubectl gs gitops add automatic-update \
   --organization demoorg \
   --workload-cluster demowc \
   --app hello-world \
-  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world \
+  --version-repository gsoci.azurecr.io/charts/giantswarm/hello-world \
   --repository gitops-demo \
   --dry-run
 ```
@@ -132,7 +132,7 @@ kind: ImageRepository
 metadata:
   name: demowc-hello-world
 spec:
-  image: giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world
+  image: gsoci.azurecr.io/charts/giantswarm/hello-world
   interval: 10m0s
 
 
@@ -177,7 +177,7 @@ kubectl gs gitops add automatic-update \
   --organization demoorg \
   --workload-cluster demowc \
   --app hello-world \
-  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world \
+  --version-repository gsoci.azurecr.io/charts/giantswarm/hello-world \
   --repository gitops-demo \
   --dry-run
 ```
