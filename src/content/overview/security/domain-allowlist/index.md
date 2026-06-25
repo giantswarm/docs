@@ -10,7 +10,7 @@ user_questions:
 aliases:
   - /vintage/platform-overview/security/cluster-security/domain-allowlist/
   - /platform-overview/security/cluster-security/domain-allowlist
-last_review_date: 2025-10-03
+last_review_date: 2026-06-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
@@ -28,7 +28,6 @@ List of the external domains we require access to for our clusters to function.
 - `azurecr.io`
     - domains:
         - `giantswarm.azurecr.io`
-        - `giantswarmpublic.azurecr.io`
         - `gsoci.azurecr.io`
         - `gsociprivate.azurecr.io`
         - `.blob.core.windows.net`
