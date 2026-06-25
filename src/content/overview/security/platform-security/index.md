@@ -21,7 +21,7 @@ owner:
 
 ## Overview
 
-Giant Swarm integrates a collection of open-source security tools. These tools extend the basic security considerations outlined in our RBAC and PSS tutorial, Network Policy tutorial, and [Security Guide][security]. They help you gain **deeper observability and control** over your developer platform.
+Giant Swarm integrates a collection of open-source security tools. These tools extend the basic security considerations outlined in our RBAC and PSS tutorial, Network Policy tutorial, and [Security Guide][security] to help you gain deeper observability and control over your developer platform.
 
 The stack consists of multiple distinct components which are independently installable and configurable based on the user's security requirements.
 
