@@ -2,7 +2,7 @@
 linkTitle: Deploy chart via HelmRelease
 title: Deploying an application via a Flux HelmRelease
 description: Full tutorial on deploying an application that is published as a Helm chart in an OCI registry to a workload cluster, via Flux OCIRepository and HelmRelease resources.
-weight: 21
+weight: 10
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform
@@ -20,7 +20,7 @@ last_review_date: 2025-12-05
 
 Giant Swarm management clusters use Flux and Helm to deliver resources to clusters. This may be used as an alternative to [App resources]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for more advanced control.
 
-To deploy workloads in workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources can be used in combination with Flux [OCIRespository](https://fluxcd.io/flux/components/source/ocirepositories/) resources.
+To deploy workloads in workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources can be used in combination with Flux [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/) resources.
 
 **Note:** While Giant Swarm supports other Flux sources, OCIRepository is the method recommended by the Flux project and by Giant Swarm. This guide focuses on that method only.
 
