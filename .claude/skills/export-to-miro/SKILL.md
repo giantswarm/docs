@@ -12,9 +12,21 @@ produces), create one box per row on a Miro board.
 
 Each box is **three independent items**:
 
-1. a `SHAPE` — the bordered rectangle (the box; no text)
+1. a `SHAPE` — the bordered rectangle (the box; no text). Its **border color encodes the
+   page's Diátaxis type** when the CSV has a `diataxis_content_type` column (as the
+   `export-csv` skill now produces)
 2. a `TEXT` — the page **title**, larger font (size 16), as a link to the `url`
 3. a `TEXT` — the **navigation path** (`path_l*` joined by `/`), smaller (size 11), gray
+
+Border colors (matching the SIG Docs Diátaxis deck palette):
+
+| Type | Border |
+|---|---|
+| `tutorial` | teal `#0D9488` |
+| `how-to-guide` | blue `#2563EB` |
+| `reference` | purple `#7C3AED` |
+| `explanation` | amber `#D97706` |
+| `none` / untagged / no column | default `--border` (`#4A6FF3`) |
 
 Two text items are needed because a single Miro item supports only **one** font
 size (see gotchas). A helper script generates the layout DSL deterministically —
@@ -40,7 +52,8 @@ tool.
    because a single `layout_create` call has a ~50k-char DSL limit. Run with
    `-h` for layout options (columns, spacing, box size, fonts, colors). The
    defaults are the agreed design: box 420×120, title size 16, path size 11
-   gray (`#6B7280`), 8 columns.
+   gray (`#6B7280`), 8 columns, and box borders colored by Diátaxis type (read
+   from the `diataxis_content_type` column; `--type-col` to change it).
 
 2. **Create the boxes — delegate to subagents.** Each chunk's `dsl` argument is
    large (tens of KB), and `layout_create` returns an even larger response. To
