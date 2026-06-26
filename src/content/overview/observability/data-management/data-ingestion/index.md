@@ -1,5 +1,6 @@
 ---
 title: Data ingestion
+diataxis_content_type: how-to-guide
 description: Learn how to ingest metrics, logs, and traces into the Giant Swarm observability platform.
 weight: 20
 menu:

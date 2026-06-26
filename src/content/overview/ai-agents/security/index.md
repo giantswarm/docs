@@ -1,5 +1,6 @@
 ---
 title: AI agent security and SSO
+diataxis_content_type: explanation
 linkTitle: Security
 description: How Muster secures AI agent access with OAuth 2.1, per-user tool visibility keyed on identity, and single sign-on across clusters via token forwarding and exchange.
 weight: 40

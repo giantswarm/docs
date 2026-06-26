@@ -1,5 +1,6 @@
 ---
 title: Map RBAC and single sign-on
+diataxis_content_type: how-to-guide
 linkTitle: RBAC and SSO
 description: Connect identity-provider groups to Kubernetes RBAC so AI agents act with each user's own permissions, and handle large tokens and group limits.
 weight: 50

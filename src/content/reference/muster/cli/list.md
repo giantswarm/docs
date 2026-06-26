@@ -1,6 +1,7 @@
 ---
 linkTitle: list
 title: "'muster list' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster list' command, which lists Muster services, MCP servers, workflows, executions, and MCP primitives.
 weight: 60
 menu:

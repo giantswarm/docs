@@ -1,5 +1,6 @@
 ---
 title: Observe your clusters and apps
+diataxis_content_type: how-to-guide
 description: Start monitoring your Giant Swarm clusters and applications immediately with pre-configured dashboards, metrics, and logs.
 weight: 10
 menu:

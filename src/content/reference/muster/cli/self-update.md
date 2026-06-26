@@ -1,6 +1,7 @@
 ---
 linkTitle: self-update
 title: "'muster self-update' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster self-update' command, which updates the Muster CLI to the latest GitHub release.
 weight: 150
 menu:

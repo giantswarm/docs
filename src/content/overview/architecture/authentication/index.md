@@ -1,5 +1,6 @@
 ---
 title: Authentication
+diataxis_content_type: explanation
 description: Authentication and authorization mechanisms in the Giant Swarm platform.
 weight: 20
 menu:

@@ -1,5 +1,6 @@
 ---
 title: Give agents multi-cluster access
+diataxis_content_type: how-to-guide
 linkTitle: Multi-cluster access
 description: Expose an entire fleet of management clusters through one central Muster, with the instance-selection argument contract and RFC 8693 token exchange for cross-cluster single sign-on.
 weight: 40

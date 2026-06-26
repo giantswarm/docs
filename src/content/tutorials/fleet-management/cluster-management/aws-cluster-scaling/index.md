@@ -1,5 +1,6 @@
 ---
 title: AWS Cluster scaling
+diataxis_content_type: explanation
 description: How to configure and manage the scaling of your AWS workload clusters on Giant Swarm.
 weight: 20
 aliases:

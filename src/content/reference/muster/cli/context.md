@@ -1,6 +1,7 @@
 ---
 linkTitle: context
 title: "'muster context' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster context' command, which manages named contexts that each point at a Muster endpoint.
 weight: 40
 menu:

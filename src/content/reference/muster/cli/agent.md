@@ -1,6 +1,7 @@
 ---
 linkTitle: agent
 title: "'muster agent' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster agent' command, which connects to the Muster aggregator as a client or bridges it to a stdio-only IDE.
 weight: 30
 menu:

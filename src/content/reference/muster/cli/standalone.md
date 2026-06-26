@@ -1,6 +1,7 @@
 ---
 linkTitle: standalone
 title: "'muster standalone' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster standalone' command, which runs the Muster aggregator and the agent together in a single process.
 weight: 20
 menu:
