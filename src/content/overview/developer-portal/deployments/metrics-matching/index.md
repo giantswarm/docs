@@ -1,5 +1,6 @@
 ---
 title: Matching app deployments with metrics
+diataxis_content_type: explanation
 linkTitle: Metrics matching
 description: To display metrics about app workloads, we match them via labels and fall back to resource names. On this page you learn in detail how this works and what labels you can apply to enable metrics in the portal.
 weight: 50

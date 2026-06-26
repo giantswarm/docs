@@ -1,5 +1,6 @@
 ---
 title: Multi-cluster token exchange
+diataxis_content_type: how-to-guide
 linkTitle: Multi-cluster token exchange
 description: Compare the single-cluster and central deployment shapes, set up RFC 8693 token exchange to remote management clusters, and grant the kubeconfig access each needs.
 weight: 90

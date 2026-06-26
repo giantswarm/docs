@@ -1,5 +1,6 @@
 ---
 title: Author a Muster workflow
+diataxis_content_type: how-to-guide
 linkTitle: Author a workflow
 description: Write a Muster Workflow resource that packages a multi-step operation into one named tool an AI agent can discover and call, grounded in the fields the engine actually implements.
 weight: 10

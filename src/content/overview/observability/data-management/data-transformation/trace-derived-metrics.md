@@ -1,5 +1,6 @@
 ---
 title: Trace-derived metrics
+diataxis_content_type: how-to-guide
 description: Learn how to generate metrics from trace data for alerting and monitoring with Tempo's metrics-generator feature.
 weight: 30
 menu:

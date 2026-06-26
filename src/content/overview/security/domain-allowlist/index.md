@@ -1,5 +1,6 @@
 ---
 title: Domain allowlist
+diataxis_content_type: reference
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
 weight: 40
 menu:

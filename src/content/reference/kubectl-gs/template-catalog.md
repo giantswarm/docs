@@ -1,6 +1,7 @@
 ---
 linkTitle: template catalog
 title: "'kubectl gs template catalog' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for a Catalog using 'kubectl gs'.
 weight: 80
 menu:

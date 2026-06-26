@@ -1,5 +1,6 @@
 ---
 title: Troubleshoot AI agent access
+diataxis_content_type: how-to-guide
 linkTitle: Troubleshooting
 description: Work through the common Muster failure modes for platform teams, from authentication loops and disconnected clusters to missing tools and workflows agents can't find.
 weight: 60

@@ -1,5 +1,6 @@
 ---
 title: Introduction to Cluster API
+diataxis_content_type: explanation
 description: How the Giant Swarm platform leverages the Cluster API standard for managing Kubernetes clusters across infrastructure providers.
 weight: 10
 menu:

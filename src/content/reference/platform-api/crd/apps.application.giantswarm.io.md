@@ -1,5 +1,6 @@
 ---
 title: App CRD schema reference (group application.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: App
 description: |
   App represents a managed app which a user intended to install. It is reconciled by app-operator.

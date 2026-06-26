@@ -1,6 +1,7 @@
 ---
 linkTitle: Add a new app template
 title: Add a new app template
+diataxis_content_type: how-to-guide
 description: Learn how to create application templates to deploy apps using GitOps.
 weight: 70
 menu:

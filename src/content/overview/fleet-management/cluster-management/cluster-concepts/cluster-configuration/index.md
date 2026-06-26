@@ -1,5 +1,6 @@
 ---
 title: Cluster configuration
+diataxis_content_type: explanation
 description: Explanation of how cluster configuration works in Cluster API and how you can customize it.
 weight: 10
 menu:

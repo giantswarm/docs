@@ -1,5 +1,6 @@
 ---
 title: Manage MCP servers in Muster
+diataxis_content_type: how-to-guide
 linkTitle: Manage MCP servers
 description: Add and configure downstream MCP servers behind Muster with MCPServer resources, covering stdio and remote transports, tool prefixes, server families, startup control, and authentication.
 weight: 20

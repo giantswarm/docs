@@ -1,6 +1,7 @@
 ---
 linkTitle: Multiple AZ
 title: Clusters over multiple availability zones
+diataxis_content_type: explanation
 description: Using multiple availability zones both for worker and control plane nodes increases the resilience of the cluster. Here you will see some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
 weight: 20
 menu:

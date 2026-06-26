@@ -1,6 +1,7 @@
 ---
 linkTitle: K8s labels
 title: Kubernetes resource labels reference
+diataxis_content_type: reference
 description: Overview of Kubernetes resource labels used by Giant Swarm, and their meaning.
 menu:
   principal:

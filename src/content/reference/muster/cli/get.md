@@ -1,6 +1,7 @@
 ---
 linkTitle: get
 title: "'muster get' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster get' command, which retrieves details about a single Muster resource.
 weight: 70
 menu:

@@ -1,5 +1,6 @@
 ---
 title: Connect custom MCP servers
+diataxis_content_type: how-to-guide
 linkTitle: Connect custom servers
 description: Bring third-party and internal MCP servers behind Muster, including servers that don't publish RFC 9728 metadata, using the authorizationServer override.
 weight: 30
