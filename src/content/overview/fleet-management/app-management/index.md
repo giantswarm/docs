@@ -37,6 +37,8 @@ In short: the _Giant Swarm App Platform_ refers to the whole feature, and an app
 
 Giant Swarm provides an app catalog with our offered set of cloud-native applications which are operated and pre-configured by us. You are able to set up your own [additional catalog(s)]({{< relref "/tutorials/fleet-management/app-platform/create-catalog" >}}) to provide for any needs you have at the enterprise level.
 
+**Note:** For new deployments we recommend Flux HelmRelease, not the `App` custom resource described below. Every Giant Swarm management cluster runs Flux out of the box. See [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) for the full guide. The App Platform concepts on this page (catalogs, managed apps, configuration layers) still apply with HelmRelease; the deployment mechanism is what's changing.
+
 ### What makes up the Giant Swarm app platform {#what-makes-up-the-app-platform}
 
 Technically the app platform is implemented as a set of operators running on your management cluster and workload clusters. These operators watch various custom resources, some created by us, and others created by you. Together, they make up the desired state of the app platform.
