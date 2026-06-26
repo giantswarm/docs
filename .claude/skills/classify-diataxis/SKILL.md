@@ -55,15 +55,16 @@ Use **`none`** only for pages outside the framework (support, meta).
 3. **Ignore the folder.** This repo's folders are mixed — the `tutorials/` folder holds many
    how-to guides, some explanations, and some reference; `overview/` is mostly explanation.
    Classify by the page's dominant purpose and writing style.
-4. A page is **mixed** if it substantially serves two types (e.g. a how-to that embeds a long
-   conceptual section, or a tutorial that's half reference table). Still pick the single best
-   **primary** type for the field, and flag the page for a possible later split.
+4. A page is **mixed** if it substantially serves more than one type — usually two, but
+   sometimes three or four (e.g. a how-to that embeds a long conceptual section and a big
+   reference table). Still pick the single best **primary** type for the field, and flag the
+   page — noting the other types it carries — for a possible later split.
 
 ## Output
 
 For each page report: `path`, proposed `diataxis_content_type`, confidence
-(high / medium / low), whether it's `mixed` (and the secondary type), and a one-line
-rationale. Then, unless told otherwise, set the `diataxis_content_type` field in the
+(high / medium / low), whether it's `mixed` (and which other type(s) it carries), and a
+one-line rationale. Then, unless told otherwise, set the `diataxis_content_type` field in the
 frontmatter of each page, right after `title`.
 
 This skill only touches frontmatter — there's no need to run `/improve-style`, and don't
