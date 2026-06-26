@@ -44,6 +44,16 @@ def esc(s):
     return html.escape((s or "").strip(), quote=True)
 
 
+# Border color per Diátaxis type (matches the SIG Docs Diátaxis deck palette).
+# Pages with no type, `none`, or an unknown value fall back to --border.
+QUADRANT_COLORS = {
+    "tutorial": "#0D9488",      # teal
+    "how-to-guide": "#2563EB",  # blue
+    "reference": "#7C3AED",     # purple
+    "explanation": "#D97706",   # amber
+}
+
+
 def main():
     ap = argparse.ArgumentParser(description="Generate Miro layout DSL from a CSV.")
     ap.add_argument("csv_path")
@@ -70,6 +80,8 @@ def main():
     ap.add_argument("--max-chars", type=int, default=44000)
     ap.add_argument("--title-col", default="title")
     ap.add_argument("--url-col", default="url")
+    ap.add_argument("--type-col", default="diataxis_content_type",
+                    help="column holding the Diátaxis type; boxes are bordered by type when the column is present")
     args = ap.parse_args()
 
     with open(args.csv_path, newline="") as f:
@@ -103,12 +115,14 @@ def main():
         title = esc(r.get(args.title_col, ""))
         url = (r.get(args.url_col, "") or "").strip()
         path = esc("/".join(p for p in (r.get(c, "") for c in path_cols) if p and p.strip()))
+        # Color the border by Diátaxis type; fall back to --border for none/unknown/missing.
+        border = QUADRANT_COLORS.get((r.get(args.type_col, "") or "").strip(), args.border)
 
         # Single-quoted href is REQUIRED — double quotes would clash with the
         # double-quoted DSL content string and Miro would strip the link.
         lines.append(
             f"b{i}box SHAPE x={cx} y={cy} w={args.box_width} h={args.box_height} "
-            f"type=rectangle fill=#FFFFFF border_color={args.border} "
+            f"type=rectangle fill=#FFFFFF border_color={border} "
             f'size=12 valign=middle align=left ""'
         )
         lines.append(
