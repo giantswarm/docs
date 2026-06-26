@@ -95,6 +95,8 @@ spec:
 
 The Giant Swarm Gateway API bundle includes Gateway API CRDs, Envoy Gateway, and a pre-configured default Gateway.
 
+**Note:** The Gateway API Bundle currently ships as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}), which is being phased out in favor of Flux HelmRelease. The bundle itself doesn't yet have a HelmRelease equivalent because it deploys nested App resources internally.
+
 To install the Giant Swarm Gateway API Bundle on one of your workload clusters:
 
 Create a file named `gateway-api-bundle.yaml`:

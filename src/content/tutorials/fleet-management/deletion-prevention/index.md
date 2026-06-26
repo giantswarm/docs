@@ -125,6 +125,8 @@ After applying the ConfigMap change on the management cluster, you should see th
 
 ## Creating a managed app with deletion prevention
 
+The `giantswarm.io/prevent-deletion=true` label works on both the legacy `App` custom resource and on Flux `HelmRelease` resources. For HelmRelease, set the label under `metadata.labels` in the rendered YAML.
+
 Like for cluster apps, you can use the `--prevent-deletion` parameter also with the command `kubectl gs template app`.
 
 ```sh
