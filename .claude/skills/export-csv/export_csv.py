@@ -35,6 +35,7 @@ def export_paths(paths):
         writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
         writer.writerow([
             'title',
+            'diataxis_content_type',
             'path_l1', 'path_l2', 'path_l3', 'path_l4', 'path_l5', 'path_l6',
             'url',
         ])
@@ -48,6 +49,7 @@ def export_paths(paths):
 
             writer.writerow([
                 frontmatter['title'],
+                frontmatter.get('diataxis_content_type', ''),
                 path_level(relpath, 0),
                 path_level(relpath, 1),
                 path_level(relpath, 2),
