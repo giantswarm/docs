@@ -45,6 +45,28 @@ These metadata files and the `helm` `index.yaml` are used to generate app metada
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories) for serving the catalog over HTTP including GitHub pages or tools like `harbor` or `chartMuseum` which run in a `kubernetes` cluster. At Giant Swarm we use GitHub pages and this is what we will cover in this guide.
 
+**Deprecated:** This page documents the legacy Giant Swarm `Catalog` (and `AppCatalog`) custom resource, which is being phased out in favor of Flux sources. With Flux HelmRelease you don't need a Giant Swarm-specific catalog resource: publish charts to any OCI registry or HTTP Helm repository the cluster can reach, and reference them with `OCIRepository` or `HelmRepository`. See the [HelmRelease equivalent](#helmrelease) section below.
+
+## HelmRelease equivalent {#helmrelease}
+
+For new deployments, host your charts in one of the source types Flux supports:
+
+- **OCI registry** (recommended by both Flux and Giant Swarm). Push chart tarballs to any OCI-compliant registry, then point an [`OCIRepository`](https://fluxcd.io/flux/components/source/ocirepositories/) at the chart URL.
+- **HTTP Helm repository.** If you already have a traditional Helm repository (for example, a GitHub Pages-hosted `index.yaml`), point a [`HelmRepository`](https://fluxcd.io/flux/components/source/helmrepositories/) at its URL and consume charts by name and version.
+- **Git repository or Bucket source.** Flux also supports [`GitRepository`](https://fluxcd.io/flux/components/source/gitrepositories/) and [`Bucket`](https://fluxcd.io/flux/components/source/buckets/) sources for chart content stored that way.
+
+Once published, your HelmRelease references the source via `spec.chartRef` (for OCIRepository) or `spec.chart` (for HelmRepository), and chooses the version with a pinned tag or a SemVer range. See [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}) for the end-to-end workflow and [Enable automatic updates for HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/automatic-updates-helmrelease" >}}) for SemVer-range patterns.
+
+Mapping to App CR fields:
+
+| App CR / Catalog resource | HelmRelease equivalent |
+|---|---|
+| `Catalog` or `AppCatalog` (registers a chart source) | `OCIRepository` or `HelmRepository` (built-in Flux sources) |
+| `AppCatalogEntry` (lists available chart versions) | Tag listing on the OCI registry, or `index.yaml` for HTTP repositories |
+| `App.spec.catalog` (chosen catalog) | `HelmRelease.spec.chartRef` (for OCI) or `spec.chart.spec.sourceRef` (for HelmRepository) |
+
+The remainder of this page covers the legacy `Catalog` model in detail.
+
 ## Create an app catalog hosted using GitHub pages
 
 First, you should choose a name for your catalog Git repository. At Giant Swarm, we follow the convention to have the name end with the `-catalog` suffix, however any name will work.
