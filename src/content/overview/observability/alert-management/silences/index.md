@@ -48,7 +48,7 @@ The v1alpha2 API is namespace-scoped and uses a simplified timing model where si
 
 ### Required tenant labeling
 
-**Important:** All silences must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}). The system ignores any silence that references a non-existing tenant.
+**Important:** All silences must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}}). The system ignores any silence that references a non-existing tenant.
 
 Get familiar with tenant management in our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 

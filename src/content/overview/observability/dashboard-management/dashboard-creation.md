@@ -57,7 +57,7 @@ data:
 
 ### Organization targeting
 
-The `observability.giantswarm.io/organization` annotation determines which [Grafana organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}}) receives the dashboard. The value must match an existing organization's display name.
+The `observability.giantswarm.io/organization` annotation determines which [Grafana organization]({{< relref "/overview/observability/configuration/creating-grafana-organization" >}}) receives the dashboard. The value must match an existing organization's display name.
 
 ### Dashboard requirements
 

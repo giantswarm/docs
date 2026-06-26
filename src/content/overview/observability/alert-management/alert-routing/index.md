@@ -38,7 +38,7 @@ This process is part of the broader [alerting pipeline]({{< relref "/overview/ob
 Before configuring alert routing, ensure you have:
 
 - Access to your management cluster
-- A tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}})
+- A tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}})
 - [Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) configured for your applications
 
 ## Configure Alertmanager
