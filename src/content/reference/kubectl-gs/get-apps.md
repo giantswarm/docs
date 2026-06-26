@@ -16,6 +16,8 @@ aliases:
   - /vintage/use-the-api/kubectl-gs/get-apps/
 ---
 
+**Deprecated:** This command lists the legacy `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, use `flux get helmreleases` (or `kubectl get helmreleases`). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
+
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}})
 custom resource in this case, or list several of them.
 
