@@ -1,6 +1,7 @@
 ---
 linkTitle: add app
 title: "'kubectl gs gitops add app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new App to the GitOps repository.
 weight: 30
 menu:

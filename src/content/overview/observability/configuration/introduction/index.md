@@ -1,6 +1,7 @@
 ---
 linkTitle: Introduction
 title: Introduction to observability configuration
+diataxis_content_type: explanation
 description: Learn how to configure and customize the Giant Swarm observability platform for your organization's needs.
 weight: 1
 menu:

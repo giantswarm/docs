@@ -1,6 +1,7 @@
 ---
 linkTitle: template app
 title: "'kubectl gs template app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
 weight: 70
 menu:

@@ -1,5 +1,6 @@
 ---
 title: Save agent tokens with workflows
+diataxis_content_type: explanation
 linkTitle: Save tokens with workflows
 description: Why a Muster workflow makes an AI agent dramatically cheaper, with the measured before-and-after numbers and the design rules that maximize the saving.
 weight: 15
@@ -9,7 +10,7 @@ menu:
     identifier: tutorials-ai-agents-saving-tokens-with-workflows
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-06-23
 user_questions:
   - Why do workflows make my AI agent cheaper?
   - How much do Muster workflows reduce token cost?
@@ -56,9 +57,9 @@ A workflow saves tokens by default, but a few choices decide whether you capture
 
 ### Shape a tight response
 
-The agent pays for everything the workflow returns, so the returned document is the single biggest token lever you control. By default a workflow returns a full envelope: `execution_id`, `workflow`, `status`, `input`, and a `steps[]` array carrying every step's payload. That array grows with every step, every `forEach` iteration, and every `parallel` sub-step. One unbounded step produces a multi-million-token outlier even when the typical run is small.
+The agent pays for everything the workflow returns, so the returned document is the single biggest token lever you control. By default a workflow returns a full response: `execution_id`, `workflow`, `status`, `input`, and a `steps[]` array carrying every step's payload. That array grows with every step, every `forEach` iteration, and every `parallel` sub-step. One unbounded step produces a multi-million-token outlier even when the typical run is small.
 
-The strongest fix is a workflow-level `spec.output` projection. It's a templated map, rendered once after every step completes, that **replaces** the default envelope with the exact shape you define. Instead of the whole `steps[]` array, the agent receives one small digest:
+The strongest fix is a workflow-level `spec.output` template. It's a templated map, rendered once after every step completes, that **replaces** the default response with the exact shape you define. Instead of the whole `steps[]` array, the agent receives one small digest:
 
 ```yaml
 spec:
@@ -68,9 +69,11 @@ spec:
     cluster: "{{ .input.management_cluster }}"
 ```
 
-The projection can read every step result through `{{ .results.<id>.<field> }}`, so you pull just the fields that matter and drop everything else. The projection preserves JSON types, so a bare reference stays an array and a `{{ len ... }}` leaf stays a number. When you declare it, the per-step flags below no longer shape the returned document, and Muster logs a one-line warning naming any flag it made inert. See [shape the response with `spec.output`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#shape-the-response-with-specoutput) for the full schema.
+The output template can read every step result through `{{ .results.<id>.<field> }}`, so you pull just the fields that matter and drop everything else. The output template preserves JSON types, so a bare reference stays an array and a `{{ len ... }}` leaf stays a number. When you declare it, the per-step flags below no longer shape the returned document, and Muster logs a one-line warning naming any flag it made inert. See [shape the response with `spec.output`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#shape-the-response-with-specoutput) for the full schema.
 
-Without a projection, the per-step `output` flag is the next lever. Set `output: true` only on the steps whose data the agent actually needs to read. A step without it still runs, and later steps can still read its result, but Muster keeps only its status in the returned document and drops the payload. `store: true` is the deprecated, older name for `output: true`: it still works but logs a warning, so prefer `output`.
+Keeping the response this tight costs nothing when you need to debug: pass `_debug: true` on a single execution to see the full response and every step result alongside the output template, without widening what production callers receive. See [inspect an output template with `_debug`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#inspect-an-output-template-with-_debug).
+
+Without an output template, the per-step `output` flag is the next lever. Set `output: true` only on the steps whose data the agent actually needs to read. A step without it still runs, and later steps can still read its result, but Muster keeps only its status in the returned document and drops the payload. `store: true` is the deprecated, older name for `output: true`: it still works but logs a warning, so prefer `output`.
 
 Then cap whatever does land in the response:
 

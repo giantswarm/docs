@@ -1,5 +1,6 @@
 ---
 title: Dashboard exploration
+diataxis_content_type: how-to-guide
 description: Learn how to discover, navigate, and use the pre-built dashboards in the Giant Swarm Observability Platform, plus tips for searching and organizing your own dashboards.
 weight: 10
 menu:

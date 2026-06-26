@@ -1,6 +1,7 @@
 ---
 linkTitle: call
 title: "'muster call' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster call' command, which invokes any MCP tool behind the Muster aggregator by name.
 weight: 90
 menu:

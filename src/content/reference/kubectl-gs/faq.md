@@ -1,6 +1,7 @@
 ---
 linkTitle: FAQ
 title: Questions and answers on kubectl-gs
+diataxis_content_type: reference
 description: Frequently asked questions and answers and help for troubleshooting around `kubectl-gs`.
 weight: 140
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: Creating a Grafana organization
 title: Creating a Grafana organization
+diataxis_content_type: how-to-guide
 description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:

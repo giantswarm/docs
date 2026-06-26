@@ -1,5 +1,6 @@
 ---
 title: Multi-tenancy
+diataxis_content_type: explanation
 description: Learn how to set up and manage multi-tenancy in the Giant Swarm observability platform.
 weight: 10
 menu:

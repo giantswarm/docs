@@ -1,6 +1,7 @@
 ---
 linkTitle: Multiple ingress-nginx controllers
 title: Running multiple ingress-nginx controllers
+diataxis_content_type: how-to-guide
 description: Deploy multiple ingress-nginx controllers in a Kubernetes cluster to separate different ingress traffic classes.
 weight: 20
 user_questions:

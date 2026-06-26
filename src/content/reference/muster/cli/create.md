@@ -1,6 +1,7 @@
 ---
 linkTitle: create
 title: "'muster create' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster create' command, which creates Muster Workflow and MCPServer definitions.
 weight: 80
 menu:

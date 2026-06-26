@@ -1,5 +1,6 @@
 ---
 title: cluster-cloud-director chart reference
+diataxis_content_type: reference
 linkTitle: cluster-cloud-director
 description:  A helm chart for creating Cluster API clusters with the VMware Cloud Director (VCD) infrastructure provider (CAPVCD).; Check here the different properties of the chart.
 weight: 100

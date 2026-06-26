@@ -1,5 +1,6 @@
 ---
 title: Alert rules
+diataxis_content_type: how-to-guide
 description: Learn how to create and manage alerting and recording rules in the Giant Swarm observability platform.
 weight: 10
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: events
 title: "'muster events' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster events' command, which lists and filters events for Muster resources.
 weight: 130
 menu:

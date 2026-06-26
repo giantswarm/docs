@@ -1,5 +1,6 @@
 ---
 title: Multi-account clusters
+diataxis_content_type: explanation
 description: Learn the advantages of using multi-account clusters in the Giant Swarm platform.
 weight: 10
 menu:

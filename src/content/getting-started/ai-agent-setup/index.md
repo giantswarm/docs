@@ -1,6 +1,7 @@
 ---
 linkTitle: Set up your AI agent
 title: Set up your AI agent for Kubernetes operations
+diataxis_content_type: how-to-guide
 description: Learn how to use Muster and mcp-kubernetes to interact with your Giant Swarm management clusters through AI assistants like Claude Code, Cursor, or GitHub Copilot.
 weight: 80
 mermaid: true

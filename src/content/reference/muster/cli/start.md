@@ -1,6 +1,7 @@
 ---
 linkTitle: start
 title: "'muster start' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster start' command, which starts a Muster service or runs a workflow.
 weight: 100
 menu:

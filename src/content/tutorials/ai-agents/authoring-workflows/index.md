@@ -1,5 +1,6 @@
 ---
 title: Author a Muster workflow
+diataxis_content_type: how-to-guide
 linkTitle: Author a workflow
 description: Write a Muster Workflow resource that packages a multi-step operation into one named tool an AI agent can discover and call, grounded in the fields the engine actually implements.
 weight: 10
@@ -9,7 +10,7 @@ menu:
     identifier: tutorials-ai-agents-authoring-workflows
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-06-23
 user_questions:
   - How do I author a Muster workflow?
   - What fields does a Muster Workflow support?
@@ -25,7 +26,7 @@ This guide documents what the engine implements. Write against these fields and 
 
 A workflow is an ordered list of steps that Muster runs server-side, returning one JSON document. Top-level steps run **sequentially**, but a step isn't always a single tool call. Each top-level step is exactly one of a plain `tool` call, a `forEach` loop, or a `parallel` group. A workflow-level `onFailure` block can run best-effort cleanup when a step fails. Design every workflow around one fact: it collapses many agent round-trips into a single call, and its response cost is the sum over everything it returns.
 
-Every step's result is **always** available to later steps and the response projection through `{{ .results.<id>.<field> }}`. That holds regardless of any flag. You separately control what the *agent* sees back. The per-step `output` flag picks which step results land in the returned document. The workflow-level `spec.output` projection replaces that document with a shape you define.
+Every step's result is **always** available to later steps and the output template through `{{ .results.<id>.<field> }}`. That holds regardless of any flag. You separately control what the *agent* sees back. The per-step `output` flag picks which step results land in the returned document. The workflow-level `spec.output` template replaces that document with a shape you define.
 
 > Control flow (`forEach`, `parallel`, `onFailure`, and template conditions) requires Muster 0.8.0 or later. Plain sequential `tool` steps work on every version.
 
@@ -102,7 +103,7 @@ Each entry in `spec.args` is typed (`string`, `integer`, `boolean`, `number`, `o
 
 ### `output: true` selects what the agent sees
 
-Every step result is recorded. Later steps and the response projection can read it through `{{ .results.<id>.<field> }}`, with or without a flag. The per-step `output` flag controls one thing: whether the step's data lands in the document the agent receives. Without it, Muster emits only `{id, tool, status}` for the step and drops the data before the response. Set `output: true` on every step whose data the agent must read. The last step's result is merged into the top level even when you set no flag.
+Every step result is recorded. Later steps and the output template can read it through `{{ .results.<id>.<field> }}`, with or without a flag. The per-step `output` flag controls one thing: whether the step's data lands in the document the agent receives. Without it, Muster emits only `{id, tool, status}` for the step and drops the data before the response. Set `output: true` on every step whose data the agent must read. The last step's result is merged into the top level even when you set no flag.
 
 The step-level `output` boolean differs from the `output: slim` argument inside `args`. That argument is a tool's own response knob. In the earlier example, `not_running` sets both. `output: slim` trims the Kubernetes payload, and step-level `output: true` returns the trimmed result.
 
@@ -110,7 +111,7 @@ The step-level `output` boolean differs from the `output: slim` argument inside 
 
 ### Shape the response with `spec.output`
 
-For the tightest response, declare a workflow-level `spec.output` projection. It's a templated map, rendered once after every step completes. It **replaces** the default `{execution_id, workflow, status, input, steps[], ...}` envelope with the shape you define. It reads `.input`, `.results`, and `.vars`. Every step result is available to it, no matter how you flag the step.
+For the tightest response, declare a workflow-level `spec.output` template. It's a templated map, rendered once after every step completes. It **replaces** the default `{execution_id, workflow, status, input, steps[], ...}` response with the shape you define. It reads `.input`, `.results`, and `.vars`. Every step result is available to it, no matter how you flag the step.
 
 ```yaml
 spec:
@@ -128,9 +129,23 @@ spec:
     cluster: "{{ .input.management_cluster }}"
 ```
 
-The projection **preserves JSON types**. A leaf's type comes from the value it evaluates to, not from how the rendered text looks. A single bare reference like `{{ .results.not_running.items }}` keeps its real type, so an array stays an array. A `{{ len ... }}` leaf is a number. A leaf that mixes literal text with an action, such as `"cluster {{ .input.management_cluster }}"`, renders to a string. Values whose form matters survive without coercion, including leading zeros, versions, and IDs like `08` and `1.20`.
+The output template **preserves JSON types**. A leaf's type comes from the value it evaluates to, not from how the rendered text looks. A single bare reference like `{{ .results.not_running.items }}` keeps its real type, so an array stays an array. A `{{ len ... }}` leaf is a number. A leaf that mixes literal text with an action, such as `"cluster {{ .input.management_cluster }}"`, renders to a string. Values whose form matters survive without coercion, including leading zeros, versions, and IDs like `08` and `1.20`.
 
-When `spec.output` is declared, the per-step `output` and `store` flags no longer affect the returned document. The projection defines it in full. Muster logs a one-line warning naming any flags it made inert. Drop those flags, or drop the projection. The projection is the strongest token lever a workflow has, since it returns a small, shaped payload instead of the full step envelope.
+When `spec.output` is declared, the per-step `output` and `store` flags no longer affect the returned document. The output template defines it in full. Muster logs a one-line warning naming any flags it made inert. Drop those flags, or drop the output template. The output template is the strongest token lever a workflow has, since it returns a small, shaped payload instead of the full response.
+
+An output template render error no longer discards the step results that already succeeded. Because the output template renders with `missingkey=error`, a single bad reference (a typo, or a field that's absent on some runs) fails the render after every step has already run. The workflow still fails loud—the error is returned and the result is flagged as an error—but the response now carries **every** recorded step result plus an `output_error` message describing the render failure. The underlying data stays recoverable, so you can see what each step returned and fix the output template without re-running the workflow.
+
+### Inspect an output template with `_debug`
+
+An output template deliberately hides the full response, which is exactly what you don't want while you're debugging the output template itself. Rather than temporarily deleting the output template to see what each step returned, pass the reserved `_debug: true` execution argument:
+
+```bash
+muster call workflow_pod-health --arg management_cluster=my-cluster-mcp-kubernetes --arg _debug=true
+```
+
+In debug mode you get the full response (`execution_id`, `status`, and `steps[]` with **every** recorded step result, not just the `output: true` ones), and the rendered output template rides along under `output`. Default execution still returns only the output template, so this is purely an inspection escape hatch.
+
+`_debug` is a reserved argument the executor strips before validation and step execution. It never collides with a workflow's own `args` and is never passed through to a step's tool, so you can add it to any workflow execution without declaring it. It applies to workflows with no output template too: there it forces the default response to surface every step result regardless of each step's `output` flag.
 
 ### `allowFailure: true` for legitimately optional steps
 

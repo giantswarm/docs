@@ -1,5 +1,6 @@
 ---
 title: Introduction to Muster
+diataxis_content_type: explanation
 linkTitle: Introduction
 description: What Muster is, the MCP-server-sprawl problem it solves, and how intelligent tool aggregation makes AI assistants on the platform cheaper and more capable.
 weight: 10
