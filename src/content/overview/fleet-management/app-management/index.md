@@ -2,6 +2,7 @@
 linkTitle: App management
 title: App management
 description: The app platform helps you browse, deploy, and manage applications across your clusters. New deployments use Flux HelmRelease; the legacy App custom resource is still supported.
+diataxis_content_type: explanation
 weight: 40
 menu:
   principal:

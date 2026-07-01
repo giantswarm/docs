@@ -1,6 +1,7 @@
 ---
 linkTitle: Installation name
 title: Picking an installation name
+diataxis_content_type: explanation
 description: Every Giant Swarm installation has a unique name. Learn the rules to select a proper name for a new installation.
 weight: 100
 menu:

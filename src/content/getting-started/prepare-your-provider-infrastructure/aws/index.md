@@ -1,5 +1,6 @@
 ---
 title: Prepare your AWS account
+diataxis_content_type: how-to-guide
 linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10

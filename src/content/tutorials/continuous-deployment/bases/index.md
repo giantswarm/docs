@@ -1,6 +1,7 @@
 ---
 linkTitle: Base templates
 title: Creating a base template for your workload cluster
+diataxis_content_type: how-to-guide
 description: How to create a base templates for your workload clusters with different configurations.
 weight: 40
 menu:

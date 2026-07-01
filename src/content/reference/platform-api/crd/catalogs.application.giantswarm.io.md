@@ -1,5 +1,6 @@
 ---
 title: Catalog CRD schema reference (group application.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: Catalog
 description: |
   Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
