@@ -1,5 +1,6 @@
 ---
 title: Sharing secrets with our team
+diataxis_content_type: how-to-guide
 description: When getting started with Giant Swarm, some secrets and credentials need to be shared. Learn how to do it securely.
 weight: 50
 menu:

@@ -1,5 +1,6 @@
 ---
 title: KonfigurationSchema CRD schema reference (group konfigure.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: KonfigurationSchema
 description: |
   KonfigurationSchema is the Schema for the konfigurationschemas API.

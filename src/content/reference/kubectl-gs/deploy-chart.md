@@ -1,6 +1,7 @@
 ---
 linkTitle: deploy chart
 title: "'kubectl gs deploy chart' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to deploy a Helm chart using 'kubectl gs'.
 weight: 19
 menu:
@@ -8,7 +9,7 @@ menu:
     parent: reference-kubectlgs
 last_review_date: 2026-03-25
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I deploy a Helm chart using kubectl gs?
 ---

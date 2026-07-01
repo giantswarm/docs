@@ -1,5 +1,6 @@
 ---
 title: Friendly display of labels
+diataxis_content_type: reference
 linkTitle: Labels
 description: You can customize which labels get displayed in the developer portal, and how they appear in the portal user interface.
 weight: 30
@@ -9,7 +10,7 @@ menu:
     identifier: overview-developer-portal-customizing-labels
 last_review_date: 2025-06-24
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I configure and customize the display of labels in the developer portal?
 ---

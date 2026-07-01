@@ -1,12 +1,13 @@
 ---
 linkTitle: add app
 title: "'kubectl gs gitops add app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new App to the GitOps repository.
 weight: 30
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-05-21
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

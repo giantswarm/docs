@@ -1,5 +1,6 @@
 ---
 title: Dashboard creation
+diataxis_content_type: how-to-guide
 description: Learn how to create custom Grafana dashboards using GitOps workflows or the interactive UI in the Giant Swarm platform.
 weight: 10
 menu:
@@ -56,7 +57,7 @@ data:
 
 ### Organization targeting
 
-The `observability.giantswarm.io/organization` annotation determines which [Grafana organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization" >}}) receives the dashboard. The value must match an existing organization's display name.
+The `observability.giantswarm.io/organization` annotation determines which [Grafana organization]({{< relref "/overview/observability/configuration/creating-grafana-organization" >}}) receives the dashboard. The value must match an existing organization's display name.
 
 ### Dashboard requirements
 

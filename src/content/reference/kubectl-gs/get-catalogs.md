@@ -1,14 +1,15 @@
 ---
 linkTitle: get catalogs
 title: "'kubectl gs get catalogs' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list catalogs and get details for a single catalog using 'kubectl gs'.
 weight: 20
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I list catalogs using kubectl?
   - How can I inspect catalogs using kubectl?

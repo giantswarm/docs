@@ -1,17 +1,18 @@
 ---
 linkTitle: get organizations
 title: "'kubectl gs get organizations' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list organizations and get details for a single organization using 'kubectl gs'.
 weight: 50
 menu:
   principal:
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I list organizations in the management API using kubectl?
   - How can I inspect organizations using kubectl?
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 aliases:
   - /vintage/use-the-api/kubectl-gs/get-organizations/
 ---

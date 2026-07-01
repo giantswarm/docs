@@ -1,14 +1,15 @@
 ---
 linkTitle: template app
 title: "'kubectl gs template app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for an App using 'kubectl gs'.
 weight: 70
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2026-03-25
+last_review_date: 2026-06-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create an app manifest for the platform API?
   - How can I add labels and annotations to the target namespace of an app?

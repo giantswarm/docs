@@ -1,6 +1,7 @@
 ---
 linkTitle: Usage
 title: Using Gateway API with Envoy Gateway
+diataxis_content_type: how-to-guide
 description: Learn how to use the Kubernetes Gateway API with Envoy Gateway for traffic routing and management.
 weight: 20
 menu:

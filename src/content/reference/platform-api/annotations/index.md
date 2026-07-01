@@ -1,6 +1,7 @@
 ---
 linkTitle: K8s annotations
 title: Kubernetes resource annotation reference
+diataxis_content_type: reference
 description: Overview of Kubernetes resource annotations used by Giant Swarm, and their meaning.
 layout: single
 menu:
@@ -10,7 +11,7 @@ menu:
 weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-04-14
+last_review_date: 2026-06-09
 user_questions:
   - What annotations are used in Kubernetes resources by Giant Swarm?
 ---
@@ -80,3 +81,9 @@ On a Flux resource, this annotation indicates that a Flux reconciliation has bee
 ### reconcile.fluxcd.io/forceAt
 
 On a HelmRelease resource, this annotation indicates that a forceful Helm install or upgrade has been requested. More info in the [Flux docs](https://fluxcd.io/flux/components/helm/helmreleases/#forcing-a-release).
+
+### silence.application.giantswarm.io/force-all
+
+On a [Silence]({{< relref "/overview/observability/alert-management/silences" >}}) resource, the value `true` forces the silence to suppress every alert it matches, including critical alerts that the platform would otherwise keep flowing. Without this annotation, silences automatically exclude alerts targeting all notification pipelines (the most critical, system-wide alerts). The `Heartbeat` alert is always preserved. Use with caution, as it removes the safety net for critical notifications.
+
+More information: [Forcing complete silence]({{< relref "/overview/observability/alert-management/silences#forcing-complete-silence" >}})

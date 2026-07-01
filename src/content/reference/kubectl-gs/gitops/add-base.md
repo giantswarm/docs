@@ -1,12 +1,13 @@
 ---
 linkTitle: add base
 title: "'kubectl gs gitops add base' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new base to create clusters in a GitOps repository.
 weight: 20
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-05-21
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -30,12 +31,10 @@ The structure created by this command is presented below.
 ```nohighlight
 bases
 └── clusters
-    └── capa
+    └── PROVIDER
         └── template
             ├── cluster.yaml
             ├── cluster_config.yaml
-            ├── default_apps.yaml
-            ├── default_apps_config.yaml
             └── kustomization.yaml
 ```
 
@@ -45,26 +44,27 @@ Basic command syntax: `kubectl gs gitops add base FLAGS`.
 
 ### Flags
 
-- `--provider` -- Installation infrastructure provider, supported values: capa, gcp, openstack
+- `--provider` -- Installation infrastructure provider, supported values: `capa`, `capz`, `vsphere` (required)
+- `--region` -- AWS or Azure region where the cluster will be created (required for `capz`)
+- `--azure-subscription-id` -- Azure subscription ID (required for `capz`)
 
 {{% kubectl_gs_gitops_common_flags %}}
 
 ### Examples
 
 ```nohighlight
-kubectl gs gitops add base --provider gcp --dry-run
+kubectl gs gitops add base --provider capa --dry-run
 ```
 
 Output:
 
 ```nohighlight
-
 ## CREATE ##
 ./bases
 ./bases/clusters
-./bases/clusters/gcp
-./bases/clusters/gcp/template
-./bases/clusters/gcp/template/kustomization.yaml
+./bases/clusters/capa
+./bases/clusters/capa/template
+./bases/clusters/capa/template/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 buildMetadata: [originAnnotations]
 configMapGenerator:
@@ -72,18 +72,13 @@ configMapGenerator:
     - values=cluster_config.yaml
     name:  ${cluster_name}-config
     namespace: org-${organization}
-  - files:
-    - values=default_apps_config.yaml
-    name:  ${cluster_name}-default-apps-config
-    namespace: org-${organization}
 generatorOptions:
   disableNameSuffixHash: true
 kind: Kustomization
 resources:
   - cluster.yaml
-  - default_apps.yaml
 
-./bases/clusters/gcp/template/cluster.yaml
+./bases/clusters/capa/template/cluster.yaml
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
@@ -107,70 +102,29 @@ spec:
     secret:
       name: ""
       namespace: ""
-  name: cluster-gcp
+  name: cluster-aws
   namespace: org-${organization}
   userConfig:
     configMap:
       name: ${cluster_name}-config
       namespace: org-${organization}
-  version: ${cluster_release}
+  version: ""
 
-./bases/clusters/gcp/template/cluster_config.yaml
-clusterName: ${cluster_name}
-controlPlane:
-  containerdVolume: {}
-  etcdVolume: {}
-  kubeletVolume: {}
-  replicas: 3
-  rootVolume: {}
-  serviceAccount: {}
-gcp: {}
-machineDeployments:
-- containerdVolume: {}
-  kubeletVolume: {}
-  name: machine-pool0
-  rootVolume: {}
-  serviceAccount: {}
-organization: ${organization}
-
-./bases/clusters/gcp/template/default_apps.yaml
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  labels:
-    app-operator.giantswarm.io/version: 0.0.0
-    giantswarm.io/cluster: ${cluster_name}
-    giantswarm.io/managed-by: cluster
-  name: ${cluster_name}-default-apps
-  namespace: org-${organization}
-spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: ${cluster_name}-cluster-values
-      namespace: org-${organization}
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: default-apps-gcp
-  namespace: org-${organization}
-  userConfig:
-    configMap:
-      name: ${cluster_name}-default-apps-config
-      namespace: org-${organization}
-  version: ${default_apps_release}
-
-./bases/clusters/gcp/template/default_apps_config.yaml
-clusterName: ${cluster_name}
-organization: ${organization}
-
+./bases/clusters/capa/template/cluster_config.yaml
+global:
+  connectivity:
+    network: {}
+    topology: {}
+  controlPlane: {}
+  metadata:
+    name: ${cluster_name}
+    organization: ${organization}
+    preventDeletion: false
+  nodePools:
+    nodepool0: {}
+  providerSpecific: {}
+  release:
+    version: ${release}
 ```
 
 Remove the `--dry-run` flag and re-run it to apply the changes.

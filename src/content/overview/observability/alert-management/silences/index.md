@@ -1,12 +1,13 @@
 ---
 title: Silences
+diataxis_content_type: how-to-guide
 description: Learn how to manage alert silences in the Giant Swarm observability platform.
 weight: 30
 menu:
   principal:
     parent: overview-observability-alert-management
     identifier: overview-observability-alert-management-silences
-last_review_date: 2025-07-17
+last_review_date: 2026-06-09
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -47,7 +48,7 @@ The v1alpha2 API is namespace-scoped and uses a simplified timing model where si
 
 ### Required tenant labeling
 
-**Important:** All silences must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}). The system ignores any silence that references a non-existing tenant.
+**Important:** All silences must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}}). The system ignores any silence that references a non-existing tenant.
 
 Get familiar with tenant management in our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 
@@ -129,6 +130,35 @@ Silences in the v1alpha2 API use a simple timing model:
 - **No scheduling**: You can't schedule silences for future activation - they start when you create them
 
 This design keeps the API simple while supporting the most common use cases. For precise timing, create the silence CRD exactly when you want it to start.
+
+### Forcing complete silence
+
+By default, the platform protects your most important notifications from being suppressed by mistake. Every silence automatically excludes alerts that target all notification pipelines (the most critical, system-wide alerts) and the `Heartbeat` alert. This means a broad silence won't take down the alerts you most need to keep flowing.
+
+If you need a silence to suppress **everything** it matches, including critical alerts, add the `silence.application.giantswarm.io/force-all` annotation:
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  labels:
+    observability.giantswarm.io/tenant: my_tenant
+  annotations:
+    valid-until: "2025-07-20T06:00:00Z"
+    # Suppress every matching alert, including critical ones
+    silence.application.giantswarm.io/force-all: "true"
+  name: full-maintenance
+  namespace: my-namespace
+spec:
+  matchers:
+    - name: cluster_id
+      matchType: "="
+      value: prod-cluster-01
+```
+
+With this annotation, the all-pipelines protection is skipped, so critical alerts matching the silence are suppressed too. The `Heartbeat` alert is always preserved, even in this mode.
+
+**Warning:** Forcing complete silence removes the safety net that would normally page you when something goes wrong. Before using `force-all`, make sure nothing in the silenced scope can cause real harm while unobserved. For example, a component stuck in a crash loop that re-reads large amounts of data from object storage (such as S3) on every restart can generate significant cloud costs that no alert will warn you about. Keep `force-all` silences as narrowly scoped and short-lived as possible.
 
 ### Deployment patterns
 

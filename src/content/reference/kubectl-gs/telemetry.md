@@ -1,6 +1,7 @@
 ---
 linkTitle: Telemetry
 title: Usage data collection in 'kubectl gs'
+diataxis_content_type: reference
 description: kubectl-gs collects anonymous usage data, which helps us to prioritize our further development on the tool.
 weight: 1000
 menu:
@@ -8,7 +9,7 @@ menu:
     identifier: reference-kubectlgs-telemetry
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - What usage data does kubectl-gs collect?
   - How does Giant Swarm use the usage data collected from kubectl-gs?

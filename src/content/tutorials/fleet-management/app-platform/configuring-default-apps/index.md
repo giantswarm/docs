@@ -1,6 +1,7 @@
 ---
 linkTitle: Customizing default apps
 title: Customizing default apps
+diataxis_content_type: how-to-guide
 description: How to customize default apps configuration using the cluster chart values.
 weight: 50
 aliases:

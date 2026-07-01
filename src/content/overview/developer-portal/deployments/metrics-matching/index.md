@@ -1,5 +1,6 @@
 ---
 title: Matching app deployments with metrics
+diataxis_content_type: explanation
 linkTitle: Metrics matching
 description: To display metrics about app workloads, we match them via labels and fall back to resource names. On this page you learn in detail how this works and what labels you can apply to enable metrics in the portal.
 weight: 50
@@ -9,7 +10,7 @@ menu:
     identifier: overview-developer-portal-deployments-metricsmatching
 last_review_date: 2026-03-13
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How do I need to label workloads so that I see metrics in the developer portal?
 ---

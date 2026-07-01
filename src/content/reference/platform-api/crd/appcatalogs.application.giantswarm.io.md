@@ -1,5 +1,6 @@
 ---
 title: AppCatalog CRD schema reference (group application.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: AppCatalog
 description: |
   Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.

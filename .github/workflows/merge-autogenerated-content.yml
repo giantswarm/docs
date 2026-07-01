@@ -16,7 +16,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: "automatic-update-of-generated-content"
           fetch-depth: 0
@@ -27,7 +27,7 @@ jobs:
           from: "origin/main"
 
       - name: Find Pull Request
-        uses: juliangruber/find-pull-request-action@33d46d4ff90884bb23aaead16044125daaf733d8 # v1.11.0
+        uses: juliangruber/find-pull-request-action@92b38d91ef26fd0f47374257f50e78432359a45f # v1.11.1
         id: find-pull-request
         with:
           branch: automatic-update-of-generated-content

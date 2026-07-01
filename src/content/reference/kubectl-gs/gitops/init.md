@@ -1,12 +1,13 @@
 ---
 linkTitle: init
 title: "'kubectl gs gitops init' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to initialize an empty GitOps repository, so that it can be used with the `kubectl-gs` plugin.
 weight: 10
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-05-21
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
