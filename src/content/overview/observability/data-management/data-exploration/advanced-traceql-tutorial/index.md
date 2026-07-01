@@ -1,5 +1,6 @@
 ---
 title: Advanced TraceQL tutorial
+diataxis_content_type: how-to-guide
 description: Learn how to use TraceQL to query and analyze distributed traces in Giant Swarm's observability platform.
 weight: 30
 menu:

@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Execute Vale
         run: |
-          wget -q https://github.com/errata-ai/vale/releases/download/v3.4.1/vale_3.4.1_Linux_64-bit.tar.gz
-          mkdir bin && tar -xvzf vale_3.4.1_Linux_64-bit.tar.gz -C bin
+          wget -q https://github.com/errata-ai/vale/releases/download/v3.11.2/vale_3.11.2_Linux_64-bit.tar.gz
+          mkdir bin && tar -xvzf vale_3.11.2_Linux_64-bit.tar.gz -C bin
           ls -la bin
           bin/vale --config=./.vale.ini \
             --glob '!{src/content/changes/**}' \
