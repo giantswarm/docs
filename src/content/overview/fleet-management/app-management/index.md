@@ -78,7 +78,7 @@ A few features customers tell us matter most:
 
 - **Standard upstream API.** The same resources Giant Swarm uses internally and the same controllers thousands of teams already run elsewhere. No proprietary CRD to learn.
 - **Automatic version updates.** Pin a SemVer range on the OCIRepository and Flux rolls out new patches or minors as they ship.
-- **Layered configuration.** `valuesFrom` references ConfigMaps and Secrets with explicit merge order, so there's no surprise about which value wins.
+- **Layered configuration.** `valuesFrom` references `ConfigMap` and `Secret` resources with explicit merge order, so there's no surprise about which value wins.
 - **Dependency ordering.** Use `dependsOn` to install resources in a specific sequence (for example, install `cert-manager` before anything that needs a certificate).
 - **Drift detection.** If something or someone edits the deployed resources manually, Flux brings them back in line.
 - **Post-renderers.** Apply a Kustomize patch over a chart's rendered output without forking the chart.
@@ -128,7 +128,7 @@ Manage HelmRelease and OCIRepository resources with whatever tool fits your work
 
 ## Legacy App custom resource
 
-Deployments managed via the Giant Swarm `App` CR continue to work without changes. The conceptual model is similar to the Flux-based one (an App CR points at a chart in a `Catalog` and Helm installs it), but the underlying API is Giant Swarm-specific. For example:
+Deployments managed via the Giant Swarm `App` CR continue to work without changes. The conceptual model is similar to the Flux-based one: an App CR points at a chart in a `Catalog` and Helm installs it. The difference is that the underlying API is Giant Swarm-specific. For example:
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -158,4 +158,4 @@ The diagram below shows the components and resources that make up the Giant Swar
 ![A diagram showing an overview of various components and concepts that make up the Giant Swarm App Platform](app-platform-overview.png)
 <!-- Original version: https://docs.google.com/drawings/d/1V3KcUImxRdrrb2v_nIQnkapHiRkRM6t8PoYGCqWebYY/edit -->
 
-We're building a migration CLI that converts an App CR (together with its associated ConfigMaps and Secrets) into an equivalent HelmRelease and OCIRepository bundle. For the timeline and reasoning, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}). For the legacy guide, see [Getting started deploying an app with the App Platform]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) and [the App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
+We're building a migration CLI that converts an App CR (together with its associated `ConfigMap` and `Secret` resources) into an equivalent HelmRelease and OCIRepository bundle. For the timeline and reasoning, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}). For the legacy guide, see [Getting started deploying an app with the App Platform]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) and [the App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}).
