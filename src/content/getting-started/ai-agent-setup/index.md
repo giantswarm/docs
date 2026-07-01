@@ -97,7 +97,7 @@ Create or edit `~/.cursor/mcp.json` (for global settings) or `.cursor/mcp.json` 
 
 Make sure MCP is enabled in Cursor's settings. Cursor opens your browser to authenticate on first connect.
 
-### VS Code with GitHub Copilot
+### VS Code
 
 Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP settings) and add:
 

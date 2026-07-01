@@ -93,7 +93,7 @@ Two deployment shapes are supported:
 
 Muster can package a multi-step operation—authenticate, port-forward, query, correlate—as a single named **workflow** that an agent invokes with one call. It's not just convenient. It makes the AI assistant dramatically cheaper, because one workflow call replaces the whole discover-query-correlate loop the agent would otherwise run itself.
 
-One internal lab trial measured this directly on four real management-cluster alerts, with the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool. The numbers below are illustrative of the *shape* of the saving rather than a guarantee—the ratios hold across a range of investigations, but the absolute figures depend on the model and its pricing:
+One internal lab trial measured this on four real management-cluster alerts. Each run used the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool. The numbers below are illustrative of the *shape* of the saving rather than a guarantee. The ratios hold across a range of investigations, but the absolute figures depend on the model and its pricing:
 
 | Metric | Raw aggregated tools | Workflow tool | Reduction |
 |---|--:|--:|--:|

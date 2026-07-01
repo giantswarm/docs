@@ -27,7 +27,7 @@ The Giant Swarm App custom resource (`App`, in the `application.giantswarm.io` A
 - **More expressive feature set.** HelmRelease offers dependency ordering (`dependsOn`), drift detection, post-renderers, fine-grained install/upgrade/rollback policies, and `valuesFrom` with explicit merge order. These features map onto things we've layered on top of App CRs over the years.
 - **Simpler stack.** Collapsing the Giant Swarm app-operator pipeline into one well-understood upstream controller reduces moving parts on the management cluster.
 
-## Notable capabilities HelmRelease adds
+## HelmRelease capabilities to know
 
 These features either have no App CR equivalent or previously required custom tooling to approximate. See the upstream [HelmRelease reference](https://fluxcd.io/flux/components/helm/helmreleases/) for the full specification.
 
@@ -48,15 +48,15 @@ Both App CRs and HelmRelease are fully supported. New deployments should prefer 
 {{% /step %}}
 
 {{% step title="Phase 1 (TBD)" %}}
-App CR documentation moved to a legacy section; new tutorials default to HelmRelease.
+App CR documentation moved to a legacy section. New tutorials default to HelmRelease.
 {{% /step %}}
 
 {{% step title="Phase 2 (TBD)" %}}
-Migration CLI available; App CR reconciliation continues unchanged.
+Migration CLI available. App CR reconciliation continues unchanged.
 {{% /step %}}
 
 {{% step title="Phase 3 (TBD)" %}}
-App CR sunset announced with a long deprecation window. Existing deployments continue to work; new App CR creation may be restricted.
+App CR sunset announced with a long deprecation window. Existing deployments continue to work. New App CR creation may be restricted.
 {{% /step %}}
 
 {{% step title="Phase 4 (TBD)" %}}
@@ -87,7 +87,7 @@ Their reference documentation remains available but will be marked as deprecated
 
 ## Migration CLI
 
-We're building a CLI tool that converts an existing App CR (along with its associated ConfigMaps and Secrets) into an equivalent Flux HelmRelease and OCIRepository bundle. The tool preserves configuration semantics where the two APIs overlap and flags fields that need manual review.
+We're building a CLI tool that converts an existing App CR (along with its associated `ConfigMap` and `Secret` resources) into an equivalent Flux HelmRelease and OCIRepository bundle. The tool preserves configuration semantics where the two APIs overlap and flags fields that need manual review.
 
 This page will be updated with installation and usage instructions when the tool is released.
 
