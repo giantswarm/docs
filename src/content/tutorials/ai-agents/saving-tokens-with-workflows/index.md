@@ -36,7 +36,7 @@ Picture the same alert triage both ways:
 
 ## The measured saving
 
-The figures below come from one internal lab trial. Treat them as illustrative of the *shape* of the saving, not as a guarantee: the ratios hold across a range of investigations, but the absolute numbers depend on the model, its pricing, and how much work each alert needs.
+The figures below come from one internal lab trial. Treat them as illustrative of the *shape* of the saving, not as a guarantee. The ratios hold across a range of investigations. The absolute numbers depend on the model, its pricing, and how much work each alert needs.
 
 The trial was a paired A/B run: the same agent, model, and prompt against four real management-cluster alerts. The only difference was the tool surface—one variant could use the raw aggregated tools (`x_kubernetes_*` and `x_prometheus_*`) but no workflow, the other could only call the matching `workflow_*` tool. Aggregated across the four alerts:
 
@@ -71,7 +71,7 @@ spec:
 
 The output template can read every step result through `{{ .results.<id>.<field> }}`, so you pull just the fields that matter and drop everything else. The output template preserves JSON types, so a bare reference stays an array and a `{{ len ... }}` leaf stays a number. When you declare it, the per-step flags below no longer shape the returned document, and Muster logs a one-line warning naming any flag it made inert. See [shape the response with `spec.output`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#shape-the-response-with-specoutput) for the full schema.
 
-Keeping the response this tight costs nothing when you need to debug: pass `_debug: true` on a single execution to see the full response and every step result alongside the output template, without widening what production callers receive. See [inspect an output template with `_debug`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#inspect-an-output-template-with-_debug).
+Keeping the response this tight costs nothing when you need to debug. Pass `_debug: true` on a single execution to see the full response and every step result alongside the output template. Production callers still see the tight response. See [inspect an output template with `_debug`]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}#inspect-an-output-template-with-_debug).
 
 Without an output template, the per-step `output` flag is the next lever. Set `output: true` only on the steps whose data the agent actually needs to read. A step without it still runs, and later steps can still read its result, but Muster keeps only its status in the returned document and drops the payload. `store: true` is the deprecated, older name for `output: true`: it still works but logs a warning, so prefer `output`.
 
