@@ -1,5 +1,6 @@
 ---
 title: Service graphs
+diataxis_content_type: how-to-guide
 description: Visualize and analyze service topology and communication patterns using Tempo's service graph feature.
 weight: 40
 menu:

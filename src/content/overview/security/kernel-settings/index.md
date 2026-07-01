@@ -1,6 +1,7 @@
 ---
 linkTitle: Kernel settings
 title: Kernel settings
+diataxis_content_type: reference
 description: Here's a complete list of the kernel settings we apply to all cluster nodes, be it control plane or worker.
 weight: 200
 layout: single

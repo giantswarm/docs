@@ -1,5 +1,6 @@
 ---
 title: PolicyException CRD schema reference (group policy.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: PolicyException
 description: |
   PolicyException is the Schema for the policyexceptions API
