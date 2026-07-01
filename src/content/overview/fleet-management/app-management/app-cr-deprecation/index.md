@@ -41,7 +41,7 @@ These features either have no App CR equivalent or previously required custom to
 
 _Specific dates to be confirmed._ Until the timeline is finalized:
 
-{{%/* steps */%}}
+{{% steps %}}
 
 {{% step title="Today" %}}
 Both App CRs and HelmRelease are fully supported. New deployments should prefer HelmRelease.
