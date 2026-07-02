@@ -53,7 +53,7 @@ export CHART_VERSION=CHART_VERSION
 export APP_NAMESPACE=APP_NAMESPACE
 ```
 
-Render the OCIRepository manifest with `--export` so it lands as YAML in your repo:
+Render the OCIRepository manifest with `--export` so it lands as YAML in your repository:
 
 ```sh
 flux create source oci ${APP_NAME} \
@@ -84,7 +84,7 @@ The `--kubeconfig-secret-ref` flag tells Flux to install the chart into the work
 
 ## Add configuration
 
-Most charts need configuration values. Pass them through the HelmRelease using a ConfigMap (for non-secret values) and a Secret (for credentials).
+Most charts need configuration values. Pass them through the HelmRelease using a `ConfigMap` (for non-secret values) and a `Secret` (for credentials).
 
 ### Non-secret values
 
@@ -135,9 +135,9 @@ gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.${WC_NAME}.asc
 sops --encrypt --in-place secret.enc.yaml
 ```
 
-For more on SOPS-encrypted secrets in GitOps, see [the gitops-template docs](https://github.com/giantswarm/gitops-template/blob/main/docs/add_mc.md#flux-gpg-master-key-pair).
+For more on secrets encrypted with `sops` in GitOps, see [the gitops-template docs](https://github.com/giantswarm/gitops-template/blob/main/docs/add_mc.md#flux-gpg-master-key-pair).
 
-Add the Secret to `helmrelease.yaml` next to the ConfigMap entry:
+Add the Secret to `helmrelease.yaml` next to the `ConfigMap` entry:
 
 ```yaml
 spec:

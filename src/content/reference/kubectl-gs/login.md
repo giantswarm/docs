@@ -1,6 +1,7 @@
 ---
 linkTitle: login
 title: "'kubectl gs login' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to ensure an authenticated kubectl context for a Giant Swarm management or workload cluster, using 'kubectl gs'.
 weight: 60
 menu:

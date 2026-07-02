@@ -1,6 +1,7 @@
 ---
 linkTitle: update app
 title: "'kubectl gs update app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to update an App CR using 'kubectl gs'.
 weight: 120
 menu:
@@ -14,6 +15,8 @@ user_questions:
 aliases:
   - /vintage/use-the-api/kubectl-gs/update-app/
 ---
+
+**Deprecated:** This command updates the legacy `App` custom resource, which is being phased out in favor of Flux HelmRelease. For HelmRelease, update the chart version by editing the `OCIRepository`'s `spec.ref.tag` field; values are updated by editing the referenced ConfigMap or Secret. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This command helps with updating [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) custom resources.
 

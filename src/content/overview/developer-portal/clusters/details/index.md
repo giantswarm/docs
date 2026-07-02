@@ -1,5 +1,6 @@
 ---
 title: Cluster details
+diataxis_content_type: reference
 linkTitle: Cluster details
 description: About the cluster details page in the Giant Swarm developer portal.
 weight: 20

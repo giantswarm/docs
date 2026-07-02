@@ -1,5 +1,6 @@
 ---
 title: Clusters list
+diataxis_content_type: reference
 linkTitle: Clusters list
 description: How to access a list of clusters, select the ones you are interested in, and navigate to cluster details.
 weight: 10

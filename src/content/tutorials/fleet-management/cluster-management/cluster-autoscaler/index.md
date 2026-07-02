@@ -1,6 +1,7 @@
 ---
 linkTitle: Cluster autoscaler
 title: Advanced cluster autoscaler configuration
+diataxis_content_type: how-to-guide
 description: Here we describe how you can customize the configuration of the managed cluster autoscaler service in your workload clusters.
 weight: 90
 aliases:

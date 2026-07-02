@@ -1,5 +1,6 @@
 ---
 title: Organizations
+diataxis_content_type: explanation
 description: Organizations in the Giant Swarm platform allow isolation and logical separation of clusters and apps.
 weight: 10
 menu:
