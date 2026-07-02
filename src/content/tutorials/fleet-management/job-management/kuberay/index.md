@@ -1,6 +1,7 @@
 ---
 linkTitle: KubeRay
 title: Deploying Ray clusters with KubeRay on Giant Swarm
+diataxis_content_type: how-to-guide
 description: Learn how to deploy and manage distributed Ray clusters using KubeRay operator on Giant Swarm clusters.
 weight: 10
 menu:

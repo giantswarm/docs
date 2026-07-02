@@ -1,5 +1,6 @@
 ---
 title: PolicyExceptionDraft CRD schema reference (group policy.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: PolicyExceptionDraft
 description: |
   PolicyExceptionDraft is the Schema for the policyexceptiondrafts API

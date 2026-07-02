@@ -1,6 +1,7 @@
 ---
 linkTitle: Telemetry
 title: Usage data collection in 'kubectl gs'
+diataxis_content_type: reference
 description: kubectl-gs collects anonymous usage data, which helps us to prioritize our further development on the tool.
 weight: 1000
 menu:

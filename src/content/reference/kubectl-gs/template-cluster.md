@@ -1,6 +1,7 @@
 ---
 linkTitle: template cluster
 title: "'kubectl gs template cluster' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for a Cluster using 'kubectl gs'.
 weight: 90
 menu:
