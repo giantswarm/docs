@@ -61,6 +61,8 @@ Kueue is available as a managed app in the Giant Swarm catalog. You can install 
 
 ### Install Kueue app
 
+**Note:** `kubectl gs template app` produces an `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, use `flux create source oci` and `flux create helmrelease` instead. See [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
+
 Install the Kueue app using `kubectl gs`:
 
 ```bash
