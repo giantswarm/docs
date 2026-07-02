@@ -1,5 +1,6 @@
 ---
 title: Workload cluster releases
+diataxis_content_type: explanation
 description: Learn about workload cluster releases offered by Giant Swarm and how to find more details.
 weight: 30
 menu:

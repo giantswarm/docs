@@ -1,6 +1,7 @@
 ---
 linkTitle: App bundles
 title: App bundle reference
+diataxis_content_type: explanation
 description: Overview of the app bundle concept, how it works, and how to configure it.
 menu:
   principal:

@@ -1,6 +1,7 @@
 ---
 linkTitle: get apps
 title: "'kubectl gs get apps' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list apps and get details for a single app using 'kubectl gs'.
 weight: 30
 menu:

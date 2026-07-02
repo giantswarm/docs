@@ -1,6 +1,7 @@
 ---
 linkTitle: Node pools
 title: Node pools
+diataxis_content_type: how-to-guide
 description: A general description of node pools as a concept, its benefits, and some details you should be aware of.
 weight: 45
 menu:

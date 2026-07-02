@@ -1,7 +1,7 @@
 ---
 linkTitle: Group multiple HelmReleases
 title: Group multiple HelmReleases together
-description: Patterns for deploying related HelmReleases as a unit. Covers Helm umbrella charts, Kustomize over multiple releases, and dependsOn for install ordering.
+description: Patterns for deploying related HelmReleases as a unit. Covers Helm umbrella charts, Kustomize over multiple releases, and install ordering via `dependsOn`.
 weight: 40
 menu:
   principal:
@@ -43,7 +43,7 @@ dependencies:
     repository: oci://gsoci.azurecr.io/charts/giantswarm
 ```
 
-Publish the umbrella chart to your OCI registry. Then deploy it with one OCIRepository and one HelmRelease, the same way you would any other chart. Shared values and per-subchart values both live in the umbrella chart's `values.yaml`, with subchart values nested under each dependency name:
+Publish the umbrella chart to your OCI registry. Then deploy it with one OCIRepository and one HelmRelease, the same way you would any other chart. Shared values and per-`subchart` values both live in the umbrella chart's `values.yaml`, with `subchart` values nested under each dependency name:
 
 ```yaml
 # values.yaml of the umbrella chart
@@ -55,7 +55,7 @@ simple-db:
     size: 5Gi
 ```
 
-See the upstream [Helm subchart documentation](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/) for the full mechanics, including global values shared across subcharts.
+See the upstream [Helm chart dependencies documentation](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/) for the full mechanics, including global values shared across sub-charts.
 
 ## Kustomize over multiple HelmReleases
 
@@ -94,7 +94,7 @@ What this base provides:
 - **`commonLabels`** stamps a single label across every HelmRelease and OCIRepository in the group, so you can filter the developer portal or `kubectl` queries by that label.
 - **`namespace`** enforces the same target namespace for the HelmRelease and OCIRepository resources themselves. The Helm install target namespace is a separate field (`spec.targetNamespace` on the HelmRelease).
 - **Inline patches** pin the chart versions on each OCIRepository, so the group uses a known-good combination.
-- **`resources`** references the per-component bases. Each component base contains its own HelmRelease, OCIRepository, and optional ConfigMap or Secret.
+- **`resources`** references the per-component bases. Each component base contains its own HelmRelease, OCIRepository, and optional `ConfigMap` or `Secret`.
 
 Consumers use this base by referencing it from a workload-cluster-level Kustomization, the same way they would a single-component base.
 
@@ -118,4 +118,4 @@ spec:
   # ...
 ```
 
-Flux waits for `dev01-cert-manager` to report `Ready=True` before reconciling `dev01-hello-world`. `dependsOn` supports cross-namespace references and chained dependencies. See the [HelmRelease dependsOn reference](https://fluxcd.io/flux/components/helm/helmreleases/#dependencies) for the full semantics, including timeout behavior.
+Flux waits for `dev01-cert-manager` to report `Ready=True` before reconciling `dev01-hello-world`. `dependsOn` supports cross-namespace references and chained dependencies. See the [HelmRelease dependencies reference](https://fluxcd.io/flux/components/helm/helmreleases/#dependencies) for the full semantics, including timeout behavior.

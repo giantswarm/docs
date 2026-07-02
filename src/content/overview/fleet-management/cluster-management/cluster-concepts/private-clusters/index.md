@@ -1,5 +1,6 @@
 ---
 title: Private clusters
+diataxis_content_type: explanation
 description: Definition of what do we mean by private clusters in the Giant Swarm platform.
 weight: 10
 menu:

@@ -1,5 +1,6 @@
 ---
 title: Install an application using the app platform
+diataxis_content_type: how-to-guide
 linkTitle: Install an application
 description: Add capabilities to your platform by deploying applications from our catalog.
 weight: 40

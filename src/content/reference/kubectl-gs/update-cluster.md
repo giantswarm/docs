@@ -1,6 +1,7 @@
 ---
 linkTitle: update cluster
 title: "'kubectl gs update cluster' command reference (cluster upgrades)"
+diataxis_content_type: reference
 description: Reference documentation on how to upgrade a workload cluster using kubectl-gs.
 weight: 130
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: Cluster access control
 title: Cluster access control with RBAC and Pod Security Standards
+diataxis_content_type: how-to-guide
 description: Introduction to using role-based access control (RBAC) to secure access to cluster resources.
 weight: 10
 aliases:

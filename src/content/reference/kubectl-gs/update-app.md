@@ -1,6 +1,7 @@
 ---
 linkTitle: update app
 title: "'kubectl gs update app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to update an App CR using 'kubectl gs'.
 weight: 120
 menu:

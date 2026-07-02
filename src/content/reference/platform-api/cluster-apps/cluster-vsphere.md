@@ -1,5 +1,6 @@
 ---
 title: cluster-vsphere chart reference
+diataxis_content_type: reference
 linkTitle: cluster-vsphere
 description:  A helm chart for creating Cluster API clusters with the vSphere provider (CAPV).; Check here the different properties of the chart.
 weight: 100

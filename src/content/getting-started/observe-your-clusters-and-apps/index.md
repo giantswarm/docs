@@ -1,5 +1,6 @@
 ---
 title: Observe your clusters and apps
+diataxis_content_type: tutorial
 description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics and logs to distributed tracing, custom dashboards and alerts.
 weight: 60
 last_review_date: 2025-07-17
