@@ -28,8 +28,8 @@ You can add an `App` resource directly or based it on an [app template]({{< relr
 Examples of creating apps are available in following locations:
 
 - An example of a directly configured app (the simplest use case - no configuration): an [app without configuration](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/hello-world)
-- An example of a directly configured app (with configuration): an [app that uses a configuration `ConfigMap`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/ingress-nginx)
-- An example of an app created from an app template is available in [WC_NAME/apps/ingress-nginx-from-template](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/ingress-nginx-from-template).
+- An example of a directly configured app (with configuration): an [app that uses a configuration `ConfigMap`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/hello-world)
+- An example of an app created from an app template is available in [WC_NAME/apps/hello-world-from-template](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/hello-world-from-template).
 
 ## Common steps
 

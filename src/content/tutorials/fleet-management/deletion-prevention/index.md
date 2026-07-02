@@ -135,8 +135,8 @@ kubectl gs template app \
   --cluster-name=mycluster \
   --organization=myorg \
   --catalog=giantswarm \
-  --app-name=mycluster-ingress-nginx \
-  --name=ingress-nginx \
+  --app-name=mycluster-envoy-gateway \
+  --name=envoy-gateway \
   --version=3.9.1 \
   --target-namespace=kube-system \
   --prevent-deletion
