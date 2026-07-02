@@ -1,5 +1,6 @@
 ---
 title: {{ .Title }} chart reference
+diataxis_content_type: reference
 linkTitle: {{ .Title }}
 description: {{- if .Description }}
 {{- .Description | indent 2 }}; Check here the different properties of the chart.
