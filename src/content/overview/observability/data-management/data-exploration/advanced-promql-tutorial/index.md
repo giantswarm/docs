@@ -1,5 +1,6 @@
 ---
 title: Advanced PromQL tutorial
+diataxis_content_type: how-to-guide
 description: Deep dive into advanced PromQL queries and techniques for metrics analysis in the Giant Swarm observability platform.
 weight: 30
 menu:

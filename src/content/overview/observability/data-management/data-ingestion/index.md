@@ -1,5 +1,6 @@
 ---
 title: Data ingestion
+diataxis_content_type: how-to-guide
 description: Learn how to ingest metrics, logs, and traces into the Giant Swarm observability platform.
 weight: 20
 menu:
@@ -101,7 +102,7 @@ spec:
 ### Key requirements
 
 - **Tenant labeling**: All ServiceMonitors and PodMonitors must include the `observability.giantswarm.io/tenant` label
-- **Tenant existence**: The specified tenant must exist in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}})
+- **Tenant existence**: The specified tenant must exist in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}})
 - **Resource considerations**: Monitor resource usage in the _ServiceMonitors Overview_ dashboard
 
 For detailed configuration options and advanced use cases, refer to the [Prometheus Operator API documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md).

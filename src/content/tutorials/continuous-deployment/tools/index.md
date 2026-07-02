@@ -1,6 +1,7 @@
 ---
 linkTitle: Tooling
 title: Tools for your GitOps workflow
+diataxis_content_type: reference
 description: Helpful tools for your GitOps workflow and how to use them.
 weight: 80
 menu:

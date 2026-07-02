@@ -1,5 +1,6 @@
 ---
-title: Install an application
+title: Install an application using the app platform
+diataxis_content_type: how-to-guide
 linkTitle: Install an application
 description: Deploy applications to your workload cluster using Flux HelmRelease and expose them with Envoy Gateway.
 weight: 40

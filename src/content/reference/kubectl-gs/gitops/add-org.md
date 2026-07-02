@@ -1,6 +1,7 @@
 ---
 linkTitle: add organization
 title: "'kubectl gs gitops add organization' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new organization to a GitOps repository.
 weight: 20
 menu:
