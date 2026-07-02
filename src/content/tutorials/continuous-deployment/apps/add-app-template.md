@@ -25,7 +25,7 @@ To avoid duplication caused by adding the same application from scratch across a
 
 ## Example
 
-An example of an app template is available in the [gitops-template repository "bases/apps/ingress-nginx"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/ingress-nginx).
+An example of an app template is available in the [gitops-template repository, path `bases/apps/hello-world`](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/hello-world).
 
 ## Export environment variables
 
@@ -86,7 +86,7 @@ buildMetadata: [originAnnotations]
 configMapGenerator:
   - files:
     - values=default_config.yaml
-    name: ${cluster_name}-ingress-nginx-values
+    name: ${cluster_name}-hello-world-values
 generatorOptions:
   disableNameSuffixHash: true
 # default config block end

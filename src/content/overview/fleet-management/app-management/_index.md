@@ -24,7 +24,7 @@ user_questions:
 last_review_date: 2026-06-17
 ---
 
-The _Giant Swarm App Platform_ is the set of features that help you browse, install, and manage applications across your clusters. It covers both curated Giant Swarm-managed apps (such as `prometheus`, `ingress-nginx`, or `cert-manager`) and your own internal services.
+The _Giant Swarm App Platform_ is the set of features that help you browse, install, and manage applications across your clusters. It covers both curated Giant Swarm-managed apps (such as `prometheus`, `envoy-gateway`, or `cert-manager`) and your own internal services.
 
 Applications are packaged as [Helm](https://helm.sh/) charts. You deploy them by creating Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources on the management cluster, which Flux reconciles into the target workload cluster. Every Giant Swarm management cluster runs Flux out of the box, so there's nothing extra to install.
 
@@ -37,16 +37,16 @@ A typical deployment uses two Flux resources:
 - An **[OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/)** points Flux at a Helm chart in an OCI registry (for example, Giant Swarm's public registry at `gsoci.azurecr.io`). It pins a version or a SemVer range and controls how often Flux checks for updates.
 - A **[HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/)** references the OCIRepository, declares the target namespace and configuration values, and points at the workload cluster's kubeconfig Secret so Flux can install the chart in the right place.
 
-Here's what a minimal pair looks like for deploying `ingress-nginx` to a workload cluster called `dev01` from the `acmedev` organization:
+Here's what a minimal pair looks like for deploying `envoy-gateway` to a workload cluster called `dev01` from the `acmedev` organization:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: dev01-ingress-nginx
+  name: dev01-envoy-gateway
   namespace: org-acmedev
 spec:
-  url: oci://gsoci.azurecr.io/charts/giantswarm/ingress-nginx
+  url: oci://gsoci.azurecr.io/charts/giantswarm/envoy-gateway
   ref:
     tag: "3.9.2"
   interval: 60m
@@ -54,19 +54,19 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: dev01-ingress-nginx
+  name: dev01-envoy-gateway
   namespace: org-acmedev
   labels:
     giantswarm.io/cluster: dev01
 spec:
   chartRef:
     kind: OCIRepository
-    name: dev01-ingress-nginx
+    name: dev01-envoy-gateway
   kubeConfig:
     secretRef:
       name: dev01-kubeconfig
   targetNamespace: kube-system
-  releaseName: dev01-ingress-nginx
+  releaseName: dev01-envoy-gateway
   interval: 60m
 ```
 

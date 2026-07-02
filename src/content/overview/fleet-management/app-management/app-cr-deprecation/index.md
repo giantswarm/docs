@@ -46,19 +46,19 @@ _Specific dates to be confirmed._ Until the timeline is finalized:
 Both App CRs and HelmRelease are fully supported. New deployments should prefer HelmRelease.
 {{% /step %}}
 
-{{% step title="Phase 1 (TBD)" %}}
+{{% step title="Phase 1 (completed)" %}}
 App CR documentation moved to a legacy section. New tutorials default to HelmRelease.
 {{% /step %}}
 
-{{% step title="Phase 2 (TBD)" %}}
+{{% step title="Phase 2 (soon)" %}}
 Migration CLI available. App CR reconciliation continues unchanged.
 {{% /step %}}
 
-{{% step title="Phase 3 (TBD)" %}}
+{{% step title="Phase 3 (completed)" %}}
 App CR sunset announced with a long deprecation window. Existing deployments continue to work. New App CR creation may be restricted.
 {{% /step %}}
 
-{{% step title="Phase 4 (TBD)" %}}
+{{% step title="Phase 4 (~year)" %}}
 App CR support ends. All workloads expected to run as HelmReleases.
 {{% /step %}}
 

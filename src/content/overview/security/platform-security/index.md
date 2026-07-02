@@ -198,4 +198,4 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [trivy-operator-app]: https://github.com/giantswarm/trivy-operator-app
 [trivy-operator-upstream]: https://github.com/aquasecurity/trivy-operator
 [vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension
-[ingress-nginx-app]: https://github.com/giantswarm/ingress-nginx-app
+[envoy-gateway-app]: https://github.com/giantswarm/envoy-gateway-app
