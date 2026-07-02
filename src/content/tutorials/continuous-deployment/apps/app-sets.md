@@ -12,7 +12,7 @@ user_questions:
   - How can I create and use `App Sets` in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-07-02
 ---
 
 **Deprecated:** This guide covers App Sets for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}), which covers the equivalent Helm umbrella chart and Kustomize-over-HelmRelease patterns. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.

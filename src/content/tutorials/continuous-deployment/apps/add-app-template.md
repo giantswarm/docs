@@ -12,7 +12,7 @@ user_questions:
   - How can I create an template for app deployment in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-07-02
 ---
 
 **Deprecated:** This guide covers reusable templates for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, the equivalent patterns are Helm umbrella charts and Kustomize over HelmRelease, covered in [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.

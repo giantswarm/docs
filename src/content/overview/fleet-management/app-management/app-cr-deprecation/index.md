@@ -1,6 +1,7 @@
 ---
 linkTitle: App CR deprecation
 title: App CR deprecation and migration to Flux HelmRelease
+diataxis_content_type: explanation
 description: Timeline, reasoning, and migration path for moving from Giant Swarm App custom resources to Flux HelmRelease.
 weight: 100
 menu:

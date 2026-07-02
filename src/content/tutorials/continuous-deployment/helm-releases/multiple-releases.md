@@ -1,6 +1,7 @@
 ---
 linkTitle: Group multiple HelmReleases
 title: Group multiple HelmReleases together
+diataxis_content_type: how-to-guide
 description: Patterns for deploying related HelmReleases as a unit. Covers Helm umbrella charts, Kustomize over multiple releases, and install ordering via `dependsOn`.
 weight: 40
 menu:

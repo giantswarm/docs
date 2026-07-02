@@ -16,7 +16,7 @@ aliases:
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
   - /advanced/external-secrets-operator/
-last_review_date: 2025-07-02
+last_review_date: 2026-07-02
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---

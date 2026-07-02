@@ -8,7 +8,7 @@ menu:
   principal:
     identifier: tutorials-access-management-authorization
     parent: tutorials-access-management
-last_review_date: 2024-10-28
+last_review_date: 2026-07-02
 user_questions:
   - What automation is working in a management cluster to ensure RBAC permissions?
   - How can I set up access to resources in the management cluster?

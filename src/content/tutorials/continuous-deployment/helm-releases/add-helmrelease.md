@@ -1,6 +1,7 @@
 ---
 linkTitle: Add a HelmRelease to a workload cluster
 title: Add a HelmRelease to a workload cluster
+diataxis_content_type: how-to-guide
 description: Deploy and configure an application into a workload cluster using a Flux HelmRelease and OCIRepository, managed through GitOps.
 weight: 90
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: Update an existing HelmRelease
 title: Update an existing HelmRelease
+diataxis_content_type: how-to-guide
 description: Update the chart version, configuration, or install behavior of a HelmRelease already deployed in a workload cluster via GitOps.
 weight: 60
 menu:

@@ -14,7 +14,7 @@ user_questions:
   - How can I safeguard resources?
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
-last_review_date: 2024-12-05
+last_review_date: 2026-07-02
 aliases:
   - /advanced/app-platform/deletion-prevention
   - /guides/deletion-prevention/

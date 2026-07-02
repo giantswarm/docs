@@ -18,7 +18,7 @@ user_questions:
   - How can I use App custom resource defaulting logic when installing Managed Apps?
   - What fields are validated in App custom resources when installing or updating Managed Apps?
   - How can I ensure flux is not blocked by the validating webhook?
-last_review_date: 2024-10-28
+last_review_date: 2026-07-02
 ---
 
 The Giant Swarm applications use a defaulting and validation logic for the [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) to enhance the user experience and prevent common mistakes.

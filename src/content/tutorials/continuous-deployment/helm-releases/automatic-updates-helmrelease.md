@@ -1,6 +1,7 @@
 ---
 linkTitle: Enable automatic updates for HelmRelease
 title: Enable automatic updates for HelmRelease
+diataxis_content_type: how-to-guide
 description: Configure Flux to pull and apply new chart versions for a HelmRelease, either via a SemVer range on the OCIRepository or via image automation committing version bumps to Git.
 weight: 50
 menu:
