@@ -35,7 +35,7 @@ In general, it's impossible to configure a variable once and use it with multipl
 - Every app within the set shares exactly the same `ConfigMap` or `Secret` as a `config` attribute.
 - Use two separate `ConfigMaps`. In this case, it's your responsibility to provide exactly the same value in both places. It means the apps will receive same configuration layout and must avoid conflict options. In practice, the apps must be prepared on the `Helm` chart layer to work together.
 
-__Note__: As an alternative, you can use `Helm` umbrella chart to deploy multiple apps together, also known as [`Helm` chart dependencies](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
+**Note**: As an alternative, you can use `Helm` umbrella chart to deploy multiple apps together, also known as [`Helm` chart dependencies](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
 
 ## Example
 
