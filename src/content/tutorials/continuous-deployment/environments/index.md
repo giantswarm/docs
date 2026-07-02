@@ -1,6 +1,7 @@
 ---
 linkTitle: Environments
 title: Creating environments for GitOps resources
+diataxis_content_type: how-to-guide
 description: How to deploy resources, with different configurations or versions across several environments.
 weight: 70
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: Azure Workload Identity
 title: Azure Workload Identity
+diataxis_content_type: how-to-guide
 description: This article describes how to configure a Giant Swarm cluster to support Azure Workload Identity.
 weight: 70
 menu:

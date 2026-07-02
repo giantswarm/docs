@@ -1,6 +1,7 @@
 ---
 linkTitle: template catalog
 title: "'kubectl gs template catalog' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for a Catalog using 'kubectl gs'.
 weight: 80
 menu:
@@ -15,6 +16,8 @@ user_questions:
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-catalog/
 ---
+
+**Deprecated:** This command produces a manifest for the legacy `Catalog` resource, which is being phased out in favor of Flux sources (`OCIRepository`, `HelmRepository`). For new deployments, publish charts to an OCI registry and reference them via `flux create source oci`. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 The `template catalog` command allows to create an [app catalog]({{< relref "/tutorials/fleet-management/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 

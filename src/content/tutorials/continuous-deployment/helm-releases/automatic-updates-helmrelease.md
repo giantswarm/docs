@@ -40,7 +40,7 @@ spec:
   interval: 5m
 ```
 
-On each reconciliation interval (which is every five minutes in the example), Flux fetches the tag list from the registry, picks the highest version satisfying the range, and updates the OCIRepository's status. The HelmRelease detects the chart revision change and reconciles a Helm upgrade.
+At each reconciliation interval (`5m`), Flux fetches the tag list from the registry, selects the highest version within the range, and updates the OCIRepository's status. The HelmRelease detects changes to chart revisions and reconciles a Helm upgrade.
 
 Common ranges:
 
