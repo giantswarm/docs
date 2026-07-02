@@ -1,6 +1,7 @@
 ---
 linkTitle: Deploy chart via HelmRelease
 title: Deploying an application via a Flux HelmRelease
+diataxis_content_type: how-to-guide
 description: Full tutorial on deploying an application that is published as a Helm chart in an OCI registry to a workload cluster, via Flux OCIRepository and HelmRelease resources.
 weight: 10
 menu:
@@ -11,18 +12,33 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
   - How can I deploy an app using a HelmRelease?
-last_review_date: 2025-12-05
+  - How does HelmRelease compare to the Giant Swarm App custom resource?
+  - How do I deploy a chart from an OCI registry to a workload cluster?
+last_review_date: 2026-06-17
 ---
 
-**Note:** The CLI command [kubectl gs deploy chart]({{< relref "/reference/kubectl-gs/deploy-chart" >}}) simplifies deploying a chart as described on this page a lot. We recommend that you look into the CLI command first, and come back here if your find that your use case is not covered by the CLI command.
+**Note:** The CLI command [kubectl gs deploy chart]({{< relref "/reference/kubectl-gs/deploy-chart" >}}) simplifies deploying a chart as described on this page. We recommend looking into that CLI command first and coming back here if your use case isn't covered.
 
 ## Background
 
-Giant Swarm management clusters use Flux and Helm to deliver resources to clusters. This may be used as an alternative to [App resources]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for more advanced control.
+Flux HelmRelease is the recommended way to deploy applications on Giant Swarm. Every management cluster runs Flux, so there's nothing extra to install on the platform side. HelmRelease is the upstream Kubernetes API for declaring Helm releases.
 
-To deploy workloads in workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources can be used in combination with Flux [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/) resources.
+To deploy workloads to workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources work together with Flux [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/) resources. If you have existing deployments using the Giant Swarm `App` custom resource, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the migration path and the [legacy guide]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for documentation on that mechanism.
 
 **Note:** While Giant Swarm supports other Flux sources, OCIRepository is the method recommended by the Flux project and by Giant Swarm. This guide focuses on that method only.
+
+### How this compares to the App CR
+
+| Feature | App CR | HelmRelease |
+|---|---|---|
+| API group | `application.giantswarm.io` (Giant Swarm-specific) | `helm.toolkit.fluxcd.io` (upstream Flux) |
+| Chart source | `Catalog` + `AppCatalog` resources | `OCIRepository`, `HelmRepository`, `GitRepository`, `Bucket` |
+| Automatic version updates | Requires Flux `ImageUpdateAutomation` on `.spec.version` | Native via a SemVer range on the source |
+| Configuration | `config` + `userConfig` (Giant Swarm convention) | `values` + `valuesFrom` with explicit merge order |
+| Cross-release ordering | Not modelled | `dependsOn` |
+| Drift detection | App-operator reconciliation | Native Flux drift detection |
+| Pause and resume | Annotation-based | `flux suspend` and `flux resume` |
+| Post-render patches | Not supported | Native post-renderers (Kustomize) |
 
 ## Prerequisites
 
@@ -188,10 +204,38 @@ flux delete source oci \
     helloworld-marian
 ```
 
+## Git-driven workflow
+
+To manage these resources from a Git repository instead of applying them directly, render the YAML with the `--export` flag. Both `flux create source oci` and `flux create helmrelease` print the resource manifest to standard output when given `--export`:
+
+```nohighlight
+flux create source oci dev01-hello-world \
+    --url oci://gsoci.azurecr.io/charts/giantswarm/hello-world \
+    --tag 2.9.1 \
+    --namespace org-acmedev \
+    --interval 60m \
+    --export > sources/dev01-hello-world.yaml
+
+flux create helmrelease dev01-hello-world \
+    --namespace org-acmedev \
+    --chart-ref OCIRepository/dev01-hello-world \
+    --values ./values.yaml \
+    --kubeconfig-secret-ref dev01-kubeconfig \
+    --target-namespace helloworld \
+    --create-target-namespace=true \
+    --label giantswarm.io/cluster=dev01 \
+    --release-name dev01-hello-world \
+    --interval 60m \
+    --export > releases/dev01-hello-world.yaml
+```
+
+Commit both files to your Git repository. Once Flux reconciles your repository through a Kustomization or GitRepository source, the resources are applied. From then on, edits to the YAML in Git become the only way to change the deployment, and Flux reverts manual edits as drift.
+
+For an end-to-end GitOps setup, see [FluxCD]({{< relref "/tutorials/continuous-deployment/flux" >}}) and the [continuous deployment tutorials]({{< relref "/tutorials/continuous-deployment/" >}}).
+
 ## Next steps
 
-Now that you completed this guide, here are some suggestion for useful next things to pick up.
+Now that you completed this guide, here are some suggestions for useful next things to pick up.
 
-- Configure OCIRepository for **automatic updates**. In this guide we configured the OCIRepository to provide a pinned version of the chart, using the `--tag` CLI flag. However, Flux also supports specifying version ranges, so that Flux will update the deployed chart whenever a greater (in SemVer terms) version is found. Look for the `--tag-semver` flag in the [`flux create source oci` docs](https://fluxcd.io/flux/cmd/flux_create_source_oci/) and for the [SemVer example](https://fluxcd.io/flux/components/source/ocirepositories/#semver-example) in the OCIRepository API reference.
-- Deploying a chart via a HelmRelease using **GitOps**. Both `flux create ...` commands used above support YAML output as an alternative to directly applying the resource. Simply add the `--export` flag.
-- You may need **secrets/credentials** in your chart configuration. Check the [`flux create helmrelease` docs](https://fluxcd.io/flux/cmd/flux_create_helmrelease/) and look for the `--values-from` example with a value starting with `Secret/`. This way, you can reference a Secret resource in the same namespace. This approach can be combined with passing non-secret values via `--values`, and with referencing ConfigMap resources via `--values-from`. The configuration will be the merged combination of all sources.
+- Configure OCIRepository for **automatic updates**. In this guide we configured the OCIRepository to provide a pinned version of the chart, using the `--tag` CLI flag. Flux also supports specifying version ranges, so that Flux updates the deployed chart whenever a greater (in SemVer terms) version is found. Look for the `--tag-semver` flag in the [`flux create source oci` docs](https://fluxcd.io/flux/cmd/flux_create_source_oci/) and for the [SemVer example](https://fluxcd.io/flux/components/source/ocirepositories/#semver-example) in the OCIRepository API reference.
+- You may need **secrets and credentials** in your chart configuration. Check the [`flux create helmrelease` docs](https://fluxcd.io/flux/cmd/flux_create_helmrelease/) and look for the `--values-from` example with a value starting with `Secret/`. This way, you can reference a Secret resource in the same namespace. This approach can be combined with passing non-secret values via `--values`, and with referencing `ConfigMap` resources via `--values-from`. The configuration is the merged combination of all sources.

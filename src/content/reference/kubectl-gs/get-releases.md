@@ -1,6 +1,7 @@
 ---
 linkTitle: get releases
 title: "'kubectl gs get releases' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list releases and get details for a single release using 'kubectl gs'.
 weight: 50
 menu:

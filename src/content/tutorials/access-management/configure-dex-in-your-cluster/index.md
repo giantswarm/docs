@@ -1,6 +1,7 @@
 ---
 linkTitle: OIDC for workload clusters
 title: Configure OIDC using Dex to access your clusters
+diataxis_content_type: how-to-guide
 description: How to install and configure Dex to work as an authenticator mechanism to provide OpenID tokens via OpenID Connect (OIDC).
 weight: 40
 menu:
@@ -231,6 +232,8 @@ __Note__: In the above snippet you have to replace the `CLUSTER_NAME` variable a
 You can use more than one connector, but they need to have a different `id` value. Our advice is to use `- id: customer` for your primary connector.
 
 After you have applied the `Secret` manifest to the platform API you have to submit the `App` custom resource that defines the intent to install the `Dex` app in the given cluster. You can directly apply it to the platform API.
+
+**Note:** The `App` custom resource shown below is being phased out in favor of Flux HelmRelease. For new deployments, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1

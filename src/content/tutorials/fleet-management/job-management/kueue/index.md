@@ -1,6 +1,7 @@
 ---
 linkTitle: Job management
 title: Job management with Kueue
+diataxis_content_type: how-to-guide
 description: Learn how to use Kueue for Kubernetes-native job queueing and resource management in Giant Swarm workload clusters to manage batch workloads efficiently, AI and ML training jobs, or resource quotas.
 weight: 50
 menu:
@@ -59,6 +60,8 @@ Before setting up Kueue, ensure you have:
 Kueue is available as a managed app in the Giant Swarm catalog. You can install it using the Giant Swarm app platform.
 
 ### Install Kueue app
+
+**Note:** `kubectl gs template app` produces an `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, use `flux create source oci` and `flux create helmrelease` instead. See [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
 Install the Kueue app using `kubectl gs`:
 

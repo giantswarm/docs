@@ -1,5 +1,6 @@
 ---
 title: {{ .Title }} CRD schema reference (group {{ .Group }})
+diataxis_content_type: reference
 linkTitle: {{ .Title }}
 description: |
 {{- if .Description }}

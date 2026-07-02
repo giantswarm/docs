@@ -1,6 +1,7 @@
 ---
 linkTitle: add encryption
 title: "'kubectl gs gitops add encryption' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to configure encryption for the GitOps repository.
 weight: 40
 menu:

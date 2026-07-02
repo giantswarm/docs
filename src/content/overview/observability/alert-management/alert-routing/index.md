@@ -1,12 +1,13 @@
 ---
 title: Alert routing
+diataxis_content_type: how-to-guide
 description: Learn how to configure alert routing and notification policies in the Giant Swarm observability platform.
 weight: 20
 menu:
   principal:
     parent: overview-observability-alert-management
     identifier: overview-observability-alert-management-alert-routing
-last_review_date: 2025-07-17
+last_review_date: 2026-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -19,7 +20,7 @@ aliases:
   - /tutorials/observability/alerting/configure-alertmanager/
 ---
 
-Alert routing determines how alerts flow from your [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) to the right teams through the right channels. The Giant Swarm Observability Platform uses Mimir Alertmanager to handle routing, grouping, and delivering notifications.
+Alert routing determines how alerts flow from your [alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) to the **right teams** through the **right channels**. The Giant Swarm Observability Platform uses Mimir Alertmanager to handle routing, grouping, and delivering notifications.
 
 ## How alert routing works
 
@@ -37,7 +38,7 @@ This process is part of the broader [alerting pipeline]({{< relref "/overview/ob
 Before configuring alert routing, ensure you have:
 
 - Access to your management cluster
-- A tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}})
+- A tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}})
 - [Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}) configured for your applications
 
 ## Configure Alertmanager
@@ -232,7 +233,7 @@ mimirtool alertmanager verify --address=<your-mimir-url> config.yaml
 
 - Create reusable templates for consistent formatting
 - Include essential context: alert name, affected resources, and remediation links
-- Use clear, actionable language in notifications
+- Use clear, direct language in notifications
 
 ### Security considerations
 

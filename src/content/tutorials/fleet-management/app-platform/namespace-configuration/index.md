@@ -1,6 +1,7 @@
 ---
 linkTitle: Target namespace metadata
 title: Configure an app's target namespace via its App CR
+diataxis_content_type: how-to-guide
 description: How to configure metadata for the target namespace of an app via its app CR. So it can be used by other tools.
 weight: 60
 aliases:
@@ -17,6 +18,8 @@ user_questions:
   - How can I annotate an app CR's target namespace?
 last_review_date: 2024-10-28
 ---
+
+**Deprecated:** This feature (`spec.namespaceConfig`) is specific to the Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. HelmRelease has no direct equivalent for managing target-namespace metadata: for new deployments, set the labels and annotations from inside the Helm chart's templates, with a [post-renderer Kustomize patch](https://fluxcd.io/flux/components/helm/helmreleases/#post-renderers) on the HelmRelease, or with a separate policy tool such as Kyverno. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 When installation apps through the app platform, you might want to add specific labels or annotations to an app's target namespace (for example to allow `loki` to scrape logs from a specific namespace).
 
