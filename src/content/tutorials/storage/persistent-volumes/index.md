@@ -1,5 +1,6 @@
 ---
 title: Persistent volumes
+diataxis_content_type: how-to-guide
 description: Storage classes, creation and mounting of persistent volumes.
 weight: 10
 aliases:

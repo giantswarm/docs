@@ -1,6 +1,7 @@
 ---
 linkTitle: Deploy chart via HelmRelease
 title: Deploying an application via a Flux HelmRelease
+diataxis_content_type: how-to-guide
 description: Full tutorial on deploying an application that is published as a Helm chart in an OCI registry to a workload cluster, via Flux OCIRepository and HelmRelease resources.
 weight: 10
 menu:

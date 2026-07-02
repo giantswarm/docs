@@ -1,6 +1,7 @@
 ---
 linkTitle: Workload cluster OIDC authentication
 title: Configure OIDC authentication for workload clusters with structured authentication
+diataxis_content_type: how-to-guide
 description: Use Kubernetes structured authentication configuration to connect one or more OIDC providers to the API server of a workload cluster.
 weight: 30
 menu:

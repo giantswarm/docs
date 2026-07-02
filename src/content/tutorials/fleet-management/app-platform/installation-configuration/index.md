@@ -1,6 +1,7 @@
 ---
 linkTitle: Configuring installation process
 title: Configure Helm execution
+diataxis_content_type: reference
 description: Options for Helm execution that are currently supported by the App Platform.
 weight: 60
 aliases:

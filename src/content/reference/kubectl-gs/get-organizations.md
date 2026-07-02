@@ -1,6 +1,7 @@
 ---
 linkTitle: get organizations
 title: "'kubectl gs get organizations' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list organizations and get details for a single organization using 'kubectl gs'.
 weight: 50
 menu:
