@@ -1,5 +1,6 @@
 ---
 title: Friendly display of labels
+diataxis_content_type: reference
 linkTitle: Labels
 description: You can customize which labels get displayed in the developer portal, and how they appear in the portal user interface.
 weight: 30

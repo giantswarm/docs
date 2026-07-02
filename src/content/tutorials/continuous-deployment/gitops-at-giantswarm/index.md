@@ -1,6 +1,7 @@
 ---
 linkTitle: GitOps at Giant Swarm
 title: GitOps at Giant Swarm
+diataxis_content_type: explanation
 description: A brief explanation of how Giant Swarm supports the GitOps journey for our customers.
 weight: 10
 menu:

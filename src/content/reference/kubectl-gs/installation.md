@@ -1,6 +1,7 @@
 ---
 linkTitle: Installation
 title: Installing kubectl-gs
+diataxis_content_type: how-to-guide
 description: How to obtain kubectl gs, the Giant Swarm kubectl plugin, how to keep it up to date, and where to find the Docker image.
 weight: 10
 menu:

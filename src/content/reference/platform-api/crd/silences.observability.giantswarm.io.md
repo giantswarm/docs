@@ -1,5 +1,6 @@
 ---
 title: Silence CRD schema reference (group observability.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: Silence
 description: |
   Silence is the Schema for the silences API.

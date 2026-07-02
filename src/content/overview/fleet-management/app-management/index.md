@@ -24,7 +24,7 @@ user_questions:
 last_review_date: 2026-04-20
 ---
 
-The _Giant Swarm App Platform_ refers to a set of features and concepts that allow you to browse, install and manage the configurations of apps (such as `prometheus`) from a single place; the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
+The _Giant Swarm App Platform_ refers to a set of features and concepts that help you browse, install, and manage the configurations of apps (such as `prometheus`) from a single place. That place is the [platform API]({{< relref "/overview/architecture#platform-api" >}}).
 
 Giant Swarm fully supports [`helm`](https://helm.sh/) as a general tool to deploy your applications as well as for our `App Catalog`. Apps are packaged as `helm` charts and can be configured with _values_. A recommended [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) is provided which you can override to meet your needs.
 
@@ -36,6 +36,8 @@ This feature of the platform provides a collection of curated managed apps. Thes
 In short: the _Giant Swarm App Platform_ refers to the whole feature, and an app catalog is a collection of apps.
 
 Giant Swarm provides an app catalog with our offered set of cloud-native applications which are operated and pre-configured by us. You are able to set up your own [additional catalog(s)]({{< relref "/tutorials/fleet-management/app-platform/create-catalog" >}}) to provide for any needs you have at the enterprise level.
+
+**Note:** For new deployments we recommend Flux HelmRelease, not the `App` custom resource described below. Every Giant Swarm management cluster runs Flux out of the box. See [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) for the full guide. The App Platform concepts on this page (catalogs, managed apps, configuration layers) still apply with HelmRelease. Only the deployment mechanism is changing.
 
 ### What makes up the Giant Swarm app platform {#what-makes-up-the-app-platform}
 
@@ -97,9 +99,9 @@ In case of an alert, operations team perform an root cause analysis (RCA) to und
 
 - Configurations and plugins
 
-The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app. The application configuration is the customer's responsibility. In other words, configurations that derail from the default ones have to be tested and maintained by the customer. Giant Swarm is always happy to help in validating whether those configurations adhere to best-practices and test them together with the customer, but it's the latter's responsibility to actually deploy those configurations in their environments according to their deployment processes and maintenance windows.
+The customer can do unlimited configurations to the app. The customer can also install unlimited plugins to the app. The application configuration is the customer's responsibility. In other words, configurations that derail from the default ones have to be tested and maintained by the customer. Giant Swarm is always happy to help in validating whether those configurations adhere to best practices, and to test them together with the customer. Deploying those configurations in the customer's environment, according to the customer's deployment processes and maintenance windows, is the customer's responsibility.
 
-__Note__: Giant Swarm only perform tests for upgrades with the default values, so in case you have customized configuration you need to ensure that the upgrade procedure works as expected in a lower environment and reach out to our support in case of problems.
+__Note__: Giant Swarm only tests upgrades with the default values. If you have customized configuration, make sure the upgrade procedure works as expected in a lower environment, and reach out to support if you hit problems.
 
 - Upgrades
 
@@ -111,7 +113,7 @@ Our team following the common semantic versioning (`semver`) use in cloud-native
 
 All changes are in the change logs and communicated them to customers weekly.
 
-It's the responsibility of the customer to upgrade the applications they run. Whereas Giant Swarm provides updated charts and the relative changelogs and is always willing to help customers understand the impact of upgrades, the responsibility of actually triggering upgrades resides on the customer. This ensures that no changes happen outside of customer-defined maintenance windows and gives customers all the time they need to validate upgrades in low environments before applying them to production ones. That said, Giant Swarm provides tooling to automate upgrades for the apps and customers can adopt it to automate changes on the platform.
+It's the responsibility of the customer to upgrade the applications they run. Giant Swarm provides updated charts and the relative changelogs and is happy to help customers understand the impact of upgrades. Triggering the upgrades themselves resides on the customer. This ensures that no changes happen outside of customer-defined maintenance windows. Customers get the time they need to validate upgrades in low environments before applying them to production. Giant Swarm also provides tooling to automate upgrades, which customers can adopt to automate changes on the platform.
 
 - Dependencies
 
@@ -121,7 +123,7 @@ __Note__: Overall, it adapts the chart to make sure the app works with the custo
 
 ### Installing your own app catalog
 
-It’s possible to create your own `App Catalog`. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm platform API. You can request access from your account engineer. Prerequisite for this is a standard `helm` chart repository. It should be served through HTTP and accessible to the management cluster and your workload clusters.
+It’s possible to create your own `App Catalog`. This is useful if you want to create a set of apps available to your company. Currently, this functionality is only available through direct access to the Giant Swarm platform API. You can request access from your account engineer. Prerequisite for this is a standard `helm` chart repository. It should be served through HTTP and reachable from the management cluster and your workload clusters.
 
 ### How interact with the Giant Swarm app platform
 
@@ -130,4 +132,4 @@ You can interact with the Giant Swarm app platform through creating `App` custom
 - [App CRD reference]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}})
 - [The Giant Swarm developer portal]({{< relref "/overview/developer-portal/" >}})
 
-As you have direct access to the platform API you can also interact with the above mentioned resources using `kubectl`, and automate them just as you have been automating other parts of your stack. And as Kubernetes resources and especially some custom resource definitions require lots of boilerplate and conventions, our team built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.
+You can also interact with the resources listed earlier using `kubectl`. Automate them just as you would other parts of your stack. Kubernetes resources (especially some custom resource definitions) require lots of boilerplate and conventions, so our team built a [kubectl plugin]({{< relref "/reference/kubectl-gs" >}}) to help you with that.

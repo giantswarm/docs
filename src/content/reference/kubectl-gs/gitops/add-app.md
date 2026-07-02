@@ -1,6 +1,7 @@
 ---
 linkTitle: add app
 title: "'kubectl gs gitops add app' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new App to the GitOps repository.
 weight: 30
 menu:
@@ -14,6 +15,8 @@ user_questions:
 aliases:
   - /vintage/use-the-api/kubectl-gs/gitops/add-app/
 ---
+
+**Deprecated:** This command scaffolds the legacy `App` custom resource into a GitOps repository. `App` is being phased out in favor of Flux HelmRelease. For new deployments, scaffold the HelmRelease + OCIRepository pair with `flux create source oci --export` and `flux create helmrelease --export`. See [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) for a worked example and [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This command adds a new App to the GitOps repository.
 

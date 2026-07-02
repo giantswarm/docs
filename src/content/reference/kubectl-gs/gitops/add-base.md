@@ -1,6 +1,7 @@
 ---
 linkTitle: add base
 title: "'kubectl gs gitops add base' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new base to create clusters in a GitOps repository.
 weight: 20
 menu:

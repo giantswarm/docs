@@ -1,6 +1,7 @@
 ---
 linkTitle: Configuring installation process
 title: Configure Helm execution
+diataxis_content_type: reference
 description: Options for Helm execution that are currently supported by the App Platform.
 weight: 60
 aliases:
@@ -20,6 +21,57 @@ last_review_date: 2024-10-28
 As explained in the [app platform overview]({{< relref "/overview/fleet-management/app-management" >}}), all managed apps are Helm charts underneath. It means that at the very bottom the platform must trigger Helm-related actions, like installation or upgrade, against the requested application. This process, mostly, can't be influenced by a user as we try to tune it universally for all apps. Yet, we anticipate that apps not matching these universal rules may exist, hence we offer a way to tweak some Helm options.
 
 There are several options currently supported for every Helm action. In the next sections, you see a list of possible customizations with code snippets to help you understand how to use them.
+
+**Deprecated:** This page documents Helm execution options on the legacy `App` custom resource. Flux HelmRelease exposes a richer set of the same options under the same field names (`.spec.install`, `.spec.upgrade`, `.spec.rollback`), so most fields map one-to-one. See the [HelmRelease equivalent](#helmrelease) section below.
+
+## HelmRelease equivalent {#helmrelease}
+
+HelmRelease uses the same top-level field names as App CR for Helm action customization, plus a few more:
+
+- `.spec.install`: install-time options
+- `.spec.upgrade`: upgrade-time options
+- `.spec.rollback`: rollback-time options
+- `.spec.uninstall`: uninstall-time options (no App CR equivalent)
+- `.spec.test`: run `helm test` hooks (no App CR equivalent)
+- `.spec.driftDetection`: enforce or warn on manual changes to deployed resources (no App CR equivalent)
+
+Each App CR field documented on this page has an equivalent HelmRelease field:
+
+| App CR field | HelmRelease equivalent |
+|---|---|
+| `.spec.install.skipCRDs` | `.spec.install.crds: Skip` |
+| `.spec.install.timeout` | `.spec.install.timeout` |
+| `.spec.upgrade.timeout` | `.spec.upgrade.timeout` |
+| `.spec.rollback.timeout` | `.spec.rollback.timeout` |
+
+A worked example using a few of the HelmRelease-specific options:
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: demo
+  namespace: org-acmedev
+spec:
+  install:
+    timeout: 10m
+    crds: Skip
+    remediation:
+      retries: 3
+  upgrade:
+    timeout: 10m
+    remediation:
+      retries: 3
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    cleanupOnFail: true
+```
+
+For the full set of fields and their semantics, see the [Flux HelmRelease reference](https://fluxcd.io/flux/components/helm/helmreleases/).
+
+The remainder of this page covers the App CR fields in detail.
 
 ## Install
 
