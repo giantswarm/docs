@@ -8,7 +8,7 @@ menu:
   principal:
     identifier: tutorials-access-management-authentication-automation
     parent: tutorials-access-management-authentication
-last_review_date: 2024-11-29
+last_review_date: 2026-07-02
 user_questions:
   - How can I use the platform API in a programmatic way?
 owner:

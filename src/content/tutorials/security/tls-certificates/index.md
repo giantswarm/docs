@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-security-ingresstls
 user_questions:
   - How do I obtain TLS certificates?
-last_review_date: 2024-12-03
+last_review_date: 2026-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:

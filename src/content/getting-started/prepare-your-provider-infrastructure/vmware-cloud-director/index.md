@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: VMware Cloud Director
 description: Prepare your VMware Cloud Director (VCD) setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 30
-last_review_date: 2024-11-28
+last_review_date: 2026-07-02
 layout: single
 menu:
   principal:

@@ -17,7 +17,7 @@ user_questions:
   - Why are my containers failing to access some resources?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2024-11-28
+last_review_date: 2026-07-02
 mermaid: true
 ---
 

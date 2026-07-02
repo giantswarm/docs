@@ -12,7 +12,7 @@ user_questions:
   - How can I manage different environments with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-12
+last_review_date: 2026-07-02
 ---
 
 On many occasions, you need to set good defaults for your workload clusters but have the ability to change some values depending on the type of environment: development, staging or production for example. In such a case, you can rely on specific `bases` defined on your GitOps repository. Let's see in this document how you can create a `/bases/environments` folder structure.
