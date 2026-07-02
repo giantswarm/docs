@@ -1,5 +1,6 @@
 ---
 title: RoleBindingTemplate CRD schema reference (group auth.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: RoleBindingTemplate
 description: |
   RoleBindingTemplate is the Schema for the rolebindingtemplates API

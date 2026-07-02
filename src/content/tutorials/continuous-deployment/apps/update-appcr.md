@@ -1,6 +1,7 @@
 ---
 linkTitle: Update an existing App
 title: Update an existing App
+diataxis_content_type: how-to-guide
 description: Learn how to update an App already deployed in a workload cluster with GitOps.
 weight: 60
 menu:

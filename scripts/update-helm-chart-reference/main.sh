@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # renovate: datasource=docker depName=gsoci.azurecr.io/giantswarm/helm-chart-docs-generator versioning=semver
-HELM_CHART_DOCS_GENERATOR_VERSION=0.4.0
+HELM_CHART_DOCS_GENERATOR_VERSION=0.4.1
 
 DESTINATION=src/content/reference/platform-api/cluster-apps
 
