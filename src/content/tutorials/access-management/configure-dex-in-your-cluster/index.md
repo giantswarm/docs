@@ -233,7 +233,7 @@ You can use more than one connector, but they need to have a different `id` valu
 
 After you have applied the `Secret` manifest to the platform API you have to submit the `App` custom resource that defines the intent to install the `Dex` app in the given cluster. You can directly apply it to the platform API.
 
-**Note:** The `App` custom resource shown below is being phased out in favor of Flux HelmRelease. For new deployments, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
+__Note__: The `App` custom resource shown below is being phased out in favor of Flux HelmRelease. For new deployments, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1

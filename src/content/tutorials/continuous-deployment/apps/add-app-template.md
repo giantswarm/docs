@@ -68,13 +68,13 @@ Additionally you can provide a default configuration, and additional secrets for
 --user-secret <my-secret-name>
 ```
 
-__Note__: Including `${cluster_name}` in the app name avoids collision between clusters running same apps within the same organization.
+**Note**: Including `${cluster_name}` in the app name avoids collisions between clusters running the same apps within the same organization.
 
 Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/" >}}) for more details about how to create the respective `ConfigMaps` or secrets.
 
 After running the `kubectl gs` command you can observe the output has an `App` resource together with the `ConfigMap`. Instead, you could rely on the `ConfigMap` generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources) to generate it on the fly.
 
-__Warning__: `Kustomize` can't be used for the secrets as they need to be encrypted before commit. Refer to our [adding an app]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}) docs to check how to do it.
+**Warning**: `Kustomize` can't be used for secrets because they must be encrypted before committing. Refer to our [adding an app]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}) docs to check how to do it.
 
 In the last step it's time to create the `kustomization.yaml` file, adding the optional `Secret` or `ConfigMap` as resources and/or using a `ConfigMap` generator to manage plain configuration:
 

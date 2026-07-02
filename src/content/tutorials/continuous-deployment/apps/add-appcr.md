@@ -85,7 +85,7 @@ Additionally you can provide a default configuration adding these flags to the p
 --user-secret ${APP_USER_VALUES}
 ```
 
-__Note__: Including `${cluster_name}` in the app name avoids collision between clusters running same apps within the same organization.
+**Note**: Including `${cluster_name}` in the app name avoids collisions between clusters running the same apps within the same organization.
 
 Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) for more details on how to create respective `ConfigMaps` or secrets.
 
@@ -168,6 +168,6 @@ spec:
       name: \${cluster_name}-${APP_NAME}-user-secret
 ```
 
-__Note__: Alternatively, you can rely on [`Kustomize` patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) to extend the `App` resource configuration instead.
+**Note**: Alternatively, you can rely on [`Kustomize` patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) to extend the `App` resource configuration instead.
 
 At this point, everything is prepared and you can commit the changes to the branch to force `Flux` to apply the changes. Further you can learn how to [enable automatic updates for your apps]({{< relref "/tutorials/continuous-deployment/apps/automatic-updates-appcr" >}}).
