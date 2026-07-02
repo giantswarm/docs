@@ -183,7 +183,7 @@ resources:
   - ../../../../../../../../bases/clusters/capa/v0.21.0/
 ```
 
-__Warning__: For the sake of simplicity both reference the same base template, but in some occasions where there are breaking changes you might need to link a different template. [Read more about bases here]({{< relref "/tutorials/continuous-deployment/bases" >}}).
+**Warning**: For the sake of simplicity both reference the same base template, but in some occasions where there are breaking changes you might need to link a different template. [Read more about bases here]({{< relref "/tutorials/continuous-deployment/bases" >}}).
 
 Now, you define the production configuration in a new file `cluster_config.yaml`. You can configure this time a completely different value set, even override new configurations from default.
 
@@ -212,7 +212,7 @@ bases/environments/stages/
         └── kustomization.yaml
 ```
 
-__Note__: In a similar way, you could base your environments on different cluster templates from bases. You can create as many levels as you want, but take into account always to set the right priorities of the configuration files.
+**Note**: In a similar way, you could base your environments on different cluster templates from bases. You can create as many levels as you want, but take into account always to set the right priorities of the configuration files.
 
 #### Regions
 
@@ -262,7 +262,7 @@ controlPlane:
 nodeCIDR: "10.32.0.0/24"
 ```
 
-__Note__: These values are examples and need to be replaced by real values of the user account.
+**Note**: These values are examples and need to be replaced by real values of the user account.
 
 The `Kustomize` plugin in `Flux` will create the new `ConfigMap` with the region values. Note that priority is set to `120` which will precede over the stage values.
 
@@ -315,7 +315,7 @@ resources:
   - ../../../../../../../../bases/environments/regions/eu-central
 ```
 
-__Note__:  It uses the extra configuration feature of `App` resource to patch additional layers of configurations. [Read more here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/#extra-configs" >}}).
+**Note**:  It uses the extra configuration feature of `App` resource to patch additional layers of configurations. [Read more here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/#extra-configs" >}}).
 
 ## Tips for developing environments
 

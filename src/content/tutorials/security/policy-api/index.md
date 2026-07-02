@@ -17,7 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-__Note__: This guide is intended for cluster administrators running Giant Swarm managed Kubernetes clusters. More general information about Pod Security Standards can be found on the [Security policy enforcement][sec-policy-enforcement] page.
+**Note**: This guide is intended for cluster administrators running Giant Swarm managed Kubernetes clusters. More general information about Pod Security Standards can be found on the [Security policy enforcement][sec-policy-enforcement] page.
 
 ## Managing cluster security policies with the Giant Swarm Policy API
 

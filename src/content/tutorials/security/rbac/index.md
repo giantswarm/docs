@@ -27,7 +27,7 @@ Role-based access control (RBAC) is the primary authorization mechanism for mana
 
 The RBAC API defines both roles and bindings on either namespace or cluster level. Like any other Kubernetes API object, these can be defined by writing YAML (or JSON) manifests.
 
-__Note__: that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a `cluster-admin` account to apply RBAC manifests.
+**Note**: that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a `cluster-admin` account to apply RBAC manifests.
 
 ### The role resources {#role-resources}
 

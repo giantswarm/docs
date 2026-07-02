@@ -32,7 +32,7 @@ Enabling automated updates requires a few additional `Flux` resources to be defi
 
 `Flux` will watch for new docker image tags for your `App` and use them to update the `.spec.version` field in the `App` resource. It will do it by pushing commits to this repository.
 
-__Note__: in order to use this mechanism you have to make sure the image tags of your `App` correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
+**Note**: in order to use this mechanism you have to make sure the image tags of your `App` correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
 
 ## Example
 
@@ -120,7 +120,7 @@ spec:
       range: '>=0.0.1'
 ```
 
-__Note__: the `filterTags` allows you to filter the image tags before those are considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
+**Note**: the `filterTags` allows you to filter the image tags before those are considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
 
 Check [`Flux` docs](https://fluxcd.io/flux/components/image/imagepolicies/#examples) for more examples of possible policies.
 

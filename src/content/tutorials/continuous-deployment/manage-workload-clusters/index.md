@@ -31,7 +31,7 @@ To proceed with this tutorial, you will use a `ServiceAccount` that has a set of
 
 The `automation` `ServiceAccount` has assigned the `cluster-admin` role in the organization namespace. This role allows `Flux` to create and manage resources in the organization namespace.
 
-__Note__: To learn more about managing roles, please read the [introduction to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
+**Note**: To learn more about managing roles, please read the [introduction to platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
 
 ## Creating your repository structure
 
@@ -97,7 +97,7 @@ Then, let's create a `GitRepository` resource that points to the repository. It'
 
 Now, you need to [create a secret](https://fluxcd.io/flux/cmd/flux_create_secret_git/) (referred as `GIT_CREDENTIALS_TOKEN`) with the credentials to access the repository. It enables `Flux` to download the repository files in order to apply all resources. In case your repository is public you don't need the secret and can delete the parameter `secret-ref` of the next command.
 
-__Note__: This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
+**Note**: This process is different depending on the git platform used (ssh-keys, token, user/password). Check documentation of every provider to create the secret.
 
 ```sh
 export YOUR_REPO_URL="https://github.com/<your_org>/<your_repo>.git"
@@ -143,7 +143,7 @@ Giant Swarm uses `sops` with `pgp` for key management, creating master keys for 
 kubectl gs gitops add encryption --generate --management-cluster $MC_NAME
 ```
 
-__Warning__: Please be sure you store the private key in a safe place. Losing the key will make it impossible to decrypt the secrets. The private key is stored in `./management-clusters/$MC_NAME/.sops.keys` folder.
+**Warning**: Please be sure you store the private key in a safe place. Losing the key will make it impossible to decrypt the secrets. The private key is stored in `./management-clusters/$MC_NAME/.sops.keys` folder.
 
 Now, you apply the private key to the management cluster to let `Flux` decrypt the secrets.
 
@@ -222,7 +222,7 @@ kubectl gs gitops add workload-cluster \
 --release 29.0.0
 ```
 
-__Note__: The `--release` flag is optional. If you don't provide it, the latest version of the base will be used. If you want to use a specific version, you can check the check the releases page of the cluster provider.
+**Note**: The `--release` flag is optional. If you don't provide it, the latest version of the base will be used. If you want to use a specific version, you can check the check the releases page of the cluster provider.
 
 The command will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
 
@@ -253,7 +253,7 @@ In the next command, you will add the `Grafana` application to the repository st
 kubectl gs gitops add app --management-cluster ${MC_NAME} --workload-cluster ${WC_NAME} --organization ${ORG_NAME} --app grafana --catalog giantswarm --target-namespace monitoring --version 2.0.2
 ```
 
-__Note__: To inspect which `Grafana` versions are available, you can use the `helm search repository giantswarm/grafana` command.
+**Note**: To inspect which `Grafana` versions are available, you can use the `helm search repository giantswarm/grafana` command.
 
 The output for the previous command will be the following:
 

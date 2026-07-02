@@ -21,15 +21,15 @@ Using the platform API from an automation requires a hands-free way to provide c
 
 To learn about authentication as a user who can complete an interactive authentication flow in the browser, please head to our [according article]({{< relref "/tutorials/access-management/authentication/user" >}}).
 
-__Note__: In the context of this article we're assuming that you want to connect to the platform API from outside the management cluster. In case your automation is running in the management cluster, using a service for authentication becomes much simpler.
+**Note**: In the context of this article we're assuming that you want to connect to the platform API from outside the management cluster. In case your automation is running in the management cluster, using a service for authentication becomes much simpler.
 
 ## Step by step
 
-__Note__: If you want to skip the lengthy explanations, you can jump directly to the section below where we [put it all together](#script) in a script.
+**Note**: If you want to skip the lengthy explanations, you can jump directly to the section below where we [put it all together](#script) in a script.
 
 Every Giant Swarm management cluster provides a service account named `automation` in the `default` namespace. This service account's token and additional information as the API endpoint and `CA` certificate can then be extracted into a self-contained kubectl configuration file.
 
-__Note__: This `automation` service account comes with a powerful set of permissions, thus we strongly recommend you create a specific service account for each application, binding it to specific roles granting only the required permissions in the required namespaces.
+**Note**: This `automation` service account comes with a powerful set of permissions, thus we strongly recommend you create a specific service account for each application, binding it to specific roles granting only the required permissions in the required namespaces.
 
 These instructions assume the `automation` service account name. You'll have to replace this one with the name of the service account you are using.
 
