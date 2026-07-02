@@ -15,6 +15,8 @@ owner:
 last_review_date: 2026-05-21
 ---
 
+**Deprecated:** This guide covers automatic updates for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Enable automatic updates for HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/automatic-updates-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
+
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
 # Enable automatic updates for your app

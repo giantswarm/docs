@@ -15,6 +15,8 @@ owner:
 last_review_date: 2025-03-25
 ---
 
+**Deprecated:** This guide covers updating the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Update an existing HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/update-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
+
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
 # Update an existing App
