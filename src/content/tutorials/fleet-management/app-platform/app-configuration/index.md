@@ -32,11 +32,11 @@ The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-mana
 
 The apps are packaged as `helm` charts. Those charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your app you set the values that become available to the templates when they're deployed.
 
-**Deprecated:** This page documents configuration for the legacy `App` custom resource. The `App` CR is being phased out in favor of Flux HelmRelease. The concepts below (layered configuration, merge precedence, ConfigMap vs Secret) translate directly; only the API surface differs. See the [HelmRelease equivalent](#helmrelease) section for the mapping, and [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}) for full examples.
+**Deprecated:** This page documents configuration for the legacy `App` custom resource. The `App` CR is being phased out in favor of Flux HelmRelease. The concepts below (layered configuration, merge precedence, `ConfigMap` vs `Secret`) translate to HelmRelease. Only the API surface differs. See the [HelmRelease equivalent](#helmrelease) section for the mapping, and [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}) for full examples.
 
 ## HelmRelease equivalent {#helmrelease}
 
-In a HelmRelease, configuration values come from two places: an inline `spec.values` block, and any number of ConfigMap or Secret references in `spec.valuesFrom`. Flux merges them in the listed order, with later entries overriding earlier ones, so the order of entries determines precedence.
+In a HelmRelease, configuration values come from two places: an inline `spec.values` block, and any number of `ConfigMap` or `Secret` references in `spec.valuesFrom`. Flux merges them in the listed order, with later entries overriding earlier ones, so the order of entries determines precedence.
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -73,7 +73,7 @@ Mapping to App CR fields:
 | `spec.userConfig.secret` (per-release user secrets) | A `Secret` referenced later in `valuesFrom` |
 | `spec.extraConfigs` (extra layers with `priority`) | Position in `valuesFrom`. Rearrange entries to change precedence. |
 
-See the [Flux valuesFrom reference](https://fluxcd.io/flux/components/helm/helmreleases/#values) for full merge semantics, including how to pull from a specific key inside a ConfigMap or Secret.
+See the [Flux `valuesFrom` reference](https://fluxcd.io/flux/components/helm/helmreleases/#values) for full merge semantics, including how to pull from a specific key inside a `ConfigMap` or `Secret`.
 
 The remainder of this page covers the App CR model in detail.
 
