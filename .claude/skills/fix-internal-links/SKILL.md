@@ -1,4 +1,5 @@
 ---
+name: fix-internal-links
 description: Find and fix broken internal links in the docs site using linkchecker
 ---
 
