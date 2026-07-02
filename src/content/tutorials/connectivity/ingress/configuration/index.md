@@ -439,7 +439,7 @@ data:
 
 However keep in mind: With great power comes great responsibility!
 
-If the ConfigMap doesn't exist, create it. In this case you'll need to reference it in the App CR (or HelmRelease) of the ingress controller.
+If the `ConfigMap` doesn't exist, create it. In this case you'll need to reference it in the App CR (or HelmRelease) of the ingress controller.
 
 ```yaml
 # Add missing keys to the spec field of the App CR
@@ -450,7 +450,7 @@ spec:
       namespace: NAMESPACE
 ```
 
-For a HelmRelease, reference the ConfigMap from `spec.valuesFrom` instead:
+For a HelmRelease, reference the `ConfigMap` from `spec.valuesFrom` instead:
 
 ```yaml
 spec:
