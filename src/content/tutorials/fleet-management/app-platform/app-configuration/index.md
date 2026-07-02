@@ -32,9 +32,9 @@ The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-mana
 
 The apps are packaged as `helm` charts. Those charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your app you set the values that become available to the templates when they're deployed.
 
-**Deprecated:** This page documents configuration for the legacy `App` custom resource. The `App` CR is being phased out in favor of Flux HelmRelease. The concepts below (layered configuration, merge precedence, `ConfigMap` vs `Secret`) translate to HelmRelease. Only the API surface differs. See the [HelmRelease equivalent](#helmrelease) section for the mapping, and [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}) for full examples.
+**Deprecated:** This page documents configuration for the legacy `App` custom resource. The `App` CR is being phased out in favor of Flux HelmRelease. The concepts below (layered configuration, merge precedence, `ConfigMap` vs `Secret`) translate to HelmRelease. Only the API surface differs. See the [HelmRelease equivalent](#flux-equivalent) section for the mapping, and [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}) for full examples.
 
-## HelmRelease equivalent {#helmrelease}
+## HelmRelease equivalent {#flux-equivalent}
 
 In a HelmRelease, configuration values come from two places: an inline `spec.values` block, and any number of `ConfigMap` or `Secret` references in `spec.valuesFrom`. Flux merges them in the listed order, with later entries overriding earlier ones, so the order of entries determines precedence.
 

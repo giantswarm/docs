@@ -22,9 +22,9 @@ As explained in the [app platform overview]({{< relref "/overview/fleet-manageme
 
 There are several options currently supported for every Helm action. In the next sections, you see a list of possible customizations with code snippets to help you understand how to use them.
 
-**Deprecated:** This page documents Helm execution options on the legacy `App` custom resource. Flux HelmRelease exposes a richer set of the same options under the same field names (`.spec.install`, `.spec.upgrade`, `.spec.rollback`), so most fields map one-to-one. See the [HelmRelease equivalent](#helmrelease) section below.
+**Deprecated:** This page documents Helm execution options on the legacy `App` custom resource. Flux HelmRelease exposes a richer set of the same options under the same field names (`.spec.install`, `.spec.upgrade`, `.spec.rollback`), so most fields map one-to-one. See the [HelmRelease equivalent](#flux-equivalent) section below.
 
-## HelmRelease equivalent {#helmrelease}
+## HelmRelease equivalent {#flux-equivalent}
 
 HelmRelease uses the same top-level field names as App CR for Helm action customization, plus a few more:
 

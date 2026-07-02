@@ -25,9 +25,9 @@ The Giant Swarm applications use a defaulting and validation logic for the [`App
 
 This logic is provided by [`app-admission-controller`](https://github.com/giantswarm/app-admission-controller). When you create or update an `App` resource, the controller will ensure that the resource is correctly configured and will default some fields based on the cluster configuration.
 
-**Deprecated:** This page documents webhook-based defaulting and validation for the legacy `App` custom resource. Flux HelmRelease has no equivalent webhook layer. Every field the App CR webhook would default has to be set on the HelmRelease. In exchange you get more flexibility and fewer moving parts. See the [HelmRelease equivalent](#helmrelease) section below.
+**Deprecated:** This page documents webhook-based defaulting and validation for the legacy `App` custom resource. Flux HelmRelease has no equivalent webhook layer. Every field the App CR webhook would default has to be set on the HelmRelease. In exchange you get more flexibility and fewer moving parts. See the [HelmRelease equivalent](#flux-equivalent) section below.
 
-## HelmRelease equivalent {#helmrelease}
+## HelmRelease equivalent {#flux-equivalent}
 
 There is no `app-admission-controller` for HelmRelease. Flux's helm-controller and source-controller handle basic admission through OpenAPI schemas, but Giant Swarm-specific defaulting (cluster values, kubeconfig, operator-version routing) doesn't apply. What changes for HelmRelease users:
 

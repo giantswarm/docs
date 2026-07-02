@@ -46,9 +46,9 @@ These metadata files and the `helm` `index.yaml` are used to generate app metada
 
 There are [multiple options](https://helm.sh/docs/topics/chart_repository/#hosting-chart-repositories) for serving the catalog over HTTP including GitHub pages or tools like `harbor` or `chartMuseum` which run in a `kubernetes` cluster. At Giant Swarm we use GitHub pages and this is what we will cover in this guide.
 
-**Deprecated:** This page documents the legacy Giant Swarm `Catalog` (and `AppCatalog`) custom resource, which is being phased out in favor of Flux sources. With Flux HelmRelease you don't need a Giant Swarm-specific catalog resource: publish charts to any OCI registry or HTTP Helm repository the cluster can reach, and reference them with `OCIRepository` or `HelmRepository`. See the [HelmRelease equivalent](#helmrelease) section below.
+**Deprecated:** This page documents the legacy Giant Swarm `Catalog` (and `AppCatalog`) custom resource, which is being phased out in favor of Flux sources. With Flux HelmRelease you don't need a Giant Swarm-specific catalog resource. Publish charts to any OCI registry or HTTP Helm repository the cluster can reach. Reference them with `OCIRepository` or `HelmRepository`. See the [HelmRelease equivalent](#flux-equivalent) section below.
 
-## HelmRelease equivalent {#helmrelease}
+## HelmRelease equivalent {#flux-equivalent}
 
 For new deployments, host your charts in one of the source types Flux supports:
 
