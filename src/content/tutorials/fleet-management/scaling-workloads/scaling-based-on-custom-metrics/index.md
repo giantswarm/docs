@@ -1,5 +1,6 @@
 ---
 title: Scaling workloads based on custom GPU metrics
+diataxis_content_type: how-to-guide
 linkTitle: Scaling GPU workloads
 description: Learn how to configure Horizontal Pod Autoscaling with Prometheus adapter to scale workloads based on custom GPU metrics in Giant Swarm clusters.
 weight: 10

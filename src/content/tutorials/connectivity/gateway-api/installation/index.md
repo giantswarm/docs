@@ -1,6 +1,7 @@
 ---
 linkTitle: Quick start
 title: Installing Gateway API with Envoy Gateway
+diataxis_content_type: how-to-guide
 description: Learn how to install and configure the Kubernetes Gateway API with Envoy Gateway in Giant Swarm workload clusters.
 weight: 10
 menu:

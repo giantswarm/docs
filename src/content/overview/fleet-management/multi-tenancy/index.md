@@ -1,5 +1,6 @@
 ---
 title: Multi-tenancy
+diataxis_content_type: explanation
 description: Manage cluster and application resources across multiple organizations and teams.
 weight: 40
 menu:

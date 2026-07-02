@@ -1,5 +1,6 @@
 ---
 title: Enabling GitOps links
+diataxis_content_type: how-to-guide
 linkTitle: GitOps links
 description: How to configure the developer portal to show GitOps links for resources managed by Flux, so that users can jump directly to the source code.
 weight: 20

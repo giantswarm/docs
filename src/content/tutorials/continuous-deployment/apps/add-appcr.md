@@ -1,6 +1,7 @@
 ---
 linkTitle: Add a new App to a workload cluster
 title: Add a new App to a workload cluster
+diataxis_content_type: how-to-guide
 description: Learn how to deploy and configure applications into workload clusters using GitOps.
 weight: 90
 menu:
@@ -13,6 +14,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2024-11-19
 ---
+
+**Deprecated:** This guide covers the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 

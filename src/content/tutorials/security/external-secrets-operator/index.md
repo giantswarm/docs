@@ -1,5 +1,6 @@
 ---
 title: External Secrets Operator
+diataxis_content_type: explanation
 description: External Secrets Operator is a managed application within our platform and this is what you need to know.
 weight: 20
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: Prevent deletion of resources
 title: Prevent accidental deletion of resources
+diataxis_content_type: how-to-guide
 description: Avoid accidental deletion of clusters, apps or other resources in Giant Swarm platform.
 weight: 110
 menu:
