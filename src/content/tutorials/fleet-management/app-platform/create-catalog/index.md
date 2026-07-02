@@ -1,6 +1,7 @@
 ---
 linkTitle: Creating an app catalog
 title: Creating an app catalog
+diataxis_content_type: how-to-guide
 description: How to create a custom app catalog for use with app platform and push helm charts to it.
 weight: 50
 aliases:

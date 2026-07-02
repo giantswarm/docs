@@ -1,6 +1,7 @@
 ---
 linkTitle: App bundles
 title: App bundle reference
+diataxis_content_type: explanation
 description: Overview of the app bundle concept, how it works, and how to configure it.
 menu:
   principal:
@@ -19,6 +20,8 @@ user_questions:
  - Are there any caveats in using app bundles?
 last_review_date: 2025-11-28
 ---
+
+**Deprecated:** App bundles ship as charts containing `App` custom resources. The `App` CR is being phased out in favor of Flux HelmRelease, so this pattern has no direct Flux equivalent. The closest equivalents for new deployments are Helm umbrella charts (one chart declaring sub-charts as dependencies) and Kustomize over multiple HelmReleases. See [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}) for both patterns, and [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 ## App bundle definition {#app-bundle-definition}
 

@@ -1,6 +1,7 @@
 ---
 linkTitle: App configuration
 title: App configuration reference
+diataxis_content_type: explanation
 description: Documentation on the various levels of App configuration and how they get merged into a final values object.
 menu:
   principal:
