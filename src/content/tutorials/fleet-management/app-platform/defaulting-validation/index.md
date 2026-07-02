@@ -25,13 +25,13 @@ The Giant Swarm applications use a defaulting and validation logic for the [`App
 
 This logic is provided by [`app-admission-controller`](https://github.com/giantswarm/app-admission-controller). When you create or update an `App` resource, the controller will ensure that the resource is correctly configured and will default some fields based on the cluster configuration.
 
-**Deprecated:** This page documents webhook-based defaulting and validation for the legacy `App` custom resource. Flux HelmRelease has no equivalent webhook layer: every field that App CR's webhook would default has to be set on the HelmRelease, but you also get more flexibility and fewer moving parts. See the [HelmRelease equivalent](#helmrelease) section below.
+**Deprecated:** This page documents webhook-based defaulting and validation for the legacy `App` custom resource. Flux HelmRelease has no equivalent webhook layer. Every field the App CR webhook would default has to be set on the HelmRelease. In exchange you get more flexibility and fewer moving parts. See the [HelmRelease equivalent](#helmrelease) section below.
 
 ## HelmRelease equivalent {#helmrelease}
 
 There is no `app-admission-controller` for HelmRelease. Flux's helm-controller and source-controller handle basic admission through OpenAPI schemas, but Giant Swarm-specific defaulting (cluster values, kubeconfig, operator-version routing) doesn't apply. What changes for HelmRelease users:
 
-- **Cluster values.** The `<cluster>-cluster-values` ConfigMap is created in the organization namespace alongside the cluster. To consume it from a HelmRelease, reference it in `spec.valuesFrom`:
+- **Cluster values.** The `<cluster>-cluster-values` `ConfigMap` is created in the organization namespace alongside the cluster. To consume it from a HelmRelease, reference it in `spec.valuesFrom`:
 
   ```yaml
   spec:
@@ -40,11 +40,11 @@ There is no `app-admission-controller` for HelmRelease. Flux's helm-controller a
         name: dev01-cluster-values
   ```
 
-- **Kubeconfig.** The `<cluster>-kubeconfig` Secret is created for you alongside the cluster. Reference it from the HelmRelease via `spec.kubeConfig.secretRef.name` so Flux installs the chart into the workload cluster.
+- **`kubeconfig`.** The `<cluster>-kubeconfig` Secret is created for you alongside the cluster. Reference it from the HelmRelease via `spec.kubeConfig.secretRef.name` so Flux installs the chart into the workload cluster.
 - **App-operator version label.** Not applicable. Flux's helm-controller handles all releases, so there's no per-cluster operator routing to default.
 - **Catalog match.** Not applicable. Your HelmRelease's `chartRef` points at an `OCIRepository`, `HelmRepository`, or other Flux source. There's no separate `Catalog` resource to validate against.
 - **Skipping validation (`giantswarm.io/managed-by: flux` label).** Not needed. There's no validating webhook on HelmRelease that needs bypassing for Flux-managed resources.
-- **Order-of-creation issues.** Flux retries on missing dependencies. If a HelmRelease references a ConfigMap that doesn't exist yet, Flux waits and reconciles when it appears. Use `dependsOn` for explicit ordering between releases. See [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}).
+- **Order-of-creation issues.** Flux retries on missing dependencies. If a HelmRelease references a `ConfigMap` that doesn't exist yet, Flux waits and reconciles when it appears. Use `dependsOn` for explicit ordering between releases. See [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}).
 
 For a worked HelmRelease example with all these fields wired up, see [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}).
 
