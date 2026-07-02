@@ -126,7 +126,7 @@ Manage HelmRelease and OCIRepository resources with whatever tool fits your work
 - **GitOps**: store your HelmRelease YAML in a Git repository and let Flux apply changes when you commit. See [FluxCD]({{< relref "/tutorials/continuous-deployment/flux" >}}) for an introduction and [continuous deployment tutorials]({{< relref "/tutorials/continuous-deployment/" >}}) for end-to-end workflows.
 - **The [developer portal]({{< relref "/overview/developer-portal/" >}})**: browse catalogs, inspect deployed releases, and view their status from a web UI.
 
-## Legacy App custom resource
+## Legacy `App` custom resource
 
 Deployments managed via the Giant Swarm `App` CR continue to work without changes. The conceptual model is similar to the Flux-based one: an App CR points at a chart in a `Catalog` and Helm installs it. The difference is that the underlying API is Giant Swarm-specific. For example:
 
