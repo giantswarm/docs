@@ -1,6 +1,7 @@
 ---
 linkTitle: Policy API
 title: Giant Swarm Policy API guide
+diataxis_content_type: explanation
 description: An overview of how to use Giant Swarm `Policy` types to enforce cluster security and best practices.
 weight: 60
 menu:

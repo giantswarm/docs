@@ -1,5 +1,6 @@
 ---
 title: Release CRD schema reference (group release.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: Release
 description: |
   Release is a Kubernetes resource (CR) representing a Giant Swarm workload cluster release.

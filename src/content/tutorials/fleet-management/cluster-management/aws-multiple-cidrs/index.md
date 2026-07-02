@@ -1,5 +1,6 @@
 ---
 title: Multiple VPC CIDRs for AWS clusters
+diataxis_content_type: how-to-guide
 description: Allocate multiple CIDRs in order to scale the cluster or align a cluster with your existing network rules.
 weight: 15
 menu:

@@ -1,13 +1,14 @@
 ---
 linkTitle: Multiple AZ
 title: Clusters over multiple availability zones
+diataxis_content_type: explanation
 description: Using multiple availability zones both for worker and control plane nodes increases the resilience of the cluster. Here you will see some details regarding support on different cloud providers and releases, plus how to configure workloads to leverage multiple availability zones.
 weight: 20
 menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-clusters-multi-az
-last_review_date: 2024-11-29
+last_review_date: 2026-06-17
 user_questions:
 - Does Giant Swarm support multiple availability zones (AZ)?
 - What are the benefits of using multiple availability zones (AZ)?
@@ -54,7 +55,7 @@ This enables use cases such as:
 
 - Single availability zone clusters start in a random availability zone too. This is a means to minimize the risk of all your clusters becoming unavailable due to a failure in one particular zone.
 
-- Standard volumes can not be moved across availability zones. You need to take this into account when designing for high availability. If the zone with your volume goes down, there will be no way to reschedule the pod to another availability zone. You either need to create a new volume from a snapshot or you will have to replicate your data across zones. On AWS, you can also consider using [EFS]({{< relref "/vintage/advanced/storage/efs" >}}) as a storage provider to be able to access volumes from several availability zones.
+- Standard volumes can not be moved across availability zones. You need to take this into account when designing for high availability. If the zone with your volume goes down, there will be no way to reschedule the pod to another availability zone. You either need to create a new volume from a snapshot or you will have to replicate your data across zones. On AWS, you can also consider using [EFS](https://aws.amazon.com/efs/) as a storage provider to be able to access volumes from several availability zones.
 
 - To make sure your pods and volumes end up on the same nodes, our recommendation is to specify `WaitForFirstConsumer` as `volumeBindingMode` in your storage classes. Your clusters come with a default storage class that contains this setting already. See the [Volume Binding Mode](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) section in the Kubernetes storage documentation for more information.
 

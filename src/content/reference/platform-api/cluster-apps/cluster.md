@@ -1,5 +1,6 @@
 ---
 title: cluster chart reference
+diataxis_content_type: reference
 linkTitle: cluster
 description:  Giant Swarm cluster chart with provider-independent cluster resources; Check here the different properties of the chart.
 weight: 100
