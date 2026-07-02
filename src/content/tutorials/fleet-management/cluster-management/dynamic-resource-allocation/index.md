@@ -1,6 +1,7 @@
 ---
 linkTitle: Dynamic Resource Allocation
 title: Set up Dynamic Resource Allocation (DRA) for GPU workloads
+diataxis_content_type: how-to-guide
 description: Learn how to configure Dynamic Resource Allocation (DRA) in Giant Swarm Cluster API workload clusters to enable advanced GPU resource management with Kubernetes native scheduling.
 weight: 75
 menu:

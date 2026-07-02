@@ -1,5 +1,6 @@
 ---
 title: Exposing workloads
+diataxis_content_type: how-to-guide
 description: Expose your workloads to the public internet using an ingress controller.
 weight: 10
 aliases:

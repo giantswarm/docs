@@ -1,6 +1,7 @@
 ---
 linkTitle: TLS certificates for ingress
 title: Obtaining TLS certificates for ingress traffic
+diataxis_content_type: how-to-guide
 description: Configure cert-manager to automatically obtain TLS certificates for ingress traffic.
 weight: 50
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: get catalogs
 title: "'kubectl gs get catalogs' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list catalogs and get details for a single catalog using 'kubectl gs'.
 weight: 20
 menu:
