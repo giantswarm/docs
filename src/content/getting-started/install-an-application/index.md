@@ -20,7 +20,7 @@ user_questions:
 
 Giant Swarm runs Flux on every management cluster, and Flux HelmRelease is the recommended way to deploy applications to your workload clusters. This guide walks you through installing a hello-world demo and exposing it through Envoy Gateway (the Giant Swarm default for ingress traffic) with a Gateway API `HTTPRoute`.
 
-**Note:** If you have existing deployments using the legacy Giant Swarm `App` custom resource, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the migration path. For new deployments, follow this guide.
+**Note:** If you have existing deployments using the legacy Giant Swarm `App` custom resource, migration guidance is coming soon. For new deployments, follow this guide.
 
 For a deeper reference covering every Flux flag and option, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
