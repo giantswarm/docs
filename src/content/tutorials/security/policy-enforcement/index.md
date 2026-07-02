@@ -18,7 +18,7 @@ user_questions:
  -  How can I run a container as a certain user?
  -  How can I run a container as privileged?
  -  Why is my container lacking permission to use a persistent volume?
-last_review_date: 2024-11-29
+last_review_date: 2026-07-02
 mermaid: true
 layout: single
 owner:
@@ -155,7 +155,7 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-capabi
 
 This policy specifies a list of permitted capabilities and rejects Pods which add any capabilities not in the list.
 
-__Note__: The restricted `PSS` policy `disallow-capabilities-strict` imposes additional restrictions and requires explicitly dropping `ALL` other capabilities.
+**Note**: The restricted `PSS` policy `disallow-capabilities-strict` imposes additional restrictions and requires explicitly dropping `ALL` other capabilities.
 
 #### Examples
 
@@ -261,7 +261,7 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/disallow-host-p
 
 This policy rejects `Pods` which use a `HostPath` type volume.
 
-__Note__: The restricted `PSS` policy `restrict-volume-types` imposes additional restrictions on volume types.
+**Note**: The restricted `PSS` policy `restrict-volume-types` imposes additional restrictions on volume types.
 
 #### Examples
 
@@ -603,7 +603,7 @@ Policy source: https://kyverno.io/policies/pod-security/baseline/restrict-seccom
 
 This policy rejects `Pods` which set a `seccomp` profile other than `RuntimeDefault` or `Localhost`.
 
-__Note__: The Restricted PSS policy `restrict-seccomp-strict` requires containers to explicitly set one of the approved profiles.**
+**Note**: The Restricted PSS policy `restrict-seccomp-strict` requires containers to explicitly set one of the approved profiles.**
 
 #### Examples
 
@@ -946,7 +946,7 @@ Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-secc
 
 This policy requires either the Pod or all containers to explicitly set a `seccomp` profile of either `RuntimeDefault` or `Localhost`.
 
-__Note__: The Baseline PSS policy `restrict-seccomp` requires Pods/containers to use one of these profiles *if they set one*. This policy requires the value to be set.
+**Note**: The Baseline PSS policy `restrict-seccomp` requires Pods/containers to use one of these profiles *if they set one*. This policy requires the value to be set.
 
 #### Examples
 
@@ -1017,7 +1017,7 @@ Policy source: https://kyverno.io/policies/pod-security/restricted/restrict-volu
 
 This policy restricts the types of volumes a `Pod` may use to a list of pre-approved types.
 
-__Note__: The Baseline PSS policy `disallow-host-path` forbids only `HostPath` volumes. This policy further restricts the types of approved volumes.
+**Note**: The Baseline PSS policy `disallow-host-path` forbids only `HostPath` volumes. This policy further restricts the types of approved volumes.
 
 #### Examples
 
@@ -1081,7 +1081,7 @@ spec:
 
 If a workload requires an exception, for example because it has a legitimate reason to run with a less secure configuration, the workload can be excluded from enforcement of a particular policy.
 
-__Note__: under most circumstances, only a cluster administrator will be able to grant an exception. Your organization may have a predefined process or offer an automated self-service portal to request one.
+**Note**: under most circumstances, only a cluster administrator will be able to grant an exception. Your organization may have a predefined process or offer an automated self-service portal to request one.
 
 To exclude a workload from a policy, create a `PolicyException` resource for that workload-policy combination.
 
@@ -1117,7 +1117,7 @@ spec:
 
 This example allows a `Deployment` (and the `ReplicaSet` and `Pods` it creates) named `my-workload` in the namespace `my-namespace` to be admitted even though it violates the `disallow-host-path` and `restrict-volume-types` policies.
 
-__Note__: creating a many-to-many exception (multiple targets excluded from multiple policies) isn't currently permitted. Either `policies` or `targets` must contain exactly one entry.
+**Note**: creating a many-to-many exception (multiple targets excluded from multiple policies) isn't currently permitted. Either `policies` or `targets` must contain exactly one entry.
 
 Various `Policy` API components watch these resources and make the corresponding changes in supported any lower-level policies. `PSS` policies are currently enforced using Kyverno, so when this Giant Swarm `PolicyException` is created, the Policy API controllers will ensure that a corresponding Kyverno policy exception is created or updated to exclude the workload from the named policies.
 

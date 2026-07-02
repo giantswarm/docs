@@ -30,6 +30,8 @@ Before setting up Gateway API, ensure you have:
 
 Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components (Gateway API CRDs, [Envoy Gateway](https://gateway.envoyproxy.io/) and a preconfigured default Gateway):
 
+**Note:** The Gateway API Bundle currently ships as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}), which is being phased out in favor of Flux HelmRelease. The bundle itself doesn't yet have a HelmRelease equivalent because it deploys nested App resources internally. For application deployments outside the bundle, use HelmRelease.
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap

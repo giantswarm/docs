@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-security-ingresstls
 user_questions:
   - How do I obtain TLS certificates?
-last_review_date: 2024-12-03
+last_review_date: 2026-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
@@ -151,7 +151,7 @@ spec:
               number: 8080
 ```
 
-__Note__: It is important to specify the correct `spec.ingressClassName` (which will likely be either `nginx` or `nginx-internal`) and `spec.tls` fields.
+**Note**: It's important to specify the correct `spec.ingressClassName` (which will likely be either `nginx` or `nginx-internal`) and `spec.tls` fields.
 
 It is also possible to obtain wildcard certificates, which can be useful in some cases. Please note that wildcard certificates can only be obtained via a `DNS` challenge such as the one set up in this example - they can _not_ be obtained via `HTTP` challenges.
 
@@ -181,6 +181,6 @@ spec:
     secretName: wildcard-tls
 ```
 
-__Note__: In this case, since you are using an already existing certificate, remember to remove the `kubernetes.io/tls-acme: "true"` annotation from the `Ingress` resource.
+**Note**: In this case, since you are using an already existing certificate, remember to remove the `kubernetes.io/tls-acme: "true"` annotation from the `Ingress` resource.
 
 If you want to learn more about [`Ingress` connectivity]({{< relref "/tutorials/connectivity/ingress/" >}}), please check our tutorials.

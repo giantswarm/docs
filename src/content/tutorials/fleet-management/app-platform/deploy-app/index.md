@@ -1,9 +1,9 @@
 ---
-linkTitle: Deploying an app
+linkTitle: Deploying an app (legacy App CR)
 title: Getting started deploying an app with the App Platform
 diataxis_content_type: how-to-guide
 description: Guide to deploying apps using kubectl gs and the Giant Swarm platform API.
-weight: 20
+weight: 100
 aliases:
   - /getting-started/app-platform/deploy-app
   - /vintage/getting-started/app-platform/deploy-app
@@ -17,8 +17,10 @@ user_questions:
   - How can I deploy an app using an App CR?
   - How can I configure an App CR?
   - How can I see which apps are available using the platform API?
-last_review_date: 2025-11-27
+last_review_date: 2026-06-17
 ---
+
+**Note:** This guide covers the Giant Swarm `App` custom resource, which is being phased out. For new deployments, follow [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) instead. See [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the timeline and migration path.
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resources for multiple clusters, from a single place: the [platform API]({{< relref "/overview/architecture/#platform-api" >}}).
 
