@@ -25,7 +25,7 @@ To avoid duplication caused by adding the same application from scratch across a
 
 ## Example
 
-An example of an app template is available in the [gitops-template repository "bases/apps/hello-world"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/hello-world).
+An example of an app template is available in the [gitops-template repository, path `bases/apps/hello-world`](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/hello-world).
 
 ## Export environment variables
 
