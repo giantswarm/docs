@@ -1,6 +1,7 @@
 ---
 linkTitle: get catalogs
 title: "'kubectl gs get catalogs' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list catalogs and get details for a single catalog using 'kubectl gs'.
 weight: 20
 menu:
@@ -15,6 +16,8 @@ user_questions:
 aliases:
   - /vintage/use-the-api/kubectl-gs/get-catalogs/
 ---
+
+**Deprecated:** This command lists the legacy `Catalog` resource, which is being phased out in favor of Flux sources. For new deployments, use `flux get sources oci` (or `flux get sources helm` for HTTP-based Helm repositories). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a [Catalog]({{< relref "/reference/platform-api/crd/catalogs.application.giantswarm.io.md" >}})
 custom resource in this case, or list several of them.

@@ -84,7 +84,7 @@ The `--kubeconfig-secret-ref` flag tells Flux to install the chart into the work
 
 ## Add configuration
 
-Most charts need configuration values. Pass them through the HelmRelease using a ConfigMap (for non-secret values) and a Secret (for credentials).
+Most charts need configuration values. Pass them through the HelmRelease using a `ConfigMap` (for non-secret values) and a `Secret` (for credentials).
 
 ### Non-secret values
 
@@ -137,7 +137,7 @@ sops --encrypt --in-place secret.enc.yaml
 
 For more on secrets encrypted with `sops` in GitOps, see [the gitops-template docs](https://github.com/giantswarm/gitops-template/blob/main/docs/add_mc.md#flux-gpg-master-key-pair).
 
-Add the Secret to `helmrelease.yaml` next to the ConfigMap entry:
+Add the Secret to `helmrelease.yaml` next to the `ConfigMap` entry:
 
 ```yaml
 spec:

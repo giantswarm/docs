@@ -1,0 +1,20 @@
+{{- /* Invoke with percent notation ({{% step %}}) so the headline below is a
+       real Markdown heading and gets picked up by the page table of contents.
+       The step counter is scoped to the parent `steps` instance, so each block
+       numbers from 1. The number circle is decorative ‒ the surrounding ordered
+       list already conveys the sequence to assistive technology ‒ so it is
+       hidden from the accessibility tree. */ -}}
+{{- .Parent.Scratch.Add "stepcount" 1 -}}
+{{- $number := .Parent.Scratch.Get "stepcount" -}}
+{{- $title := .Get "title" -}}
+{{- if not $title }}{{ errorf "Each `step` requires a `title` in %q" .Page.File.Path }}{{ end -}}
+<li class="step">
+<div class="step-number" aria-hidden="true">{{ $number }}</div>
+<div class="step-body">
+
+### {{ $title }}
+
+{{ .Inner }}
+
+</div>
+</li>

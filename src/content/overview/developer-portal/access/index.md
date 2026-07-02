@@ -1,5 +1,6 @@
 ---
 title: Accessing the developer portal
+diataxis_content_type: how-to-guide
 linkTitle: Access
 description: How to find your Giant Swarm developer portal URL and how to log in.
 weight: 10

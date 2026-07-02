@@ -16,7 +16,7 @@ owner:
 last_review_date: 2026-06-17
 ---
 
-To update an existing HelmRelease deployment you edit one or more of four files: the `OCIRepository` (for chart version changes), the `HelmRelease` (for install or upgrade behavior), the values `ConfigMap`, or the encrypted Secret. Commit the change and Flux applies it on the next reconciliation.
+To update an existing HelmRelease deployment you edit one or more of four files. The `OCIRepository` handles chart version changes. The `HelmRelease` handles install or upgrade behavior. The values `ConfigMap` and the encrypted Secret hold the chart values. Commit the change and Flux applies it on the next reconciliation.
 
 For the App CR equivalent of this guide, see [Update an existing App]({{< relref "/tutorials/continuous-deployment/apps/update-appcr" >}}).
 
@@ -77,7 +77,7 @@ Commit, push, reconcile.
 
 ## Change non-secret values
 
-If the values your chart needs are in `configmap.yaml`, edit them directly and commit. Flux applies the updated ConfigMap, the HelmRelease detects the values change, and Helm performs an upgrade on the workload cluster.
+If the values your chart needs are in `configmap.yaml`, edit them directly and commit. Flux applies the updated `ConfigMap`, the HelmRelease detects the values change, and Helm performs an upgrade on the workload cluster.
 
 ```yaml
 apiVersion: v1
