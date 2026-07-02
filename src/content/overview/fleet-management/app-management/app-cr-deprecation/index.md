@@ -18,8 +18,6 @@ user_questions:
 last_review_date: 2026-06-17
 ---
 
-**Status:** Draft. Timeline to be confirmed.
-
 The Giant Swarm App custom resource (`App`, in the `application.giantswarm.io` API group) is being phased out in favor of upstream [Flux HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/). Every Giant Swarm management cluster already runs Flux, and we're now making it the recommended way for customers to deploy and configure applications.
 
 ## Why we're making this change
