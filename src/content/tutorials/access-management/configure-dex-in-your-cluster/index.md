@@ -434,6 +434,6 @@ subjects:
 
 This example assigns the `cluster-admin` role to members of the group `customer:example-admin`.
 
-__Want to simplify initial access setup?__ Use our [RBAC bootstrap app](https://github.com/giantswarm/rbac-bootstrap-app). This app helps you easily configure the users and groups that will initially have access to the cluster.
+If you want to simplify the setup, use our [RBAC bootstrap app](https://github.com/giantswarm/rbac-bootstrap-app). This app helps you easily configure the users and groups that will initially have access to the cluster.
 
 Learn how to [use `ServiceAccount` to authenticate against platform API]({{< relref "/tutorials/access-management/authentication/automation" >}}).
