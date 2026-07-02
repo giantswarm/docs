@@ -58,7 +58,7 @@ flux get helmreleases \
   --selector giantswarm.io/cluster=${CLUSTER}
 ```
 
-You'll see the apps that ship with the cluster (default-apps bundle, observability tooling, and so on). Confirm the Gateway API bundle is among them. If it isn't, install it first using the [Gateway API installation guide]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}).
+You'll see the apps that ship with the cluster: the default-apps bundle, observability tooling, and other managed components. Confirm the Gateway API bundle is among them. If it isn't, install it first using the [Gateway API installation guide]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}).
 
 You can also confirm the default Gateway is ready, from your workload cluster:
 
@@ -70,7 +70,7 @@ The `PROGRAMMED` column should read `True` once the Gateway is reconciled.
 
 ## Step 2: Find your cluster's base domain
 
-Every workload cluster comes with a wildcard DNS record, so apps you expose are reachable at `<name>.${CLUSTER}.<base-domain>`. Read the base domain from the cluster values ConfigMap:
+Every workload cluster comes with a wildcard DNS record, so apps you expose are reachable at `<name>.${CLUSTER}.<base-domain>`. Read the base domain from the cluster values `ConfigMap`:
 
 ```sh
 kubectl get configmap \
