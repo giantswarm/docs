@@ -49,7 +49,7 @@ In terms of virtual networking, the following requirements must be met:
 
 The credentials for authentication against the VCD API are configured by cluster. The controller that interacts with the VCD API uses those credentials from a secret provided in the cluster app definition.
 
-**Warning**: Take into account that every user is tied to its own VCD Resource quotas which may affect when deploying the infrastructure.
+**Warning**: Consider that every user is tied to its own VCD Resource quotas, which may affect infrastructure deployment.
 
 To obtain the credentials, you need to create a new role by browsing to `Administration > Access Control > Roles > Check vApp Author` and then click `Clone`. The suggestion is to name the role `CAPVCD`. Apart of the default permissions inherit from `vApp Author` role, the controller requires the following permissions:
 

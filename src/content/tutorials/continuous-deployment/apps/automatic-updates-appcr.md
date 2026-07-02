@@ -32,7 +32,7 @@ Enabling automated updates requires a few additional `Flux` resources to be defi
 
 `Flux` will watch for new docker image tags for your `App` and use them to update the `.spec.version` field in the `App` resource. It will do it by pushing commits to this repository.
 
-**Note**: in order to use this mechanism you have to make sure the image tags of your `App` correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
+**Note**: To use this mechanism, make sure the image tags of your `App` correspond to its version. Otherwise this process will set a meaningless version in the `.spec.version` field.
 
 ## Example
 

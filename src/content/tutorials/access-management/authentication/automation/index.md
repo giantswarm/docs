@@ -29,7 +29,7 @@ To learn about authentication as a user who can complete an interactive authenti
 
 Every Giant Swarm management cluster provides a service account named `automation` in the `default` namespace. This service account's token and additional information as the API endpoint and `CA` certificate can then be extracted into a self-contained kubectl configuration file.
 
-**Note**: This `automation` service account comes with a powerful set of permissions, thus we strongly recommend you create a specific service account for each application, binding it to specific roles granting only the required permissions in the required namespaces.
+**Note**: This `automation` service account comes with a powerful set of permissions. We recommend that you create a specific service account for each application. Bind it to roles that grant only the required permissions in the required namespaces.
 
 These instructions assume the `automation` service account name. You'll have to replace this one with the name of the service account you are using.
 

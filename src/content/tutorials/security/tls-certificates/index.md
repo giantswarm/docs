@@ -151,7 +151,7 @@ spec:
               number: 8080
 ```
 
-**Note**: It is important to specify the correct `spec.ingressClassName` (which will likely be either `nginx` or `nginx-internal`) and `spec.tls` fields.
+**Note**: It's important to specify the correct `spec.ingressClassName` (which will likely be either `nginx` or `nginx-internal`) and `spec.tls` fields.
 
 It is also possible to obtain wildcard certificates, which can be useful in some cases. Please note that wildcard certificates can only be obtained via a `DNS` challenge such as the one set up in this example - they can _not_ be obtained via `HTTP` challenges.
 

@@ -212,7 +212,7 @@ bases/environments/stages/
         └── kustomization.yaml
 ```
 
-**Note**: In a similar way, you could base your environments on different cluster templates from bases. You can create as many levels as you want, but take into account always to set the right priorities of the configuration files.
+**Note**: In a similar way, you could base your environments on different cluster templates from bases. You can create as many levels as you want. Remember to set the right priorities of the configuration files.
 
 #### Regions
 

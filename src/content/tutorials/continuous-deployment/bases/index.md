@@ -45,7 +45,7 @@ In order to avoid code duplication, the [bases and overlays](https://kubernetes.
 
 The shared cluster template base shouldn't serve as a standalone base for cluster creation, it's only abstracting `App` resources common to all clusters versions. It's then used as a base for other bases, which provide an overlay with a specific configuration. That way you avoid code duplication across bases.
 
-**Note**: This isn't a complete guide of how to create a perfect base, but rather a mere summary of basic steps needed to move forward. Hence, instructions here won't always be precise in telling you what to change, as this can strongly depend on the resources involved, how much of them you would like to include in a base, etc.
+**Note**: This isn't a complete guide of how to create a perfect base, but a summary of the basic steps needed to move forward. Instructions here won't always be precise in telling you what to change. The right answer depends on the resources involved and how much of them you want to include in a base.
 
 You can create bases for workload clusters easily thanks to the `kubectl gs` command:
 
