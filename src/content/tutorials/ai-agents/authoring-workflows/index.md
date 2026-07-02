@@ -1,7 +1,7 @@
 ---
-title: Write a Muster workflow
+title: Author a Muster workflow
 diataxis_content_type: how-to-guide
-linkTitle: Write a workflow
+linkTitle: Author a workflow
 description: Write a Muster Workflow resource that packages a multi-step operation into one named tool an AI agent can discover and call, grounded in the fields the engine actually implements.
 weight: 10
 menu:
@@ -133,11 +133,11 @@ The output template **preserves JSON types**. A leaf's type comes from the value
 
 When `spec.output` is declared, the per-step `output` and `store` flags no longer affect the returned document. The output template defines it in full. Muster logs a one-line warning naming any flags it made inert. Drop those flags, or drop the output template. The output template is the strongest token lever a workflow has, since it returns a small, shaped payload instead of the full response.
 
-An output template render error no longer discards the step results that already succeeded. The output template renders with `missingkey=error`, so a single bad reference (a typo, or a field that's absent on some runs) fails the render after every step has already run. The workflow still fails loud—the error is returned and the result is flagged as an error. The response now carries **every** recorded step result plus an `output_error` message describing the render failure. The underlying data stays recoverable, so you can see what each step returned and fix the output template without re-running the workflow.
+An output template render error no longer discards the step results that already succeeded. Because the output template renders with `missingkey=error`, a single bad reference (a typo, or a field that's absent on some runs) fails the render after every step has already run. The workflow still fails loud—the error is returned and the result is flagged as an error—but the response now carries **every** recorded step result plus an `output_error` message describing the render failure. The underlying data stays recoverable, so you can see what each step returned and fix the output template without re-running the workflow.
 
 ### Inspect an output template with `_debug`
 
-An output template hides the full response by design, which is exactly what you don't want while you're debugging the output template itself. Rather than temporarily deleting the output template to see what each step returned, pass the reserved `_debug: true` execution argument:
+An output template deliberately hides the full response, which is exactly what you don't want while you're debugging the output template itself. Rather than temporarily deleting the output template to see what each step returned, pass the reserved `_debug: true` execution argument:
 
 ```bash
 muster call workflow_pod-health --arg management_cluster=my-cluster-mcp-kubernetes --arg _debug=true

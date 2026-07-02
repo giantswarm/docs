@@ -1,6 +1,7 @@
 ---
 linkTitle: App management
 title: App management
+diataxis_content_type: explanation
 description: The app platform allows to manage app catalogs and apps, for simple and standardized deployment across the platform.
 weight: 40
 menu:

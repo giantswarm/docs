@@ -180,7 +180,7 @@ Two things need to happen to achieve that without downtime:
 
 ## DNS hosted zones and Kubernetes API endpoint
 
-The DNS setup changes for the workload clusters. The new management cluster has a new DNS hosted zone allocated in AWS. In the vintage setup, the hosted zone contained the management and the workload cluster name in the domain, for API and other components (example: `irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net`). In the CAPI setup the DNS structure is more flexible and doesn't contain the management cluster name (example: `irsa.mycluster.capi.acme.net`). Both the old and new hosted zones will be available for a while to ensure a smooth transition, but **customers should migrate the DNS records to the new zone**.
+The DNS setup changes for the workload clusters. The new management cluster has a new DNS hosted zone allocated in AWS. In the vintage setup, the hosted zone contained the management and the workload cluster name in the domain (example: `irsa.mycluster.k8s.myoldmanagementcluster.vintage.acme.net`), for API and other components, while in the CAPI setup the DNS structure is more flexible, not containing the management cluster name (example: `irsa.mycluster.capi.acme.net`). Both the old and new hosted zones will be available for a while to ensure a smooth transition, but **customers should migrate the DNS records to the new zone**.
 
 Examples:
 

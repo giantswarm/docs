@@ -29,7 +29,7 @@ Two components work together to make this possible:
 
 - **Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
 
-Modern AI assistants—Claude Code, Cursor, and VS Code with GitHub Copilot—support remote, OAuth-protected MCP servers natively. Point your editor straight at the Muster endpoint over HTTPS. The editor runs the SSO login flow itself, and there's nothing to install or keep running locally:
+Modern AI assistants—Claude Code, Cursor, and VS Code with GitHub Copilot—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login flow itself, with nothing to install or keep running locally:
 
 {{< mermaid >}}
 flowchart TB
@@ -44,7 +44,7 @@ flowchart TB
   muster --> k8sC
 {{< /mermaid >}}
 
-That direct connection is the recommended setup, and Muster handles authentication to each cluster on your behalf so your assistant never juggles tokens or credentials directly. Some clients can't reach a remote, OAuth-protected MCP server—they only speak stdio, or have no built-in OAuth flow. For those, the `muster` CLI provides an optional local bridge (`muster agent`) that converts stdio to HTTPS and performs the login for you.
+That direct connection is the recommended setup, and Muster handles authentication to each cluster on your behalf so your assistant never juggles tokens or credentials directly. For a client that can't reach a remote, OAuth-protected MCP server—one that only speaks stdio, or has no built-in OAuth flow—the `muster` CLI provides an optional local bridge (`muster agent`) that converts stdio to HTTPS and performs the login for you.
 
 For the bigger picture—what Muster is, how the aggregator works, and how it stays secure—see the [AI agents overview]({{< relref "/overview/ai-agents" >}}). If you'd rather ask questions in the browser instead of your IDE, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) is powered by the same Muster aggregator.
 
@@ -97,7 +97,7 @@ Create or edit `~/.cursor/mcp.json` (for global settings) or `.cursor/mcp.json` 
 
 Make sure MCP is enabled in Cursor's settings. Cursor opens your browser to authenticate on first connect.
 
-### VS Code
+### VS Code (GitHub Copilot)
 
 Create or edit `.vscode/mcp.json` in your workspace (or your user-level MCP settings) and add:
 
@@ -116,7 +116,7 @@ VS Code opens your browser for SSO the first time Copilot connects. After authen
 
 ## Verify and manage with the muster CLI (optional)
 
-The direct connection covered earlier needs only your editor. Install the `muster` CLI when you want a terminal view of what you can reach, the `auth` and `context` commands, or the local bridge described later on this page.
+The direct connection above needs only your editor. Install the `muster` CLI when you want a terminal view of what you can reach, the `auth` and `context` commands, or the local bridge described below.
 
 ### Install the CLI
 
@@ -155,7 +155,7 @@ MCP Servers
 
 ## Connect through the local bridge (fallback)
 
-For an editor that can't connect to a remote, OAuth-protected MCP server directly, bridge it with `muster agent`. This needs the CLI installed and a context set, as covered earlier. The bridge uses the active context, so no endpoint flag is needed in the editor config.
+For an editor that can't connect to a remote, OAuth-protected MCP server directly, bridge it with `muster agent`. This needs the CLI installed and a context set, as above. The bridge uses the active context, so no endpoint flag is needed in the editor config.
 
 ### Claude Code through the bridge
 
