@@ -1,6 +1,7 @@
 ---
 linkTitle: Authorization
 title: Authorization in the platform API
+diataxis_content_type: how-to-guide
 description: Granting users specific permission to certain resources is what authorization is all about. The Platform API uses Kubernetes' role based access control (RBAC) primitives and provides automation on top of it to make authorization easy for most real-life use cases. Here we explain them in detail.
 weight: 30
 menu:

@@ -1,5 +1,6 @@
 ---
 title: Adding your own catalog
+diataxis_content_type: explanation
 linkTitle: Catalog
 description: How to add your own catalog entities to the developer portal provided by Giant Swarm, for your own users, groups, components, and more.
 weight: 40

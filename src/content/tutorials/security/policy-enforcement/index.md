@@ -1,6 +1,7 @@
 ---
 linkTitle: Policy enforcement
 title: Security policy enforcement
+diataxis_content_type: reference
 description: This article describes the security policies enforced in a cluster and how to resolve failing resources.
 weight: 20
 menu:

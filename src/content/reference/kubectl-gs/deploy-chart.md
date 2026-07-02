@@ -1,6 +1,7 @@
 ---
 linkTitle: deploy chart
 title: "'kubectl gs deploy chart' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to deploy a Helm chart using 'kubectl gs'.
 weight: 19
 menu:

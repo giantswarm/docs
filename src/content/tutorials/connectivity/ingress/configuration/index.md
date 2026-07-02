@@ -1,5 +1,6 @@
 ---
 title: Advanced ingress configuration
+diataxis_content_type: reference
 description: Here we describe how you can customize and enable specific features for the ingress-nginx controller.
 weight: 20
 user_questions:
