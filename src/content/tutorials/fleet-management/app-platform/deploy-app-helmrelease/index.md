@@ -204,7 +204,7 @@ flux delete source oci \
     helloworld-marian
 ```
 
-## GitOps workflow
+## Git-driven workflow
 
 To manage these resources from a Git repository instead of applying them directly, render the YAML with the `--export` flag. Both `flux create source oci` and `flux create helmrelease` print the resource manifest to standard output when given `--export`:
 
@@ -238,4 +238,4 @@ For an end-to-end GitOps setup, see [FluxCD]({{< relref "/tutorials/continuous-d
 Now that you completed this guide, here are some suggestions for useful next things to pick up.
 
 - Configure OCIRepository for **automatic updates**. In this guide we configured the OCIRepository to provide a pinned version of the chart, using the `--tag` CLI flag. Flux also supports specifying version ranges, so that Flux updates the deployed chart whenever a greater (in SemVer terms) version is found. Look for the `--tag-semver` flag in the [`flux create source oci` docs](https://fluxcd.io/flux/cmd/flux_create_source_oci/) and for the [SemVer example](https://fluxcd.io/flux/components/source/ocirepositories/#semver-example) in the OCIRepository API reference.
-- You may need **secrets and credentials** in your chart configuration. Check the [`flux create helmrelease` docs](https://fluxcd.io/flux/cmd/flux_create_helmrelease/) and look for the `--values-from` example with a value starting with `Secret/`. This way, you can reference a Secret resource in the same namespace. This approach can be combined with passing non-secret values via `--values`, and with referencing ConfigMap resources via `--values-from`. The configuration is the merged combination of all sources.
+- You may need **secrets and credentials** in your chart configuration. Check the [`flux create helmrelease` docs](https://fluxcd.io/flux/cmd/flux_create_helmrelease/) and look for the `--values-from` example with a value starting with `Secret/`. This way, you can reference a Secret resource in the same namespace. This approach can be combined with passing non-secret values via `--values`, and with referencing `ConfigMap` resources via `--values-from`. The configuration is the merged combination of all sources.
