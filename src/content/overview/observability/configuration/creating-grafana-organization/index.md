@@ -408,10 +408,11 @@ After creating your organization:
 
 1. **Check organization status:**
 
-```bash
-kubectl get grafanaorganization myonlineshop -o yaml
-2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
+   ```bash
+   kubectl get grafanaorganization myonlineshop -o yaml
+   ```
 
+2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
 
 - The organization dropdown menu on the top-left corner shows all expected organizations
 
