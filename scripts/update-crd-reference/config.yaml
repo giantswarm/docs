@@ -317,3 +317,18 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - configuration
+  - url: https://github.com/giantswarm/muster
+    organization: giantswarm
+    short_name: muster
+    commit_reference: v0.22.8
+    crd_paths:
+      - helm/muster-crds/files/crds
+    cr_paths:
+      - docs/cr
+    metadata:
+      workflows.muster.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-bumblebee
+      mcpservers.muster.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-bumblebee
