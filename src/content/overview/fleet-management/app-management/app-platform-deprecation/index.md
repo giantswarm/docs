@@ -45,19 +45,19 @@ _Specific dates to be confirmed._ Until the timeline is finalized:
 {{% steps %}}
 
 {{% step title="Phase 1: Communication and docs (completed)" %}}
-App CR sunset announced with a long deprecation window. App CR documentation moved to a legacy section and new tutorials default to HelmRelease.
+App Platform sunset announced with a long deprecation window. App Platform documentation moved to a legacy section and new tutorials default to Flux resources.
 {{% /step %}}
 
 {{% step title="Phase 2: Today" %}}
-Both App CRs and HelmRelease are fully supported. New deployments should prefer HelmRelease.
+App Platform (`App`, `AppCatalog`, `AppCatalogEntry`, `Catalog`, `Chart`) are fully supported but new deployments should prefer the Flux resources.
 {{% /step %}}
 
 {{% step title="Phase 3: Resource migration (soon)" %}}
-Migration CLI available. App CR reconciliation continues unchanged, so existing deployments keep working while you migrate them over.
+Migration CLI available. App Platform reconciliation continues unchanged, so existing deployments keep working while you migrate them over to Flux.
 {{% /step %}}
 
 {{% step title="Phase 4: Sunset (~year)" %}}
-App CR support ends. All workloads expected to run as HelmReleases.
+App Platform support ends. All workloads expected to run as Flux resources.
 {{% /step %}}
 
 {{% /steps %}}
@@ -66,9 +66,9 @@ We'll update this page as the timeline is firmed up. If you're planning a major 
 
 ## What this means for you
 
-- **Existing App CR deployments keep working.** There will be a long, supported overlap period, so don't rush a migration.
-- **For new deployments, use Flux HelmRelease.** Start with [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
-- **Plan a migration when it fits your release cadence.** A dedicated CLI is in development to convert App CR bundles into equivalent HelmRelease + OCIRepository bundles. Docs for the CLI will land here once it's ready.
+- **Existing App Platform resources keep working.** There will be a long, supported overlap period, so don't rush a migration.
+- **For new deployments, use Flux resources.** Start with [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
+- **Plan a migration when it fits your release cadence.** A dedicated CLI is in development to convert App Platform resources into Flux equivalents. Docs for the CLI will land here once it's ready.
 
 ## What's affected
 
@@ -84,7 +84,7 @@ Their reference documentation remains available but will be marked as deprecated
 
 ## Migration CLI
 
-We're building a CLI tool that converts an existing App CR (along with its associated `ConfigMap` and `Secret` resources) into an equivalent Flux HelmRelease and OCIRepository bundle. The tool preserves configuration semantics where the two APIs overlap and flags fields that need manual review.
+We're building a CLI tool that converts an existing App Platform resources (along with its associated `ConfigMap` and `Secret` resources) into an equivalent Flux resources. The tool preserves configuration semantics where the two APIs overlap and flags fields that need manual review.
 
 This page will be updated with installation and usage instructions when the tool is released.
 
