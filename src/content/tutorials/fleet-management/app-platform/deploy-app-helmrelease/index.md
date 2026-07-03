@@ -79,7 +79,7 @@ For the following example we make a few assumptions:
 
 To determine what configuration values of our chart accepts, let's take a look at the source repository. Our application's source lives in the GitHub repository [giantswarm/hello-world](https://github.com/giantswarm/hello-world-app).
 
-Assuming that we want to deploy the most recent release, which is [v3.0.2](https://github.com/giantswarm/hello-world-app/releases/tag/v3.0.2) as of the writing of this guide, we can browse the repository content at tag `v3.0.2`. We find its default configuration in the [`values.yaml`](https://github.com/giantswarm/hello-world-app/blob/v3.0.2/helm/hello-world/values.yaml) file inside the `helm/hello-world` folder.
+Assuming that we want to deploy the most recent release, which is [v3.0.2](https://github.com/giantswarm/hello-world-app/releases/tag/v3.0.2) as of the writing of this guide, and at the same time we want to have automatic upgrades for minor and patch versions, we use `v3.x.x`.
 
 We don't have to deal with most of the configuration options in this case. However, to get the application fully working and see a little demo website deployed to our server, we need to expose it through the cluster's [Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api" >}}) using a Gateway API `HTTPRoute`. The chart's `route` block renders that `HTTPRoute` for us. Based on our assumptions for this example case, we create a new `values.yaml` file like this:
 
@@ -108,7 +108,7 @@ Here is the command we'll use. Hold on, we'll explain the details next.
 ```nohighlight
 flux create source oci dev01-hello-world \
     --url oci://gsoci.azurecr.io/charts/giantswarm/hello-world \
-    --tag 3.0.2 \
+    --tag 3.x.x \
     --namespace org-acmedev \
     --interval 60m
 ```
@@ -117,7 +117,7 @@ About the argument and flags:
 
 - By convention, we prefix the resource name with the cluster name and a dash: `dev01-hello-world`. The second part of the name should simply remind us what chart this is for.
 - The `--url` flag is needed to specify URL of the chart repository in the registry. Giant Swarm's public registry has the domain `gsoci.azurecr.io`. Our charts have the namespace prefix `charts/giantswarm/`. The chart itself is named `hello-world`. And as a protocol prefix, `oci://` is required. This results in the URL `oci://gsoci.azurecr.io/charts/giantswarm/hello-world`.
-- The `--tag` field specifies which exact version (OCI (Open Container Initiative) tag) to use. Watch out: OCI (Open Container Initiative) tags aren't necessarily identical with git tags in the source repository. In fact, in our example, the git tag is `v3.0.2`, but the OCI (Open Container Initiative) tag is `3.0.2` without the `v` prefix. We recommend using a CLI like [crane](https://michaelsauter.github.io/crane/) or a service like [OCI.dag.dev](https://oci.dag.dev/?repo=gsoci.azurecr.io%2Fcharts%2Fgiantswarm%2Fhello-world) to verify which tags are available.
+- The `--tag` field specifies which exact version (OCI (Open Container Initiative) tag) to use. Watch out: OCI (Open Container Initiative) tags aren't necessarily identical to git tags in the source repository. In fact, in our example, the git tag is `v3.0.2`, but the OCI (Open Container Initiative) tag follows the format `X.Y.Z` without the `v` prefix. We recommend using a CLI like [crane](https://michaelsauter.github.io/crane/) or a service like [OCI.dag.dev](https://oci.dag.dev/?repo=gsoci.azurecr.io%2Fcharts%2Fgiantswarm%2Fhello-world) to verify which tags are available.
 - We also set the `--namespace` flag to make sure the resource is created in the right namespace. `org-acmedev` is the namespace of the `acmedev` organisation and all resources related to its workload clusters are by convention placed in that namespace.
 - Lastly, we add the `--interval` flag with a value of `60m`, so that Flux only checks for updates once per hour. By default, it would check every minute.
 
@@ -214,7 +214,7 @@ To manage these resources from a Git repository instead of applying them directl
 ```nohighlight
 flux create source oci dev01-hello-world \
     --url oci://gsoci.azurecr.io/charts/giantswarm/hello-world \
-    --tag 3.0.2 \
+    --tag 3.x.x \
     --namespace org-acmedev \
     --interval 60m \
     --export > sources/dev01-hello-world.yaml
