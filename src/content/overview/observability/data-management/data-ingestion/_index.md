@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-ingestion
-last_review_date: 2026-03-16
+last_review_date: 2026-07-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -182,56 +182,11 @@ Starting from cluster release v31 (alpha) and fully supported from v33, the obse
 
 **Important**: OTLP ingestion must be enabled through your Account Engineer before use.
 
-### Endpoint
-
-Send OTLP data to:
-
-- **gRPC**: `otlp-gateway.kube-system.svc:4317`
-- **HTTP**: `http://otlp-gateway.kube-system.svc:4318`
-
-### SDK configuration
-
-Before sending data, ensure your application is [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) with OpenTelemetry libraries for your programming language.
-
-The OpenTelemetry SDK supports configuration via [standard environment variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration). Common options include:
-
-| Variable | Description |
-|---|---|
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP gateway endpoint (e.g. `http://otlp-gateway.kube-system.svc:4318`) |
-| `OTEL_METRICS_EXPORTER` | Set to `otlp` to enable metrics export |
-| `OTEL_LOGS_EXPORTER` | Set to `otlp` to enable log export |
-| `OTEL_TRACES_EXPORTER` | Set to `otlp` to enable trace export (usually the SDK default) |
-| `OTEL_RESOURCE_ATTRIBUTES` | Resource attributes such as `service.name`, `deployment.environment` |
-| `OTEL_TRACES_SAMPLER` | Trace sampling strategy (e.g. `always_on`, `parentbased_always_on`) |
-| `OTEL_TRACES_SAMPLER_ARG` | Additional arguments for the sampler |
-
-### Tenancy
-
-OTLP data is routed to a tenant using one of two mechanisms:
-
-**Option 1: HTTP header** (OTLP/HTTP only, port 4318):
-
-Set the `X-Scope-OrgID` header via the `OTEL_EXPORTER_OTLP_HEADERS` environment variable:
-
-```yaml
-env:
-  - name: OTEL_EXPORTER_OTLP_HEADERS
-    value: "X-Scope-OrgID=my_tenant"
-```
-
-**Option 2: Pod label** (works with both gRPC and HTTP):
-
-Add the tenant label to the pods sending OTLP data:
-
-```yaml
-metadata:
-  labels:
-    observability.giantswarm.io/tenant: my_tenant
-```
-
-The `X-Scope-OrgID` header takes precedence over the pod label when both are present.
+Before sending data, ensure your application is [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) with OpenTelemetry libraries for your programming language. The gateway endpoints and ports, the SDK environment variables, and how OTLP data is routed to a tenant are documented in the [OTLP ingestion reference]({{< relref "/overview/observability/data-management/data-ingestion/otlp-reference" >}}).
 
 ### Example
+
+This deployment sends metrics and logs over OTLP/HTTP, routing them to the `my_tenant` tenant via the pod label:
 
 ```yaml
 apiVersion: apps/v1
@@ -259,11 +214,6 @@ spec:
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: "service.name=my-app"
 ```
-
-### Supported formats
-
-- **OTLP/gRPC**: port 4317
-- **OTLP/HTTP**: port 4318
 
 ### Trace-specific considerations
 
