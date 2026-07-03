@@ -111,7 +111,7 @@ Import the workload cluster's private `GPG` key. The examples below assume you'v
 gpg --import ~/keys/${MC_NAME}-${WC_NAME}-flux.asc
 ```
 
-Retrieve the key from wherever your team stores workload cluster secrets (a password manager, a shared vault, HashiCorp Vault, or similar). The commands in this guide assume the key is available at the path shown above; adjust the path to match your setup.
+Retrieve the key from wherever your team stores workload cluster secrets, for example a password manager or a shared secret store. Adjust the path in the commands to match wherever you saved the key.
 
 Decrypt the Secret in place and pull the values out into a temporary file you can edit:
 
