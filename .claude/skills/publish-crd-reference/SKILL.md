@@ -1,8 +1,6 @@
 ---
 name: publish-crd-reference
 description: Understand and maintain how the CRD reference pages under /reference/platform-api/crd/ are generated — register a new CRD source repo, make sure every published CRD has an example CR, and fix pages that render without an example
-user-invocable: true
-argument-hint: "[CRD full name, repo short_name, or 'audit']"
 ---
 
 # Publish CRD reference pages
@@ -116,11 +114,3 @@ docs, either omit its metadata or set `hidden: true`.
 - The generator log lines are the authoritative gap report — watch for
   `WARN - No example CR found for <crd> version <v>` and
   `WARN - skipping <crd> as no metadata found`.
-
-## `$ARGUMENTS`
-
-- a **CRD full name** (e.g. `silences.observability.giantswarm.io`) → locate its
-  source repo in the config, check whether it has a matching example, and fix it.
-- a **repo short_name** → audit every published CRD from that repo for examples.
-- `audit` (or empty) → walk the whole config and report which published CRDs are
-  missing an example CR.
