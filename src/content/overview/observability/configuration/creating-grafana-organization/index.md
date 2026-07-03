@@ -410,6 +410,8 @@ After creating your organization:
 
 ```bash
 kubectl get grafanaorganization myonlineshop -o yaml
+```
+
 2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
 
 
