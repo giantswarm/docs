@@ -20,7 +20,7 @@ source_repositories:
         topics:
           - apps
         deprecation:
-          info: Both AppCatalog and its successor Catalog are being phased out in favor of Flux sources (OCIRepository, HelmRepository). For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-cr-deprecation/">App CR deprecation</a>.
+          info: Both AppCatalog and its successor Catalog are being phased out in favor of Flux sources (OCIRepository, HelmRepository). For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
           replaced_by:
             full_name: catalogs.application.giantswarm.io
             short_name: Catalog
@@ -30,28 +30,28 @@ source_repositories:
         topics:
           - apps
         deprecation:
-          info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-cr-deprecation/">App CR deprecation</a>.
+          info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
       apps.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
         deprecation:
-          info: Use Flux HelmRelease and OCIRepository for new deployments. The existing App reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-cr-deprecation/">App CR deprecation</a>.
+          info: Use Flux HelmRelease and OCIRepository for new deployments. The existing App reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
       catalogs.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
         deprecation:
-          info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing Catalog reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-cr-deprecation/">App CR deprecation</a>.
+          info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing Catalog reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
       charts.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
         deprecation:
-          info: Use Flux HelmRelease and OCIRepository for new deployments. The existing Chart reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-cr-deprecation/">App CR deprecation</a>.
+          info: Use Flux HelmRelease and OCIRepository for new deployments. The existing Chart reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
   - url: https://github.com/giantswarm/config-controller
     organization: giantswarm
     short_name: config-controller

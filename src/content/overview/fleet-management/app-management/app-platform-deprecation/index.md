@@ -1,13 +1,15 @@
 ---
-linkTitle: App CR deprecation
-title: App CR deprecation and migration to Flux HelmRelease
+linkTitle: App Platform deprecation
+title: App Platform deprecation and migration to Flux HelmRelease
 diataxis_content_type: explanation
-description: Timeline, reasoning, and migration path for moving from Giant Swarm App custom resources to Flux HelmRelease.
+description: Timeline, reasoning, and migration path for moving from the Giant Swarm App Platform to Flux HelmRelease.
 weight: 100
 menu:
   principal:
     parent: overview-fleetmanagement-appmanagement
-    identifier: overview-fleetmanagement-appmanagement-appcrdeprecation
+    identifier: overview-fleetmanagement-appmanagement-appplatformdeprecation
+aliases:
+  - /overview/fleet-management/app-management/app-cr-deprecation/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -42,23 +44,19 @@ _Specific dates to be confirmed._ Until the timeline is finalized:
 
 {{% steps %}}
 
-{{% step title="Today" %}}
+{{% step title="Phase 1: Communication and docs (completed)" %}}
+App CR sunset announced with a long deprecation window. App CR documentation moved to a legacy section and new tutorials default to HelmRelease.
+{{% /step %}}
+
+{{% step title="Phase 2: Today" %}}
 Both App CRs and HelmRelease are fully supported. New deployments should prefer HelmRelease.
 {{% /step %}}
 
-{{% step title="Phase 1 (completed)" %}}
-App CR documentation moved to a legacy section. New tutorials default to HelmRelease.
+{{% step title="Phase 3: Resource migration (soon)" %}}
+Migration CLI available. App CR reconciliation continues unchanged, so existing deployments keep working while you migrate them over.
 {{% /step %}}
 
-{{% step title="Phase 2 (soon)" %}}
-Migration CLI available. App CR reconciliation continues unchanged.
-{{% /step %}}
-
-{{% step title="Phase 3 (completed)" %}}
-App CR sunset announced with a long deprecation window. Existing deployments continue to work. New App CR creation may be restricted.
-{{% /step %}}
-
-{{% step title="Phase 4 (~year)" %}}
+{{% step title="Phase 4: Sunset (~year)" %}}
 App CR support ends. All workloads expected to run as HelmReleases.
 {{% /step %}}
 
