@@ -198,7 +198,3 @@ Classifies a page (or a glob of pages, or the current diff) into its Diátaxis t
 ### `/write-observability-docs`
 
 Guided workflow for creating or editing a page in the observability section. Consults reference resources, determines the page's Diátaxis type (deferring to the `/classify-diataxis` rubric) and its placement, writes the page with the required frontmatter (including `diataxis_content_type`), and handles page moves/renames (aliases, internal link updates, menu). Ends by running `/improve-style` on the result.
-
-### `/publish-crd-reference`
-
-Explains how the generated CRD reference pages under `/reference/platform-api/crd/` are produced from `scripts/update-crd-reference/config.yaml`, and helps register a new CRD source repo or make sure a published CRD's page shows an example CR — including the exact rule the generator uses to find an example file (`{cr_path}/{group}_{version}_{singular}.yaml`). Use when a CRD page is missing or renders without an example.
