@@ -20,7 +20,7 @@ user_questions:
 last_review_date: 2026-06-17
 ---
 
-**Note:** This guide covers the Giant Swarm `App` custom resource, which is being phased out. For new deployments, follow [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) instead. See [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the timeline and migration path.
+**Note:** This guide covers the Giant Swarm `App` custom resource, which is being phased out. For new deployments, follow [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) instead. See [App Platform deprecation]({{< relref "/overview/fleet-management/app-management/app-platform-deprecation" >}}) for the timeline and migration path.
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resources for multiple clusters, from a single place: the [platform API]({{< relref "/overview/architecture/#platform-api" >}}).
 
