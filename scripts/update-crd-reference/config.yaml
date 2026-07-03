@@ -70,7 +70,7 @@ source_repositories:
     crd_paths:
       - config/crd
     cr_paths:
-      - docs/cr
+      - config/samples
     metadata:
       silences.observability.giantswarm.io:
         owner:
