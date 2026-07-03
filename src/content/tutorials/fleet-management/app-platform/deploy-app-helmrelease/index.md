@@ -77,24 +77,27 @@ For the following example we make a few assumptions:
 
 ### Configuration
 
-To determine what configuration values of our chart accepts, let's take a look at the source repository. Our application's source lives in the GitHub repository [giantswarm/hello-world](https://github.com/giantswarm/hello-world-app).
+To determine what configuration values of our chart accepts, let's take a look at the source repository. Our application's source lives in the GitHub repository [giantswarm/hello-world-app](https://github.com/giantswarm/hello-world-app).
 
-Assuming that we want to deploy the most recent release, which is [v2.9.1](https://github.com/giantswarm/hello-world-app/releases/tag/v2.9.1) as of the writing of this guide, we can browse the repository content at tag `v2.9.1`. We find its default configuration in the [`values.yaml`](https://github.com/giantswarm/hello-world-app/blob/v2.9.1/helm/hello-world/values.yaml) file inside the `helm/hello-world` folder.
+Assuming that we want to deploy the most recent release, which is [v3.0.2](https://github.com/giantswarm/hello-world-app/releases/tag/v3.0.2) as of the writing of this guide, we can browse the repository content at tag `v3.0.2`. We find its default configuration in the [`values.yaml`](https://github.com/giantswarm/hello-world-app/blob/v3.0.2/helm/hello-world/values.yaml) file inside the `helm/hello-world` folder.
 
-We don't have to deal with most of the configuration options in this case. However, to get the application fully working and see a little demo website deployed to our server, we have to adapt the host name in the ingress configuration. Based on our assumptions for this example case, we create a new `values.yaml` file like this:
+We don't have to deal with most of the configuration options in this case. However, to get the application fully working and see a little demo website deployed to our server, we have to expose it through the cluster's [Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api" >}}) using a Gateway API `HTTPRoute`. The chart's `route` block renders that `HTTPRoute` for us. Based on our assumptions for this example case, we create a new `values.yaml` file like this:
 
 ```yaml
 ingress:
-  hosts:
-    - host: hello.dev01.hogweed.gaws.gigantic.io
-      paths:
-        - path: /
-          pathType: Prefix
-  tls:
-    - secretName: hello-world-tls
-      hosts:
-        - hello.dev01.hogweed.gaws.gigantic.io
+  enabled: false
+
+route:
+  enabled: true
+  kind: HTTPRoute
+  hostnames:
+    - hello.dev01.hogweed.gaws.gigantic.io
+  parentRefs:
+    - name: giantswarm-default
+      namespace: envoy-gateway-system
 ```
+
+The chart defaults `ingress.enabled` to `true`, so we set it to `false` explicitly to avoid rendering both an `Ingress` and an `HTTPRoute` for the same service. The `parentRefs` entry points at `giantswarm-default` in `envoy-gateway-system`, the shared gateway provided by the [Gateway API bundle]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}). If your cluster doesn't have that bundle installed yet, install it first, or point `parentRefs` at whichever gateway you use. For TLS on your hostname, see the [certificate management notes]({{< relref "/tutorials/connectivity/gateway-api/installation#certificate-management-with-cert-manager" >}}) in the Gateway API installation guide.
 
 ### Creating the OCIRepository resource
 
@@ -105,7 +108,7 @@ Here is the command we'll use. Hold on, we'll explain the details next.
 ```nohighlight
 flux create source oci dev01-hello-world \
     --url oci://gsoci.azurecr.io/charts/giantswarm/hello-world \
-    --tag 2.9.1 \
+    --tag 3.0.2 \
     --namespace org-acmedev \
     --interval 60m
 ```
@@ -114,7 +117,7 @@ About the argument and flags:
 
 - By convention, we prefix the resource name with the cluster name and a dash: `dev01-hello-world`. The second part of the name should simply remind us what chart this is for.
 - The `--url` flag is needed to specify URL of the chart repository in the registry. Giant Swarm's public registry has the domain `gsoci.azurecr.io`. Our charts have the namespace prefix `charts/giantswarm/`. The chart itself is named `hello-world`. And as a protocol prefix, `oci://` is required. This results in the URL `oci://gsoci.azurecr.io/charts/giantswarm/hello-world`.
-- The `--tag` field specifies which exact version (OCI (Open Container Initiative) tag) to use. Watch out: OCI (Open Container Initiative) tags are not necessarily identical with git tags in the source repository. In fact, in our example, the git tag is `v2.9.1`, but the OCI (Open Container Initiative) tag is `2.9.1` without the `v` prefix. We recommend using a CLI like [crane](https://michaelsauter.github.io/crane/) or a service like [OCI.dag.dev](https://oci.dag.dev/?repo=gsoci.azurecr.io%2Fcharts%2Fgiantswarm%2Fhello-world) to verify which tags are available.
+- The `--tag` field specifies which exact version (OCI (Open Container Initiative) tag) to use. Watch out: OCI (Open Container Initiative) tags are not necessarily identical with git tags in the source repository. In fact, in our example, the git tag is `v3.0.2`, but the OCI (Open Container Initiative) tag is `3.0.2` without the `v` prefix. We recommend using a CLI like [crane](https://michaelsauter.github.io/crane/) or a service like [OCI.dag.dev](https://oci.dag.dev/?repo=gsoci.azurecr.io%2Fcharts%2Fgiantswarm%2Fhello-world) to verify which tags are available.
 - We also set the `--namespace` flag to make sure the resource is created in the right namespace. `org-acmedev` is the namespace of the `acmedev` organisation and all resources related to its workload clusters are by convention placed in that namespace.
 - Lastly, we add the `--interval` flag with a value of `60m`, so that Flux only checks for updates once per hour. By default, it would check every minute.
 
@@ -211,7 +214,7 @@ To manage these resources from a Git repository instead of applying them directl
 ```nohighlight
 flux create source oci dev01-hello-world \
     --url oci://gsoci.azurecr.io/charts/giantswarm/hello-world \
-    --tag 2.9.1 \
+    --tag 3.0.2 \
     --namespace org-acmedev \
     --interval 60m \
     --export > sources/dev01-hello-world.yaml
