@@ -1,9 +1,9 @@
 ---
-linkTitle: Deploying an app
+linkTitle: Deploying an app (legacy App CR)
 title: Getting started deploying an app with the App Platform
 diataxis_content_type: how-to-guide
 description: Guide to deploying apps using kubectl gs and the Giant Swarm platform API.
-weight: 20
+weight: 100
 aliases:
   - /getting-started/app-platform/deploy-app
   - /vintage/getting-started/app-platform/deploy-app
@@ -17,8 +17,10 @@ user_questions:
   - How can I deploy an app using an App CR?
   - How can I configure an App CR?
   - How can I see which apps are available using the platform API?
-last_review_date: 2025-11-27
+last_review_date: 2026-06-17
 ---
+
+**Note:** This guide covers the Giant Swarm `App` custom resource, which is being phased out. For new deployments, follow [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) instead. See [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the timeline and migration path.
 
 The _Giant Swarm App Platform_ is built on top of [Helm](https://helm.sh/) and allows you to manage apps and their configurations represented by [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) resources for multiple clusters, from a single place: the [platform API]({{< relref "/overview/architecture/#platform-api" >}}).
 
@@ -81,7 +83,7 @@ kubectl gs get catalog giantswarm
 
 CATALOG      APP NAME        APP VERSION   VERSION    AGE
 ...
-giantswarm   ingress-nginx   4.2.0         1.14.0     22d
+giantswarm   envoy-gateway   4.2.0         1.14.0     22d
 ...
 ```
 
@@ -95,12 +97,12 @@ kubectl gs template app \
   --catalog=giantswarm \
   --orgnanization=${ORGANIZATION} \
   --cluster-name=${CLUSTER} \
-  --name=ingress-nginx \
+  --name=envoy-gateway \
   --target-namespace=kube-system \
-  --version=4.2.0 > ingress-nginx.yaml
+  --version=4.2.0 > envoy-gateway.yaml
 
-kubectl apply -f ingress-nginx.yaml
-cat ingress-nginx.yaml
+kubectl apply -f envoy-gateway.yaml
+cat envoy-gateway.yaml
 ```
 
 Lets first see the output of the template command which shows only the required fields.
@@ -109,13 +111,13 @@ Lets first see the output of the template command which shows only the required 
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: mycluster-ingress-nginx
+  name: mycluster-envoy-gateway
   namespace: org-myteam
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
-  name: ingress-nginx
+  name: envoy-gateway
   namespace: kube-system
   version: 4.2.0
 ```
@@ -127,7 +129,7 @@ The `--name` parameter is the name of the app in the catalog and the name of the
 Now lets check the app using the `kubectl gs get app` command.
 
 ```nohighlight
-kubectl gs -n ${NAMESPACE} get app ${CLUSTER}-ingress-nginx -o yaml
+kubectl gs -n ${NAMESPACE} get app ${CLUSTER}-envoy-gateway -o yaml
 ```
 
 The labels, cluster configuration and kubeconfig have been all defaulted to the correct values for your cluster. You can read more about defaulting and validation for App resources [here]({{< relref "/tutorials/fleet-management/app-platform/defaulting-validation" >}}).
@@ -138,8 +140,8 @@ kind: App
 metadata:
   labels:
     app-operator.giantswarm.io/version: 4.4.0
-    app.kubernetes.io/name: ingress-nginx
-  name: mycluster-ingress-nginx
+    app.kubernetes.io/name: envoy-gateway
+  name: mycluster-envoy-gateway
   namespace: org-myteam
 spec:
   catalog: giantswarm
@@ -154,7 +156,7 @@ spec:
     secret:
       name: mycluster-kubeconfig
       namespace: org-myteam
-  name: ingress-nginx
+  name: envoy-gateway
   namespace: kube-system
   version: 4.2.0
 status:
@@ -165,7 +167,7 @@ status:
   version: 4.2.0
 ```
 
-In the App resource status you can see that the app is deployed. The `appVersion` shows that this version of the app is deploying `v1.14.0` of the upstream [ingress nginx controller](https://github.com/kubernetes/ingress-nginx) project.
+In the App resource status you can see that the app is deployed. The `appVersion` shows that this version of the app is deploying `v1.14.0` of the upstream [envoy gateway](https://github.com/giantswarm/envoy-gateway) project.
 
 ## Configuring an app
 
@@ -183,13 +185,13 @@ kubectl gs template app \
   --catalog=giantswarm \
   --organization=${ORGANIZATION} \
   --cluster-name=${CLUSTER} \
-  --name=ingress-nginx \
+  --name=envoy-gateway \
   --target-namespace=kube-system \
   --user-configmap=ingress-values.yaml \
-  --version=3.0.0 > ingress-nginx.yaml
+  --version=3.0.0 > envoy-gateway.yaml
 
-kubectl apply -f ingress-nginx.yaml
-cat ingress-nginx.yaml
+kubectl apply -f envoy-gateway.yaml
+cat envoy-gateway.yaml
 ```
 
 Now let's see what was generated. In the ConfigMap there is a values key with the YAML and it's referenced in the App resource. You can also configure apps with secrets for more sensitive configuration.
@@ -202,23 +204,23 @@ data:
       error-log-level: "info"
 kind: ConfigMap
 metadata:
-  name: mycluster-ingress-nginx-userconfig
+  name: mycluster-envoy-gateway-userconfig
   namespace: org-myteam
 ---
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: mycluster-ingress-nginx
+  name: mycluster-envoy-gateway
   namespace: org-myteam
 spec:
   catalog: giantswarm
   kubeConfig:
     inCluster: false
-  name: ingress-nginx
+  name: envoy-gateway
   namespace: kube-system
   userConfig:
     configMap:
-      name: mycluster-ingress-nginx-userconfig
+      name: mycluster-envoy-gateway-userconfig
       namespace: org-myteam
   version: 1.17.0
 ```
@@ -230,5 +232,5 @@ You can read more about app platform configuration [here]({{< relref "/tutorials
 This completes the guide. If you no longer need the ingress controller you can run the commands below.
 
 ```nohighlight
-kubectl delete --filename ingress-nginx.yaml
+kubectl delete --filename envoy-gateway.yaml
 ```

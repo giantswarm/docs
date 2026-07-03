@@ -12,12 +12,12 @@ user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
  -  What is the Policy API?
-last_review_date: 2024-11-28
+last_review_date: 2026-07-02
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
-__Note__: This guide is intended for cluster administrators running Giant Swarm managed Kubernetes clusters. More general information about Pod Security Standards can be found on the [Security policy enforcement][sec-policy-enforcement] page.
+**Note**: This guide is intended for cluster administrators running Giant Swarm managed Kubernetes clusters. More general information about Pod Security Standards can be found on the [Security policy enforcement][sec-policy-enforcement] page.
 
 ## Managing cluster security policies with the Giant Swarm Policy API
 

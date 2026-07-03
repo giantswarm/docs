@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: VMware Cloud Director
 description: Prepare your VMware Cloud Director (VCD) setup to start building your cloud-native developer platform with Giant Swarm.
 weight: 30
-last_review_date: 2024-11-28
+last_review_date: 2026-07-02
 layout: single
 menu:
   principal:
@@ -49,7 +49,7 @@ In terms of virtual networking, the following requirements must be met:
 
 The credentials for authentication against the VCD API are configured by cluster. The controller that interacts with the VCD API uses those credentials from a secret provided in the cluster app definition.
 
-__Warning__: Take into account that every user is tied to its own VCD Resource quotas which may affect when deploying the infrastructure.
+**Warning**: Consider that every user is tied to its own VCD Resource quotas, which may affect infrastructure deployment.
 
 To obtain the credentials, you need to create a new role by browsing to `Administration > Access Control > Roles > Check vApp Author` and then click `Clone`. The suggestion is to name the role `CAPVCD`. Apart of the default permissions inherit from `vApp Author` role, the controller requires the following permissions:
 
@@ -64,7 +64,7 @@ To obtain the credentials, you need to create a new role by browsing to `Adminis
 
 To provision the virtual machines (VMs) for the cluster nodes, the necessary `vApp templates` must be provided in the `giantswarm` organization's catalog. The templates use a convention with the Linux distribution and Kubernetes version on the name (for example `flatcar-stable-xxxx.y.z-kube-x.yy.zz-tooling-x.yy.1-gs`).
 
-__Note__: Our engineers can upload the `vApp templates` to the `giantswarm` catalog, or they can provide them to you if uploads fail over a WAN connection like in some VCD environments.
+**Note**: Our engineers can upload the `vApp templates` to the `giantswarm` catalog, or they can provide them to you if uploads fail over a WAN connection like in some VCD environments.
 
 ## Step 4:  Virtual machine sizing
 
