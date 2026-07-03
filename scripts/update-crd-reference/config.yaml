@@ -329,6 +329,12 @@ source_repositories:
       workflows.muster.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-bumblebee
+        topics:
+          - managementcluster
+          - agent-platform
       mcpservers.muster.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-bumblebee
+        topics:
+          - managementcluster
+          - agent-platform
