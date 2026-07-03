@@ -55,7 +55,7 @@ Before adding anything, list the HelmReleases already running in your organizati
 ```sh
 flux get helmreleases \
   --namespace ${NAMESPACE} \
-  -l giantswarm.io/cluster=${CLUSTER}
+  --label-selector giantswarm.io/cluster=${CLUSTER}
 ```
 
 You'll see the apps that ship with the cluster: the default-apps bundle, observability tooling, and other managed components. Confirm the Gateway API bundle is among them. If it isn't, install it first using the [Gateway API installation guide]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}).
