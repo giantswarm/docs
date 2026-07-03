@@ -23,7 +23,7 @@ last_review_date: 2026-06-17
 
 Flux HelmRelease is the recommended way to deploy applications on Giant Swarm. Every management cluster runs Flux, so there's nothing extra to install on the platform side. HelmRelease is the upstream Kubernetes API for declaring Helm releases.
 
-To deploy workloads to workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources work together with Flux [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/) resources. If you have existing deployments using the Giant Swarm `App` custom resource, see [App CR deprecation]({{< relref "/overview/fleet-management/app-management/app-cr-deprecation" >}}) for the migration path and the [legacy guide]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for documentation on that mechanism.
+To deploy workloads to workload clusters, Flux [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) resources work together with Flux [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/) resources. If you have existing deployments using the Giant Swarm `App` custom resource, see [App Platform deprecation]({{< relref "/overview/fleet-management/app-management/app-platform-deprecation" >}}) for the migration path and the [legacy guide]({{< relref "/tutorials/fleet-management/app-platform/deploy-app" >}}) for documentation on that mechanism.
 
 **Note:** While Giant Swarm supports other Flux sources, OCIRepository is the method recommended by the Flux project and by Giant Swarm. This guide focuses on that method only.
 

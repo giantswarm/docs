@@ -50,7 +50,7 @@ export CLUSTER=test01
 
 ## Step 1: Check what's already installed
 
-Before adding anything, list the HelmReleases already running in your organization namespace, filtered to your cluster:
+Before adding anything, list the Helm releases already running in your organization namespace, filtered to your cluster:
 
 ```sh
 flux get helmreleases \
