@@ -414,7 +414,6 @@ After creating your organization:
 
 2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
 
-
 - The organization dropdown menu on the top-left corner shows all expected organizations
 
 ![Switching organization](./organization_switching.png)
