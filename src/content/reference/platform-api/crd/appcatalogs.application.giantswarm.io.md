@@ -1,5 +1,6 @@
 ---
 title: AppCatalog CRD schema reference (group application.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: AppCatalog
 description: |
   Deprecated, use Catalog CRD instead. AppCatalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
@@ -18,6 +19,7 @@ crd:
   topics:
     - apps
   deprecation:
+    info: Both AppCatalog and its successor Catalog are being phased out in favor of Flux sources (OCIRepository, HelmRepository). For the timeline and migration path, see &lt;a href=&#34;/overview/fleet-management/app-management/app-platform-deprecation/&#34;&gt;App Platform deprecation&lt;/a&gt;.
     replaced_by:
       full_name: catalogs.application.giantswarm.io
       short_name: Catalog
@@ -34,6 +36,7 @@ source_repository_ref: v0.6.2
 # AppCatalog
 <p class="well disclaimer">
 <i class="fa fa-warning"></i> <b>Deprecation:</b>
+Both AppCatalog and its successor Catalog are being phased out in favor of Flux sources (OCIRepository, HelmRepository). For the timeline and migration path, see &lt;a href=&#34;/overview/fleet-management/app-management/app-platform-deprecation/&#34;&gt;App Platform deprecation&lt;/a&gt;.
 This CRD is being replaced by <a href="../catalogs.application.giantswarm.io/">Catalog</a>.
 </p>
 

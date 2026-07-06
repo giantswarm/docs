@@ -1,5 +1,6 @@
 ---
 title: Save agent tokens with workflows
+diataxis_content_type: explanation
 linkTitle: Save tokens with workflows
 description: Why a Muster workflow makes an AI agent dramatically cheaper, with the measured before-and-after numbers and the design rules that maximize the saving.
 weight: 15

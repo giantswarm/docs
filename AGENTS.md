@@ -106,6 +106,20 @@ Use **sentence case** everywhere (blog, website, docs, social media). Only capit
 - Put general or introductory content about a section on a dedicated overview or introduction page inside the section, sorted to the top of the menu with the lowest `weight` (use `linkTitle: Introduction` so the menu entry stays short). See `src/content/overview/developer-portal/` for the pattern
 - The list page's frontmatter `description` is what appears as the section summary, so make it a good standalone description
 
+### Required frontmatter
+
+Article pages (an `index.md`, or any page that isn't an `_index.md` list page) must carry these fields. CI enforces them via the frontmatter validator:
+
+- `title` — the page title (don't also add an H1 in the body)
+- `description` — a single standalone sentence, 50–300 characters, ending in a full stop
+- `owner` — one or more GitHub team URLs (`https://github.com/orgs/giantswarm/teams/<team>`)
+- `user_questions` — questions the page answers, each ending in a question mark
+- `last_review_date` — `YYYY-MM-DD`
+- `diataxis_content_type` — the page's Diátaxis type (see [Page types](#page-types--the-diátaxis-model))
+- `weight` — when the page has a `menu` entry
+
+`_index.md` list pages are exempt from `user_questions` and `diataxis_content_type`. Some sections (changes, support, meta) are relaxed by config; see `scripts/frontmatter-validator/config-default.yaml`.
+
 ### Markdown
 
 - Leave a blank line between a heading and the following paragraph
@@ -118,92 +132,44 @@ Use **sentence case** everywhere (blog, website, docs, social media). Only capit
 - The relref parameter always starts with a forward slash
 - Example: `{{< relref "/overview/security/platform-security/" >}}`
 
----
-
-## Observability documentation (`src/content/**/observability/**/*.md`)
-
-Additional rules apply when writing or editing observability documentation.
-
-### Role
-
-You are a technical writer for Giant Swarm, writing documentation for the observability section. Content should be clear, concise, and helpful for users with varying levels of expertise.
-
-### Structure
-
-The observability documentation hierarchy:
-
-```
-Overview
-└── Observability
-    ├── Data Management
-    │   ├── Data Exploration
-    │   │   ├── Advanced LogQL Tutorial
-    │   │   └── Advanced PromQL Tutorial
-    │   ├── Data Ingestion
-    │   ├── Data Transformation
-    │   └── Data Export (Observability Platform API)
-    ├── Dashboard Management
-    │   ├── Dashboard Exploration
-    │   └── Dashboard Creation
-    ├── Alert Management
-    │   ├── Alert Rules
-    │   ├── Alert Routing
-    │   └── Silences
-    └── Configuration
-        ├── Initial Platform Setup
-        └── Multi-Tenancy
-            └── Creating Grafana Organisations
-Getting Started
-└── Observe your clusters and apps  (/getting-started/observe-your-clusters-and-apps/)
-```
-
-### Page types
-
-1. **Conceptual pages** — overview of a topic: its purpose, how it fits into the platform, relevance to users
-2. **Tutorial pages** — step-by-step instructions to perform specific tasks
-
 ### Page structure
 
-Every observability page should:
+A typical article:
 
-- Open with a brief introduction explaining relevance and what the reader will learn
-- Use clear, descriptive headings to break content into sections
-- Include practical examples and step-by-step instructions where applicable
-- Use bullet points and numbered lists for clarity
-- Format and explain all code snippets
-- Keep prose minimal; link to other docs or external resources
-- Conclude with a summary or next steps
-
-### Required frontmatter
-
-Every observability page must include:
-
-```yaml
-title: "Clear, concise title"
-description: "Brief description of the page's content and purpose."
-user_questions:
-  - Question users might have that this page answers
-owner:
-  - https://github.com/orgs/giantswarm/teams/team-atlas
-last_review_date: YYYY-MM-DD
-```
+- Opens with a brief introduction explaining relevance and what the reader will learn
+- Uses clear, descriptive headings to break content into sections
+- Includes practical examples and step-by-step instructions where applicable
+- Uses bullet points and numbered lists for clarity
+- Formats and explains all code snippets
+- Keeps prose minimal; links to other docs or external resources rather than repeating content
+- Concludes with a summary or next steps
 
 ### Moving or renaming pages
 
-When moving or renaming an observability page:
-
-- Add or update the `aliases` field with the old path to redirect existing links
-- Update all existing internal links pointing to the old path
+- Add or update the `aliases` field with the old path so existing links redirect
+- Update all internal links pointing to the old path
 - Verify the `menu` field reflects the correct hierarchy
 
-### Reference resources
+---
 
-Before writing observability documentation, consult:
+## Page types — the Diátaxis model
 
-- [Giant Swarm Public Docs](https://docs.giantswarm.io/)
-- [Giant Swarm Intranet](https://intranet.giantswarm.io/docs/)
-- [Giant Swarm GitHub](https://github.com/giantswarm)
-- [Grafana Documentation](https://grafana.com/docs/)
+These rules apply to **every** topic — there's one page-type model for the whole docs site.
+
+Each article belongs to exactly one [Diátaxis](https://diataxis.fr/) type, recorded in the `diataxis_content_type` frontmatter field. The four types serve four different reader needs. Keep each page in a single type and deliberately leave the other modes out — that's where the value is.
+
+| `diataxis_content_type` | Orientation | What it is |
+|---|---|---|
+| `tutorial` | Learning | A lesson that takes a beginner through steps to build confidence and familiarity. No options, no "why" digressions. |
+| `how-to-guide` | Task | A recipe that solves a specific real-world problem for someone who already knows the basics. Goal-focused; assumes competence; may offer choices. |
+| `reference` | Information | A dry, accurate description of the machinery — CLI flags, CRD/chart fields, config keys. Describes; doesn't teach or explain. |
+| `explanation` | Understanding | A discussion of concepts, architecture, trade-offs, and the "why". Read away from the keyboard. |
+
+Use `none` only for pages outside the framework (for example support or meta pages).
+
+**Don't classify by folder.** The folder a page lives in doesn't determine its type — many pages under `tutorials/`, for instance, are really how-to guides or explanations. Judge by the page's actual purpose and writing style. When in doubt, run `/classify-diataxis` (see Skills).
+
+A page should serve a single type. If you find yourself mixing modes — a how-to that stops to explain concepts, a reference padded with tutorials — split the extra material into its own page of the right type and link to it.
 
 ---
 
@@ -225,6 +191,10 @@ Applies style fixes and runs Vale prose linting on modified/added pages (or a sp
 
 Vale image: see Makefile (VALE_IMAGE)
 
+### `/classify-diataxis`
+
+Classifies a page (or a glob of pages, or the current diff) into its Diátaxis type and proposes the `diataxis_content_type` value, flagging pages that mix modes. Holds the shared classification rubric — the single source of truth for deciding a page's type.
+
 ### `/write-observability-docs`
 
-Guided workflow for creating or editing a page in the observability section. Consults reference resources, determines the correct page type (conceptual or tutorial) and placement in the hierarchy, writes the page with required frontmatter, and handles page moves/renames (aliases, internal link updates, menu). Ends by running `/improve-style` on the result.
+Guided workflow for creating or editing a page in the observability section. Consults reference resources, determines the page's Diátaxis type (deferring to the `/classify-diataxis` rubric) and its placement, writes the page with the required frontmatter (including `diataxis_content_type`), and handles page moves/renames (aliases, internal link updates, menu). Ends by running `/improve-style` on the result.

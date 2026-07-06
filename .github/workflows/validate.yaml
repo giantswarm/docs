@@ -21,7 +21,10 @@ jobs:
         uses: giantswarm/install-binary-action@5bef88f65012037dd836117c8d344b21bb559854 # v4.1.0
         with:
           binary: frontmatter-validator
-          version: "0.5.0"
+          version: "0.7.0"
+          # v0.7.0+ ships raw, unversioned binaries (no .tar.gz). A URL without an
+          # archive extension makes install-binary-action skip unarchiving.
+          download_url: 'https://github.com/giantswarm/${binary}/releases/download/v${version}/${binary}-linux-amd64'
           smoke_test: frontmatter-validator --help
 
       - name: Validate front matter for changed files

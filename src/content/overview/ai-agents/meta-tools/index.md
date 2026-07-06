@@ -1,5 +1,6 @@
 ---
 title: Meta-tools and tool discovery
+diataxis_content_type: explanation
 linkTitle: Meta-tools
 description: The small set of meta-tools Muster exposes to AI agents, how lazy discovery keeps the context window lean, and the prefixes that group external, core, and workflow tools.
 weight: 30

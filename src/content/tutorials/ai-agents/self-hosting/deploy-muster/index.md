@@ -1,5 +1,6 @@
 ---
 title: Deploy Muster
+diataxis_content_type: how-to-guide
 linkTitle: Deploy Muster
 description: Install the CRD and application Helm charts for Muster on a management cluster, and run the aggregator in custom-resource discovery mode.
 weight: 70

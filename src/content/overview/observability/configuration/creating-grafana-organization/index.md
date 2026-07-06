@@ -1,11 +1,12 @@
 ---
 linkTitle: Creating a Grafana organization
 title: Creating a Grafana organization
+diataxis_content_type: how-to-guide
 description: Step-by-step guide to create and configure Grafana organizations for multi-tenant observability.
 menu:
   principal:
-    identifier: overview-observability-configuration-multi-tenancy-grafana-org
-    parent: overview-observability-configuration-multi-tenancy
+    identifier: overview-observability-configuration-grafana-org
+    parent: overview-observability-configuration
 weight: 40
 last_review_date: 2025-07-07
 user_questions:
@@ -16,6 +17,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
   - /tutorials/observability/multi-tenancy/creating-grafana-organization/
+  - /overview/observability/configuration/multi-tenancy/creating-grafana-organization/
 ---
 
 This guide walks you through creating and configuring Grafana organizations to implement [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}}) in your observability platform.
@@ -37,7 +39,7 @@ Before creating your own organizations, it's helpful to know about the two that 
 
 Your organizations will appear alongside the `Shared Org` in the organization dropdown. Learn more about these in our [multi-tenancy overview]({{< relref "/overview/observability/configuration/multi-tenancy#default-organizations" >}}).
 
-## Creating a Grafana organization
+## Creating a GrafanaOrganization resource
 
 Create a [`GrafanaOrganization`]({{< relref "/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}) custom resource in the management cluster:
 
@@ -406,10 +408,11 @@ After creating your organization:
 
 1. **Check organization status:**
 
-```bash
-kubectl get grafanaorganization myonlineshop -o yaml
-2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
+   ```bash
+   kubectl get grafanaorganization myonlineshop -o yaml
+   ```
 
+2. [**Log in to Grafana**]({{< relref "/overview/observability/data-management/data-exploration/" >}}) and verify:
 
 - The organization dropdown menu on the top-left corner shows all expected organizations
 

@@ -1,6 +1,7 @@
 ---
 linkTitle: serve
 title: "'muster serve' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster serve' command, which starts the Muster aggregator server that AI agents and other Muster commands connect to.
 weight: 10
 menu:

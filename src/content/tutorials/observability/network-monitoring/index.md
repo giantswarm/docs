@@ -1,6 +1,7 @@
 ---
 linkTitle: Network monitoring
 title: Reduce cloud costs with network traffic monitoring
+diataxis_content_type: how-to-guide
 description: Learn how to enable network traffic monitoring to identify costly cross-AZ traffic and optimize your infrastructure spending.
 weight: 10
 menu:

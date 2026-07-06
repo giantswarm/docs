@@ -1,5 +1,6 @@
 ---
 title: Muster architecture
+diataxis_content_type: explanation
 linkTitle: Architecture
 description: How the central Muster aggregator exposes one OAuth-protected MCP endpoint, aggregates per-cluster mcp-kubernetes servers across a fleet, and why workflows cut agent token cost.
 weight: 20

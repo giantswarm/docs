@@ -1,5 +1,6 @@
 ---
 title: Prepare your provider environment for Proxmox VE
+diataxis_content_type: how-to-guide
 linkTitle: Proxmox VE
 description: Prepare your Proxmox VE environment to start building your cloud-native developer platform with Giant Swarm.
 weight: 40

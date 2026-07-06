@@ -1,5 +1,6 @@
 ---
 title: External Secrets Operator
+diataxis_content_type: explanation
 description: External Secrets Operator is a managed application within our platform and this is what you need to know.
 weight: 20
 menu:
@@ -15,7 +16,7 @@ aliases:
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
   - /advanced/external-secrets-operator/
-last_review_date: 2025-07-02
+last_review_date: 2026-07-02
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
@@ -77,8 +78,10 @@ here](https://external-secrets.io/v0.8.1/guides/getallsecrets/).
 
 ESO can be installed to your workload cluster as a managed app from our
 catalogs. There is no special or additional configuration required to install
-and it can be installed directly by creating an AppCR against the cluster
-using our `GitOps` approach or through our web UI.
+and it can be installed by creating an `App` resource (or a Flux HelmRelease)
+against the cluster using our `GitOps` approach or through our web UI.
+
+**Note:** The `App` custom resource shown below is being phased out in favor of Flux HelmRelease. For new deployments, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
 ### Example App resource
 

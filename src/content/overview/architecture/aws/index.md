@@ -1,5 +1,6 @@
 ---
 title: AWS architecture
+diataxis_content_type: explanation
 description: How architecture and cluster setup look like with the AWS cloud provider specifically.
 weight: 30
 menu:

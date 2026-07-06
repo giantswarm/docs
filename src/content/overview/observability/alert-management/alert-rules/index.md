@@ -1,5 +1,6 @@
 ---
 title: Alert rules
+diataxis_content_type: how-to-guide
 description: Learn how to create and manage alerting and recording rules in the Giant Swarm observability platform.
 weight: 10
 menu:
@@ -28,7 +29,7 @@ The platform evaluates your rules and routes alerts through the [alerting pipeli
 
 ## Required tenant labeling
 
-**Important:** All alert rules must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}). The system ignores any `PrometheusRule` that references a non-existing tenant.
+**Important:** All alert rules must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}}). The system ignores any `PrometheusRule` that references a non-existing tenant.
 
 Get familiar with tenant management in our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 

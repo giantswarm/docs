@@ -1,6 +1,7 @@
 ---
 linkTitle: template organization
 title: "'kubectl gs template organization' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for an organization using 'kubectl gs'.
 weight: 110
 menu:

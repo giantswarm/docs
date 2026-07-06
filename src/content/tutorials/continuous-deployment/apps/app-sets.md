@@ -1,6 +1,7 @@
 ---
 linkTitle: Creating and using App Sets
 title: Creating and using App Sets
+diataxis_content_type: how-to-guide
 description: Learn how to create and use App Sets for applications deployed with GitOps.
 weight: 50
 menu:
@@ -11,8 +12,10 @@ user_questions:
   - How can I create and use `App Sets` in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-07-02
 ---
+
+**Deprecated:** This guide covers App Sets for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}), which covers the equivalent Helm umbrella chart and Kustomize-over-HelmRelease patterns. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
@@ -32,7 +35,7 @@ In general, it's impossible to configure a variable once and use it with multipl
 - Every app within the set shares exactly the same `ConfigMap` or `Secret` as a `config` attribute.
 - Use two separate `ConfigMaps`. In this case, it's your responsibility to provide exactly the same value in both places. It means the apps will receive same configuration layout and must avoid conflict options. In practice, the apps must be prepared on the `Helm` chart layer to work together.
 
-__Note__: As an alternative, you can use `Helm` umbrella chart to deploy multiple apps together, also known as [`Helm` chart dependencies](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
+**Note**: As an alternative, you can use `Helm` umbrella chart to deploy multiple apps together, also known as [`Helm` chart dependencies](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/).
 
 ## Example
 

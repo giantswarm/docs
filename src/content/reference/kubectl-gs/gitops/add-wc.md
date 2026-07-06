@@ -1,6 +1,7 @@
 ---
 linkTitle: add workload-cluster
 title: "'kubectl gs gitops add workload-cluster' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to add a new workload cluster to a GitOps repository.
 weight: 25
 menu:

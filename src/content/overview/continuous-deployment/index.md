@@ -1,5 +1,6 @@
 ---
 title: Continuous deployment
+diataxis_content_type: explanation
 description: Continuous deployment and GitOps capabilities for deploying and upgrading your applications and clusters efficiently.
 weight: 50
 menu:

@@ -1,6 +1,7 @@
 ---
 linkTitle: check
 title: "'muster check' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster check' command, which checks whether a Muster MCP server or workflow is available.
 weight: 120
 menu:

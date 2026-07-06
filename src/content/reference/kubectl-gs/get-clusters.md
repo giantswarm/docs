@@ -1,6 +1,7 @@
 ---
 linkTitle: get clusters
 title: "'kubectl gs get clusters' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list clusters and get details for a single cluster using 'kubectl gs'.
 weight: 40
 menu:

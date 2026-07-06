@@ -1,6 +1,7 @@
 ---
 linkTitle: App configuration
 title: App configuration reference
+diataxis_content_type: explanation
 description: Documentation on the various levels of App configuration and how they get merged into a final values object.
 menu:
   principal:
@@ -24,12 +25,57 @@ user_questions:
   - What are the limitations around secrets when configuring them for an App?
   - How are configuration values stored and referenced in the Control Plane?
   - How can I provide configuration values for apps?
-last_review_date: 2024-10-28
+last_review_date: 2026-07-02
 ---
 
 The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install apps across your entire fleet of clusters. The platform fully support [`helm`](https://helm.sh/) as a general tool to deploy your applications as well as the official Giant Swarm app catalog.
 
 The apps are packaged as `helm` charts. Those charts rely on _values_ to be set in order to fill in placeholders in _templates_. By configuring your app you set the values that become available to the templates when they're deployed.
+
+**Deprecated:** This page documents configuration for the legacy `App` custom resource. The `App` CR is being phased out in favor of Flux HelmRelease. The concepts below (layered configuration, merge precedence, `ConfigMap` vs `Secret`) translate to HelmRelease. Only the API surface differs. See the [HelmRelease equivalent](#flux-equivalent) section for the mapping, and [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}) for full examples.
+
+## HelmRelease equivalent {#flux-equivalent}
+
+In a HelmRelease, configuration values come from two places: an inline `spec.values` block, and any number of `ConfigMap` or `Secret` references in `spec.valuesFrom`. Flux merges them in the listed order, with later entries overriding earlier ones, so the order of entries determines precedence.
+
+```yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dev01-my-app
+  namespace: org-acmedev
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: dev01-my-app
+  values:
+    replicas: 2                 # inline values, overridden by anything below
+  valuesFrom:
+    - kind: ConfigMap
+      name: cluster-values      # cluster-level config
+    - kind: Secret
+      name: cluster-secrets     # cluster-level secrets
+    - kind: ConfigMap
+      name: dev01-my-app-values # per-release user values
+    - kind: Secret
+      name: dev01-my-app-secret # per-release user secrets, last wins
+```
+
+This replaces the App CR's `config`, `extraConfigs`, and `userConfig` slots. The notion of "level" is no longer baked into the API: you express it through the order of entries in `valuesFrom`.
+
+Mapping to App CR fields:
+
+| App CR field | HelmRelease equivalent |
+|---|---|
+| `spec.config.configMap` (catalog or cluster-level values) | A `ConfigMap` referenced early in `valuesFrom` |
+| `spec.config.secret` (catalog or cluster-level secrets) | A `Secret` referenced early in `valuesFrom` |
+| `spec.userConfig.configMap` (per-release user values) | A `ConfigMap` referenced later in `valuesFrom` |
+| `spec.userConfig.secret` (per-release user secrets) | A `Secret` referenced later in `valuesFrom` |
+| `spec.extraConfigs` (extra layers with `priority`) | Position in `valuesFrom`. Rearrange entries to change precedence. |
+
+See the [Flux `valuesFrom` reference](https://fluxcd.io/flux/components/helm/helmreleases/#values) for full merge semantics, including how to pull from a specific key inside a `ConfigMap` or `Secret`.
+
+The remainder of this page covers the App CR model in detail.
 
 ## Configuration levels {#levels}
 

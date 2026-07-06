@@ -1,6 +1,7 @@
 ---
 linkTitle: stop
 title: "'muster stop' command reference"
+diataxis_content_type: reference
 description: Reference for the 'muster stop' command, which stops a running Muster service.
 weight: 110
 menu:

@@ -16,6 +16,8 @@ A helper script does the work in code — don't assemble the inventory by hand.
 A CSV file (`export.csv` by default) with one row per page and these columns:
 
 - `title` — from the page's frontmatter
+- `diataxis_content_type` — the page's Diátaxis type (`tutorial`, `how-to-guide`,
+  `reference`, `explanation`, or `none`); empty for list pages and untagged pages
 - `path_l1` through `path_l6` — the first six URL path segments, i.e. the
   navigation hierarchy
 - `url` — the public docs URL (`https://docs.giantswarm.io/<relpath>`)

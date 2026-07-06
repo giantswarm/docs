@@ -1,6 +1,7 @@
 ---
 linkTitle: Custom resources
 title: Muster custom resource reference
+diataxis_content_type: reference
 description: Field reference for the Muster MCPServer and Workflow custom resources, grounded in the API types shipped at version 0.10.0.
 weight: 30
 menu:
