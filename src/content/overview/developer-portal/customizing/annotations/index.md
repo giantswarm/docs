@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-developer-portal-customizing
     identifier: overview-developer-portal-customizing-annotations
-last_review_date: 2025-06-24
+last_review_date: 2026-07-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -48,7 +48,7 @@ The result of this configuration would be:
 
 The `gs.friendlyAnnotations` configuration item is an array. The order of annotations displayed depends on the order of the according annotation's configuration. To have a certain annotation displayed first, bring its configuration to the top of the array.
 
-## Label key and value matching
+## Annotation key and value matching
 
 The `selector` directive specifies the annotation to apply to. The [example](#example1) shows how the configuration matches an exact annotation key. You can make the matching more general by using wildcards or make it more specific by including certain annotation values.
 
@@ -62,7 +62,7 @@ gs:
     - selector: giantswarm.io/*
 ```
 
-You can use the wildcard several times within one `selector` directive. It matches any character, even an empty string. For example, the pattern `*kubernetes.io/*` would also match a label key `kubernetes.io/foo`.
+You can use the wildcard several times within one `selector` directive. It matches any character, even an empty string. For example, the pattern `*kubernetes.io/*` would also match an annotation key `kubernetes.io/foo`.
 
 ### Value matching
 
@@ -72,17 +72,17 @@ To apply a display configuration to an annotation with a specific value, use the
 
 ## Text displayed
 
-You can customize both the annotation's key and the value that appears in the user interface. In our [example](#example1), we already show how to configure the annotaition's display name using the `key` directive.
+You can customize both the annotation's key and the value that appears in the user interface. In our [example](#example1), we already show how to configure the annotation's display name using the `key` directive.
 
 To specify the annotation name shown, use the `key` directive. For specifying the values to display, use the `valueMap` directive. You can use each independently. However, here is an example combining both:
 
 ```yaml
 gs:
-  friendlyLabels:
+  friendlyAnnotations:
     - selector: 'foo.io/network-policy'
       key: Network policy
       valueMap:
-        private-sstrict: Private-strict (no egress nor ingress)
+        private-strict: Private-strict (no egress nor ingress)
         private: Private (no ingress)
         public: Public (public ingress)
 ```

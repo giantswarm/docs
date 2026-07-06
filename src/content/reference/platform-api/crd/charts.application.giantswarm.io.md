@@ -19,7 +19,7 @@ crd:
   topics:
     - apps
   deprecation:
-    info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
+    info: Use Flux HelmRelease and OCIRepository for new deployments. The existing Chart reconciliation continues to work. For the timeline and migration path, see &lt;a href=&#34;/overview/fleet-management/app-management/app-platform-deprecation/&#34;&gt;App Platform deprecation&lt;/a&gt;.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -33,7 +33,7 @@ source_repository_ref: v0.6.2
 # Chart
 <p class="well disclaimer">
 <i class="fa fa-warning"></i> <b>Deprecation:</b>
-We are moving towards deploying Helm charts using Flux and HelmRelease resources.
+Use Flux HelmRelease and OCIRepository for new deployments. The existing Chart reconciliation continues to work. For the timeline and migration path, see &lt;a href=&#34;/overview/fleet-management/app-management/app-platform-deprecation/&#34;&gt;App Platform deprecation&lt;/a&gt;.
 </p>
 
 
