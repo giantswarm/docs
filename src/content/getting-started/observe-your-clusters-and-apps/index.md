@@ -4,6 +4,9 @@ diataxis_content_type: tutorial
 description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics and logs to distributed tracing, custom dashboards and alerts.
 weight: 60
 last_review_date: 2025-07-17
+aliases:
+  - /getting-started/observability/
+  - /getting-started/observability/observe-your-clusters-and-apps/
 menu:
   principal:
     parent: getting-started
@@ -239,7 +242,7 @@ For production environments, treat dashboards as code:
 
 1. **Export dashboard JSON**: Use `Share` → `Export` from any dashboard
 2. **Store in Git**: Version control your dashboard definitions
-3. **Deploy via ConfigMaps**: Use Kubernetes resources to deploy dashboards
+3. **Deploy via `ConfigMap` resources**: Use Kubernetes resources to deploy dashboards
 4. **Automate updates**: Integrate with your CI/CD pipeline
 
 [Download our example dashboard](./dashboard.json) or check our [comprehensive dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for detailed instructions.
