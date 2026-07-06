@@ -54,6 +54,24 @@ source_repository_ref: v0.20.1
 <h2 id="v1alpha2">Version v1alpha2</h2>
 
 
+<h3 id="crd-example-v1alpha2">Example CR</h3>
+
+```yaml
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  name: my-sample-silence
+  namespace: default
+spec:
+  matchers:
+  - name: alertname
+    value: MyPagingAlert
+    matchType: "="
+  - name: alertname
+    value: Heartbeat
+    matchType: "!="
+```
+
 
 <h3 id="property-details-v1alpha2">Properties</h3>
 
