@@ -78,7 +78,7 @@ Based on this exception, the Policy API controllers will generate additional res
 The Giant Swarm platform is built upon a number of independent tools, projects, and APIs supported by the CNCF and the surrounding Kubernetes ecosystem.
 Among these are a number of capabilities designed for enforcing policies within a cluster. These include built-in types like Network Policies and RBAC, plus external CRDs like Kyverno Cluster Policies or Cilium Network Policies, among others.
 
-We use and manage tools we believe are the **"right tool for the job"** and add value for customers.
+We use and manage tools we believe are the "right tool for the job" and add value for customers.
 Over time, however, the "right tool" may change.
 It can be difficult to keep up with so many rapidly evolving projects. (Think of all the alpha or beta version APIs currently in production!) The simple reality is that many teams don't care what the tool is, as long as their needs are met.
 By decoupling our customers' intent from the underlying tooling, we can automate much of the migration work needed to transition between policy implementations.
@@ -90,7 +90,7 @@ Staying up to date is an important part of maintaining a system's security postu
 The first implementation of the Giant Swarm Policy API was created to help our customers migrate automatically (where possible) from PSP to a feature-equivalent implementation of Pod Security Standards. This avoided any policy enforcement coverage gaps during the migration.
 We expect that Kubernetes and third-party tooling will continue to evolve. We can help our customers move faster if they're not directly tied to tool-specific interfaces that they don't actually want to manage.
 
-So we created the Policy API for two reasons. The first is to let Giant Swarm move clusters between policy implementations more **seamlessly and transparently**. The second is to reduce the overall toil of dealing with common security configuration.
+So we created the Policy API for two reasons. The first is to let Giant Swarm move clusters between policy implementations more seamlessly and transparently. The second is to reduce the overall toil of dealing with common security configuration.
 
 ### Managed versus un-managed policies
 
