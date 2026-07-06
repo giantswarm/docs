@@ -101,11 +101,9 @@ spec:
 
 ### Key requirements
 
-- **Tenant labeling**: All ServiceMonitors and PodMonitors must include the `observability.giantswarm.io/tenant` label
-- **Tenant existence**: The specified tenant must exist in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}})
-- **Resource considerations**: Monitor resource usage in the _ServiceMonitors Overview_ dashboard
+Both examples carry the `observability.giantswarm.io/tenant` label, which the metrics agent requires to discover the resource and route the metrics to a tenant. Monitor the resulting resource usage in the _ServiceMonitors Overview_ dashboard.
 
-For detailed configuration options and advanced use cases, refer to the [Prometheus Operator API documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md).
+For the required labels, discovery rules, and a full field reference for ServiceMonitors and PodMonitors, see the [ServiceMonitor and PodMonitor reference]({{< relref "/overview/observability/data-management/data-ingestion/servicemonitor-reference" >}}).
 
 ## Log ingestion
 
