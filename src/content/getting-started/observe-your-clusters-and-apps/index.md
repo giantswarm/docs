@@ -117,7 +117,7 @@ Try these sample queries to get started:
 - `histogram_quantile(0.95, http_request_duration_seconds_bucket)` - 95th percentile response time
 - `up{job="my-service"}` - Check if your service is up and running
 
-**New to PromQL?** Check our [Advanced PromQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}) for detailed guidance.
+**New to PromQL?** See the [PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}) for detailed guidance.
 
 ## Step 4: Monitor application logs
 
@@ -132,7 +132,7 @@ Try these sample queries:
 - `{app="my-app"} |= "error"` - Error messages from your application
 - `{namespace="my-namespace"} | json | level="error"` - Structured log parsing for error levels
 
-**Want to learn more?** Our [Advanced LogQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}) covers complex log queries and analysis.
+**Want to learn more?** The [LogQL query reference]({{< relref "/overview/observability/data-management/data-exploration/logql" >}}) covers complex log queries and analysis.
 
 ## Step 5: Set up distributed tracing (Optional)
 
@@ -198,7 +198,7 @@ Tempo automatically generates service graphs from your trace data, showing:
 
 Access the service graph in Grafana under the Tempo data source's "Service Graph" tab.
 
-**Want to learn more?** Our [Advanced TraceQL Tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial" >}}) covers complex trace queries and analysis.
+**Want to learn more?** The [TraceQL query reference]({{< relref "/overview/observability/data-management/data-exploration/traceql" >}}) covers complex trace queries and analysis.
 
 ## Step 6: Review pre-built dashboards
 

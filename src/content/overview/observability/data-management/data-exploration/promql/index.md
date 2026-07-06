@@ -1,13 +1,16 @@
 ---
-title: Advanced PromQL tutorial
-diataxis_content_type: how-to-guide
-description: Deep dive into advanced PromQL queries and techniques for metrics analysis in the Giant Swarm observability platform.
+title: PromQL query reference
+linkTitle: PromQL query reference
+diataxis_content_type: reference
+description: Reference catalog of PromQL query patterns for metrics analysis on the Giant Swarm observability platform, covering resource, application, and Kubernetes monitoring.
 weight: 30
 menu:
   principal:
     parent: overview-observability-data-management-data-exploration
-    identifier: overview-observability-data-management-data-exploration-advanced-promql-tutorial
+    identifier: overview-observability-data-management-data-exploration-promql
 last_review_date: 2025-07-17
+aliases:
+  - /overview/observability/data-management/data-exploration/advanced-promql-tutorial/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -17,50 +20,11 @@ user_questions:
   - How do I use PromQL for troubleshooting?
 ---
 
-PromQL (Prometheus Query Language) is the powerful query language used by
-Prometheus and Mimir for analyzing time-series metrics data. This tutorial
-covers advanced PromQL techniques specifically for the Giant Swarm
-observability platform, helping you gain deep insights into your cluster and
-application performance.
+This page is a reference catalog of PromQL query patterns for the Giant Swarm Observability Platform, grouped by what you are monitoring. PromQL (Prometheus Query Language) is the query language used by Prometheus and Mimir for analyzing time-series metrics data.
 
-For PromQL fundamentals and complete syntax reference, refer to the
-[official Prometheus PromQL documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+To open Grafana Explore and select a Prometheus data source, see the [data exploration guide]({{< relref "/overview/observability/data-management/data-exploration/" >}}). For the concepts behind these queries — how to approach query construction, the Giant Swarm label model, and service level indicators — see [metrics monitoring concepts]({{< relref "/overview/observability/data-management/data-exploration/metrics-monitoring-concepts" >}}). For the complete language specification, see the [official Prometheus PromQL documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
-## Prerequisites
-
-- Access to your installation's Grafana interface (see
-  [accessing Grafana tutorial]({{< relref "/overview/observability/data-management/data-exploration/" >}}))
-- Familiarity with basic PromQL syntax and concepts
-- Understanding of Prometheus metrics and labels
-
-## Essential PromQL building blocks
-
-This section covers key concepts you'll use throughout advanced monitoring scenarios.
-
-### Query construction methodology
-
-Build effective queries systematically:
-
-1. **Define the question**: What exactly are you measuring?
-2. **Identify metrics**: Which time series contain the data?
-3. **Progressive construction**: Start simple, add complexity step by step
-4. **Test and optimize**: Validate results and performance
-
-#### Example: Service error rate
-
-```promql
-# Step 1: Basic selection
-http_requests_total{service="web-api"}
-
-# Step 2: Add rate calculation
-rate(http_requests_total{service="web-api"}[5m])
-
-# Step 3: Calculate error percentage
-sum(rate(http_requests_total{service="web-api", status=~"5.."}[5m])) /
-sum(rate(http_requests_total{service="web-api"}[5m])) * 100
-```
-
-### Key functions and patterns
+## Key functions and patterns
 
 **Rate calculations**: `rate(metric[5m])` for per-second rates from counters
 **Aggregations**: `sum by (label) (metric)` or `sum without (label) (metric)`
@@ -71,7 +35,7 @@ sum(rate(http_requests_total{service="web-api"}[5m])) * 100
 **Performance tip**: Use `without()` instead of `by()` when keeping most
 labels - it's more efficient.
 
-### Giant Swarm label structure
+## Giant Swarm label structure
 
 Every metric includes contextual labels:
 
@@ -220,7 +184,7 @@ kube_node_status_condition{condition="Ready", status!="true"} == 1
 
 **Kubernetes foundation monitoring**: Track the health of cluster control plane
 components that everything depends on. API server latency affects all kubectl
-operations, Etcd performance impacts cluster state storage, pod restarts
+operations, etcd performance impacts cluster state storage, pod restarts
 indicate application issues, and node readiness ensures workload placement
 capacity.
 
@@ -299,11 +263,9 @@ your systems behave over different periods. Growth rate comparisons reveal
 traffic trends, seasonality patterns help with capacity planning, and predictive
 queries enable proactive infrastructure management before problems occur.
 
-## Alerting and service level monitoring
+## Service level and reliability queries
 
-### Service level indicators
-
-Define and monitor key reliability metrics:
+These queries express Service Level Indicators (SLIs) and error budgets. For what SLIs, SLOs, and error budgets mean and how to choose them, see [metrics monitoring concepts]({{< relref "/overview/observability/data-management/data-exploration/metrics-monitoring-concepts" >}}).
 
 ```promql
 # Availability SLI (percentage of successful requests)
@@ -320,11 +282,6 @@ sum(rate(http_request_duration_seconds_count[5m])) * 100
   sum(rate(http_requests_total[30d]))
 )) / 0.001  # 99.9% SLO
 ```
-
-**Reliability engineering foundation**: Service Level Indicators (SLIs) provide
-objective, measurable definitions of service quality that directly correlate
-with user experience. These metrics form the basis for Service Level Objectives
-(SLOs), error budgets, and data-driven reliability decisions.
 
 ### Anomaly detection patterns
 
@@ -379,14 +336,10 @@ sum by (instance, pod, container) (
 Learn more about [recording rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})
 and [aggregation operators](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators).
 
-## Next steps
+## See also
 
-- Create [custom dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}})
-  with your PromQL queries
-- Set up [alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})
-  for proactive monitoring
-- Explore [multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})
-  for organizing metrics data
-
-For a comprehensive PromQL reference, see the
-[official Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+- [Metrics monitoring concepts]({{< relref "/overview/observability/data-management/data-exploration/metrics-monitoring-concepts" >}}): query construction methodology, the label model, and SLIs/SLOs
+- [Data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}}): how to access Grafana and select a Prometheus data source
+- [Dashboard creation]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}): visualize your PromQL queries in dashboards
+- [Alerting rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}}): turn these queries into proactive alerts
+- [official Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/): the complete PromQL specification
