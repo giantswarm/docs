@@ -261,7 +261,7 @@ To effectively use trace-derived metrics:
 
 - **[Configure comprehensive alerting]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Set up alert rules using trace-derived metrics
 - **[Create service dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Visualize trace metrics alongside other observability data
-- **[Learn advanced PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial/" >}})**: Master querying techniques for trace-derived metrics
+- **[PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql/" >}})**: Master querying techniques for trace-derived metrics
 - **[Understand service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs/" >}})**: Connect metrics to visual service topology analysis
 
 For more detailed configuration options, refer to the [Tempo metrics-generator documentation](https://grafana.com/docs/tempo/latest/metrics-from-traces/metrics-generator/).

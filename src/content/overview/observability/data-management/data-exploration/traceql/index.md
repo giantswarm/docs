@@ -1,13 +1,16 @@
 ---
-title: Advanced TraceQL tutorial
-diataxis_content_type: how-to-guide
-description: Learn how to use TraceQL to query and analyze distributed traces in Giant Swarm's observability platform.
-weight: 30
+title: TraceQL query reference
+linkTitle: TraceQL query reference
+diataxis_content_type: reference
+description: Reference for TraceQL, Grafana Tempo's query language, on the Giant Swarm observability platform, covering syntax, query patterns, and best practices.
+weight: 45
 menu:
   principal:
     parent: overview-observability-data-management-data-exploration
-    identifier: overview-observability-data-management-data-exploration-advanced-traceql-tutorial
+    identifier: overview-observability-data-management-data-exploration-traceql
 last_review_date: 2025-09-29
+aliases:
+  - /overview/observability/data-management/data-exploration/advanced-traceql-tutorial/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -16,33 +19,22 @@ user_questions:
   - How do I filter traces by service or operation?
   - How do I analyze trace performance with TraceQL?
   - What are common TraceQL query patterns?
-  - How do I use TraceQL for troubleshooting?
 ---
 
-TraceQL is Grafana Tempo's native query language designed specifically for distributed trace analysis. Unlike traditional log or metrics queries, TraceQL lets you search and filter across the complex, hierarchical structure of traces and spans.
+TraceQL is Grafana Tempo's native query language for distributed trace analysis. Unlike log or metrics queries, TraceQL searches and filters across the hierarchical structure of traces and spans. This page is a reference for its syntax and the query patterns most useful on the Giant Swarm Observability Platform.
 
-This tutorial builds on the concepts from [data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}}) and assumes you have traces flowing into your Giant Swarm observability platform.
+Tracing must be enabled on your cluster and your applications must be instrumented to send traces to `otlp-gateway.kube-system.svc` before these queries return data. See the [data ingestion guide]({{< relref "/overview/observability/data-management/data-ingestion" >}}) for setup, and the [data exploration guide]({{< relref "/overview/observability/data-management/data-exploration" >}}) for accessing the Tempo data source in Grafana. For task-oriented troubleshooting with these queries, see [troubleshoot traces with TraceQL]({{< relref "/overview/observability/data-management/data-exploration/troubleshoot-traces-with-traceql" >}}). The authoritative language specification is the [Grafana TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/).
 
-## Prerequisites
+## Trace data model
 
-Before starting this tutorial:
-
-- **Tracing enabled**: Your cluster must have tracing enabled (contact your account engineer)
-- **Instrumented applications**: Your applications should be sending traces to `otlp-gateway.kube-system.svc`
-- **Grafana access**: You can access traces from your Grafana instance using the Tempo data source
-
-## Understanding TraceQL basics
-
-### Trace structure hierarchy
-
-Traces consist of spans organized in a tree structure:
+Traces consist of spans organized in a tree structure. Understanding this hierarchy is what makes TraceQL's scope selectors meaningful:
 
 - **Trace**: The complete journey of a request through your system
-- **Span**: Individual operations within the trace (service calls, database queries, etc.)
+- **Span**: An individual operation within the trace (a service call, database query, etc.)
 - **Root span**: The entry point of the trace
 - **Child spans**: Operations triggered by parent spans
 
-### TraceQL syntax fundamentals
+## Syntax fundamentals
 
 TraceQL queries follow this basic pattern:
 
@@ -57,7 +49,7 @@ Basic elements:
 - **Operators**: `=`, `!=`, `>`, `<`, `>=`, `<=`, `=~` (regex)
 - **Values**: Strings, numbers, or durations
 
-## Essential TraceQL queries
+## Essential queries
 
 ### Finding traces by service
 
@@ -167,10 +159,10 @@ Find traces for specific customers or tenants:
 
 ### Identifying bottlenecks
 
-Find the slowest traces:
+Find the slowest traces by setting a concrete duration threshold, then sort the result list by duration in Grafana:
 
 ```traceql
-{trace.duration > 95th percentile}
+{trace.duration > 10s}
 ```
 
 Find services with high error rates:
@@ -193,26 +185,9 @@ Analyze request patterns:
 {span.http.method = "POST" && span.http.route = "/api/orders"}
 ```
 
-## Combining TraceQL with other observability data
-
-### Correlating with metrics
-
-Use trace IDs in metric queries to correlate performance:
-
-1. Find problematic traces with TraceQL
-2. Extract trace IDs
-3. Use trace IDs in PromQL queries with `trace_id` label
-
-### Correlating with logs
-
-Link traces to logs using trace correlation:
-
-1. Find traces in Tempo with TraceQL
-2. Use the trace ID in LogQL: `{namespace="my-app"} | json | trace_id="abc123"`
-
 ## Service graph exploration
 
-Tempo generates service graphs from trace data. Use TraceQL to understand service interactions:
+Tempo generates service graphs from trace data. Use TraceQL to understand service interactions. For the service graph feature itself, see [service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs" >}}).
 
 ### Analyze service dependencies
 
@@ -230,49 +205,7 @@ Find cross-service calls:
 {span.kind = "client"} && {resource.service.name != parent.resource.service.name}
 ```
 
-## Troubleshooting workflows
-
-### Debugging failed requests
-
-1. **Find error traces**:
-
-   ```traceql
-   {status = error && resource.service.name = "payment-service"}
-   ```
-
-2. **Narrow down by time**:
-
-   ```traceql
-   {status = error && resource.service.name = "payment-service"} 
-   | select(trace.start_time > now() - 1h)
-   ```
-
-3. **Analyze error patterns**:
-
-   ```traceql
-   {status = error} | by(span.status.message)
-   ```
-
-### Performance regression analysis
-
-Compare performance across time periods:
-
-```traceql
-{resource.service.name = "user-service" && trace.duration > 2s}
-```
-
-Then use Grafana's time range controls to compare different periods.
-
-### Dependency impact analysis
-
-Find traces affected by a specific service issue:
-
-```traceql
-{resource.service.name = "database-service" && status = error} 
-&& {resource.service.name = "user-service"}
-```
-
-## Advanced TraceQL features
+## Aggregation and structural queries
 
 ### Aggregation functions
 
@@ -312,13 +245,13 @@ Query trace topology:
 
 ### Common patterns
 
-1. **Error investigation workflow**:
+1. **Error investigation**:
 
    ```traceql
    {status = error} | by(resource.service.name) | count()
    ```
 
-2. **Performance analysis workflow**:
+2. **Performance analysis**:
 
    ```traceql
    {trace.duration > 5s} | by(resource.service.name) | quantile(0.95)
@@ -334,32 +267,11 @@ Query trace topology:
 
 - **Don't over-filter**: Too many conditions can return no results
 - **Mind the hierarchy**: Remember that traces have spans, not the other way around
-- **Use appropriate time ranges**: Excessively long time ranges can timeout
+- **Use appropriate time ranges**: Excessively long time ranges can time out
 
-## Integration with Grafana dashboards
+## See also
 
-### Creating trace panels
-
-1. **Add a traces panel** to your dashboard
-2. **Configure the Tempo data source**
-3. **Write TraceQL queries** in the query editor
-4. **Use template variables** for dynamic filtering
-
-### Linking from metrics
-
-Create drill-down links from metric panels:
-
-1. **Add data links** to metric panels
-2. **Include trace ID variables** in the link
-3. **Link directly to trace view** in Grafana
-
-## Next steps
-
-Now that you understand TraceQL:
-
-- **Explore service graphs**: Use Tempo's service graph feature to visualize dependencies
-- **Set up trace-derived metrics**: Configure Tempo's metrics-generator for alerting
-- **Create trace dashboards**: Build custom visualizations for your distributed systems
-- **Integrate with alerts**: Use metrics generated from traces for proactive monitoring
-
-For more complex scenarios, consider exploring [Grafana's TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/) and the [OpenTelemetry instrumentation guides](https://opentelemetry.io/docs/languages/).
+- [Troubleshoot traces with TraceQL]({{< relref "/overview/observability/data-management/data-exploration/troubleshoot-traces-with-traceql" >}}): task-oriented workflows for debugging with these queries
+- [Service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs" >}}): visualize service dependencies from trace data
+- [Data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}}): access Grafana and the Tempo data source
+- [Grafana TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/): the complete language specification

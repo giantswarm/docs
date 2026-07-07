@@ -98,7 +98,7 @@ Once you're comfortable navigating existing dashboards:
 - **Learn dashboard creation**: Follow our [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) to build custom visualizations
 - **Explore data sources**: Use [Grafana Explore]({{< relref "/overview/observability/data-management/data-exploration" >}}) to query data directly
 - **Set up alerts**: Configure [alert rules]({{< relref "/overview/observability/alert-management/alert-rules" >}}) based on dashboard insights
-- **Advanced queries**: Learn [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}) and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}) for custom queries
+- **Advanced queries**: Learn [PromQL]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}) and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/logql" >}}) for custom queries
 
 ## Related observability features
 
