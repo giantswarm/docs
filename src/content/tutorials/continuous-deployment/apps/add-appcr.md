@@ -12,8 +12,10 @@ user_questions:
   - How can I add an app to a workload cluster with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-07-02
 ---
+
+**Deprecated:** This guide covers the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
@@ -26,8 +28,8 @@ You can add an `App` resource directly or based it on an [app template]({{< relr
 Examples of creating apps are available in following locations:
 
 - An example of a directly configured app (the simplest use case - no configuration): an [app without configuration](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/hello-world)
-- An example of a directly configured app (with configuration): an [app that uses a configuration `ConfigMap`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/ingress-nginx)
-- An example of an app created from an app template is available in [WC_NAME/apps/ingress-nginx-from-template](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/ingress-nginx-from-template).
+- An example of a directly configured app (with configuration): an [app that uses a configuration `ConfigMap`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/hello-world)
+- An example of an app created from an app template is available in [WC_NAME/apps/hello-world-from-template](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/apps/hello-world-from-template).
 
 ## Common steps
 
@@ -83,7 +85,7 @@ Additionally you can provide a default configuration adding these flags to the p
 --user-secret ${APP_USER_VALUES}
 ```
 
-__Note__: Including `${cluster_name}` in the app name avoids collision between clusters running same apps within the same organization.
+**Note**: Including `${cluster_name}` in the app name avoids collisions between clusters running the same apps within the same organization.
 
 Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}) for more details on how to create respective `ConfigMaps` or secrets.
 
@@ -166,6 +168,6 @@ spec:
       name: \${cluster_name}-${APP_NAME}-user-secret
 ```
 
-__Note__: Alternatively, you can rely on [`Kustomize` patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) to extend the `App` resource configuration instead.
+**Note**: Alternatively, you can rely on [`Kustomize` patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) to extend the `App` resource configuration instead.
 
 At this point, everything is prepared and you can commit the changes to the branch to force `Flux` to apply the changes. Further you can learn how to [enable automatic updates for your apps]({{< relref "/tutorials/continuous-deployment/apps/automatic-updates-appcr" >}}).

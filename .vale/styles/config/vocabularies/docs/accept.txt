@@ -103,6 +103,7 @@ GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
+HelmRelease
 Honeybadger
 [H|h]ostname
 HPA
@@ -152,6 +153,7 @@ OpenID Connect
 Opsgenie
 OTLP
 PagerDuty
+parentRefs
 passthrough
 perfectly
 Planeteers

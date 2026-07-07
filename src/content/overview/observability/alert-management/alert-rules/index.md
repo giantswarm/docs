@@ -77,7 +77,7 @@ spec:
 - **`labels`**: Key-value pairs for routing and grouping alerts
 - **`annotations`**: Human-readable information about the alert
 
-For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}) explore interface.
+For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or the [PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}) explore interface.
 
 ## Recording rule examples
 

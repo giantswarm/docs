@@ -14,7 +14,7 @@ user_questions:
   - How can I safeguard resources?
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
-last_review_date: 2024-12-05
+last_review_date: 2026-07-02
 aliases:
   - /advanced/app-platform/deletion-prevention
   - /guides/deletion-prevention/
@@ -126,6 +126,8 @@ After applying the ConfigMap change on the management cluster, you should see th
 
 ## Creating a managed app with deletion prevention
 
+The `giantswarm.io/prevent-deletion=true` label works on both the legacy `App` custom resource and on Flux `HelmRelease` resources. For HelmRelease, set the label under `metadata.labels` in the rendered YAML.
+
 Like for cluster apps, you can use the `--prevent-deletion` parameter also with the command `kubectl gs template app`.
 
 ```sh
@@ -133,8 +135,8 @@ kubectl gs template app \
   --cluster-name=mycluster \
   --organization=myorg \
   --catalog=giantswarm \
-  --app-name=mycluster-ingress-nginx \
-  --name=ingress-nginx \
+  --app-name=mycluster-envoy-gateway \
+  --name=envoy-gateway \
   --version=3.9.1 \
   --target-namespace=kube-system \
   --prevent-deletion

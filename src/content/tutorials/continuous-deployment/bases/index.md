@@ -12,7 +12,7 @@ user_questions:
   - How can I create an base template for workload clusters in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-11
+last_review_date: 2026-07-02
 ---
 
 In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [the app platform]({{< relref "/overview/fleet-management/app-management/" >}}). The application custom resource contains the specification and configuration of the cluster in this format:
@@ -37,7 +37,7 @@ As consequence, the cluster configuration leverages the [app platform configurat
 - The cluster template has a default configuration via `App` `config` field.
 - User can add additional custom configuration via `App` `extraConfig` field, which is overlaid on top of the default `config`. The file set with higher priority will prevail in case of colliding configuration values.
 
-__Note__: [In the according RFC article](https://github.com/giantswarm/rfc/tree/main/merging-configmaps-gitops) you can find more information why this approach was chosen.
+**Note**: [In the according RFC article](https://github.com/giantswarm/rfc/tree/main/merging-configmaps-gitops) you can find more information why this approach was chosen.
 
 In order to avoid code duplication, the [bases and overlays](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#bases-and-overlays) use Kustomize to enhance the cluster configuration.
 
@@ -45,7 +45,7 @@ In order to avoid code duplication, the [bases and overlays](https://kubernetes.
 
 The shared cluster template base shouldn't serve as a standalone base for cluster creation, it's only abstracting `App` resources common to all clusters versions. It's then used as a base for other bases, which provide an overlay with a specific configuration. That way you avoid code duplication across bases.
 
-__Note__: This isn't a complete guide of how to create a perfect base, but rather a mere summary of basic steps needed to move forward. Hence, instructions here won't always be precise in telling you what to change, as this can strongly depend on the resources involved, how much of them you would like to include in a base, etc.
+**Note**: This isn't a complete guide of how to create a perfect base, but a summary of the basic steps needed to move forward. Instructions here won't always be precise in telling you what to change. The right answer depends on the resources involved and how much of them you want to include in a base.
 
 You can create bases for workload clusters easily thanks to the `kubectl gs` command:
 

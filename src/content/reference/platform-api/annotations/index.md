@@ -18,6 +18,8 @@ user_questions:
 
 **Notice:** Annotations on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of annotations, and which values or value format is expected. If you are missing information, please consult upstream documentation from Kubernetes etc., or ask a Giant Swarm contact for more information. Also check our corresponding [labels]({{< relref "/reference/platform-api/labels" >}}) reference page.
 
+**Note:** Annotations on this page starting with `app-operator.giantswarm.io/` apply to the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For HelmRelease, see the [upstream Flux labels and annotations reference](https://fluxcd.io/flux/components/helm/helmreleases/) and [App management]({{< relref "/overview/fleet-management/app-management" >}}).
+
 ### app-operator.giantswarm.io/cordon-reason
 
 On an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) or [Chart]({{< relref "/reference/platform-api/crd/charts.application.giantswarm.io.md" >}}) resource, this annotation indicates the reason why app-operator should currently not reconcile this app, until the `app-operator.giantswarm.io/cordon-until` date has passed.

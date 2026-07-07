@@ -12,8 +12,10 @@ user_questions:
   - How can I create an template for app deployment in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-07-02
 ---
+
+**Deprecated:** This guide covers reusable templates for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, the equivalent patterns are Helm umbrella charts and Kustomize over HelmRelease, covered in [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
@@ -23,7 +25,7 @@ To avoid duplication caused by adding the same application from scratch across a
 
 ## Example
 
-An example of an app template is available in the [gitops-template repository "bases/apps/ingress-nginx"](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/ingress-nginx).
+An example of an app template is available in the [gitops-template repository, path `bases/apps/hello-world`](https://github.com/giantswarm/gitops-template/tree/main/bases/apps/hello-world).
 
 ## Export environment variables
 
@@ -66,13 +68,13 @@ Additionally you can provide a default configuration, and additional secrets for
 --user-secret <my-secret-name>
 ```
 
-__Note__: Including `${cluster_name}` in the app name avoids collision between clusters running same apps within the same organization.
+**Note**: Including `${cluster_name}` in the app name avoids collisions between clusters running the same apps within the same organization.
 
 Reference [the app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/" >}}) for more details about how to create the respective `ConfigMaps` or secrets.
 
 After running the `kubectl gs` command you can observe the output has an `App` resource together with the `ConfigMap`. Instead, you could rely on the `ConfigMap` generator feature of [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#generating-resources) to generate it on the fly.
 
-__Warning__: `Kustomize` can't be used for the secrets as they need to be encrypted before commit. Refer to our [adding an app]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}) docs to check how to do it.
+**Warning**: `Kustomize` can't be used for secrets because they must be encrypted before committing. Refer to our [adding an app]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}) docs to check how to do it.
 
 In the last step it's time to create the `kustomization.yaml` file, adding the optional `Secret` or `ConfigMap` as resources and/or using a `ConfigMap` generator to manage plain configuration:
 
@@ -84,7 +86,7 @@ buildMetadata: [originAnnotations]
 configMapGenerator:
   - files:
     - values=default_config.yaml
-    name: ${cluster_name}-ingress-nginx-values
+    name: ${cluster_name}-hello-world-values
 generatorOptions:
   disableNameSuffixHash: true
 # default config block end

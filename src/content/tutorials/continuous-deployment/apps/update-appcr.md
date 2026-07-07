@@ -12,8 +12,10 @@ user_questions:
   - How can I update an existent app deployed with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2025-03-25
+last_review_date: 2026-07-02
 ---
+
+**Deprecated:** This guide covers updating the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Update an existing HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/update-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
