@@ -3,7 +3,7 @@ linkTitle: Update an existing HelmRelease
 title: Update an existing HelmRelease
 diataxis_content_type: how-to-guide
 description: Update the chart version, configuration, or install behavior of a HelmRelease already deployed in a workload cluster via GitOps.
-weight: 60
+weight: 20
 menu:
   principal:
     identifier: tutorials-continuous-deployment-helm-releases-updating
@@ -17,9 +17,11 @@ owner:
 last_review_date: 2026-06-17
 ---
 
-To update an existing HelmRelease deployment you edit one or more of four files. The `OCIRepository` handles chart version changes. The `HelmRelease` handles install or upgrade behavior. The values `ConfigMap` and the encrypted Secret hold the chart values. Commit the change and Flux applies it on the next reconciliation.
+To update an existing `HelmRelease` deployment you edit one or more of four files. The `OCIRepository` handles chart version changes. The `HelmRelease` handles install or upgrade behavior. The values `ConfigMap` and the encrypted Secret hold the chart values. Commit the change and Flux applies it on the next reconciliation.
 
 For the App CR equivalent of this guide, see [Update an existing App]({{< relref "/tutorials/continuous-deployment/apps/update-appcr" >}}).
+
+**Note:** The file paths and directory layout used throughout this guide follow the [Giant Swarm GitOps template](https://github.com/giantswarm/gitops-template). Adjust paths to match your own layout if your repository doesn't use that structure.
 
 ## Export environment variables
 
@@ -35,7 +37,7 @@ cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${
 
 ## Bump the chart version
 
-With HelmRelease, the chart source is a separate resource from the release itself. The chart version lives on the `OCIRepository`, not on the HelmRelease. To roll out a new chart version, edit `ocirepository.yaml` and change the tag:
+With `HelmRelease`, the chart source is a separate resource from the release itself. The chart version lives on the `OCIRepository`, not on the `HelmRelease`. To roll out a new chart version, edit `ocirepository.yaml` and change the tag:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
@@ -50,7 +52,7 @@ spec:
   interval: 60m
 ```
 
-Commit and push. Flux notices the tag change, pulls the new chart artifact, and the HelmRelease reconciles it onto the workload cluster.
+Commit and push. Flux notices the tag change, pulls the new chart artifact, and the `HelmRelease` reconciles it onto the workload cluster.
 
 **Note:** If you want Flux to roll patches and minor versions on its own without manual tag bumps, use a SemVer range instead of a pinned tag. That's covered in the upcoming automatic-updates guide. For now see the [OCIRepository SemVer example](https://fluxcd.io/flux/components/source/ocirepositories/#semver-example).
 
@@ -74,11 +76,17 @@ spec:
       namespace: org-acmedev
 ```
 
+What each field does:
+
+- `install.remediation.retries` and `upgrade.remediation.retries` set how many times Flux retries a failed install or upgrade before marking the `HelmRelease` as `Stalled`. The default is `0` (no retries).
+- `upgrade.cleanupOnFail: true` tells Helm to delete resources created by a failed upgrade before the next retry, so nothing half-applied lingers.
+- `dependsOn` holds this `HelmRelease` back until the listed `HelmReleases` report `Ready`. Use it to order dependent installs, for example an application that needs `cert-manager` in place before it can request a certificate.
+
 Commit, push, reconcile.
 
 ## Change non-secret values
 
-If the values your chart needs are in `configmap.yaml`, edit them directly and commit. Flux applies the updated `ConfigMap`, the HelmRelease detects the values change, and Helm performs an upgrade on the workload cluster.
+If the values your chart needs are in `configmap.yaml`, edit them directly and commit. Flux applies the updated `ConfigMap`, the `HelmRelease` detects the values change, and Helm performs an upgrade on the workload cluster.
 
 ```yaml
 apiVersion: v1
@@ -97,13 +105,13 @@ data:
 
 For values stored in the `sops`-encrypted Secret, you have to decrypt, edit, then re-encrypt before committing.
 
-Import the workload cluster's private `GPG` key. The exact command depends on where you store the key. If you keep it in 1Password:
+Import the workload cluster's private `GPG` key. The examples below assume you've exported the key to a local file, `~/keys/${MC_NAME}-${WC_NAME}-flux.asc`:
 
 ```sh
-eval $(op signin)
-gpg --import \
-<(op read "Dev Common/GPG private key (${MC_NAME}, ${WC_NAME}, Flux)/notesPlain")
+gpg --import ~/keys/${MC_NAME}-${WC_NAME}-flux.asc
 ```
+
+Retrieve the key from wherever your team stores workload cluster secrets, for example a password manager or a shared secret store. Adjust the path in the commands to match wherever you saved the key.
 
 Decrypt the Secret in place and pull the values out into a temporary file you can edit:
 
@@ -135,7 +143,7 @@ Commit `secret.enc.yaml` (and only the encrypted form). Flux applies the change 
 
 ## Force an immediate reconciliation
 
-By default the HelmRelease and OCIRepository reconcile on their `--interval`. If you want to apply a change right away without waiting for the interval, trigger Flux from your local machine:
+By default the `HelmRelease` and `OCIRepository` reconcile on their `--interval`. If you want to apply a change right away without waiting for the interval, trigger Flux from your local machine:
 
 ```sh
 flux reconcile source oci --namespace org-${ORG_NAME} ${APP_NAME}

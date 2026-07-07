@@ -77,7 +77,7 @@ For the following example we make a few assumptions:
 
 ### Configuration
 
-To determine what configuration values of our chart accepts, let's take a look at the source repository. Our application's source lives in the GitHub repository [giantswarm/hello-world](https://github.com/giantswarm/hello-world-app).
+To determine what configuration values of our chart accepts, let's take a look at the source repository. Our application's source lives in the GitHub repository [giantswarm/hello-world-app](https://github.com/giantswarm/hello-world-app).
 
 Assuming that we want to deploy the most recent release, which is [v3.0.2](https://github.com/giantswarm/hello-world-app/releases/tag/v3.0.2) as of the writing of this guide, and at the same time we want to have automatic upgrades for minor and patch versions, we use `v3.x.x`.
 
