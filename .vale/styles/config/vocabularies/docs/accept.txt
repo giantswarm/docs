@@ -153,6 +153,7 @@ OpenID Connect
 Opsgenie
 OTLP
 PagerDuty
+parentRefs
 passthrough
 perfectly
 Planeteers
