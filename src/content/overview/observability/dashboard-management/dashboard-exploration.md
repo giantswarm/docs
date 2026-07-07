@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-dashboard-management
     identifier: overview-observability-dashboard-management-dashboard-exploration
-last_review_date: 2025-07-15
+last_review_date: 2026-07-03
 user_questions:
   - How do I find dashboards in Grafana?
   - What dashboards come out of the box?
@@ -35,62 +35,7 @@ Once you're logged in to Grafana:
 
 ## Out-of-the-box dashboards
 
-Giant Swarm provides a comprehensive set of public dashboards that are accessible to customers based on the dashboards available in the ["public_dashboards"](https://github.com/giantswarm/dashboards/tree/main/helm/dashboards/charts/public_dashboards/dashboards/shared/public) section of the Giant Swarm dashboards repository.
-
-### Core platform dashboards
-
-Essential cluster and infrastructure monitoring:
-
-- **Cluster Overview** - High-level cluster health and resource utilization
-- **Node Overview** - Individual node metrics, CPU, memory, disk usage
-- **Node Utilization** - Node resource allocation and capacity planning
-
-### Kubernetes component dashboards
-
-Core Kubernetes service monitoring:
-
-- **API Server Performance** - Kubernetes API server metrics and latency
-- **Certificate Details** - TLS certificate expiration and health monitoring
-- **Persistent Volume Usage** - Storage metrics and volume health
-- **Giant Swarm / Kubernetes Persistent Volumes** - Enhanced PV monitoring
-
-### Network and ingress dashboards
-
-Network infrastructure and traffic monitoring:
-
-- **DNS** - DNS resolution performance and CoreDNS metrics
-- **Ingress NGINX Controller** - NGINX ingress controller performance
-- **NGINX Ingress Controller Connection Distribution** - Connection patterns
-- **Cilium Performance** - Cilium CNI performance and BPF map pressure
-- **External DNS** - External DNS controller metrics
-
-### Application and workload dashboards
-
-Application performance and resource monitoring:
-
-- **Pod Requests vs Usage** - Resource requests vs actual consumption
-- **SLO Reporting** - Service Level Objective compliance tracking
-- **Container Images from docker.io** - Container image usage analytics
-- **Kong Connection Distribution** - Kong ingress controller metrics
-
-### Observability platform dashboards
-
-Monitoring infrastructure health:
-
-- **Prometheus** - Prometheus server performance and resource usage
-- **Prometheus Remote Write** - Remote write performance metrics
-- **Alertmanager / Overview** - Alert management and notification status
-
-### Cluster automation dashboards
-
-Platform automation and lifecycle management:
-
-- **Flux Control Plane** - GitOps controller health and sync status
-- **KEDA** - Kubernetes Event Driven autoscaling metrics
-- **Karpenter** - Node autoscaling performance (AWS)
-- **AWS Load Balancer Controller** - AWS LB controller metrics (AWS)
-
-These dashboards are continuously updated and maintained through the [Giant Swarm dashboards repository](https://github.com/giantswarm/dashboards) and automatically deployed via Helm charts. Many dashboards come from upstream monitoring mixins (kubernetes-mixin, prometheus-mixin, alertmanager-mixin) that are regularly synchronized to provide best-practice monitoring patterns.
+Giant Swarm provides a comprehensive set of public dashboards, accessible to all users through the `Shared Org`. They cover cluster and node health, Kubernetes components, networking and ingress, application workloads, the observability platform itself, and cluster automation. For the full catalog grouped by category, see the [pre-built dashboards reference]({{< relref "/overview/observability/dashboard-management/prebuilt-dashboards" >}}).
 
 ## How to search and navigate dashboards
 
@@ -153,7 +98,7 @@ Once you're comfortable navigating existing dashboards:
 - **Learn dashboard creation**: Follow our [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) to build custom visualizations
 - **Explore data sources**: Use [Grafana Explore]({{< relref "/overview/observability/data-management/data-exploration" >}}) to query data directly
 - **Set up alerts**: Configure [alert rules]({{< relref "/overview/observability/alert-management/alert-rules" >}}) based on dashboard insights
-- **Advanced queries**: Learn [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}) and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}) for custom queries
+- **Advanced queries**: Learn [PromQL]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}) and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/logql" >}}) for custom queries
 
 ## Related observability features
 

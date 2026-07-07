@@ -1,13 +1,16 @@
 ---
-title: Advanced LogQL tutorial
-diataxis_content_type: how-to-guide
-description: Deep dive into advanced LogQL queries and techniques for log analysis in the Giant Swarm observability platform.
+title: LogQL query reference
+linkTitle: LogQL query reference
+diataxis_content_type: reference
+description: Reference catalog of LogQL query patterns for analyzing logs on the Giant Swarm observability platform, with worked examples, parsers, and best practices.
 weight: 20
 menu:
   principal:
     parent: overview-observability-data-management-data-exploration
-    identifier: overview-observability-data-management-data-exploration-advanced-logql-tutorial
+    identifier: overview-observability-data-management-data-exploration-logql
 last_review_date: 2025-07-17
+aliases:
+  - /overview/observability/data-management/data-exploration/advanced-logql-tutorial/
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -17,24 +20,9 @@ user_questions:
   - How do I use LogQL for troubleshooting?
 ---
 
-This tutorial covers advanced LogQL techniques for analyzing logs in the Giant Swarm Observability Platform. Building on basic log exploration, you'll learn to craft sophisticated queries for complex troubleshooting scenarios and log analysis.
+This page is a reference catalog of LogQL query patterns for analyzing logs on the Giant Swarm Observability Platform. Each entry pairs a query with the result it produces against a real cluster, so you can adapt it to your own logs.
 
-## Prerequisites
-
-Before proceeding, ensure you have:
-
-- Basic understanding of LogQL syntax (refer to the [Grafana - Log queries](https://grafana.com/docs/loki/next/query/log_queries/))
-- Familiarity with Kubernetes concepts and Giant Swarm cluster architecture
-
-## Access to logs
-
-Once you have [access to your management cluster's Grafana]({{< relref "/overview/observability/data-management/data-exploration/" >}}), you should:
-
-1. Go to `Explore` item in the `Home` menu
-2. Select `Loki` as data source on the top left corner
-3. Choose how you prefer to build your queries:
-   - `builder` and use the dropdown-menus to build your query
-   - `code` to write your query using [LogQL](https://grafana.com/docs/loki/latest/logql/)
+To open Grafana Explore, select the Loki data source, and choose the `builder` or `code` query mode, see the [data exploration guide]({{< relref "/overview/observability/data-management/data-exploration/" >}}). For the complete language specification, see the [Grafana Loki LogQL documentation](https://grafana.com/docs/loki/latest/query/).
 
 ## Query examples with results
 
@@ -46,7 +34,7 @@ Query logs from a specific cluster and service:
 
 **Query:**
 
-```promql
+```logql
 {cluster_id="myCluster", scrape_job="kubernetes-pods", service_name="nginx"}
 ```
 
@@ -66,7 +54,7 @@ Filter logs for specific error patterns across a cluster:
 
 **Query:**
 
-```promql
+```logql
 {cluster_id="myCluster", scrape_job="kubernetes-pods", service_name="nginx"} |~ `(?i)error|failed|warning`
 ```
 
@@ -83,7 +71,7 @@ This query uses a **regex** to match log lines containing `error`, `failed`, or 
 
 **Query:**
 
-```promql
+```logql
 sum(count_over_time({cluster_id="myCluster", scrape_job="kubernetes-pods", service_name="nginx"}[1h]))
 ```
 
@@ -101,7 +89,7 @@ Parse and filter on any pattern structures found in application logs, here Nginx
 
 **Query:**
 
-```promql
+```logql
 {cluster_id="myInstallation", scrape_job="kubernetes-pods", container="nginx"}
 | pattern `<ip> - - [<_>]  <status> "<method> <uri> <_>" <size> <_> "<agent>" <_>`
 | status < 200 or status > 299
@@ -124,7 +112,7 @@ Extract specific fields and create custom log output formats:
 
 **Query:**
 
-```promql
+```logql
 {cluster_id="myCluster", pod=~"observability-operator-.*"}
 | json
 | controller="cluster"
@@ -151,7 +139,7 @@ Generate metrics to track error rates across services:
 
 **Query:**
 
-```promql
+```logql
 sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"}[5m] |~ `(?i)error|exception|failed`)) by (service, namespace)
 /
 sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"}[5m])) by (service, namespace)
@@ -166,7 +154,7 @@ Extract latency metrics from application access logs:
 
 **Query:**
 
-```promql
+```logql
 quantile_over_time(0.95,
   {cluster_id="myInstallation", pod=~"kube-apiserver-.+"}
   |= `Request completed`
@@ -186,7 +174,7 @@ Analyze system logs for resource pressure indicators:
 
 **Query:**
 
-```promql
+```logql
 {cluster_id="myCluster", scrape_job="system-logs"}
 | json
 | SYSLOG_IDENTIFIER="kernel"
@@ -209,13 +197,14 @@ ip-10-0-204-71 - Memory cgroup out of memory: Killed process 105294 (kube-state-
 - **Apply time ranges** appropriate to your use case to optimize query performance
 - **Use line formatting** to create readable output for complex queries
 
-## Next steps
+## See also
 
 For comprehensive LogQL syntax and additional functions, refer to:
 
 - [Log queries](https://grafana.com/docs/loki/next/query/log_queries/)
 - [LogQL: Log query language](https://grafana.com/docs/loki/latest/query/)
 
-Enhance your observability skills further:
+Related pages on the Giant Swarm platform:
 
-- [Dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) for visualizing your log queries
+- [Data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}}): how to access Grafana and select the Loki data source
+- [Dashboard creation]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}): visualize your log queries in dashboards
