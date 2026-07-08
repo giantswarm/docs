@@ -40,7 +40,7 @@ The platform supports two complementary approaches, and the right choice depends
 - **CRD-based (GitOps)**: you declare silences as Kubernetes `Silence` resources (the `observability.giantswarm.io/v1alpha2` API). Because they live in Git, they're version-controlled, reviewable, and repeatable. This is the recommended approach for anything planned, such as recurring maintenance windows.
 - **Grafana UI**: you create silences interactively in the Grafana Alerting interface. This is immediate and needs no deployment, which makes it the natural fit for emergencies during an active incident or quick, ad-hoc silences while developing alert rules.
 
-Both approaches integrate with the platform's [multi-tenancy model]({{< relref "/overview/observability/configuration/multi-tenancy" >}}): a silence only affects alerts within its own tenant, and it must carry a tenant label that references an existing Grafana Organization. Silences referencing a non-existent tenant are ignored.
+Both approaches integrate with the platform's [multi-tenancy model]({{< relref "/overview/observability/configuration/multi-tenancy" >}}): a silence affects only alerts within its own tenant, and it must carry a tenant label referencing an existing Grafana Organization. Silences referencing a non-existent tenant are ignored.
 
 ## Where silences sit in the alerting pipeline
 
