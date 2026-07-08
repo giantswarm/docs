@@ -1,7 +1,8 @@
 ---
-title: Trace-derived metrics
-diataxis_content_type: how-to-guide
-description: Learn how to generate metrics from trace data for alerting and monitoring with Tempo's metrics-generator feature.
+title: Trace-derived metrics reference
+linkTitle: Trace-derived metrics reference
+diataxis_content_type: reference
+description: Catalog of the metrics Tempo's metrics-generator derives from trace data on the Giant Swarm observability platform, with the PromQL patterns for querying them.
 weight: 30
 menu:
   principal:
@@ -11,25 +12,23 @@ last_review_date: 2026-06-22
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - How do I generate metrics from traces?
   - What metrics can be derived from trace data?
-  - How do I set up alerts based on traces?
-  - What are RED metrics and how are they calculated?
   - How do I query trace-derived metrics?
-  - Why can't I alert directly on trace data?
+  - What are the RED metrics and how are they queried?
+  - Which tempo_ metrics does the metrics-generator produce?
 ---
 
-Giant Swarm's observability platform automatically generates metrics from your trace data using Tempo's metrics-generator. This lets you create **alerts and dashboards** from distributed tracing insights, using familiar Prometheus/PromQL tooling.
+This page catalogs the metrics that Tempo's metrics-generator derives from your trace data on the Giant Swarm Observability Platform, together with the PromQL patterns for querying them. Because these are standard Prometheus metrics, you can use them in dashboards and alerts with familiar tooling.
 
-You can't create alerts directly from trace data. So these generated metrics **bridge the gap** between detailed trace analysis and reliable monitoring.
+For why these metrics exist and what RED metrics mean, see [understanding trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/understanding-trace-derived-metrics" >}}). To build alerts on them, see [alert on trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/alert-on-trace-derived-metrics" >}}). For the generator's configuration options, see the [Tempo metrics-generator documentation](https://grafana.com/docs/tempo/latest/metrics-from-traces/metrics-generator/).
 
-## Understanding metrics derived from traces
+## RED metrics
 
-Tempo's metrics-generator automatically creates rate, error, and duration (RED) metrics from your trace data:
+The metrics-generator produces rate, error, and duration (RED) metrics for each service and operation.
 
 ### Rate
 
-**Request rate**: The number of requests per second for each service and operation.
+Request rate, the number of requests per second for each service and operation:
 
 ```promql
 # Total request rate for a service
@@ -41,12 +40,12 @@ rate(tempo_service_graph_request_total{operation="GET /api/users"}[5m])
 
 ### Error
 
-**Error rate**: The percentage of failed requests for each service and operation.
+Error rate, the proportion of failed requests for each service and operation:
 
 ```promql
 # Error rate for a service
 (
-  rate(tempo_service_graph_request_failed_total[5m]) / 
+  rate(tempo_service_graph_request_failed_total[5m]) /
   rate(tempo_service_graph_request_total[5m])
 ) * 100
 
@@ -56,14 +55,14 @@ rate(tempo_service_graph_request_total{status_code=~"5.."}[5m])
 
 ### Duration
 
-**Response time**: Latency percentiles for each service and operation.
+Response time, latency percentiles for each service and operation:
 
 ```promql
 # 95th percentile latency
 histogram_quantile(0.95, rate(tempo_service_graph_request_duration_seconds_bucket[5m]))
 
 # Average response time
-rate(tempo_service_graph_request_duration_seconds_sum[5m]) / 
+rate(tempo_service_graph_request_duration_seconds_sum[5m]) /
 rate(tempo_service_graph_request_duration_seconds_count[5m])
 ```
 
@@ -146,7 +145,7 @@ sum(rate(tempo_service_graph_request_failed_total[5m])) by (server) /
 sum(rate(tempo_service_graph_request_total[5m])) by (server)
 
 # Service response times
-histogram_quantile(0.95, 
+histogram_quantile(0.95,
   sum(rate(tempo_service_graph_request_duration_seconds_bucket[5m])) by (server, le)
 )
 ```
@@ -160,12 +159,12 @@ sum(rate(tempo_span_metrics_calls_total[5m])) by (span_name)
 
 # Database operation latency
 histogram_quantile(0.99,
-  sum(rate(tempo_span_metrics_duration_seconds_bucket{span_kind="SPAN_KIND_CLIENT"}[5m])) 
+  sum(rate(tempo_span_metrics_duration_seconds_bucket{span_kind="SPAN_KIND_CLIENT"}[5m]))
   by (span_name, le)
 )
 
 # External service dependencies
-sum(rate(tempo_span_metrics_calls_total{span_kind="SPAN_KIND_CLIENT"}[5m])) 
+sum(rate(tempo_span_metrics_calls_total{span_kind="SPAN_KIND_CLIENT"}[5m]))
 by (service_name, span_name)
 ```
 
@@ -182,86 +181,10 @@ sum(rate(tempo_service_graph_request_failed_total[5m])) by (client, server)
 avg(tempo_service_graph_request_duration_seconds) by (client, server)
 ```
 
-## Setting up alerts based on trace data
+## See also
 
-### Alert rule examples
-
-Create alerting rules using trace-derived metrics:
-
-#### High error rate alert
-
-```yaml
-groups:
-- name: trace-based-alerts
-  rules:
-  - alert: HighServiceErrorRate
-    expr: |
-      (
-        sum(rate(tempo_service_graph_request_failed_total[5m])) by (server) /
-        sum(rate(tempo_service_graph_request_total[5m])) by (server)
-      ) * 100 > 5
-    for: 5m
-    labels:
-      severity: warning
-    annotations:
-      summary: "High error rate detected for service {{ $labels.server }}"
-      description: "Service {{ $labels.server }} has error rate of {{ $value }}% for 5 minutes"
-```
-
-#### High latency alert
-
-```yaml
-- alert: HighServiceLatency
-  expr: |
-    histogram_quantile(0.95,
-      sum(rate(tempo_service_graph_request_duration_seconds_bucket[5m])) by (server, le)
-    ) > 2
-  for: 10m
-  labels:
-    severity: critical
-  annotations:
-    summary: "High latency detected for service {{ $labels.server }}"
-    description: "Service {{ $labels.server }} 95th percentile latency is {{ $value }}s"
-```
-
-#### Service availability alert
-
-```yaml
-- alert: ServiceUnavailable
-  expr: |
-    absent_over_time(
-      sum(rate(tempo_service_graph_request_total[1m])) by (server)[5m:]
-    ) == 1
-  labels:
-    severity: critical
-  annotations:
-    summary: "Service {{ $labels.server }} appears to be unavailable"
-    description: "No requests detected for service {{ $labels.server }} in the last 5 minutes"
-```
-
-## Best practices for using trace-derived metrics
-
-### Alert design principles
-
-- **Focus on business impact**: Alert on conditions that affect user experience
-- **Use appropriate time windows**: Balance sensitivity with noise reduction
-- **Set meaningful thresholds**: Base thresholds on historical data and SLA requirements
-- **Include context**: Add relevant labels and annotations for effective incident response
-
-### Common monitoring patterns
-
-1. **Service-level monitoring**: Track overall service health using RED metrics
-2. **Dependency monitoring**: Alert when upstream services affect downstream performance
-3. **Capacity planning**: Monitor request rates and latency trends over time
-4. **Quality monitoring**: Track degradation in service quality metrics
-
-## Next steps
-
-To effectively use trace-derived metrics:
-
-- **[Configure comprehensive alerting]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Set up alert rules using trace-derived metrics
-- **[Create service dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Visualize trace metrics alongside other observability data
-- **[PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql/" >}})**: Master querying techniques for trace-derived metrics
-- **[Understand service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs/" >}})**: Connect metrics to visual service topology analysis
-
-For more detailed configuration options, refer to the [Tempo metrics-generator documentation](https://grafana.com/docs/tempo/latest/metrics-from-traces/metrics-generator/).
+- [Understanding trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/understanding-trace-derived-metrics" >}}): why they exist and what RED metrics mean
+- [Alert on trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/alert-on-trace-derived-metrics" >}}): build alert rules from these metrics
+- [PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql/" >}}): general PromQL query patterns
+- [Service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs/" >}}): the visual service topology behind service graph metrics
+- [Tempo metrics-generator documentation](https://grafana.com/docs/tempo/latest/metrics-from-traces/metrics-generator/): configuration options
