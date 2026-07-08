@@ -110,7 +110,7 @@ To get the most value from service graphs:
 
 - **[Configure comprehensive tracing]({{< relref "/overview/observability/data-management/data-ingestion/#trace-ingestion" >}})**: Ensure all critical services are instrumented
 - **[TraceQL query reference]({{< relref "/overview/observability/data-management/data-exploration/traceql/" >}})**: Use advanced queries to complement service graph insights
-- **[Set up trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/trace-derived-metrics/" >}})**: Configure alerting based on service graph metrics
+- **[Alert on trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/alert-on-trace-derived-metrics/" >}})**: Configure alerting based on service graph metrics
 
 - **[Create service dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations for service health
 
