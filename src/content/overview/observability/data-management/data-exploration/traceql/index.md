@@ -44,10 +44,11 @@ TraceQL queries follow this basic pattern:
 
 Basic elements:
 
-- **Scope selectors**: `span.`, `resource.`, `trace.`
-- **Attribute names**: The specific attribute you want to filter on
+- **Attribute scopes**: `span.`, `resource.`, `event.`, `link.`, `instrumentation.`. There's no `trace.` attribute scope; trace-level fields are intrinsics.
+- **Intrinsics**: fields a span or trace always has, written with a colon. Common ones are `span:duration`, `span:name`, `span:kind`, `span:status`, `trace:duration`, and `trace:rootService`.
+- **Attribute names**: the specific attribute you want to filter on
 - **Operators**: `=`, `!=`, `>`, `<`, `>=`, `<=`, `=~` (regex)
-- **Values**: Strings, numbers, or durations
+- **Values**: quoted strings, numbers, durations (`5s`, `500ms`), or unquoted keywords (`error`, `client`)
 
 ## Essential queries
 
@@ -70,33 +71,33 @@ Find traces involving multiple services:
 Find specific operations within services:
 
 ```traceql
-{span.name = "GET /api/users"}
+{span:name = "GET /api/users"}
 ```
 
 Use regex for pattern matching:
 
 ```traceql
-{span.name =~ "GET /api/.*"}
+{span:name =~ "GET /api/.*"}
 ```
 
 ### Performance-based filtering
 
-Find slow traces (duration in nanoseconds):
+Find slow traces (durations take units such as `s`, `ms`, or `us`):
 
 ```traceql
-{trace.duration > 5s}
+{trace:duration > 5s}
 ```
 
-Find traces with errors:
+Find traces with errors (the `error` status value is unquoted):
 
 ```traceql
-{status = error}
+{span:status = error}
 ```
 
 Combine conditions:
 
 ```traceql
-{trace.duration > 2s && status = error}
+{trace:duration > 2s && span:status = error}
 ```
 
 ## Advanced filtering techniques
@@ -118,7 +119,7 @@ Filter by HTTP status codes:
 Find slow HTTP requests:
 
 ```traceql
-{span.http.method = "GET" && span.duration > 1s}
+{span.http.method = "GET" && span:duration > 1s}
 ```
 
 ### Database operation analysis
@@ -132,7 +133,7 @@ Find database queries:
 Analyze slow database operations:
 
 ```traceql
-{span.db.system = "postgresql" && span.duration > 500ms}
+{span.db.system = "postgresql" && span:duration > 500ms}
 ```
 
 Find specific database operations:
@@ -162,13 +163,13 @@ Find traces for specific customers or tenants:
 Find the slowest traces by setting a concrete duration threshold, then sort the result list by duration in Grafana:
 
 ```traceql
-{trace.duration > 10s}
+{trace:duration > 10s}
 ```
 
 Find services with high error rates:
 
 ```traceql
-{resource.service.name = "payment-service" && status = error}
+{resource.service.name = "payment-service" && span:status = error}
 ```
 
 ### Capacity planning queries
@@ -191,7 +192,7 @@ Tempo generates service graphs from trace data. Use TraceQL to understand servic
 
 ### Analyze service dependencies
 
-Find all services called by a specific service:
+Group the spans of a service to see the operations it runs:
 
 ```traceql
 {resource.service.name = "api-gateway"} | by(resource.service.name)
@@ -199,40 +200,44 @@ Find all services called by a specific service:
 
 ### Identify service communication patterns
 
-Find cross-service calls:
+Find outbound (client) calls, which represent one service calling another:
 
 ```traceql
-{span.kind = "client"} && {resource.service.name != parent.resource.service.name}
+{span:kind = client}
 ```
 
 ## Aggregation and structural queries
 
 ### Aggregation functions
 
-Count traces matching criteria:
+Keep only spansets with more than three matching spans:
 
 ```traceql
-{resource.service.name = "api-service"} | count()
+{resource.service.name = "api-service"} | count() > 3
 ```
 
-Calculate percentiles:
+Average a numeric intrinsic or attribute across the matching spans:
 
 ```traceql
-{resource.service.name = "api-service"} | quantile(0.95)
+{resource.service.name = "api-service"} | avg(span:duration) > 1s
 ```
+
+Search aggregates are `count()`, `avg()`, `max()`, `min()`, and `sum()`. Percentiles aren't a search aggregate. Compute them with a [TraceQL metrics](https://grafana.com/docs/tempo/latest/traceql/metrics-queries/) query instead.
 
 ### Structural queries
 
-Find traces with specific span relationships:
+Structural operators match spans by their position in the trace tree: `>` (direct child), `>>` (descendant), `<` (direct parent), `<<` (ancestor), and `~` (sibling). There's no `parent.` attribute prefix.
+
+Find a `database-query` span that's a direct child of a `user-lookup` span:
 
 ```traceql
-{span.name = "database-query" && parent.span.name = "user-lookup"}
+{span:name = "user-lookup"} > {span:name = "database-query"}
 ```
 
-Query trace topology:
+Query trace topology by root service:
 
 ```traceql
-{trace.root.service.name = "api-gateway" && span.kind = "server"}
+{trace:rootService = "api-gateway" && span:kind = server}
 ```
 
 ## Best practices
@@ -241,26 +246,26 @@ Query trace topology:
 
 - **Start specific**: Begin with service or operation names before adding duration filters
 - **Use time ranges**: Always specify time ranges to improve query performance
-- **Limit results**: Use `| limit(100)` for exploratory queries
+- **Limit results**: Set the result limit in Grafana's query editor for exploratory queries. TraceQL has no `limit()` function.
 
 ### Common patterns
 
 1. **Error investigation**:
 
    ```traceql
-   {status = error} | by(resource.service.name) | count()
+   {span:status = error} | by(resource.service.name) | count()
    ```
 
 2. **Performance analysis**:
 
    ```traceql
-   {trace.duration > 5s} | by(resource.service.name) | quantile(0.95)
+   {trace:duration > 5s} | by(resource.service.name)
    ```
 
 3. **Service dependency mapping**:
 
    ```traceql
-   {resource.service.name = "my-service"} | by(span.kind, resource.service.name)
+   {resource.service.name = "my-service"} | by(span:kind, resource.service.name)
    ```
 
 ### Avoiding common mistakes

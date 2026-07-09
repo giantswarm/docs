@@ -113,6 +113,7 @@ HTTPRoute[s]?
 hyperparameter
 IDE[s']?
 impl_title
+[Ii]ntrinsic[s]?
 IP[s]?
 IPAM
 IRSA
@@ -180,6 +181,7 @@ SLO[s]?
 Spotify
 SRE[s]?
 SSL
+[Ss]panset[s]?
 SSO
 subnets?
 substring
