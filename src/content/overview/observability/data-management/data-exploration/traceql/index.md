@@ -174,10 +174,10 @@ Find services with high error rates:
 
 ### Capacity planning queries
 
-Count spans per service:
+Find traces with more than one span from a service (aggregates take a trailing comparison):
 
 ```traceql
-{resource.service.name = "api-gateway"} | count()
+{resource.service.name = "api-gateway"} | count() > 1
 ```
 
 Analyze request patterns:
@@ -190,12 +190,12 @@ Analyze request patterns:
 
 Tempo generates service graphs from trace data. Use TraceQL to understand service interactions. For the service graph feature itself, see [service graphs]({{< relref "/overview/observability/data-management/data-exploration/service-graphs" >}}).
 
-### Analyze service dependencies
+### Group a service's operations
 
-Group the spans of a service to see the operations it runs:
+Group a service's spans by operation and keep the operations that occur more than once. A `by()` stage must be followed by an aggregate and a comparison:
 
 ```traceql
-{resource.service.name = "api-gateway"} | by(resource.service.name)
+{resource.service.name = "api-gateway"} | by(span:name) | count() > 1
 ```
 
 ### Identify service communication patterns
@@ -253,19 +253,19 @@ Query trace topology by root service:
 1. **Error investigation**:
 
    ```traceql
-   {span:status = error} | by(resource.service.name) | count()
+   {span:status = error} | by(resource.service.name) | count() > 1
    ```
 
 2. **Performance analysis**:
 
    ```traceql
-   {trace:duration > 5s} | by(resource.service.name)
+   {trace:duration > 5s} | by(resource.service.name) | avg(span:duration) > 1s
    ```
 
-3. **Service dependency mapping**:
+3. **Span-kind breakdown**:
 
    ```traceql
-   {resource.service.name = "my-service"} | by(span:kind, resource.service.name)
+   {resource.service.name = "my-service"} | by(span:kind) | count() > 1
    ```
 
 ### Avoiding common mistakes

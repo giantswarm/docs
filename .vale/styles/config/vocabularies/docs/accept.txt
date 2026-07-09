@@ -178,10 +178,10 @@ Sigstore
 SLA[s]?
 SLI[s]?
 SLO[s]?
+[Ss]panset[s]?
 Spotify
 SRE[s]?
 SSL
-[Ss]panset[s]?
 SSO
 subnets?
 substring

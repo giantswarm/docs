@@ -33,10 +33,10 @@ Work from the broad set of failures down to the specific error pattern:
 
 2. **Narrow down by time** to the window where the problem occurred. TraceQL has no time function; use Grafana's time range picker (top right of Explore) to bound the same query to the incident window.
 
-3. **Analyze error patterns** by grouping on the status message:
+3. **Analyze error patterns** by grouping on the status message and keeping messages that recur (a `by()` stage needs a trailing aggregate and comparison):
 
    ```traceql
-   {span:status = error} | by(span:statusMessage)
+   {span:status = error} | by(span:statusMessage) | count() > 1
    ```
 
 Open the individual traces the query returns to inspect the span where the error originated and the attributes attached to it.
