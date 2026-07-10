@@ -3,7 +3,7 @@ linkTitle: Add a HelmRelease to a workload cluster
 title: Add a HelmRelease to a workload cluster
 diataxis_content_type: how-to-guide
 description: Deploy and configure an application into a workload cluster using a Flux HelmRelease and OCIRepository, managed through GitOps.
-weight: 90
+weight: 10
 menu:
   principal:
     identifier: tutorials-continuous-deployment-helm-releases-wc
@@ -19,7 +19,9 @@ last_review_date: 2026-06-17
 
 This guide shows how to deploy an application to a workload cluster using a Flux `HelmRelease` and `OCIRepository`, managed through GitOps. For the conceptual overview, see [App management]({{< relref "/overview/fleet-management/app-management" >}}). For an imperative version that applies resources directly to the cluster, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
-If you have existing GitOps deployments using Giant Swarm `App` custom resources, the equivalent guide is [Add a new App to a workload cluster]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}). Flux HelmRelease is the recommended path for new deployments.
+If you have existing GitOps deployments using Giant Swarm `App` custom resources, the equivalent guide is [Add a new App to a workload cluster]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}). Flux `HelmRelease` is the recommended path for new deployments.
+
+**Note:** The file paths and directory layout used throughout this guide follow the [Giant Swarm GitOps template](https://github.com/giantswarm/gitops-template). Adjust paths to match your own layout if your repository doesn't use that structure.
 
 ## Common steps
 
@@ -36,7 +38,7 @@ export APP_NAME="${WC_NAME}-APP_NAME"
 
 ### Set up the directory structure
 
-Create a new directory in the apps directory of your workload cluster, named after the HelmRelease:
+Create a new directory in the apps directory of your workload cluster, named after the `HelmRelease`:
 
 ```sh
 cd management-clusters/${MC_NAME}/organizations/${ORG_NAME}/workload-clusters/${WC_NAME}/mapi/apps
@@ -54,7 +56,7 @@ export CHART_VERSION=CHART_VERSION
 export APP_NAMESPACE=APP_NAMESPACE
 ```
 
-Render the OCIRepository manifest with `--export` so it lands as YAML in your repository:
+Render the `OCIRepository` manifest with `--export` so it lands as YAML in your repository:
 
 ```sh
 flux create source oci ${APP_NAME} \
@@ -65,7 +67,7 @@ flux create source oci ${APP_NAME} \
   --export > ocirepository.yaml
 ```
 
-Render the HelmRelease manifest:
+Render the `HelmRelease` manifest:
 
 ```sh
 flux create helmrelease ${APP_NAME} \
@@ -85,7 +87,7 @@ The `--kubeconfig-secret-ref` flag tells Flux to install the chart into the work
 
 ## Add configuration
 
-Most charts need configuration values. Pass them through the HelmRelease using a `ConfigMap` (for non-secret values) and a `Secret` (for credentials).
+Most charts need configuration values. Pass them through the `HelmRelease` using a `ConfigMap` (for non-secret values) and a `Secret` (for credentials).
 
 ### Non-secret values
 
@@ -170,6 +172,6 @@ If you've completed [the workload cluster configuration guide]({{< relref "/tuto
 
 ## Next steps
 
-Once the HelmRelease is reconciled, common follow-ups are updating its version or values, and letting Flux pick up new chart versions via a SemVer range on the OCIRepository. Companion guides for those workflows are coming as part of the HelmRelease migration. For now, see the [Flux HelmRelease documentation](https://fluxcd.io/flux/components/helm/helmreleases/) for the full API and patterns.
+Once the `HelmRelease` is reconciled, common follow-ups are updating its version or values, and letting Flux pick up new chart versions via a SemVer range on the `OCIRepository`. Companion guides for those workflows are coming as part of the `HelmRelease` migration. For now, see the [Flux HelmRelease documentation](https://fluxcd.io/flux/components/helm/helmreleases/) for the full API and patterns.
 
 For the App CR equivalent of this guide, see [Add a new App to a workload cluster]({{< relref "/tutorials/continuous-deployment/apps/add-appcr" >}}).

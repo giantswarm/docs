@@ -3,7 +3,7 @@ linkTitle: Enable automatic updates for HelmRelease
 title: Enable automatic updates for HelmRelease
 diataxis_content_type: how-to-guide
 description: Configure Flux to pull and apply new chart versions for a HelmRelease, either via a SemVer range on the OCIRepository or via image automation committing version bumps to Git.
-weight: 50
+weight: 30
 menu:
   principal:
     identifier: tutorials-continuous-deployment-helm-releases-auto-updates
@@ -17,12 +17,14 @@ owner:
 last_review_date: 2026-06-17
 ---
 
-Flux can roll new chart versions for a HelmRelease without manual tag bumps. Two approaches:
+Flux can roll new chart versions for a `HelmRelease` without manual tag bumps. Two approaches:
 
-1. **SemVer range on the `OCIRepository`** (recommended). Flux scans the OCI registry on its interval, picks the highest tag matching your range, and reconciles the HelmRelease. Nothing is committed back to Git: the chart selection is set by the `OCIRepository` resource alone.
+1. **SemVer range on the `OCIRepository`** (recommended). Flux scans the OCI registry on its interval, picks the highest tag matching your range, and reconciles the `HelmRelease`. Nothing is committed back to Git, the chart selection is set by the `OCIRepository` resource alone.
 2. **Image automation with Git commits.** Flux watches a registry for new tags, writes the selected tag back into your `ocirepository.yaml`, and commits the change. Adds an audit trail in Git at the cost of more moving parts.
 
 The App CR equivalent of this guide is [Enable automatic updates in Apps]({{< relref "/tutorials/continuous-deployment/apps/automatic-updates-appcr" >}}).
+
+**Note:** The file paths and directory layout used throughout this guide follow the [Giant Swarm GitOps template](https://github.com/giantswarm/gitops-template). Adjust paths to match your own layout if your repository doesn't use that structure.
 
 ## Pick up versions via OCIRepository range
 
@@ -41,7 +43,7 @@ spec:
   interval: 5m
 ```
 
-At each reconciliation interval (`5m`), Flux fetches the tag list from the registry, selects the highest version within the range, and updates the OCIRepository's status. The HelmRelease detects changes to chart revisions and reconciles a Helm upgrade.
+At each reconciliation interval (`5m`), Flux fetches the tag list from the registry, selects the highest version within the range, and updates the `OCIRepository`'s status. The `HelmRelease` detects changes to chart revisions and reconciles a Helm upgrade.
 
 Common ranges:
 
@@ -153,7 +155,7 @@ resources:
 
 ### Mark the OCIRepository tag
 
-Edit `ocirepository.yaml` and add a setter comment to the `tag` field so ImageUpdateAutomation knows where to write new versions:
+Edit `ocirepository.yaml` and add a setter comment to the `tag` field so `ImageUpdateAutomation` knows where to write new versions:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
@@ -168,13 +170,13 @@ spec:
   interval: 60m
 ```
 
-When ImagePolicy selects a new version, ImageUpdateAutomation commits the new tag into `ocirepository.yaml` and Flux reconciles the HelmRelease.
+When `ImagePolicy` selects a new version, `ImageUpdateAutomation` commits the new tag into `ocirepository.yaml` and Flux reconciles the `HelmRelease`.
 
 ### Private registries
 
-If your chart registry requires authentication, create a Kubernetes Secret with registry credentials and reference it from `ImageRepository`.
+If your chart registry requires authentication, create a Kubernetes `Secret` with registry credentials and reference it from `ImageRepository`.
 
-In the management cluster secrets folder (`management-clusters/${MC_NAME}/secrets`), create the Secret:
+In the management cluster secrets folder (`management-clusters/${MC_NAME}/secrets`), create the `Secret`:
 
 ```sh
 export DOCKER_CONFIG_JSON=<path_to_docker_config_json>
@@ -193,7 +195,7 @@ gpg --import management-clusters/${MC_NAME}/.sops.keys/.sops.master.asc
 sops --encrypt --in-place pullsecrets.enc.yaml
 ```
 
-Add the encrypted Secret to `kustomization.yaml`:
+Add the encrypted `Secret` to `kustomization.yaml`:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -203,7 +205,7 @@ resources:
   - pullsecrets.enc.yaml
 ```
 
-Reference the Secret from `imagerepository.yaml`:
+Reference the `Secret` from `imagerepository.yaml`:
 
 ```yaml
 apiVersion: image.toolkit.fluxcd.io/v1beta2
@@ -218,4 +220,4 @@ spec:
     name: flux-pull-secrets
 ```
 
-For more, see [Using private registries with Flux](https://fluxcd.io/flux/guides/image-update/#using-private-registries).
+For more, see [using private registries with Flux](https://fluxcd.io/flux/guides/image-update/#using-private-registries).

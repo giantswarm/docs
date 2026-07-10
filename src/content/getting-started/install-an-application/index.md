@@ -55,7 +55,7 @@ Before adding anything, list the Helm releases already running in your organizat
 ```sh
 flux get helmreleases \
   --namespace ${NAMESPACE} \
-  --selector giantswarm.io/cluster=${CLUSTER}
+  --label-selector giantswarm.io/cluster=${CLUSTER}
 ```
 
 You'll see the apps that ship with the cluster: the default-apps bundle, observability tooling, and other managed components. Confirm the Gateway API bundle is among them. If it isn't, install it first using the [Gateway API installation guide]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}).
@@ -83,19 +83,19 @@ You'll see something like `baseDomain: test01.capi.aws.k8s.gigantic.io`. Save th
 
 ## Step 3: Deploy the hello-world app
 
-The hello-world chart includes an `Ingress` resource by default. Since we're routing through Gateway API instead, disable that with a small `values.yaml`:
+The hello-world chart includes an `Ingress` resource by default. Since we're routing through Gateway API instead, disable that with a small `values.yaml`. Save the following as `values.yaml` in your current directory:
 
 ```yaml
 ingress:
   enabled: false
 ```
 
-Create the OCIRepository for the chart:
+Then create the OCIRepository for the chart:
 
 ```sh
 flux create source oci ${CLUSTER}-hello-world \
   --url oci://gsoci.azurecr.io/charts/giantswarm/hello-world \
-  --tag 2.9.1 \
+  --tag 3.0.2 \
   --namespace ${NAMESPACE} \
   --interval 60m
 ```
@@ -110,7 +110,7 @@ flux create helmrelease ${CLUSTER}-hello-world \
   --kubeconfig-secret-ref ${CLUSTER}-kubeconfig \
   --target-namespace default \
   --label giantswarm.io/cluster=${CLUSTER} \
-  --release-name ${CLUSTER}-hello-world \
+  --release-name hello-world \
   --interval 60m
 ```
 
