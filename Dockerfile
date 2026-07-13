@@ -1,4 +1,4 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:v0.139.3-full AS build
+FROM gsoci.azurecr.io/giantswarm/hugo:0.162.1 AS build
 
 WORKDIR /docs
 
@@ -19,10 +19,19 @@ RUN hugo \
 
 # Compress files using gzip
 # (creates a copy and leaves the uncompressed version in place)
-RUN find /public \
-  -type f -regextype posix-extended \
-  -iregex '.*\.(css|csv|html?|js|svg|txt|xml|json|webmanifest|ttf)'  | \
-    xargs gzip -9 -k
+RUN find /public -type f \( \
+    -iname '*.css'         -o \
+    -iname '*.csv'         -o \
+    -iname '*.html'        -o \
+    -iname '*.htm'         -o \
+    -iname '*.js'          -o \
+    -iname '*.svg'         -o \
+    -iname '*.txt'         -o \
+    -iname '*.xml'         -o \
+    -iname '*.json'        -o \
+    -iname '*.webmanifest' -o \
+    -iname '*.ttf'         \
+  \) | xargs gzip -9 -k
 
 # Remove uncompressed HTML files
 # to reduce storage requirements and image size.
