@@ -62,6 +62,7 @@ CIDR[s]?
 Claude Code
 Claude Desktop
 Claude.ai
+classDef
 CLI
 CNAME
 cluster-aws
@@ -122,6 +123,7 @@ k8s
 [K|k]arpenter
 KEDA
 Keybase
+Keycloak
 keyless
 Kinvolk
 krew
@@ -148,6 +150,7 @@ OAuth
 OCI
 OCIRepository
 OIDC
+Okta
 onboarding
 OpenID Connect
 Opsgenie
@@ -181,6 +184,7 @@ Spotify
 SRE[s]?
 SSL
 SSO
+subgraph
 subnets?
 substring
 syscall[s]?
