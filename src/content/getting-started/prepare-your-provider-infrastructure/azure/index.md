@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: Azure
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
-last_review_date: 2024-11-28
+last_review_date: 2026-07-13
 layout: single
 menu:
   principal:
