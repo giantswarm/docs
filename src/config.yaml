@@ -1,5 +1,5 @@
 baseurl: https://docs.giantswarm.io
-languageCode: en
+locale: en
 title: Giant Swarm Documentation
 pluralizeListTitles: false
 rssLimit: 50
