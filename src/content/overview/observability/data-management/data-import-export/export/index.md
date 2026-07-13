@@ -36,7 +36,7 @@ For the full list of query endpoints and the authentication headers they expect,
 
 Connect your self-managed Grafana instance to explore Giant Swarm observability data through familiar dashboards and queries.
 
-1. **Configure the connection URL** for each data source:
+1. **Configure the connection URL** of each data source:
 
    - Logs (Loki): `https://observability.<domain_name>`
    - Metrics (Mimir/Prometheus): `https://observability.<domain_name>/prometheus`
