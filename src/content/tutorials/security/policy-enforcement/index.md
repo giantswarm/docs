@@ -1133,7 +1133,7 @@ For policies which are enforced or audited by multiple distinct tools, a Giant S
 
 Working out exactly which policies a workload violates can be tedious. To reduce that toil, Giant Swarm offers the [`exception-recommender`](https://github.com/giantswarm/exception-recommender), which watches `PolicyReport`s for policy violations and drafts the exceptions a workload would need.
 
-For each affected workload, it creates a `PolicyExceptionDraft` ([`policy.giantswarm.io/v1alpha1`]({{< relref "/reference/platform-api/crd/policyexceptiondrafts.policy.giantswarm.io" >}})). A draft has no enforcement of its own, it only documents the exceptions a workload would need to pass admisison given the active policies and workload state.
+For each affected workload, it creates a `PolicyExceptionDraft` ([`policy.giantswarm.io/v1alpha1`]({{< relref "/reference/platform-api/crd/policyexceptiondrafts.policy.giantswarm.io" >}})). A draft has no enforcement of its own, it only documents the exceptions a workload would need to pass admission given the active policies and workload state.
 
 To turn a suggestion into a real exception:
 

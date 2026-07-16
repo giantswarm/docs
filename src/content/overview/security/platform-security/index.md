@@ -67,7 +67,6 @@ Scan data can be accessed:
 - using `kubectl`
 - from the Trivy Operator Grafana dashboard
 - directly in Prometheus
-- using the [Trivy Operator extension for Lens][lens-extension]
 - using the [Trivy extension for VS Code][vscode-trivy] (for working with Trivy scans offline)
 
 #### Using kubectl
@@ -144,7 +143,7 @@ Kyverno is a [CNCF project][kyverno-upstream] originally created by Nirmata whic
 
 As part of the security offering, Kyverno provides enforcement for PSS policies and image signing, plus custom policies provided by customers using the stack.
 
-Policy violations are stored in `PolicyReport` CRs and exposed as Prometheus metrics via [policy-reporter][policy-reporter-upstream]. You can retrieve the reports via `kubectl`:
+Policy violations are stored in `PolicyReport` CRs and exposed as Prometheus metrics via [policy-reporter][policy-reporter-upstream]. For large fleets, Kyverno can offload these reports from etcd into a dedicated `reports-server` (an aggregated API server backed by a database) to reduce etcd pressure; this is available but disabled by default. You can retrieve the reports via `kubectl`:
 
 ```bash
 $ kubectl get polr -A
@@ -171,7 +170,7 @@ Open your browser to `localhost:8080` to view the reports.
 
 More detailed information about the use of Kyverno for Pod Security Standards (PSS) policy enforcement, including exception management is available in our separate [policy enforcement documentation][policy-enforcement].
 
-Giant Swarm manages the lifecycle of these policies and their exceptions with additional components, including the `kyverno-policy-operator` and the `exception-recommender`. These are exposed through our [Policy API][policy-api], which lets you declare policy intent without managing the underlying Kyverno resources directly.
+Giant Swarm manages the lifecycle of these policies and their exceptions with additional components, including the `kyverno-policy-operator` and the `exception-recommender`. These are exposed through our [Policy API]({{< relref "/tutorials/security/policy-api" >}}), which lets you declare policy intent without managing the underlying Kyverno resources directly.
 
 ## Falco
 
@@ -187,9 +186,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
-[lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [loki-app]: https://github.com/giantswarm/loki-app
-[policy-api]: {{< relref "/tutorials/security/policy-api" >}}
 [policy-enforcement]: {{< relref "/tutorials/security/policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/overview/observability" >}}
