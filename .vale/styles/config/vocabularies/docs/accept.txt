@@ -4,6 +4,7 @@
 # AZ is used for both "Availability Zone" abbreviation (uppercase) and Azure CLI (lowercase)
 [Aa][Zz]
 # Gateway API ecosystem terms
+deprovision(ed|ing)?
 [Gg]ateway[ -][Aa][Pp][Ii]
 gateway-api-bundle
 gateway-api-config-app
@@ -25,6 +26,7 @@ Autoscaler
 [Ii][Aa][Mm]
 [Kk]ustomization[s]?
 [Kk]ustomize
+lookups
 [Mm]atcher[s]?
 [Nn]ginx
 against
@@ -168,6 +170,7 @@ randomly
 rapidly
 RBAC
 really
+reconnections
 relref
 rollouts
 rulesets
@@ -198,6 +201,8 @@ TraceQL
 UDP
 unmanaged
 upstream[s]?
+URIs
+validators?
 Valkey
 vApp
 vCenter
@@ -210,4 +215,5 @@ VPC
 vs.
 VS Code
 [V|v]Sphere
+[Ww]alkthrough
 Zot
