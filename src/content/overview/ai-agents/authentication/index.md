@@ -233,18 +233,24 @@ First, the token-custody view: what each participant is, and which token travels
 <!-- vale off -->
 {{< mermaid >}}
 flowchart TB
-  client["MCP client — your machine<br/>Claude Code / Cursor — speaks MCP, holds an OAuth session with Muster"]
-  muster["Muster — management cluster · AS + MCP gateway<br/>Validates the access token (store lookup, Dex liveness, audience binding),<br/>then swaps it for the user's Dex ID token<br/>mcp-oauth · validate | token store: access_token → Dex token set"]
-  dex["Dex — giantswarm namespace<br/>Signs the id_token at login · answers /userinfo<br/>liveness checks on every request"]
-  store["Token storage<br/>Store / look up the Dex token set<br/>(ID, access, refresh) by access_token"]
-  mk["mcp-kubernetes — management cluster<br/>Validates the ID token offline via Dex's JWKS — its aud must be in<br/>trustedAudiences — then forwards it to the Kubernetes API<br/>mcp-oauth · validate | forward mode"]
-  api["kube-apiserver — management cluster · control plane<br/>OIDC authN from the token's claims (aud = dex-k8s-authenticator)<br/>+ RBAC authZ on the user's groups.<br/>The audit log records the human"]
+  client["<b>MCP client</b> · your machine<br/>Claude Code / Cursor — holds an OAuth session with Muster"]
+  atok(["access_token — opaque, just a store key"]):::access
+  muster["<b>Muster</b> · management cluster, AS + MCP gateway<br/>validates the access token, swaps it for the user's Dex ID token"]
+  dex["Dex — signs the ID token at login,<br/>answers /userinfo liveness checks"]:::aside
+  store["token storage — the Dex token set,<br/>keyed by access_token"]:::aside
+  idtok(["id_token — aud: muster + dex-k8s-authenticator"]):::idt
+  mk["<b>mcp-kubernetes</b> · management cluster<br/>validates via Dex's JWKS, aud in trustedAudiences"]
+  idtok2(["id_token — the same token, as Bearer"]):::idt
+  api["<b>kube-apiserver</b> · control plane<br/>OIDC authN + RBAC on the user's groups — the audit log records the human"]
 
-  client -- "access_token (opaque — a store key, carries no data)" --> muster
-  muster -- "id_token (aud = [muster, dex-k8s-authenticator])" --> mk
-  mk -- "id_token (same token, as Bearer)" --> api
+  client --> atok --> muster --> idtok --> mk --> idtok2 --> api
   dex -.- muster
   store -.- muster
+
+  classDef access fill:#fdf4dd,stroke:#d9a93f,color:#7a5b12
+  classDef idt fill:#e8f0fe,stroke:#5b83c9,color:#1d4fa0
+  classDef aside fill:#fafbfc,stroke:#9aa4b2,stroke-dasharray:4 3,color:#5b6472
+  classDef default fill:#ffffff,stroke:#8a94a3,color:#1a1f28
 {{< /mermaid >}}
 <!-- vale on -->
 
