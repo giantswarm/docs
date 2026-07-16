@@ -231,27 +231,68 @@ In this scenario, Muster will receive a request from Claude Code with the access
 First, the token-custody view: what each participant is, and which token travels on each hop.
 
 <!-- vale off -->
-{{< mermaid >}}
-flowchart TB
-  client["<b>MCP client</b> · your machine<br/>Claude Code / Cursor — holds an OAuth session with Muster"]
-  atok(["access_token — opaque, just a store key"]):::access
-  muster["<b>Muster</b> · management cluster, AS + MCP gateway<br/>validates the access token, swaps it for the user's Dex ID token"]
-  dex["Dex — signs the ID token at login,<br/>answers /userinfo liveness checks"]:::aside
-  store["token storage — the Dex token set,<br/>keyed by access_token"]:::aside
-  idtok(["id_token — aud: muster + dex-k8s-authenticator"]):::idt
-  mk["<b>mcp-kubernetes</b> · management cluster<br/>validates via Dex's JWKS, aud in trustedAudiences"]
-  idtok2(["id_token — the same token, as Bearer"]):::idt
-  api["<b>kube-apiserver</b> · control plane<br/>OIDC authN + RBAC on the user's groups — the audit log records the human"]
+<style>
+.hop-flow { max-width: 640px; margin: 1.5rem auto; }
+.hop-flow .hop { background: #fff; border: 1px solid #d9dee6; border-radius: 10px; padding: 0.8rem 1.1rem; }
+.hop-flow .hop-head { display: flex; align-items: baseline; gap: 0.65rem; flex-wrap: wrap; }
+.hop-flow .hop-name { font-weight: 700; }
+.hop-flow .hop-where { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: #5b6472; }
+.hop-flow .hop-desc { font-size: 0.9rem; margin: 0.3rem 0 0; }
+.hop-flow .hop-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.55rem; }
+.hop-flow .tag { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.72rem; padding: 0.18em 0.55em; border-radius: 5px; border: 1px solid #d9dee6; background: #f3f5f8; color: #5b6472; }
+.hop-flow .tag-green { background: #e7f4ec; border-color: #b7dcc6; color: #1e6b45; }
+.hop-flow .hop-link { display: flex; flex-direction: column; align-items: center; padding: 0.15rem 0; }
+.hop-flow .hop-link::before, .hop-flow .hop-link::after { content: ""; width: 2px; height: 11px; background: #d9dee6; }
+.hop-flow .hop-arrow { color: #5b6472; font-size: 0.7rem; line-height: 0.7; margin-top: -1px; }
+.hop-flow .hop-link-label { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0; }
+.hop-flow .chip { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem; padding: 0.12em 0.55em; border-radius: 6px; border: 1px solid; }
+.hop-flow .chip-access { background: #fdf4dd; border-color: #e3c883; color: #7a5b12; }
+.hop-flow .chip-id { background: #e8f0fe; border-color: #aac2ec; color: #1d4fa0; }
+.hop-flow .chip-idx { background: #f1eafd; border-color: #c9b5ee; color: #5b34a8; }
+.hop-flow .chip-ext { background: #fdeaf2; border-color: #eeb5cd; color: #a02356; }
+.hop-flow .chip-note { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.72rem; color: #5b6472; }
+.hop-flow .hop-aside-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.75rem 0; }
+.hop-flow .hop-aside { border: 1px dashed #d9dee6; border-radius: 10px; padding: 0.6rem 0.9rem; font-size: 0.82rem; color: #5b6472; }
+.hop-flow .hop-aside strong { color: #1a1f28; font-size: 0.88rem; }
+@media (max-width: 560px) { .hop-flow .hop-aside-row { grid-template-columns: 1fr; } }
+</style>
+<div class="hop-flow">
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">MCP client</span><span class="hop-where">Your machine</span></div>
+    <p class="hop-desc">Claude Code / Cursor — speaks MCP, holds an OAuth session with muster.</p>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-access">access_token</span><span class="chip-note">opaque — a store key, carries no data</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">muster</span><span class="hop-where">Management cluster · AS + MCP gateway</span></div>
+    <p class="hop-desc">Validates the access token (store lookup, Dex liveness, audience binding), then swaps it for the user's Dex ID token.</p>
+    <div class="hop-tags"><span class="tag tag-green">mcp-oauth · validate</span><span class="tag">token store: access_token → Dex token set</span></div>
+  </div>
+  <div class="hop-aside-row">
+    <div class="hop-aside"><strong>Dex</strong> <span class="hop-where">giantswarm ns</span><br>⇄ signs the <span class="chip chip-id">id_token</span> at login · answers <code>/userinfo</code> liveness checks on every request</div>
+    <div class="hop-aside"><strong>Token storage</strong><br>⇄ store / look up the Dex token set (ID, access, refresh) by <span class="chip chip-access">access_token</span></div>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-id">id_token</span><span class="chip-note">aud = [muster, dex-k8s-authenticator]</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">mcp-kubernetes</span><span class="hop-where">Management cluster</span></div>
+    <p class="hop-desc">Validates the ID token offline via Dex's JWKS — its <code>aud</code> must be in <code>trustedAudiences</code> — then forwards it to the Kubernetes API.</p>
+    <div class="hop-tags"><span class="tag tag-green">mcp-oauth · validate</span><span class="tag">forward mode</span></div>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-id">id_token</span><span class="chip-note">same token, as Bearer</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">kube-apiserver</span><span class="hop-where">Management cluster · control plane</span></div>
+    <p class="hop-desc">OIDC authN from the token's claims (<code>aud</code> = <code>dex-k8s-authenticator</code>) + RBAC authZ on the user's <span class="chip chip-groups">groups</span>. The audit log records the human.</p>
+  </div>
+</div>
 
-  client --> atok --> muster --> idtok --> mk --> idtok2 --> api
-  dex -.- muster
-  store -.- muster
-
-  classDef access fill:#fdf4dd,stroke:#d9a93f,color:#7a5b12
-  classDef idt fill:#e8f0fe,stroke:#5b83c9,color:#1d4fa0
-  classDef aside fill:#fafbfc,stroke:#9aa4b2,stroke-dasharray:4 3,color:#5b6472
-  classDef default fill:#ffffff,stroke:#8a94a3,color:#1a1f28
-{{< /mermaid >}}
 <!-- vale on -->
 
 And the sequence view: the same tool call in `forward` mode, with the order of operations and round trips.
@@ -330,21 +371,43 @@ Muster also keeps the exchanged tokens in a cache, keyed by `(target Dex endpoin
 Here's the token-custody view of `exchange` mode — same shape as the `forward` diagram above; the differences are the ID token now minted by the *target* Dex, and everything below Muster living on the target cluster.
 
 <!-- vale off -->
-{{< mermaid >}}
-flowchart TB
-  client["MCP client — your machine<br/>Claude Code / Cursor — unchanged: it never notices which mode a backend uses"]
-  muster["Muster — source management cluster · AS + MCP gateway<br/>Validates the access token as before — but the target cluster trusts a different Dex,<br/>so Muster forwards an ID token exchanged at the target Dex (RFC 8693)<br/>instead of the local one<br/>mcp-oauth · validate | exchange cache: (endpoint, connector, sub)"]
-  sourcedex["Source Dex<br/>Login and liveness, as in forward mode ·<br/>its id_token is now only the exchange input"]
-  targetdex["Target Dex<br/>RFC 8693 exchange at dexTokenEndpoint ·<br/>validates the source token via the source Dex's JWKS,<br/>mints a new id_token"]
-  mk["mcp-kubernetes — target management cluster<br/>Validates the exchanged token via its own local Dex's JWKS —<br/>no cross-cluster trust needed at this hop<br/>mcp-oauth · validate | exchange mode"]
-  api["kube-apiserver — target management cluster · control plane<br/>OIDC authN against its local Dex + RBAC authZ on the user's groups.<br/>The audit log records the human — same as before"]
+<div class="hop-flow">
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">MCP client</span><span class="hop-where">Your machine</span></div>
+    <p class="hop-desc">Claude Code / Cursor — unchanged: it never notices which mode a backend uses.</p>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-access">access_token</span><span class="chip-note">opaque — unchanged</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">muster</span><span class="hop-where">Source management cluster · AS + MCP gateway</span></div>
+    <p class="hop-desc">Validates the access token as before — but the target cluster trusts a different Dex, so muster forwards an ID token <em>exchanged at the target Dex</em> (RFC 8693) instead of the local one.</p>
+    <div class="hop-tags"><span class="tag tag-green">mcp-oauth · validate</span><span class="tag">exchange cache: (endpoint, connector, sub)</span></div>
+  </div>
+  <div class="hop-aside-row">
+    <div class="hop-aside"><strong>Source Dex</strong><br>⇄ login &amp; liveness, as in <code>forward</code> mode · its <span class="chip chip-id">id_token</span> is now only the exchange <em>input</em></div>
+    <div class="hop-aside"><strong>Target Dex</strong><br>⇄ RFC 8693 exchange at <code>dexTokenEndpoint</code> · validates the source token via the source Dex's JWKS, mints a new <span class="chip chip-idx">id_token</span></div>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-idx">id_token</span><span class="chip-note">minted by target Dex — iss = expectedIssuer, same sub / email / groups</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">mcp-kubernetes</span><span class="hop-where">Target management cluster</span></div>
+    <p class="hop-desc">Validates the exchanged token via its <em>own local</em> Dex's JWKS — no cross-cluster trust needed at this hop.</p>
+    <div class="hop-tags"><span class="tag tag-green">mcp-oauth · validate</span><span class="tag">exchange mode</span></div>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-idx">id_token</span><span class="chip-note">same exchanged token, as Bearer</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">kube-apiserver</span><span class="hop-where">Target management cluster · control plane</span></div>
+    <p class="hop-desc">OIDC authN against its local Dex + RBAC authZ on the user's <span class="chip chip-groups">groups</span>. The audit log records the human — same as before.</p>
+  </div>
+</div>
 
-  client -- "access_token (opaque — unchanged)" --> muster
-  muster -- "id_token (minted by target Dex — iss = expectedIssuer, same sub / email / groups)" --> mk
-  mk -- "id_token (same exchanged token, as Bearer)" --> api
-  sourcedex -.- muster
-  targetdex -.- muster
-{{< /mermaid >}}
 <!-- vale on -->
 
 The sequence view shows how the exchange itself works: the same user, re-issued by an issuer the target cluster trusts. This runs during login (and again whenever the exchanged token nears expiry), not on every tool call. Note the direction of the JWKS fetch (target Dex → source Dex), and that every validator on the target management cluster only ever talks to its own local Dex.
@@ -469,21 +532,42 @@ From then on, every tool call the user makes to that backend carries the externa
 Here's the token-custody view of `oauth` mode — same shape as the `forward` and `exchange` diagrams; the token on the lower hops now has nothing to do with Dex.
 
 <!-- vale off -->
-{{< mermaid >}}
-flowchart TB
-  client["MCP client — your machine<br/>Claude Code / Cursor — unchanged, as always: it only ever holds the Muster token"]
-  muster["Muster — management cluster · AS + MCP gateway · OAuth client of GitHub<br/>Validates the access token as always — but the backend trusts GitHub, not Dex,<br/>so Muster attaches the GitHub token it obtained in the outbound authorization-code flow<br/>mcp-oauth · validate | outbound token store: session × issuer × scope"]
-  dex["Dex<br/>Inbound login and liveness only —<br/>plays no role on the outbound hop"]
-  github["GitHub (external AS)<br/>User consents once in the browser ·<br/>code exchanged at /oauth/proxy/callback ·<br/>mints the GitHub token"]
-  proxy["github-mcp — management cluster<br/>Uses the token against the GitHub API —<br/>the user's own GitHub permissions apply"]
-  api["GitHub API — github.com<br/>AuthN and authZ are GitHub's: the boards the user's GitHub account<br/>can see are the boards the tools can see"]
+<div class="hop-flow">
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">MCP client</span><span class="hop-where">Your machine</span></div>
+    <p class="hop-desc">Claude Code / Cursor — unchanged, as always: it only ever holds the muster token.</p>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-access">access_token</span><span class="chip-note">opaque — unchanged</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">muster</span><span class="hop-where">Management cluster · AS + MCP gateway · OAuth client of GitHub</span></div>
+    <p class="hop-desc">Validates the access token as always — but the backend trusts GitHub, not Dex, so muster attaches the GitHub token it obtained in the outbound authorization-code flow.</p>
+    <div class="hop-tags"><span class="tag tag-green">mcp-oauth · validate</span><span class="tag">outbound token store: session × issuer × scope</span></div>
+  </div>
+  <div class="hop-aside-row">
+    <div class="hop-aside"><strong>Dex</strong><br>⇄ inbound login &amp; liveness only — plays no role on the outbound hop</div>
+    <div class="hop-aside"><strong>GitHub (external AS)</strong><br>⇄ user consents once in the browser · code exchanged at <code>/oauth/proxy/callback</code> · mints the <span class="chip chip-ext">github token</span></div>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-ext">github token</span><span class="chip-note">minted by GitHub — no Dex claims, GitHub identity</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">github-mcp</span><span class="hop-where">Management cluster</span></div>
+    <p class="hop-desc">Uses the token against the GitHub API — the user's own GitHub permissions apply.</p>
+  </div>
+  <div class="hop-link">
+    <span class="hop-link-label"><span class="chip chip-ext">github token</span><span class="chip-note">same token, as Bearer</span></span>
+    <span class="hop-arrow">▼</span>
+  </div>
+  <div class="hop">
+    <div class="hop-head"><span class="hop-name">GitHub API</span><span class="hop-where">github.com</span></div>
+    <p class="hop-desc">AuthN and authZ are GitHub's: the boards the user's GitHub account can see are the boards the tools can see.</p>
+  </div>
+</div>
 
-  client -- "access_token (opaque — unchanged)" --> muster
-  muster -- "github token (minted by GitHub — no Dex claims, GitHub identity)" --> proxy
-  proxy -- "github token (same token, as Bearer)" --> api
-  dex -.- muster
-  github -.- muster
-{{< /mermaid >}}
 <!-- vale on -->
 
 The sequence view shows the outbound authorization-code flow: triggered by a `401` from the backend, driven by the `core_auth_login` tool, landing at `/oauth/proxy/callback`. This runs once per login session, not on every tool call.
