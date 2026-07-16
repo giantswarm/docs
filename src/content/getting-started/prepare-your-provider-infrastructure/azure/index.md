@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: Azure
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
-last_review_date: 2026-07-13
+last_review_date: 2026-07-16
 layout: single
 menu:
   principal:
@@ -19,7 +19,7 @@ aliases:
   - /vintage/getting-started/cloud-provider-accounts/cluster-api/azure
 ---
 
-When running the Giant Swarm platform in your Azure subscription, several prerequisites must be satisfied to support Cluster API Provider Azure (CAPZ). In the current implementation, **management and workload clusters must run in the same subscription**.
+When running the Giant Swarm platform in your Azure subscription, several prerequisites must be satisfied to support Cluster API Provider Azure (CAPZ).
 
 Besides the following prerequisites, your account engineer will provide you with a pre-installation checklist that you must complete before starting the installation process.
 
