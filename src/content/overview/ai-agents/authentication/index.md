@@ -42,7 +42,7 @@ When Claude Code gets a `401 Unauthorized` HTTP response, the response carries a
 
 ### 2. Muster → Dex
 
-Muster doesn't know your password and doesn't want to. Instead of showing a login form, it redirects that same browser onward to Dex's `/auth` endpoint—now acting as Dex's client, using the client_id/client_secret that was pre-registered for Muster in Dex's configuration (a staticClients entry in Dex's config; Muster reads its copy from its own config).
+Muster doesn't know your password and doesn't want to. Instead of showing a login form, it redirects that same browser onward to Dex's `/auth` endpoint—now acting as Dex's client, using the client_id/client_secret that was pre-registered for Muster in Dex's configuration (a `staticClients` entry in Dex's config; Muster reads its copy from its own config).
 
 ### 3. Dex → the upstream identity provider
 
