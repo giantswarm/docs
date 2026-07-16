@@ -15,7 +15,7 @@ user_questions:
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
-last_review_date: 2026-06-22
+last_review_date: 2026-07-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -33,7 +33,6 @@ The stack consists of multiple distinct components which are independently insta
 | CIS Benchmarks | Trivy Operator | In Catalog | [Trivy Operator][trivy-operator-app]  |
 | Cloud Security Posture | Evaluating | Planned |   |
 | Runtime Anomalies | Falco | In Catalog | [Falco][falco-app]  |
-| In-Cluster Registry | Harbor | In Catalog | [Harbor][harbor-app]  |
 | Log Alerting | Supported by both Falco and our [managed Observability Bundle][observability-bundle] offering. | In Catalog | [Loki][loki-app] / [Falco][falco-app] |
 | Log Shipping + Storage | Supported by our [managed Loki][loki-app] offering. | In Catalog | [Loki][loki-app]  |
 | Advanced Network Capabilities* | Supported by our managed Connectivity Bundle offering. | In Catalog | [Cilium][cilium-app] |
@@ -47,9 +46,9 @@ A high-level overview of each component is included below. Please refer to the G
 
 ## Trivy
 
-Trivy is a vulnerability scanner created by [Aqua Security][trivy-upstream]. It can be run as a command-line tool (for example, in a CI/CD pipeline) or as a Kubernetes operator, which we deploy from our [Trivy App][trivy-app]. When running as an operator, Trivy can be used as the scanning backend for a Harbor container registry, and as the scanner used by Trivy Operator.
+Trivy is a vulnerability scanner created by [Aqua Security][trivy-upstream]. It can be run as a command-line tool (for example, in a CI/CD pipeline) or as a Kubernetes operator, which we deploy from our [Trivy App][trivy-app]. When running in-cluster, it acts as the scanning backend used by Trivy Operator.
 
-Within our managed security stack, Trivy is deployed in-cluster as the backend for Trivy Operator and Harbor (if in use). We also recommend customers enable vulnerability scanning in their CI/CD pipelines and include support for that integration as part of our managed offering.
+Within our managed security stack, Trivy is deployed in-cluster as the backend for Trivy Operator. We also recommend customers enable vulnerability scanning in their CI/CD pipelines and include support for that integration as part of our managed offering.
 
 ## Trivy Operator
 
@@ -124,7 +123,7 @@ Report:
     ...
 ```
 
-Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get ciskubebenchreport -A` and `kubectl describe`.
+Kubernetes CIS and NSA compliance reports can similarly be retrieved with `$ kubectl get clustercompliancereport` and `kubectl describe`. The underlying host and infrastructure checks that feed these compliance reports are stored in `InfraAssessmentReport` and `ClusterInfraAssessmentReport` resources.
 
 ### Reporting and monitoring
 
@@ -162,7 +161,7 @@ replex-k8s-agent   polr-ns-replex-k8s-agent   9      0      0      0       0    
 Simply `kubectl get -o yaml` a report to see detailed information about the policies in place, plus any recorded violations. Reports can also be visualized through the included web UI by port forwarding it to your local machine:
 
 ```bash
-$ kubectl port-forward service/kyverno-ui 8080:8080 -n <kyverno namespace>
+$ kubectl port-forward service/kyverno-policy-reporter-ui 8080:8080 -n <kyverno namespace>
 Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 ...
@@ -182,7 +181,6 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [cilium-app]: https://github.com/giantswarm/cilium-app/
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
-[harbor-app]: https://github.com/giantswarm/harbor-app
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/

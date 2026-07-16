@@ -18,7 +18,7 @@ user_questions:
  -  How can I run a container as a certain user?
  -  How can I run a container as privileged?
  -  Why is my container lacking permission to use a persistent volume?
-last_review_date: 2026-07-02
+last_review_date: 2026-07-16
 mermaid: true
 layout: single
 owner:
@@ -1132,7 +1132,7 @@ There are different ways to structure a `PolicyException`, and your cluster admi
 Giant Swarm currently suggests a "PolicyException per workload" approach, which looks like this:
 
 ```yaml
-apiVersion: kyverno.io/v2beta1
+apiVersion: kyverno.io/v2
 kind: PolicyException
 metadata:
   name: my-workload-exceptions
