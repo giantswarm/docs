@@ -99,7 +99,7 @@ sequenceDiagram
 
 ### OAuth clients
 
-In OAuth, the client is the application that wants tokens, and the user never types a password into it. A client redirects the user's browser to the Authorization Server (AS), waits for the browser to come back with a one-time authorization code, and exchanges that code for tokens over a back-channel call, identifying itself with its own credentials (`client_id` + `client_secret` for confidential clients like Muster; public clients like Claude Code have no secret and use PKCE instead—[see below](#how-claude-code-becomes-a-client-without-pre-registration)). Any application can be a client in one relationship and an Authorization Server in another: for example, Claude Code is a client of Muster, which is an AS to Claude Code but a client of Dex.
+In OAuth, the client is the application that wants tokens, and the user never types a password into it. A client redirects the user's browser to the Authorization Server (AS), waits for the browser to come back with a one-time authorization code, and exchanges that code for tokens over a back-channel call, identifying itself with its own credentials (`client_id` + `client_secret` for confidential clients like Muster; public clients like Claude Code have no secret and use PKCE instead—see [below](#how-claude-code-becomes-a-client-without-pre-registration)). Any application can be a client in one relationship and an Authorization Server in another: for example, Claude Code is a client of Muster, which is an AS to Claude Code but a client of Dex.
 
 ### How Claude Code becomes a client without pre-registration
 
@@ -452,9 +452,9 @@ Dex is a different story. Dex supports exactly this kind of client—a `staticCl
 
 So the question becomes: can Muster accept a Dex-issued ID token as the bearer token, without the client ever having gone through Muster's own `/oauth/authorize`?
 
-Yes—this is opt-in via Muster's `oauth.server.trustedAudiences` configuration (empty by default: deny-by-default, like every trust decision in this document). When a bearer token arrives, Muster first looks at its shape. If it's a JWT whose `aud` claim contains one of the configured trusted audiences, Muster validates it exactly the way every other validator in this document validates a Dex ID token—[signature via Dex's JWKS, issuer, expiration, audience](#how-are-dexs-id-tokens-validated)—and accepts the request. Only tokens that don't match this path fall through to the opaque-token lookup ([checks 1–4 described earlier](#2-is-the-underlying-dex-session-still-alive)).
+Yes—this is opt-in via Muster's `oauth.server.trustedAudiences` configuration (empty by default: deny-by-default, like every trust decision in this document). When a bearer token arrives, Muster first looks at its shape. If it's a JWT whose `aud` claim contains one of the configured trusted audiences, Muster validates it exactly the way every other validator in this document validates a Dex ID token ([signature via Dex's JWKS, issuer, expiration, audience](#how-are-dexs-id-tokens-validated)) and accepts the request. Only tokens that don't match this path fall through to the opaque-token lookup ([checks 1–4 described earlier](#2-is-the-underlying-dex-session-still-alive)).
 
-Note the audience discipline replaying once more: the gateway logs in to Dex under its *own* `client_id`, so by default its tokens would say `aud: the-gateway`—not something Muster trusts. Either Muster's config lists the gateway's audience in `trustedAudiences`, or the gateway uses Dex's cross-client feature (`trustedPeers`, described [below](#how-are-dexs-id-tokens-validated)) to request tokens that also carry the audience Muster expects.
+Note the audience discipline replaying once more: the gateway logs in to Dex under its *own* `client_id`, so by default its tokens would say `aud: the-gateway`, not something Muster trusts. Either Muster's config lists the gateway's audience in `trustedAudiences`, or the gateway uses Dex's cross-client feature (`trustedPeers`, described [below](#how-are-dexs-id-tokens-validated)) to request tokens that also carry the audience Muster expects.
 
 Downstream, nothing changes. The incoming Dex ID token takes the place of the one Muster would have gotten from its own login flow: in `forward` mode it's sent to backends verbatim, and in `exchange` mode it becomes the subject token of the RFC 8693 exchange. The user identity in its `email` and `groups` claims flows through to Kubernetes RBAC and the audit log exactly as before.
 
@@ -491,7 +491,7 @@ The security consequence is worth stating plainly: with this enabled, *any* JWT 
 
 ## Backends with a different identity provider: Outbound OAuth (github-mcp)
 
-Every downstream mode so far—`forward`, `exchange`, impersonation—reuses the Dex identity the user logged in with. That works because the backends ultimately trust Dex (directly, or via a federated Dex). But some backends don't speak Dex at all. `github-mcp`, the GitHub MCP server, needs to call the GitHub API—and GitHub only honors GitHub credentials. No amount of forwarding or exchanging a Dex token produces a GitHub token: GitHub is a separate authorization server with its own user database.
+Every downstream mode so far (`forward`, `exchange`, impersonation) reuses the Dex identity the user logged in with. That works because the backends ultimately trust Dex (directly, or via a federated Dex). But some backends don't speak Dex at all. `github-mcp`, the GitHub MCP server, needs to call the GitHub API—and GitHub only honors GitHub credentials. No amount of forwarding or exchanging a Dex token produces a GitHub token: GitHub is a separate authorization server with its own user database.
 
 For this case Muster has a fourth downstream mode, enabled with `auth.type: oauth` on the backend's `MCPServer` resource: the **OAuth proxy**. Here Muster becomes an OAuth *client* of the backend's authorization server (GitHub), on behalf of the user—exactly the role Claude Code plays towards Muster, one level further down. Instead of translating the inbound identity, Muster runs a second, independent authorization-code flow against the external provider and keeps the resulting token next to the user's session.
 
@@ -499,14 +499,14 @@ The flow is triggered the same way everything in OAuth is: by a `401`. When Must
 
 On the wire, the RFC 9728 discovery half of that looks like this. The `401` carries a `WWW-Authenticate` header pointing at the backend's protected-resource metadata:
 
-**The backend's `401`—the `WWW-Authenticate` header names the metadata URL:**
+**The backend's `401` response—its `WWW-Authenticate` header names the metadata URL:**
 
 ```text
 HTTP/1.1 401 Unauthorized
 WWW-Authenticate: Bearer resource_metadata="https://github-mcp.example.gigantic.io/.well-known/oauth-protected-resource/mcp"
 ```
 
-Muster fetches that document, and it answers the two questions the flow needs—*who is the authorization server* and *what scopes to ask for*:
+Muster fetches that document, and it answers the two questions the flow needs: *who is the authorization server* and *what scopes to ask for*:
 
 **The protected-resource metadata document (annotated):**
 
@@ -527,7 +527,7 @@ This is, deliberately, the exact same header and document that *Muster* serves t
 
 Note the two callback endpoints Muster now serves, one per direction: `/oauth/callback` is Muster acting as a *client of Dex* during inbound login, and `/oauth/proxy/callback` is Muster acting as a *client of external providers* for outbound auth. For identifying itself outbound, Muster prefers the same mechanism Claude Code uses inbound: it self-hosts a Client ID Metadata Document at `<public URL>/.well-known/oauth-client.json` and uses that URL as its `client_id`. Providers that don't accept CIMD and require pre-registered apps (GitHub among them) get a pre-registered `client_id` via Muster's `oauth.mcpClient.clientId` configuration instead.
 
-From then on, every tool call the user makes to that backend carries the external token: Muster resolves the inbound Muster access token to the session as always, finds the stored GitHub token for it, and sends it as the bearer to github-mcp, which uses it against the GitHub API. Outbound tokens are stored per *login session × issuer × scope*—so they're per-user (never shared between users), and deliberately shared across backends that use the same provider: log in to GitHub once, and every GitHub-backed server behind Muster works. When the provider issues a refresh token, Muster refreshes the external token automatically as it approaches expiry; when it can't, the backend's `401` flips it back to `Auth Required` and the user logs in again.
+From then on, every tool call the user makes to that backend carries the external token: Muster resolves the inbound Muster access token to the session as always, finds the stored GitHub token for it, and sends it as the bearer to github-mcp, which uses it against the GitHub API. Outbound tokens are stored per *login session × issuer × scope*, so they're per-user (never shared between users), and deliberately shared across backends that use the same provider: log in to GitHub once, and every GitHub-backed server behind Muster works. When the provider issues a refresh token, Muster refreshes the external token automatically as it approaches expiry; when it can't, the backend's `401` flips it back to `Auth Required` and the user logs in again.
 
 Here's the token-custody view of `oauth` mode—same shape as the `forward` and `exchange` diagrams; the token on the lower hops now has nothing to do with Dex.
 
@@ -613,7 +613,7 @@ Everything so far assumed a human with a browser. But agents running *inside* th
 
 The way this works today is simpler than you might expect: **the agent acts with the human's own Dex ID token**. When a human links their identity to the agent platform (a one-time browser login against Muster, for example from Slack), Muster's token response contains, alongside its own opaque access token, the upstream Dex ID token. The gateway in front of the agent keeps the Muster refresh token as the durable link; on every task it obtains a fresh Dex ID token through that session and hands it to the agent as the human's credential. The opaque Muster access token is never forwarded to the agent: it's not a JWT and carries no identity an agent-side validator could read.
 
-The agent then calls Muster's `/mcp` with the human's Dex ID token as its bearer. Muster accepts it at the front door the same way it accepts any externally presented Dex token—[the direct-Dex-token path described above](#skipping-musters-oauth-flow-bringing-a-dex-token-directly): a JWT whose audience is in `trustedAudiences`, validated offline against Dex's JWKS. From there, everything is exactly the human flow: `forward` mode sends the token to backends byte-identical, `exchange` mode uses it as the subject of the cross-cluster exchange, and the Kubernetes API sees the human.
+The agent then calls Muster's `/mcp` with the human's Dex ID token as its bearer. Muster accepts it at the front door the same way it accepts any externally presented Dex token—through [the direct-Dex-token path described above](#skipping-musters-oauth-flow-bringing-a-dex-token-directly): a JWT whose audience is in `trustedAudiences`, validated offline against Dex's JWKS. From there, everything is exactly the human flow: `forward` mode sends the token to backends byte-identical, `exchange` mode uses it as the subject of the cross-cluster exchange, and the Kubernetes API sees the human.
 
 **The agent's bearer—the human's Dex ID token, unchanged. Note what's missing:**
 
