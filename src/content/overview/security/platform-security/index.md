@@ -11,7 +11,7 @@ aliases:
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
-  - What is included in the Security Bundle?
+  - Which components make up the Giant Swarm security platform?
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
@@ -171,6 +171,8 @@ Open your browser to `localhost:8080` to view the reports.
 
 More detailed information about the use of Kyverno for Pod Security Standards (PSS) policy enforcement, including exception management is available in our separate [policy enforcement documentation][policy-enforcement].
 
+Giant Swarm manages the lifecycle of these policies and their exceptions with additional components, including the `kyverno-policy-operator` and the `exception-recommender`. These are exposed through our [Policy API][policy-api], which lets you declare policy intent without managing the underlying Kyverno resources directly.
+
 ## Falco
 
 Falco is a [CNCF project][falco-upstream] originally created by Sysdig which enables rule-based detection of runtime anomalies in a container or on a host Node. Falco watches Linux system calls (syscalls) for events matching a predefined set of suspicious or malicious activities. Examples include reading a sensitive file or executing a shell inside a container.
@@ -179,6 +181,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 
 [app-platform]: {{< relref "/overview/fleet-management/app-management" >}}
 [cilium-app]: https://github.com/giantswarm/cilium-app/
+[envoy-gateway-app]: https://github.com/giantswarm/envoy-gateway-app
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
 [kube-bench]: https://github.com/aquasecurity/kube-bench
@@ -186,6 +189,7 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
 [lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [loki-app]: https://github.com/giantswarm/loki-app
+[policy-api]: {{< relref "/tutorials/security/policy-api" >}}
 [policy-enforcement]: {{< relref "/tutorials/security/policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/overview/observability" >}}
@@ -196,4 +200,3 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [trivy-operator-app]: https://github.com/giantswarm/trivy-operator-app
 [trivy-operator-upstream]: https://github.com/aquasecurity/trivy-operator
 [vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension
-[envoy-gateway-app]: https://github.com/giantswarm/envoy-gateway-app

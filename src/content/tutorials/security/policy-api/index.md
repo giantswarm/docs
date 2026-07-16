@@ -12,7 +12,7 @@ user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
  -  What is the Policy API?
-last_review_date: 2026-07-02
+last_review_date: 2026-07-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -73,6 +73,10 @@ spec:
 ```
 
 Based on this exception, the Policy API controllers will generate additional resources and make configuration changes to any tools which enforce the listed policies.
+
+#### PolicyExceptionDrafts
+
+Giant Swarm clusters can also suggest exceptions for you. The `exception-recommender` inspects policy reports and generates `PolicyExceptionDraft` resources containing suggestions for the exceptions a workload would need. A cluster administrator reviews a draft and, if appropriate, promotes it to a `PolicyException`. For the full workflow, see [generating exceptions automatically]({{< relref "/tutorials/security/policy-enforcement" >}}#generating-exceptions-automatically) on the policy enforcement page.
 
 ### Motivation / historical note
 
