@@ -111,7 +111,7 @@ When a workload cluster uses Kubernetes structured authentication, the OIDC issu
 - `--oidc-issuer`: Override the OIDC issuer URL.
 - `--oidc-client-id`: Override the OIDC client ID. When both `--oidc-issuer` and `--oidc-client-id` are set, the management cluster is not contacted for OIDC issuer auto-discovery.
 - `--api-ca-file`: Path to a CA certificate file for the workload cluster API server. When set, skips fetching the CA from the management cluster.
-- `--api-endpoint`: The workload cluster API server endpoint (for example `https://api.mywc.example.com:6443`). When set, the endpoint is taken from the flag instead of being read from the management cluster.
+- `--api-endpoint`: The workload cluster API server endpoint (for example `https://api.mywc.example.com:6443`). When set, the endpoint is taken from the flag instead of being read from the management cluster. It must use `https` (the endpoint carries OIDC bearer tokens); a bare host such as `api.mywc.example.com:6443` is accepted and defaults to `https`, but an explicit `http://` scheme is rejected.
 
 When `--api-endpoint`, `--oidc-issuer`, `--oidc-client-id`, and `--api-ca-file` are all provided, the login is performed **without any access to the management cluster**. In that case the user needs no RBAC permissions on the management cluster, and any reachable kubectl context can be current. Because everything is supplied via flags, `--organization` is not required. All four flags must be given together; supplying `--api-endpoint` without the others results in an error.
 
