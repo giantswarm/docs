@@ -100,54 +100,31 @@ kubectl gs login example \
   --organization acme
 ```
 
-In this mode `kubectl gs login` reads a small set of resources from the management cluster, all read-only (`get`):
+In this mode `kubectl gs login` reads a small set of resources from the management cluster, all read-only (`get`). It assumes the organization's namespace is `org-<name>` (derived from `--organization`), so all reads happen inside that namespace and **no cluster-scoped permissions are required**:
 
 | Resource | Scope | Used for |
 |---|---|---|
-| `organizations.security.giantswarm.io` | cluster-scoped | Resolve the organization to its namespace (`org-<name>`) |
 | `clusters.cluster.x-k8s.io` | organization namespace | API server endpoint (`spec.controlPlaneEndpoint`) |
 | `kubeadmcontrolplanes.controlplane.cluster.x-k8s.io` | organization namespace | OIDC issuer and client ID from the structured authentication config |
 | `configmaps` (`<cluster>-cluster-values`) | organization namespace | API server CA certificate |
+| `organizations.security.giantswarm.io` | cluster-scoped | **Fallback only.** Read to resolve the organization's namespace when the workload cluster is not found under `org-<name>` — i.e. for organizations whose namespace does not follow the convention. Not read in the normal case. |
 
 ### Define a minimum role instead of `read-all`
 
 To use option 2, users must be allowed to read the resources above on the management cluster. The built-in `read-all` role covers this, but it grants read access to essentially every resource on the management cluster — far more than logging in requires. **We recommend granting a dedicated, minimal role instead**, so that logging in to workload clusters does not imply broad read access to the management cluster. Use `read-all` only if your users already have (and you have an RBAC plan for) general management cluster access.
 
-The following `ClusterRole` (for the cluster-scoped `Organization` lookup) plus `Role` (for the per-organization resources) grant exactly what `kubectl gs login` needs. Bind them to your users or their OIDC group, and create one `Role`/`RoleBinding` per organization namespace they should be able to reach:
+The following `Role` grants exactly what `kubectl gs login` needs inside an organization namespace. Bind it to your users or their OIDC group, and create one `Role`/`RoleBinding` per organization namespace they should be able to reach:
 
 ```yaml
 # RBAC for `kubectl gs login <mc> --workload-cluster <wc> --organization <org>`
 # using structured authentication with automatic parameter injection.
 #
-# Read-only. All access is `get` on single objects.
-# Organization is cluster-scoped; the rest live in the org namespace (org-<org>).
+# Read-only. All access is `get` on single objects, inside the
+# organization namespace (org-<org>). No cluster-scoped access needed.
 ---
-# 1) Cluster-scoped: resolve the Organization -> namespace
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: kubectl-gs-login-org-read
-rules:
-  - apiGroups: ["security.giantswarm.io"]
-    resources: ["organizations"]
-    verbs: ["get"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: kubectl-gs-login-org-read
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: kubectl-gs-login-org-read
-subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: "<your-oidc-user>"   # or kind: Group
----
-# 2) Namespaced: everything read inside the organization namespace.
-#    Create one Role+RoleBinding per org namespace the user should reach
-#    (e.g. org-acme).
+# Everything read inside the organization namespace.
+# Create one Role+RoleBinding per org namespace the user should reach
+# (e.g. org-acme).
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -190,7 +167,35 @@ subjects:
     name: "<your-oidc-user>"   # or kind: Group
 ```
 
-Store both bindings in Git and reconcile them onto the management cluster the same way as the rest of your configuration.
+Store the binding in Git and reconcile it onto the management cluster the same way as the rest of your configuration.
+
+#### Fallback: cluster-scoped `Organization` read (non-standard namespaces only)
+
+`kubectl gs login` derives the organization namespace as `org-<name>` by convention, so the `Role` above is all that's needed in the normal case. It reads the cluster-scoped `Organization` resource **only as a fallback**, when the workload cluster is not found in the assumed `org-<name>` namespace — for example when the organization's namespace does not follow the convention. If that applies to your organization, additionally grant a cluster-scoped read of `Organization`:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubectl-gs-login-org-read
+rules:
+  - apiGroups: ["security.giantswarm.io"]
+    resources: ["organizations"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubectl-gs-login-org-read
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubectl-gs-login-org-read
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: "<your-oidc-user>"   # or kind: Group
+```
 
 ## Configure multiple OIDC providers
 
