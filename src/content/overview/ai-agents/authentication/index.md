@@ -1,6 +1,6 @@
 ---
 title: 'Authentication deep dive: from your MCP client to the Kubernetes API'
-linkTitle: Authentication deep dive
+linkTitle: Authentication
 description: A token-by-token walkthrough of how user identity flows from an MCP client through Muster and mcp-kubernetes to the Kubernetes API, covering login, validation, token forwarding, exchange, and impersonation.
 diataxis_content_type: explanation
 mermaid: true
@@ -36,31 +36,47 @@ Muster is itself the Authorization Server for MCP clients like Claude Code. Behi
 
 ## What happens when you start the OAuth flow to log in to Muster
 
-### 1. Claude Code → Muster
+{{% steps %}}
 
-When Claude Code gets a `401 Unauthorized` HTTP response, the response carries a `WWW-Authenticate` header pointing at the server's metadata, which is how Claude Code discovers the authorization server and its endpoints. Using that information, Claude Code (the client) opens your browser at Muster's `/oauth/authorize`, identifying itself with its `client_id`. For MCP clients that `client_id` isn't a pre-registered value but a URL the client controls (see ["How Claude Code becomes a client without pre-registration"](#how-claude-code-becomes-a-client-without-pre-registration) below).
+{{% step title="Claude Code → Muster" %}}
 
-### 2. Muster → Dex
+When Claude Code gets a `401 Unauthorized` HTTP response, the response carries a `WWW-Authenticate` header pointing at the server's metadata. That header is how Claude Code discovers the Authorization server (AS) and its endpoints. Using that information, Claude Code (the client) opens your browser at Muster's `/oauth/authorize`, identifying itself with its `client_id`. For MCP clients, that `client_id` isn't a pre-registered value but a URL the client controls (see ["How Claude Code becomes a client without pre-registration"](#how-claude-code-becomes-a-client-without-pre-registration) below).
+
+{{% /step %}}
+
+{{% step title="Muster → Dex" %}}
 
 Muster doesn't know your password and doesn't want to. Instead of showing a login form, it redirects that same browser onward to Dex's `/auth` endpoint. Now Muster acts as Dex's client, using the client_id/client_secret that was pre-registered for Muster in Dex's configuration (a `staticClients` entry in Dex's config. Muster reads its copy from its own config).
 
-### 3. Dex → the upstream identity provider
+{{% /step %}}
+
+{{% step title="Dex → the upstream identity provider" %}}
 
 Dex is doing the exact same trick one level deeper: it's an AS to Muster but a client of the identity provider, for example Google. Each Dex "connector" holds a client_id/secret registered with the upstream identity provider. It redirects the browser to the identity provider's login page.
 
-### 4. User logs in
+{{% /step %}}
+
+{{% step title="User logs in" %}}
 
 You type your password at the identity provider login page, and only there. Neither Dex, nor Muster, nor Claude Code ever sees it.
 
-### 5. The chain unwinds
+{{% /step %}}
+
+{{% step title="The chain unwinds" %}}
 
 The identity provider redirects the browser back to Dex's callback with a code. Dex exchanges it (authenticating with its identity provider / connector `client_secret`), mints its own tokens, and redirects the browser to Muster's `/oauth/callback` with a new code. Muster exchanges that code at Dex's `/token` endpoint, authenticating with Muster's Dex `client_secret`, and receives the Dex ID token. Muster then redirects the browser one last time to Claude Code's localhost callback with yet another code. When Claude Code exchanges that code, Muster mints and returns its own access token.
+
+Why does every hop hand over a code instead of a token? The code is the only credential that travels through the browser, where it can end up in address bars, history, and logs. So it's designed to be low-value: it can be used once, it expires within seconds, and it's worthless on its own. Redeeming it requires the client's own credentials (its `client_secret`, or the PKCE verifier for public clients like Claude Code). The actual tokens only travel on direct server-to-server calls (the "back channel") and never pass through the browser.
+
+{{% /step %}}
+
+{{% /steps %}}
 
 After the OAuth flow is finished, you are logged in to Muster. In reality this means that Claude Code received an access token from Muster (an opaque token, a random string that Muster generated). Muster keeps a map with the tokens that it generated, using the token as key, and the tokens from Dex as value (ID token, access token, and refresh token). That way Muster knows which user is associated with the access token. The token response also carries a copy of the upstream Dex ID token, as any OIDC token response does. Claude Code has no use for it and authenticates with the opaque token only, but other clients rely on it (see the agents section below).
 
 Now that you are logged into Muster, you can start doing tool calls from Claude Code, which will include Muster's access token on every request to Muster.
 
-The login flow: one browser, three redirects, one password. Step numbers match sections 1–5 described earlier.
+The login flow: one browser, three redirects, one password. Step numbers match the five steps described earlier.
 
 <!-- vale off -->
 {{< mermaid >}}
@@ -117,21 +133,33 @@ Public clients like Claude Code get no `client_secret`. Instead, each login is p
 
 When a request with the opaque bearer token arrives, Muster will try to validate the token by checking several different things.
 
-### 1. Does the Muster session artifact still exist and hold
+{{% steps %}}
+
+{{% step title="Does the Muster session artifact still exist and hold" %}}
 
 Muster will try to find the token in the token storage. If the token isn't found, or it has expired or it has been revoked, the validation fails. This enables the system to perform instant-revocation: killing the store entry ends the session now.
 
-### 2. Is the underlying Dex session still alive
+{{% /step %}}
+
+{{% step title="Is the underlying Dex session still alive" %}}
 
 The stored Dex token is checked for expiry. If it's expired but a Dex refresh token exists, Muster refreshes against Dex right there. If Dex refuses the refresh (for example, user deprovisioned, session revoked at the IdP) the request fails. So if users are removed at the upstream identity provider (Google / Azure / etc.), their access will be cut off when the Dex token expires. This happens even though Muster's own artifacts (first check in this list) haven't expired.
 
-### 3. Does Dex vouch for the user right now
+{{% /step %}}
 
-On every request coming from MCP clients, Muster will call the `/userinfo` endpoint in Dex to check if the Dex access token is still valid at the Dex level. This catches revocation at Dex immediately (session deleted or revoked at Dex). Note that this check only proves the session is still alive at Dex. A user removed at the upstream identity provider (Google / Azure) isn't visible to `/userinfo`. Dex itself only finds out the next time it refreshes against the upstream, which is [check 2 described earlier](#2-is-the-underlying-dex-session-still-alive). Each layer vouches for itself in real time. News from the upstream layer arrives at refresh time.
+{{% step title="Does Dex vouch for the user right now" %}}
 
-### 4. Was this token minted for this server
+On every request coming from MCP clients, Muster will call the `/userinfo` endpoint in Dex to check if the Dex access token is still valid at the Dex level. This catches revocation at Dex immediately (session deleted or revoked at Dex). Note that this check only proves the session is still alive at Dex. A user removed at the upstream identity provider (Google / Azure) isn't visible to `/userinfo`. Dex itself only finds out the next time it refreshes against the upstream, which is [check 2 described earlier](#is-the-underlying-dex-session-still-alive). Each layer vouches for itself in real time. News from the upstream layer arrives at refresh time.
 
-When it mints a token, Muster records in its storage which resource the token was requested for (its own resource URI—this is OAuth's "resource indicator," RFC 8707). At validation time it checks that binding, so a token minted for a different resource server is rejected even if it's otherwise valid.
+{{% /step %}}
+
+{{% step title="Was this token minted for this server" %}}
+
+When Muster mints an access token, it records in its storage which resource the token was requested for (its own resource URI—this is OAuth's "resource indicator," RFC 8707). At validation time Muster checks that binding, so a token minted for a different resource server is rejected even if it's otherwise valid.
+
+{{% /step %}}
+
+{{% /steps %}}
 
 **Recap: the actors in the login.**
 
@@ -452,7 +480,7 @@ Dex is a different story. Dex supports exactly this kind of client—a `staticCl
 
 So the question becomes: can Muster accept a Dex-issued ID token as the bearer token, without the client ever having gone through Muster's own `/oauth/authorize`?
 
-Yes—this is opt-in via Muster's `oauth.server.trustedAudiences` configuration (empty by default: deny-by-default, like every trust decision in this document). When a bearer token arrives, Muster first looks at its shape. If it's a JWT whose `aud` claim contains one of the configured trusted audiences, Muster validates it and accepts the request. It validates the token exactly the way every other validator in this document validates a Dex ID token ([signature via Dex's JWKS, issuer, expiration, audience](#how-are-dexs-id-tokens-validated)). Only tokens that don't match this path fall through to the opaque-token lookup ([checks 1–4 described earlier](#2-is-the-underlying-dex-session-still-alive)).
+Yes—this is opt-in via Muster's `oauth.server.trustedAudiences` configuration (empty by default: deny-by-default, like every trust decision in this document). When a bearer token arrives, Muster first looks at its shape. If it's a JWT whose `aud` claim contains one of the configured trusted audiences, Muster validates it and accepts the request. It validates the token exactly the way every other validator in this document validates a Dex ID token ([signature via Dex's JWKS, issuer, expiration, audience](#how-are-dexs-id-tokens-validated)). Only tokens that don't match this path fall through to the opaque-token lookup ([checks 1–4 described earlier](#is-the-underlying-dex-session-still-alive)).
 
 Note the audience discipline replaying once more: the gateway logs in to Dex under its *own* `client_id`, so by default its tokens would say `aud: the-gateway`, not something Muster trusts. Muster's config can list the gateway's audience in `trustedAudiences`. Alternatively, the gateway uses Dex's cross-client feature (`trustedPeers`, described [below](#how-are-dexs-id-tokens-validated)) to request tokens that also carry the audience Muster expects.
 
@@ -706,7 +734,7 @@ Can any client just request tokens addressed to any other client? No, this is De
 
 Similarly, `mcp-kubernetes` is configured to accept tokens that contain `muster` in the audience field, via the `trustedAudiences` list in `mcp-kubernetes` configuration. This is empty by default (deny-by-default: each aggregator is an explicit entry).
 
-The same audience discipline appears one more time, in the token exchange scenario. When Muster exchanges tokens with a target Dex, the target Dex is itself a validator of an incoming ID token—one whose audience is `muster`, not the target Dex. It accepts it because its connector is explicitly configured with which audience to expect on incoming tokens: Muster's client id at the source Dex. A Dex instance has no audience of its own as an issuer. Like every other validator in this document, it accepts exactly the audiences its configuration names, and nothing else.
+The same audience discipline appears one more time, in the token exchange scenario. When Muster exchanges tokens with a target Dex, the target Dex is itself a validator of an incoming ID token—one whose audience is `muster`, not the target Dex. It accepts it because its connector is explicitly configured with which audience to expect on incoming tokens: Muster's client id at the source Dex. This is per-cluster provisioning, not a global default. Only the Dex instances on management clusters that participate in token exchange run such a connector. A Dex instance that isn't an exchange target knows nothing about the central Dex or its clients. A Dex instance has no audience of its own as an issuer. Like every other validator in this document, it accepts exactly the audiences its configuration names, and nothing else.
 
 And the audience story then replays on the target side for the *exchanged* token. For it to be accepted by the target Kubernetes API server, Muster requests the `dex-k8s-authenticator` audience during the exchange. The target Dex only grants that because its own `trustedPeers` configuration allows it—exactly the cross-client mechanism described earlier, mirrored on the target management cluster.
 
