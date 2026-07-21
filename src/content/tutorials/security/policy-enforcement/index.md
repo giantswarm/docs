@@ -18,7 +18,7 @@ user_questions:
  -  How can I run a container as a certain user?
  -  How can I run a container as privileged?
  -  Why is my container lacking permission to use a persistent volume?
-last_review_date: 2026-07-02
+last_review_date: 2026-07-16
 mermaid: true
 layout: single
 owner:
@@ -1077,6 +1077,12 @@ spec:
 
 {{% /details %}}
 
+## Optional policies
+
+Beyond the Pod Security Standards enforced by default, Giant Swarm's [`kyverno-policies`](https://github.com/giantswarm/kyverno-policies) include additional policies that clusters can opt into. These cover a range of concerns related to security, governance, and best practices.
+
+These policies aren't enforced unless you enable them. Refer to the [`kyverno-policies` repository](https://github.com/giantswarm/kyverno-policies) for the full, current list.
+
 ## Policy exceptions
 
 If a workload requires an exception, for example because it has a legitimate reason to run with a less secure configuration, the workload can be excluded from enforcement of a particular policy.
@@ -1123,6 +1129,20 @@ Various `Policy` API components watch these resources and make the corresponding
 
 For policies which are enforced or audited by multiple distinct tools, a Giant Swarm `PolicyException` can be used to declaratively configure all of the underlying implementations simultaneously.
 
+#### Generating exceptions automatically
+
+Working out exactly which policies a workload violates can be tedious. To reduce that toil, Giant Swarm offers the [`exception-recommender`](https://github.com/giantswarm/exception-recommender), which watches `PolicyReport`s for policy violations and drafts the exceptions a workload would need.
+
+For each affected workload, it creates a `PolicyExceptionDraft` ([`policy.giantswarm.io/v1alpha1`]({{< relref "/reference/platform-api/crd/policyexceptiondrafts.policy.giantswarm.io" >}})). A draft has no enforcement of its own, it only documents the exceptions a workload would need to pass admission given the active policies and workload state.
+
+To turn a suggestion into a real exception:
+
+1. Review the generated `PolicyExceptionDraft` for the workload.
+2. If the excepted access is acceptable, promote it to a Giant Swarm `PolicyException`. The draft uses the same schema, so this is mostly a matter of changing the resource kind.
+3. The `kyverno-policy-operator` reconciles the `PolicyException` into the underlying Kyverno `PolicyException`, exactly as it does for exceptions you write by hand.
+
+This workflow keeps a human in the loop but eliminates the guesswork of writing the exception logic. The approval and deployment can be automated within existing security review processes.
+
 ### Configuring exceptions with Kyverno
 
 Cluster administrators may prefer to manage exceptions themselves. In this case, it's necessary to create the underlying Kyverno policy exception directly.
@@ -1132,7 +1152,7 @@ There are different ways to structure a `PolicyException`, and your cluster admi
 Giant Swarm currently suggests a "PolicyException per workload" approach, which looks like this:
 
 ```yaml
-apiVersion: kyverno.io/v2beta1
+apiVersion: kyverno.io/v2
 kind: PolicyException
 metadata:
   name: my-workload-exceptions
