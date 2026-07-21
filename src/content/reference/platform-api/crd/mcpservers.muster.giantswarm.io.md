@@ -13,7 +13,7 @@ crd:
   technical_name: mcpservers.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v0.23.5
+  source_repository_ref: v1.0.5
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v0.23.5
+source_repository_ref: v1.0.5
 ---
 
 # MCPServer
@@ -288,77 +288,20 @@ space-separated scope tokens). Matches existing TokenExchangeConfig.Scopes.</p>
 
 <div class="property-description">
 <p>ForwardToken enables ID token forwarding for SSO.
-When true, muster forwards the user&rsquo;s ID token to this server instead of
-triggering a separate OAuth flow. The downstream server must be configured
-to trust muster&rsquo;s client ID in its TrustedAudiences.</p>
+When true, muster forwards the session&rsquo;s upstream dex ID token (or, for
+sessions established by a trusted-issuer bearer, that IdP-issued bearer)
+to this server byte-identical, instead of triggering a separate OAuth
+flow. Every forwarded token is issued by the IdP (dex); muster is not
+an identity provider, never signs tokens, and no backend is ever
+configured to trust a muster JWKS. The downstream server must trust the
+IdP&rsquo;s issuer/JWKS (e.g. muster&rsquo;s client ID in its TrustedAudiences for
+forwarded dex ID tokens).</p>
 
-</div>
-
-</div>
-</div>
-
-<div class="property depth-2">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.auth.localMint">.spec.auth.localMint</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">object</span>
-
-</div>
-
-<div class="property-description">
-<p>LocalMint enables downstream auth via a per-backend token minted by muster
-from its own signing key. On each call muster reads the caller&rsquo;s bearer as
-the subject and an optional X-Actor-Token header as the actor, then mints a
-token (sub=subject, act=actor, aud=Audience, iss=muster) through muster&rsquo;s
-RFC 8693 broker.</p>
-
-<p>Use LocalMint when the backend must authorize an agent acting on behalf of a
-human (OBO) and no shared remote IdP can issue a token with the backend&rsquo;s
-audience. Requires muster&rsquo;s OAuth server to run in
-JWT mode with a broker local-mint target whose audience equals Audience.</p>
-
-<p>LocalMint is mutually exclusive with ForwardToken, TokenExchange, and
-AuthorizationServer (the CRD admission rules above reject combinations).</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.auth.localMint.audience">.spec.auth.localMint.audience</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">string</span>
-
-</div>
-
-<div class="property-description">
-<p>Audience is the minted token&rsquo;s aud claim: the backend&rsquo;s resource identifier.
-It must equal a configured broker local-mint target; the mint fails closed
-when no matching target exists.</p>
-
-</div>
-
-</div>
-</div>
-
-<div class="property depth-3">
-<div class="property-header">
-<h3 class="property-path" id="v1alpha1-.spec.auth.localMint.enabled">.spec.auth.localMint.enabled</h3>
-</div>
-<div class="property-body">
-<div class="property-meta">
-<span class="property-type">boolean</span>
-
-</div>
-
-<div class="property-description">
-<p>Enabled turns on local minting for this server.</p>
+<p>The forwarded token is not audience-scoped to this server: the same
+token is accepted by every forwardToken backend, so all forwardToken
+backends must be equally trusted. A token&rsquo;s nested act claim (minted
+by the IdP, e.g. via exchange at dex) carries the delegation chain for
+backend authorization decisions.</p>
 
 </div>
 
