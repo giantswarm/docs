@@ -26,7 +26,7 @@ Autoscaler
 [Ii][Aa][Mm]
 [Kk]ustomization[s]?
 [Kk]ustomize
-lookups
+lookup[s]?
 [Mm]atcher[s]?
 [Nn]ginx
 against
@@ -170,7 +170,7 @@ randomly
 rapidly
 RBAC
 really
-reconnections
+reconnection[s]?
 relref
 rollouts
 rulesets
@@ -202,7 +202,7 @@ UDP
 unmanaged
 upstream[s]?
 URIs
-validators?
+validator[s]?
 Valkey
 vApp
 vCenter
