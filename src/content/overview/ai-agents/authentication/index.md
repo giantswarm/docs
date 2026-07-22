@@ -115,7 +115,7 @@ sequenceDiagram
 
 ### OAuth clients
 
-In OAuth, the client is the application that wants tokens, and the user never types a password into it. A client redirects the user's browser to the Authorization Server (AS) and waits for the browser to come back with a one-time authorization code. It then exchanges that code for tokens over a back-channel call, identifying itself with its own credentials (`client_id` + `client_secret` for confidential clients like Muster). Public clients like Claude Code have no secret and use PKCE instead—see [below](#how-claude-code-becomes-a-client-without-pre-registration). Any application can be a client in one relationship and an Authorization Server in another. For example, Claude Code is a client of Muster, which is an AS to Claude Code but a client of Dex.
+In OAuth terms, the client is the application that requests tokens, and the user never types a password into it. A client redirects the user's browser to the Authorization Server (AS) and waits for the browser to return a one-time authorization code. It then exchanges that code for tokens over a back-channel call, identifying itself with its own credentials (`client_id` + `client_secret` for confidential clients like Muster). Public clients like Claude Code have no secret and use PKCE instead—see [below](#how-claude-code-becomes-a-client-without-pre-registration). Any application can be a client in one relationship and an AS in another. For example, Claude Code is a client of Muster, which is an AS to Claude Code but a client of Dex.
 
 ### How Claude Code becomes a client without pre-registration
 
@@ -123,7 +123,7 @@ The same team that deploys Muster also deploys Dex. They can feed a client_id/cl
 
 So MCP clients identify themselves using Client ID Metadata Documents (CIMD). The `client_id` is an HTTPS URL, controlled by the client's vendor, hosting a JSON document that describes the client (its name, its redirect URIs). When Muster receives an authorization request with a URL-shaped `client_id`, it fetches that document and treats it as the client's registration. Nothing is stored ahead of time, and no secrets are exchanged between Muster's team and the client's vendor. This has two useful properties. First, client identity is anchored to domain ownership: only Anthropic can serve a document under an anthropic.com URL. So a malicious app can't credibly present itself as Claude Code. Second, every installation of the same client shares the one `client_id` (the URL), so Muster keeps no per-laptop registration state.
 
-(Muster also supports the older mechanism, Dynamic Client Registration (RFC 7591), as a fallback for clients that don't publish a metadata URL. The client POSTs its description to `/oauth/register` and receives a server-generated random `client_id`.)
+**Note**: Muster also supports the older mechanism, Dynamic Client Registration (RFC 7591), as a fallback for clients that don't publish a metadata URL. The client POSTs its description to `/oauth/register` and receives a server-generated random `client_id`.
 
 Being an OAuth client grants zero privilege either way: every token still requires a human logging in through the browser chain.
 
@@ -184,17 +184,13 @@ When Muster mints an access token, it records in its storage which resource the 
 
 ## What do these tokens actually look like
 
-Muster's access token is opaque: a random string with no internal structure.
-
-**Muster access token—opaque. What Claude Code sends on every request:**
+Muster's access token is opaque: a random string with no internal structure. Look at an example of what Claude Code sends on every request:
 
 ```text
 Authorization: Bearer 3q7xKQm9vN1sYwZk8pR2tLc4bH6dJfA0uEgi5CnMoPw
 ```
 
 There is nothing to decode. All its meaning lives in Muster's storage. Conceptually, the record that this string points at looks like this:
-
-**Muster's storage record for that token (conceptual):**
 
 ```json
 {
@@ -209,9 +205,7 @@ There is nothing to decode. All its meaning lives in Muster's storage. Conceptua
 }
 ```
 
-The Dex ID token is different: it's a JWT, three base64url-encoded segments separated by dots (header, payload, signature).
-
-**Dex ID token—a signed JWT. Raw form, then the first two segments decoded (annotated):**
+The Dex ID token is different: it's a JWT, three base64url-encoded segments separated by dots (header, payload, signature). Look at an example of an ID token, raw form first, then the first two segments decoded (annotated):
 
 ```text
 eyJhbGciOiJSUzI1NiIsImtpZCI6IjM5N2ExYmM0In0 . eyJpc3MiOiJodHRwczovL2RleC5leGFtcGxlLmdpZ2FudGljLmlvIiwic3ViIjoi... . pXm4T9rQeK1s...
@@ -236,7 +230,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IjM5N2ExYmM0In0 . eyJpc3MiOiJodHRwczovL2RleC5leGFtcG
 
 Two things worth noticing. First, base64url is an encoding, not encryption: anyone holding this token can read every claim. The signature (the third segment) prevents *modification*, not reading. Second, each claim maps to one of the checks in ["How are Dex's ID tokens validated"](#how-are-dexs-id-tokens-validated) below. `iss`, `aud` and `exp` are the envelope. `email` and `groups` are the identity that will reach the Kubernetes RBAC evaluation and audit log.
 
-**Muster refresh token—opaque. What Claude Code redeems when the access token expires:**
+Now, look at what Claude Code redeems when the access token expires:
 
 ```text
 POST /oauth/token
