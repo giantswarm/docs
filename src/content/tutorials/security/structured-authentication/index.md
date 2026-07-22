@@ -77,7 +77,7 @@ Once structured authentication is enabled, users authenticate directly against t
 
 ### Option 1: No management cluster access (parameters via flags)
 
-If you provide all four values as flags, `kubectl gs login` never contacts the management cluster, so users need **no** management cluster permissions at all (no RBAC, and not even a management cluster context):
+If you provide all four values as flags, `kubectl gs login` never contacts the management cluster. Users then need **no** management cluster permissions at all (no RBAC, and not even a management cluster context):
 
 ```nohighlight
 kubectl gs login example \
@@ -111,7 +111,7 @@ In this mode `kubectl gs login` reads a small set of resources from the manageme
 
 ### Define a minimum role instead of `read-all`
 
-To use option 2, users must be allowed to read the resources above on the management cluster. The built-in `read-all` role covers this, but it grants read access to essentially every resource on the management cluster, far more than logging in requires. **We recommend granting a dedicated, minimal role instead**, so that logging in to workload clusters doesn't imply broad read access to the management cluster. Use `read-all` only if your users already have (and you have an RBAC plan for) general management cluster access.
+To use option 2, users must be allowed to read the resources listed earlier on the management cluster. The built-in `read-all` role covers this, but it grants read access to essentially every resource on the management cluster, far more than logging in requires. **We recommend granting a dedicated, minimal role instead**, so that logging in to workload clusters doesn't imply broad read access to the management cluster. Use `read-all` only if your users already have (and you have an RBAC plan for) general management cluster access.
 
 The following `Role` grants exactly what `kubectl gs login` needs inside an organization namespace. Bind it to your users or their OIDC group, and create one `Role`/`RoleBinding` per organization namespace they should be able to reach:
 
@@ -169,9 +169,9 @@ subjects:
 
 Store the binding in Git and reconcile it onto the management cluster the same way as the rest of your configuration.
 
-#### Fallback: cluster-scoped `Organization` read (non-standard namespaces only)
+#### Fallback: Cluster-scoped `Organization` read (non-standard namespaces only)
 
-`kubectl gs login` derives the organization namespace as `org-<name>` by convention, so the `Role` above is all that's needed in the normal case. It reads the cluster-scoped `Organization` resource **only as a fallback**, when the workload cluster isn't found in the assumed `org-<name>` namespace, for example when the organization's namespace doesn't follow the convention. If that applies to your organization, additionally grant a cluster-scoped read of `Organization`:
+`kubectl gs login` derives the organization namespace as `org-<name>` by convention, so the `Role` shown earlier is all that's needed in the normal case. It reads the cluster-scoped `Organization` resource **only as a fallback**. This happens when the workload cluster isn't found in the assumed `org-<name>` namespace, for example when the organization's namespace doesn't follow the convention. If that applies to your organization, additionally grant a cluster-scoped read of `Organization`:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
