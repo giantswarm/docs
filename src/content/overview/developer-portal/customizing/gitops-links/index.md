@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-developer-portal-customizing
     identifier: overview-developer-portal-customizing-gitopslinks
-last_review_date: 2025-04-01
+last_review_date: 2026-07-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -123,7 +123,7 @@ By default, the system is pre-configured with two GitHub repository patterns. Th
 - **Default GitHub (HTTPS):**
 
   ```yaml
-  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)$'
+  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)(\.git)?$'
   targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
   ```
 
