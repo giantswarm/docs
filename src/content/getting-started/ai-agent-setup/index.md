@@ -9,7 +9,7 @@ menu:
   principal:
     parent: getting-started
     identifier: getting-started-ai-agent-setup
-last_review_date: 2026-02-27
+last_review_date: 2026-07-23
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -120,7 +120,7 @@ The direct connection above needs only your editor. Install the `muster` CLI whe
 
 ### Install the CLI
 
-Download the `muster` binary from the [GitHub releases page](https://github.com/giantswarm/muster/releases). It's a single binary with no additional dependencies—just put it somewhere on your `PATH`.
+Download the `muster` binary and put it somewhere on your `PATH`. See [Installing the Muster CLI]({{< relref "/reference/muster/installation" >}}) for the full instructions.
 
 ### Point it at your endpoint
 
@@ -232,20 +232,6 @@ Muster uses a meta-tool architecture. Instead of exposing hundreds of individual
 - **Token expiry:** Access tokens expire every 30 minutes, but your editor (or the local bridge) refreshes them automatically in the background.
 - **Session duration:** Your overall session lasts approximately 30 days (the default) before you need to log in again. This can vary by installation.
 - **Re-authentication:** If your session expires, your editor (or the bridge) detects it and re-authenticates by opening your browser.
-
-## CLI quick reference
-
-| Command | Purpose |
-|---|---|
-| `muster auth login` | Authenticate via SSO |
-| `muster auth status` | Check connectivity to all MCP servers |
-| `muster auth whoami` | Show the currently authenticated identity |
-| `muster auth logout` | Clear stored tokens |
-| `muster context add` | Register a new Muster endpoint |
-| `muster context use` | Switch active context |
-| `muster context current` | Show the name of the active context |
-| `muster context show <name>` | Show a specific context's configuration |
-| `muster context list` | List all contexts |
 
 ## Troubleshooting
 
