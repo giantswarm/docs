@@ -284,6 +284,8 @@ source_repositories:
     commit_reference: v0.2.2
     crd_paths:
       - helm
+    cr_paths:
+      - docs/cr
     metadata:
       policyexceptions.policy.giantswarm.io:
         owner:
