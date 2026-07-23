@@ -11,7 +11,7 @@ menu:
     identifier: overview-ai-agents-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-07-23
 user_questions:
   - How does Muster authenticate AI agents?
   - Can AI agents only see the tools I'm allowed to use?
@@ -22,7 +22,7 @@ Muster treats authentication as a first-class concern at two levels: protecting 
 
 ## Agent-to-Muster authentication
 
-The aggregator requires the OAuth 2.1 authorization code flow with PKCE. The first time your AI assistant connects—or when you run `muster auth login` from the CLI—your browser opens for SSO against your enterprise identity provider. Tokens are stored locally with restricted file permissions. Access tokens are short-lived—30 minutes by default—and your MCP client refreshes them automatically in the background, so you stay connected without re-authenticating.
+The aggregator requires the OAuth 2.1 authorization code flow with PKCE. The first time your AI assistant connects—or when you run `muster auth login` from the CLI—your browser opens for SSO against your enterprise identity provider. Tokens are stored locally with restricted file permissions. Access tokens are short-lived—30 minutes by default—and your MCP client refreshes them automatically in the background, so you stay connected without re-authenticating. Your overall session lasts about 30 days by default before you need to sign in again, though this can vary by installation. If a session does expire, your client detects it and reopens your browser to re-authenticate.
 
 Because authentication uses the OAuth 2.1 flow, an assistant that supports remote MCP servers natively can connect straight to the aggregator's HTTPS URL. Examples include VS Code and Cursor. They run this flow themselves, with no local bridge process. Production deployments require HTTPS for all OAuth endpoints.
 
