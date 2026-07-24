@@ -28,20 +28,15 @@ Work from the broad set of failures down to the specific error pattern:
 1. **Find error traces** for the affected service:
 
    ```traceql
-   {status = error && resource.service.name = "payment-service"}
+   {span:status = error && resource.service.name = "payment-service"}
    ```
 
-2. **Narrow down by time** to the window where the problem occurred:
+2. **Narrow down by time** to the window where the problem occurred. TraceQL has no time function; use Grafana's time range picker (top right of Explore) to bound the same query to the incident window.
+
+3. **Analyze error patterns** by grouping on the status message and keeping messages that recur (a `by()` stage needs a trailing aggregate and comparison):
 
    ```traceql
-   {status = error && resource.service.name = "payment-service"}
-   | select(trace.start_time > now() - 1h)
-   ```
-
-3. **Analyze error patterns** by grouping on the status message:
-
-   ```traceql
-   {status = error} | by(span.status.message)
+   {span:status = error} | by(span:statusMessage) | count() > 1
    ```
 
 Open the individual traces the query returns to inspect the span where the error originated and the attributes attached to it.
@@ -51,7 +46,7 @@ Open the individual traces the query returns to inspect the span where the error
 To confirm and localize a slowdown, select the slow traces for the affected service:
 
 ```traceql
-{resource.service.name = "user-service" && trace.duration > 2s}
+{resource.service.name = "user-service" && trace:duration > 2s}
 ```
 
 Then use Grafana's time range controls to compare the same query across different periods, such as before and after a deploy, to see whether latency shifted and which spans grew.
@@ -61,7 +56,7 @@ Then use Grafana's time range controls to compare the same query across differen
 When one service is failing, find the traces where that failure propagates into a dependent service:
 
 ```traceql
-{resource.service.name = "database-service" && status = error}
+{resource.service.name = "database-service" && span:status = error}
 && {resource.service.name = "user-service"}
 ```
 
