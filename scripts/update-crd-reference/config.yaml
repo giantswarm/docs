@@ -267,7 +267,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.44.0
+    commit_reference: v1.0.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -320,7 +320,7 @@ source_repositories:
   - url: https://github.com/giantswarm/muster
     organization: giantswarm
     short_name: muster
-    commit_reference: v1.0.7
+    commit_reference: v1.3.2
     crd_paths:
       - helm/muster-crds/files/crds
     cr_paths:

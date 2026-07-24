@@ -13,7 +13,7 @@ crd:
   technical_name: workflows.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v1.0.6
+  source_repository_ref: v1.0.7
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/workflows.muster.giantswarm.io/
 technical_name: workflows.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v1.0.6
+source_repository_ref: v1.0.7
 ---
 
 # Workflow
