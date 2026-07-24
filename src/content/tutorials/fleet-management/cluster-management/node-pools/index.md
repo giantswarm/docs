@@ -521,7 +521,7 @@ data:
         version: 35.0.0
 ```
 
-arm64 node pools are also supported by Karpenter. This is a very brief example of how to configured mixed node pools:
+Karpenter also supports arm64 node pools. This is a very brief example of how to configure mixed node pools:
 
 ```yaml
 global:
