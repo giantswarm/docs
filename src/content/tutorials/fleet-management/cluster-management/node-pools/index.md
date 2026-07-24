@@ -29,7 +29,7 @@ aliases:
   - /vintage/advanced/cluster-management/node-pools-vintage
   - /vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types
   - /vintage/advanced/cluster-management/upgrades/upgrade-disruption
-last_review_date: 2026-02-04
+last_review_date: 2026-07-24
 ---
 
 A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
@@ -519,6 +519,20 @@ data:
         region: "eu-west-1"
       release:
         version: 35.0.0
+```
+
+arm64 node pools are also supported by Karpenter. This is a very brief example of how to configured mixed node pools:
+
+```yaml
+global:
+  nodePools:
+    # x86 pool - architecture omitted, defaults to x86_64
+    general:
+      type: karpenter
+    # ARM pool
+    graviton:
+      type: karpenter
+      architecture: arm64
 ```
 
 Pods that should run on the arm64 pool need a matching toleration and a `kubernetes.io/arch: arm64` `nodeSelector` (or `nodeAffinity`):
