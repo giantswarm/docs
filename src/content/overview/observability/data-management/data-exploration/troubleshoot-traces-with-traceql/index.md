@@ -31,7 +31,7 @@ Work from the broad set of failures down to the specific error pattern:
    {span:status = error && resource.service.name = "payment-service"}
    ```
 
-2. **Narrow down by time** to the window where the problem occurred. TraceQL has no time function; use Grafana's time range picker (top right of Explore) to bound the same query to the incident window.
+2. **Narrow down by time** to the window where the problem occurred with Grafana's time range picker.
 
 3. **Analyze error patterns** by grouping on the status message and keeping messages that recur (a `by()` stage needs a trailing aggregate and comparison):
 

@@ -246,7 +246,7 @@ Query trace topology by root service:
 
 - **Start specific**: Begin with service or operation names before adding duration filters
 - **Use time ranges**: Always specify time ranges to improve query performance
-- **Limit results**: Set the result limit in Grafana's query editor for exploratory queries. TraceQL has no `limit()` function.
+- **Limit results**: Set a result limit in Grafana's query editor for exploratory queries.
 
 ### Common patterns
 
