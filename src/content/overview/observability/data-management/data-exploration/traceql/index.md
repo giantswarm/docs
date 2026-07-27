@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-observability-data-management-data-exploration
     identifier: overview-observability-data-management-data-exploration-traceql
-last_review_date: 2025-09-29
+last_review_date: 2026-07-27
 aliases:
   - /overview/observability/data-management/data-exploration/advanced-traceql-tutorial/
 owner:
