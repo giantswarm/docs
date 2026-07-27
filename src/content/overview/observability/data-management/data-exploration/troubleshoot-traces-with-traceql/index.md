@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-observability-data-management-data-exploration
     identifier: overview-observability-data-management-data-exploration-troubleshoot-traces-with-traceql
-last_review_date: 2026-07-06
+last_review_date: 2026-07-27
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
