@@ -86,7 +86,7 @@ Configure **[log ingestion]({{< relref "/overview/observability/data-management/
 
 Integrate data from sources outside Giant Swarm managed clusters through our **[Data Import and Export capabilities]({{< relref "/overview/observability/data-management/data-import-export" >}})**:
 
-- **External ingestion**: Send metrics, logs, and traces from external sources using **[authenticated endpoints]({{< relref "/overview/observability/data-management/data-import-export/#grafana-alloy-integration-recommended" >}})**
+- **External ingestion**: Send metrics, logs, and traces from external sources using **[authenticated endpoints]({{< relref "/overview/observability/data-management/data-import-export/import#grafana-alloy-configuration-recommended" >}})**
 - **OIDC authentication**: Configure your identity provider for secure API access
 - **Data export endpoints**: Retrieve logs, metrics, and traces for external analysis and storage
 

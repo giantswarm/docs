@@ -109,8 +109,13 @@ The following flags are used when creating client certificates for workload clus
 When a workload cluster uses Kubernetes structured authentication, the OIDC issuer URL, client ID, and API server CA are auto-discovered from the management cluster. The following flags override the discovered values:
 
 - `--oidc-issuer`: Override the OIDC issuer URL.
-- `--oidc-client-id`: Override the OIDC client ID. When both `--oidc-issuer` and `--oidc-client-id` are set, the management cluster is not contacted for auto-discovery.
+- `--oidc-client-id`: Override the OIDC client ID. When both `--oidc-issuer` and `--oidc-client-id` are set, the management cluster is not contacted for OIDC issuer auto-discovery.
 - `--api-ca-file`: Path to a CA certificate file for the workload cluster API server. When set, skips fetching the CA from the management cluster.
+- `--api-endpoint`: The workload cluster API server endpoint (for example `https://api.mywc.example.com:6443`). When set, the endpoint is taken from the flag instead of being read from the management cluster. It must use `https` (the endpoint carries OIDC bearer tokens); a bare host such as `api.mywc.example.com:6443` is accepted and defaults to `https`, but an explicit `http://` scheme is rejected.
+
+When `--api-endpoint`, `--oidc-issuer`, `--oidc-client-id`, and `--api-ca-file` are all provided, the login is performed **without any access to the management cluster**. In that case the user needs no RBAC permissions on the management cluster, and any reachable kubectl context can be current. Because everything is supplied via flags, `--organization` is not required. All four flags must be given together; supplying `--api-endpoint` without the others results in an error.
+
+If you instead omit these flags and let `kubectl gs login` discover the values automatically (by passing `--workload-cluster` and `--organization`), the user needs read access to a few resources on the management cluster. Rather than granting the broad `read-all` role, we recommend a dedicated minimum role — see [granting users permission to log in]({{< relref "/tutorials/security/structured-authentication/#grant-users-permission-to-log-in" >}}).
 
 ### EKS (AWS IAM) flags
 
@@ -234,12 +239,23 @@ kubectl gs login example \
   --organization acme
 ```
 
-To override the discovered values (e.g. for scripted use without management cluster access):
+To override individual discovered values while still reading the rest from the management cluster:
 
 ```nohighlight
 kubectl gs login example \
   --workload-cluster mywc \
   --organization acme \
+  --oidc-issuer https://login.example.com/tenant-id \
+  --oidc-client-id my-client-id \
+  --api-ca-file /path/to/ca.crt
+```
+
+To log in **without any management cluster access** — for example in scripts or for users who have no RBAC permissions on the management cluster — additionally provide the API server endpoint via `--api-endpoint`. With all four values supplied, the management cluster is never contacted (and `--organization` is not needed):
+
+```nohighlight
+kubectl gs login example \
+  --workload-cluster mywc \
+  --api-endpoint https://api.mywc.example.com:6443 \
   --oidc-issuer https://login.example.com/tenant-id \
   --oidc-client-id my-client-id \
   --api-ca-file /path/to/ca.crt

@@ -19,12 +19,13 @@ owner:
 
 `muster` is the command-line interface for [Muster]({{< relref "/overview/ai-agents/introduction" >}}), the MCP gateway that gives AI agents unified, secure access to your fleet. This section documents the CLI commands, the meta-tools Muster exposes to agents, and the custom resources you author to extend it.
 
-For a conceptual overview, start with [AI agents on the platform]({{< relref "/overview/ai-agents" >}}). To connect your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
+For a conceptual overview, start with [AI agents on the platform]({{< relref "/overview/ai-agents" >}}). To install the CLI, see [Installation]({{< relref "/reference/muster/installation" >}}). To connect your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
 
 ## Reference pages {#pages}
 
 | Page | Description |
 |---|---|
+| [Installation]({{< relref "/reference/muster/installation" >}}) | How to install the `muster` CLI and keep it up to date |
 | [Meta-tools]({{< relref "/reference/muster/meta-tools" >}}) | The meta-tools Muster exposes to agents, plus the `core_*` tool catalog |
 | [Custom resources]({{< relref "/reference/muster/crds" >}}) | The `MCPServer` and `Workflow` schemas |
 

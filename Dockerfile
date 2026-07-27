@@ -1,4 +1,4 @@
-FROM gsoci.azurecr.io/giantswarm/hugo:0.162.1 AS build
+FROM --platform=$BUILDPLATFORM gsoci.azurecr.io/giantswarm/hugo:0.162.1 AS build
 
 WORKDIR /docs
 

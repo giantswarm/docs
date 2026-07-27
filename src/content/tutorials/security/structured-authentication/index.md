@@ -14,6 +14,8 @@ user_questions:
   - How do I migrate from the legacy OIDC flags to structured authentication?
   - How do I map OIDC claims to Kubernetes usernames and groups?
   - How do I use CEL expressions to validate OIDC tokens?
+  - What permissions do users need on the management cluster to log in to a workload cluster?
+  - How does kubectl gs login discover the OIDC issuer, client ID, CA, and API endpoint?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 last_review_date: 2026-04-13
@@ -68,6 +70,132 @@ global:
 ```
 
 Apply the values to the cluster app and wait for the control plane rolling update to finish. Use [kubectl gs login]({{< relref "/reference/kubectl-gs/login/" >}}) to get access to the cluster API.
+
+## Grant users permission to log in
+
+Once structured authentication is enabled, users authenticate directly against the identity provider. `kubectl gs login` runs the OAuth flow locally, exchanges the token, and writes a kubeconfig for the workload cluster. To do that it needs four connection parameters: the OIDC **issuer**, **client ID**, API server **CA certificate**, and API server **endpoint**. There are two ways to supply them, and they require different permissions on the management cluster.
+
+### Option 1: No management cluster access (parameters via flags)
+
+If you provide all four values as flags, `kubectl gs login` never contacts the management cluster. Users then need **no** management cluster permissions at all (no RBAC, and not even a management cluster context):
+
+```nohighlight
+kubectl gs login example \
+  --workload-cluster mywc \
+  --api-endpoint https://api.mywc.example.com:6443 \
+  --oidc-issuer https://your-idp.example.com \
+  --oidc-client-id kubernetes \
+  --api-ca-file /path/to/ca.crt
+```
+
+This is the most restrictive option and is ideal for giving access to users who shouldn't have any management cluster permissions. The four values are stable for the lifetime of the cluster, so you can distribute them once (for example in your internal onboarding docs). See the [direct OIDC flags]({{< relref "/reference/kubectl-gs/login/#direct-oidc-structured-authentication-flags" >}}) for details.
+
+### Option 2: Automatic parameter injection (requires management cluster read access)
+
+For convenience, users can omit those flags and let `kubectl gs login` discover the four parameters from the management cluster, passing only the cluster and organization:
+
+```nohighlight
+kubectl gs login example \
+  --workload-cluster mywc \
+  --organization acme
+```
+
+In this mode `kubectl gs login` reads a small set of resources from the management cluster, all read-only (`get`). It assumes the organization's namespace is `org-<name>` (derived from `--organization`), so all reads happen inside that namespace and **no cluster-scoped permissions are required**:
+
+| Resource | Scope | Used for |
+|---|---|---|
+| `clusters.cluster.x-k8s.io` | organization namespace | API server endpoint (`spec.controlPlaneEndpoint`) |
+| `kubeadmcontrolplanes.controlplane.cluster.x-k8s.io` | organization namespace | OIDC issuer and client ID from the structured authentication config |
+| `configmaps` (`<cluster>-cluster-values`) | organization namespace | API server CA certificate |
+| `organizations.security.giantswarm.io` | cluster-scoped | **Fallback only.** Read to resolve the organization's namespace when the workload cluster isn't found under `org-<name>`, that is, for organizations whose namespace doesn't follow the convention. Not read in the normal case. |
+
+### Define a minimum role instead of `read-all`
+
+To use option 2, users must be allowed to read the resources listed earlier on the management cluster. The built-in `read-all` role covers this, but it grants read access to essentially every resource on the management cluster, far more than logging in requires. **We recommend granting a dedicated, minimal role instead**, so that logging in to workload clusters doesn't imply broad read access to the management cluster. Use `read-all` only if your users already have (and you have an RBAC plan for) general management cluster access.
+
+The following `Role` grants exactly what `kubectl gs login` needs inside an organization namespace. Bind it to your users or their OIDC group, and create one `Role`/`RoleBinding` per organization namespace they should be able to reach:
+
+```yaml
+# RBAC for `kubectl gs login <mc> --workload-cluster <wc> --organization <org>`
+# using structured authentication with automatic parameter injection.
+#
+# Read-only. All access is `get` on single objects, inside the
+# organization namespace (org-<org>). No cluster-scoped access needed.
+---
+# Everything read inside the organization namespace.
+# Create one Role+RoleBinding per org namespace the user should reach
+# (e.g. org-acme).
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: kubectl-gs-login-wc-oidc
+  namespace: org-acme
+rules:
+  - apiGroups: ["cluster.x-k8s.io"]
+    resources: ["clusters"]
+    verbs: ["get"]
+  - apiGroups: ["controlplane.cluster.x-k8s.io"]
+    resources: ["kubeadmcontrolplanes"]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get"]
+  # Optional: silences a harmless read the client attempts; safe to omit.
+  - apiGroups: ["application.giantswarm.io"]
+    resources: ["apps"]
+    verbs: ["get"]
+  # EKS/CAPA workload clusters only — omit otherwise:
+  # - apiGroups: ["controlplane.cluster.x-k8s.io"]
+  #   resources: ["awsmanagedcontrolplanes"]
+  #   verbs: ["get"]
+  # - apiGroups: [""]
+  #   resources: ["secrets"]
+  #   verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kubectl-gs-login-wc-oidc
+  namespace: org-acme
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kubectl-gs-login-wc-oidc
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: "<your-oidc-user>"   # or kind: Group
+```
+
+Store the binding in Git and reconcile it onto the management cluster the same way as the rest of your configuration.
+
+#### Fallback: Cluster-scoped `Organization` read (non-standard namespaces only)
+
+`kubectl gs login` derives the organization namespace as `org-<name>` by convention, so the `Role` shown earlier is all that's needed in the normal case. It reads the cluster-scoped `Organization` resource **only as a fallback**. This happens when the workload cluster isn't found in the assumed `org-<name>` namespace, for example when the organization's namespace doesn't follow the convention. If that applies to your organization, additionally grant a cluster-scoped read of `Organization`:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubectl-gs-login-org-read
+rules:
+  - apiGroups: ["security.giantswarm.io"]
+    resources: ["organizations"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubectl-gs-login-org-read
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubectl-gs-login-org-read
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: "<your-oidc-user>"   # or kind: Group
+```
 
 ## Configure multiple OIDC providers
 
