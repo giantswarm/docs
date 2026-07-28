@@ -4,7 +4,6 @@ title: Set up your AI agent for Kubernetes operations
 diataxis_content_type: how-to-guide
 description: Learn how to use Muster and mcp-kubernetes to interact with your Giant Swarm management clusters through AI assistants like Claude Code, Cursor, or GitHub Copilot.
 weight: 80
-mermaid: true
 menu:
   principal:
     parent: getting-started
@@ -23,30 +22,11 @@ The Giant Swarm platform is ready to be used by AI agents. Its integration lets 
 
 ## How it works
 
-Two components work together to make this possible:
+Two components work together: **mcp-kubernetes** runs on each management cluster and exposes its Kubernetes resources through a secure, OAuth-protected [MCP](https://modelcontextprotocol.io/) API, and **Muster** is a central aggregator that connects all those instances into a single endpoint. You point your AI assistant at Muster and get unified access to every cluster at once.
 
-- **mcp-kubernetes** runs on each management cluster and exposes Kubernetes resources—pods, deployments, services, logs, events, and more—through a secure, OAuth-protected API using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+Modern AI assistants—Claude Code, Cursor, and VS Code with GitHub Copilot—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login itself—nothing to install or keep running locally. That direct connection is the recommended setup. For a client that can only speak stdio, or has no built-in OAuth flow, the `muster` CLI provides an optional local bridge (`muster agent`).
 
-- **Muster** is a central aggregator that connects all your mcp-kubernetes instances into a single endpoint. Instead of configuring your AI assistant to talk to a separate MCP server for each cluster, you point it at Muster and get unified access to all clusters at once.
-
-Modern AI assistants—Claude Code, Cursor, and VS Code with GitHub Copilot—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login flow itself, with nothing to install or keep running locally:
-
-{{< mermaid >}}
-flowchart TB
-  client["AI assistant<br/>(Claude Code / Cursor / VS Code)"]
-  muster["Muster aggregator<br/>(management cluster)"]
-  k8sA["mcp-kubernetes (cluster A)"]
-  k8sB["mcp-kubernetes (cluster B)"]
-  k8sC["mcp-kubernetes (cluster C)"]
-  client -- "HTTPS (MCP, OAuth)" --> muster
-  muster --> k8sA
-  muster --> k8sB
-  muster --> k8sC
-{{< /mermaid >}}
-
-That direct connection is the recommended setup, and Muster handles authentication to each cluster on your behalf so your assistant never juggles tokens or credentials directly. For a client that can't reach a remote, OAuth-protected MCP server—one that only speaks stdio, or has no built-in OAuth flow—the `muster` CLI provides an optional local bridge (`muster agent`) that converts stdio to HTTPS and performs the login for you.
-
-For the bigger picture—what Muster is, how the aggregator works, and how it stays secure—see the [AI agents overview]({{< relref "/overview/ai-agents" >}}). If you'd rather ask questions in the browser instead of your IDE, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) is powered by the same Muster aggregator.
+For the full picture—how the aggregator works, the supported deployment shapes, and how it stays secure—see the [Muster architecture]({{< relref "/overview/ai-agents/architecture" >}}) and [security]({{< relref "/overview/ai-agents/security" >}}) explanations. If you'd rather ask questions in the browser, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) uses the same aggregator.
 
 ## Before you start
 
@@ -58,7 +38,7 @@ You'll need:
 
 ## Connect your editor directly
 
-This is the recommended setup. Point your editor at the Muster endpoint your account engineer gave you—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`. The first time the editor connects, it opens your browser for SSO login. After you authenticate, the full set of Kubernetes tools becomes available with no restart.
+This is the recommended setup. Point your editor at the Muster endpoint your account engineer gave you—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`. The first time the editor connects, it opens your browser for SSO login. After you authenticate, the full set of Kubernetes tools becomes available with no restart. Your editor refreshes tokens in the background, so you stay connected. See [AI agent security]({{< relref "/overview/ai-agents/security" >}}#agent-to-muster-authentication) for session duration and single sign-on.
 
 ### Claude Code
 
@@ -225,29 +205,19 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 - "What are the resource requests and limits for pods in the default namespace?"
 - "What Helm releases are installed on cluster A?"
 
-Muster uses a meta-tool architecture. Instead of exposing hundreds of individual tools (one per Kubernetes operation per cluster), it exposes a small set of meta-tools that your AI assistant uses automatically. These include `list_tools`, `call_tool`, `filter_tools`, and `describe_tool`. You don't need to know the tool names—just describe what you want in plain language. See [Meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) for how this keeps the assistant's context lean.
-
-## Session management
-
-- **Token expiry:** Access tokens expire every 30 minutes, but your editor (or the local bridge) refreshes them automatically in the background.
-- **Session duration:** Your overall session lasts approximately 30 days (the default) before you need to log in again. This can vary by installation.
-- **Re-authentication:** If your session expires, your editor (or the bridge) detects it and re-authenticates by opening your browser.
+You don't need to know any tool names—just describe what you want in plain language, and your assistant selects the right tools automatically. See [Meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) for how Muster keeps the assistant's context lean.
 
 ## Troubleshooting
+
+These are the first checks for IDE setup. For deeper, platform-side failure modes—single sign-on loops, `MCPServer` states, or workflows an agent can't find—see [Troubleshoot AI agent access]({{< relref "/tutorials/ai-agents/troubleshooting" >}}).
 
 ### `authenticate_muster` keeps reappearing in your IDE
 
 Your session has likely expired. Run `muster auth login` in a terminal to re-authenticate, then restart the MCP server in your IDE.
 
-### Lack of permissions on the cluster
+### An agent hits a "forbidden" error
 
-You may encounter a message like this in the agent output:
-
-```text
-Failed to list resources: failed to list networkpolicies: networkpolicies.networking.k8s.io is forbidden: User "<user>" cannot list resource "networkpolicies" in API group "networking.k8s.io" in the namespace "kube-system"
-```
-
-Make sure the user has the correct group attached in the identity provider (Azure AD, GitHub, and similar) which is bound to a role in the cluster to perform those actions.
+A `forbidden` message in the agent output is a Kubernetes RBAC issue, not a Muster problem. The user authenticated fine, but their identity-provider groups aren't bound to a role that allows the action. See [Map RBAC and single sign-on]({{< relref "/tutorials/ai-agents/access-control" >}}#when-an-agent-hits-a-forbidden-error) to fix it.
 
 ### A cluster shows as disconnected in `muster auth status`
 
