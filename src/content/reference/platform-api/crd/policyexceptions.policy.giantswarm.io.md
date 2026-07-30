@@ -13,7 +13,7 @@ crd:
   technical_name: policyexceptions.policy.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/kyverno-policy-operator
-  source_repository_ref: v0.2.2
+  source_repository_ref: v0.2.3
   versions:
     - v1alpha1
   topics:
@@ -24,7 +24,7 @@ aliases:
   - /use-the-api/management-api/crd/policyexceptions.policy.giantswarm.io/
 technical_name: policyexceptions.policy.giantswarm.io
 source_repository: https://github.com/giantswarm/kyverno-policy-operator
-source_repository_ref: v0.2.2
+source_repository_ref: v0.2.3
 ---
 
 # PolicyException
@@ -51,6 +51,26 @@ source_repository_ref: v0.2.2
 <div class="crd-schema-version">
 <h2 id="v1alpha1">Version v1alpha1</h2>
 
+
+<h3 id="crd-example-v1alpha1">Example CR</h3>
+
+```yaml
+apiVersion: policy.giantswarm.io/v1alpha1
+kind: PolicyException
+metadata:
+  name: my-custom-operator
+  namespace: policy-exceptions
+spec:
+  policies:
+  - disallow-privilege-escalation
+  - require-run-as-nonroot
+  targets:
+  - kind: Deployment
+    names:
+    - my-custom-operator
+    namespaces:
+    - default
+```
 
 
 <h3 id="property-details-v1alpha1">Properties</h3>
