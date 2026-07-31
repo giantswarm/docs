@@ -71,7 +71,9 @@ Monitoring infrastructure health:
 
 Platform automation and lifecycle management:
 
+- **Flux Cluster Stats** - Reconciliation and source readiness per cluster, including suspended objects
 - **Flux Control Plane** - GitOps controller health and sync status
+- **Flux Logs** - Logs of the Flux controllers on the management cluster
 - **KEDA** - Kubernetes Event Driven autoscaling metrics
 - **Karpenter** - Node autoscaling performance (AWS)
 - **AWS Load Balancer Controller** - AWS LB controller metrics (AWS)
