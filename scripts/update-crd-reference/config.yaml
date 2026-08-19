@@ -293,7 +293,7 @@ source_repositories:
   - url: https://github.com/giantswarm/exception-recommender
     organization: giantswarm
     short_name: exception-recommender
-    commit_reference: v0.2.0
+    commit_reference: v0.3.0
     crd_paths:
       - helm
     metadata:
