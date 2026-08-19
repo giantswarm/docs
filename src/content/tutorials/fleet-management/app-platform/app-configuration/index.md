@@ -1,7 +1,7 @@
 ---
 linkTitle: App configuration
 title: App configuration reference
-diataxis_content_type: explanation
+diataxis_content_type: reference
 description: Documentation on the various levels of App configuration and how they get merged into a final values object.
 menu:
   principal:
@@ -163,7 +163,7 @@ The `hello-world-user-values` `ConfigMap` contains the following content:
 
 ```yaml
 apiVersion: v1
-kind: configmap
+kind: ConfigMap
 metadata:
   name: hello-world-user-values
   namespace: i5h93
@@ -177,7 +177,7 @@ The `hello-world-user-secrets` secret contains this:
 
 ```yaml
 apiVersion: v1
-kind: secret
+kind: Secret
 metadata:
   name: hello-world-user-secrets
   namespace: i5h93
@@ -208,7 +208,7 @@ You can use these values throughout your chart using the normal templating of `h
 ```yaml
 # hello-world-app/helm/chart/hello-world/templates/colors-configmap.yaml
 apiVersion: v1
-kind: configmap
+kind: ConfigMap
 metadata:
   name: hello-world-configmap
   namespace: {{ .Release.Namespace }}
@@ -222,7 +222,7 @@ data:
 ```yaml
 # hello-world-app/helm/chart/hello-world/templates/colors-secret.yaml
 apiVersion: v1
-kind: secret
+kind: Secret
 metadata:
   name: hello-world-secret
   namespace: {{ .Release.Namespace }}
@@ -356,7 +356,7 @@ The merge order for `ConfigMaps` (with `P` as the indicated or calculated priori
 4. `Configmap`: `hello-world-values` (P = 50)
 5. `Configmap`: `hello-world-pre-user` (P = 75)
 6. `Configmap`: `hello-world-app-user-values` (P = 100)
-7. `Configmap`: `hello-world-post-user` (P = 125, position in the list: `1)
+7. `Configmap`: `hello-world-post-user` (P = 125, position in the list: 1)
 8. `Configmap`: `hello-world-final` (P = 125, position in the list: 4)
 
 ## Format of values in ConfigMap and Secret {#values-format}
@@ -369,7 +369,7 @@ The `ConfigMap` and `Secret` must contain a `.data.values` key, under which all 
 
 ```yaml
 apiVersion: v1
-kind: configmap
+kind: ConfigMap
 metadata:
   name: hello-world-user-values
   namespace: i5h93
@@ -383,7 +383,7 @@ data:
 
 ```yaml
 apiVersion: v1
-kind: secret
+kind: Secret
 metadata:
   name: hello-world-user-secrets
   namespace: i5h93

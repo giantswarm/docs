@@ -19,7 +19,7 @@ last_review_date: 2026-07-02
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
-# Creating app sets
+## Creating app sets
 
 It's often desirable to deploy a group of apps together, as a single deployment step. In Giant Swarm, it's called `App Sets`. There's nothing special about `App Sets`: they aren't a separate API entity, but rather just a configuration pattern enabled by [`Kustomize`](https://kustomize.io/) and [`Flux`](https://fluxcd.io/flux/). The purpose brings you the following benefits:
 
