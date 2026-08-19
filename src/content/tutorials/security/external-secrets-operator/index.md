@@ -1,85 +1,35 @@
 ---
-title: External Secrets Operator
-diataxis_content_type: explanation
-description: External Secrets Operator is a managed application within our platform and this is what you need to know.
+linkTitle: External Secrets Operator
+title: Using External Secrets Operator
+diataxis_content_type: how-to-guide
+description: How to install External Secrets Operator on a workload cluster and wire up SecretStore and ExternalSecret resources.
 weight: 20
 menu:
   principal:
     parent: tutorials-security
     identifier: tutorials-security-eso
 user_questions:
-- What is External Secrets Operator?
 - How do I use External Secrets Operator?
-- What are the risks of running External Secrets Operator?
+- How do I install External Secrets Operator on my cluster?
 - What resources does external secrets operator consume on my cluster?
 aliases:
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
   - /advanced/external-secrets-operator/
-last_review_date: 2026-07-02
+last_review_date: 2026-08-19
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
 
-## What is External Secrets Operator
+External Secrets Operator (ESO) reads secrets from an external secret manager and delivers them as Kubernetes secrets. This guide covers installing it on a workload cluster and creating the two resources you need to start pulling secrets.
 
-External secrets operator (ESO) is a Kubernetes operator that reads secrets
-from an external source and deliver them securely as Kubernetes secrets for
-your workloads to consume.
+For what ESO is, how it compares to SOPS, and the risks of depending on it, read [External Secrets Operator]({{< relref "/overview/security/external-secrets-operator/" >}}).
 
-As part of our offering, we make External Secrets Operator available on all
-management clusters, and also as a managed application for you to deploy on
-your workload clusters.
+**Note**: ESO needs three additional pods, 300m of CPU, and 1.5GiB of memory once running. Installs and upgrades temporarily need up to 1.5GiB more, because the CRD installer pod caches Kubernetes resources. That extra usage is released as soon as the install job completes.
 
-ESO can be used either alongside, or in place of Mozilla SOPs to bind secrets
-into the cluster that may otherwise have required you to commit to source
-control or deploy manually to the cluster.
+## Install ESO
 
-Full documentation on ESO can be found on the website at [https://external-secrets.io/](https://external-secrets.io/)
-
-## Resource requirements
-
-Once running, ESO has a small footprint on your cluster, requiring only the
-inclusion of 3 additional pods with a CPU requirement of 300m and a memory
-requirement of 1.5GiB.
-
-During the installation process, we require a little more as the CRD installer
-pod needs to cache Kubernetes resources as part of its deployment.
-
-This may require an additional 1.5GiB of memory to be consumed whilst we
-install and upgrade ESO. However, this usage is ephemeral and will be released
-back to the cluster as soon as the install job is complete.
-
-## Usage
-
-To begin using ESO, it requires the inclusion of two resources to your cluster.
-
-The first resource that needs to be created is the [`SecretStore`](https://external-secrets.io/v0.8.1/introduction/overview/#secretstore).
-
-The secret store binds ESO to your secret manager, whether that be AWS KMS,
-Azure Key Vault, Hashicorp Vault or another of the [many supported secret
-providers](https://external-secrets.io/v0.8.1/provider/aws-secrets-manager/).
-
-The second resource that needs to be created is the [`ExternalSecret`](https://external-secrets.io/v0.8.1/api/externalsecret/).
-Here, you will bind one or many external secrets to the Kubernetes secret that
-will be managed by this resource.
-
-It is possible to define multiple `SecretStores` on the cluster which works best
-inside a multi-tenant environment where different teams may have different
-secret providers, or only have restricted access to part of the secret provider
-as may be the case when using Hashicorp Vault Enterprise.
-
-An External Secret may bind one or many secrets to the Kubernetes secret however
-where this is the case, only a single SecretStore may be referenced in the
-ExternalSecret. You can find more information on [binding multiple secrets
-here](https://external-secrets.io/v0.8.1/guides/getallsecrets/).
-
-## Installation
-
-ESO can be installed to your workload cluster as a managed app from our
-catalogs. There is no special or additional configuration required to install
-and it can be installed by creating an `App` resource (or a Flux HelmRelease)
-against the cluster using our `GitOps` approach or through our web UI.
+Install ESO on your workload cluster as a managed app from our catalogs. No special or additional configuration is required. Create an `App` resource (or a Flux HelmRelease) against the cluster using our GitOps approach, or use our web UI.
 
 **Note:** The `App` custom resource shown below is being phased out in favor of Flux HelmRelease. For new deployments, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
@@ -105,31 +55,18 @@ spec:
   version: 0.4.2
 ```
 
-More advanced users may wish to configure specific parts of the values
-themselves and can find the application chart at
-[https://github.com/giantswarm/external-secrets](https://github.com/giantswarm/external-secrets)
+To configure specific parts of the values yourself, start from the application chart at [giantswarm/external-secrets](https://github.com/giantswarm/external-secrets). For the configuration options the app platform offers, see [app configuration]({{< relref "/tutorials/fleet-management/app-platform/app-configuration" >}}).
 
-For more information on configuring apps within the Giant Swarm App Platform,
-please follow the documentation at
-[https://docs.giantswarm.io/getting-started/app-platform/app-configuration/]({{< relref "/overview/fleet-management/app-management" >}})
+## Create a SecretStore
 
-### Combining with SOPs
+Using ESO requires two resources on your cluster. Create the [`SecretStore`](https://external-secrets.io/latest/introduction/overview/#secretstore) first.
 
-There is no hard and fast rule around you needing to choose one over the other
-here. Both ESO and SOPs can coexist on the server as long as the
-secrets they manage are independent of one another. If you create a secret with
-sops, it should not be updated or managed with ESO and vice-versa. In instances
-such as these, the two tools would end up "fighting" with each other with no
-one tool then becoming the source of truth for that secret.
+The secret store binds ESO to your secret manager, whether that's AWS KMS, Azure Key Vault, Hashicorp Vault, or another of the [many supported secret providers](https://external-secrets.io/latest/provider/aws-secrets-manager/).
 
-It may be that you have many secrets currently handled by SOPs and you wish to
-migrate them to a different provider; ESO allows you to do that as long as the
-provider is in the supported list of providers, and SOPs works to your
-advantage here as it's embedded into Flux, providing you with time to migrate
-without harming your platform.
+You can define multiple `SecretStores` on the cluster. This works best inside a multi-tenant environment. Different teams may have different secret providers, or only have restricted access to part of the secret provider, as is the case with Hashicorp Vault Enterprise.
 
-### What are the risks
+## Create an ExternalSecret
 
-With any application there are risks to using it, the primary one here is if ESO
-fails for any reason and credentials are rotated in your secret provider whilst
-ESO is not running, your applications may fail on deployment or scale.
+Next, create the [`ExternalSecret`](https://external-secrets.io/latest/api/externalsecret/). Here you bind one or many external secrets to the Kubernetes secret that this resource manages.
+
+An `ExternalSecret` may bind several secrets to one Kubernetes secret. Where it does, it may only reference a single `SecretStore`. For details, see [binding multiple secrets](https://external-secrets.io/latest/guides/getallsecrets/).
