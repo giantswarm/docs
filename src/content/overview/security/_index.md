@@ -41,4 +41,6 @@ Our platform leverages several cloud-native technologies to deliver these securi
 
 - **Cilium**: Container networking plugin that provides advanced network capabilities, including DNS-based network policies and traffic encryption to secure communication within your clusters.
 
+- **External Secrets Operator**: Reads secrets from an external secret manager, such as AWS KMS, Azure Key Vault, or Hashicorp Vault, and delivers them as Kubernetes secrets, so credentials never have to be committed to source control. See [External Secrets Operator]({{< relref "/overview/security/external-secrets-operator/" >}}).
+
 Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "/overview/security/platform-security/" >}}).
