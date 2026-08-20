@@ -1,7 +1,7 @@
 ---
 linkTitle: Tooling
 title: Tools for your GitOps workflow
-diataxis_content_type: reference
+diataxis_content_type: how-to-guide
 description: Helpful tools for your GitOps workflow and how to use them.
 weight: 80
 menu:
@@ -13,12 +13,20 @@ user_questions:
 - How can I trace resources that Flux controls?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2025-03-14
+last_review_date: 2026-08-19
 ---
 
 These tools can help you solve issues when deploying resources with Flux. Some are created by Giant Swarm, while others come from Flux or the wider community.
 
-We've selected tools that we find most helpful for troubleshooting Flux-controlled resources.
+We've selected tools that we find most helpful for troubleshooting Flux-controlled resources. These tools are:
+
+- `fake-flux`: build your resources locally the way Flux would, with patches applied and variables filled in.
+- `test-all-ff`: check every manifest in your repository with `yamllint` and `kubeconform`.
+- `validate.sh`: a community alternative to `test-all-ff` that validates against the OpenAPI Specification.
+- `flux build kustomization` and `kustomize build`: the underlying build commands, for when the wrappers don't help.
+- `flux tree` and `flux trace`: find out which kustomization controls a resource on a cluster.
+
+For the command and source of each one, see the [GitOps tooling reference]({{< relref "/reference/gitops-tooling/" >}}).
 
 ## Flux script
 
