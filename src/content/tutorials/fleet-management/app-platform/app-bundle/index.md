@@ -70,7 +70,7 @@ Now, obviously to leverage this management cluster layer, the bundle `App` custo
 
 The first, not so obvious, consequence of installing a bundle in a management cluster before its nested apps are installed in the workload cluster is the requirement for name uniqueness. When a given app bundle is to be installed for more than one workload cluster, each `App` custom resource instance must be given a unique name within the management cluster.
 
-It becomes natural for solitary apps (for example, the [Hello World app]) that when you need to install it twice in the workload cluster, both App custom resource instances must be named uniquely. It's natural because both live under the same namespace. Even if we could break them into separate namespaces, this uniqueness would still be required because both apps target the same workload cluster and must be distinguished by its operators.
+It becomes natural for solitary apps (for example, the [Hello World app](https://github.com/giantswarm/hello-world-app)) that when you need to install it twice in the workload cluster, both App custom resource instances must be named uniquely. It's natural because both live under the same namespace. Even if we could break them into separate namespaces, this uniqueness would still be required because both apps target the same workload cluster and must be distinguished by its operators.
 
 It's less obvious for the bundle apps, because these are usually scattered across the namespaces for the corresponding workload clusters from the very beginning. This gives the impression they're isolated, which we already know to not be the case. Not complying with this rule results in apps competing over certain resources, and hence conflicting.
 
