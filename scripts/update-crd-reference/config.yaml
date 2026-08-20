@@ -66,7 +66,7 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.20.1
+    commit_reference: v0.21.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -293,9 +293,11 @@ source_repositories:
   - url: https://github.com/giantswarm/exception-recommender
     organization: giantswarm
     short_name: exception-recommender
-    commit_reference: v0.2.0
+    commit_reference: v0.3.0
     crd_paths:
       - helm
+    cr_paths:
+      - docs/cr
     metadata:
       policyexceptiondrafts.policy.giantswarm.io:
         owner:
@@ -322,7 +324,7 @@ source_repositories:
   - url: https://github.com/giantswarm/muster
     organization: giantswarm
     short_name: muster
-    commit_reference: v1.4.4
+    commit_reference: v1.4.10
     crd_paths:
       - helm/muster-crds/files/crds
     cr_paths:
