@@ -66,7 +66,7 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.20.1
+    commit_reference: v0.21.0
     crd_paths:
       - config/crd
     cr_paths:
