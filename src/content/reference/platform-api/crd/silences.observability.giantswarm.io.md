@@ -13,7 +13,7 @@ crd:
   technical_name: silences.observability.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.20.1
+  source_repository_ref: v0.21.0
   versions:
     - v1alpha2
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/silences.observability.giantswarm.io/
 technical_name: silences.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.20.1
+source_repository_ref: v0.21.0
 ---
 
 # Silence
@@ -70,6 +70,52 @@ spec:
   - name: alertname
     value: Heartbeat
     matchType: "!="
+---
+# Example: schedule an upcoming maintenance window with exact timestamps.
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  name: scheduled-maintenance-silence
+  namespace: default
+spec:
+  startsAt: "2025-07-16T02:00:00Z"
+  endsAt: "2025-07-16T06:00:00Z"
+  matchers:
+  - name: alertname
+    value: ".*Disk.*"
+    matchType: "=~"
+  - name: job
+    value: node-exporter
+    matchType: "="
+---
+# Example: silence active from creation for a fixed duration (hours and minutes).
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  name: incident-response-silence
+  namespace: default
+spec:
+  duration: "2h30m"
+  matchers:
+  - name: severity
+    value: "warning|info"
+    matchType: "=~"
+  - name: team
+    value: platform
+    matchType: "="
+---
+# Example: silence active for one week using the week unit.
+apiVersion: observability.giantswarm.io/v1alpha2
+kind: Silence
+metadata:
+  name: week-long-silence
+  namespace: default
+spec:
+  duration: "1w"
+  matchers:
+  - name: alertname
+    value: KnownFlappingAlert
+    matchType: "="
 ```
 
 
@@ -144,6 +190,44 @@ More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architec
 
 <div class="property-description">
 <p>SilenceSpec defines the desired state of Silence.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.duration">.spec.duration</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Duration defines how long the silence is active from StartsAt (or creation time when StartsAt is unset).
+Ignored when EndsAt is set. Takes precedence over the valid-until annotation.
+Supports weeks (w), days (d), hours (h), minutes (m), and seconds (s): &ldquo;7d&rdquo;, &ldquo;2w&rdquo;, &ldquo;1d12h&rdquo;, &ldquo;30m&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.endsAt">.spec.endsAt</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>EndsAt defines when the silence expires. Takes precedence over Duration and the valid-until annotation.</p>
 
 </div>
 
@@ -234,6 +318,24 @@ More info: <a href="https://git.k8s.io/community/contributors/devel/sig-architec
 
 <div class="property-description">
 <p>Value to match for the given label name.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha2-.spec.startsAt">.spec.startsAt</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>StartsAt defines when the silence becomes active. Defaults to the object&rsquo;s creation timestamp.</p>
 
 </div>
 
