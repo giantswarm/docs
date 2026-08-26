@@ -12,7 +12,7 @@ owner:
 user_questions:
   - How do I start the Muster aggregator server?
   - How do I enable OAuth protection for Muster?
-last_review_date: 2026-06-21
+last_review_date: 2026-08-26
 ---
 
 `muster serve` starts the aggregator server. It connects the configured MCP servers, exposes their tools behind one unified MCP endpoint, and keeps that endpoint available for IDEs, the developer portal chat, and the other `muster` commands.
@@ -34,8 +34,6 @@ To connect an IDE that can't reach the endpoint directly, bridge it with [`muste
 | `--config-path` | Configuration directory. Defaults to `~/.config/muster` |
 | `--debug` | Enable general debug logging |
 | `--silent` | Disable console log output. Does not silence OTLP export |
-| `--yolo` | Disable the denylist for destructive tool calls. Use with caution |
-| `--enable-events` | Enable Kubernetes event emission (alpha) |
 | `--extra-ca-file` | PEM file whose certificates are appended to the system trust pool at startup |
 
 ### OAuth protection {#oauth}
