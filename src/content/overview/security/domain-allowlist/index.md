@@ -26,6 +26,10 @@ List of the external domains we require access to for our clusters to function.
     - domains:
         - `*.amazonaws.com`
     - AWS services are used for a variety of tasks, such as `etcd` backup storage.
+- `azure.com`
+    - domains:
+        - `management.azure.com`
+    - Azure API required by the Azure cloud controller manager.
 - `azurecr.io`
     - domains:
         - `giantswarm.azurecr.io`
