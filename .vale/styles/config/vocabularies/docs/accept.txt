@@ -85,6 +85,7 @@ discoverability
 [Dd][Nn][Ss]
 configmap[s]?
 configs?
+conformant
 [C|c]ontainerd
 CR[D]?[s]?
 CRs
