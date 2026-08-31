@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-authentication
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-07-16
+last_review_date: 2026-08-31
 user_questions:
   - Which token does my MCP client send to Muster?
   - How does Muster validate tokens on every request?
@@ -464,7 +464,7 @@ sequenceDiagram
 
 Forwarding the user's ID token all the way to the Kubernetes API is one strategy. `mcp-kubernetes` also supports a second one: impersonation. In this mode, `mcp-kubernetes` talks to the Kubernetes API using its own service account credentials, but adds `Impersonate-User` and `Impersonate-Group` headers derived from the validated token's email and groups claims. Kubernetes then evaluates RBAC as if the human had made the call: the user's ID token never reaches the API server at all. This is the default for Cluster API workload clusters in the Giant Swarm platform (the management-cluster flow described earlier uses token forwarding). The user identity still survives the chain. The audit log shows the service account impersonating the human, so actions remain attributable and additionally distinguishable as agent-driven.
 
-Why is impersonation the default for workload clusters? Unlike management clusters, Giant Swarm workload clusters don't come with Dex configured as the identity provider of their API server—their authentication configuration belongs to the customer. Token forwarding requires the target API server to trust our Dex, so that prerequisite isn't guaranteed on a workload cluster. What *is* guaranteed is a credential: Cluster API creates an admin kubeconfig for every workload cluster and stores it on the management cluster. mcp-kubernetes uses that credential, restricted to impersonation, and projects the user's identity through the impersonation headers. This works on any workload cluster regardless of how its authentication is configured.
+Why is impersonation the default for workload clusters? Unlike management clusters, Giant Swarm workload clusters don't come with Dex configured as the identity provider of their API server—their authentication configuration belongs to the customer. Token forwarding requires the target API server to trust our Dex, so that prerequisite isn't guaranteed on a workload cluster. What *is* guaranteed is a credential: Cluster API creates an admin kubeconfig for every workload cluster and stores it on the management cluster. mcp-kubernetes uses that credential, restricted to impersonation, and projects the user's identity through the impersonation headers. This works on any workload cluster regardless of how its authentication is configured. It's an interim mechanism: once workload clusters accept the platform's OIDC tokens directly, token forwarding replaces it there too.
 
 ## Skipping Muster's OAuth flow: Bringing a Dex token directly
 
@@ -736,5 +736,6 @@ And the audience story then replays on the target side for the *exchanged* token
 
 ## Related pages
 
-- [AI agent security and SSO]({{< relref "/overview/agent-platform/security/" >}})
-- [Muster architecture]({{< relref "/overview/agent-platform/architecture/" >}})
+- [Agent Platform security and SSO]({{< relref "/overview/agent-platform/security/" >}})
+- [Agent Platform architecture]({{< relref "/overview/agent-platform/architecture/" >}})
+- [Integration with SSO, cluster management, and observability]({{< relref "/overview/agent-platform/platform-integration/" >}})
