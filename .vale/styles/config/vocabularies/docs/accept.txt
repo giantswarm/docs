@@ -30,6 +30,8 @@ lookup[s]?
 [Mm]atcher[s]?
 [Nn]ginx
 against
+agentgateway
+agentlab
 Alertmanager
 allows
 API[s]?
@@ -50,6 +52,7 @@ azure-cloud-node-manager-app
 Azure
 Azure Workload Identity
 backbone
+Backstage
 beta
 boolean
 cAdvisor
@@ -123,12 +126,14 @@ IRSA
 jq
 JSON
 k8s
+kagent
 [K|k]arpenter
 KEDA
 Keybase
 Keycloak
 keyless
 Kinvolk
+[Kk]laus
 krew
 kube-vip
 kubeconfig[s]?
