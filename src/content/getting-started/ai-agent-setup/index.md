@@ -18,7 +18,7 @@ user_questions:
   - How do I authenticate with Muster?
 ---
 
-The Giant Swarm platform is ready to be used by AI agents. Its integration lets you query Kubernetes resources across all your management clusters using plain language—directly from your IDE. Instead of switching between terminals and dashboards, you can ask your AI assistant things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
+This guide connects your AI assistant to the [Giant Swarm Agent Platform]({{< relref "/overview/agent-platform/introduction" >}})'s tool access—here for its cluster-operations use case. Once connected, you can query Kubernetes resources across all your management clusters using plain language, directly from your IDE. Instead of switching between terminals and dashboards, you ask things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
 
 ## How it works
 
@@ -26,7 +26,7 @@ Two components work together: **mcp-kubernetes** runs on each management cluster
 
 Modern AI assistants—Claude Code, Cursor, and VS Code with GitHub Copilot—support remote, OAuth-protected MCP servers natively. You point your editor straight at the Muster endpoint over HTTPS, and it runs the SSO login itself—nothing to install or keep running locally. That direct connection is the recommended setup. For a client that can only speak stdio, or has no built-in OAuth flow, the `muster` CLI provides an optional local bridge (`muster agent`).
 
-For the full picture—how the aggregator works, the supported deployment shapes, and how it stays secure—see the [Muster architecture]({{< relref "/overview/ai-agents/architecture" >}}) and [security]({{< relref "/overview/ai-agents/security" >}}) explanations. If you'd rather ask questions in the browser, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) uses the same aggregator.
+For the full picture—how the aggregator works, the supported deployment shapes, and how it stays secure—see the [Muster architecture]({{< relref "/overview/agent-platform/architecture" >}}) and [security]({{< relref "/overview/agent-platform/security" >}}) explanations. If you'd rather ask questions in the browser, the [developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}) uses the same aggregator.
 
 ## Before you start
 
@@ -38,7 +38,7 @@ You'll need:
 
 ## Connect your editor directly
 
-This is the recommended setup. Point your editor at the Muster endpoint your account engineer gave you—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`. The first time the editor connects, it opens your browser for SSO login. After you authenticate, the full set of Kubernetes tools becomes available with no restart. Your editor refreshes tokens in the background, so you stay connected. See [AI agent security]({{< relref "/overview/ai-agents/security" >}}#agent-to-muster-authentication) for session duration and single sign-on.
+This is the recommended setup. Point your editor at the Muster endpoint your account engineer gave you—it looks like `https://muster.<management-cluster>.<base-domain>/mcp`. The first time the editor connects, it opens your browser for SSO login. After you authenticate, the full set of Kubernetes tools becomes available with no restart. Your editor refreshes tokens in the background, so you stay connected. See [AI agent security]({{< relref "/overview/agent-platform/security" >}}#agent-to-muster-authentication) for session duration and single sign-on.
 
 ### Claude Code
 
@@ -205,11 +205,11 @@ Once everything's configured, your AI assistant has live access to Kubernetes re
 - "What are the resource requests and limits for pods in the default namespace?"
 - "What Helm releases are installed on cluster A?"
 
-You don't need to know any tool names—just describe what you want in plain language, and your assistant selects the right tools automatically. See [Meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) for how Muster keeps the assistant's context lean.
+You don't need to know any tool names—just describe what you want in plain language, and your assistant selects the right tools automatically. See [Meta-tools]({{< relref "/overview/agent-platform/meta-tools" >}}) for how Muster keeps the assistant's context lean.
 
 ## Troubleshooting
 
-These are the first checks for IDE setup. For deeper, platform-side failure modes—single sign-on loops, `MCPServer` states, or workflows an agent can't find—see [Troubleshoot AI agent access]({{< relref "/tutorials/ai-agents/troubleshooting" >}}).
+These are the first checks for IDE setup. For deeper, platform-side failure modes—single sign-on loops, `MCPServer` states, or workflows an agent can't find—see [Troubleshoot AI agent access]({{< relref "/tutorials/agent-platform/troubleshooting" >}}).
 
 ### `authenticate_muster` keeps reappearing in your IDE
 
@@ -217,7 +217,7 @@ Your session has likely expired. Run `muster auth login` in a terminal to re-aut
 
 ### An agent hits a "forbidden" error
 
-A `forbidden` message in the agent output is a Kubernetes RBAC issue, not a Muster problem. The user authenticated fine, but their identity-provider groups aren't bound to a role that allows the action. See [Map RBAC and single sign-on]({{< relref "/tutorials/ai-agents/access-control" >}}#when-an-agent-hits-a-forbidden-error) to fix it.
+A `forbidden` message in the agent output is a Kubernetes RBAC issue, not a Muster problem. The user authenticated fine, but their identity-provider groups aren't bound to a role that allows the action. See [Map RBAC and single sign-on]({{< relref "/tutorials/agent-platform/access-control" >}}#when-an-agent-hits-a-forbidden-error) to fix it.
 
 ### A cluster shows as disconnected in `muster auth status`
 
@@ -231,8 +231,8 @@ The mcp-kubernetes instance on that cluster may be temporarily unavailable. Othe
 
 ## Learn more
 
-- [AI agents overview]({{< relref "/overview/ai-agents" >}}): what AI agents on the platform are and the pieces involved.
-- [Architecture]({{< relref "/overview/ai-agents/architecture" >}}): how the central aggregator gives you unified access to your whole fleet.
-- [Security]({{< relref "/overview/ai-agents/security" >}}): OAuth 2.1, per-user tool visibility, and how single sign-on works across clusters.
+- [AI agents overview]({{< relref "/overview/agent-platform" >}}): what AI agents on the platform are and the pieces involved.
+- [Architecture]({{< relref "/overview/agent-platform/architecture" >}}): how the central aggregator gives you unified access to your whole fleet.
+- [Security]({{< relref "/overview/agent-platform/security" >}}): OAuth 2.1, per-user tool visibility, and how single sign-on works across clusters.
 - [Developer portal AI chat]({{< relref "/overview/developer-portal/ai-chat" >}}): ask the same questions in the browser instead of your IDE.
 - [Muster CLI reference]({{< relref "/reference/muster/cli" >}}): every `muster` command, including `context` and `auth`.

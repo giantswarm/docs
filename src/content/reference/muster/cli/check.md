@@ -44,4 +44,4 @@ muster check workflow my-deployment
 ## Related
 
 - [`muster list`]({{< relref "/reference/muster/cli/list" >}}) - List resources.
-- [Troubleshooting]({{< relref "/tutorials/ai-agents/troubleshooting" >}}) - When a workflow's tools are missing.
+- [Troubleshooting]({{< relref "/tutorials/agent-platform/troubleshooting" >}}) - When a workflow's tools are missing.

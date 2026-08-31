@@ -30,7 +30,7 @@ muster start <resource-type> <name> [parameters]
 | `service` | Start a service by name |
 | `workflow` | Run a workflow, with optional parameters as flags |
 
-Workflow parameters are passed as `--key=value` flags and validated against the workflow's [argument schema]({{< relref "/reference/muster/crds" >}}#workflow).
+Workflow parameters are passed as `--key=value` flags and validated against the workflow's [argument schema]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}).
 
 ## Flags {#flags}
 
@@ -47,4 +47,4 @@ muster start workflow deploy-app --environment=production --replicas=3
 
 - [`muster stop`]({{< relref "/reference/muster/cli/stop" >}}) - Stop a running service.
 - [`muster call`]({{< relref "/reference/muster/cli/call" >}}) - Run a workflow as a `workflow_<name>` tool.
-- [Author a Muster workflow]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}) - Write workflows.
+- [Author a Muster workflow]({{< relref "/tutorials/agent-platform/authoring-workflows" >}}) - Write workflows.
