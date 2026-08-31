@@ -94,9 +94,9 @@ Every tool reachable through `call_tool` falls into one of three families, disti
 
 - **`x_<server>_<tool>`**: a tool from an external MCP server, prefixed with the server name to avoid conflicts, for example `x_kubernetes_get_pods`.
 - **`core_<area>_<tool>`**: one of Muster's built-in tools.
-- **`workflow_<name>`**: a tool generated from a [`Workflow`]({{< relref "/reference/muster/crds" >}}#workflow) resource.
+- **`workflow_<name>`**: a tool generated from a [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) resource.
 
-When an `MCPServer` declares a `family`, its tools are exposed under the family name (`<prefix>_<family>_<tool>`) with a required argument that selects which instance handles the call. See [`MCPServer`]({{< relref "/reference/muster/crds" >}}#mcpserver).
+When an `MCPServer` declares a `family`, its tools are exposed under the family name (`<prefix>_<family>_<tool>`) with a required argument that selects which instance handles the call. See [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}).
 
 ## Built-in tool catalog {#core-tools}
 
@@ -114,5 +114,5 @@ Muster's `core_*` tools manage the resources it owns. List them at runtime with 
 ## Related
 
 - [Meta-tools and tool discovery]({{< relref "/overview/ai-agents/meta-tools" >}}) - The concept and the token-cost rationale.
-- [Custom resources]({{< relref "/reference/muster/crds" >}}) - The `MCPServer` and `Workflow` schemas these tools manage.
+- [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The CRD schemas these tools manage.
 - [`muster call`]({{< relref "/reference/muster/cli/call" >}}) - Call any of these tools from the CLI.

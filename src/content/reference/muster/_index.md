@@ -8,7 +8,9 @@ menu:
   principal:
     identifier: reference-muster
     parent: reference
-last_review_date: 2026-06-21
+aliases:
+  - /reference/muster/crds/
+last_review_date: 2026-08-31
 user_questions:
   - Which commands does the Muster CLI offer?
   - What meta-tools does Muster expose to AI agents?
@@ -27,7 +29,8 @@ For a conceptual overview, start with [AI agents on the platform]({{< relref "/o
 |---|---|
 | [Installation]({{< relref "/reference/muster/installation" >}}) | How to install the `muster` CLI and keep it up to date |
 | [Meta-tools]({{< relref "/reference/muster/meta-tools" >}}) | The meta-tools Muster exposes to agents, plus the `core_*` tool catalog |
-| [Custom resources]({{< relref "/reference/muster/crds" >}}) | The `MCPServer` and `Workflow` schemas |
+| [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) | The generated `MCPServer` CRD schema reference |
+| [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) | The generated `Workflow` CRD schema reference |
 
 ## CLI commands {#commands}
 
