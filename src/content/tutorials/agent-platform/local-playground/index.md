@@ -36,11 +36,10 @@ Port 443 must be free on your machine: the lab's edge gateway binds it, and the 
 ## Step 1: Install agentlab
 
 ```sh
-go install github.com/giantswarm/agentplatform-kind@latest
-mv "$(go env GOPATH)/bin/agentplatform-kind" "$(go env GOPATH)/bin/agentlab"
+go install github.com/giantswarm/agentlab@latest
 ```
 
-Alternatively, download a release asset (named `agentplatform-kind-<os>-<arch>`) from the [releases page](https://github.com/giantswarm/agentplatform-kind/releases) and save it as `agentlab`, or clone the repository and `go build -o agentlab .`.
+Alternatively, download a release asset (named `agentlab-<os>-<arch>`) from the [releases page](https://github.com/giantswarm/agentlab/releases) and save it as `agentlab`, or clone the repository and `go build -o agentlab .`.
 
 ## Step 2: Bring the lab up
 
