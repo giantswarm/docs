@@ -83,6 +83,7 @@ descheduler
 discoverability
 [Dd]ex
 [Dd][Nn][Ss]
+composable
 configmap[s]?
 configs?
 conformant

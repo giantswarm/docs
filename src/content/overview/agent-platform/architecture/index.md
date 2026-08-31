@@ -46,7 +46,7 @@ Each hop has one job:
 - **The edge Gateway** terminates TLS and owns the public hostname. It's a standard Kubernetes Gateway API gateway—on Giant Swarm installations the cluster's shared Envoy Gateway, on your own cluster either an existing Gateway or one the platform chart creates.
 - **agentgateway** is the MCP data plane. Every `/mcp` request passes through it, which makes it the single choke point where tool calls become observable (protocol, tool name, session, latency) and where policy can be applied. It forwards the caller's bearer token to Muster without consuming it.
 - **Muster** is the authentication enforcement point. It acts as an OAuth resource server: an unauthenticated request gets a `401` response with a `WWW-Authenticate` header pointing at the standard OAuth discovery metadata, which is how MCP clients find out where to sign in—no manual configuration. Authenticated requests reach the aggregator, which fans out to the MCP servers behind it and handles their credentials on the user's behalf.
-- **The MCP servers** do the actual work: `mcp-kubernetes` and `mcp-prometheus` on each management cluster, plus any other servers you put behind the gateway.
+- **The MCP servers** do the actual work: whatever tools your agents need—internal services, data stores, third-party APIs—as long as they speak MCP. The shipped reference servers, `mcp-kubernetes` and `mcp-prometheus`, cover the cluster-operations scenario.
 
 OAuth sign-in, token, and discovery endpoints are served by Muster directly. Only MCP traffic flows through agentgateway.
 
@@ -89,7 +89,7 @@ The [platform integration]({{< relref "/overview/agent-platform/platform-integra
 
 ## Fleet-wide aggregation
 
-For a customer operating several management clusters, a **central** Muster instance aggregates the `mcp-kubernetes` and `mcp-prometheus` servers on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
+One deployment shape deserves its own picture: the cluster-operations use case across a fleet. For a customer operating several management clusters, a **central** Muster instance aggregates the `mcp-kubernetes` and `mcp-prometheus` servers on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
 
 <!-- vale off -->
 {{< mermaid >}}
@@ -117,6 +117,8 @@ Two deployment shapes are supported:
 ## Workflows cut agent token cost
 
 Muster can package a multi-step operation—authenticate, port-forward, query, correlate—as a single named **workflow** that an agent invokes with one call. It's not just convenient. It makes the AI assistant dramatically cheaper, because one workflow call replaces the whole discover-query-correlate loop the agent would otherwise run itself.
+
+This is the platform's improvement loop. Work an agent has figured out once gets captured as a deterministic, server-side workflow, and every later run leans on the codified path instead of the model. The longer the platform runs, the more of its routine work costs near-zero tokens.
 
 One internal lab trial measured this directly on four real management-cluster alerts, with the same agent, model, and prompt, differing only in whether the agent was given the raw aggregated tools or the matching workflow tool. The numbers below are illustrative of the *shape* of the saving rather than a guarantee—the ratios hold across a range of investigations, but the absolute figures depend on the model and its pricing:
 

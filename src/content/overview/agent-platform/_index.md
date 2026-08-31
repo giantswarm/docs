@@ -1,6 +1,6 @@
 ---
 title: Agent Platform
-description: How the Giant Swarm Agent Platform gives AI agents governed, secure access to your fleet, with Muster as the MCP gateway at its core.
+description: How the Giant Swarm Agent Platform runs composable, secure, sovereign AI agents on your own infrastructure, with governed tool access through Muster at its core.
 weight: 35
 menu:
   principal:

@@ -18,7 +18,7 @@ user_questions:
   - How do I authenticate with Muster?
 ---
 
-The Giant Swarm Agent Platform makes your installation ready to be used by AI agents. It lets you query Kubernetes resources across all your management clusters using plain language—directly from your IDE. Instead of switching between terminals and dashboards, you can ask your AI assistant things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
+This guide connects your AI assistant to the [Giant Swarm Agent Platform]({{< relref "/overview/agent-platform/introduction" >}})'s tool access—here for its cluster-operations use case. Once connected, you can query Kubernetes resources across all your management clusters using plain language, directly from your IDE. Instead of switching between terminals and dashboards, you ask things like "are there any pods in CrashLoopBackOff on any cluster?" and get answers grounded in live cluster state.
 
 ## How it works
 
