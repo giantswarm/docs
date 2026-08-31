@@ -13,7 +13,7 @@ crd:
   technical_name: mcpservers.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v1.4.10
+  source_repository_ref: v5.7.2
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v1.4.10
+source_repository_ref: v5.7.2
 ---
 
 # MCPServer
@@ -351,6 +351,94 @@ with forwardToken: true and requests them all from the IdP.</p>
 
 <div class="property depth-2">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.sigv4">.spec.auth.sigv4</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>SigV4 configures AWS Signature Version 4 request signing. Required when
+Type is &ldquo;sigv4&rdquo;, and rejected otherwise.</p>
+
+<p>Unlike the OAuth mechanisms above, this is a machine identity: every
+request signs as muster itself, not as the calling user, so it never
+touches the session-scoped client machinery. Only valid together with
+spec.type &ldquo;streamable-http&rdquo;.</p>
+
+<p>ForwardToken and TokenExchange are rejected alongside it by the rule
+above. AuthorizationServer needs no rule of its own: it already requires
+Type &ldquo;oauth&rdquo;, which the sigv4 pairing rule excludes.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.sigv4.region">.spec.auth.sigv4.region</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Region is the SigV4 signing region. It must match the region in URL,
+because the signature&rsquo;s credential scope is checked against the
+endpoint. This is not the region the backend operates in — that is
+MCPServerSpec.Meta.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.sigv4.roleArn">.spec.auth.sigv4.roleArn</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>RoleARN, when set, is assumed from the pod&rsquo;s base credentials before
+signing. Leave empty to sign as the pod&rsquo;s own identity.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.sigv4.service">.spec.auth.sigv4.service</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Service is the SigV4 signing service name. It defaults to the first
+hostname label of URL, which is how AWS&rsquo;s own clients derive it:
+aws-mcp.eu-central-1.api.aws signs as service &ldquo;aws-mcp&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.auth.tokenExchange">.spec.auth.tokenExchange</h3>
 </div>
 <div class="property-body">
@@ -605,7 +693,9 @@ Example: <a href="https://dex.cluster-b.example.com">https://dex.cluster-b.examp
 <p>Type specifies the authentication type.
 Supported values:
   - &ldquo;oauth&rdquo;: OAuth 2.0/OIDC authentication
-  - &ldquo;none&rdquo;: No authentication</p>
+  - &ldquo;none&rdquo;: No authentication
+  - &ldquo;sigv4&rdquo;: AWS Signature Version 4, signed with muster&rsquo;s own machine
+    identity. See SigV4.</p>
 
 </div>
 
@@ -777,6 +867,91 @@ This field is only relevant when Type is &ldquo;streamable-http&rdquo; or &ldquo
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.meta">.spec.meta</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Meta contains entries merged into the <code>params._meta</code> object of every
+outbound JSON-RPC request that carries <code>params</code>. It carries call-scoped
+configuration to a backend that reads it from the MCP metadata field
+instead of from tool arguments.</p>
+
+<p>An entry already present in a request&rsquo;s <code>_meta</code> wins, so a caller can
+still override per call. Requests without <code>params</code> are left untouched.</p>
+
+<p>The injection happens in an HTTP round tripper shared by every remote
+client, so it applies to <code>streamable-http</code> and <code>sse</code> alike, with or
+without auth. For a SigV4 server the round tripper sits in front of the
+signer, because the body has to be rewritten before it is signed.</p>
+
+<p>A stdio server has no HTTP transport, so the CEL rule above rejects the
+field there rather than accepting and dropping it.</p>
+
+<p>The AWS-hosted MCP server is the motivating case: it takes the region it
+operates in from <code>params._meta.AWS_REGION</code>, and its tools declare no
+region argument, so without this a call fails with NoRegionError. That
+operating region is a different value from Auth.SigV4.Region, which is
+the signing region — the two default to the same string but resolve
+independently, endpoint-first for signing and config-first for operating.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.restartRequestedAt">.spec.restartRequestedAt</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>RestartRequestedAt requests a one-shot restart of this server&rsquo;s service.
+Restart is an action, not a steady state, so it cannot be a boolean: the
+caller writes a timestamp, which doubles as the audit record of when the
+restart was requested. The reconciler restarts the service only when this
+differs from status.lastRestartedAt, then mirrors the processed value
+into status — repeated reconciles of an already-processed request are
+no-ops (issue #1055).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.suspended">.spec.suspended</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Suspended declares the desired lifecycle state of this server&rsquo;s service.
+When true, the reconciler stops the service (and refuses to start it)
+until the field is set back to false. This is the CR-driven replacement
+for the imperative start/stop tools: writing it is authorized and
+audited by the apiserver like any other spec mutation (issue #1055).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.timeout">.spec.timeout</h3>
 </div>
 <div class="property-body">
@@ -825,7 +1000,13 @@ servers provide tools with similar names.</p>
 
 <div class="property-description">
 <p>Type specifies how this MCP server should be executed.
-Supported values: &ldquo;stdio&rdquo; for local processes, &ldquo;streamable-http&rdquo; for HTTP-based servers, &ldquo;sse&rdquo; for Server-Sent Events</p>
+Supported values: &ldquo;stdio&rdquo; for local processes, &ldquo;streamable-http&rdquo; for HTTP-based servers, &ldquo;sse&rdquo; for Server-Sent Events.</p>
+
+<p>&ldquo;stdio&rdquo; is CLI-only. A stdio server is started as a subprocess of the muster
+process, so a muster running in Kubernetes mode rejects it: the tool handlers
+fail the call, and a CR applied directly through the API server is reconciled
+to state Failed instead of spawning a process in the muster pod. Run the MCP
+server as its own workload and use &ldquo;streamable-http&rdquo; or &ldquo;sse&rdquo; instead.</p>
 
 </div>
 
@@ -1110,6 +1291,26 @@ Used with ConsecutiveFailures to implement exponential backoff.</p>
 <p>LastError contains any error message from the most recent server operation.
 Note: Per-user authentication errors are tracked in the Session Registry,
 not here. This field only contains infrastructure-level errors.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.lastRestartedAt">.status.lastRestartedAt</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>LastRestartedAt mirrors the spec.restartRequestedAt value most recently
+processed by the reconciler. A restart is performed only when the two
+differ (spec-is-desired / status-is-observed idiom, issue #1055).</p>
 
 </div>
 
