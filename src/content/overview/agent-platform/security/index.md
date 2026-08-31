@@ -1,8 +1,8 @@
 ---
-title: AI agent security and SSO
+title: Agent Platform security and SSO
 diataxis_content_type: explanation
 linkTitle: Security
-description: How Muster secures AI agent access with OAuth 2.1, per-user tool visibility keyed on identity, and single sign-on across clusters via token forwarding and exchange.
+description: How the Agent Platform secures AI agent access with OAuth 2.1, per-user tool visibility keyed on identity, and single sign-on across clusters via token forwarding and exchange.
 weight: 40
 mermaid: true
 menu:
@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-07-23
+last_review_date: 2026-08-31
 user_questions:
   - How does Muster authenticate AI agents?
   - Can AI agents only see the tools I'm allowed to use?
@@ -27,6 +27,8 @@ Muster treats authentication as a first-class concern at two levels: protecting 
 The aggregator requires the OAuth 2.1 authorization code flow with PKCE. The first time your AI assistant connects—or when you run `muster auth login` from the CLI—your browser opens for SSO against your enterprise identity provider. Tokens are stored locally with restricted file permissions. Access tokens are short-lived—30 minutes by default—and your MCP client refreshes them automatically in the background, so you stay connected without re-authenticating. Your overall session lasts about 30 days by default before you need to sign in again, though this can vary by installation. If a session does expire, your client detects it and reopens your browser to re-authenticate.
 
 Because authentication uses the OAuth 2.1 flow, an assistant that supports remote MCP servers natively can connect straight to the aggregator's HTTPS URL. Examples include VS Code and Cursor. They run this flow themselves, with no local bridge process. Production deployments require HTTPS for all OAuth endpoints.
+
+One property is worth stating explicitly: **your identity provider is the sole token authority**. The access tokens Muster hands to clients are opaque strings—random keys into Muster's own session store, not signed tokens. Muster never signs a token of its own, and no downstream system trusts Muster as an issuer. Every credential that carries identity on this platform is issued and validated by the identity provider.
 
 ## Muster-to-downstream authentication
 
@@ -45,6 +47,24 @@ flowchart TB
 {{< /mermaid >}}
 
 When a downstream server returns a `401`, Muster detects the challenge and hands back an "authentication required" response with an authorization URL. Once you authenticate in the browser, it exchanges the code for tokens scoped to your session. Subsequent calls to that server carry the token automatically.
+
+A server showing the **Auth Required** state is healthy, not broken. It means the server is reachable and waiting for a user to sign in. Every per-user server passes through this state after a restart, and a server nobody currently uses sits in it permanently. The platform's alerting ignores it—only the `Failed` state indicates a real problem.
+
+## How a backend gets its authority
+
+Every MCP server behind the gateway declares how calls to it are authenticated. The taxonomy has four modes:
+
+| Mode | What happens |
+|---|---|
+| `none` | No authentication—for servers that are anonymous by design |
+| `oauth` | The caller must be authenticated, but no token is passed to the server |
+| `forward` | The caller's own token is forwarded to the server unchanged—for servers that trust the same identity provider |
+| `exchange` | The caller's token is exchanged (RFC 8693) at the target's identity provider for one that server accepts—for servers behind a different provider, such as a remote cluster |
+
+Which design a backend gets follows one rule: **who administers the backend's account system decides**.
+
+- **Platform-administered backends** (`mcp-kubernetes`, `mcp-prometheus`, and other servers whose access the platform's own identity provider governs) use `forward` or `exchange`: authority is derived from your identity per request, without stored state.
+- **Externally administered backends** (say, a third-party service with its own accounts) can't have authority created for them by the platform. There, Muster acts as an OAuth client toward the backend's own authorization server: you grant access once in a one-time browser consent, and Muster stores that grant for your future calls.
 
 ## Per-user tool visibility
 
@@ -78,4 +98,8 @@ Muster offers three distinct logout operations for different needs:
 
 Per-device isolation comes from OAuth refresh-token families, not a custom session layer—so revoking one device never disturbs the others.
 
-For the hands-on login flow and an RBAC troubleshooting guide, see [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
+## Agents acting for a human
+
+An agent running on the platform holds no identity of its own on the tool path. When you talk to an agent—in chat or the portal—it acts with **your** token, end to end. The same forwarding and exchange rules described earlier apply, and every downstream system, including the Kubernetes API and its audit log, sees you. The platform records which agent acted for you at the gateway layer, so attribution is preserved without inventing a second credential. Machine identity for fully autonomous agents (with no human behind them) isn't supported yet.
+
+For the hands-on login flow and an RBAC troubleshooting guide, see [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}). For every token on the path in detail, see the [authentication deep dive]({{< relref "/overview/agent-platform/authentication" >}}).
