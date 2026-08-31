@@ -8,7 +8,9 @@ menu:
   principal:
     identifier: reference-muster
     parent: reference
-last_review_date: 2026-06-21
+aliases:
+  - /reference/muster/crds/
+last_review_date: 2026-08-31
 user_questions:
   - Which commands does the Muster CLI offer?
   - What meta-tools does Muster expose to AI agents?
@@ -17,9 +19,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 ---
 
-`muster` is the command-line interface for [Muster]({{< relref "/overview/ai-agents/introduction" >}}), the MCP gateway that gives AI agents unified, secure access to your fleet. This section documents the CLI commands, the meta-tools Muster exposes to agents, and the custom resources you author to extend it.
+`muster` is the command-line interface for [Muster]({{< relref "/overview/agent-platform/introduction" >}}), the MCP gateway that gives AI agents unified, secure access to your fleet. This section documents the CLI commands, the meta-tools Muster exposes to agents, and the custom resources you author to extend it.
 
-For a conceptual overview, start with [AI agents on the platform]({{< relref "/overview/ai-agents" >}}). To install the CLI, see [Installation]({{< relref "/reference/muster/installation" >}}). To connect your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
+For a conceptual overview, start with [AI agents on the platform]({{< relref "/overview/agent-platform" >}}). To install the CLI, see [Installation]({{< relref "/reference/muster/installation" >}}). To connect your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
 
 ## Reference pages {#pages}
 
@@ -27,7 +29,8 @@ For a conceptual overview, start with [AI agents on the platform]({{< relref "/o
 |---|---|
 | [Installation]({{< relref "/reference/muster/installation" >}}) | How to install the `muster` CLI and keep it up to date |
 | [Meta-tools]({{< relref "/reference/muster/meta-tools" >}}) | The meta-tools Muster exposes to agents, plus the `core_*` tool catalog |
-| [Custom resources]({{< relref "/reference/muster/crds" >}}) | The `MCPServer` and `Workflow` schemas |
+| [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) | The generated `MCPServer` CRD schema reference |
+| [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) | The generated `Workflow` CRD schema reference |
 
 ## CLI commands {#commands}
 
@@ -77,7 +80,7 @@ Muster reads its configuration from `~/.config/muster` by default. Override the 
 └── workflows/       # Workflow definitions
 ```
 
-In Kubernetes mode, Muster reads `MCPServer` and `Workflow` custom resources from the cluster instead. See [Deploy Muster]({{< relref "/tutorials/ai-agents/self-hosting/deploy-muster" >}}).
+In Kubernetes mode, Muster reads `MCPServer` and `Workflow` custom resources from the cluster instead. See [Deploy Muster]({{< relref "/tutorials/agent-platform/self-hosting/deploy-muster" >}}).
 
 ## Contributing {#contributing}
 

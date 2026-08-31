@@ -38,7 +38,7 @@ To connect an IDE that can't reach the endpoint directly, bridge it with [`muste
 
 ### OAuth protection {#oauth}
 
-These flags turn Muster into an OAuth 2.1 protected resource and enable the MCP client proxy for authenticating to remote MCP servers. Full setup needs a configuration file. See [Set up OAuth for Muster]({{< relref "/tutorials/ai-agents/self-hosting/oauth-setup" >}}).
+These flags turn Muster into an OAuth 2.1 protected resource and enable the MCP client proxy for authenticating to remote MCP servers. Full setup needs a configuration file. See [Set up OAuth for Muster]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}}).
 
 | Name | Description |
 |---|---|
@@ -52,4 +52,4 @@ These flags turn Muster into an OAuth 2.1 protected resource and enable the MCP 
 
 - [`muster standalone`]({{< relref "/reference/muster/cli/standalone" >}}) - Run the aggregator and agent in one process.
 - [`muster agent`]({{< relref "/reference/muster/cli/agent" >}}) - Connect to a running aggregator.
-- [Muster architecture]({{< relref "/overview/ai-agents/architecture" >}}) - How the aggregator works.
+- [Muster architecture]({{< relref "/overview/agent-platform/architecture" >}}) - How the aggregator works.
