@@ -183,6 +183,7 @@ rollouts
 rulesets
 runbook[s]?
 [s|S]ample
+scaffolder
 SDKs
 SemVer
 separately
@@ -203,6 +204,7 @@ Sysdig
 [T|t]eleport
 templated
 TLS
+toolchain[s]?
 toleration[s]
 TraceQL
 [T|t]rivy
