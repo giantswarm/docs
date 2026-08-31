@@ -20,7 +20,7 @@ user_questions:
 
 The developer portal includes a built-in AI chat. You ask a question in plain language and get an answer grounded in live platform state, without leaving the portal or switching to a terminal. It's the same assistant experience you'd configure in your [IDE]({{< relref "/getting-started/ai-agent-setup" >}}), but already wired up and waiting in the browser.
 
-Behind the chat is **Muster**, the platform's MCP gateway. The portal connects to your central Muster instance, so the assistant can reach your whole fleet through one secure, authenticated endpoint. For the concepts behind that gateway, see [AI agents on the platform]({{< relref "/overview/ai-agents" >}}).
+Behind the chat is **Muster**, the platform's MCP gateway. The portal connects to your central Muster instance, so the assistant can reach your whole fleet through one secure, authenticated endpoint. For the concepts behind that gateway, see [AI agents on the platform]({{< relref "/overview/agent-platform" >}}).
 
 ## What you can ask
 
@@ -55,9 +55,9 @@ flowchart LR
   muster --> promB
 {{< /mermaid >}}
 
-The chat connects to the central Muster aggregator over its OAuth-protected endpoint. On each management cluster Muster aggregates both `mcp-kubernetes`, which exposes Kubernetes resources, and `mcp-prometheus`, which exposes metrics. So the assistant reaches your entire fleet through a single connection instead of a separate one per cluster and per system. The [architecture page]({{< relref "/overview/ai-agents/architecture" >}}) covers this fleet-wide aggregation in detail.
+The chat connects to the central Muster aggregator over its OAuth-protected endpoint. On each management cluster Muster aggregates both `mcp-kubernetes`, which exposes Kubernetes resources, and `mcp-prometheus`, which exposes metrics. So the assistant reaches your entire fleet through a single connection instead of a separate one per cluster and per system. The [architecture page]({{< relref "/overview/agent-platform/architecture" >}}) covers this fleet-wide aggregation in detail.
 
-To keep responses fast and cheap, Muster doesn't load every cluster tool into the assistant at once. It exposes a small set of [meta-tools]({{< relref "/overview/ai-agents/meta-tools" >}}) that the assistant uses to discover and call only the tools a given question needs. Common investigations, such as summarizing pod health, can be packaged as single workflow calls that resolve a question in one step.
+To keep responses fast and cheap, Muster doesn't load every cluster tool into the assistant at once. It exposes a small set of [meta-tools]({{< relref "/overview/agent-platform/meta-tools" >}}) that the assistant uses to discover and call only the tools a given question needs. Common investigations, such as summarizing pod health, can be packaged as single workflow calls that resolve a question in one step.
 
 ## Per-user access and security
 
@@ -66,7 +66,7 @@ The chat acts as you, not as a shared service account. It uses your portal sign-
 - **Per-user visibility**: you only see tools from the clusters you've authenticated with and that your identity provider grants you access to. Clusters you can't reach simply don't appear.
 - **Cluster RBAC still applies**: a request you aren't permitted to make is rejected by the cluster's own Kubernetes RBAC, not allowed by the gateway.
 
-The [AI agent security page]({{< relref "/overview/ai-agents/security" >}}) explains the OAuth flow, per-user tool visibility, and single sign-on across clusters.
+The [AI agent security page]({{< relref "/overview/agent-platform/security" >}}) explains the OAuth flow, per-user tool visibility, and single sign-on across clusters.
 
 ## Current limitations
 

@@ -36,7 +36,7 @@ Apply style fixes and run Vale prose linting on modified or added pages.
 
    > Network traffic, particularly cross-availability zone (cross-AZ) and egress traffic, is often a hidden but significant cost driver in cloud environments. Cloud providers typically charge for data transfer between availability zones. For example, AWS charges approximately $0.01/GB for cross-AZ traffic, and these costs can add up quickly in distributed systems.
 
-   Exmaple (after)
+   Example (after)
 
    > Network traffic, particularly cross-availability zone (cross-AZ) and egress traffic, is often a **hidden but significant cost driver** in cloud environments. Cloud providers typically charge for data transfer between availability zones. For example, AWS charges approximately $0.01/GB for cross-AZ traffic, and these costs can **add up quickly** in distributed systems.
 
