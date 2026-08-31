@@ -19,9 +19,9 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 ---
 
-`muster` is the command-line interface for [Muster]({{< relref "/overview/ai-agents/introduction" >}}), the MCP gateway that gives AI agents unified, secure access to your fleet. This section documents the CLI commands, the meta-tools Muster exposes to agents, and the custom resources you author to extend it.
+`muster` is the command-line interface for [Muster]({{< relref "/overview/agent-platform/introduction" >}}), the MCP gateway that gives AI agents unified, secure access to your fleet. This section documents the CLI commands, the meta-tools Muster exposes to agents, and the custom resources you author to extend it.
 
-For a conceptual overview, start with [AI agents on the platform]({{< relref "/overview/ai-agents" >}}). To install the CLI, see [Installation]({{< relref "/reference/muster/installation" >}}). To connect your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
+For a conceptual overview, start with [AI agents on the platform]({{< relref "/overview/agent-platform" >}}). To install the CLI, see [Installation]({{< relref "/reference/muster/installation" >}}). To connect your IDE, follow [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}).
 
 ## Reference pages {#pages}
 
@@ -80,7 +80,7 @@ Muster reads its configuration from `~/.config/muster` by default. Override the 
 └── workflows/       # Workflow definitions
 ```
 
-In Kubernetes mode, Muster reads `MCPServer` and `Workflow` custom resources from the cluster instead. See [Deploy Muster]({{< relref "/tutorials/ai-agents/self-hosting/deploy-muster" >}}).
+In Kubernetes mode, Muster reads `MCPServer` and `Workflow` custom resources from the cluster instead. See [Deploy Muster]({{< relref "/tutorials/agent-platform/self-hosting/deploy-muster" >}}).
 
 ## Contributing {#contributing}
 

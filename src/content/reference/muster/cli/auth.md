@@ -16,7 +16,7 @@ user_questions:
 last_review_date: 2026-06-21
 ---
 
-`muster auth` manages authentication to a remote, OAuth-protected aggregator. Use it to log in, check your current identity and token status, and log out. For how OAuth works in Muster, see the [security overview]({{< relref "/overview/ai-agents/security" >}}).
+`muster auth` manages authentication to a remote, OAuth-protected aggregator. Use it to log in, check your current identity and token status, and log out. For how OAuth works in Muster, see the [security overview]({{< relref "/overview/agent-platform/security" >}}).
 
 ## Usage
 
@@ -77,5 +77,5 @@ muster auth login --server kubernetes
 
 ## Related
 
-- [Access control]({{< relref "/tutorials/ai-agents/access-control" >}}) - How identity maps to cluster permissions.
+- [Access control]({{< relref "/tutorials/agent-platform/access-control" >}}) - How identity maps to cluster permissions.
 - [`muster context`]({{< relref "/reference/muster/cli/context" >}}) - Manage the endpoints you authenticate to.

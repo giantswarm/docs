@@ -49,4 +49,4 @@ muster events --type Warning --since 1h
 ## Related
 
 - [`muster check`]({{< relref "/reference/muster/cli/check" >}}) - Check that a resource is available.
-- [Troubleshooting]({{< relref "/tutorials/ai-agents/troubleshooting" >}}) - Diagnose connection problems.
+- [Troubleshooting]({{< relref "/tutorials/agent-platform/troubleshooting" >}}) - Diagnose connection problems.
