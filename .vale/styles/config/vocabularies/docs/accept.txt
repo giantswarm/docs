@@ -56,6 +56,7 @@ Backstage
 beta
 boolean
 cAdvisor
+CA[s]?
 camelCase
 CAPA
 CAPI
@@ -112,7 +113,7 @@ gracefully
 Hashicorp
 HelmRelease
 Honeybadger
-[H|h]ostname
+[H|h]ostname[s]?
 HPA
 htpasswd
 HTTP
