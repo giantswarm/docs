@@ -60,9 +60,9 @@ muster create mcpserver my-http-server \
 muster create workflow example-workflow
 ```
 
-For the full set of `MCPServer` and `Workflow` fields, including authentication and control flow, see the [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) CRD schema references. To author a workflow the code-grounded way, see [Author a Muster workflow]({{< relref "/tutorials/ai-agents/authoring-workflows" >}}).
+For the full set of `MCPServer` and `Workflow` fields, including authentication and control flow, see the [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) CRD schema references. To author a workflow the code-grounded way, see [Author a Muster workflow]({{< relref "/tutorials/agent-platform/authoring-workflows" >}}).
 
 ## Related
 
-- [Managing MCP servers]({{< relref "/tutorials/ai-agents/managing-mcp-servers" >}}) - The full `MCPServer` workflow.
+- [Managing MCP servers]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}) - The full `MCPServer` workflow.
 - [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The resource schemas.

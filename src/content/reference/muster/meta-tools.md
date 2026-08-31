@@ -17,7 +17,7 @@ user_questions:
 last_review_date: 2026-06-21
 ---
 
-Muster exposes a small, fixed set of meta-tools to an AI agent instead of the hundreds of underlying tools behind the gateway. The agent discovers what it needs on demand and pays context cost only for the tools it uses. For the concept and the reasoning, see [Meta-tools and tool discovery]({{< relref "/overview/ai-agents/meta-tools" >}}). This page is the field-level reference, verified against Muster `v0.10.0`.
+Muster exposes a small, fixed set of meta-tools to an AI agent instead of the hundreds of underlying tools behind the gateway. The agent discovers what it needs on demand and pays context cost only for the tools it uses. For the concept and the reasoning, see [Meta-tools and tool discovery]({{< relref "/overview/agent-platform/meta-tools" >}}). This page is the field-level reference, verified against Muster `v0.10.0`.
 
 ## The meta-tools {#meta-tools}
 
@@ -113,6 +113,6 @@ Muster's `core_*` tools manage the resources it owns. List them at runtime with 
 
 ## Related
 
-- [Meta-tools and tool discovery]({{< relref "/overview/ai-agents/meta-tools" >}}) - The concept and the token-cost rationale.
+- [Meta-tools and tool discovery]({{< relref "/overview/agent-platform/meta-tools" >}}) - The concept and the token-cost rationale.
 - [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The CRD schemas these tools manage.
 - [`muster call`]({{< relref "/reference/muster/cli/call" >}}) - Call any of these tools from the CLI.
