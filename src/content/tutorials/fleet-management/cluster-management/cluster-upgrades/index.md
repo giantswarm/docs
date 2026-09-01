@@ -1,5 +1,6 @@
 ---
 title: Cluster upgrades
+diataxis_content_type: explanation
 description: How workload cluster release work and how they relate to Kubernetes versions and breaking changes. Safety and automation considerations for upgrades.
 weight: 10
 menu:

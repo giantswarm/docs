@@ -164,7 +164,7 @@ Add contextual information during log processing:
 | label_format severity=`{{ if eq .level "error" }}critical{{ else if eq .level "warn" }}warning{{ else }}info{{ end }}`
 ```
 
-For advanced LogQL techniques, see our [advanced LogQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial" >}}).
+For advanced LogQL techniques, see the [LogQL query reference]({{< relref "/overview/observability/data-management/data-exploration/logql" >}}).
 
 ## Grafana transformations
 

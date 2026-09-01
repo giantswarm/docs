@@ -1,5 +1,6 @@
 ---
 title: Migrating to release charts
+diataxis_content_type: how-to-guide
 description: How to migrate existing clusters from cluster-provider to release-provider charts for automated upgrades via Flux.
 weight: 15
 menu:

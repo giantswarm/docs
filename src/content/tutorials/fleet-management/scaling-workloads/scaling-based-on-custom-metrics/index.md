@@ -1,5 +1,6 @@
 ---
 title: Scaling workloads based on custom GPU metrics
+diataxis_content_type: how-to-guide
 linkTitle: Scaling GPU workloads
 description: Learn how to configure Horizontal Pod Autoscaling with Prometheus adapter to scale workloads based on custom GPU metrics in Giant Swarm clusters.
 weight: 10
@@ -7,7 +8,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-scaling
     identifier: tutorials-fleet-management-scaling-custom-gpu-metrics
-last_review_date: 2025-10-23
+last_review_date: 2026-05-18
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -64,7 +65,7 @@ kubectl gs template app \
   --cluster-name=${CLUSTER} \
   --name=keda \
   --target-namespace=keda-system \
-  --version=3.1.0 > keda-app.yaml
+  --version=5.0.2 > keda-app.yaml
 
 kubectl apply -f keda-app.yaml
 ```

@@ -1,6 +1,7 @@
 ---
 linkTitle: Quick start
 title: Installing Gateway API with Envoy Gateway
+diataxis_content_type: how-to-guide
 description: Learn how to install and configure the Kubernetes Gateway API with Envoy Gateway in Giant Swarm workload clusters.
 weight: 10
 menu:
@@ -12,7 +13,7 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2025-12-04
+last_review_date: 2026-05-18
 ---
 
 ## Prerequisites
@@ -23,13 +24,13 @@ Before setting up Gateway API, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
 - Basic understanding of Kubernetes networking concepts
-- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-load-balancer-controller-app) is required for configuring AWS Network Load Balancers.
-
-In case you can not install `aws-load-balancer-controller` or don't want to use AWS Network Load Balancers, you can set `gateways.default.provider.aws.useNetworkLoadBalancer=false` in `gatewayApiConfig.userConfig.configMap` of the bundle.
+- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers.
 
 ## Installation
 
 Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components (Gateway API CRDs, [Envoy Gateway](https://gateway.envoyproxy.io/) and a preconfigured default Gateway):
+
+**Note:** The Gateway API Bundle currently ships as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}), which is being phased out in favor of Flux HelmRelease. The bundle itself doesn't yet have a HelmRelease equivalent because it deploys nested App resources internally. For application deployments outside the bundle, use HelmRelease.
 
 ```yaml
 apiVersion: v1

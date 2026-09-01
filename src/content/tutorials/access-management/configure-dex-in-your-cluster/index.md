@@ -1,6 +1,7 @@
 ---
 linkTitle: OIDC for workload clusters
 title: Configure OIDC using Dex to access your clusters
+diataxis_content_type: how-to-guide
 description: How to install and configure Dex to work as an authenticator mechanism to provide OpenID tokens via OpenID Connect (OIDC).
 weight: 40
 menu:
@@ -78,7 +79,7 @@ data:
 {{< /tab >}}
 {{< /tabs >}}
 
-__Note__: In the above snippets you need to replace the `CLUSTER_NAME` and `BASE_DOMAIN` placeholder with the correct values, which is the name of the workload cluster you are configuring, and the base domain that you use for your installation. You can also derive them from the workload cluster's `Kubernetes` API endpoint, which has an address in the format of `https://api.CLUSTER_NAME.BASE_DOMAIN`.
+**Note**: In the snippets shown earlier you need to replace the `CLUSTER_NAME` and `BASE_DOMAIN` placeholders. Use the name of the workload cluster you are configuring, and the base domain that you use for your installation. You can also derive them from the workload cluster's `Kubernetes` API endpoint, which has an address in the format `https://api.CLUSTER_NAME.BASE_DOMAIN`.
 
 ## Deploy the app to your cluster
 
@@ -225,12 +226,14 @@ The values for `CLIENT_ID` and `CLIENT_SECRET` must be created in the `Okta` con
 {{< /tab >}}
 {{< /tabs >}}
 
-__Warning__: With `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second call to the identity provider in order to get groups. This is required for example by `Okta`. More info on this can be found in [dexidp/dex#1065](https://github.com/dexidp/dex/issues/1065).
+**Warning**: With the `oidc` connector you might need to add `getUserInfo` in the connector configuration to force a second call to the identity provider to get groups. This is required for example by `Okta`. More info on this can be found in [dexidp/dex#1065](https://github.com/dexidp/dex/issues/1065).
 
-__Note__: In the above snippet you have to replace the `CLUSTER_NAME` variable and select a connector. Here you see examples for `Keycloak`, `Active Directory`, and `GitHub`.
+**Note**: In the snippet shown earlier you have to replace the `CLUSTER_NAME` variable and select a connector. Here you see examples for `Keycloak`, `Active Directory`, and `GitHub`.
 You can use more than one connector, but they need to have a different `id` value. Our advice is to use `- id: customer` for your primary connector.
 
 After you have applied the `Secret` manifest to the platform API you have to submit the `App` custom resource that defines the intent to install the `Dex` app in the given cluster. You can directly apply it to the platform API.
+
+**Note**: The `App` custom resource shown below is being phased out in favor of Flux HelmRelease. For new deployments, see [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}).
 
 ```yaml
 apiVersion: application.giantswarm.io/v1alpha1
@@ -257,11 +260,11 @@ spec:
   version: 1.22.2
 ```
 
-__Note__: When applying the example in the snippet above, please replace the `CLUSTER_NAME` placeholder with the name of the workload cluster which you are configuring and the `CLUSTER_NAMESPACE_NAME` placeholder with the name of the namespace which contains the cluster.
+**Note**: When applying the example in the snippet shown earlier, replace the `CLUSTER_NAME` placeholder with the name of the workload cluster you are configuring. Replace `CLUSTER_NAMESPACE_NAME` with the name of the namespace that contains the cluster.
 
 Then submit the resource to the management API and the app operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that `Dex` creates for you. By default, it will be `https://login.CLUSTER_NAME.BASE_DOMAIN`.
 
-__Warning__: It's assumed that you have an [ingress controller and cert-manager]({{< relref "/getting-started/install-an-application" >}}) running in your cluster in order to make Dex available for the callback request made by your identity provider securely. Both of these apps are offered in our managed app catalog. If you supply custom certificates when deploying `Dex`, then you can skip cert-manager installation.
+**Warning**: It's assumed that you have an [ingress controller and cert-manager]({{< relref "/getting-started/install-an-application" >}}) running in your cluster, so Dex is available for the callback request made by your identity provider securely. Both of these apps are offered in our managed app catalog. If you supply custom certificates when deploying `Dex`, you can skip cert-manager installation.
 
 ### Using Dex group filtering {#dex-group-filtering}
 
@@ -353,9 +356,9 @@ oidc:
   issuerAddress: https://dex.test.example.io
 ```
 
-__Note__: For workload cluster using [Cluster API `AWS`](https://github.com/giantswarm/cluster-aws) (CAPA) provider, use `443` instead of `6443` for the API address port.
+**Note**: For workload cluster using [Cluster API `AWS`](https://github.com/giantswarm/cluster-aws) (CAPA) provider, use `443` instead of `6443` for the API address port.
 
-__Warning__: For workload cluster using [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster and can be easily accessed through the AWS EKS console by navigating to the `Overview` tab and under the `Details` section from the EKS cluster information page. For example:
+**Warning**: For workload clusters using the [Cluster API `EKS`](https://github.com/giantswarm/cluster-eks) provider, you'll need to configure Athena to use an AWS-managed EKS API server endpoint. This API server endpoint is uniquely allocated to your EKS cluster. Find it in the AWS EKS console: navigate to the `Overview` tab and look under the `Details` section on the EKS cluster page. For example:
 
 ```yaml
 kubernetes:
@@ -412,7 +415,7 @@ subjects:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-__Warning__: This example assigns the `cluster-admin` role to the user `you@example.io`. The `cluster-admin` is a powerful role granting extensive access to the cluster and should only be used with caution and for specific purposes.
+**Warning**: This example assigns the `cluster-admin` role to the user `you@example.io`. The `cluster-admin` is a powerful role granting extensive access to the cluster and should only be used with caution and for specific purposes.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -431,6 +434,6 @@ subjects:
 
 This example assigns the `cluster-admin` role to members of the group `customer:example-admin`.
 
-__Want to simplify initial access setup?__ Use our [RBAC bootstrap app](https://github.com/giantswarm/rbac-bootstrap-app). This app helps you easily configure the users and groups that will initially have access to the cluster.
+If you want to simplify the setup, use our [RBAC bootstrap app](https://github.com/giantswarm/rbac-bootstrap-app). This app helps you easily configure the users and groups that will initially have access to the cluster.
 
 Learn how to [use `ServiceAccount` to authenticate against platform API]({{< relref "/tutorials/access-management/authentication/automation" >}}).

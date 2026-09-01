@@ -1,6 +1,7 @@
 ---
 linkTitle: Container network interface
 title: Container network interface
+diataxis_content_type: explanation
 description: An introduction to the container network interface used in Giant Swarm clusters.
 weight: 20
 menu:

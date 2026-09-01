@@ -1,0 +1,9 @@
+{{- /* Invoke with percent notation ({{% steps %}}) so step headlines become
+       real Markdown headings and appear in the page table of contents.
+       Rendered as an ordered list so assistive technology announces it as a
+       numbered, sequential set of steps. */ -}}
+<ol class="steps" aria-label="Step-by-step instructions">
+
+{{ .Inner }}
+
+</ol>

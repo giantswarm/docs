@@ -1,6 +1,37 @@
 {
   extends: [
     'github>giantswarm/renovate-presets:default.json5',
+    // Only act during non-office hours: weeknights 22:00-05:00 plus all weekend.
+    // Resolves to ['* 0-4,22-23 * * 1-5', '* * * * 0,6'].
+    'schedule:nonOfficeHours',
+  ],
+  // The schedule above is interpreted in UTC (Renovate's default), stated for clarity.
+  timezone: 'UTC',
+  // Stay completely idle outside the schedule: don't even rebase or automerge
+  // branches that already exist.
+  updateNotScheduled: false,
+  // No throttling inside the window. The Giant Swarm preset caps these at 10/10/2;
+  // these top-level values override it. 0 means "no limit".
+  prConcurrentLimit: 0,
+  branchConcurrentLimit: 0,
+  prHourlyLimit: 0,
+  // Keep dependency merges from cutting a release. The suffix ends up in the PR
+  // title, which is the whole commit message on main (squash merges here use
+  // PR_TITLE + BLANK body), where .github/workflows/on-merge-create-release.yml
+  // looks for it. `commitBody` would not work: squashing discards the branch commit.
+  commitMessageSuffix: '[do not release]',
+  packageRules: [
+    {
+      // Exception: the Dockerfile pins the hugo and nginx images that build and
+      // serve the site, and publishing only happens on the `v*` tags created by
+      // the release workflow. These updates must release, or the merged pins
+      // would not reach docs.giantswarm.io.
+      description: 'Let Dockerfile updates cut a release, since they change the published site',
+      matchFileNames: [
+        'Dockerfile',
+      ],
+      commitMessageSuffix: '',
+    },
   ],
   customManagers: [
     {

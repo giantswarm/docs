@@ -81,7 +81,7 @@ Advanced querying and analysis capabilities:
 
 - **[Interactive exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Grafana's Explore feature for ad-hoc analysis with PromQL, LogQL, and TraceQL
 - **[Dashboard management]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations with GitOps workflows or through the Grafana UI
-- **Query languages**: [PromQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial.md" >}}) for metrics, [LogQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-logql-tutorial/" >}}) for logs, and [TraceQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial/" >}}) for traces with powerful filtering and analysis
+- **Query languages**: [PromQL]({{< relref "/overview/observability/data-management/data-exploration/promql/" >}}) for metrics, [LogQL]({{< relref "/overview/observability/data-management/data-exploration/logql/" >}}) for logs, and [TraceQL]({{< relref "/overview/observability/data-management/data-exploration/traceql/" >}}) for traces with powerful filtering and analysis
 
 ### Data transformation
 

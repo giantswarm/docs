@@ -2,8 +2,8 @@
 
 set -e
 
-# renovate: datasource=docker depName=gsoci.azurecr.io/giantswarm/crd-docs-generator versioning=loose
-CRD_DOCS_GENERATOR_VERSION=0.11.4
+# renovate: datasource=docker depName=gsoci.azurecr.io/giantswarm/crd-docs-generator versioning=semver
+CRD_DOCS_GENERATOR_VERSION=0.12.20
 
 DESTINATION=src/content/reference/platform-api/crd
 

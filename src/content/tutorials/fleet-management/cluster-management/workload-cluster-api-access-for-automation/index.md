@@ -1,6 +1,7 @@
 ---
 linkTitle: Automation access
 title: Access your workload cluster API via automation
+diataxis_content_type: how-to-guide
 description: Access your cluster API from an automation requires a hands-free way to provide credentials to kubectl or any Kubernetes client. This article explains how to obtain a service account token to use in such a scenario.
 weight: 20
 menu:

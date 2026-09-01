@@ -1,6 +1,7 @@
 ---
 linkTitle: Operational layers
 title: Giant Swarm operational layers
+diataxis_content_type: explanation
 description: Here you learn how the operational layers of Giant Swarm are defined and what the intended operational model is.
 weight: 10
 menu:

@@ -1,12 +1,13 @@
 ---
 linkTitle: add automatic-update
 title: "'kubectl gs gitops add automatic-update' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to configure automatic updates for an App to the GitOps repository.
 weight: 35
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2024-11-25
+last_review_date: 2026-06-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -55,7 +56,8 @@ Basic command syntax: `kubectl gs gitops add automatic-update FLAGS`.
 - `--app` -- name of the App in the repository to configure automatic update for (required)
 - `--management-cluster` -- name of the management cluster the workload cluster belongs to (required)
 - `--organization` -- name of the organization the workload cluster belongs to (required)
-- `--version-repository` -- the container image repository to update the version from. (required)
+- `--repository` -- name of the GitOps repository (required)
+- `--version-repository` -- the OCI image repository to watch for new versions (required)
 - `--workload-cluster` -- name of the workload cluster to configure the app for (required)
 - `--skip-mapi` -- skip mapi directory when adding the app
 
@@ -73,7 +75,7 @@ kubectl gs gitops add automatic-update \
   --organization demoorg \
   --workload-cluster demowc \
   --app hello-world \
-  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world \
+  --version-repository gsoci.azurecr.io/charts/giantswarm/hello-world \
   --repository gitops-demo \
   --dry-run
 ```
@@ -84,7 +86,7 @@ Output:
 ## CREATE ##
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/automatic-updates
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/automatic-updates/imageupdate.yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: demomc-updates
@@ -114,7 +116,7 @@ spec:
     strategy: Setters
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world/imagepolicy.yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: demowc-hello-world
@@ -126,12 +128,12 @@ spec:
       range: '>=0.0.0'
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/apps/hello-world/imagerepository.yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: demowc-hello-world
 spec:
-  image: giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world
+  image: gsoci.azurecr.io/charts/giantswarm/hello-world
   interval: 10m0s
 
 
@@ -176,7 +178,7 @@ kubectl gs gitops add automatic-update \
   --organization demoorg \
   --workload-cluster demowc \
   --app hello-world \
-  --version-repository giantswarmpublic.azurecr.io/giantswarm-catalog/hello-world \
+  --version-repository gsoci.azurecr.io/charts/giantswarm/hello-world \
   --repository gitops-demo \
   --dry-run
 ```

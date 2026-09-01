@@ -1,5 +1,6 @@
 ---
 title: Cluster naming
+diataxis_content_type: reference
 description: The specifications for naming workload clusters in the Giant Swarm platform.
 weight: 10
 menu:

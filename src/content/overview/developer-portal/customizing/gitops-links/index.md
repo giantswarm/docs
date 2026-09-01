@@ -1,5 +1,6 @@
 ---
 title: Enabling GitOps links
+diataxis_content_type: how-to-guide
 linkTitle: GitOps links
 description: How to configure the developer portal to show GitOps links for resources managed by Flux, so that users can jump directly to the source code.
 weight: 20
@@ -7,9 +8,9 @@ menu:
   principal:
     parent: overview-developer-portal-customizing
     identifier: overview-developer-portal-customizing-gitopslinks
-last_review_date: 2025-04-01
+last_review_date: 2026-07-23
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I have links to GitOps sources in the developer portal?
 ---
@@ -122,7 +123,7 @@ By default, the system is pre-configured with two GitHub repository patterns. Th
 - **Default GitHub (HTTPS):**
 
   ```yaml
-  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)$'
+  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)(\.git)?$'
   targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
   ```
 

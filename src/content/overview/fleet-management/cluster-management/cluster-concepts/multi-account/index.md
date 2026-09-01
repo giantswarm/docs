@@ -1,5 +1,6 @@
 ---
 title: Multi-account clusters
+diataxis_content_type: explanation
 description: Learn the advantages of using multi-account clusters in the Giant Swarm platform.
 weight: 10
 menu:
@@ -21,7 +22,7 @@ The Giant Swarm architecture distinguishes between the management cluster and wo
 
 Both on Cluster API for AWS (CAPA) and Azure (CAPZ), workload cluster resources usually exist in an account (or in Azure terms: a subscription) separate from the one hosting the management cluster resources. The default configuration provisions all workload clusters in the same installation. Both accounts, the one for the management cluster and the default one for workload clusters, are under the customer's jurisdiction.
 
-__Note__: Some customers use the same account/subscription for both management cluster and workload clusters. This choice doesn't affect the capabilities described below.
+**Note**: Some customers use the same account/subscription for both management cluster and workload clusters. This choice doesn't affect the capabilities described below.
 
 With multi-account support you can have more fine-grained control over the accounts used by workload clusters. Every Giant Swarm [organization]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/organizations" >}}) in an installation may be mapped to an individual configuration for a single account.
 
@@ -63,4 +64,4 @@ Then when creating a cluster, you can specify the organization that should be us
 - In CAPA using the `AWSClusterRoleIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-infrastructure/aws/#configure-cluster-role-identity" >}}).
 - In CAPZ using the `AzureClusterIdentity` like it's explained [here]({{< relref "/getting-started/prepare-your-provider-infrastructure/azure/#configure-cluster-role-identity" >}}) command
 
-__Note__: For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first.
+**Note**: For sharing any secret with us please read [this article]({{< relref "/overview/security/sharing-secrets" >}}) first.

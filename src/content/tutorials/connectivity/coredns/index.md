@@ -1,6 +1,7 @@
 ---
 linkTitle: CoreDNS
 title: Advanced CoreDNS configuration
+diataxis_content_type: how-to-guide
 description: Here we describe how you can customize the configuration of the managed CoreDNS service in your clusters.
 weight: 35
 menu:

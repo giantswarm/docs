@@ -1,20 +1,23 @@
 ---
 linkTitle: template catalog
 title: "'kubectl gs template catalog' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to create a manifest for a Catalog using 'kubectl gs'.
 weight: 80
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create an catalog manifest for the platform API?
   - How can I add catalog level values or secrets for the apps deployed from this catalog?
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-catalog/
 ---
+
+**Deprecated:** This command produces a manifest for the legacy `Catalog` resource, which is being phased out in favor of Flux sources (`OCIRepository`, `HelmRepository`). For new deployments, publish charts to an OCI registry and reference them via `flux create source oci`. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 The `template catalog` command allows to create an [app catalog]({{< relref "/tutorials/fleet-management/app-platform" >}}) manifest. The resulting manifest is meant to be applied to the management cluster, for example via `kubectl apply`.
 
@@ -38,12 +41,6 @@ It supports the following required flags:
 - `--type` - Label containing a type of the helm repository. Defaults to `helm`. Can be defined multiple times.
 - `--logo` - URL of the catalog logo image.
 - `--visibility` - Defaults to `public` in which case the catalog appears in the web UI. Any other value will hide the catalog.
-
-It also supports an older flag variation to maintain backward compatibility:
-
-- `--namespace` - replaced by `--target-namespace`.
-
-This older flag variation is marked as deprecated and will be removed in the next major version of `kubectl gs`.
 
 Example command:
 

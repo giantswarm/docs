@@ -1,5 +1,6 @@
 ---
 title: Prepare your provider environment for Proxmox VE
+diataxis_content_type: how-to-guide
 linkTitle: Proxmox VE
 description: Prepare your Proxmox VE environment to start building your cloud-native developer platform with Giant Swarm.
 weight: 40
@@ -56,7 +57,7 @@ Network requirements include:
 
 **Note:** Contact Giant Swarm support when planning multi-network or VLAN-based cluster configurations, as additional SDN permissions may be required (depending on your configuration).
 
-Since Proxmox has no concept of load balancers out of the box, CAPMOX ships with [kube-vip]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}), a layer two load balancer which utilises [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) or [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol).
+Since Proxmox has no concept of load balancers out of the box, CAPMOX ships with [kube-vip](https://kube-vip.io), a layer two load balancer which utilises [ARP](https://en.wikipedia.org/wiki/Address_Resolution_Protocol) or [BGP](https://en.wikipedia.org/wiki/Border_Gateway_Protocol).
 
 `kube-vip` uses ARP or BGP to inform the network of the route to the load-balanced IP. `kube-vip` runs in-cluster as opposed to a more traditional external load-balancer that will forward IP packets to its upstream servers.
 
@@ -67,8 +68,6 @@ Due to the in-cluster operation of `kube-vip`, the cluster network where this co
 ![CAPMOX kube-vip IPAM](capmox-kubevip-ipam-excalidraw.png)
 
 When deploying a Cluster API cluster, it automatically selects an IP from the IP pool by default. However, to have available IPs for services of type load balancer in the workload cluster, you must explicitly set a CIDR in the nodes' subnet.
-
-Learn more about how to configure `kube-vip` in the [advanced documentation]({{< relref "/vintage/advanced/cluster-management/vsphere-kubevip" >}}).
 
 ## Step 3: Permissions
 

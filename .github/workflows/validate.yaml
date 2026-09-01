@@ -15,13 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install frontmatter-validator
         uses: giantswarm/install-binary-action@5bef88f65012037dd836117c8d344b21bb559854 # v4.1.0
         with:
           binary: frontmatter-validator
-          version: "0.5.0"
+          version: "0.7.0"
+          # v0.7.0+ ships raw, unversioned binaries (no .tar.gz). A URL without an
+          # archive extension makes install-binary-action skip unarchiving.
+          download_url: 'https://github.com/giantswarm/${binary}/releases/download/v${version}/${binary}-linux-amd64'
           smoke_test: frontmatter-validator --help
 
       - name: Validate front matter for changed files
@@ -207,18 +210,17 @@ jobs:
           comment-tag: files-deleted-or-moved
           mode: delete
 
-      - name: Setup Hugo
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3.2.1
-        with:
-          hugo-version: "0.125.5"
-          extended: true
-      
       - id: hugobuild
         if: ${{ github.event_name == 'pull_request' }}
         name: Build Hugo site
         run: |
-          hugo --source ./src --printPathWarnings --printUnusedTemplates --renderToMemory | tee hugo.out
+          docker run --rm \
+            -v ${{ github.workspace }}:/work -w /work \
+            hugomods/hugo:0.162.1 \
+            hugo --source ./src \
+              --printPathWarnings --printUnusedTemplates \
+              --renderToMemory --noBuildLock \
+            | tee hugo.out
           grep "WARN" hugo.out > hugo-warnings.out || true
           if [ -s hugo-warnings.out ]; then
             echo "hugo_warnings=true" >> $GITHUB_ENV

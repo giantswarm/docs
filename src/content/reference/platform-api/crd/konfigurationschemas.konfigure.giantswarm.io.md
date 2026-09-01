@@ -1,5 +1,6 @@
 ---
 title: KonfigurationSchema CRD schema reference (group konfigure.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: KonfigurationSchema
 description: |
   KonfigurationSchema is the Schema for the konfigurationschemas API.
@@ -12,7 +13,7 @@ crd:
   technical_name: konfigurationschemas.konfigure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/konfigure-operator
-  source_repository_ref: v1.2.1
+  source_repository_ref: v1.2.2
   versions:
     - v1alpha1
   topics:
@@ -24,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/konfigurationschemas.konfigure.giantswarm.io/
 technical_name: konfigurationschemas.konfigure.giantswarm.io
 source_repository: https://github.com/giantswarm/konfigure-operator
-source_repository_ref: v1.2.1
+source_repository_ref: v1.2.2
 ---
 
 # KonfigurationSchema

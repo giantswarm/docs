@@ -1,6 +1,7 @@
 ---
 linkTitle: App bundles
 title: App bundle reference
+diataxis_content_type: explanation
 description: Overview of the app bundle concept, how it works, and how to configure it.
 menu:
   principal:
@@ -19,6 +20,8 @@ user_questions:
  - Are there any caveats in using app bundles?
 last_review_date: 2025-11-28
 ---
+
+**Deprecated:** App bundles ship as charts containing `App` custom resources. The `App` CR is being phased out in favor of Flux HelmRelease, so this pattern has no direct Flux equivalent. The closest equivalents for new deployments are Helm umbrella charts (one chart declaring sub-charts as dependencies) and Kustomize over multiple HelmReleases. See [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}) for both patterns, and [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 ## App bundle definition {#app-bundle-definition}
 
@@ -67,7 +70,7 @@ Now, obviously to leverage this management cluster layer, the bundle `App` custo
 
 The first, not so obvious, consequence of installing a bundle in a management cluster before its nested apps are installed in the workload cluster is the requirement for name uniqueness. When a given app bundle is to be installed for more than one workload cluster, each `App` custom resource instance must be given a unique name within the management cluster.
 
-It becomes natural for solitary apps (for example, the [Hello World app]) that when you need to install it twice in the workload cluster, both App custom resource instances must be named uniquely. It's natural because both live under the same namespace. Even if we could break them into separate namespaces, this uniqueness would still be required because both apps target the same workload cluster and must be distinguished by its operators.
+It becomes natural for solitary apps (for example, the [Hello World app](https://github.com/giantswarm/hello-world-app)) that when you need to install it twice in the workload cluster, both App custom resource instances must be named uniquely. It's natural because both live under the same namespace. Even if we could break them into separate namespaces, this uniqueness would still be required because both apps target the same workload cluster and must be distinguished by its operators.
 
 It's less obvious for the bundle apps, because these are usually scattered across the namespaces for the corresponding workload clusters from the very beginning. This gives the impression they're isolated, which we already know to not be the case. Not complying with this rule results in apps competing over certain resources, and hence conflicting.
 

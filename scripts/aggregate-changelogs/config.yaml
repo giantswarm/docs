@@ -87,10 +87,14 @@ repositories:
     category: Developer Portal
   giantswarm/hello-world-app:
     category: Others
-  giantswarm/ingress-nginx-app:
+  giantswarm/envoy-gateway-app:
     category: Connectivity
   giantswarm/jiralert-app:
     category: Others
+  giantswarm/agent-platform:
+    category: AI Agents
+  giantswarm/agent-platform-standalone:
+    category: AI Agents
   giantswarm/klaus:
     category: AI Agents
   giantswarm/klaus-operator:

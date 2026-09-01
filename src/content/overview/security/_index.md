@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-security
-last_review_date: 2025-07-02
+last_review_date: 2026-07-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -37,8 +37,10 @@ Our platform leverages several cloud-native technologies to deliver these securi
 
 - **Falco**: An open-source runtime security project, Falco monitors your Kubernetes environment for runtime anomalies, providing real-time detection of suspicious activities.
 
-- **Prometheus and Grafana**: Used for log alerting and monitoring, Prometheus collects and stores metrics, while Grafana provides a customizable dashboard for visualizing and setting up alerts based on these metrics.
+- **Mimir, Loki, and Grafana**: Alloy collects metrics and logs to be stored by Mimir and Loki, respectively. Grafana provides customizable dashboards and alerting across both.
 
 - **Cilium**: Container networking plugin that provides advanced network capabilities, including DNS-based network policies and traffic encryption to secure communication within your clusters.
+
+- **External Secrets Operator**: Reads secrets from an external secret manager, such as AWS KMS, Azure Key Vault, or Hashicorp Vault, and delivers them as Kubernetes secrets, so credentials never have to be committed to source control. See [External Secrets Operator]({{< relref "/overview/security/external-secrets-operator/" >}}).
 
 Learn how to start with Security on Giant Swarm by visiting our [getting started security page]({{< relref "/overview/security/platform-security/" >}}).

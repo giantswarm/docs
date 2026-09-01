@@ -1,5 +1,6 @@
 ---
 title: Access to the platform API
+diataxis_content_type: how-to-guide
 description: How engineers can access the platform API to provision new workload clusters or deploy applications.
 weight: 20
 menu:

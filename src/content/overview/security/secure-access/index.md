@@ -1,5 +1,6 @@
 ---
 title: Secure access to clusters
+diataxis_content_type: explanation
 description: Our team needs access to your clusters for management purposes. Here's how we make sure this access is secure and responsible.
 weight: 30
 menu:

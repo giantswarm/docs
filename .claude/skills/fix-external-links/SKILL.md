@@ -1,4 +1,5 @@
 ---
+name: fix-external-links
 description: Find and fix broken external links in the docs site using linkchecker
 ---
 

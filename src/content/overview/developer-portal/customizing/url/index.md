@@ -1,5 +1,6 @@
 ---
 title: Using your own URL for the developer portal
+diataxis_content_type: how-to-guide
 linkTitle: URL
 description: How to set up a custom URL for your Giant Swarm developer portal.
 weight: 10
@@ -9,7 +10,7 @@ menu:
     identifier: overview-developer-portal-customizing-url
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I configure and customize the developer portal?
 ---

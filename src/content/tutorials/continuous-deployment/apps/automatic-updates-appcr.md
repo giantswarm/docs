@@ -1,6 +1,7 @@
 ---
 linkTitle: Enable automatic updates in Apps
 title: Enable automatic updates in Apps
+diataxis_content_type: how-to-guide
 description: Learn how to enable and configure automatic updates in Apps deployed using GitOps.
 weight: 50
 menu:
@@ -11,8 +12,10 @@ user_questions:
   - How can I enable and configure auto update for apps deployment with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-19
+last_review_date: 2026-05-21
 ---
+
+**Deprecated:** This guide covers automatic updates for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Enable automatic updates for HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/automatic-updates-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 This document is part of the documentation to use GitOps with Giant Swarm app platform. You can find more information about the [app platform in our docs]({{< relref "/overview/fleet-management/app-management/" >}}).
 
@@ -29,7 +32,7 @@ Enabling automated updates requires a few additional `Flux` resources to be defi
 
 `Flux` will watch for new docker image tags for your `App` and use them to update the `.spec.version` field in the `App` resource. It will do it by pushing commits to this repository.
 
-__Note__: in order to use this mechanism you have to make sure the image tags of your `App` correspond to its version, otherwise this process will result in setting a meaningless version in the `.spec.version` field.
+**Note**: To use this mechanism, make sure the image tags of your `App` correspond to its version. Otherwise this process will set a meaningless version in the `.spec.version` field.
 
 ## Example
 
@@ -59,7 +62,7 @@ mkdir automatic-updates
 Later on, define the image update configuration in the `imageupdate.yaml` file on the new folder:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: ${WC_NAME}-updates
@@ -88,7 +91,7 @@ spec:
 Now, in the app folder create the `imagerepository.yaml` file to configure registry to scan for new tags:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: ${APP_NAME}
@@ -101,7 +104,7 @@ spec:
 In the same app folder also create the `imagepolicy.yaml` file with tag selection rules:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
@@ -117,7 +120,7 @@ spec:
       range: '>=0.0.1'
 ```
 
-__Note__: the `filterTags` allows you to filter the image tags before those are considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
+**Note**: the `filterTags` allows you to filter the image tags before those are considered by the policy rule. Here, it's used to skip the heading `v` in the version upon passing it to the policy.
 
 Check [`Flux` docs](https://fluxcd.io/flux/components/image/imagepolicies/#examples) for more examples of possible policies.
 
@@ -184,7 +187,7 @@ resources:
 Last step, you can create the `imagerepository.yaml` file referencing the newly created secret:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: ${cluster_name}-hello-world

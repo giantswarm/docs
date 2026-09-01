@@ -1,5 +1,6 @@
 ---
 title: Domain allowlist
+diataxis_content_type: reference
 description: A list of all external domains Giant Swarm clusters need access to in order to function.
 weight: 40
 menu:
@@ -10,7 +11,7 @@ user_questions:
 aliases:
   - /vintage/platform-overview/security/cluster-security/domain-allowlist/
   - /platform-overview/security/cluster-security/domain-allowlist
-last_review_date: 2025-10-03
+last_review_date: 2026-06-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
@@ -25,13 +26,16 @@ List of the external domains we require access to for our clusters to function.
     - domains:
         - `*.amazonaws.com`
     - AWS services are used for a variety of tasks, such as `etcd` backup storage.
+- `azure.com`
+    - domains:
+        - `management.azure.com`
+    - Azure API required by the Azure cloud controller manager.
 - `azurecr.io`
     - domains:
         - `giantswarm.azurecr.io`
-        - `giantswarmpublic.azurecr.io`
         - `gsoci.azurecr.io`
         - `gsociprivate.azurecr.io`
-        - `.blob.core.windows.net`
+        - `*.blob.core.windows.net`
         - `azure.microsoft.com`
     - Container images and app catalogs are hosted on Azure container registry.
 - `cloudfront.net`

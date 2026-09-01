@@ -16,9 +16,10 @@ If a file path or topic is provided as an argument (`$ARGUMENTS`), use that as t
    - [Giant Swarm Intranet](https://intranet.giantswarm.io/docs/) — internal context where needed
    - [Grafana Documentation](https://grafana.com/docs/) — for Grafana-specific features
 
-2. **Determine the page type**:
-   - **Conceptual** — explains what something is, its purpose, and how it fits into the platform
-   - **Tutorial** — step-by-step instructions for performing a specific task
+2. **Determine the page's Diátaxis type** — `tutorial`, `how-to-guide`, `reference`, or
+   `explanation`. Use the rubric in `/classify-diataxis` to decide (don't restate it here);
+   for example a conceptual overview is usually `explanation`, a step-by-step task is usually
+   `how-to-guide`. Keep the page in a single type.
 
 3. **Place the page correctly** in the documentation hierarchy (see AGENTS.md for the full structure). Determine the correct path under `src/content/overview/observability/` or `src/content/getting-started/`.
 
@@ -36,6 +37,7 @@ If a file path or topic is provided as an argument (`$ARGUMENTS`), use that as t
    ```yaml
    ---
    title: "Clear, concise title"
+   diataxis_content_type: explanation  # the type from step 2: tutorial | how-to-guide | reference | explanation
    description: "Brief description of the page's content and purpose."
    user_questions:
      - A question users might have that this page answers
@@ -44,6 +46,8 @@ If a file path or topic is provided as an argument (`$ARGUMENTS`), use that as t
    last_review_date: YYYY-MM-DD
    ---
    ```
+
+   `diataxis_content_type` is required on articles; `_index.md` list pages omit it.
 
 6. **If moving or renaming an existing page**:
    - Add or update the `aliases` field with the old path so existing links redirect correctly

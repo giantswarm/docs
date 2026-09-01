@@ -1,5 +1,6 @@
 ---
 title: Catalog CRD schema reference (group application.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: Catalog
 description: |
   Catalog represents a catalog of managed apps. It stores general information for potential apps to install. It is reconciled by app-operator.
@@ -18,7 +19,7 @@ crd:
   topics:
     - apps
   deprecation:
-    info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
+    info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing Catalog reconciliation continues to work. For the timeline and migration path, see &lt;a href=&#34;/overview/fleet-management/app-management/app-platform-deprecation/&#34;&gt;App Platform deprecation&lt;/a&gt;.
 layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
@@ -32,7 +33,7 @@ source_repository_ref: v0.6.2
 # Catalog
 <p class="well disclaimer">
 <i class="fa fa-warning"></i> <b>Deprecation:</b>
-We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
+Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing Catalog reconciliation continues to work. For the timeline and migration path, see &lt;a href=&#34;/overview/fleet-management/app-management/app-platform-deprecation/&#34;&gt;App Platform deprecation&lt;/a&gt;.
 </p>
 
 

@@ -1,5 +1,6 @@
 ---
 title: Platform Security
+diataxis_content_type: explanation
 description: Architecture and configuration information for the collection of security-related platform features.
 weight: 10
 menu:
@@ -10,64 +11,62 @@ aliases:
 user_questions:
   - How do I view and manage vulnerabilities in my cluster?
   - What UI options are there for vulnerability and policy reports?
-  - What is included in the Security Bundle?
+  - Which components make up the Giant Swarm security platform?
   - How do I enforce admission policies in my cluster?
   - What can I do to keep my clusters secure?
   - What security services and tools does Giant Swarm offer?
-last_review_date: 2025-07-02
+last_review_date: 2026-07-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
 
 ## Overview
 
-Giant Swarm integrates a collection of open-source security tools which extend the basic security considerations outlined in our RBAC and PSS tutorial, Network Policy tutorial, and [Security Guide][security] and help you gain deeper observability and control over your developer platform.
+Giant Swarm integrates a collection of open-source security tools. These tools extend the basic security considerations outlined in our RBAC and PSS tutorial, Network Policy tutorial, and [Security Guide][security] to help you gain deeper observability and control over your developer platform.
 
 The stack consists of multiple distinct components which are independently installable and configurable based on the user's security requirements.
 
-| Feature | Component | State | Source(s) |
+| Feature | Component | State | Sources |
 |---|---|---|---|
 | Image Vulnerability Scanning | Trivy + Trivy Operator | In Catalog | [Trivy][trivy-app] / [Trivy Operator][trivy-operator-app]  |
 | Policy Enforcement | Kyverno | In Catalog | [Kyverno][kyverno-app]  |
 | CIS Benchmarks | Trivy Operator | In Catalog | [Trivy Operator][trivy-operator-app]  |
 | Cloud Security Posture | Evaluating | Planned |   |
 | Runtime Anomalies | Falco | In Catalog | [Falco][falco-app]  |
-| In-Cluster Registry | Harbor | In Catalog | [Harbor][harbor-app]  |
 | Log Alerting | Supported by both Falco and our [managed Observability Bundle][observability-bundle] offering. | In Catalog | [Loki][loki-app] / [Falco][falco-app] |
 | Log Shipping + Storage | Supported by our [managed Loki][loki-app] offering. | In Catalog | [Loki][loki-app]  |
 | Advanced Network Capabilities* | Supported by our managed Connectivity Bundle offering. | In Catalog | [Cilium][cilium-app] |
 | Image Provenance | Sigstore (`cosign`) | Policies supported |   |
 
-\* mTLS, DNS-based egress policies, and other advanced network capabilities are available through separately-managed components.
+\* mTLS, DNS-based egress policies, and other advanced network capabilities are available through separately managed components.
 
-Components with a state of "In Catalog" are available for installation via our [App Platform][app-platform]. We are working to improve centralized installation and configuration across components.
+Components with a state of "In Catalog" are available for installation via our [App Platform][app-platform]. We're working to improve centralized installation and configuration across components.
 
 A high-level overview of each component is included below. Please refer to the GitHub repository for each individual app for more detailed technical information.
 
 ## Trivy
 
-Trivy is a vulnerability scanner created by [Aqua Security][trivy-upstream]. It can be run as a command-line tool (for example, in a CI/CD pipeline) or as a Kubernetes operator, which we deploy from our [Trivy App][trivy-app]. When running as an operator, Trivy can be used as the scanning backend for a Harbor container registry as well as the scanner used by Trivy Operator.
+Trivy is a vulnerability scanner created by [Aqua Security][trivy-upstream]. It can be run as a command-line tool (for example, in a CI/CD pipeline) or as a Kubernetes operator, which we deploy from our [Trivy App][trivy-app]. When running in-cluster, it acts as the scanning backend used by Trivy Operator.
 
-Within our managed security stack, Trivy is deployed in-cluster as the backend for Trivy Operator and Harbor (if in use). We also recommend customers enable vulnerability scanning in their CI/CD pipelines and include support for that integration as part of our managed offering.
+Within our managed security stack, Trivy is deployed in-cluster as the backend for Trivy Operator. We also recommend customers enable vulnerability scanning in their CI/CD pipelines and include support for that integration as part of our managed offering.
 
 ## Trivy Operator
 
-Trivy Operator is another open-source project developed by [Aqua Security][trivy-operator-upstream]. It was previously based on an earlier project named Starboard, but has now diverged significantly. As the name suggests, it is an operator (deployed from our [Trivy Operator App][trivy-operator-app]) and performs several continuous functions in the cluster, including scanning Pods for vulnerabilities, running Kubernetes CIS (or NSA) benchmarks, and auditing Kubernetes resources against best practices and other policies. These functions can all be configured independently. Trivy Operator uses an existing Trivy server running in the cluster as its vulnerability scanner, and stores the results of its scans inside the cluster as Kubernetes custom resources.
+Trivy Operator is another open-source project developed by [Aqua Security][trivy-operator-upstream]. It was previously based on an earlier project named Starboard, but has now diverged significantly. As the name suggests, it's an operator, deployed from our [Trivy Operator App][trivy-operator-app]. It performs several continuous functions in the cluster, like scanning Pods for vulnerabilities, running Kubernetes CIS (or NSA) benchmarks, and auditing Kubernetes resources against best practices and other policies. These functions can all be configured independently. Trivy Operator uses an existing Trivy server running in the cluster as its vulnerability scanner, and stores the results of its scans inside the cluster as Kubernetes custom resources.
 
-In our stack, we deploy Trivy Operator alongside Trivy in the cluster to initiate vulnerability scans for running Pods and to perform CIS benchmarks. Users may also choose to enable additional configuration scans in addition to our recommended Kyverno policy enforcement. To support monitoring and better observability of the scan results, we have also created a [custom Prometheus exporter][starboard-exporter] which reads the `VulnerabilityReport` and other custom resources created by Trivy Operator and exposes the data as Prometheus metrics.
+In our stack, we deploy Trivy Operator alongside Trivy in the cluster to initiate vulnerability scans for running Pods and to perform CIS benchmarks. Users may also choose to enable additional configuration scans, alongside our recommended Kyverno policy enforcement. To support monitoring and better observability of the scan results, we've also created a [custom Prometheus exporter][starboard-exporter]. It reads the `VulnerabilityReport` and other custom resources created by Trivy Operator, and exposes the data as Prometheus metrics.
 
-### Working with Trivy Operator Scan Results
+### Working with Trivy Operator scan results
 
-The authoritative source of truth for Trivy Operator scans are the in-cluster custom resources. However, scan results, especially `VulnerabilityReport`s, can be lengthy and difficult to read.
+The in-cluster custom resources are the authoritative source of truth for Trivy Operator scans. However, scan results—especially `VulnerabilityReport`s—can be lengthy and difficult to read.
 
-There are several available options for viewing and distilling the results of Trivy Operator scans as well as UI integrations to make them easier to work with.
+There are several options for viewing and distilling the results of Trivy Operator scans, plus UI integrations to make them easier to work with.
 
 Scan data can be accessed:
 
 - using `kubectl`
 - from the Trivy Operator Grafana dashboard
 - directly in Prometheus
-- using the [Trivy Operator extension for K8s Lens][lens-extension]
 - using the [Trivy extension for VS Code][vscode-trivy] (for working with Trivy scans offline)
 
 #### Using kubectl
@@ -123,9 +122,9 @@ Report:
     ...
 ```
 
-Kubernetes CIS benchmark reports can similarly be retrieved with `$ kubectl get ciskubebenchreport -A` and `kubectl describe`.
+Kubernetes CIS and NSA compliance reports can similarly be retrieved with `$ kubectl get clustercompliancereport` and `kubectl describe`. The underlying host and infrastructure checks that feed these compliance reports are stored in `InfraAssessmentReport` and `ClusterInfraAssessmentReport` resources.
 
-### Reporting and Monitoring
+### Reporting and monitoring
 
 For convenience, data from the in-cluster CRs is exported to Prometheus, where it can be queried, used for alerting, or included in dashboards.
 
@@ -140,11 +139,11 @@ Data flow:
 
 ## Kyverno
 
-Kyverno is a [CNCF project][kyverno-upstream] originally created by Nirmata which acts as an admission controller and enforces policies for Kubernetes resources. It loads policies from Kubernetes custom resources and similarly stores reports about policy violations as additional resources within the cluster. It can be used to enforce a wide range of policies including Kubernetes best practices and Pod Security Standards (PSS), as well as custom user-defined policies.
+Kyverno is a [CNCF project][kyverno-upstream] originally created by Nirmata which acts as an admission controller and enforces policies for Kubernetes resources. It loads policies from Kubernetes custom resources and similarly stores reports about policy violations as additional resources within the cluster. It can be used to enforce a wide range of policies, including Kubernetes best practices, Pod Security Standards (PSS), and custom user-defined policies.
 
-As part of the security offering, Kyverno provides enforcement for PSS policies and image signing as well as custom policies provided by customers using the stack.
+As part of the security offering, Kyverno provides enforcement for PSS policies and image signing, plus custom policies provided by customers using the stack.
 
-Policy violations are stored in `PolicyReport` CRs and exposed as Prometheus metrics via [policy-reporter][policy-reporter-upstream]. You can retrieve the reports via `kubectl`:
+Policy violations are stored in `PolicyReport` CRs and exposed as Prometheus metrics via [policy-reporter][policy-reporter-upstream]. For large fleets, Kyverno can offload these reports from etcd into a dedicated `reports-server` (an aggregated API server backed by a database) to reduce etcd pressure; this is available but disabled by default. You can retrieve the reports via `kubectl`:
 
 ```bash
 $ kubectl get polr -A
@@ -158,10 +157,10 @@ monitoring         polr-ns-monitoring         185    5      0      0       0    
 replex-k8s-agent   polr-ns-replex-k8s-agent   9      0      0      0       0      14d
 ```
 
-Simply `kubectl get -o yaml` a report to see detailed information about the policies in place as well as any recorded violations. Reports can also be visualized through the included web UI by port forwarding it to your local machine:
+Simply `kubectl get -o yaml` a report to see detailed information about the policies in place, plus any recorded violations. Reports can also be visualized through the included web UI by port forwarding it to your local machine:
 
 ```bash
-$ kubectl port-forward service/kyverno-ui 8080:8080 -n <kyverno namespace>
+$ kubectl port-forward service/kyverno-policy-reporter-ui 8080:8080 -n <kyverno namespace>
 Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 ...
@@ -171,21 +170,22 @@ Open your browser to `localhost:8080` to view the reports.
 
 More detailed information about the use of Kyverno for Pod Security Standards (PSS) policy enforcement, including exception management is available in our separate [policy enforcement documentation][policy-enforcement].
 
+Giant Swarm manages the lifecycle of these policies and their exceptions with additional components, including the `kyverno-policy-operator` and the `exception-recommender`. These are exposed through our [Policy API]({{< relref "/tutorials/security/policy-api" >}}), which lets you declare policy intent without managing the underlying Kyverno resources directly.
+
 ## Falco
 
-Falco is a [CNCF project][falco-upstream] originally created by Sysdig which enables rule-based detection of runtime anomalies in a container or on a host Node. Falco watches Linux system calls (syscalls) for events matching a predefined set of suspicious or malicious activities, for example the reading of a sensitive file or the execution of a shell inside a container.
+Falco is a [CNCF project][falco-upstream] originally created by Sysdig which enables rule-based detection of runtime anomalies in a container or on a host Node. Falco watches Linux system calls (syscalls) for events matching a predefined set of suspicious or malicious activities. Examples include reading a sensitive file or executing a shell inside a container.
 
-We include Falco in our managed security stack as a detection mechanism for malicious activity once a Pod has already started. It is deployed from our [Falco App][falco-app], which includes helper components for exposing Prometheus metrics and forwarding events to various other channels, such as Elasticsearch and various messages queues and alerting backends.
+We include Falco in our managed security stack as a detection mechanism for malicious activity once a Pod has already started. It's deployed from our [Falco App][falco-app]. The app includes helper components for exposing Prometheus metrics and forwarding events to other channels, such as Elasticsearch, message queues, and alerting backends.
 
 [app-platform]: {{< relref "/overview/fleet-management/app-management" >}}
 [cilium-app]: https://github.com/giantswarm/cilium-app/
+[envoy-gateway-app]: https://github.com/giantswarm/envoy-gateway-app
 [falco-app]: https://github.com/giantswarm/falco-app
 [falco-upstream]: https://github.com/falcosecurity/falco
-[harbor-app]: https://github.com/giantswarm/harbor-app
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
-[lens-extension]: https://github.com/aquasecurity/trivy-operator-lens-extension
 [loki-app]: https://github.com/giantswarm/loki-app
 [policy-enforcement]: {{< relref "/tutorials/security/policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
@@ -197,4 +197,3 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [trivy-operator-app]: https://github.com/giantswarm/trivy-operator-app
 [trivy-operator-upstream]: https://github.com/aquasecurity/trivy-operator
 [vscode-trivy]: https://github.com/aquasecurity/trivy-vscode-extension
-[ingress-nginx-app]: https://github.com/giantswarm/ingress-nginx-app

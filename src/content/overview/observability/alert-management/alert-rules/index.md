@@ -1,5 +1,6 @@
 ---
 title: Alert rules
+diataxis_content_type: how-to-guide
 description: Learn how to create and manage alerting and recording rules in the Giant Swarm observability platform.
 weight: 10
 menu:
@@ -28,7 +29,7 @@ The platform evaluates your rules and routes alerts through the [alerting pipeli
 
 ## Required tenant labeling
 
-**Important:** All alert rules must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/multi-tenancy/creating-grafana-organization/" >}}). The system ignores any `PrometheusRule` that references a non-existing tenant.
+**Important:** All alert rules must include the `observability.giantswarm.io/tenant` label that references an existing tenant defined in a [Grafana Organization]({{< relref "/overview/observability/configuration/creating-grafana-organization/" >}}). The system ignores any `PrometheusRule` that references a non-existing tenant.
 
 Get familiar with tenant management in our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy/" >}}).
 
@@ -76,7 +77,7 @@ spec:
 - **`labels`**: Key-value pairs for routing and grouping alerts
 - **`annotations`**: Human-readable information about the alert
 
-For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or our [advanced PromQL tutorial]({{< relref "/overview/observability/data-management/data-exploration/advanced-promql-tutorial" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}) explore interface.
+For guidance on writing effective PromQL queries, see the [Prometheus querying documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/) or the [PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}). You can also explore queries in your [installation's Grafana]({{< relref "/getting-started/observe-your-clusters-and-apps/" >}}) explore interface.
 
 ## Recording rule examples
 

@@ -4,6 +4,7 @@
 # AZ is used for both "Availability Zone" abbreviation (uppercase) and Azure CLI (lowercase)
 [Aa][Zz]
 # Gateway API ecosystem terms
+deprovision(ed|ing)?
 [Gg]ateway[ -][Aa][Pp][Ii]
 gateway-api-bundle
 gateway-api-config-app
@@ -11,6 +12,7 @@ envoy-gateway-app
 ACL
 ACLs
 [Aa]lert
+Atlassian
 Autoscaling
 Autoscaler
 [Bb]ackend
@@ -24,15 +26,19 @@ Autoscaler
 [Ii][Aa][Mm]
 [Kk]ustomization[s]?
 [Kk]ustomize
+lookup[s]?
 [Mm]atcher[s]?
 [Nn]ginx
 against
+agentgateway
+agentlab
 Alertmanager
 allows
 API[s]?
 ARN[s]?
 ASGs?
 auditable
+authorizationServer
 autoscaler
 autoscaling
 aws-cli
@@ -46,16 +52,23 @@ azure-cloud-node-manager-app
 Azure
 Azure Workload Identity
 backbone
+Backstage
 beta
 boolean
 cAdvisor
+CA[s]?
 camelCase
 CAPA
 CAPI
 CAPV
 CAPVCD
 CAPZ
+ChatGPT
 CIDR[s]?
+Claude Code
+Claude Desktop
+Claude.ai
+classDef
 CLI
 CNAME
 cluster-aws
@@ -68,10 +81,13 @@ CRs
 declaratively
 deduplication
 descheduler
+discoverability
 [Dd]ex
 [Dd][Nn][Ss]
+composable
 configmap[s]?
 configs?
+conformant
 [C|c]ontainerd
 CR[D]?[s]?
 CRs
@@ -96,8 +112,9 @@ GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
+HelmRelease
 Honeybadger
-[H|h]ostname
+[H|h]ostname[s]?
 HPA
 htpasswd
 HTTP
@@ -105,17 +122,21 @@ HTTPRoute[s]?
 hyperparameter
 IDE[s']?
 impl_title
+[Ii]ntrinsic[s]?
 IP[s]?
 IPAM
 IRSA
 jq
 JSON
 k8s
+kagent
 [K|k]arpenter
 KEDA
 Keybase
+Keycloak
 keyless
 Kinvolk
+[Kk]laus
 krew
 kube-vip
 kubeconfig[s]?
@@ -126,20 +147,27 @@ Kueue
 liveness
 LogQL
 mcp-kubernetes
+mcp-prometheus
+mcp-remote
+MCPServer
 mimirtool
 MIG
 [Mm]uster
-namespace[s]?
+namespace[ds]?
+Nirmata
 NLB[s]?
 node[pP]ool[s]?
 OAuth
 OCI
 OCIRepository
 OIDC
+Okta
 onboarding
 OpenID Connect
+Opsgenie
 OTLP
 PagerDuty
+parentRefs
 passthrough
 perfectly
 Planeteers
@@ -151,11 +179,13 @@ randomly
 rapidly
 RBAC
 really
+reconnection[s]?
 relref
 rollouts
 rulesets
 runbook[s]?
 [s|S]ample
+scaffolder
 SDKs
 SemVer
 separately
@@ -163,20 +193,29 @@ Sigstore
 SLA[s]?
 SLI[s]?
 SLO[s]?
+[Ss]panset[s]?
 Spotify
 SRE[s]?
 SSL
 SSO
+subgraph
 subnets?
+substring
+syscall[s]?
+Sysdig
 [T|t]eleport
 templated
 TLS
+toolchain[s]?
 toleration[s]
 TraceQL
 [T|t]rivy
 UDP
 unmanaged
 upstream[s]?
+URIs
+validator[s]?
+Valkey
 vApp
 vCenter
 very
@@ -188,4 +227,5 @@ VPC
 vs.
 VS Code
 [V|v]Sphere
+[Ww]alkthrough
 Zot

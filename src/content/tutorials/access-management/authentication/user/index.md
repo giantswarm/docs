@@ -1,6 +1,7 @@
 ---
 linkTitle: As a user
 title: Authentication for the platform API as a user
+diataxis_content_type: how-to-guide
 description: Here you learn how to log in to the platform API as a user, using single sign-on (SSO), to use tools like kubectl.
 weight: 10
 menu:

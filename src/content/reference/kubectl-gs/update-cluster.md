@@ -1,13 +1,14 @@
 ---
 linkTitle: update cluster
 title: "'kubectl gs update cluster' command reference (cluster upgrades)"
+diataxis_content_type: reference
 description: Reference documentation on how to upgrade a workload cluster using kubectl-gs.
 weight: 130
 menu:
   principal:
     parent: reference-kubectlgs
     identifier: reference-kubectlgs-updatecluster
-last_review_date: 2024-11-28
+last_review_date: 2026-06-08
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:

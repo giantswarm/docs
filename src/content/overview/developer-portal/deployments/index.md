@@ -1,5 +1,6 @@
 ---
 title: App deployments
+diataxis_content_type: reference
 linkTitle: App deployments
 description: The developer portal provides an overview of all app deployments in your clusters, even throughout installations.
 weight: 20
@@ -9,7 +10,7 @@ menu:
     identifier: overview-developer-portal-deployments
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I access app details in the developer portal?
 ---

@@ -1,6 +1,7 @@
 ---
 linkTitle: Labelling clusters
 title: Labelling workload clusters
+diataxis_content_type: how-to-guide
 description: Guide on using labels with workload clusters for the purpose of grouping, categorization and selection.
 weight: 80
 menu:

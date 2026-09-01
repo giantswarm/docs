@@ -1,5 +1,6 @@
 ---
 title: default-apps-eks chart reference
+diataxis_content_type: reference
 linkTitle: default-apps-eks
 description:  A Helm chart for default-apps-eks; Check here the different properties of the chart.
 weight: 100

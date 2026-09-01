@@ -1,24 +1,25 @@
 ---
 linkTitle: get nodepools
 title: "'kubectl gs get nodepools' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list node pools and get details for a single node pool using 'kubectl gs'.
 weight: 50
 menu:
   principal:
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I list node pools in a cluster using kubectl?
   - How can I inspect node pools using kubectl?
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 aliases:
   - /vintage/use-the-api/kubectl-gs/get-nodepools/
 ---
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, a node pool in this case, or list several of them.
 
-**Note:** Currently this command can only be used with vintage installations. We [intend](https://github.com/giantswarm/roadmap/issues/1519) to make it available for CAPI installations, to.
+**Note:** This command supports CAPI clusters using `MachineDeployment`-backed node pools. Clusters using Karpenter (`MachinePool`) are not yet supported.
 
 ## Usage
 

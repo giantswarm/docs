@@ -1,6 +1,7 @@
 ---
 linkTitle: Cluster access control
 title: Cluster access control with RBAC and Pod Security Standards
+diataxis_content_type: how-to-guide
 description: Introduction to using role-based access control (RBAC) to secure access to cluster resources.
 weight: 10
 aliases:
@@ -16,7 +17,7 @@ user_questions:
   - Why are my containers failing to access some resources?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2024-11-28
+last_review_date: 2026-07-02
 mermaid: true
 ---
 
@@ -26,7 +27,7 @@ Role-based access control (RBAC) is the primary authorization mechanism for mana
 
 The RBAC API defines both roles and bindings on either namespace or cluster level. Like any other Kubernetes API object, these can be defined by writing YAML (or JSON) manifests.
 
-__Note__: that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a `cluster-admin` account to apply RBAC manifests.
+**Note**: that to apply these manifests, you need a user with higher level access than the access you want to set up. When in doubt, use a `cluster-admin` account to apply RBAC manifests.
 
 ### The role resources {#role-resources}
 
@@ -136,8 +137,8 @@ After applying above ClusterRole to the cluster, everyone with the cluster role 
 
 With bindings you can bind a Role or ClusterRole to subjects like users, groups, or service accounts. There are again two different resource types available:
 
-- The __RoleBinding__ grants access _within a certain namespace_ and can bind either a Role or a ClusterRole to subjects.
-- The __ClusterRoleBinding__ grants access _cluster-wide_ and can only bind a ClusterRole to subjects.
+- The `RoleBinding` grants access within a certain namespace and can bind either a Role or a ClusterRole to subjects.
+- The `ClusterRoleBinding` grants access _cluster-wide_ and can only bind a ClusterRole to subjects.
 
 #### RoleBinding
 
@@ -236,7 +237,7 @@ One of the most important default role bindings is for the `cluster-admin` role,
 
 For a complete overview of default roles and bindings you can read the [official RBAC documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings).
 
-__Warning:__ Consider the principle of least privilege and be careful assigning super-user as a default role. Giving `cluster-admin` role to every user means letting them perform any action in the cluster. Using the `cluster-admin` role by default in a Kubernetes cluster is analogous to giving root access to every user in a Linux system. Consider whether a binding to `cluster-admin` is truly necessary, or if a more minimal role can be bound instead. Read [the platform access management documentation][platform-access-management] to know more.
+**Warning**: Consider the principle of least privilege and be careful assigning super-user as a default role. Giving the `cluster-admin` role to every user means letting them perform any action in the cluster. Using the `cluster-admin` role by default in a Kubernetes cluster is analogous to giving root access to every user in a Linux system. Consider whether a binding to `cluster-admin` is truly necessary, or if a more minimal role can be bound instead. Read [the platform access management documentation][platform-access-management] to learn more.
 
 ### Verifying if you have access
 
@@ -475,7 +476,7 @@ You can revoke access from any user or group of users by either completely remov
 
 Note that bindings that come with the cluster by default like `system:masters` can't be removed as they're reconciled. Our team highly recommend to use OIDC integration to manage users and groups. Otherwise, you rely on short-lived users access (for example certificates with a TTL of a day or less) as optional security measure.
 
-__Warning:__ certificates with bindings to built-in groups like `system:masters` with no expiration can only be revoked by rotating the root certificate authority for the entire cluster, which can be very disruptive to workloads and external resource access. For this reason, we strongly recommend using alternative groups and bindings even for administrative purposes.
+**Warning**: certificates with bindings to built-in groups like `system:masters` with no expiration can only be revoked by rotating the root certificate authority for the entire cluster, which can be very disruptive to workloads and external resource access. For this reason, we strongly recommend using alternative groups and bindings even for administrative purposes.
 
 Learn more about [policies]({{< relref "/tutorials/security/policy-enforcement" >}}) and how to enforce security them through the platform.
 

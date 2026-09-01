@@ -17,7 +17,7 @@
     <title>Giant Swarm Changes and Releases</title>
     <link>{{ .Permalink }}</link>
     <description>All rececent changes and releases, throughout all categories</description>
-    {{- with .Site.LanguageCode }}
+    {{- with .Site.Language.Locale }}
     <language>{{.}}</language>
     {{- end }}
     {{- if not .Date.IsZero }}

@@ -8,7 +8,7 @@ menu:
     identifier: overview-developer-portal
 last_review_date: 2025-10-29
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - What is the developer portal?
   - What is Backstage?

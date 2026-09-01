@@ -1,13 +1,14 @@
 ---
 linkTitle: Authorization
 title: Authorization in the platform API
+diataxis_content_type: how-to-guide
 description: Granting users specific permission to certain resources is what authorization is all about. The Platform API uses Kubernetes' role based access control (RBAC) primitives and provides automation on top of it to make authorization easy for most real-life use cases. Here we explain them in detail.
 weight: 30
 menu:
   principal:
     identifier: tutorials-access-management-authorization
     parent: tutorials-access-management
-last_review_date: 2024-10-28
+last_review_date: 2026-07-02
 user_questions:
   - What automation is working in a management cluster to ensure RBAC permissions?
   - How can I set up access to resources in the management cluster?
@@ -62,7 +63,8 @@ For each [organization]({{< relref "/overview/fleet-management/multi-tenancy" >}
 
 - Resources defining [workload clusters and node pools]({{< relref "/getting-started/provision-your-first-workload-cluster" >}})
 - [Cloud provider credentials]({{< relref "/getting-started/prepare-your-provider-infrastructure#configure-cluster-role-identity" >}}) in the form of `Secret` resources
-- [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which defines an app to be installed in a workload clusters
+- [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) which defines an app to be installed in a workload cluster (legacy; being phased out in favor of `HelmRelease`)
+- `HelmRelease` and `OCIRepository` (from the `helm.toolkit.fluxcd.io` and `source.toolkit.fluxcd.io` API groups) used by Flux to install charts in workload clusters
 - `ConfigMap` which optionally provides configuration for such an app
 - `Secret` which provides additional (confidential) configuration for such an app
 

@@ -1,14 +1,15 @@
 ---
 linkTitle: FAQ
 title: Questions and answers on kubectl-gs
+diataxis_content_type: reference
 description: Frequently asked questions and answers and help for troubleshooting around `kubectl-gs`.
 weight: 140
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster or node pool with kubectl-gs?
   - How can I install an app in a workload cluster with kubectl-gs?
@@ -26,7 +27,7 @@ aliases:
 
 ### How can I create a cluster or node pool
 
-`kubectl-gs` provides the `template` family of commands, to create manifests for clusters, node pools and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) and [template nodepool]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) reference pages. You can find more information in [the getting started page]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+`kubectl-gs` provides the `template` family of commands, to create manifests for clusters and more. The resulting manifests are meant to be applied by `kubectl apply` to actually create resources. Check the [template cluster]({{< relref "/reference/kubectl-gs/template-cluster.md" >}}) reference page. You can find more information in [the getting started page]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
 ### How can I install an app in a workload cluster
 

@@ -11,7 +11,7 @@ export AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)
 
 cat <<EOF | kubectl --context ${MANAGEMENT_CLUSTER_CONTEXT} apply -f -
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: azure-workload-identity-webhook
@@ -29,7 +29,7 @@ metadata:
   namespace: org-${ORGANIZATION_NAME}
 spec:
   chartRef:
-    apiVersion: source.toolkit.fluxcd.io/v1beta2
+    apiVersion: source.toolkit.fluxcd.io/v1
     kind: OCIRepository
     name: azure-workload-identity-webhook
     namespace: org-${ORGANIZATION_NAME}

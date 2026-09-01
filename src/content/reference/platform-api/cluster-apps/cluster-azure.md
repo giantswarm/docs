@@ -1,5 +1,6 @@
 ---
 title: cluster-azure chart reference
+diataxis_content_type: reference
 linkTitle: cluster-azure
 description:  A helm chart for creating Cluster API clusters with the Azure infrastructure provider (CAPZ).; Check here the different properties of the chart.
 weight: 100

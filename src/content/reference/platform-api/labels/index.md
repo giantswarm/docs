@@ -1,6 +1,7 @@
 ---
 linkTitle: K8s labels
 title: Kubernetes resource labels reference
+diataxis_content_type: reference
 description: Overview of Kubernetes resource labels used by Giant Swarm, and their meaning.
 menu:
   principal:
@@ -9,12 +10,14 @@ menu:
 weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2024-11-27
+last_review_date: 2026-06-17
 user_questions:
   - What's the meaning of a specific Kubernetes resource label?
 ---
 
 **Notice:** Labels on Kubernetes resources are set by many different parties, and for various reasons. In this overview we explain our reasons for using a relevant set of labels, and which values or value format is expected. If you are missing information, please consult upstream documentation  from Kubernetes etc., or ask a Giant Swarm contact for more information. Also check our corresponding [annotations]({{< relref "/reference/platform-api/annotations" >}}) reference page.
+
+**Note:** Several labels on this page (those starting with `app-operator.giantswarm.io/` or referencing the `App` custom resource) apply to the legacy Giant Swarm `App` CR, which is being phased out in favor of Flux HelmRelease. For HelmRelease, see the [upstream Flux labels and annotations reference](https://fluxcd.io/flux/components/helm/helmreleases/) and [App management]({{< relref "/overview/fleet-management/app-management" >}}).
 
 As an additional source, our Go library [k8smetadata](https://github.com/giantswarm/k8smetadata) contains a list of labels and annotations that we use in our Go code.
 
@@ -126,7 +129,7 @@ Value is mostly `managed`
 
 ### giantswarm.io/service-priority
 
-Used on cluster-related resources to indicate the [service priority]({{< relref "/vintage/advanced/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
+Used on cluster-related resources to indicate the [service priority]({{< relref "/tutorials/fleet-management/cluster-management/labelling-workload-clusters#service-priority" >}}), which means the relative importance in general, of the cluster.
 
 ### observability.giantswarm.io/logging
 

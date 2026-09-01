@@ -1,5 +1,6 @@
 ---
 title: Service graphs
+diataxis_content_type: how-to-guide
 description: Visualize and analyze service topology and communication patterns using Tempo's service graph feature.
 weight: 40
 menu:
@@ -108,8 +109,8 @@ Arrows between services show:
 To get the most value from service graphs:
 
 - **[Configure comprehensive tracing]({{< relref "/overview/observability/data-management/data-ingestion/#trace-ingestion" >}})**: Ensure all critical services are instrumented
-- **[Learn TraceQL]({{< relref "/overview/observability/data-management/data-exploration/advanced-traceql-tutorial/" >}})**: Use advanced queries to complement service graph insights
-- **[Set up trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/trace-derived-metrics/" >}})**: Configure alerting based on service graph metrics
+- **[TraceQL query reference]({{< relref "/overview/observability/data-management/data-exploration/traceql/" >}})**: Use advanced queries to complement service graph insights
+- **[Alert on trace-derived metrics]({{< relref "/overview/observability/data-management/data-transformation/alert-on-trace-derived-metrics/" >}})**: Configure alerting based on service graph metrics
 
 - **[Create service dashboards]({{< relref "/overview/observability/dashboard-management/dashboard-creation/" >}})**: Build custom visualizations for service health
 

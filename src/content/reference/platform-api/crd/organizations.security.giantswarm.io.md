@@ -1,5 +1,6 @@
 ---
 title: Organization CRD schema reference (group security.giantswarm.io)
+diataxis_content_type: reference
 linkTitle: Organization
 description: |
   Organization represents schema for managed Kubernetes namespace.

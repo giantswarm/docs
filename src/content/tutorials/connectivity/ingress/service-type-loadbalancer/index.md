@@ -1,6 +1,7 @@
 ---
 linkTitle: Load balancer services
 title: Services of type LoadBalancer
+diataxis_content_type: reference
 description: Learn how to expose services directly on cloud providers through services of type LoadBalancer.
 weight: 30
 user_questions:

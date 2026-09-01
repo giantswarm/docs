@@ -1,0 +1,68 @@
+// Styles for the `steps` / `step` shortcode (step-by-step processes).
+
+$step-number-size: 32px
+$step-line-color: #ccc
+$step-number-bg: #1c91d5
+
+// Rendered as an <ol>; reset the native list styling since the visible number
+// is drawn by `.step-number`.
+.steps
+  margin: 24px 0
+  padding: 0
+  list-style: none
+
+.step
+  position: relative
+  display: flex
+  align-items: flex-start
+  padding-bottom: 24px
+  // Override the global `li` margin so the connecting line reaches the next
+  // number without a gap; spacing between steps comes from padding-bottom.
+  margin-bottom: 0
+
+.step:last-child
+  padding-bottom: 0
+
+// Vertical line connecting the step numbers. Drawn behind the circle and
+// hidden on the last step so it stops at the final number.
+.step:not(:last-child)::before
+  content: ''
+  position: absolute
+  top: $step-number-size
+  bottom: 0
+  left: ($step-number-size / 2) - 1px
+  width: 2px
+  background: $step-line-color
+
+.step-number
+  flex: 0 0 $step-number-size
+  width: $step-number-size
+  height: $step-number-size
+  border-radius: 50%
+  background: $step-number-bg
+  color: #fff
+  font-weight: 700
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+  z-index: 1
+
+.step-body
+  flex: 1
+  min-width: 0
+  padding-left: 16px
+
+// The headline is a Markdown `### ` heading (so it lands in the table of
+// contents) rendered as the first child of the step body. It sits on the same
+// vertical level as the number circle.
+.step-body > h3
+  margin: 0 0 8px 0
+  min-height: $step-number-size
+  display: flex
+  align-items: center
+
+// Content is indented under the headline (the column padding already clears
+// the connecting line). Drop the trailing margin of the last block.
+.step-body > :last-child
+  margin-bottom: 0

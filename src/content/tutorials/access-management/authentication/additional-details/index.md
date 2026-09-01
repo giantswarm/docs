@@ -1,6 +1,7 @@
 ---
 linkTitle: Additional details
 title: Additional details on authentication for the platform API
+diataxis_content_type: explanation
 description: Here we provide additional information about single sign-on with the platform API.
 weight: 30
 menu:

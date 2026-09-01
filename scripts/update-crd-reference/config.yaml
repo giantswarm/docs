@@ -20,6 +20,7 @@ source_repositories:
         topics:
           - apps
         deprecation:
+          info: Both AppCatalog and its successor Catalog are being phased out in favor of Flux sources (OCIRepository, HelmRepository). For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
           replaced_by:
             full_name: catalogs.application.giantswarm.io
             short_name: Catalog
@@ -29,28 +30,28 @@ source_repositories:
         topics:
           - apps
         deprecation:
-          info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
+          info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
       apps.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
         deprecation:
-          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
+          info: Use Flux HelmRelease and OCIRepository for new deployments. The existing App reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
       catalogs.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
         deprecation:
-          info: We are moving towards publishing charts in OCI registries. The platform will connect to repositories via Flux OCI Repository resources.
+          info: Use Flux sources (OCIRepository or HelmRepository) for new deployments. The existing Catalog reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
       charts.application.giantswarm.io:
         owner:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - apps
         deprecation:
-          info: We are moving towards deploying Helm charts using Flux and HelmRelease resources.
+          info: Use Flux HelmRelease and OCIRepository for new deployments. The existing Chart reconciliation continues to work. For the timeline and migration path, see <a href="/overview/fleet-management/app-management/app-platform-deprecation/">App Platform deprecation</a>.
   - url: https://github.com/giantswarm/config-controller
     organization: giantswarm
     short_name: config-controller
@@ -65,11 +66,11 @@ source_repositories:
   - url: https://github.com/giantswarm/silence-operator
     organization: giantswarm
     short_name: silence-operator
-    commit_reference: v0.20.1
+    commit_reference: v0.21.0
     crd_paths:
       - config/crd
     cr_paths:
-      - docs/cr
+      - config/samples
     metadata:
       silences.observability.giantswarm.io:
         owner:
@@ -80,7 +81,7 @@ source_repositories:
   - url: https://github.com/giantswarm/observability-operator
     organization: giantswarm
     short_name: observability-operator
-    commit_reference: v0.68.0
+    commit_reference: v0.74.0
     crd_paths:
       - config/crd/bases
     cr_paths:
@@ -266,7 +267,7 @@ source_repositories:
   - url: https://github.com/giantswarm/rbac-operator
     organization: giantswarm
     short_name: rbac-operator
-    commit_reference: v0.44.0
+    commit_reference: v1.1.0
     crd_paths:
       - config/crd
     cr_paths:
@@ -280,9 +281,11 @@ source_repositories:
   - url: https://github.com/giantswarm/kyverno-policy-operator
     organization: giantswarm
     short_name: kyverno-policy-operator
-    commit_reference: v0.2.2
+    commit_reference: v0.2.3
     crd_paths:
       - helm
+    cr_paths:
+      - docs/cr
     metadata:
       policyexceptions.policy.giantswarm.io:
         owner:
@@ -290,9 +293,11 @@ source_repositories:
   - url: https://github.com/giantswarm/exception-recommender
     organization: giantswarm
     short_name: exception-recommender
-    commit_reference: v0.2.0
+    commit_reference: v0.3.0
     crd_paths:
       - helm
+    cr_paths:
+      - docs/cr
     metadata:
       policyexceptiondrafts.policy.giantswarm.io:
         owner:
@@ -300,7 +305,7 @@ source_repositories:
   - url: https://github.com/giantswarm/konfigure-operator
     organization: giantswarm
     short_name: konfigure-operator
-    commit_reference: v1.2.1
+    commit_reference: v1.2.2
     crd_paths:
       - config/crd/bases
     cr_paths:
@@ -316,3 +321,24 @@ source_repositories:
           - https://github.com/orgs/giantswarm/teams/team-honeybadger
         topics:
           - configuration
+  - url: https://github.com/giantswarm/muster
+    organization: giantswarm
+    short_name: muster
+    commit_reference: v5.7.2
+    crd_paths:
+      - helm/muster-crds/files/crds
+    cr_paths:
+      - docs/cr
+    metadata:
+      workflows.muster.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-bumblebee
+        topics:
+          - managementcluster
+          - agent-platform
+      mcpservers.muster.giantswarm.io:
+        owner:
+          - https://github.com/orgs/giantswarm/teams/team-bumblebee
+        topics:
+          - managementcluster
+          - agent-platform

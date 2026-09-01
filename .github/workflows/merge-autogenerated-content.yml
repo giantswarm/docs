@@ -16,18 +16,18 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: "automatic-update-of-generated-content"
           fetch-depth: 0
 
       - name: Update self-generated content branch with main branch changes
-        uses: prompt/actions-merge-branch@701d2a3e181424b84ebb58c95531d1d64fc3eccc # v2
+        uses: prompt/actions-merge-branch@701d2a3e181424b84ebb58c95531d1d64fc3eccc # v2.1.0
         with:
           from: "origin/main"
 
       - name: Find Pull Request
-        uses: juliangruber/find-pull-request-action@33d46d4ff90884bb23aaead16044125daaf733d8 # v1.11.0
+        uses: juliangruber/find-pull-request-action@92b38d91ef26fd0f47374257f50e78432359a45f # v1.11.1
         id: find-pull-request
         with:
           branch: automatic-update-of-generated-content
@@ -39,7 +39,7 @@ jobs:
           number: ${{ steps.find-pull-request.outputs.number }}
 
       - name: GitHub Checks
-        uses: poseidon/wait-for-status-checks@899c768d191b56eef585c18f8558da19e1f3e707 # v0.6.0
+        uses: poseidon/wait-for-status-checks@e7e24423722c5b8e97a6dd5848827d2a412f812d # v0.7.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 

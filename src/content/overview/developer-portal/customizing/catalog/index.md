@@ -1,5 +1,6 @@
 ---
 title: Adding your own catalog
+diataxis_content_type: explanation
 linkTitle: Catalog
 description: How to add your own catalog entities to the developer portal provided by Giant Swarm, for your own users, groups, components, and more.
 weight: 40
@@ -9,7 +10,7 @@ menu:
     identifier: overview-developer-portal-customizing-catalog
 last_review_date: 2025-04-01
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I have my own catalog entities in the developer portal?
 ---

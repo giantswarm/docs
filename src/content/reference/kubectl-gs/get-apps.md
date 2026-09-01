@@ -1,20 +1,23 @@
 ---
 linkTitle: get apps
 title: "'kubectl gs get apps' command reference"
+diataxis_content_type: reference
 description: Reference documentation on how to list apps and get details for a single app using 'kubectl gs'.
 weight: 30
 menu:
   principal:
     parent: reference-kubectlgs
 owner:
-  - https://github.com/orgs/giantswarm/teams/team-honeybadger
+  - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I list apps using kubectl?
   - How can I inspect apps using kubectl?
-last_review_date: 2024-11-25
+last_review_date: 2026-06-08
 aliases:
   - /vintage/use-the-api/kubectl-gs/get-apps/
 ---
+
+**Deprecated:** This command lists the legacy `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, use `flux get helmreleases` (or `kubectl get helmreleases`). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
 
 Like with all `get` commands in `kubectl`, this command can be used to get details on one item, an [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}})
 custom resource in this case, or list several of them.
