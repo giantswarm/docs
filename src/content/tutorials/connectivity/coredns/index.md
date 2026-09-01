@@ -304,7 +304,7 @@ Before coredns-app 1.31.0, `Corefile` settings were spread across `configmap.*`,
 
 | Old key | New key | Notes |
 |---|---|---|
-| `configmap.cache` | `coredns.public.cache.success.ttl`, `coredns.cluster.cache.success.ttl` | Now per zone. Integer, not a string. |
+| `configmap.cache` | `coredns.public.cache.success.ttl`, `coredns.cluster.cache.success.ttl` | Now per zone. Integer, not a string. The old key never reached the `Corefile`, see the note below. |
 | `configmap.log` | `coredns.<zone>.log` | Now a list of classes instead of a newline-separated string. |
 | `loadbalancePolicy` | `coredns.<zone>.loadbalance` | Now per zone. |
 | `configmap.forward` | `coredns.public.forward.to` | Now a list of upstreams. The leading `.` is rendered for you, so drop it. |
@@ -369,9 +369,9 @@ coredns:
 
 Note how the old global keys have to be repeated per zone, including on the additional zone. The old `configmap.log` and `loadbalancePolicy` applied to every server block at once, so an equivalent migration has to set them on each zone you want to keep behaving the same way. That repetition is the point of the change: you're now free to give each zone different values.
 
-**Warning**: `configmap.cache`, `configmap.log`, and `loadbalancePolicy` no longer take effect as of coredns-app 1.31.0. The per-zone keys ship with defaults that take precedence, so these three old keys are ignored without warning and your cluster runs the defaults instead. If you still set them, migrate now. The remaining old keys in the table keep working until coredns-app v2, but they're deprecated and will be removed then.
+**Warning**: `configmap.log` and `loadbalancePolicy` no longer take effect as of coredns-app 1.31.0. The per-zone keys ship with defaults that take precedence, so these two old keys are ignored without warning and your zones fall back to `denial` plus `error` and to `round_robin`. If you set either of them, migrate now. The remaining old keys in the table keep working until coredns-app v2, but they're deprecated and will be removed then.
 
-**Note**: `configmap.cache` was never applied to the `Corefile` before 1.31.0, so CoreDNS ran with the upstream default of 3600 seconds for positive answers. From 1.31.0 the cache block renders correctly, and the effective TTL is 30 seconds for positive and 5 seconds for negative answers. Raise `coredns.<zone>.cache.success.ttl` if your workloads depend on longer caching.
+**Note**: `configmap.cache` never reached the `Corefile`. The old templates emitted a bare `cache` directive and ignored the value, so CoreDNS ran with the upstream default of 3600 seconds for positive answers no matter what you set. That's why the key is deprecated. From 1.31.0 the cache block renders in full, and the effective TTL is 30 seconds for positive and 5 seconds for negative answers. Raise `coredns.<zone>.cache.success.ttl` if your workloads depend on longer caching.
 
 ## Further reading
 
