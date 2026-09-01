@@ -10,12 +10,13 @@ menu:
     identifier: tutorials-agent-platform-local-playground
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-01
 user_questions:
   - How do I try the Agent Platform without a real cluster?
   - What is agentlab?
   - Why does agentlab ask for sudo once?
   - How do I remove the agentlab certificate trust again?
+  - How do I run agents on my own self-hosted model in agentlab?
 ---
 
 **agentlab** stands up the real Agent Platform topology—agentgateway edge, Muster, the developer portal, the agent runtime, and a bundled Dex identity provider—on a throwaway [kind](https://kind.sigs.k8s.io/) cluster, with one binary. It's the fastest way to experience the platform end to end: real OAuth logins, real RBAC, real MCP tool calls, all on your laptop and fully disposable.
@@ -99,6 +100,23 @@ The default lab ships three users, all with the password `password`:
 - **Run the seeded workflow.** The lab seeds one Muster workflow, `lab-cluster-overview`, which lists namespaces and pods through the Kubernetes MCP server—one click in the portal's workflow tab exercises the whole chain.
 - **Create an agent.** Open the portal, sign in, and walk the [create-an-agent flow]({{< relref "/tutorials/agent-platform/create-an-agent" >}}) against your own lab.
 - **Prove the platform headless.** `agentlab platform-test` drives Dex → Muster → the Kubernetes MCP server → the API server without a browser.
+- **Bring your own model.** The default agents run on Anthropic, but `platform.extraModels` in `agentlab.yaml` adds more model configurations: a self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp), OpenRouter, Gemini, or an Ollama host.
+
+  ```yaml
+  platform:
+    extraModels:
+      - name: qwen3                # a self-hosted vLLM, no API key needed
+        provider: OpenAI
+        model: qwen3-8-27b
+        baseUrl: https://qwen.example.internal/v1
+      - name: openrouter-deepseek  # any OpenAI-compatible SaaS works the same way
+        provider: OpenAI
+        model: deepseek/deepseek-chat
+        baseUrl: https://openrouter.ai/api/v1
+        apiKeyEnv: OPENROUTER_API_KEY
+  ```
+
+  Re-run `agentlab platform` and pick the model when creating an agent. `apiKeyEnv` names an environment variable read from your shell at deploy time, so keys stay out of the file; keyless endpoints work without it. The `baseUrl` must be reachable from inside the cluster, meaning a LAN address rather than `localhost`. Entries you remove are pruned on the next run.
 
 When you're done: `agentlab down` deletes the cluster; `agentlab untrust` removes the CA.
 

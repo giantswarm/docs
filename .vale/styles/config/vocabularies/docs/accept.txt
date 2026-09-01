@@ -162,6 +162,7 @@ OCI
 OCIRepository
 OIDC
 Okta
+Ollama
 onboarding
 OpenID Connect
 Opsgenie
