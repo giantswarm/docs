@@ -17,6 +17,7 @@ user_questions:
   - Why does agentlab ask for sudo once?
   - How do I remove the agentlab certificate trust again?
   - How do I run agents on my own self-hosted model in agentlab?
+  - Can agentlab agents use a model server running on my own machine, like Ollama or Lemonade?
 ---
 
 **agentlab** stands up the real Agent Platform topology—agentgateway edge, Muster, the developer portal, the agent runtime, and a bundled Dex identity provider—on a throwaway [kind](https://kind.sigs.k8s.io/) cluster, with one binary. It's the fastest way to experience the platform end to end: real OAuth logins, real RBAC, real MCP tool calls, all on your laptop and fully disposable.
@@ -114,9 +115,15 @@ The default lab ships three users, all with the password `password`:
         model: deepseek/deepseek-chat
         baseUrl: https://openrouter.ai/api/v1
         apiKeyEnv: OPENROUTER_API_KEY
+      - name: lemonade-npu         # a model server on the lab machine itself
+        provider: OpenAI
+        model: qwen3-it-4b-FLM
+        baseUrl: http://172.21.0.1:13305/v1
   ```
 
   Re-run `agentlab platform` and pick the model when creating an agent. `apiKeyEnv` names an environment variable read from your shell at deploy time, so keys stay out of the file; keyless endpoints work without it. The `baseUrl` must be reachable from inside the cluster, meaning a LAN address rather than `localhost`. Entries you remove are pruned on the next run.
+
+  A model server running on the lab machine itself also works, for example Ollama or [Lemonade Server](https://lemonade-server.ai) (which adds NPU-accelerated inference on AMD Ryzen AI hardware). Pods reach the host only through the kind docker network's gateway address (shown by `docker network inspect kind`, typically `172.21.0.1`), the server has to bind `0.0.0.0` instead of its usual `127.0.0.1` default, and a default-deny host firewall needs to allow the port from the docker bridge subnets. The [agentlab README](https://github.com/giantswarm/agentlab#extra-model-configs-self-hosted-openrouter-gemini-openai) walks through these traps and their symptoms.
 
 When you're done: `agentlab down` deletes the cluster; `agentlab untrust` removes the CA.
 

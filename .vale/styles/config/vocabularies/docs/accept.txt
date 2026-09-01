@@ -185,6 +185,7 @@ relref
 rollouts
 rulesets
 runbook[s]?
+Ryzen
 [s|S]ample
 scaffolder
 SDKs
