@@ -17,6 +17,7 @@ Autoscaling
 Autoscaler
 [Bb]ackend
 [cC]loud
+[Cc]ronitor('s)?
 [Cc]rossplane
 [Dd][Nn][Ss]
 [Dd]atasource[s]?
