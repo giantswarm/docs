@@ -25,7 +25,7 @@ Every entry is an outbound connection initiated from the cluster.
 | Notation | What it matches |
 |---|---|
 | `example.com` | That exact hostname, and nothing else. |
-| `*.example.com` | All subdomains of `example.com` at any depth, such as `foo.example.com` and `foo.bar.example.com`. It does **not** match `example.com` itself. |
+| `*.example.com` | All subdomains of `example.com` at any depth, such as `foo.example.com` and `foo.bar.example.com`. It **doesn't** match `example.com` itself. |
 
 Because a wildcard never covers the domain it belongs to, every base domain we also need access to gets its own row next to its wildcard.
 
@@ -56,7 +56,7 @@ Unless a row says otherwise, a domain needs both port 80 (HTTP) and port 443 (HT
 | `*.docker.io` | 80, 443 | HTTP, HTTPS | Container images are hosted on `Dockerhub`. |
 | `flatcar-linux.org` | 80, 443 | HTTP, HTTPS | Flatcar OS images and signing keys. |
 | `*.flatcar-linux.org` | 80, 443 | HTTP, HTTPS | Flatcar OS images and signing keys. |
-| `ghcr.io` | 80, 443 | HTTP, HTTPS | Official `Falco` rules are hosted at `ghcr.io/falcosecurity`. Optional if official rulesets are disabled or hosted elsewhere. |
+| `ghcr.io` | 80, 443 | HTTP, HTTPS | Official `Falco` rules are hosted at `ghcr.io/falcosecurity`. Optional if you turn off the official rulesets or host them elsewhere. |
 | `github.com` | 80, 443 | HTTP, HTTPS | Various operators need to pull information from GitHub repositories. |
 | `*.github.com` | 80, 443 | HTTP, HTTPS | Various operators need to pull information from GitHub repositories. |
 | `ssh.github.com` | 443 | SSH | Git repositories accessed over SSH, for example `Flux` sources using an `ssh://` URL. GitHub serves SSH on port 443 through this hostname. |
@@ -93,7 +93,7 @@ Unless a row says otherwise, a domain needs both port 80 (HTTP) and port 443 (HT
 | `*.slack.com` | 80, 443 | HTTP, HTTPS | Used to send alerts to Slack channels. |
 | `xpkg.upbound.io` | 80, 443 | HTTP, HTTPS | Used to fetch `Crossplane` packages. |
 
-The NTP entries are the Flatcar defaults. Each `pool.ntp.org` hostname resolves to a rotating set of servers, so allowlist it by name rather than by IP address. If you point the nodes at your own NTP servers instead, using the cluster app's `timesyncd` values, allow those and drop these four.
+The NTP entries are the Flatcar defaults. Each `pool.ntp.org` hostname resolves to a rotating set of servers, so use the hostnames in your firewall rules rather than IP addresses. If you point the nodes at your own NTP servers through the cluster app's `timesyncd` values, use those domains instead of these four.
 
 ## On-premise installations
 
