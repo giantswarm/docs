@@ -324,7 +324,7 @@ source_repositories:
   - url: https://github.com/giantswarm/muster
     organization: giantswarm
     short_name: muster
-    commit_reference: v5.7.4
+    commit_reference: v5.7.18
     crd_paths:
       - helm/muster-crds/files/crds
     cr_paths:
