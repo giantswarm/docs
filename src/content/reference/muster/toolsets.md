@@ -32,7 +32,7 @@ A toolset, wherever it's declared inline (header, chart value, agent-manager arg
 | `workflow:<name>` | The workflow's execution tool, `workflow_<name>` |
 | `tool:<name>` | One tool by its exposed name: `x_<server>_<tool>`, `workflow_<name>`, or `core_*` |
 
-Names are exact and case-sensitive; a selector matches `^(preset|server|workflow|tool):[^\s,]+$`. At most **32** selectors inline—larger selections are presets. Core tools (`core_*`) aren't a server: select them with `tool:core_workflow_list` inline or a `core_*` pattern in a preset.
+Names are exact and case-sensitive; a selector matches `^(preset|server|workflow|tool):[^\s,]+$`. At most **32** selectors inline—larger selections are presets. Core tools (`core_*`) aren't a server: select them with `tool:core_workflow_list` inline or a `core_*` pattern in a preset; since Muster 5.13.0 they also carry annotations, so `read-only` includes the read-only ones.
 
 Rejected inline, with an error result naming the toolset and the selector:
 
@@ -92,7 +92,7 @@ A preset resolves to the union of its includes minus its excludes.
 
 ### Workflow read-only derivation {#workflow-readonly}
 
-A workflow is read-only when every tool its steps reference—conditions, `forEach` and `parallel` sub-steps and `onFailure` handlers included, nested workflows followed—resolves in the caller's catalog to a tool annotated read-only. A step calling a core tool (no annotation), an unknown tool, or a cycle makes the workflow not read-only. The derived hint fills the workflow tool's `readOnlyHint` annotation, so `describe_tool` shows it and `preset:read-only` includes the pure-query workflows.
+A workflow is read-only when every tool its steps reference—conditions, `forEach` and `parallel` sub-steps and `onFailure` handlers included, nested workflows followed—resolves in the caller's catalog to a tool annotated read-only. A step calling a core tool that writes (`core_workflow_delete`, `core_service_stop`, …), an unknown tool, or a cycle makes the workflow not read-only; a step calling a read-only core tool (`core_workflow_list`, …) keeps it read-only. The derived hint fills the workflow tool's `readOnlyHint` annotation, so `describe_tool` shows it and `preset:read-only` includes the pure-query workflows.
 
 ## Built-in presets {#built-in-presets}
 
@@ -100,7 +100,7 @@ Built into Muster and not redefinable by configuration:
 
 | Preset | Resolves to |
 |---|---|
-| `read-only` | Every tool its server annotates `readOnlyHint: true`, plus every workflow whose step tools are all read-only. Core tools carry no annotations today and are therefore not included |
+| `read-only` | Every tool annotated `readOnlyHint: true`—Muster's own read-only core tools included since 5.13.0 (`core_*_list`, `core_*_get`, `core_*_validate`, `core_config_get*`, `core_events`, `core_mcpserver_detect`, `core_auth_login`)—plus every workflow whose step tools are all read-only |
 | `none` | Nothing. A `preset:none` header hides and refuses every tool; the agent chart omits the Muster tool entry altogether for a toolset that's exactly `["preset:none"]` |
 | `full` | The whole catalog, core tools included (`pattern: "*"`) |
 
