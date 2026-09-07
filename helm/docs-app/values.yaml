@@ -5,6 +5,10 @@ resources:
   requests:
     cpu: 50m
     memory: 5M
+    # Bounds the nginx-tmp emptyDir. It holds only the pid file and nginx's
+    # temp paths -- the site itself is baked into the image.
+    ephemeralStorage: 50Mi
   limits:
     cpu: 500m
     memory: 20M
+    ephemeralStorage: 200Mi
