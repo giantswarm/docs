@@ -49,9 +49,7 @@ muster:
 
 The `core_*` pattern is what makes `agent-platform` the preset for an agent that manages the platform: no other shipped preset except `full` reaches Muster's core tools. A server registered through the portal carries no label and belongs to neither preset—select it by name.
 
-{{% notice note %}}
-The standalone chart runs a Muster that knows these presets from chart release 0.37.0. The two platform presets follow in a later release of the standalone chart. Until your release ships them, add the preceding snippet to your values. Helm merges the map, so nothing breaks when the chart starts shipping them itself.
-{{% /notice %}}
+The [standalone chart]({{< relref "/tutorials/agent-platform/install-standalone" >}}) ships both presets from release 0.38.0 on, mirrored from the fleet meta-package. Earlier standalone releases don't carry them. Upgrade rather than adding them by hand: a Muster older than 5.12.0 refuses to start on a preset with a `label:` rule.
 
 ## Add your own presets
 
