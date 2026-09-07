@@ -18,19 +18,19 @@ user_questions:
   - How do I send a toolset from my own MCP client?
 ---
 
-A [toolset]({{< relref "/overview/agent-platform/toolsets" >}}) names what an agent is composed with, and a **preset** is a named selection an agent refers to as `preset:<name>`. Presets are Muster configuration, so they ship through the same GitOps path as the rest of your platform values and are reviewed like any other change. This guide shows where they live, which ones you already have, how to add your own, and how to check what a preset resolves to. It's for platform teams; agent authors pick presets in the portal's [Tools step]({{< relref "/tutorials/agent-platform/create-an-agent" >}}#step-3-compose-the-toolset).
+A [toolset]({{< relref "/overview/agent-platform/toolsets" >}}) names what an agent is composed with, and a **preset** is a named selection an agent refers to as `preset:<name>`. Presets are Muster configuration, so they ship through the same GitOps path as the rest of your platform values and are reviewed like any other change. This guide shows where they live, which ones you already have, how to add your own, and how to check what a preset resolves to. It's for platform teams. Agent authors pick presets in the portal's [Tools step]({{< relref "/tutorials/agent-platform/create-an-agent" >}}#step-3-compose-the-toolset).
 
 ## Where presets live
 
 Muster reads presets from `toolsetPresets` in its configuration, which the Muster chart renders from its `muster.toolsetPresets` value. The platform charts forward their `muster:` block to the Muster release, so on the fleet meta-package and on the [standalone chart]({{< relref "/tutorials/agent-platform/install-standalone" >}}) the key is **`muster.muster.toolsetPresets`**—the first `muster` is the component block, the second is the Muster chart's own key. If you [run Muster's chart directly]({{< relref "/tutorials/agent-platform/self-hosting/deploy-muster" >}}), drop the outer level.
 
-Presets that select by label need Muster 5.12.0 or later; an older Muster refuses to start on a `label:` rule. The fleet meta-package pins that floor for you.
+Presets that select by label need Muster 5.12.0 or later. An older Muster refuses to start on a `label:` rule, and the fleet meta-package pins that floor for you.
 
 ## The presets you already have
 
-Three presets are built into Muster and can't be redefined: `read-only`, `none`, and `full`. A `toolsetPresets` entry with one of those names makes Muster refuse to start, naming the preset—and the fleet meta-package fails the render first, so the mistake never reaches a cluster.
+Three presets are built into Muster and can't be redefined: `read-only`, `none`, and `full`. A `toolsetPresets` entry with one of those names makes Muster refuse to start, naming the preset. The fleet meta-package fails the render first, so the mistake never reaches a cluster.
 
-Two more ship with the platform charts. Both select by the tool-group label every platform-shipped `MCPServer` resource carries (see [Read a server's group from its label]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}#read-a-servers-group-from-its-label)), so a new manager or a fourth infrastructure family joins its preset with no values change. As shipped by the fleet meta-package:
+Two more ship with the platform charts. Both select by the tool-group label every platform-shipped `MCPServer` resource carries (see [Read a server's group from its label]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}#read-a-servers-group-from-its-label)). A new manager or a fourth infrastructure family therefore joins its preset with no values change. As shipped by the fleet meta-package:
 
 ```yaml
 muster:
@@ -50,12 +50,12 @@ muster:
 The `core_*` pattern is what makes `agent-platform` the preset for an agent that manages the platform: no other shipped preset except `full` reaches Muster's core tools. A server registered through the portal carries no label and belongs to neither preset—select it by name.
 
 {{% notice note %}}
-The standalone chart runs a Muster that knows these presets from chart release 0.37.0, and the two platform presets follow in a later release of the standalone chart. Until your release ships them, add the snippet above to your values; Helm merges the map, so nothing breaks when the chart starts shipping them itself.
+The standalone chart runs a Muster that knows these presets from chart release 0.37.0. The two platform presets follow in a later release of the standalone chart. Until your release ships them, add the preceding snippet to your values. Helm merges the map, so nothing breaks when the chart starts shipping them itself.
 {{% /notice %}}
 
 ## Add your own presets
 
-Add entries next to the shipped ones. Helm merges the map, so the platform presets stay and yours join them; `preset:<name>` is then valid for every agent on the installation, and the portal's Tools step lists it with its description. Each preset has a `description`, an `include` list, and an optional `exclude` list. Every rule sets exactly one key:
+Add entries next to the shipped ones. Helm merges the map, so the platform presets stay and yours join them. `preset:<name>` is then valid for every agent on the installation, and the portal's Tools step lists it with its description. Each preset has a `description`, an `include` list, and an optional `exclude` list. Every rule sets exactly one key:
 
 | Rule | Selects |
 |---|---|
@@ -90,7 +90,7 @@ muster:
 
 ### By a label you stamp yourself
 
-Label the `MCPServer` resources instead, and the preset follows the label as servers come and go. For a resource you manage in Git, add the label under `metadata.labels`; the agent-manager and model-manager charts expose their resource's labels as the `muster.mcpServer.labels` value. The fleet's per-cluster infrastructure servers already carry the tool-group label, which is what the shipped presets select by.
+Label the `MCPServer` resources instead, and the preset follows the label as servers come and go. For a resource you manage in Git, add the label under `metadata.labels`. The agent-manager and model-manager charts expose their resource's labels as the `muster.mcpServer.labels` value. The fleet's per-cluster infrastructure servers already carry the tool-group label, which is what the shipped presets select by.
 
 ```yaml
 muster:
@@ -119,7 +119,7 @@ muster:
           - pattern: "*_delete"
 ```
 
-The `include` list is a union. `preset: infrastructure` next to `readOnly: true` selects every infrastructure tool *and* every read-only tool anywhere, not the read-only subset of the infrastructure; narrow a preset with `exclude` rules instead.
+The `include` list is a union. `preset: infrastructure` next to `readOnly: true` selects every infrastructure tool *and* every read-only tool anywhere, not the read-only subset of the infrastructure. Narrow a preset with `exclude` rules instead.
 
 ## Rules of the road
 
@@ -136,13 +136,13 @@ Commit the values through your GitOps pipeline. The configuration change rolls t
 muster call filter_tools --json '{"include_presets": true, "toolset": ["preset:test-clusters"]}'
 ```
 
-The response carries three things: `presets`, the built-ins first and then the shipped and installation presets with their descriptions; `tools`, the tools the toolset resolves to for the caller; and `toolset_unmatched`, the selectors that selected nothing. A server you haven't signed in to contributes nothing to the result, which is the same thing an agent driven by you would see; sign in with `muster auth login` and call again.
+The response carries three things. `presets` lists the built-ins first, then the shipped and installation presets with their descriptions. `tools` holds the tools the toolset resolves to for the caller. `toolset_unmatched` names the selectors that selected nothing. A server you haven't signed in to contributes nothing to the result, which is what an agent driven by you would see too. Sign in with `muster auth login` and call again.
 
 ## Send a toolset from your own MCP client
 
 An agent on the platform gets its header from the agent chart. Any other MCP client can send the same header by hand: put `X-Muster-Toolset` on the requests to the gateway with a comma-separated list of selectors, for example `preset:read-only, workflow:incident-triage`. Most clients that connect to remote MCP servers let you set request headers in their server configuration.
 
-Muster reads the header on every request and answers every meta-tool call within it; a request without the header sees the catalog as before. A header that's empty, names an unknown preset, uses the reserved `toolset:` prefix, or exceeds 32 selectors gets an error result on every meta-tool call rather than a silent fall-back—see the [toolsets reference]({{< relref "/reference/muster/toolsets" >}}) for the exact grammar and texts.
+Muster reads the header on every request and answers every meta-tool call within it. A request without the header sees the catalog as before. A header that's empty, names an unknown preset, uses the reserved `toolset:` prefix, or exceeds 32 selectors gets an error result on every meta-tool call rather than a silent fall-back. See the [toolsets reference]({{< relref "/reference/muster/toolsets" >}}) for the exact grammar and texts.
 
 ## Related
 

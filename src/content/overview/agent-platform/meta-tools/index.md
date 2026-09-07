@@ -64,7 +64,7 @@ The response is a bounded summary page:
 
 ## Toolsets narrow the catalog per agent
 
-An agent running on the platform rarely needs the whole catalog. Its release declares a [toolset]({{< relref "/overview/agent-platform/toolsets" >}}), a short list of selectors such as `preset:read-only` or `workflow:incident-triage`, which reaches Muster as the `X-Muster-Toolset` request header. Muster applies it on every request as one more filter on the catalog the meta-tools read: `list_tools`, `filter_tools`, and `describe_tool` answer within the toolset, and `call_tool` refuses a tool outside it with an error that names the toolset. The meta-tools themselves don't change, and a request without the header sees the catalog as before.
+Most agents on the platform need only a fraction of the catalog. An agent's release declares a [toolset]({{< relref "/overview/agent-platform/toolsets" >}}): a short list of selectors such as `preset:read-only` or `workflow:incident-triage`. The list reaches Muster as the `X-Muster-Toolset` request header. Muster applies it on every request as one more filter on the catalog the meta-tools read. `list_tools`, `filter_tools`, and `describe_tool` answer within the toolset, and `call_tool` refuses a tool outside it with an error that names the toolset. The meta-tools themselves don't change, and a request without the header sees the catalog as before.
 
 `filter_tools` also takes a `toolset` argument, to resolve a toolset without sending the header, and `include_presets`, to list the presets Muster knows. That's what the portal uses to show an agent's resolved tools while you compose it. The grammar and the response fields are in the [toolsets reference]({{< relref "/reference/muster/toolsets" >}}).
 

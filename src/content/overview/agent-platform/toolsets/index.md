@@ -19,7 +19,7 @@ user_questions:
   - Does a toolset replace RBAC?
 ---
 
-Every agent on the platform reaches its tools through Muster, and Muster's catalog is big: every registered MCP server's tools, every workflow, and Muster's own core tools—hundreds on a busy installation. Until an agent says otherwise, its model can discover and call all of it. A **toolset** is how an agent says otherwise: a short list of selectors, declared on the agent's own release, that names which of the gateway's tools the agent is composed with.
+Every agent on the platform reaches its tools through Muster, and Muster's catalog is big. It holds every registered MCP server's tools, every workflow, and Muster's own core tools—hundreds on a busy installation. Until an agent says otherwise, its model can discover and call everything in it. A **toolset** is how an agent says otherwise. It's a short list of selectors, declared on the agent's own release, that names which of the gateway's tools the agent is composed with.
 
 Trust in an agent starts with knowing exactly what it can do. The toolset makes that a visible, reviewable property of the agent itself—not something buried in a runtime, and not something you have to infer from a chat transcript.
 
@@ -54,7 +54,7 @@ A preset is Muster configuration—shipped as chart values through GitOps, revie
 | `infrastructure` (platform charts) | Every server in the *Infrastructure* group: the `mcp-kubernetes`, `mcp-capi`, and `mcp-prometheus` families serving Giant Swarm installations' management clusters |
 | `agent-platform` (platform charts) | Every server in the *Agent Platform* group (`agent-manager`, `model-manager`) plus Muster's `core_*` tools; the preset for an agent that manages the platform |
 
-Inline selectors, by contrast, are exact names only. Patterns, excludes, the read-only predicate, labels, and composition exist inside presets so that a header stays a flat, readable list, and a selection too large for a header becomes a preset. Two consequences worth knowing:
+Inline selectors, by contrast, are exact names only. Patterns, excludes, the read-only predicate, labels, and composition exist inside presets, so a header stays a flat, readable list. A selection too large for a header becomes a preset. Two consequences worth knowing:
 
 - **Workflows are read-only when their steps are.** Muster derives a workflow's read-only hint from the tools its steps reference, so `read-only` includes the pure-query workflows, not only individual tools.
 - **Core tools are selectable only explicitly.** Muster's `core_*` tools (registering servers, creating workflows, signing in) aren't a server, so `server:` can't name them. An agent gets them through `tool:core_workflow_list` and friends, or through a preset with a `core_*` pattern—which is how `agent-platform` includes them. `read-only` doesn't include them today, because core tools carry no annotations.
@@ -70,13 +70,13 @@ How to define presets for your installation is covered in [Define toolset preset
 
 ## Composition, not authorization
 
-A toolset controls which tools the *model* can discover and call through requests that carry it. That's the blast-radius control an agent author and a reviewer can reason about: a default tool set for the agent, visible to everyone.
+A toolset controls which tools the *model* can discover and call through requests that carry it. That's the blast-radius control an agent's creator and a reviewer can reason about: a default tool set for the agent, visible to everyone.
 
 What authorizes a call hasn't moved. The invoking person's identity is forwarded unchanged, and each backend's own authorization—Kubernetes RBAC for `mcp-kubernetes`, tenancy for Prometheus, a third-party service's own accounts—decides what happens. A toolset can never exceed the invoking person's access, because tools the person can't see aren't in the catalog: an agent is always bounded by *its toolset ∩ the invoking person's own access*. Read the [security model]({{< relref "/overview/agent-platform/security" >}}) for how that access is derived.
 
-The toolset is *declared* by the request. Muster can't yet tell which agent is calling—the only credential on the agent path is the human's token—so a client that sends no header reaches whatever the person behind it may reach, which is exactly what it could reach before toolsets existed. A toolset bounds the model, not the pod. When the platform adopts an agent identity Muster can trust, Muster will resolve the toolset from that identity instead of the header; presets, the picker, and the agent page carry over unchanged.
+The toolset is *declared* by the request. Muster can't yet tell which agent is calling, because the only credential on the agent path is the human's token. A client that sends no header therefore reaches whatever the person behind it may reach—exactly what it could reach before toolsets existed. A toolset bounds the model, not the pod. When the platform adopts an agent identity Muster can trust, Muster will resolve the toolset from that identity instead of the header. Presets, the picker, and the agent page carry over unchanged.
 
-Changing a toolset means changing the agent's release—through the portal's deploy path or agent-manager, with your own identity and Kubernetes RBAC in the agent's namespace, recorded in the API server's audit log. Presets change through GitOps on Muster's values. There's no second policy system.
+Changing a toolset means changing the agent's release, through the portal's deploy path or agent-manager. That happens with your own identity, under Kubernetes RBAC in the agent's namespace, and is recorded in the API server's audit log. Presets change through GitOps on Muster's values. There's no second policy system.
 
 ## Where you meet toolsets
 

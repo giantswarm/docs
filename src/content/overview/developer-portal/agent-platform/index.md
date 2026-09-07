@@ -44,7 +44,7 @@ The group is orientation, not authorization. Which tools you can call is still d
 
 ## What an agent can use
 
-An agent page carries a **Toolset** card: the [toolset]({{< relref "/overview/agent-platform/toolsets" >}}) the agent declares, read from the `X-Muster-Toolset` header on its gateway entry (the same declaration `kubectl` shows), and what it resolves to **for you**, per group and server, linking into the tool explorer. The resolution is yours because a toolset is always intersected with the viewer's own access. A selector that matches nothing for you is marked as such, and where your own sign-in is what's missing, the card offers the same **Sign in** as the servers page instead of showing the server empty. A teammate with access to more servers sees more.
+An agent page carries a **Toolset** card. It shows the [toolset]({{< relref "/overview/agent-platform/toolsets" >}}) the agent declares, read from the `X-Muster-Toolset` header on its gateway entry—the same declaration `kubectl` shows. It also shows what that toolset resolves to **for you**, per group and server, linking into the tool explorer. The resolution is yours because a toolset is always intersected with the viewer's own access. A selector that matches nothing for you is marked as such. Where your own sign-in is what's missing, the card offers the same **Sign in** as the servers page instead of showing the server empty. A teammate with access to more servers sees more.
 
 Three labels stand out on purpose:
 
@@ -52,7 +52,7 @@ Three labels stand out on purpose:
 - **No tools**: the toolset is `preset:none`, or the agent has no gateway entry at all—a chat-only agent.
 - **Full gateway access**: the `full` preset, chosen on purpose in the Tools step.
 
-If the toolset names a preset the installation no longer defines, the card shows Muster's error verbatim—the same error the agent gets on every tool call—so a removed preset is never a silent problem. And if the installation's Muster doesn't evaluate toolsets yet, the card says so and shows the declaration only.
+If the toolset names a preset the installation no longer defines, the card shows Muster's error verbatim, the same error the agent gets on every tool call. A removed preset is never a silent problem. And if the installation's Muster doesn't evaluate toolsets yet, the card says so and shows the declaration only.
 
 ## The provenance model
 

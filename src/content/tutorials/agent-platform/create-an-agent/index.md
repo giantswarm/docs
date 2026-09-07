@@ -56,7 +56,7 @@ The step leads with the **presets**, and for most agents one of them is the whol
 - Your installation's own presets, if the platform team has [defined any]({{< relref "/tutorials/agent-platform/toolset-presets" >}}), each with its description.
 - **Full gateway**, last and with a warning: everything the gateway exposes to whoever talks to the agent. That's what every agent had before toolsets existed; here it's an explicit choice.
 
-To refine, browse the catalog below the presets, grouped the way the platform groups its servers: **Infrastructure**, **Agent Platform**, **Registered servers**, and **Workflows**. Muster's core tools sit under Agent Platform as a warned *Platform administration* sub-group; select them on purpose or not at all. Add a whole server, a single workflow, or individual tools to a preset, or compose a toolset from the groups alone. You can also type selectors by name. Up to 32 selectors fit in a toolset; beyond that the step asks you to define a preset.
+To refine, browse the catalog below the presets, grouped the way the platform groups its servers: **Infrastructure**, **Agent Platform**, **Registered servers**, and **Workflows**. Muster's core tools sit under Agent Platform as a warned *Platform administration* sub-group. Select them on purpose or not at all. Add a whole server, a single workflow, or individual tools to a preset, or compose a toolset from the groups alone. You can also type selectors by name. Up to 32 selectors fit in a toolset. Beyond that, the step asks you to define a preset.
 
 A few things to know while you compose:
 
@@ -65,7 +65,7 @@ A few things to know while you compose:
 - **The resolved list updates live.** Beside your choice, the step shows exactly which tools the toolset resolves to *for you*, with read-only and destructive markers, and names any selector that matches nothing for you.
 - **Start from an existing agent's toolset** copies another agent's selector list into the step as a starting point.
 
-If your installation's Muster doesn't evaluate toolsets yet, the step says so and offers the built-in preset names only, rather than presenting the whole catalog as a resolution.
+If your installation's Muster doesn't evaluate toolsets yet, the step says so and offers the built-in preset names only. It never presents the whole catalog as a resolution.
 
 ## Step 4: Review what will be applied
 
@@ -91,7 +91,7 @@ Two things are normal here:
 - A short gap between "deployed" and "ready" while the release reconciles and the agent's pod starts.
 - Some invalid configurations only surface *now*: the form validates what it can, but the chart and controller have the final word, so a value the schema allows can still fail at reconcile time. The status conditions on the detail page tell you why.
 
-Once ready, the agent appears in the portal's agent list and in the platform's chat surfaces. It reaches its tools through the same gateway as you do—acting with the identity of whoever talks to it, within the toolset you composed. The agent page's **Toolset** card shows that toolset and what it resolves to for you; see [What an agent can use]({{< relref "/overview/developer-portal/agent-platform" >}}#what-an-agent-can-use).
+Once ready, the agent appears in the portal's agent list and in the platform's chat surfaces. It reaches its tools through the same gateway as you do, acting with the identity of whoever talks to it, within the toolset you composed. The agent page's **Toolset** card shows that toolset and what it resolves to for you. See [What an agent can use]({{< relref "/overview/developer-portal/agent-platform" >}}#what-an-agent-can-use).
 
 ## Changing or removing the agent
 
