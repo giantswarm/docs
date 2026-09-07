@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-connecting-custom-mcp-servers
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-09-07
 user_questions:
   - How do I connect a third-party MCP server to Muster?
   - How do I connect an MCP server that doesn't publish OAuth metadata?
@@ -19,7 +19,7 @@ aliases:
   - /tutorials/ai-agents/connecting-custom-mcp-servers/
 ---
 
-Any MCP server can sit behind Muster—internal tools, vendor services, the reference servers, or a commercial remote server. You register it the same way as any other server, with an [`MCPServer` resource]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}). This guide covers the parts specific to third-party servers: unauthenticated servers, bearer-token servers, and OAuth servers that don't advertise their authorization server the standard way.
+Any MCP server can sit behind Muster—internal tools, vendor services, the Model Context Protocol project's reference servers, or a commercial remote server. You register it the same way as any other server, with an [`MCPServer` resource]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}), and it shows up in the developer portal under **Registered servers**, next to the platform's own Infrastructure and Agent Platform servers. This guide covers the parts specific to third-party servers: unauthenticated servers, bearer-token servers, and OAuth servers that don't advertise their authorization server the standard way.
 
 ## An unauthenticated or token-header server
 

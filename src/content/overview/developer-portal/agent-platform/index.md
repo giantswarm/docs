@@ -10,7 +10,7 @@ menu:
     identifier: overview-developer-portal-agent-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-07
 user_questions:
   - What can I do in the portal's Agent Platform section?
   - Why is an MCP server read-only in the portal?
@@ -25,11 +25,21 @@ To turn the section on in your portal instance, see [Enable Agent Platform featu
 
 - **MCP servers dashboard.** Fleet-wide health of the MCP servers registered with Muster, grouped by management cluster and server family, built from the `MCPServer` resources' status. A server showing **Auth Required** is healthy—it's waiting for a user sign-in, not broken.
 - **MCP usage.** Tool-call volume, outcomes, latency, and top tools and servers, read from the same gateway metrics that feed the platform's Grafana dashboard.
-- **Servers.** Every registered MCP server with its authentication configuration and live tool listing, plus a registration wizard for adding your own.
+- **Servers.** Every MCP server behind the gateway, sorted into the three groups **Agent Platform**, **Infrastructure**, and **Registered servers**, each with its authentication configuration and live tool listing, plus a registration wizard for adding your own. What you register lands under Registered servers.
 - **Workflows.** The platform's [workflows]({{< relref "/tutorials/agent-platform/authoring-workflows" >}}) with their steps, validity, execution statistics, and a run button with execution history.
 - **Tool explorer.** Browse and search every tool behind the gateway, inspect its schema, and execute it with a form generated from that schema. Authorization stays where it belongs: the portal executes what Muster exposes to *you*, and a call you aren't permitted to make is rejected downstream.
 - **Agents.** The agents running on the platform, each with its readiness, configuration, system prompt, skills, and owning deployment—plus the [create-an-agent flow]({{< relref "/tutorials/agent-platform/create-an-agent" >}}).
 - **Sessions.** Your own chat sessions with agents across the fleet: conversation timeline, tool calls, and token usage. Sessions are private to the signed-in user.
+
+## Three groups of MCP servers
+
+The servers page sorts MCP servers the way the whole platform does, and the names match the [introduction]({{< relref "/overview/agent-platform/introduction" >}}#three-groups-of-mcp-servers):
+
+- **Agent Platform**: the platform's own management surface—agent-manager, model-manager, and Muster's core tools.
+- **Infrastructure**: the servers for the management clusters of Giant Swarm installations—mcp-kubernetes, mcp-capi, and mcp-prometheus. A server federated across several management clusters is one row with a pill per cluster.
+- **Registered servers**: everything an installation or a user registers, whether through GitOps or the portal's registration wizard.
+
+The group is orientation, not authorization. Which tools you can call is still decided by each server's sign-in and the clusters' RBAC, exactly as in the tool explorer.
 
 ## The provenance model
 

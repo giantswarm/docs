@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-07
 user_questions:
   - How does Muster authenticate AI agents?
   - Can AI agents only see the tools I'm allowed to use?
@@ -63,7 +63,7 @@ Every MCP server behind the gateway declares how calls to it are authenticated. 
 
 Which design a backend gets follows one rule: **who administers the backend's account system decides**.
 
-- **Platform-administered backends** (`mcp-kubernetes`, `mcp-prometheus`, and other servers whose access the platform's own identity provider governs) use `forward` or `exchange`: authority is derived from your identity per request, without stored state.
+- **Platform-administered backends** (`mcp-kubernetes`, `mcp-capi`, `mcp-prometheus`, and other servers whose access the platform's own identity provider governs) use `forward` or `exchange`: authority is derived from your identity per request, without stored state.
 - **Externally administered backends** (say, a third-party service with its own accounts) can't have authority created for them by the platform. There, Muster acts as an OAuth client toward the backend's own authorization server: you grant access once in a one-time browser consent, and Muster stores that grant for your future calls.
 
 ## Per-user tool visibility
