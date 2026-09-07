@@ -30,6 +30,7 @@ lookup[s]?
 [Mm]atcher[s]?
 [Nn]ginx
 against
+agent-manager
 agentgateway
 agentlab
 Alertmanager
@@ -146,12 +147,14 @@ Kueue
 [K|k]yverno
 liveness
 LogQL
+mcp-capi
 mcp-kubernetes
 mcp-prometheus
 mcp-remote
 MCPServer
 mimirtool
 MIG
+model-manager
 [Mm]uster
 namespace[ds]?
 Nirmata
