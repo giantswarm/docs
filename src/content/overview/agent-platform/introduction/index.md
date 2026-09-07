@@ -42,7 +42,7 @@ The tool access layer is what makes the spectrum wide. Any system that speaks [M
 ## Two capabilities on one foundation
 
 - **Governed tool access.** Every tool call an agent makes—wherever the agent runs—goes through one gateway path: **agentgateway**, the data-plane choke point for observability and policy, in front of **Muster**, the MCP aggregator that enforces authentication and fans out to the tool servers behind it.
-- **An agent runtime.** Agents run on the cluster as Kubernetes resources, managed by a controller and surfaced through the developer portal and chat channels. An agent is versioned as one unit—prompt, toolchain, and skills together—so every version is reproducible and shareable.
+- **An agent runtime.** Agents run on the cluster as Kubernetes resources, managed by a controller and surfaced through the developer portal and chat channels. An agent is versioned as one unit—prompt, toolchain, and skills together—so every version is reproducible and shareable. An agent also declares its [toolset]({{< relref "/overview/agent-platform/toolsets" >}}), which of the gateway's tools it's composed with, so anyone reviewing it sees exactly what it can use.
 
 The foundation both stand on is your Kubernetes cluster and your existing identity provider. Single sign-on, Kubernetes RBAC, and declarative management apply to agents the same way they apply to people.
 
