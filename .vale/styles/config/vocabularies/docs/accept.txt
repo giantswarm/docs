@@ -212,6 +212,7 @@ Sysdig
 templated
 TLS
 toolchain[s]?
+[Tt]oolsets?
 toleration[s]
 TraceQL
 [T|t]rivy
