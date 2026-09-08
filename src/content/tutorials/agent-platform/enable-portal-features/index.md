@@ -134,4 +134,4 @@ Several portal instances share one comma-separated value—don't add a second `o
 
 - [Agent Platform in the developer portal]({{< relref "/overview/developer-portal/agent-platform" >}}) - What you just enabled.
 - [Create and deploy an agent]({{< relref "/tutorials/agent-platform/create-an-agent" >}}) - The flow these settings unlock.
-- [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install-standalone" >}}) - Where the platform side of this configuration lives.
+- [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install" >}}) - Where the platform side of this configuration lives.
