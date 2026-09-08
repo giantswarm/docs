@@ -157,7 +157,7 @@ helm install agent-platform \
   -f values.yaml --wait --timeout 10m
 ```
 
-`--wait` returns when the platform runs: Helm waits for the component `HelmRelease` resources to become ready, which takes a few minutes with these components. This is the last Helm command you run besides `helm uninstall`—the release manages itself from here on; see [Day two](#change-values-and-upgrade).
+The command returns when the platform runs: with `--wait`, Helm waits for the component `HelmRelease` resources to become ready, which takes a few minutes with these components. This is the last Helm command you run besides `helm uninstall`. The release manages itself from here on; see [Change values and upgrade](#change-values-and-upgrade).
 
 ## Verify
 
