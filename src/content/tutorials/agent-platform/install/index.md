@@ -245,7 +245,7 @@ spec:
 helm uninstall agent-platform --namespace agent-platform --wait --timeout 5m
 ```
 
-The chart's pre-delete hooks tear the platform down in order: the platform `HelmRelease` resources first, then the `FluxInstance`, and the Flux Operator removes Flux and its CRDs last. Every `HelmRelease` object in the cluster goes with those CRDs, the agents' included—their workloads and `Agent` objects stay behind, orphaned, and the `kagent` namespace is kept, so a reinstall finds the agents where it left them. The components' CRDs stay too (Helm never deletes CRDs), and a reinstall is clean. There's no way to uninstall the platform and keep the agents running; the way to keep agents is not to uninstall.
+The chart's pre-delete hooks tear the platform down in order: the platform `HelmRelease` resources first, then the `FluxInstance`, and the Flux Operator removes Flux and its CRDs last. Every `HelmRelease` object in the cluster goes with those CRDs, the agents' included—their workloads and `Agent` objects stay behind, orphaned, and the `kagent` namespace is kept, so a reinstall finds the agents where it left them. The components' CRDs stay too (Helm never deletes CRDs), and a reinstall is clean. There's no way to uninstall the platform and keep the agents running; the way to keep agents is to leave the platform installed.
 
 On a cluster that runs its own Flux, delete the `HelmRelease` you created instead; that Flux uninstalls the release.
 
