@@ -10,7 +10,7 @@ menu:
     identifier: overview-agent-platform-toolsets
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-07
+last_review_date: 2026-09-08
 user_questions:
   - What is an agent's toolset?
   - What are toolset presets?
@@ -80,7 +80,7 @@ Changing a toolset means changing the agent's release, through the portal's depl
 
 ## Where you meet toolsets
 
-- **Creating an agent in the portal.** The creation wizard has a required **Tools** step that opens with nothing selected and leads with the presets; see [Create and deploy an agent]({{< relref "/tutorials/agent-platform/create-an-agent" >}}#step-3-compose-the-toolset).
+- **Creating an agent in the portal.** The creation wizard has a **Tools** step that opens with nothing selected—which means no tools—and leads with the presets; see [Create and deploy an agent]({{< relref "/tutorials/agent-platform/create-an-agent" >}}#step-3-compose-the-toolset).
 - **Reviewing an agent.** The agent page's **Toolset** card shows the declaration, what it resolves to for you, and the *Implicit full access*, *No tools*, and *Full gateway access* labels; see the [portal section]({{< relref "/overview/developer-portal/agent-platform" >}}#what-an-agent-can-use).
 - **Through agent-manager.** `create_agent` requires a `toolset`, `update_agent` replaces it, and `get_agent` and `list_agents` report it—or `implicitFullAccess: true` for a release without one. That's how the platform's meta agent gives every agent it creates a toolset, and how agents that predate toolsets get one.
 - **In the agent chart and on the cluster.** The `toolset` value on the release, and the `X-Muster-Toolset` header on the rendered `Agent` resource, are the same declaration `kubectl` reads back.
