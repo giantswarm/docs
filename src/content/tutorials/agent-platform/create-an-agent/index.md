@@ -27,7 +27,7 @@ You need:
 
 - A developer portal with the [Agent Platform section enabled]({{< relref "/tutorials/agent-platform/enable-portal-features" >}}), including the deploy prerequisites.
 - Permission to create resources in the target namespace. The flow applies manifests with your token, so your Kubernetes RBAC decides whether the deploy succeeds.
-- At least one model configuration on the installation—the form lists the models the platform offers and won't proceed without one.
+- At least one accepted model configuration on the installation—the form lists the models the platform offers and won't proceed without one. On a fresh installation none is accepted yet; [bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}) first.
 
 ## Step 1: Describe the agent
 

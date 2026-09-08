@@ -4,6 +4,7 @@
 # AZ is used for both "Availability Zone" abbreviation (uppercase) and Azure CLI (lowercase)
 [Aa][Zz]
 # Gateway API ecosystem terms
+Anthropic
 deprovision(ed|ing)?
 [Gg]ateway[ -][Aa][Pp][Ii]
 gateway-api-bundle
@@ -26,6 +27,9 @@ Autoscaler
 [Ii][Aa][Mm]
 [Kk]ustomization[s]?
 [Kk]ustomize
+Gemini
+LiteLLM
+llama.cpp
 lookup[s]?
 [Mm]atcher[s]?
 [Nn]ginx
@@ -167,13 +171,17 @@ OIDC
 Okta
 Ollama
 onboarding
+OpenAI
+OpenAI-compatible
 OpenID Connect
+OpenRouter
 Opsgenie
 OTLP
 PagerDuty
 parentRefs
 passthrough
 perfectly
+plaintext
 Planeteers
 PromQL
 Proxmox
@@ -199,6 +207,7 @@ SLA[s]?
 SLI[s]?
 SLO[s]?
 [Ss]panset[s]?
+SOPS
 Spotify
 SRE[s]?
 SSL
@@ -214,6 +223,7 @@ TLS
 toolchain[s]?
 [Tt]oolsets?
 toleration[s]
+tooltip
 TraceQL
 [T|t]rivy
 UDP
@@ -227,6 +237,7 @@ vCenter
 very
 VLAN
 VLANs
+vLLM
 VM[s]?
 VMware
 VPC

@@ -32,6 +32,7 @@ For the concepts behind everything here, see the [Agent Platform overview]({{< r
 - [Give agents multi-cluster access]({{< relref "/tutorials/agent-platform/multi-cluster-access" >}}): expose a whole fleet through one central Muster.
 - [Map RBAC and SSO]({{< relref "/tutorials/agent-platform/access-control" >}}): connect identity-provider groups to cluster permissions.
 - [Troubleshoot agent access]({{< relref "/tutorials/agent-platform/troubleshooting" >}}): work through authentication loops, missing tools, and disconnected clusters.
+- [Bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}): give the agent runtime a model to run on, with your own API key or a self-hosted endpoint.
 
 ## Operating the platform versus self-hosting
 
