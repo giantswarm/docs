@@ -22,7 +22,7 @@ aliases:
 **Applies to self-hosted Muster only.** These guides are for teams who operate their own Muster aggregator. On the managed Giant Swarm platform, Muster is deployed and protected for you, so you can skip this section and go straight to the operational guides such as [managing MCP servers]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}) and [authoring workflows]({{< relref "/tutorials/agent-platform/authoring-workflows" >}}).
 {{% /notice %}}
 
-There are two self-hosting tracks. This section covers running **just the MCP gateway**: Muster, its OAuth protection, and multi-cluster single sign-on, assembled piece by piece. If you want the **whole Agent Platform** (the gateway plus agentgateway, the agent runtime, and the developer portal), install it with one Helm chart instead: [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install-standalone" >}}).
+There are two self-hosting tracks. This section covers running **just the MCP gateway**: Muster, its OAuth protection, and multi-cluster single sign-on, assembled piece by piece. If you want the **whole Agent Platform** (the gateway plus agentgateway, the agent runtime, and the developer portal), install it with one Helm chart instead: [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install" >}}).
 
 If you run Muster yourself, these guides take you from an empty cluster to a single-sign-on-protected endpoint that an entire fleet can reach.
 

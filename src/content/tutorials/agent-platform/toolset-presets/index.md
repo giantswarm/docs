@@ -22,7 +22,7 @@ A [toolset]({{< relref "/overview/agent-platform/toolsets" >}}) names what an ag
 
 ## Where presets live
 
-Muster reads presets from `toolsetPresets` in its configuration, which the Muster chart renders from its `muster.toolsetPresets` value. The platform charts forward their `muster:` block to the Muster release, so on the fleet meta-package and on the [standalone chart]({{< relref "/tutorials/agent-platform/install-standalone" >}}) the key is **`muster.muster.toolsetPresets`**—the first `muster` is the component block, the second is the Muster chart's own key. If you [run Muster's chart directly]({{< relref "/tutorials/agent-platform/self-hosting/deploy-muster" >}}), drop the outer level.
+Muster reads presets from `toolsetPresets` in its configuration, which the Muster chart renders from its `muster.toolsetPresets` value. The `agent-platform` chart forwards its `muster:` block to the Muster release, so on the platform—run for you by Giant Swarm or [installed on your own cluster]({{< relref "/tutorials/agent-platform/install" >}})—the key is **`muster.muster.toolsetPresets`**—the first `muster` is the component block, the second is the Muster chart's own key. If you [run Muster's chart directly]({{< relref "/tutorials/agent-platform/self-hosting/deploy-muster" >}}), drop the outer level.
 
 Presets that select by label need Muster 5.12.0 or later. An older Muster refuses to start on a `label:` rule, and the fleet meta-package pins that floor for you.
 
@@ -49,7 +49,7 @@ muster:
 
 The `core_*` pattern is what makes `agent-platform` the preset for an agent that manages the platform: no other shipped preset except `full` reaches Muster's core tools. A server registered through the portal carries no label and belongs to neither preset—select it by name.
 
-The [standalone chart]({{< relref "/tutorials/agent-platform/install-standalone" >}}) ships both presets from release 0.38.0 on, mirrored from the fleet meta-package. Earlier standalone releases don't carry them. Upgrade rather than adding them by hand: a Muster older than 5.12.0 refuses to start on a preset with a `label:` rule.
+An [installation on your own cluster]({{< relref "/tutorials/agent-platform/install" >}}) gets both presets with the same chart, which also pins the Muster floor they need. Don't add them by hand on an older platform release: a Muster older than 5.12.0 refuses to start on a preset with a `label:` rule.
 
 ## Add your own presets
 

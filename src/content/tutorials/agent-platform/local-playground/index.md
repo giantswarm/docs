@@ -135,7 +135,7 @@ The lab is honest about being a lab:
 - The `nip.io` hostnames depend on public DNS resolution.
 - Firefox without `certutil` doesn't see the system trust store, and on WSL2 the Windows-side browser has its own trust store. `agentlab trust` inside WSL covers curl, Node, and Claude Code there.
 - The Kubernetes MCP server runs a **write-capable** profile by default: agents you authorize can change the lab cluster. That's the point of a playground—and it's your laptop, not production.
-- The bundled Dex ships static users and throwaway passwords by design. Nothing about the lab's identity setup is production guidance—for the real thing, see [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install-standalone" >}}).
+- The bundled Dex ships static users and throwaway passwords by design. Nothing about the lab's identity setup is production guidance—for the real thing, see [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install" >}}).
 
 ## Related
 

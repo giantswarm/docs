@@ -306,4 +306,4 @@ In the developer portal, the **Models** tab shows the same state with an **Accep
 - [Create and deploy an agent]({{< relref "/tutorials/agent-platform/create-an-agent" >}}) - The flow that needs an accepted model.
 - [Agent Platform in the developer portal]({{< relref "/overview/developer-portal/agent-platform" >}}) - The section the Models tab belongs to.
 - [Enable Agent Platform features in Backstage]({{< relref "/tutorials/agent-platform/enable-portal-features" >}}) - Turning the section on in your portal instance.
-- [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install-standalone" >}}) - Where the same model configurations live when you run the platform yourself.
+- [Install the Agent Platform on your own cluster]({{< relref "/tutorials/agent-platform/install" >}}) - Where the same model configurations live when you run the platform yourself.
