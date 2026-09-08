@@ -247,3 +247,4 @@ VS Code
 [Ww]alkthrough
 Zot
 KServe
+Flux

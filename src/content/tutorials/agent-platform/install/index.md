@@ -22,7 +22,7 @@ aliases:
   - /tutorials/agent-platform/install-standalone/
 ---
 
-The [`agent-platform`](https://github.com/giantswarm/agent-platform) Helm chart installs the whole Agent Platform—Muster, agentgateway, the agent runtime, the developer portal, and their supporting services—on any conformant Kubernetes cluster with one `helm install`. The chart is an app-of-apps: it renders one Flux `HelmRelease` per component and brings the Flux engine that reconciles them where the cluster has none, so you don't need a GitOps controller first. On a cluster that already runs Flux, you install the same chart through that Flux instead; see [Clusters that run Flux](#clusters-that-run-flux).
+The [`agent-platform`](https://github.com/giantswarm/agent-platform) Helm chart installs the whole Agent Platform on any conformant Kubernetes cluster with one `helm install`. That's Muster, agentgateway, the agent runtime, the developer portal, and their supporting services. The chart is an app-of-apps. It renders one Flux `HelmRelease` per component and brings the Flux engine that reconciles them where the cluster has none, so you don't need a GitOps controller first. On a cluster that already runs Flux, you install the same chart through that Flux instead (see [Clusters that run Flux](#clusters-that-run-flux)).
 
 This guide is the whole-platform track. If you only want the MCP gateway without the runtime and portal, follow [Self-hosting Muster]({{< relref "/tutorials/agent-platform/self-hosting" >}}) instead.
 
@@ -143,7 +143,7 @@ A few variations worth knowing:
 - **Identity providers other than Dex.** The `trustedAudiences` entry and the portal's default extra scopes are Dex's cross-client mechanism. On providers that reject unknown scopes (Keycloak, Entra ID), set `backstage.extraScopes: []`, omit `trustedAudiences`, and set `mcp-kubernetes.kubernetesAudience` to the audience your Kubernetes API server accepts.
 - **Want your own model backend?** Turn on `components.model-manager` and point it at an Ollama, Lemonade, LM Studio, or KServe endpoint; the chart's [README](https://github.com/giantswarm/agent-platform#model-manager-and-agent-manager) has the details.
 
-Every component is toggled with `components.<name>.enabled`; the full knob list is in the chart's [values file](https://github.com/giantswarm/agent-platform/blob/main/helm/agent-platform/values.yaml), which documents each key in place.
+Every component is toggled with `components.<name>.enabled`. The full knob list is in the chart's [values file](https://github.com/giantswarm/agent-platform/blob/main/helm/agent-platform/values.yaml), which documents each key in place.
 
 ## Install
 
@@ -157,7 +157,7 @@ helm install agent-platform \
   -f values.yaml --wait --timeout 10m
 ```
 
-The command returns when the platform runs: with `--wait`, Helm waits for the component `HelmRelease` resources to become ready, which takes a few minutes with these components. This is the last Helm command you run besides `helm uninstall`. The release manages itself from here on; see [Change values and upgrade](#change-values-and-upgrade).
+The command returns when the platform runs: with `--wait`, Helm waits for the component `HelmRelease` resources to become ready, which takes a few minutes with these components. This is the last Helm command you run besides `helm uninstall`. The release manages itself from here on, as described in [Change values and upgrade](#change-values-and-upgrade).
 
 ## Verify
 
@@ -169,7 +169,7 @@ kubectl -n agent-platform get deployments
 kubectl -n kagent get deployments
 ```
 
-Then confirm the platform's front door behaves like an OAuth resource server. An unauthenticated request to the MCP endpoint must return `401` *with* a `WWW-Authenticate` header carrying the discovery pointer—that header is how MCP clients find your identity provider, so its presence is the real health check:
+Then confirm the platform's front door behaves like an OAuth resource server. An unauthenticated request to the MCP endpoint must return `401` *with* a `WWW-Authenticate` header carrying the discovery pointer. That header is how MCP clients find your identity provider, so its presence is the real health check:
 
 ```sh
 curl -si -X POST https://muster.<domain>/mcp | grep -i www-authenticate
@@ -194,7 +194,7 @@ The release manages itself. The engine the chart brought also holds the chart: t
 
     The Secret *is* the values of the release, so always write the whole file—a partial file reverts everything it omits to the chart defaults.
 
-- **The next major is a deliberate step.** Set `gitops.self.versionRange` (for example `">=4.0.0 <5.0.0"`) in the values file, read the operator actions in the chart's [UPGRADE.md](https://github.com/giantswarm/agent-platform/blob/main/UPGRADE.md), and rewrite the Secret as above.
+- **The next major is a deliberate step.** Set `gitops.self.versionRange` (for example `">=4.0.0 <5.0.0"`) in the values file, read the operator actions in the chart's [UPGRADE.md](https://github.com/giantswarm/agent-platform/blob/main/UPGRADE.md), and rewrite the Secret the same way.
 
 If you'd rather keep the Helm CLI as your day-two tool, set `gitops.self.enabled: false` in the values file before the install and keep it there. `helm upgrade -f values.yaml` then stays the way to change values and to move the chart itself, while the components keep following their version ranges.
 
@@ -245,9 +245,9 @@ spec:
 helm uninstall agent-platform --namespace agent-platform --wait --timeout 5m
 ```
 
-The chart's pre-delete hooks tear the platform down in order: the platform `HelmRelease` resources first, then the `FluxInstance`, and the Flux Operator removes Flux and its CRDs last. Every `HelmRelease` object in the cluster goes with those CRDs, the agents' included—their workloads and `Agent` objects stay behind, orphaned, and the `kagent` namespace is kept, so a reinstall finds the agents where it left them. The components' CRDs stay too (Helm never deletes CRDs), and a reinstall is clean. There's no way to uninstall the platform and keep the agents running; the way to keep agents is to leave the platform installed.
+The chart's pre-delete hooks tear the platform down in order: the platform `HelmRelease` resources first, then the `FluxInstance`, and the Flux Operator removes Flux and its CRDs last. Every `HelmRelease` object in the cluster goes with those CRDs, the agents' included. Their workloads and `Agent` objects stay behind, orphaned, and the `kagent` namespace is kept, so a reinstall finds the agents where it left them. The components' CRDs stay too (Helm never deletes CRDs), and a reinstall is clean. There's no way to uninstall the platform and keep the agents running. To keep the agents, leave the platform installed.
 
-On a cluster that runs its own Flux, delete the `HelmRelease` you created instead; that Flux uninstalls the release.
+On a cluster that runs its own Flux, delete the `HelmRelease` you created instead, and that Flux uninstalls the release.
 
 ## Related
 
