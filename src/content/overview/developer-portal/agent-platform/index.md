@@ -31,6 +31,7 @@ To turn the section on in your portal instance, see [Enable Agent Platform featu
 - **Tool explorer.** Browse and search every tool behind the gateway, inspect its schema, and execute it with a form generated from that schema. Authorization stays where it belongs: the portal executes what Muster exposes to *you*, and a call you aren't permitted to make is rejected downstream.
 - **Agents.** The agents running on the platform, each with its readiness, configuration, system prompt, skills, toolset, and owning deployment—plus the [create-an-agent flow]({{< relref "/tutorials/agent-platform/create-an-agent" >}}), whose required **Tools** step composes the toolset.
 - **Sessions.** Your own chat sessions with agents across the fleet: conversation timeline, tool calls, and token usage. Sessions are private to the signed-in user.
+- **Models.** The model configurations agents can run on, per installation, each with the accepted state the runtime reports and the reason when it isn't, plus a form to add one with your own API key. Nothing is accepted until you [bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}).
 
 ## Three groups of MCP servers
 
