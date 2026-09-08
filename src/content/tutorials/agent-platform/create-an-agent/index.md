@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-create-an-agent
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-07
+last_review_date: 2026-09-08
 user_questions:
   - How do I create an AI agent on the platform?
   - How do I choose which tools my agent can use?
@@ -45,12 +45,11 @@ If your portal has skill repositories configured, the second step offers every s
 
 ## Step 3: Compose the toolset
 
-The third step is required, and it opens with **nothing selected**: there's no default, and you can't continue until you've made a choice. It decides which of the gateway's tools the agent is composed with—its [toolset]({{< relref "/overview/agent-platform/toolsets" >}}).
+The third step decides which of the gateway's tools the agent is composed with—its [toolset]({{< relref "/overview/agent-platform/toolsets" >}}). It opens with **nothing selected**, and nothing selected means **no tools**: an agent you add nothing to is a chat-only agent with no gateway connection at all. The step's summary says *No tools* until you add something, and you can continue right away. Nothing is granted until you add it.
 
 The step leads with the **presets**, and for most agents one of them is the whole answer:
 
 - **Read-only tools** (recommended): every tool its server marks read-only, plus the workflows whose steps only call read-only tools.
-- **No tools**: a chat-only agent. It gets no gateway connection at all.
 - **Infrastructure**: the servers for the management clusters of Giant Swarm installations.
 - **Agent Platform**: the platform's own management servers plus Muster's core tools, the preset for an agent that manages the platform.
 - Your installation's own presets, if the platform team has [defined any]({{< relref "/tutorials/agent-platform/toolset-presets" >}}), each with its description.
@@ -64,6 +63,7 @@ A few things to know while you compose:
 - **You can select a whole server without signing in.** It's flagged *selected without a sign-in*, because the step can't show you its tools yet. Individual tools from such a server need the sign-in first, since there's nothing to pick from until then. This is how you compose an agent with a team's tools you don't hold an account for: the toolset resolves per caller at runtime, so it's right for the people who do.
 - **The resolved list updates live.** Beside your choice, the step shows exactly which tools the toolset resolves to *for you*, with read-only and destructive markers, and names any selector that matches nothing for you.
 - **Start from an existing agent's toolset** copies another agent's selector list into the step as a starting point.
+- **No tools is the empty selection.** Remove every selector and the summary reads *No tools* again. The release then declares `preset:none`, which is how the chart knows to render no gateway entry (an empty toolset would be an error—see [No tools, and how failures behave]({{< relref "/overview/agent-platform/toolsets" >}}#no-tools-and-how-failures-behave)).
 
 If your installation's Muster doesn't evaluate toolsets yet, the step says so and offers the built-in preset names only. It never presents the whole catalog as a resolution.
 
