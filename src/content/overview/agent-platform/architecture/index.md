@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-architecture
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-07
 user_questions:
   - How is the Agent Platform structured?
   - What is agentgateway and where does it sit?
@@ -32,7 +32,7 @@ flowchart LR
   edge["Edge Gateway<br/>TLS termination, public hostname"]
   agw["agentgateway<br/>/mcp — observability and<br/>policy choke point"]
   muster["Muster<br/>OAuth enforcement,<br/>MCP aggregation"]
-  servers["MCP servers<br/>(mcp-kubernetes, mcp-prometheus, …)"]
+  servers["MCP servers<br/>(mcp-kubernetes, mcp-capi, mcp-prometheus,<br/>agent-manager, model-manager, …)"]
 
   client -- "HTTPS /mcp" --> edge
   edge --> agw
@@ -46,7 +46,7 @@ Each hop has one job:
 - **The edge Gateway** terminates TLS and owns the public hostname. It's a standard Kubernetes Gateway API gateway—on Giant Swarm installations the cluster's shared Envoy Gateway, on your own cluster either an existing Gateway or one the platform chart creates.
 - **agentgateway** is the MCP data plane. Every `/mcp` request passes through it, which makes it the single choke point where tool calls become observable (protocol, tool name, session, latency) and where policy can be applied. It forwards the caller's bearer token to Muster without consuming it.
 - **Muster** is the authentication enforcement point. It acts as an OAuth resource server: an unauthenticated request gets a `401` response with a `WWW-Authenticate` header pointing at the standard OAuth discovery metadata, which is how MCP clients find out where to sign in—no manual configuration. Authenticated requests reach the aggregator, which fans out to the MCP servers behind it and handles their credentials on the user's behalf.
-- **The MCP servers** do the actual work: whatever tools your agents need—internal services, data stores, third-party APIs—as long as they speak MCP. The shipped reference servers, `mcp-kubernetes` and `mcp-prometheus`, cover the cluster-operations scenario.
+- **The MCP servers** do the actual work: whatever tools your agents need—internal services, data stores, third-party APIs—as long as they speak MCP. The platform ships two groups of its own: **Infrastructure** servers (`mcp-kubernetes`, `mcp-capi`, `mcp-prometheus`) for the management clusters of Giant Swarm installations, and **Agent Platform** servers (`agent-manager`, `model-manager`) for managing the platform itself. Everything you add behind the gateway is a **Registered server**; the [introduction]({{< relref "/overview/agent-platform/introduction" >}}#three-groups-of-mcp-servers) defines the three groups.
 
 OAuth sign-in, token, and discovery endpoints are served by Muster directly. Only MCP traffic flows through agentgateway.
 
@@ -89,16 +89,16 @@ The [platform integration]({{< relref "/overview/agent-platform/platform-integra
 
 ## Fleet-wide aggregation
 
-One deployment shape deserves its own picture: the cluster-operations use case across a fleet. For a customer operating several management clusters, a **central** Muster instance aggregates the `mcp-kubernetes` and `mcp-prometheus` servers on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
+One deployment shape deserves its own picture: the cluster-operations use case across a fleet. For a customer operating several management clusters, a **central** Muster instance aggregates the Infrastructure servers (`mcp-kubernetes`, `mcp-capi`, and `mcp-prometheus`) on each management cluster, giving SREs a single MCP endpoint for the entire fleet:
 
 <!-- vale off -->
 {{< mermaid >}}
 flowchart LR
   user["SRE / developer"]
   central["Central Muster<br/>(management cluster)"]
-  mcpA["mcp-kubernetes + mcp-prometheus<br/>(MC A)"]
-  mcpB["mcp-kubernetes + mcp-prometheus<br/>(MC B)"]
-  mcpC["mcp-kubernetes + mcp-prometheus<br/>(MC C)"]
+  mcpA["Infrastructure servers<br/>(MC A)"]
+  mcpB["Infrastructure servers<br/>(MC B)"]
+  mcpC["Infrastructure servers<br/>(MC C)"]
 
   user -- "one SSO login,<br/>one endpoint" --> central
   central --> mcpA
@@ -111,8 +111,8 @@ The user authenticates once through their enterprise identity provider. Muster b
 
 Two deployment shapes are supported:
 
-- **Single management cluster**: the platform with `mcp-kubernetes` and `mcp-prometheus` on one management cluster. The simplest setup.
-- **Multiple management clusters**: a central Muster that bridges SSO to the `mcp-kubernetes` and `mcp-prometheus` servers on remote management clusters. Required when a customer runs more than one management cluster.
+- **Single management cluster**: the platform with its Infrastructure servers on one management cluster. The simplest setup.
+- **Multiple management clusters**: a central Muster that bridges SSO to the Infrastructure servers on remote management clusters. Required when a customer runs more than one management cluster.
 
 ## Workflows cut agent token cost
 

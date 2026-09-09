@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-managing-mcp-servers
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-09-07
 user_questions:
   - How do I add an MCP server to Muster?
   - What's the difference between stdio and remote MCP servers?
@@ -27,8 +27,8 @@ Muster aggregates downstream MCP servers and presents their combined tools throu
 
 Every `MCPServer` declares a `type`:
 
-- `stdio`: Muster starts a local process and talks to it over standard input and output. Use it for servers shipped as a command, such as the reference servers run through `npx`. Requires `command` (and usually `args`).
-- `streamable-http`: a remote server reachable over HTTP. Use it for servers that run as their own service, including `mcp-kubernetes` and `mcp-prometheus`. Requires `url`.
+- `stdio`: Muster starts a local process and talks to it over standard input and output. Use it for servers shipped as a command, such as the Model Context Protocol project's reference servers run through `npx`. Requires `command` (and usually `args`).
+- `streamable-http`: a remote server reachable over HTTP. Use it for servers that run as their own service, including `mcp-kubernetes`, `mcp-capi`, and `mcp-prometheus`. Requires `url`.
 - `sse`: a remote server using the Server-Sent Events transport. Requires `url`.
 
 A stdio server must set `command`, and a remote server must set `url`. Muster's admission rules reject a resource that mixes them. The `args` and `command` fields apply only to stdio, and `headers` applies only to remote servers.
@@ -96,7 +96,19 @@ With this, both clusters' `list` tools appear once as `x_kubernetes_list`, and t
 
 All servers that share a `family.name` must agree on `instanceArg`. If they disagree, Muster falls back to per-server prefixing for the whole family and logs a warning. The value an agent passes is the **full server name**, for example `my-cluster-mcp-kubernetes`. See [multi-cluster access]({{< relref "/tutorials/agent-platform/multi-cluster-access" >}}) for the contract.
 
-The per-cluster `mcp-prometheus` servers follow the same pattern in their own `prometheus` family, so the cluster's metrics tools (`x_prometheus_query` and friends) collapse to one set selected by the same instance argument. Each downstream server type gets its own family.
+The per-cluster `mcp-prometheus` and `mcp-capi` servers follow the same pattern in their own `prometheus` and `capi` families, so the cluster's metrics tools (`x_prometheus_query` and friends) and Cluster API tools collapse to one set each, selected by the same instance argument. Each downstream server type gets its own family.
+
+## Read a server's group from its label
+
+The developer portal shows MCP servers in three groups (**Agent Platform**, **Infrastructure**, and **Registered servers**) and reads the group from one label on the `MCPServer` resource:
+
+```yaml
+metadata:
+  labels:
+    agent-platform.giantswarm.io/tool-group: infrastructure
+```
+
+The charts that ship the platform's own servers set it: `infrastructure` on `mcp-kubernetes`, `mcp-capi`, and `mcp-prometheus`, and `agent-platform` on `agent-manager` and `model-manager`. A server without the label is a Registered server, which is what every server you register yourself is—don't set the label on your own resources. The label is orientation, not authorization: which tools a user can call is still decided by the server's authentication and the clusters' RBAC.
 
 ## Control startup with `autoStart`
 

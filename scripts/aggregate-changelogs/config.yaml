@@ -95,6 +95,7 @@ repositories:
     category: AI Agents
   giantswarm/agent-platform-standalone:
     category: AI Agents
+    delete: true
   giantswarm/klaus:
     category: AI Agents
   giantswarm/klaus-operator:

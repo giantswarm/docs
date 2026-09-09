@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-07
 user_questions:
   - How does Muster authenticate AI agents?
   - Can AI agents only see the tools I'm allowed to use?
@@ -63,7 +63,7 @@ Every MCP server behind the gateway declares how calls to it are authenticated. 
 
 Which design a backend gets follows one rule: **who administers the backend's account system decides**.
 
-- **Platform-administered backends** (`mcp-kubernetes`, `mcp-prometheus`, and other servers whose access the platform's own identity provider governs) use `forward` or `exchange`: authority is derived from your identity per request, without stored state.
+- **Platform-administered backends** (`mcp-kubernetes`, `mcp-capi`, `mcp-prometheus`, and other servers whose access the platform's own identity provider governs) use `forward` or `exchange`: authority is derived from your identity per request, without stored state.
 - **Externally administered backends** (say, a third-party service with its own accounts) can't have authority created for them by the platform. There, Muster acts as an OAuth client toward the backend's own authorization server: you grant access once in a one-time browser consent, and Muster stores that grant for your future calls.
 
 ## Per-user tool visibility
@@ -101,5 +101,7 @@ Per-device isolation comes from OAuth refresh-token families, not a custom sessi
 ## Agents acting for a human
 
 An agent running on the platform holds no identity of its own on the tool path. When you talk to an agent—in chat or the portal—it acts with **your** token, end to end. The same forwarding and exchange rules described earlier apply, and every downstream system, including the Kubernetes API and its audit log, sees you. The platform records which agent acted for you at the gateway layer, so attribution is preserved without inventing a second credential. Machine identity for fully autonomous agents (with no human behind them) isn't supported yet.
+
+What an agent can *reach* with your token is one question. What it's *composed with* is another. Every agent created through the portal or agent-manager declares a [toolset]({{< relref "/overview/agent-platform/toolsets" >}}). Muster applies it on every request as a filter on the catalog the agent's meta-tools can see and call—always intersected with your own access, never widening it. A toolset is composition, not authorization: your identity and each backend's own authorization remain the boundary. An agent without a toolset has *implicit full access* to whatever you can reach.
 
 For the hands-on login flow and an RBAC troubleshooting guide, see [Set up your AI agent]({{< relref "/getting-started/ai-agent-setup" >}}). For every token on the path in detail, see the [authentication deep dive]({{< relref "/overview/agent-platform/authentication" >}}).

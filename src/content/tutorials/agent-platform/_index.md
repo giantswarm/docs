@@ -9,7 +9,7 @@ menu:
     identifier: tutorials-agent-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-07
 user_questions:
   - How do I author a Muster workflow?
   - How do I add an MCP server to Muster?
@@ -27,10 +27,12 @@ For the concepts behind everything here, see the [Agent Platform overview]({{< r
 - [Author a workflow]({{< relref "/tutorials/agent-platform/authoring-workflows" >}}): package a multi-step operation as a single `workflow_<name>` tool, written the code-grounded way.
 - [Save tokens with workflows]({{< relref "/tutorials/agent-platform/saving-tokens-with-workflows" >}}): why one workflow call is dramatically cheaper than a raw-tool loop, with the measured numbers and the design rules that maximize the saving.
 - [Manage MCP servers]({{< relref "/tutorials/agent-platform/managing-mcp-servers" >}}): add and configure downstream servers with `MCPServer` resources.
+- [Define toolset presets]({{< relref "/tutorials/agent-platform/toolset-presets" >}}): ship named tool selections as Muster configuration, so agent authors pick *Read-only tools* or *Test clusters* instead of composing from scratch.
 - [Connect custom MCP servers]({{< relref "/tutorials/agent-platform/connecting-custom-mcp-servers" >}}): bring third-party servers behind the gateway, including ones that don't publish standard discovery metadata.
 - [Give agents multi-cluster access]({{< relref "/tutorials/agent-platform/multi-cluster-access" >}}): expose a whole fleet through one central Muster.
 - [Map RBAC and SSO]({{< relref "/tutorials/agent-platform/access-control" >}}): connect identity-provider groups to cluster permissions.
 - [Troubleshoot agent access]({{< relref "/tutorials/agent-platform/troubleshooting" >}}): work through authentication loops, missing tools, and disconnected clusters.
+- [Bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}): give the agent runtime a model to run on, with your own API key or a self-hosted endpoint.
 
 ## Operating the platform versus self-hosting
 

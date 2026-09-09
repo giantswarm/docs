@@ -10,11 +10,12 @@ menu:
     identifier: overview-agent-platform-meta-tools
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-09-07
 user_questions:
   - What are Muster's meta-tools?
   - How does Muster keep my AI agent's context small?
   - What do the x_, core_, and workflow_ tool prefixes mean?
+  - How does an agent's toolset change what the meta-tools return?
 aliases:
   - /overview/ai-agents/meta-tools/
 ---
@@ -60,6 +61,12 @@ The response is a bounded summary page:
 - **`include_schema`**: defaults to `false`. When `true`, each entry carries its full description and input schema instead of the one-line summary, which costs much more context.
 
 `describe_tool` stays the authoritative source for a tool's full description and input schema. Use `filter_tools` to shortlist, then `describe_tool` on the chosen tool before you call it.
+
+## Toolsets narrow the catalog per agent
+
+Most agents on the platform need only a fraction of the catalog. An agent's release declares a [toolset]({{< relref "/overview/agent-platform/toolsets" >}}): a short list of selectors such as `preset:read-only` or `workflow:incident-triage`. The list reaches Muster as the `X-Muster-Toolset` request header. Muster applies it on every request as one more filter on the catalog the meta-tools read. `list_tools`, `filter_tools`, and `describe_tool` answer within the toolset, and `call_tool` refuses a tool outside it with an error that names the toolset. The meta-tools themselves don't change, and a request without the header sees the catalog as before.
+
+`filter_tools` also takes a `toolset` argument, to resolve a toolset without sending the header, and `include_presets`, to list the presets Muster knows. That's what the portal uses to show an agent's resolved tools while you compose it. The grammar and the response fields are in the [toolsets reference]({{< relref "/reference/muster/toolsets" >}}).
 
 ## Tool naming
 

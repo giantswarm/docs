@@ -10,7 +10,7 @@ menu:
     identifier: overview-agent-platform-introduction
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-09-07
 user_questions:
   - What is the Giant Swarm Agent Platform?
   - What kinds of tasks can agents on the platform do?
@@ -33,7 +33,7 @@ Agents on the platform are a different kind of workload. They act on events—an
 The platform doesn't prescribe a domain. The pattern—an agent with governed tool access, acting on events, auditable end to end—applies wherever the work is:
 
 - **Software engineering**: agents work through backlog items, review code, and run migrations, with their output landing as ordinary pull requests.
-- **IT and platform operations**: agents triage incidents and investigate clusters. Ask "are there any pods in CrashLoopBackOff on any cluster?" and get an answer grounded in live cluster state—this is the scenario the platform ships reference tool servers for today.
+- **IT and platform operations**: agents triage incidents and investigate clusters. Ask "are there any pods in CrashLoopBackOff on any cluster?" and get an answer grounded in live cluster state—this is the scenario the platform's own **Infrastructure** servers cover today.
 - **Enterprise compliance**: agents collect evidence continuously instead of in a scramble before the audit.
 - **Operational technology**: agents watch processes and inventory, and flag what needs attention before it fails.
 
@@ -42,7 +42,7 @@ The tool access layer is what makes the spectrum wide. Any system that speaks [M
 ## Two capabilities on one foundation
 
 - **Governed tool access.** Every tool call an agent makes—wherever the agent runs—goes through one gateway path: **agentgateway**, the data-plane choke point for observability and policy, in front of **Muster**, the MCP aggregator that enforces authentication and fans out to the tool servers behind it.
-- **An agent runtime.** Agents run on the cluster as Kubernetes resources, managed by a controller and surfaced through the developer portal and chat channels. An agent is versioned as one unit—prompt, toolchain, and skills together—so every version is reproducible and shareable.
+- **An agent runtime.** Agents run on the cluster as Kubernetes resources, managed by a controller and surfaced through the developer portal and chat channels. An agent is versioned as one unit—prompt, toolchain, and skills together—so every version is reproducible and shareable. An agent also declares its [toolset]({{< relref "/overview/agent-platform/toolsets" >}}), which of the gateway's tools it's composed with, so anyone reviewing it sees exactly what it can use.
 
 The foundation both stand on is your Kubernetes cluster and your existing identity provider. Single sign-on, Kubernetes RBAC, and declarative management apply to agents the same way they apply to people.
 
@@ -53,13 +53,26 @@ The foundation both stand on is your Kubernetes cluster and your existing identi
 | **Muster** | The MCP gateway. Aggregates many MCP servers behind one OAuth-protected endpoint, enforces authentication, and handles downstream credentials on your behalf |
 | **agentgateway** | The data-plane gateway in front of Muster. Every MCP call passes through it, making it the observability and policy choke point |
 | **Agent runtime** | Runs agents as Kubernetes resources on the cluster, based on the [kagent](https://kagent.dev/) project |
-| **mcp-kubernetes** | Reference tool server for the cluster-operations scenario: exposes a cluster's Kubernetes resources through a secure MCP API |
-| **mcp-prometheus** | Reference tool server alongside it: exposes the cluster's metrics through MCP |
+| **agent-manager** | Agent Platform server: creates, updates, and inspects the agents on the cluster, acting with the caller's identity |
+| **model-manager** | Agent Platform server: manages the models the platform serves—inventory, pull, load, and unload—and wires them into the agent runtime |
+| **mcp-kubernetes** | Infrastructure server: exposes a management cluster's Kubernetes resources through a secure MCP API |
+| **mcp-capi** | Infrastructure server: exposes a management cluster's Cluster API resources—clusters, node pools, and their state—through MCP |
+| **mcp-prometheus** | Infrastructure server: exposes a management cluster's metrics through MCP |
 | **Developer portal** | The Agent Platform section in Backstage: browse MCP servers, explore tools, run workflows, create agents, and review sessions |
 | **Valkey** | Session storage for Muster's OAuth state |
 | **Avatar service** | Generates the identifying icons agents carry across every surface |
 
 People use the same door as agents. Claude Code, Cursor, VS Code with GitHub Copilot, the developer portal's built-in chat, and any other MCP-capable client connect to the same endpoint.
+
+## Three groups of MCP servers
+
+The MCP servers behind the gateway fall into three groups. The developer portal, the tool explorer, and these docs use the same three names:
+
+- **Agent Platform**: the platform's own management surface—agent-manager, model-manager, and Muster's core tools. Platform administrators, and the agents that run the platform on their behalf, use this group to manage agents, models, servers, and workflows. Every manager the platform adds joins it.
+- **Infrastructure**: the servers for the infrastructure underneath the platform, that is, the management clusters of Giant Swarm installations—mcp-kubernetes, mcp-capi, and mcp-prometheus. Across a fleet they're federated so each server's tools appear once, with an argument selecting the cluster.
+- **Registered servers**: everything an installation or a user registers—issue trackers, source control, chat, internal services, vendor APIs—whether through GitOps or the portal's registration wizard.
+
+The first two ship with the platform; the third is where your own tools live. Kubernetes is the substrate the platform runs on, and the Infrastructure group exists to operate that substrate—one use case among the many above, not what the platform is for.
 
 ## No privileged client
 

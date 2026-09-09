@@ -14,10 +14,10 @@ user_questions:
   - What meta-tools does Muster expose?
   - What arguments does filter_tools take?
   - Which built-in core tools does Muster provide?
-last_review_date: 2026-06-21
+last_review_date: 2026-09-07
 ---
 
-Muster exposes a small, fixed set of meta-tools to an AI agent instead of the hundreds of underlying tools behind the gateway. The agent discovers what it needs on demand and pays context cost only for the tools it uses. For the concept and the reasoning, see [Meta-tools and tool discovery]({{< relref "/overview/agent-platform/meta-tools" >}}). This page is the field-level reference, verified against Muster `v0.10.0`.
+Muster exposes a small, fixed set of meta-tools to an AI agent instead of the hundreds of underlying tools behind the gateway. The agent discovers what it needs on demand and pays context cost only for the tools it uses. For the concept and the reasoning, see [Meta-tools and tool discovery]({{< relref "/overview/agent-platform/meta-tools" >}}). This page is the field-level reference, verified against Muster `v0.10.0`; the toolset additions are verified against Muster `5.12.0`.
 
 ## The meta-tools {#meta-tools}
 
@@ -55,6 +55,8 @@ The agent sees only these meta-tools in its MCP configuration. It shortlists can
 | `include_schema` | boolean | `false` | When `true`, each entry carries its full description and input schema instead of a one-line summary. This costs much more context |
 | `limit` | number | `5` | Maximum tools returned in this page. Raise it to page through more matches |
 | `offset` | number | `0` | Number of matching tools to skip before this page |
+| `toolset` | string[] | | Inline [toolset selectors]({{< relref "/reference/muster/toolsets" >}}#selectors) to resolve, for example `["preset:read-only", "server:pro"]`. Resolves within the request's `X-Muster-Toolset` header when one is present, never widening it. An unknown preset is an error result |
+| `include_presets` | boolean | `false` | Return the presets Muster knows, with their descriptions, in `presets` |
 
 ### Response {#filter-tools-response}
 
@@ -85,6 +87,11 @@ The response is a bounded summary page:
 | `tools` | The current page. Each entry has `name`, plus `summary` (or `description` when `include_schema` is set), `score` when ranked by a query, `labels` when present, and `inputSchema` when `include_schema` is `true` |
 | `total_tools` | The size of the full catalog. Retained for backward compatibility |
 | `filtered_count` | The current page size, equal to `len(tools)`. Deprecated: prefer `total` for the match count |
+| `toolset` | The selectors as given, echoed when the `toolset` argument was set |
+| `toolset_unmatched` | The selectors that selected nothing for the caller, for example a server the caller hasn't signed in to |
+| `presets` | `[{name, description, built_in}]`, built-ins first. Present when `include_presets` or `toolset` was given |
+
+Every tool entry also carries `server` (the owning `MCPServer`, omitted for workflows and core tools), `kind` (`tool`, `workflow`, or `core`), and `annotations` (the server's `readOnlyHint`, `destructiveHint`, `idempotentHint`, and `openWorldHint`, or a workflow's derived `readOnlyHint`; omitted when none). See the [toolsets reference]({{< relref "/reference/muster/toolsets" >}}#tool-info).
 
 `describe_tool` stays the authoritative source for a tool's full description and input schema. Use `filter_tools` to shortlist, then `describe_tool` on the chosen tool before you call it.
 
@@ -114,5 +121,6 @@ Muster's `core_*` tools manage the resources it owns. List them at runtime with 
 ## Related
 
 - [Meta-tools and tool discovery]({{< relref "/overview/agent-platform/meta-tools" >}}) - The concept and the token-cost rationale.
+- [Toolsets]({{< relref "/reference/muster/toolsets" >}}) - The `X-Muster-Toolset` header, the selector grammar, and `toolsetPresets`.
 - [`MCPServer`]({{< relref "/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The CRD schemas these tools manage.
 - [`muster call`]({{< relref "/reference/muster/cli/call" >}}) - Call any of these tools from the CLI.
