@@ -94,7 +94,7 @@ These domains are only required for on-premise installations. They're HTTP(S) tr
 
 Clusters open two kinds of connection that don't carry an HTTP request, so there's no hostname for a proxy to read and match. Handle them like this:
 
-- **If your firewall can resolve and match hostnames itself**, put the hostnames below on the allowlist, exactly as you would for an HTTP domain.
+- **If your firewall can resolve and match hostnames itself on non-HTTP traffic**, put the hostnames below on the allowlist, exactly as you would for an HTTP domain.
 - **If it can't**, use the fallback described for each flow.
 
 ### SSH to GitHub
