@@ -19,7 +19,7 @@ Giant Swarm clusters need outbound access to the external domains listed here to
 
 ## How to read this page
 
-Everything in the [required domains](#required-domains) and [on-premise installations](#on-premise-installations) tables is HTTP(S) traffic over TCP, port 443 (HTTPS), unless specified otherwise.
+Everything in the [required domains](#required-domains) and [on-premise installations](#on-premise-installations) tables is HTTP or HTTPS traffic over TCP on port 443, unless specified otherwise.
 
 Two flows aren't HTTP, so a conventional firewall can't match them by hostname. They have their own section, [non-HTTP traffic](#non-http-traffic).
 
@@ -84,7 +84,7 @@ Because a wildcard never covers the domain it belongs to, every base domain we a
 
 ## On-premise installations
 
-These domains are only required for on-premise installations. They're HTTP(S) traffic, like the table above.
+These domains are only required for on-premise installations. They're HTTP or HTTPS traffic, like the required domains.
 
 | Domain | Why we need it |
 |---|---|
@@ -97,7 +97,7 @@ Clusters open two kinds of connection that don't carry an HTTP request, so there
 - **If your firewall can resolve and match hostnames itself on non-HTTP traffic**, put the hostnames below on the allowlist, exactly as you would for an HTTP domain.
 - **If it can't**, use the fallback described for each flow.
 
-### SSH to GitHub
+### SSH to `ssh.github.com`
 
 | Hostname | Port | Protocol |
 |---|---|---|
@@ -134,7 +134,7 @@ Fallback: We can tunnel this connection through the HTTP proxy with a `CONNECT` 
         socat TCP4-LISTEN:8081,fork,reuseaddr PROXY:$${PROXY_HOSTNAME}:ssh.github.com:443,proxyport=$${PROXY_PORT}
 ```
 
-### Time synchronization (NTP)
+### NTP time synchronization
 
 | Hostname | Port | Protocol |
 |---|---|---|
@@ -143,6 +143,6 @@ Fallback: We can tunnel this connection through the HTTP proxy with a `CONNECT` 
 | `2.flatcar.pool.ntp.org` | 123 | NTP over UDP |
 | `3.flatcar.pool.ntp.org` | 123 | NTP over UDP |
 
-Flatcar nodes synchronize their clock with the Flatcar NTP pool by default. Each `pool.ntp.org` hostname resolves to a rotating set of servers, so don't translate these names into static IP rules — they go stale.
+Flatcar nodes synchronize their clock with the Flatcar NTP pool by default. Each `pool.ntp.org` hostname resolves to a rotating set of servers, so don't translate these names into static IP rules, which go stale.
 
 Fallback: permit all outbound NTP traffic on port 123. If that's too broad for your policy, point the nodes at an NTP server you run yourself, through the cluster app's `timesyncd` values, and restrict egress to that server.
