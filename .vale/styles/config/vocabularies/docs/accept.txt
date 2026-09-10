@@ -13,11 +13,13 @@ envoy-gateway-app
 ACL
 ACLs
 [Aa]lert
+[Aa]llowlist(s|ed|ing)?
 Atlassian
 Autoscaling
 Autoscaler
 [Bb]ackend
 [cC]loud
+[Cc]ronitor('s)?
 [Cc]rossplane
 [Dd][Nn][Ss]
 [Dd]atasource[s]?
