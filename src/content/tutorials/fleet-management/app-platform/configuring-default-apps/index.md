@@ -18,7 +18,7 @@ user_questions:
   - How can I customize default apps configuration?
   - How can I pass custom values to default apps?
   - How can I configure aws-ebs-csi-driver?
-last_review_date: 2026-01-15
+last_review_date: 2026-09-01
 ---
 
 Every workload cluster has a set of apps installed automatically at creation time, called default apps. Default apps are defined in the [cluster chart](https://github.com/giantswarm/cluster) and provider-specific charts (like [cluster-aws](https://github.com/giantswarm/cluster-aws)). These include essential applications like CoreDNS, Cilium, and cloud provider integrations.
@@ -130,11 +130,14 @@ global:
   apps:
     coreDns:
       values:
-        ConfigMap:
-          cache: 15
+        coredns:
+          public:
+            cache:
+              success:
+                ttl: 15
 ```
 
-This example reduces the CoreDNS cache lifetime from the default 30 seconds to 15 seconds.
+This example reduces the CoreDNS cache lifetime for external answers from the default 30 seconds to 15 seconds. CoreDNS configures cache per zone, so see [advanced CoreDNS configuration]({{< relref "/tutorials/connectivity/coredns/" >}}) for the full interface.
 
 ## Method 2: External ConfigMaps or Secrets
 
@@ -247,8 +250,11 @@ global:
     # Customize CoreDNS
     coreDns:
       values:
-        ConfigMap:
-          cache: 15
+        coredns:
+          public:
+            cache:
+              success:
+                ttl: 15
 
     # Customize Cilium
     cilium:
