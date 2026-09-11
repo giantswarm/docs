@@ -29,11 +29,11 @@ Your Giant Swarm clusters come with a default configuration for the [CoreDNS add
 
 ## Before you start
 
-This guide describes the zone-aware `coredns.*` values interface. You need cluster release **v35.0.0 or newer**, which ships coredns-app 1.32.0 on every provider. On older releases, see [migrating from the previous interface](#migration) for the keys that apply to you.
+This guide describes the zone-aware `coredns.*` values interface. You need cluster release **v35.0.0 or newer**, which ships coredns-app 1.33.0 on every provider. On older releases, see [migrating from the previous interface](#migration) for the keys that apply to you.
 
 ## Where to store the user configuration
 
-Given the cluster you are trying to configure is called `123ab`, you can create or extend the `<CLUSTER>-user-values` ConfigMap of the organization namespace on the management cluster. Inside the ConfigMap, the Helm values are passed as the field called `values`:
+Given the cluster you are trying to configure is called `123ab`, you can create or extend the `<CLUSTER>-user-values` configmap of the organization namespace on the management cluster. Inside the configmap, the Helm values are passed as the field called `values`:
 
 ```yaml
 data:
@@ -67,7 +67,7 @@ CoreDNS serves DNS through *server blocks*, one per zone. The chart renders thre
 
 The important change compared to the previous interface: **cache, log, and load balancing are configured per zone**, not globally. Each of `coredns.public`, `coredns.cluster`, and every `coredns.additionalZones` entry carries its own `cache`, `log`, and `loadbalance`. So you can cache external answers for 5 minutes while keeping in-cluster answers fresh, or log every query for one zone only.
 
-Zones that omit these keys fall back to the defaults: `success 9984 30` and `denial 9984 5` for cache, `denial` plus `error` for log, and `round_robin` for `loadbalance`.
+Zones that omit these keys fall back to the deprecated global keys first, then to the built-in defaults. So `cache.success.ttl` falls back to `configmap.cache` and then to 30 seconds, `log` falls back to `configmap.log` and then to `denial` plus `error`, and `loadbalance` falls back to `loadbalancePolicy` and then to `round_robin`. The remaining cache defaults are a capacity of 9984 entries per zone and `denial 9984 5` for negative answers.
 
 ## Cache settings
 
@@ -209,6 +209,8 @@ coredns:
     autopath: "@kubernetes"
 ```
 
+**Warning**: `autopath` renders in the `.` server block, which has no `kubernetes` plugin, so `@kubernetes` currently resolves to nothing and the directive has no effect. CoreDNS disables the plugin in that case, without an error in the logs. Don't rely on this setting until the chart can render `autopath` in the `cluster.local` block.
+
 ## The cluster zone
 
 `coredns.cluster` configures the `cluster.local` server block. The zone names and the reverse (PTR) ranges come from your cluster, so you don't normally need to set them:
@@ -234,6 +236,8 @@ coredns:
       ignoreEmptyService: true
       ttl: 30
 ```
+
+**Warning**: `namespaces` restricts CoreDNS to the namespaces you list. Every namespace you leave out stops resolving, including `kube-system`, `giantswarm` and `flux-system`, which breaks in-cluster resolution of managed components. Only set it if you know which namespaces your workloads and our managed apps need.
 
 The supported parameters are `pods`, `endpoint`, `tls`, `kubeconfig`, `apiserverQPS`, `apiserverBurst`, `apiserverMaxInflight`, `ttl`, `endpointPodNames`, `noendpoints`, `namespaces`, `namespaceLabels`, `labels`, `ignoreEmptyService`, `fallthrough`, `fallthroughZones`, `multicluster`, and `startupTimeout`. They map to the directives of the [upstream `kubernetes` plugin](https://coredns.io/plugins/kubernetes/).
 
@@ -284,20 +288,22 @@ coredns:
     }
 ```
 
-**Warning**: By default our clusters come with Pod Security Standards and network policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens on `1053` instead. Please make sure you test the final `Corefile` carefully. We do not take responsibility for incorrect custom configuration that could break workload communication.
+**Warning**: By default our clusters come with Pod Security Standards and network policies for managed components. This means the CoreDNS container doesn't use a privileged port and listens on `1053` instead. Please make sure you test the final `Corefile`. We don't take responsibility for incorrect custom configuration that could break workload communication.
 
 ## Resource limits
 
-We set resource limits for the CoreDNS deployment. For larger clusters these may need to be increased:
+We set resource limits for the CoreDNS deployment. The defaults are a memory limit of `1Gi`, a CPU request of `250m` and a memory request of `512Mi`. For larger clusters these may need to be increased:
 
 ```yaml
 resources:
   limits:
-    memory: 512Mi
+    memory: 2Gi
   requests:
-    cpu: 250m
-    memory: 512Mi
+    cpu: 500m
+    memory: 1Gi
 ```
+
+Setting a value lower than the default reduces what CoreDNS gets, so check the defaults listed before you copy this example.
 
 ## Migrating from the previous interface {#migration}
 
@@ -305,7 +311,7 @@ Before coredns-app 1.31.0, `Corefile` settings were spread across `configmap.*`,
 
 | Old key | New key | Notes |
 |---|---|---|
-| `configmap.cache` | `coredns.public.cache.success.ttl`, `coredns.cluster.cache.success.ttl` | Now per zone. Integer, not a string. The old key never reached the `Corefile`, see the note below. |
+| `configmap.cache` | `coredns.public.cache.success.ttl`, `coredns.cluster.cache.success.ttl` | Now per zone. Integer, not a string. Still applies to every zone that leaves its own success TTL unset, see the note below. |
 | `configmap.log` | `coredns.<zone>.log` | Now a list of classes instead of a newline-separated string. |
 | `loadbalancePolicy` | `coredns.<zone>.loadbalance` | Now per zone. |
 | `configmap.forward` | `coredns.public.forward.to` | Now a list of upstreams. The leading `.` is rendered for you, so drop it. |
@@ -363,6 +369,9 @@ coredns:
         - linkerd.local
       kubernetes:
         pods: verified
+      cache:
+        success:
+          ttl: 60
       log:
         - all
       loadbalance: random
@@ -370,9 +379,11 @@ coredns:
 
 Note how the old global keys have to be repeated per zone, including on the additional zone. The old `configmap.log` and `loadbalancePolicy` applied to every server block at once, so an equivalent migration has to set them on each zone you want to keep behaving the same way. That repetition is the point of the change: you're now free to give each zone different values.
 
-**Warning**: `configmap.log` and `loadbalancePolicy` no longer take effect as of coredns-app 1.31.0. The per-zone keys ship with defaults that take precedence, so these two old keys are ignored without warning and your zones fall back to `denial` plus `error` and to `round_robin`. If you set either of them, migrate now. The remaining old keys in the table keep working until coredns-app v2, but they're deprecated and will be removed then.
+**Warning**: on coredns-app 1.31.0 and 1.32.0, `configmap.cache`, `configmap.log` and `loadbalancePolicy` were ignored without warning. The per-zone keys shipped with defaults that took precedence, so zones fell back to 30 seconds, `denial` plus `error` and `round_robin` whatever you set. 1.33.0 restored the fallback chain. If your cluster runs one of those two versions and you set any of the three, migrate to the per-zone keys now.
 
-**Note**: `configmap.cache` never reached the `Corefile`. The old templates emitted a bare `cache` directive and ignored the value, so CoreDNS ran with the upstream default of 3600 seconds for positive answers no matter what you set. That's why the key is deprecated. From 1.31.0 the cache block renders in full, and the effective TTL is 30 seconds for positive and 5 seconds for negative answers. Raise `coredns.<zone>.cache.success.ttl` if your workloads depend on longer caching.
+All the old keys in the table keep working until coredns-app v2, but they're deprecated and will be removed then.
+
+**Note**: before 1.31.0, `configmap.cache` never reached the `Corefile`. The old templates emitted a bare `cache` directive and ignored the value, so CoreDNS ran with the upstream default of 3600 seconds for positive answers no matter what you set. That's why the key is deprecated. From 1.31.0 the cache block renders in full, so a cluster that carried a high `configmap.cache` sees its effective positive TTL drop to that value. Set `coredns.<zone>.cache.success.ttl` if your workloads depend on longer caching.
 
 ## Further reading
 
