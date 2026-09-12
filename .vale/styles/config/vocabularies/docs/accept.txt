@@ -250,3 +250,4 @@ VS Code
 Zot
 KServe
 Flux
+Agent Platform

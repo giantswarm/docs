@@ -63,7 +63,7 @@ Three things are worth knowing before you create anything:
 
 The portal's **Models** tab lists every model configuration of every installation with its `Accepted` state, and shows the controller's message as a tooltip on a **Not accepted** model. Typically the message names the missing Secret.
 
-If a firewall or proxy restricts the management cluster's outbound traffic, allow the provider's domain first. The [Agent Platform section of the domain allowlist]({{< relref "/overview/security/domain-allowlist#agent-platform" >}}) lists the domain per provider.
+If a firewall or proxy restricts the management cluster's outbound traffic, permit the provider's domain first. The [Agent Platform section of the domain allowlist]({{< relref "/overview/security/domain-allowlist#agent-platform" >}}) lists the domain per provider.
 
 ## Option 1: Provide the API key for the default model
 
@@ -301,7 +301,7 @@ In the developer portal, the **Models** tab shows the same state with an **Accep
 
 **The agent starts but every request fails with an authentication error.** The key is present but invalid or lacks access to the model. Test the key against the provider's API directly with the same model name.
 
-**The model is accepted but every request fails with a connection reset or a TLS error.** An egress firewall or proxy in front of the management cluster allows only listed domains, and the provider's domain isn't among them. The requests leave from pods on the management cluster, so the rule has to cover the cluster's nodes, not your workstation. Allow the domain for your provider from the [Agent Platform section of the domain allowlist]({{< relref "/overview/security/domain-allowlist#agent-platform" >}}) and try again.
+**The model is accepted but every request fails with a connection reset or a TLS error.** An egress firewall or proxy in front of the management cluster allows only listed domains, and the provider's domain isn't among them. The requests leave from pods on the management cluster, so the rule has to cover the cluster's nodes, not your workstation. Permit your provider's domain from the [Agent Platform section of the domain allowlist]({{< relref "/overview/security/domain-allowlist#agent-platform" >}}) and try again.
 
 **A self-hosted endpoint times out.** The `baseUrl` must be reachable from pods in the `kagent` namespace of the management cluster, and network policies on that cluster may need an egress rule for the endpoint's address and port. `localhost` and machine-local addresses never work from a pod.
 
