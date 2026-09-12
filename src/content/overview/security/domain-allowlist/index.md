@@ -19,7 +19,7 @@ Giant Swarm clusters need outbound access to the external domains listed here to
 
 ## How to read this page
 
-Everything in the [required domains](#required-domains) and [on-premise installations](#on-premise-installations) tables is HTTP or HTTPS traffic over TCP on port 443, unless specified otherwise.
+Everything in the [required domains](#required-domains), [on-premise installations](#on-premise-installations) and [Agent Platform](#agent-platform) tables is HTTP or HTTPS traffic over TCP on port 443, unless specified otherwise.
 
 Two flows aren't HTTP, so a conventional firewall can't match them by hostname. They have their own section, [non-HTTP traffic](#non-http-traffic).
 
@@ -89,6 +89,26 @@ These domains are only required for on-premise installations. They're HTTP or HT
 | Domain | Why we need it |
 |---|---|
 | `api.cloudflare.com` | cert-manager may create ACME challenge DNS records. |
+
+## Agent Platform
+
+The [Agent Platform]({{< relref "/overview/agent-platform" >}}) is an opt-in addition to a management cluster. Its own components need nothing beyond the [required domains](#required-domains): images and charts come from the Giant Swarm registry, agent skills from GitHub, and the connection to the Giant Swarm developer portal runs through Teleport. What it adds is the **model provider** you choose for your agents. The platform ships without a model credential, so which of these domains you need depends on the provider you bring, as described in [Bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}).
+
+| Domain | Why we need it |
+|---|---|
+| `api.anthropic.com` | The default model configuration runs agents on Anthropic models. |
+| `api.openai.com` | Model configurations for OpenAI models. |
+| `*.openai.azure.com` | Model configurations for Azure OpenAI. Allow the endpoint of your own Azure OpenAI resource instead of the wildcard if you prefer. |
+| `*.cognitiveservices.azure.com` | Azure OpenAI resources created as Azure AI Foundry or Azure AI Services resources are served from this domain. |
+| `generativelanguage.googleapis.com` | Model configurations for Google Gemini models. |
+| `huggingface.co` | Only when the installation serves models itself: the model manager downloads weights from the Hugging Face Hub. |
+| `*.huggingface.co` | Only when the installation serves models itself: the model manager downloads weights from the Hugging Face Hub. |
+| `hf.co` | Only when the installation serves models itself: the Hugging Face Hub serves weights from this domain. |
+| `*.hf.co` | Only when the installation serves models itself: the Hugging Face Hub serves weights from this domain. |
+
+Amazon Bedrock is served from `*.amazonaws.com`, which is already a required domain. A model endpoint you host inside your own network needs no public egress at all.
+
+A firewall that blocks the provider doesn't show up as a firewall error: the model configuration is accepted, the agent starts, and every request fails with a connection reset. See the [troubleshooting section]({{< relref "/tutorials/agent-platform/bring-your-own-model#troubleshooting" >}}) of the model guide.
 
 ## Non-HTTP traffic
 
