@@ -92,7 +92,7 @@ These domains are only required for on-premise installations. They're HTTP or HT
 
 ## Agent Platform
 
-The [Agent Platform]({{< relref "/overview/agent-platform" >}}) is an opt-in addition to a management cluster. Its own components need nothing beyond the [required domains](#required-domains): images and charts come from the Giant Swarm registry, agent skills from GitHub, and the connection to the Giant Swarm developer portal runs through Teleport. What it adds is the **model provider** you choose for your agents. The platform ships without a model credential and without a preferred provider, so which of these domains you need depends on the provider you bring, as described in [Bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}).
+The [Agent Platform]({{< relref "/overview/agent-platform" >}}) is an opt-in addition to a management cluster. Its own components need nothing beyond the [required domains](#required-domains): images and charts come from the Giant Swarm registry and agent skills from GitHub. What it adds is the **model provider** you choose for your agents. The platform ships without a model credential and without a preferred provider, so which of these domains you need depends on the provider you bring, as described in [Bring your own model]({{< relref "/tutorials/agent-platform/bring-your-own-model" >}}).
 
 | Domain | Why we need it |
 |---|---|
