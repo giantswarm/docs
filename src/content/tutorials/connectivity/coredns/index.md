@@ -29,7 +29,7 @@ Your Giant Swarm clusters come with a default configuration for the [CoreDNS add
 
 ## Before you start
 
-This guide describes the zone-aware `coredns.*` values interface. You need cluster release **v35.0.0 or newer**, which ships coredns-app 1.33.0 on every provider. On older releases, see [migrating from the previous interface](#migration) for the keys that apply to you.
+This guide describes the zone-aware `coredns.*` values interface. You need cluster release **v35.0.1 or newer**, which ships coredns-app 1.33.0 on every provider. On older releases, see [migrating from the previous interface](#migration) for the keys that apply to you.
 
 ## Where to store the user configuration
 
