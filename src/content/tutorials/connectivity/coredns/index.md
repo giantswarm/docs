@@ -33,7 +33,7 @@ This guide describes the zone-aware `coredns.*` values interface. You need clust
 
 ## Where to store the user configuration
 
-Given the cluster you are trying to configure is called `123ab`, you can create or extend the `<CLUSTER>-user-values` configmap of the organization namespace on the management cluster. Inside the configmap, the Helm values are passed as the field called `values`:
+Given the cluster you are trying to configure is called `123ab`, you can create or extend the `<CLUSTER>-userconfig` configmap of the organization namespace on the management cluster. Inside the configmap, the Helm values are passed as the field called `values`:
 
 ```yaml
 data:
@@ -156,7 +156,7 @@ The default forward entry we set in CoreDNS is:
 forward . /etc/resolv.conf
 ```
 
-List the upstreams under `coredns.public.forward.to`. They're selected in random order. Setting the list replaces the default, so include `/etc/resolv.conf` if you still want the cluster resolver as a fallback:
+List the upstreams under `coredns.public.forward.to`. Setting the list replaces the default, so include `/etc/resolv.conf` if you still want your cluster's resolver in the list:
 
 ```yaml
 coredns:
@@ -167,7 +167,7 @@ coredns:
         - /etc/resolv.conf
 ```
 
-This forwards all requests to 1.1.1.1, which is Cloudflare's DNS. If that upstream fails, requests are resolved by the default DNS provider set for your cluster. You can list several upstreams:
+This sends external queries to 1.1.1.1 (Cloudflare's DNS) and to your cluster's default resolver. You can list several upstreams:
 
 ```yaml
 coredns:
@@ -177,7 +177,7 @@ coredns:
         - 1.1.1.1
         - 8.8.8.8
         - /etc/resolv.conf
-```
+\
 
 **Warning**: The number of forward upstreams is limited to 15.
 

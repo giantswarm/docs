@@ -139,6 +139,8 @@ global:
 
 This example reduces the CoreDNS cache lifetime for external answers from the default 30 seconds to 15 seconds. CoreDNS configures cache per zone, so see [advanced CoreDNS configuration]({{< relref "/tutorials/connectivity/coredns/" >}}) for the full interface.
 
+The zone-aware `coredns.*` keys need coredns-app 1.31.0 or newer. Older versions accept them and then ignore them, so check the app version on your cluster first.
+
 ## Method 2: External ConfigMaps or Secrets
 
 For larger configurations or when sharing settings across clusters, reference external ConfigMaps or Secrets using `global.apps.<configKey>.extraConfigs`:
