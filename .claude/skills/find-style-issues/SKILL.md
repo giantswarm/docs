@@ -34,8 +34,8 @@ A helper script does the finding in code — don't eyeball files by hand.
    By default it scans `src/content` and **excludes auto-generated sections**
    that aren't worth manual style review:
    - `src/content/changes` (changelogs)
-   - `src/content/reference/platform-api/cluster-apps`
-   - `src/content/reference/platform-api/crd`
+   - `src/content/container-platform/reference/platform-api/cluster-apps`
+   - `src/content/container-platform/reference/platform-api/crd`
 
 2. To include Vale findings, add `--vale`. This runs the same Docker image as
    the `improve-style` skill, so it's slower — scope it to a directory or a few
@@ -43,7 +43,7 @@ A helper script does the finding in code — don't eyeball files by hand.
 
    ```bash
    python3 .claude/skills/find-style-issues/find_style_issues.py --vale \
-     src/content/tutorials/observability
+     src/content/observability-platform/tutorials
    ```
 
 3. Useful flags:
@@ -64,13 +64,13 @@ A helper script does the finding in code — don't eyeball files by hand.
 ```bash
 # Worst 15 pages in the tutorials section, including Vale
 python3 .claude/skills/find-style-issues/find_style_issues.py --vale --top 15 \
-  src/content/tutorials
+  src/content/container-platform/tutorials
 ```
 
 Output is grouped per file, e.g.:
 
 ```text
-src/content/overview/security/platform-security/index.md
+src/content/container-platform/overview/security/platform-security/index.md
   long-paragraph : 2 (longest 1137 chars) — L55 (762), L180 (1137)
   heading-case   : L53 — word 'Operator' is capitalized mid-heading: "Trivy Operator"
   long-code-line : 16 (longest 158 chars) — L81 (158), L82 (158), ...

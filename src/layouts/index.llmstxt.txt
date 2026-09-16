@@ -2,8 +2,8 @@
 # Giant Swarm Documentation
 
 {{- /* Define section order and titles */ -}}
-{{- $sectionOrder := slice "overview" "getting-started" "tutorials" "reference" "support" -}}
-{{- $sectionTitles := dict "overview" "Overview" "getting-started" "Getting Started" "tutorials" "Tutorials" "reference" "Reference" "support" "Support & Training" -}}
+{{- $sectionOrder := slice "agent-platform" "container-platform" "observability-platform" "support" -}}
+{{- $sectionTitles := dict "container-platform" "Container Platform" "observability-platform" "Observability Platform" "agent-platform" "Agent Platform" "support" "Support & Training" -}}
 
 {{- /* Filter pages: exclude vintage, changes, meta, search, and empty sections */ -}}
 {{- $filteredPages := slice -}}
@@ -20,7 +20,7 @@
   {{- $pages := where $filteredPages "Section" $sectionKey -}}
   {{- if $pages }}
 
-## {{ $sectionKey }}
+## {{ index $sectionTitles $sectionKey | default $sectionKey }}
     {{- /* Sort pages by weight, then by title */ -}}
     {{- range sort $pages ".Weight" }}
 - [{{ .Title }}]({{ $.Site.BaseURL }}{{ strings.TrimPrefix "/" .RelPermalink }}): {{ with .Description }}{{ . }}{{ end }}
@@ -44,7 +44,7 @@
   {{- $sectionKey := . -}}
   {{- $pages := where $filteredPages "Section" $sectionKey }}
 
-## {{ $sectionKey }}
+## {{ index $sectionTitles $sectionKey | default $sectionKey }}
   {{- range sort $pages ".Weight" }}
 - [{{ .Title }}]({{ $.Site.BaseURL }}{{ strings.TrimPrefix "/" .RelPermalink }}): {{ with .Description }}{{ . }}{{ end }}
   {{- end }}

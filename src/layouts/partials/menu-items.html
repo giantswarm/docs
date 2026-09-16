@@ -1,0 +1,60 @@
+{{/*
+  Recursive renderer for one level of the principal menu.
+
+  Params:
+    items       — the menu entries to render at this level
+    level       — 1-based nesting depth, used for the level CSS classes
+    currentPage — the page being rendered, for active/expanded state
+    site        — the site, for resolving a menu entry's URL to its page
+    id          — DOM id for this list (set by the parent's aria-controls)
+    hidden      — true when the parent entry is collapsed
+*/}}
+{{ $level := .level }}
+{{ $currentPage := .currentPage }}
+{{ $site := .site }}
+
+<ul
+	class="acnav__list acnav__list--level{{ $level }}{{ if gt $level 1 }} acnav__list--nested{{ end }}"
+	{{ with .id }}id="{{ . }}"{{ end }}
+	role="{{ if eq $level 1 }}list{{ else }}group{{ end }}"
+	{{ if .hidden }}aria-hidden="true"{{ end }}
+>
+	{{ range .items }}
+		{{ $pageForItem := $site.GetPage .URL }}
+		{{ $hasChildren := .HasChildren }}
+		{{/* The entry for the page being viewed. */}}
+		{{ $isCurrent := eq $currentPage.RelPermalink .URL }}
+		{{/* The current page or one of its ancestors: the "you are here" trail.
+		     Drives both is-active (highlights the whole trail) and is-expanded
+		     (opens it), matching the behaviour of the previous fixed-depth partial. */}}
+		{{ $inTrail := false }}
+		{{ with $pageForItem }}
+			{{ $inTrail = or ($currentPage.IsDescendant .) (eq .RelPermalink $currentPage.RelPermalink) }}
+		{{ end }}
+		{{ $submenuID := printf "submenu-level%d-%s" $level (.Identifier | default (.Name | urlize)) }}
+
+		<li class="acnav__item{{ if $hasChildren }} has-children{{ end }}{{ if $inTrail }} is-active is-expanded{{ end }}" role="none">
+			{{ if $hasChildren }}
+				<button
+					class="acnav__toggle"
+					aria-expanded="{{ if $inTrail }}true{{ else }}false{{ end }}"
+					aria-controls="{{ $submenuID }}"
+					aria-label="{{ if $inTrail }}Collapse{{ else }}Expand{{ end }} {{ .Name }} submenu"
+				>
+					<span class="acnav__toggle-icon" aria-hidden="true"></span>
+					<a href="{{ .URL }}" class="acnav__link{{ if $isCurrent }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+				</button>
+				{{ partial "menu-items.html" (dict
+					"items"       .Children
+					"level"       (add $level 1)
+					"currentPage" $currentPage
+					"site"        $site
+					"id"          $submenuID
+					"hidden"      (not $inTrail)
+				) }}
+			{{ else }}
+				<a href="{{ .URL }}" class="acnav__link{{ if $isCurrent }} current{{ end }}" role="menuitem">{{ .Name }}</a>
+			{{ end }}
+		</li>
+	{{ end }}
+</ul>

@@ -82,7 +82,7 @@ lint-markdown:
 	  --ignore README.md \
 	  --ignore ./src/content/changes \
 	  --ignore ./src/content/vintage \
-	  --ignore ./src/content/reference/platform-api/crd \
+	  --ignore ./src/content/container-platform/reference/platform-api/crd \
 	  $$(if [ "$(RUNNING_IN_CI)" = "true" ]; then echo "--output markdownlint.out"; fi) \
 	  ./src
 

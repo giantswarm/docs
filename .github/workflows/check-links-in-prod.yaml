@@ -10,7 +10,7 @@ on:
 env:
   # space-separated list of the top-level sections
   # to check in https://docs.giantswarm.io/{section}/
-  SECTIONS: 'getting-started overview reference support tutorials'
+  SECTIONS: 'agent-platform container-platform observability-platform support'
 
 jobs:
   check-links:

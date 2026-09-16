@@ -285,8 +285,8 @@ def scan_file(path: str, max_paragraph: int, max_code_line: int) -> FileReport:
 # produced by tooling and largely exempt from Vale anyway.)
 DEFAULT_EXCLUDES = [
     "src/content/changes",
-    "src/content/reference/platform-api/cluster-apps",
-    "src/content/reference/platform-api/crd",
+    "src/content/container-platform/reference/platform-api/cluster-apps",
+    "src/content/container-platform/reference/platform-api/crd",
 ]
 
 
