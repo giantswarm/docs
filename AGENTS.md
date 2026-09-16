@@ -93,17 +93,33 @@ Use **sentence case** everywhere (blog, website, docs, social media). Only capit
 
 ## Content rules (all `src/content/**/*.md`)
 
+### Top-level structure
+
+The first path segment is the **product**, not the Diátaxis type. Three products exist:
+
+| Path | Product | What belongs here |
+|---|---|---|
+| `agent-platform/` | Agent Platform | AI and agent topics: the Agent Platform, Muster, MCP servers, workflows, the portal AI surfaces |
+| `container-platform/` | Container Platform | Everything not extracted into another product: cluster fleet management, app delivery, connectivity, security, developer portal, platform API, architecture |
+| `observability-platform/` | Observability Platform | Metrics, logs, traces, dashboards, alerting — the observability product itself |
+
+Each product then carries the Diátaxis sections, in menu order: `overview/` (weight 10), `getting-started/` (20), `tutorials/` (30), `reference/` (40). Not every product has all four.
+
+Outside the products, four top-level sections remain: `changes/`, `support/`, `meta/`, and `search/`.
+
+When adding a page, pick the product first, then the Diátaxis section.
+
 ### URL to path mapping
 
 - `src/` is the Hugo site root, published at `https://docs.giantswarm.io/`
 - URL path → file path:
-  - `https://docs.giantswarm.io/overview/security/platform-security/` → `src/content/overview/security/_index.md`
-  - `https://docs.giantswarm.io/overview/observability/alert-management/alert-routing/` → `src/content/overview/observability/alert-management/alert-routing/index.md`
+  - `https://docs.giantswarm.io/container-platform/overview/security/` → `src/content/container-platform/overview/security/_index.md`
+  - `https://docs.giantswarm.io/observability-platform/overview/alert-management/alert-routing/` → `src/content/observability-platform/overview/alert-management/alert-routing/index.md`
 
 ### Section and list pages
 
 - An `_index.md` is a section's list page — it renders an auto-generated index of its child pages (their titles and `description`s). Keep it to frontmatter only; don't add a body
-- Put general or introductory content about a section on a dedicated overview or introduction page inside the section, sorted to the top of the menu with the lowest `weight` (use `linkTitle: Introduction` so the menu entry stays short). See `src/content/overview/developer-portal/` for the pattern
+- Put general or introductory content about a section on a dedicated overview or introduction page inside the section, sorted to the top of the menu with the lowest `weight` (use `linkTitle: Introduction` so the menu entry stays short). See `src/content/container-platform/overview/developer-portal/` for the pattern
 - The list page's frontmatter `description` is what appears as the section summary, so make it a good standalone description
 
 ### Required frontmatter
@@ -130,7 +146,8 @@ Article pages (an `index.md`, or any page that isn't an `_index.md` list page) m
 
 - Use the `relref` shortcode for all internal links (links to other pages on `docs.giantswarm.io`)
 - The relref parameter always starts with a forward slash
-- Example: `{{< relref "/overview/security/platform-security/" >}}`
+- Example: `{{< relref "/container-platform/overview/security/platform-security/" >}}`
+- The first segment is the product (`container-platform`, `observability-platform`, `agent-platform`), so a link that crosses products is spelled out in full like any other
 
 ### Page structure
 
@@ -149,6 +166,8 @@ A typical article:
 - Add or update the `aliases` field with the old path so existing links redirect
 - Update all internal links pointing to the old path
 - Verify the `menu` field reflects the correct hierarchy
+
+The `menu.principal` graph mirrors the filesystem: a page's `identifier` is its URL path with `/` replaced by `-` (for example `container-platform-overview-security-secure-access`), and its `parent` is the identifier of the nearest ancestor section that has a `menu.principal` entry. The navigation partial (`src/layouts/partials/menu-items.html`) is recursive, so nesting depth is unlimited.
 
 ---
 

@@ -3,7 +3,7 @@
 # renovate: datasource=docker depName=gsoci.azurecr.io/giantswarm/helm-chart-docs-generator versioning=semver
 HELM_CHART_DOCS_GENERATOR_VERSION=0.4.11
 
-DESTINATION=src/content/reference/platform-api/cluster-apps
+DESTINATION=src/content/container-platform/reference/platform-api/cluster-apps
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs -I '{}' rm '{}'
