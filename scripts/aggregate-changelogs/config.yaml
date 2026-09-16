@@ -5,7 +5,12 @@
 #
 # The 'category' property determines the changes category the
 # entries from the repo land in.
-#
+
+# Maximum age of entries, in days. Releases older than this are not
+# generated, and existing entries older than this are pruned on every run.
+# Workload cluster releases (giantswarm/releases) are exempt from this.
+max_age_days: 365
+
 repositories:
   giantswarm/releases:
     # The repo 'giantswarm/releases' gets special treatment, so no

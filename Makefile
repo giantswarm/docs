@@ -32,6 +32,17 @@ changes:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/script.py /workdir/config.yaml /output /data
 
+# Remove Changes and Releases entries older than max_age_days (see
+# scripts/aggregate-changelogs/config.yaml). Needs no Github token.
+changes-prune:
+	docker run --rm \
+	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
+	  --volume=${PWD}/src/content/changes:/output:rw \
+	  --volume=${PWD}/src/data:/data:rw \
+	  -w /workdir \
+	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
+	  /workdir/script.py --prune-only /workdir/config.yaml /output /data
+
 changes-test:
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \
