@@ -51,6 +51,7 @@ owner:
   - {{ . -}}
 {{- end }}
 aliases:
+  - /reference/platform-api/crd/{{ .NamePlural }}.{{ .Group }}/
   - /use-the-api/management-api/crd/{{ .NamePlural }}.{{ .Group }}/
 technical_name: {{ .NamePlural }}.{{ .Group }}
 source_repository: {{ .SourceRepository }}

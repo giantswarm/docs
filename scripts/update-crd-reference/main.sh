@@ -5,7 +5,7 @@ set -e
 # renovate: datasource=docker depName=gsoci.azurecr.io/giantswarm/crd-docs-generator versioning=semver
 CRD_DOCS_GENERATOR_VERSION=0.12.27
 
-DESTINATION=src/content/reference/platform-api/crd
+DESTINATION=src/content/container-platform/reference/platform-api/crd
 
 # Clear output folder
 find ${DESTINATION} -type f -not -name "_index.md" | xargs -I '{}' rm '{}'

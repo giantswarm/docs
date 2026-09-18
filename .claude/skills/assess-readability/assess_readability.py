@@ -60,8 +60,8 @@ MIN_WORDS = 50
 # Kept in sync with find_style_issues.py:DEFAULT_EXCLUDES.
 DEFAULT_EXCLUDES = [
     "src/content/changes",
-    "src/content/reference/platform-api/cluster-apps",
-    "src/content/reference/platform-api/crd",
+    "src/content/container-platform/reference/platform-api/cluster-apps",
+    "src/content/container-platform/reference/platform-api/crd",
 ]
 
 

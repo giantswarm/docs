@@ -48,7 +48,7 @@ directory_overrides:
       - UNKNOWN_ATTRIBUTE
       - NO_DIATAXIS_CONTENT_TYPE
 
-  - path: "src/content/reference/platform-api/crd/**"
+  - path: "src/content/container-platform/reference/platform-api/crd/**"
     disabled_checks:
       - INVALID_DESCRIPTION
       - LONG_DESCRIPTION
@@ -94,7 +94,7 @@ directory_overrides:
       - NO_DIATAXIS_CONTENT_TYPE
 
   # Cluster apps documentation
-  - path: "src/content/reference/platform-api/cluster-apps/**"
+  - path: "src/content/container-platform/reference/platform-api/cluster-apps/**"
     disabled_checks:
       - NO_LAST_REVIEW_DATE
       - REVIEW_TOO_LONG_AGO

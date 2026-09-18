@@ -4,7 +4,7 @@ repos:
     hooks:
       - id: markdownlint
         args: ["--config", ".markdownlint.yaml"]
-        exclude: "^(README\\.md|src/content/changes/|src/content/vintage/|src/content/reference/platform-api/crd/)"
+        exclude: "^(README\\.md|src/content/changes/|src/content/vintage/|src/content/container-platform/reference/platform-api/crd/)"
 
   - repo: https://github.com/errata-ai/vale
     rev: v3.11.2
