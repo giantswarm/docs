@@ -21,7 +21,7 @@ If a file path or topic is provided as an argument (`$ARGUMENTS`), use that as t
    for example a conceptual overview is usually `explanation`, a step-by-step task is usually
    `how-to-guide`. Keep the page in a single type.
 
-3. **Place the page correctly** in the documentation hierarchy (see AGENTS.md for the full structure). Determine the correct path under `src/content/overview/observability/` or `src/content/getting-started/`.
+3. **Place the page correctly** in the documentation hierarchy (see AGENTS.md for the full structure). Determine the correct path under `src/content/observability-platform/overview/` or `src/content/observability-platform/getting-started/`.
 
 4. **Write the page** following these rules:
    - Start with a brief introduction explaining relevance and what the reader will learn

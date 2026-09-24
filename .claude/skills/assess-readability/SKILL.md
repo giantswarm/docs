@@ -41,8 +41,8 @@ skipped, since their scores would be meaningless.
 
    By default it scans `src/content` and **excludes auto-generated sections**:
    - `src/content/changes` (changelogs)
-   - `src/content/reference/platform-api/cluster-apps`
-   - `src/content/reference/platform-api/crd`
+   - `src/content/container-platform/reference/platform-api/cluster-apps`
+   - `src/content/container-platform/reference/platform-api/crd`
 
    It prints the corpus average across all scored pages, then a table of the
    pages above the difficulty target, worst first.
@@ -51,7 +51,7 @@ skipped, since their scores would be meaningless.
 
    ```bash
    python3 .claude/skills/assess-readability/assess_readability.py \
-     src/content/overview/security/platform-security/index.md
+     src/content/container-platform/overview/security/platform-security/index.md
    ```
 
 3. Useful flags:
@@ -74,7 +74,7 @@ skipped, since their scores would be meaningless.
 ```bash
 # The 15 hardest tutorial pages
 python3 .claude/skills/assess-readability/assess_readability.py --top 15 \
-  src/content/tutorials
+  src/content/container-platform/tutorials
 ```
 
 Output, worst first:
@@ -92,6 +92,6 @@ Hardest page(s), worst first (top 15 of 22 flagged):
 
     FK  Flesch    Fog    LIX  Path
 ------------------------------------------------------------------------
-  15.4    14.4   19.6   61.3  src/content/tutorials/.../index.md
+  15.4    14.4   19.6   61.3  src/content/container-platform/tutorials/.../index.md
   ...
 ```
