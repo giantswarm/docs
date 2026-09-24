@@ -199,18 +199,6 @@ coredns:
 
 The full set of supported options is `except`, `forceTCP`, `preferUDP`, `expire`, `maxIdleConns`, `maxFails`, `maxConnectAttempts`, `dohMethod`, `tls`, `tlsServername`, `policy`, `healthCheck`, `maxConcurrent`, `next`, `nextOnNodata`, `failfastAllUnhealthyUpstreams`, `failover`, and `resolver`. Leave a key unset to keep the CoreDNS default.
 
-## Search path expansion
-
-The `autopath` plugin shortcuts search path expansion for pod queries. It applies to the public zone and is off by default:
-
-```yaml
-coredns:
-  public:
-    autopath: "@kubernetes"
-```
-
-**Warning**: `autopath` renders in the `.` server block, which has no `kubernetes` plugin, so `@kubernetes` currently resolves to nothing and the directive has no effect. CoreDNS disables the plugin in that case, without an error in the logs. Don't rely on this setting until the chart can render `autopath` in the `cluster.local` block.
-
 ## The cluster zone
 
 `coredns.cluster` configures the `cluster.local` server block. The zone names and the reverse (PTR) ranges come from your cluster, so you don't normally need to set them:
@@ -316,7 +304,6 @@ Before coredns-app 1.31.0, `Corefile` settings were spread across `configmap.*`,
 | `loadbalancePolicy` | `coredns.<zone>.loadbalance` | Now per zone. |
 | `configmap.forward` | `coredns.public.forward.to` | Now a list of upstreams. The leading `.` is rendered for you, so drop it. |
 | `configmap.forwardOptions` | `coredns.public.forward.<option>` | Each option is its own typed key, for example `policy` or `maxFails`. |
-| `configmap.autopath` | `coredns.public.autopath` | |
 | `configmap.custom` | `coredns.custom` | Unchanged shape. |
 | `additionalLocalZones` | `coredns.additionalZones` | Now a list of zone objects instead of zone-name strings. |
 | `cluster.kubernetes.clusterDomain` | `coredns.cluster.domains` | Now a list instead of a space-separated string. |
