@@ -33,7 +33,7 @@ jobs:
           branch: automatic-update-of-generated-content
 
       - name: Approve Pull Request
-        uses: juliangruber/approve-pull-request-action@68fcc9a5a73b5641cadf757cf99d73720dcb05d0 # v2.1.0
+        uses: juliangruber/approve-pull-request-action@22f010b57f3836d0201a691b397aa993554849a4 # v2.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.find-pull-request.outputs.number }}
