@@ -2,3 +2,9 @@
   display: flex
   justify-content: center
   margin: 10px 0px 25px 0px
+  font-weight: 400
+
+  // Bootstrap's .label badge style also matches Mermaid's g.label. Mermaid
+  // sizes label boxes without it, so its bold weight would overflow them.
+  .label
+    font-weight: inherit

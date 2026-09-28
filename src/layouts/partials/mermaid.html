@@ -7,6 +7,9 @@
     startOnLoad: true,
     theme:'{{ if site.Params.mermaid.theme }}{{ site.Params.mermaid.theme }}{{ else }}dark{{ end }}',
     align:'{{ if site.Params.mermaid.align }}{{ site.Params.mermaid.align }}{{ else }}center{{ end }}',
+    themeVariables: {
+      fontFamily: '{{ if site.Params.mermaid.fontFamily }}{{ site.Params.mermaid.fontFamily }}{{ else }}Roboto, Arial, sans-serif{{ end }}',
+    },
   };
   mermaid.initialize(config);
 </script>
