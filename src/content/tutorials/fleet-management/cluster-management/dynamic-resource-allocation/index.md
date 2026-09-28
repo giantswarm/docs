@@ -109,7 +109,7 @@ nodePools:
       effect: "NoSchedule"
 ```
 
-**Note**: Give the root volume at least 100 GB. It holds the NVIDIA driver built at first boot as well as container images, and CUDA images alone are several gigabytes each.
+**Note**: Give the root volume at least 100 GB. It holds the NVIDIA driver built at first boot, as well as container images, and CUDA images alone are several gigabytes each.
 
 ## Install DRA drivers
 
@@ -117,7 +117,7 @@ nodePools:
 
 Giant Swarm publishes [`dra-driver-nvidia-gpu`](https://github.com/giantswarm/dra-driver-nvidia-gpu), a downstream build of the upstream NVIDIA DRA driver. Install it from the `giantswarm` catalog.
 
-The chart version follows its own Giant Swarm line and is deliberately different from the upstream version it packages: chart `26.0.0` ships upstream `0.5.0`.
+The chart version follows its own Giant Swarm line and is different from the upstream version it packages: chart `26.0.0` ships upstream `0.5.0`.
 
 1. Create the configuration values:
 
