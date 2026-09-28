@@ -177,7 +177,7 @@ coredns:
         - 1.1.1.1
         - 8.8.8.8
         - /etc/resolv.conf
-\
+```
 
 **Warning**: The number of forward upstreams is limited to 15.
 
