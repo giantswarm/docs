@@ -54,31 +54,10 @@ DRA for GPUs is supported on:
 
 **AWS (CAPA clusters)**:
 
-- GPU instance types supported by Giant Swarm (p3, p4, p5, g4dn, g5, g6 families) whose GPUs are supported by NVIDIA driver 570
+- GPU instance types supported by Giant Swarm (p3, p4, p5, g4dn, g5, g6 families)
 - Requires NVIDIA DRA driver installation
 
 **Note**: Talk to us if you need it on Azure.
-
-## NVIDIA driver requirement
-
-From version `26.0.0`, the Giant Swarm `dra-driver-nvidia-gpu` chart requires **NVIDIA driver 570 or newer** on GPU nodes.
-
-Giant Swarm node images select driver `570.195.03`, overriding the older version Flatcar Container Linux pins by default (`535.x`). GPU nodes build it at first boot, so no configuration is needed.
-
-Releases built before that change still default to Flatcar's `535.x`, and on driver 535 the DRA driver never becomes ready: its kubelet plugin init container loops indefinitely because it runs `nvidia-smi --version`, which 535's `nvidia-smi` rejects with `Option --version is not recognized`. The pod stays in `Init:0/1` and no `ResourceSlice` is ever published. If a GPU node reports 535, talk to Giant Swarm about moving to a release whose node image ships 570.
-
-To confirm what a GPU node actually runs:
-
-```bash
-kubectl -n kube-system logs DRA_DRIVER_POD -c init-container | grep NVIDIA-SMI
-```
-
-A healthy node reports:
-
-```text
-NVIDIA-SMI version  : 570.195.03
-nvidia-smi returned with code 0: success, leave
-```
 
 ## Enable DRA in your cluster
 
