@@ -14,10 +14,11 @@
   mermaid.initialize(config);
 
   // Diagrams shrunk to fit the content column get an Expand button that
-  // shows them at natural size in a full-window dialog. Rendering waits for
-  // load, like startOnLoad: base.js re-serializes .content on DOMContentLoaded.
+  // shows them fitted to the window, but with text no smaller than 12px, in a
+  // scrollable full-window dialog. Rendering waits for load, like
+  // startOnLoad: base.js re-serializes .content on DOMContentLoaded.
   window.addEventListener('load', function () {
-    mermaid.run().then(function () {
+    mermaid.run({ querySelector: '.mermaid', suppressErrors: true }).then(function () {
       var dialog = document.createElement('dialog');
       dialog.className = 'mermaid-dialog';
       dialog.setAttribute('aria-label', 'Expanded diagram');
@@ -32,6 +33,7 @@
         origin.container.insertBefore(svg, origin.button);
         origin.button.focus();
         origin = null;
+        toggle();
       });
 
       document.addEventListener('click', function (event) {
@@ -39,11 +41,14 @@
         if (!button) return;
         var container = button.closest('.mermaid');
         var svg = container.querySelector('svg');
+        var label = svg.querySelector('.nodeLabel') || svg.querySelector('.messageText') || svg.querySelector('text');
+        var minScale = label ? Math.min(1, 12 / parseFloat(getComputedStyle(label).fontSize)) : 1;
+        var natural = svg.viewBox.baseVal.width;
         origin = { container: container, button: button, style: svg.style.cssText };
         svg.style.maxWidth = 'none';
-        svg.style.width = Math.min(svg.viewBox.baseVal.width, document.documentElement.clientWidth - 48) + 'px';
         dialog.appendChild(svg);
         dialog.showModal();
+        svg.style.width = Math.max(Math.min(natural, dialog.clientWidth - 48), natural * minScale) + 'px';
       });
 
       document.querySelectorAll('div.mermaid').forEach(function (container) {
@@ -56,7 +61,7 @@
         container.appendChild(button);
       });
 
-      var toggle = function () {
+      function toggle() {
         if (origin) return;
         document.querySelectorAll('div.mermaid').forEach(function (container) {
           var svg = container.querySelector('svg');
@@ -64,7 +69,7 @@
           if (!svg || !button) return;
           button.hidden = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width >= 0.9;
         });
-      };
+      }
       toggle();
       window.addEventListener('resize', toggle);
     });
