@@ -45,7 +45,6 @@ Before setting up DRA, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for cluster configuration
 - GPU nodes configured in your cluster (see [GPU workloads tutorial]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}}))
-- GPU nodes running **NVIDIA driver 570 or newer** — the default on current Giant Swarm node images, see [NVIDIA driver requirement](#nvidia-driver-requirement) below
 
 ## Supported hardware and cloud providers
 
