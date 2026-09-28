@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-architecture
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-07
+last_review_date: 2026-09-28
 user_questions:
   - How is the Agent Platform structured?
   - What is agentgateway and where does it sit?
@@ -27,7 +27,7 @@ The Agent Platform has one topology: a TLS-terminating edge Gateway, **agentgate
 
 <!-- vale off -->
 {{< mermaid >}}
-flowchart LR
+flowchart TB
   client["MCP client<br/>(IDE, portal, chat, agent)"]
   edge["Edge Gateway<br/>TLS termination, public hostname"]
   agw["agentgateway<br/>/mcp — observability and<br/>policy choke point"]
