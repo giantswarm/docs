@@ -1,10 +1,57 @@
-.mermaid 
+.mermaid
+  position: relative
   display: flex
   justify-content: center
   margin: 10px 0px 25px 0px
+
+.mermaid, .mermaid-dialog
   font-weight: 400
 
   // Bootstrap's .label badge style also matches Mermaid's g.label. Mermaid
   // sizes label boxes without it, so its bold weight would overflow them.
   .label
     font-weight: inherit
+
+.mermaid-expand, .mermaid-dialog-close
+  font-size: 13px
+  padding: 4px 8px
+  border: 1px solid #ccc
+  border-radius: 4px
+  background: #fff
+  cursor: pointer
+
+.mermaid-expand
+  position: absolute
+  top: 0
+  right: 0
+  opacity: .3
+  transition: opacity .15s
+
+.mermaid:hover .mermaid-expand, .mermaid-expand:focus-visible
+  opacity: 1
+
+.mermaid-dialog
+  position: fixed
+  inset: 0
+  width: 100%
+  height: 100%
+  max-width: none
+  max-height: none
+  margin: 0
+  padding: 56px 24px 24px
+  border: 0
+  box-sizing: border-box
+  overflow: auto
+  background: #fff
+
+  &::backdrop
+    background: rgba(0, 0, 0, .5)
+
+  svg
+    display: block
+    margin: 0 auto
+
+.mermaid-dialog-close
+  position: fixed
+  top: 12px
+  right: 16px

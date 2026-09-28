@@ -15,7 +15,7 @@ If a file path is provided (`$ARGUMENTS`), work on the diagrams in that page. Ot
 Mermaid source is rendered to SVG in the reader's browser, not at build time. The pieces:
 
 - `src/layouts/shortcodes/mermaid.html` wraps the diagram source in `<div class="mermaid">`.
-- `src/layouts/_default/single.html` includes `src/layouts/partials/mermaid.html`, which loads Mermaid from jsDelivr, only on pages whose frontmatter sets `mermaid: true`.
+- `src/layouts/_default/single.html` includes `src/layouts/partials/mermaid.html`, which loads Mermaid from jsDelivr, only on pages whose frontmatter sets `mermaid: true`. The partial also gives every diagram shrunk below 90% of its natural width an **Expand** button that shows it at full size in a dialog. That's a fallback for diagrams that can't be made narrow enough, not a substitute for step 3.
 - `params.mermaid` in `src/config.yaml` sets the theme, alignment, and font (Roboto, to match the body text); `src/assets/styles/_mermaid.sass` centers the diagram and sets the label weight.
 
 Mermaid measures each label in the browser to size its box, so site CSS that changes the text's size or weight after measuring crops the text. If labels are cut off, look for a site rule that matches a Mermaid class (such as Bootstrap's `.label`) and neutralize it in `_mermaid.sass`.

@@ -1,10 +1,10 @@
 <script
   type="application/javascript"
-  src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
+  src="https://cdn.jsdelivr.net/npm/mermaid@12/dist/mermaid.min.js"
 ></script>
 <script>
   var config = {
-    startOnLoad: true,
+    startOnLoad: false,
     theme:'{{ if site.Params.mermaid.theme }}{{ site.Params.mermaid.theme }}{{ else }}dark{{ end }}',
     align:'{{ if site.Params.mermaid.align }}{{ site.Params.mermaid.align }}{{ else }}center{{ end }}',
     themeVariables: {
@@ -12,4 +12,61 @@
     },
   };
   mermaid.initialize(config);
+
+  // Diagrams shrunk to fit the content column get an Expand button that
+  // shows them at natural size in a full-window dialog. Rendering waits for
+  // load, like startOnLoad: base.js re-serializes .content on DOMContentLoaded.
+  window.addEventListener('load', function () {
+    mermaid.run().then(function () {
+      var dialog = document.createElement('dialog');
+      dialog.className = 'mermaid-dialog';
+      dialog.setAttribute('aria-label', 'Expanded diagram');
+      dialog.innerHTML = '<button class="mermaid-dialog-close" type="button">Close</button>';
+      document.body.appendChild(dialog);
+      dialog.querySelector('button').addEventListener('click', function () { dialog.close(); });
+
+      var origin = null;
+      dialog.addEventListener('close', function () {
+        var svg = dialog.querySelector('svg');
+        svg.style.cssText = origin.style;
+        origin.container.insertBefore(svg, origin.button);
+        origin.button.focus();
+        origin = null;
+      });
+
+      document.addEventListener('click', function (event) {
+        var button = event.target.closest('.mermaid-expand');
+        if (!button) return;
+        var container = button.closest('.mermaid');
+        var svg = container.querySelector('svg');
+        origin = { container: container, button: button, style: svg.style.cssText };
+        svg.style.maxWidth = 'none';
+        svg.style.width = Math.min(svg.viewBox.baseVal.width, document.documentElement.clientWidth - 48) + 'px';
+        dialog.appendChild(svg);
+        dialog.showModal();
+      });
+
+      document.querySelectorAll('div.mermaid').forEach(function (container) {
+        if (!container.querySelector('svg')) return;
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'mermaid-expand';
+        button.textContent = 'Expand';
+        button.setAttribute('aria-label', 'Expand diagram');
+        container.appendChild(button);
+      });
+
+      var toggle = function () {
+        if (origin) return;
+        document.querySelectorAll('div.mermaid').forEach(function (container) {
+          var svg = container.querySelector('svg');
+          var button = container.querySelector('.mermaid-expand');
+          if (!svg || !button) return;
+          button.hidden = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width >= 0.9;
+        });
+      };
+      toggle();
+      window.addEventListener('resize', toggle);
+    });
+  });
 </script>
