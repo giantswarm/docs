@@ -89,3 +89,4 @@ params:
   mermaid:
       theme: "neutral"
       align: "center"
+      fontFamily: "Roboto, Arial, sans-serif"
