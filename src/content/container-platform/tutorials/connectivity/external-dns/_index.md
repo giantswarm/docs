@@ -1,0 +1,16 @@
+---
+linkTitle: External DNS
+title: Advanced external-dns setup
+description: This section provides configuration guides for advanced use cases of the External DNS App.
+weight: 30
+aliases:
+  - /tutorials/connectivity/external-dns/
+  - /advanced/connectivity/external-dns
+menu:
+  principal:
+    parent: container-platform-tutorials-connectivity
+    identifier: container-platform-tutorials-connectivity-external-dns
+last_review_date: 2025-07-11
+owner:
+  - https://github.com/orgs/giantswarm/teams/team-cabbage
+---

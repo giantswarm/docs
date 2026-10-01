@@ -78,7 +78,7 @@ sed -n '1,120p' src/content/<section>/_index.md
 # Does a concept / reference already live somewhere?
 grep -rliE '<concept-or-term>' --include='*.md' src/content
 # CRD / reference pages
-ls src/content/reference/platform-api/crd/ | grep -i <name>
+ls src/content/container-platform/reference/platform-api/crd/ | grep -i <name>
 ```
 
 Tag each target **existing** (relref / extend it — never recreate) or **new** (must be authored).

@@ -1,0 +1,12 @@
+# CRDs whose reference page belongs to a product other than the Container
+# Platform. main.sh moves each generated page listed here to
+# src/content/<product>/reference/crd/.
+#
+# Format: <CRD full name> <product directory>
+
+mcpservers.muster.giantswarm.io                    agent-platform
+workflows.muster.giantswarm.io                     agent-platform
+grafanaorganizations.observability.giantswarm.io   observability-platform
+silences.observability.giantswarm.io               observability-platform
+policyexceptiondrafts.policy.giantswarm.io         security-platform
+policyexceptions.policy.giantswarm.io              security-platform

@@ -12,7 +12,7 @@
 
       this.toggleButtons = this.menu.querySelectorAll('.acnav__toggle');
       this.links = this.menu.querySelectorAll('.acnav__link');
-      this.submenuItems = this.menu.querySelectorAll('.acnav__list--level2, .acnav__list--level3, .acnav__list--level4');
+      this.submenuItems = this.menu.querySelectorAll('.acnav__list--nested');
 
       this.init();
     }
@@ -163,7 +163,7 @@
     }
 
     getMenuLevel(element) {
-      const levelClasses = ['level1', 'level2', 'level3', 'level4'];
+      const levelClasses = ['level1', 'level2', 'level3', 'level4', 'level5', 'level6'];
       const parentList = element.closest('.acnav__list');
 
       for (let i = 0; i < levelClasses.length; i++) {
@@ -237,7 +237,7 @@
     }
 
     isVisible(element) {
-      const parentSubmenu = element.closest('.acnav__list--level2, .acnav__list--level3, .acnav__list--level4');
+      const parentSubmenu = element.closest('.acnav__list--nested');
       if (!parentSubmenu) return true;
 
       return parentSubmenu.getAttribute('aria-hidden') !== 'true' &&

@@ -16,7 +16,7 @@ for the rubric — other skills and reviewers defer to it.
 From `$ARGUMENTS`:
 
 - a **file path** → classify that page
-- a **glob** (e.g. `src/content/tutorials/**`) → classify each matching article
+- a **glob** (e.g. `src/content/*/tutorials/**`) → classify each matching article
 - `diff` → classify the article pages changed in the current working tree / branch
 
 If no argument is given, ask what to classify. Skip `_index.md` list pages — they don't
