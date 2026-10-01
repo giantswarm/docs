@@ -24,8 +24,8 @@ CRD's page shows an **example CR**.
   each run, so commit the generated result, don't edit it.
 - `scripts/update-crd-reference/products.txt` lists the CRDs that belong to
   another product. After generating, `main.sh` moves each listed page to
-  `src/content/<product>/reference/crd/` and adds its Container Platform URL as an
-  alias. Those directories are wiped each run too, except their `_index.md`. A
+  `src/content/<product>/reference/crd/`. Those directories are wiped each run
+  too, except their `_index.md`. A
   product that gets its first CRD needs a `reference/crd/_index.md` with
   `layout: management-api-reference`, which lists the CRD pages of that section,
   and an entry for its `reference/crd/**` path in both

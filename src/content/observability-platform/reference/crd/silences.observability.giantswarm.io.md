@@ -23,7 +23,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
-  - /container-platform/reference/platform-api/crd/silences.observability.giantswarm.io/
   - /reference/platform-api/crd/silences.observability.giantswarm.io/
   - /use-the-api/management-api/crd/silences.observability.giantswarm.io/
 technical_name: silences.observability.giantswarm.io

@@ -21,7 +21,6 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
-  - /container-platform/reference/platform-api/crd/policyexceptiondrafts.policy.giantswarm.io/
   - /reference/platform-api/crd/policyexceptiondrafts.policy.giantswarm.io/
   - /use-the-api/management-api/crd/policyexceptiondrafts.policy.giantswarm.io/
 technical_name: policyexceptiondrafts.policy.giantswarm.io
