@@ -13,7 +13,7 @@ crd:
   technical_name: mcpservers.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v5.7.18
+  source_repository_ref: v5.32.10
   versions:
     - v1alpha1
   topics:
@@ -27,7 +27,7 @@ aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v5.7.18
+source_repository_ref: v5.32.10
 ---
 
 # MCPServer
@@ -228,10 +228,189 @@ parameter — that remains driven by the MCP server URL.</p>
 
 <p>AuthorizationServer is mutually exclusive with ForwardToken: true and
 TokenExchange.Enabled: true. The CRD admission rules above reject any
-CR that combines them. Only valid when Type is &ldquo;oauth&rdquo;.</p>
+CR that combines them. Only valid when Type is &ldquo;oauth&rdquo;. A server that
+needs the session&rsquo;s ID token next to the pinned grant sets
+ForwardIdentity instead.</p>
 
 <p>Use case: Atlassian Remote MCP and similar backends that publish RFC 8414
 metadata at their resource origin instead of via RFC 9728.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.authorizationEndpoint">.spec.auth.authorizationServer.authorizationEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>AuthorizationEndpoint is the authorization server&rsquo;s authorization
+endpoint. Set it together with TokenEndpoint for an authorization server
+that publishes no RFC 8414 / OIDC discovery document (GitHub:
+<a href="https://github.com/login/oauth/authorize)">https://github.com/login/oauth/authorize)</a>. muster then performs no
+discovery for this issuer and assumes S256 PKCE support, which the
+operator asserts by pinning the endpoints.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.clientCredentialsSecretRef">.spec.auth.authorizationServer.clientCredentialsSecretRef</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ClientCredentialsSecretRef references a Kubernetes Secret holding a
+client registered with this authorization server out of band (a GitHub
+App or OAuth App). When set, muster identifies itself with these
+credentials instead of its Client ID Metadata Document or a dynamic
+registration &ndash; the only option against an authorization server that
+supports neither. The secret carries <code>client-id</code> and <code>client-secret</code>
+(key names configurable in the reference).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.clientCredentialsSecretRef.clientIdKey">.spec.auth.authorizationServer.clientCredentialsSecretRef.clientIdKey</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ClientIDKey is the key in the secret data that contains the client ID.
+Defaults to &ldquo;client-id&rdquo; if not specified.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.clientCredentialsSecretRef.clientSecretKey">.spec.auth.authorizationServer.clientCredentialsSecretRef.clientSecretKey</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ClientSecretKey is the key in the secret data that contains the client secret.
+Defaults to &ldquo;client-secret&rdquo; if not specified.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.clientCredentialsSecretRef.name">.spec.auth.authorizationServer.clientCredentialsSecretRef.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the Kubernetes Secret.
+Required.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.clientCredentialsSecretRef.namespace">.spec.auth.authorizationServer.clientCredentialsSecretRef.namespace</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Namespace is the Kubernetes namespace where the secret is located.
+If not specified, defaults to the MCPServer&rsquo;s namespace.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.expectedIssuer">.spec.auth.authorizationServer.expectedIssuer</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ExpectedIssuer is the issuer identifier the authorization server itself
+publishes and puts in the RFC 9207 <code>iss</code> parameter of its authorization
+responses, when that differs from Issuer. Issuer stays the identity the
+grants are filed under; ExpectedIssuer only decides which value a
+present <code>iss</code> on the callback has to equal. Set it when several
+MCPServers pin one authorization server under different identities so
+their grants stay apart &ndash; two GitHub Apps, say: each is pinned under
+its own identity (<a href="https://github.com/apps/">https://github.com/apps/</a><slug>) with ExpectedIssuer
+<a href="https://github.com/login/oauth">https://github.com/login/oauth</a>, the issuer GitHub sends. Needs
+AuthorizationEndpoint and TokenEndpoint. Default: Issuer.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.grantScope">.spec.auth.authorizationServer.grantScope</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>GrantScope decides whom a token obtained from this authorization server
+belongs to. <code>session</code> (the default) keeps today&rsquo;s behavior: the token is
+bound to the login session that completed the browser flow, so every new
+session signs in again. <code>subject</code> files the token under the user&rsquo;s
+identity as well, so any later session of the same person &ndash; another
+client, a re-login, a front-end whose bearer rotates &ndash; reuses the grant
+without a new consent, until the person signs out of this server
+(<code>core_auth_logout</code>) or everywhere. Use <code>subject</code> for external accounts
+the person owns (GitHub), never for tokens that carry session-specific
+authority.</p>
 
 </div>
 
@@ -249,9 +428,22 @@ metadata at their resource origin instead of via RFC 9728.</p>
 </div>
 
 <div class="property-description">
-<p>Issuer is the OAuth 2.0 / OIDC issuer URL.
+<p>Issuer is the OAuth 2.0 / OIDC issuer URL of the authorization server
+the sign-in runs against, and the identity the session&rsquo;s grants are
+filed under. It takes precedence over the authorization server the
+endpoint&rsquo;s own RFC 9728 metadata names: the browser flow, the token
+store, the connection and core_auth_logout all use this issuer, so an
+endpoint that accepts tokens from an authorization server other than the
+one it advertises is pinned by naming the accepting one here. It may be
+muster&rsquo;s own identity provider; muster keeps the session&rsquo;s login token
+apart from the grant. A change to this field takes effect on the next
+core_auth_login, without a restart.
 muster fetches AS metadata via the existing OAuth client, which performs
-RFC 8414 / OIDC discovery against this issuer.</p>
+RFC 8414 / OIDC discovery against this issuer &ndash; unless
+AuthorizationEndpoint and TokenEndpoint are set, in which case no
+discovery happens and the issuer is only that identity. When the
+authorization server publishes a different issuer identifier than the
+identity pinned here, set ExpectedIssuer.</p>
 
 </div>
 
@@ -271,6 +463,61 @@ RFC 8414 / OIDC discovery against this issuer.</p>
 <div class="property-description">
 <p>Scopes is the OAuth scope parameter value (RFC 6749 §3.3 wire format:
 space-separated scope tokens). Matches existing TokenExchangeConfig.Scopes.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.tokenEndpoint">.spec.auth.authorizationServer.tokenEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenEndpoint is the authorization server&rsquo;s token endpoint (GitHub:
+<a href="https://github.com/login/oauth/access_token)">https://github.com/login/oauth/access_token)</a>. See AuthorizationEndpoint.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.forwardIdentity">.spec.auth.forwardIdentity</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>ForwardIdentity sends the session&rsquo;s upstream ID token &ndash; the token
+ForwardToken would put in Authorization &ndash; in the X-Muster-Id-Token
+header on every request to this server, next to the grant of its pinned
+authorization server, which Authorization keeps carrying unchanged. It
+is for a server that acts for the person on two systems: one through the
+pinned grant (a GitHub App user token, say) and one through calls back
+with the person&rsquo;s own identity (their Kubernetes access). The token is
+read on every request, so a refreshed one is sent once the session holds
+it; a session without an upstream ID token sends no header, and a server
+without this field never receives it.</p>
+
+<p>Only valid with Type &ldquo;oauth&rdquo; and AuthorizationServer set. RequiredAudiences
+of such a server are requested at login as for a ForwardToken server, so
+the forwarded ID token carries them.</p>
+
+<p>The forwarded ID token is not audience-scoped to this server, as with
+ForwardToken: the same token is accepted by every backend that trusts
+its issuer and audiences, so a ForwardIdentity server must be trusted as
+much as a ForwardToken backend.</p>
 
 </div>
 
@@ -330,7 +577,8 @@ for example when forwarding tokens to Kubernetes for OIDC authentication:
     - &ldquo;dex-k8s-authenticator&rdquo;</p>
 
 <p>At user authentication, muster collects all requiredAudiences from MCPServers
-with forwardToken: true and requests them all from the IdP.</p>
+with forwardToken: true or forwardIdentity: true and requests them all
+from the IdP.</p>
 
 </div>
 
@@ -1054,7 +1302,7 @@ user is authenticated, token expiry, etc.) is tracked separately in the
 Session Registry (internal/aggregator/session_registry.go).</p>
 
 <p>Server-Side State (CRD):
-  - State: Running/Connected/Starting/Connecting/Stopped/Disconnected/Auth Required/Failed
+  - State: Running/Connected/Starting/Connecting/Stopped/Disconnected/Auth Required/Awaiting Session/Failed
   - Conditions: Standard K8s conditions for detailed status</p>
 
 <p>Per-User Session State (Session Registry):
@@ -1080,7 +1328,15 @@ Session Registry (internal/aggregator/session_registry.go).</p>
 <div class="property-description">
 <p>Conditions represent the latest available observations of the MCPServer&rsquo;s current state.
 Standard condition types:
-  - Ready: True if infrastructure is reachable (process running or TCP connectable)</p>
+  - Ready: True while the server is reachable (Running, Connected, Auth
+    Required, Awaiting Session), False otherwise. The reason is the state
+    in one word (Connected, AwaitingSession, AuthRequired, Connecting,
+    Disconnected, Suspended, Failed) or, for a server Failed by its token
+    exchange, the class of the failure (TokenExchangeCredentials,
+    TokenExchangeEndpoint, TokenExchangeConnector). The message explains
+    the state: for Awaiting Session the per-session mechanism, the token
+    endpoint and connector, and when the last exchange succeeded; for
+    Failed the error.</p>
 
 </div>
 
@@ -1300,6 +1556,30 @@ not here. This field only contains infrastructure-level errors.</p>
 
 <div class="property depth-1">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.lastFailureHTTPStatus">.status.lastFailureHTTPStatus</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>LastFailureHTTPStatus is the HTTP status code the endpoint answered the
+most recent failed connection attempt with, for example 504 from a
+gateway in front of the server or 404 from a backend whose route is
+not served yet. Absent when the attempt got no HTTP response at all
+(connection refused, DNS failure, timeout) or the last attempt
+succeeded. Together with LastError it tells an upstream outage from an
+endpoint nothing listens on.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.status.lastRestartedAt">.status.lastRestartedAt</h3>
 </div>
 <div class="property-body">
@@ -1330,7 +1610,10 @@ differ (spec-is-desired / status-is-observed idiom, issue #1055).</p>
 
 <div class="property-description">
 <p>NextRetryAfter indicates the earliest time when the next retry should be attempted.
-This is calculated based on exponential backoff from ConsecutiveFailures.</p>
+The wait doubles with every consecutive failure, starting at 30 seconds,
+and is capped (2 minutes by default) so a recovered upstream is noticed
+within the cap plus the retry tick, however long the outage lasted.
+Absent while no retry is scheduled.</p>
 
 </div>
 
@@ -1370,7 +1653,7 @@ This is calculated based on exponential backoff from ConsecutiveFailures.</p>
 This is independent of user session state (authentication, connection status).</p>
 
 <p>For stdio servers: Running, Starting, Stopped, Failed
-For remote servers: Connected, Auth Required, Connecting, Disconnected, Failed</p>
+For remote servers: Connected, Auth Required, Awaiting Session, Connecting, Disconnected, Failed</p>
 
 </div>
 
