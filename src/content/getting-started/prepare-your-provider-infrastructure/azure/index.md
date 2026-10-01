@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: Azure
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
-last_review_date: 2026-07-16
+last_review_date: 2026-09-16
 layout: single
 menu:
   principal:
@@ -148,7 +148,7 @@ The following information needs to be provided to Giant Swarm:
 * TenantID
 ```
 
-**Note**: Contact your Account Engineer, who will help you find a secure way to share this information. Our recommended tool is [Keybase](https://keybase.io/).
+**Note**: Contact your account engineer to agree on a secure way to share this information. See [Sharing secrets with our team]({{< relref "/overview/security/sharing-secrets" >}}) for the options.
 
 #### Post deployment cleanup
 
