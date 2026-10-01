@@ -448,7 +448,7 @@ Multi-Instance GPU (MIG) partitions a physical GPU into hardware-isolated instan
 own memory and compute slices. Unlike time-slicing and MPS, MIG gives real isolation between
 workloads.
 
-MIG needs hardware that supports it — on AWS the A100 and H100 families (`p4`, `p5`). It isn't
+MIG needs hardware that supports it on AWS: the A100 and H100 families (`p4`, `p5`). It isn't
 available on `g4dn`, `g5` or `g6`.
 
 The GPU must already be in MIG mode with its partitions created, for example by the NVIDIA GPU
