@@ -13,7 +13,6 @@ user_questions:
 - How do I install External Secrets Operator on my cluster?
 - What resources does external secrets operator consume on my cluster?
 aliases:
-  - /container-platform/tutorials/security/external-secrets-operator/
   - /tutorials/security/external-secrets-operator/
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/

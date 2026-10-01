@@ -8,7 +8,6 @@ menu:
     identifier: security-platform-overview-platform-security
     parent: security-platform-overview
 aliases:
-  - /container-platform/overview/security/platform-security/
   - /overview/security/platform-security/
   - /platform-overview/security/platform-security/
 user_questions:

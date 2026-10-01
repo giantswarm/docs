@@ -16,7 +16,6 @@ last_review_date: 2026-07-16
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
-  - /container-platform/tutorials/security/policy-api/
   - /tutorials/security/policy-api/
 ---
 

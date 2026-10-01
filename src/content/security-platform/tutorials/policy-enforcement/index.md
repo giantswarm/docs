@@ -24,7 +24,6 @@ layout: single
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
-  - /container-platform/tutorials/security/policy-enforcement/
   - /tutorials/security/policy-enforcement/
 ---
 
