@@ -36,7 +36,7 @@ Use the v1alpha2 Silence API (`observability.giantswarm.io/v1alpha2`) for GitOps
 
 **Important:** Silence CRDs can only be created in management clusters. The silence-operator runs on management clusters and manages silences for the entire observability platform.
 
-The v1alpha2 API is namespace-scoped and uses a simplified timing model where silences start immediately when created and end at the time specified in the `valid-until` annotation. For the complete `Silence` field schema, see the [Silence CRD reference]({{< relref "/container-platform/reference/platform-api/crd/silences.observability.giantswarm.io" >}}).
+The v1alpha2 API is namespace-scoped and uses a simplified timing model where silences start immediately when created and end at the time specified in the `valid-until` annotation. For the complete `Silence` field schema, see the [Silence CRD reference]({{< relref "/observability-platform/reference/crd/silences.observability.giantswarm.io" >}}).
 
 ### Required tenant labeling
 

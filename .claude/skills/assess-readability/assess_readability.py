@@ -62,6 +62,7 @@ DEFAULT_EXCLUDES = [
     "src/content/changes",
     "src/content/container-platform/reference/platform-api/cluster-apps",
     "src/content/container-platform/reference/platform-api/crd",
+    "/reference/crd",
 ]
 
 

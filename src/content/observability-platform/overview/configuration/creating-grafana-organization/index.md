@@ -42,7 +42,7 @@ Your organizations will appear alongside the `Shared Org` in the organization dr
 
 ## Creating a GrafanaOrganization resource
 
-Create a [`GrafanaOrganization`]({{< relref "/container-platform/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}) custom resource in the management cluster:
+Create a [`GrafanaOrganization`]({{< relref "/observability-platform/reference/crd/grafanaorganizations.observability.giantswarm.io" >}}) custom resource in the management cluster:
 
 ### Basic example
 

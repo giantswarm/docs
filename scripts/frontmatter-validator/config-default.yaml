@@ -62,6 +62,45 @@ directory_overrides:
       - NO_LAST_REVIEW_DATE
       - REVIEW_TOO_LONG_AGO
 
+  - path: "src/content/agent-platform/reference/crd/**"
+    disabled_checks:
+      - INVALID_DESCRIPTION
+      - LONG_DESCRIPTION
+      - NO_DESCRIPTION
+      - NO_FULL_STOP_DESCRIPTION
+      - NO_LINK_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+      - SHORT_DESCRIPTION
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  - path: "src/content/observability-platform/reference/crd/**"
+    disabled_checks:
+      - INVALID_DESCRIPTION
+      - LONG_DESCRIPTION
+      - NO_DESCRIPTION
+      - NO_FULL_STOP_DESCRIPTION
+      - NO_LINK_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+      - SHORT_DESCRIPTION
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  - path: "src/content/security-platform/reference/crd/**"
+    disabled_checks:
+      - INVALID_DESCRIPTION
+      - LONG_DESCRIPTION
+      - NO_DESCRIPTION
+      - NO_FULL_STOP_DESCRIPTION
+      - NO_LINK_TITLE
+      - NO_OWNER
+      - NO_USER_QUESTIONS
+      - SHORT_DESCRIPTION
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
   # Vintage CRD documentation
   - path: "src/content/vintage/use-the-api/management-api/crd/**"
     disabled_checks:

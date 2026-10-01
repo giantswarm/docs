@@ -20,7 +20,7 @@ aliases:
   - /overview/observability/configuration/migrate-grafana-organizations/
 ---
 
-This guide shows you how to migrate your [`GrafanaOrganization`]({{< relref "/container-platform/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}) resources from the `v1alpha1` to the `v1alpha2` API version. The `v1alpha2` version introduces structured tenant configuration with granular access control. Existing `v1alpha1` resources keep working through automatic conversion, but migrating lets you take advantage of the new features. For creating organizations in the first place, see [creating a Grafana organization]({{< relref "/observability-platform/overview/configuration/creating-grafana-organization" >}}).
+This guide shows you how to migrate your [`GrafanaOrganization`]({{< relref "/observability-platform/reference/crd/grafanaorganizations.observability.giantswarm.io" >}}) resources from the `v1alpha1` to the `v1alpha2` API version. The `v1alpha2` version introduces structured tenant configuration with granular access control. Existing `v1alpha1` resources keep working through automatic conversion, but migrating lets you take advantage of the new features. For creating organizations in the first place, see [creating a Grafana organization]({{< relref "/observability-platform/overview/configuration/creating-grafana-organization" >}}).
 
 ## Key differences
 
@@ -110,5 +110,5 @@ When you update existing `v1alpha1` resources, they're automatically converted t
 ## See also
 
 - [Creating a Grafana organization]({{< relref "/observability-platform/overview/configuration/creating-grafana-organization" >}}): create and configure organizations
-- [GrafanaOrganization CRD reference]({{< relref "/container-platform/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io" >}}): the full resource schema
+- [GrafanaOrganization CRD reference]({{< relref "/observability-platform/reference/crd/grafanaorganizations.observability.giantswarm.io" >}}): the full resource schema
 - [Multi-tenancy]({{< relref "/observability-platform/overview/configuration/multi-tenancy" >}}): how tenants isolate observability data

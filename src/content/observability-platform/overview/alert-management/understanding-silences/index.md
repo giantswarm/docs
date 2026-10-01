@@ -69,6 +69,6 @@ That protection can be waived for a genuine full-maintenance window (see [forcin
 ## See also
 
 - [Silences how-to]({{< relref "/observability-platform/overview/alert-management/silences" >}}): create, update, and remove silences via CRDs and the Grafana UI
-- [Silence CRD reference]({{< relref "/container-platform/reference/platform-api/crd/silences.observability.giantswarm.io" >}}): the full `Silence` v1alpha2 field schema
+- [Silence CRD reference]({{< relref "/observability-platform/reference/crd/silences.observability.giantswarm.io" >}}): the full `Silence` v1alpha2 field schema
 - [Alert routing]({{< relref "/observability-platform/overview/alert-management/alert-routing" >}}): how notifications reach receivers once they pass the silence stage
 - [Multi-tenancy]({{< relref "/observability-platform/overview/configuration/multi-tenancy" >}}): how tenants isolate observability data, including silences

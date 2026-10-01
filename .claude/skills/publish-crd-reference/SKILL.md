@@ -1,12 +1,13 @@
 ---
 name: publish-crd-reference
-description: Understand and maintain how the CRD reference pages under /container-platform/reference/platform-api/crd/ are generated — register a new CRD source repo, make sure every published CRD has an example CR, and fix pages that render without an example
+description: Understand and maintain how the generated CRD reference pages are produced and placed in each product — register a new CRD source repo, assign a CRD to a product, make sure every published CRD has an example CR, and fix pages that render without an example
 ---
 
 # Publish CRD reference pages
 
 The CRD reference under
-[`/container-platform/reference/platform-api/crd/`](https://docs.giantswarm.io/container-platform/reference/platform-api/crd/)
+[`/container-platform/reference/platform-api/crd/`](https://docs.giantswarm.io/container-platform/reference/platform-api/crd/),
+and under `/<product>/reference/crd/` for the CRDs that belong to another product,
 is **fully generated** — never hand-edit those pages. This skill explains the
 machinery and the two everyday tasks: registering a new CRD and making sure a
 CRD's page shows an **example CR**.
@@ -21,6 +22,15 @@ CRD's page shows an **example CR**.
   `scripts/update-crd-reference/main.sh`). Output lands in
   `src/content/container-platform/reference/platform-api/crd/` — these files are wiped and rewritten
   each run, so commit the generated result, don't edit it.
+- `scripts/update-crd-reference/products.txt` lists the CRDs that belong to
+  another product. After generating, `main.sh` moves each listed page to
+  `src/content/<product>/reference/crd/`. Those directories are wiped each run
+  too, except their `_index.md`. A
+  product that gets its first CRD needs a `reference/crd/_index.md` with
+  `layout: management-api-reference`, which lists the CRD pages of that section,
+  and an entry for its `reference/crd/**` path in both
+  `scripts/frontmatter-validator/config-*.yaml` files. The validator doesn't
+  match wildcards in the middle of a path.
 - `.github/workflows/check-update-crd-reference.yaml` validates the config on any
   change under `scripts/update-crd-reference/`. The config has a JSON schema
   (`$schema` line at the top of `config.yaml`) — your editor will flag mistakes.
@@ -110,7 +120,9 @@ docs, either omit its metadata or set `hidden: true`.
 ## Verifying
 
 - Locally: `make update-crd-reference` and inspect the file under
-  `src/content/container-platform/reference/platform-api/crd/<full-name>/`.
+  `src/content/container-platform/reference/platform-api/crd/<full-name>.md`, or
+  `src/content/<product>/reference/crd/<full-name>.md` for a CRD listed in
+  `products.txt`.
 - The generator log lines are the authoritative gap report — watch for
   `WARN - No example CR found for <crd> version <v>` and
   `WARN - skipping <crd> as no metadata found`.

@@ -33,7 +33,7 @@ muster start <resource-type> <name> [parameters]
 | `service` | Start a service by name |
 | `workflow` | Run a workflow, with optional parameters as flags |
 
-Workflow parameters are passed as `--key=value` flags and validated against the workflow's [argument schema]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}).
+Workflow parameters are passed as `--key=value` flags and validated against the workflow's [argument schema]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}).
 
 ## Flags {#flags}
 
