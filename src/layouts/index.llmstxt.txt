@@ -2,8 +2,8 @@
 # Giant Swarm Documentation
 
 {{- /* Define section order and titles */ -}}
-{{- $sectionOrder := slice "agent-platform" "container-platform" "observability-platform" "support" -}}
-{{- $sectionTitles := dict "container-platform" "Container Platform" "observability-platform" "Observability Platform" "agent-platform" "Agent Platform" "support" "Support & Training" -}}
+{{- $sectionOrder := slice "agent-platform" "container-platform" "observability-platform" "security-platform" "support" -}}
+{{- $sectionTitles := dict "container-platform" "Container Platform" "observability-platform" "Observability Platform" "agent-platform" "Agent Platform" "security-platform" "Security Platform" "support" "Support & Training" -}}
 
 {{- /* Filter pages: exclude vintage, changes, meta, search, and empty sections */ -}}
 {{- $filteredPages := slice -}}

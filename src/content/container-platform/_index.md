@@ -1,6 +1,6 @@
 ---
 title: Container Platform
-description: Documentation for the Giant Swarm Container Platform, covering cluster fleet management, application delivery, connectivity, security, and the platform API.
+description: Documentation for the Giant Swarm Container Platform, covering cluster fleet management, application delivery, connectivity, access management, and the platform API.
 menu:
   principal:
     identifier: container-platform

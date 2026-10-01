@@ -70,7 +70,7 @@ python3 .claude/skills/find-style-issues/find_style_issues.py --vale --top 15 \
 Output is grouped per file, e.g.:
 
 ```text
-src/content/container-platform/overview/security/platform-security/index.md
+src/content/security-platform/overview/platform-security/index.md
   long-paragraph : 2 (longest 1137 chars) — L55 (762), L180 (1137)
   heading-case   : L53 — word 'Operator' is capitalized mid-heading: "Trivy Operator"
   long-code-line : 16 (longest 158 chars) — L81 (158), L82 (158), ...

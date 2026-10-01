@@ -59,7 +59,7 @@ Note that Giant Swarm staff members see different information in this panel than
 
 ### Policy compliance
 
-The panel shows how to open the Policy Reporter UI for this cluster. Policy reporter is a tool that helps you understand how workloads comply with your [policies]({{< relref "/container-platform/tutorials/security/policy-enforcement" >}}).
+The panel shows how to open the Policy Reporter UI for this cluster. Policy reporter is a tool that helps you understand how workloads comply with your [policies]({{< relref "/security-platform/tutorials/policy-enforcement" >}}).
 
 ### Labels
 

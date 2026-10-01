@@ -95,13 +95,14 @@ Use **sentence case** everywhere (blog, website, docs, social media). Only capit
 
 ### Top-level structure
 
-The first path segment is the **product**, not the Diátaxis type. Three products exist:
+The first path segment is the **product**, not the Diátaxis type. Four products exist:
 
 | Path | Product | What belongs here |
 |---|---|---|
 | `agent-platform/` | Agent Platform | AI and agent topics: the Agent Platform, Muster, MCP servers, workflows, the portal AI surfaces |
-| `container-platform/` | Container Platform | Everything not extracted into another product: cluster fleet management, app delivery, connectivity, security, developer portal, platform API, architecture |
+| `container-platform/` | Container Platform | Everything not extracted into another product: cluster fleet management, app delivery, connectivity, access management, developer portal, platform API, architecture |
 | `observability-platform/` | Observability Platform | Metrics, logs, traces, dashboards, alerting — the observability product itself |
+| `security-platform/` | Security Platform | Policy enforcement and the Policy API, vulnerability scanning, runtime security, secret management |
 
 Each product then carries the Diátaxis sections, in menu order: `overview/` (weight 10), `getting-started/` (20), `tutorials/` (30), `reference/` (40). Not every product has all four.
 
@@ -146,8 +147,8 @@ Article pages (an `index.md`, or any page that isn't an `_index.md` list page) m
 
 - Use the `relref` shortcode for all internal links (links to other pages on `docs.giantswarm.io`)
 - The relref parameter always starts with a forward slash
-- Example: `{{< relref "/container-platform/overview/security/platform-security/" >}}`
-- The first segment is the product (`container-platform`, `observability-platform`, `agent-platform`), so a link that crosses products is spelled out in full like any other
+- Example: `{{< relref "/security-platform/overview/platform-security/" >}}`
+- The first segment is the product (`container-platform`, `observability-platform`, `agent-platform`, `security-platform`), so a link that crosses products is spelled out in full like any other
 
 ### Page structure
 

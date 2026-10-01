@@ -51,7 +51,7 @@ skipped, since their scores would be meaningless.
 
    ```bash
    python3 .claude/skills/assess-readability/assess_readability.py \
-     src/content/container-platform/overview/security/platform-security/index.md
+     src/content/security-platform/overview/platform-security/index.md
    ```
 
 3. Useful flags:

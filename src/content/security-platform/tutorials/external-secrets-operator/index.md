@@ -6,13 +6,14 @@ description: How to install External Secrets Operator on a workload cluster and 
 weight: 20
 menu:
   principal:
-    parent: container-platform-tutorials-security
-    identifier: container-platform-tutorials-security-external-secrets-operator
+    parent: security-platform-tutorials
+    identifier: security-platform-tutorials-external-secrets-operator
 user_questions:
 - How do I use External Secrets Operator?
 - How do I install External Secrets Operator on my cluster?
 - What resources does external secrets operator consume on my cluster?
 aliases:
+  - /container-platform/tutorials/security/external-secrets-operator/
   - /tutorials/security/external-secrets-operator/
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
@@ -24,7 +25,7 @@ owner:
 
 External Secrets Operator (ESO) reads secrets from an external secret manager and delivers them as Kubernetes secrets. This guide covers installing it on a workload cluster and creating the two resources you need to start pulling secrets.
 
-For what ESO is, how it compares to SOPS, and the risks of depending on it, read [External Secrets Operator]({{< relref "/container-platform/overview/security/external-secrets-operator/" >}}).
+For what ESO is, how it compares to SOPS, and the risks of depending on it, read [External Secrets Operator]({{< relref "/security-platform/overview/external-secrets-operator/" >}}).
 
 **Note**: ESO needs three additional pods, 300m of CPU, and 1.5GiB of memory once running. Installs and upgrades temporarily need up to 1.5GiB more, because the CRD installer pod caches Kubernetes resources. That extra usage is released as soon as the install job completes.
 

@@ -5,9 +5,10 @@ description: Architecture and configuration information for the collection of se
 weight: 10
 menu:
   principal:
-    identifier: container-platform-overview-security-platform-security
-    parent: container-platform-overview-security
+    identifier: security-platform-overview-platform-security
+    parent: security-platform-overview
 aliases:
+  - /container-platform/overview/security/platform-security/
   - /overview/security/platform-security/
   - /platform-overview/security/platform-security/
 user_questions:
@@ -172,7 +173,7 @@ Open your browser to `localhost:8080` to view the reports.
 
 More detailed information about the use of Kyverno for Pod Security Standards (PSS) policy enforcement, including exception management is available in our separate [policy enforcement documentation][policy-enforcement].
 
-Giant Swarm manages the lifecycle of these policies and their exceptions with additional components, including the `kyverno-policy-operator` and the `exception-recommender`. These are exposed through our [Policy API]({{< relref "/container-platform/tutorials/security/policy-api" >}}), which lets you declare policy intent without managing the underlying Kyverno resources directly.
+Giant Swarm manages the lifecycle of these policies and their exceptions with additional components, including the `kyverno-policy-operator` and the `exception-recommender`. These are exposed through our [Policy API]({{< relref "/security-platform/tutorials/policy-api" >}}), which lets you declare policy intent without managing the underlying Kyverno resources directly.
 
 ## Falco
 
@@ -189,10 +190,10 @@ We include Falco in our managed security stack as a detection mechanism for mali
 [kyverno-app]: https://github.com/giantswarm/kyverno-app
 [kyverno-upstream]: https://github.com/kyverno/kyverno/
 [loki-app]: https://github.com/giantswarm/loki-app
-[policy-enforcement]: {{< relref "/container-platform/tutorials/security/policy-enforcement" >}}
+[policy-enforcement]: {{< relref "/security-platform/tutorials/policy-enforcement" >}}
 [policy-reporter-upstream]: https://github.com/kyverno/policy-reporter
 [observability-bundle]: {{< relref "/observability-platform/overview" >}}
-[security]: {{< relref "/container-platform/overview/security" >}}
+[security]: {{< relref "/security-platform/overview/" >}}
 [starboard-exporter]: https://github.com/giantswarm/starboard-exporter/
 [trivy-app]: https://github.com/giantswarm/trivy-app/
 [trivy-upstream]: https://github.com/aquasecurity/trivy
