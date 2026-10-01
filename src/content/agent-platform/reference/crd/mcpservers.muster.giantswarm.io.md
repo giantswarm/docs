@@ -23,6 +23,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
+  - /container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io/
   - /reference/platform-api/crd/mcpservers.muster.giantswarm.io/
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io

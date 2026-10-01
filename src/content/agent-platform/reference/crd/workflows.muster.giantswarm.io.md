@@ -23,6 +23,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
+  - /container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io/
   - /reference/platform-api/crd/workflows.muster.giantswarm.io/
   - /use-the-api/management-api/crd/workflows.muster.giantswarm.io/
 technical_name: workflows.muster.giantswarm.io

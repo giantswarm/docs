@@ -24,6 +24,7 @@ layout: crd
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
+  - /container-platform/reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io/
   - /reference/platform-api/crd/grafanaorganizations.observability.giantswarm.io/
   - /use-the-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
 technical_name: grafanaorganizations.observability.giantswarm.io

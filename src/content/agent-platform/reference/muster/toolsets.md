@@ -208,4 +208,4 @@ agent-manager validates the inline grammar—non-empty, at most 32 selectors, th
 - [Toolsets and presets]({{< relref "/agent-platform/overview/toolsets" >}}) - The concept, and why a toolset is composition rather than authorization.
 - [Define toolset presets]({{< relref "/agent-platform/tutorials/toolset-presets" >}}) - Adding an installation's own presets and verifying them.
 - [Meta-tools]({{< relref "/agent-platform/reference/muster/meta-tools" >}}) - The full `filter_tools` argument and response reference.
-- [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) - The resource whose labels the platform presets select over.
+- [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) - The resource whose labels the platform presets select over.

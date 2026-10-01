@@ -36,6 +36,21 @@ directory_overrides:
       - NO_LAST_REVIEW_DATE
       - REVIEW_TOO_LONG_AGO
 
+  - path: "src/content/agent-platform/reference/crd/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  - path: "src/content/observability-platform/reference/crd/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
+  - path: "src/content/security-platform/reference/crd/**"
+    disabled_checks:
+      - NO_LAST_REVIEW_DATE
+      - REVIEW_TOO_LONG_AGO
+
   # Meta documentation
   - path: "src/content/meta/**"
     disabled_checks:

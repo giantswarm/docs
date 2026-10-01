@@ -55,4 +55,4 @@ muster get tool core_service_list
 ## Related
 
 - [`muster list`]({{< relref "/agent-platform/reference/muster/cli/list" >}}) - List resources.
-- [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The `MCPServer` and `Workflow` schemas.
+- [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}) - The `MCPServer` and `Workflow` schemas.

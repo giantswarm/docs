@@ -35,7 +35,7 @@ muster create <resource-type> <name> [flags]
 
 ## Flags {#flags}
 
-For `mcpserver`, these flags map to fields on the [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) resource:
+For `mcpserver`, these flags map to fields on the [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) resource:
 
 | Name | Description |
 |---|---|
@@ -63,9 +63,9 @@ muster create mcpserver my-http-server \
 muster create workflow example-workflow
 ```
 
-For the full set of `MCPServer` and `Workflow` fields, including authentication and control flow, see the [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) CRD schema references. To author a workflow the code-grounded way, see [Author a Muster workflow]({{< relref "/agent-platform/tutorials/authoring-workflows" >}}).
+For the full set of `MCPServer` and `Workflow` fields, including authentication and control flow, see the [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}) CRD schema references. To author a workflow the code-grounded way, see [Author a Muster workflow]({{< relref "/agent-platform/tutorials/authoring-workflows" >}}).
 
 ## Related
 
 - [Managing MCP servers]({{< relref "/agent-platform/tutorials/managing-mcp-servers" >}}) - The full `MCPServer` workflow.
-- [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The resource schemas.
+- [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}) - The resource schemas.

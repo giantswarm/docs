@@ -31,8 +31,8 @@ For a conceptual overview, start with [AI agents on the platform]({{< relref "/a
 | [Installation]({{< relref "/agent-platform/reference/muster/installation" >}}) | How to install the `muster` CLI and keep it up to date |
 | [Meta-tools]({{< relref "/agent-platform/reference/muster/meta-tools" >}}) | The meta-tools Muster exposes to agents, plus the `core_*` tool catalog |
 | [Toolsets]({{< relref "/agent-platform/reference/muster/toolsets" >}}) | Toolset selectors, the `X-Muster-Toolset` header, `toolsetPresets`, and the agent chart and agent-manager contracts |
-| [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) | The generated `MCPServer` CRD schema reference |
-| [`Workflow`]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) | The generated `Workflow` CRD schema reference |
+| [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) | The generated `MCPServer` CRD schema reference |
+| [`Workflow`]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}) | The generated `Workflow` CRD schema reference |
 
 ## CLI commands {#commands}
 

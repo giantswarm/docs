@@ -103,9 +103,9 @@ Every tool reachable through `call_tool` falls into one of three families, disti
 
 - **`x_<server>_<tool>`**: a tool from an external MCP server, prefixed with the server name to avoid conflicts, for example `x_kubernetes_get_pods`.
 - **`core_<area>_<tool>`**: one of Muster's built-in tools.
-- **`workflow_<name>`**: a tool generated from a [`Workflow`]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) resource.
+- **`workflow_<name>`**: a tool generated from a [`Workflow`]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}) resource.
 
-When an `MCPServer` declares a `family`, its tools are exposed under the family name (`<prefix>_<family>_<tool>`) with a required argument that selects which instance handles the call. See [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}).
+When an `MCPServer` declares a `family`, its tools are exposed under the family name (`<prefix>_<family>_<tool>`) with a required argument that selects which instance handles the call. See [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}).
 
 ## Built-in tool catalog {#core-tools}
 
@@ -124,5 +124,5 @@ Muster's `core_*` tools manage the resources it owns. List them at runtime with 
 
 - [Meta-tools and tool discovery]({{< relref "/agent-platform/overview/meta-tools" >}}) - The concept and the token-cost rationale.
 - [Toolsets]({{< relref "/agent-platform/reference/muster/toolsets" >}}) - The `X-Muster-Toolset` header, the selector grammar, and `toolsetPresets`.
-- [`MCPServer`]({{< relref "/container-platform/reference/platform-api/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/container-platform/reference/platform-api/crd/workflows.muster.giantswarm.io.md" >}}) - The CRD schemas these tools manage.
+- [`MCPServer`]({{< relref "/agent-platform/reference/crd/mcpservers.muster.giantswarm.io.md" >}}) and [`Workflow`]({{< relref "/agent-platform/reference/crd/workflows.muster.giantswarm.io.md" >}}) - The CRD schemas these tools manage.
 - [`muster call`]({{< relref "/agent-platform/reference/muster/cli/call" >}}) - Call any of these tools from the CLI.
