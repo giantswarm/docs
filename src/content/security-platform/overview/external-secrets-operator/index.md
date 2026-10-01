@@ -6,8 +6,8 @@ description: What External Secrets Operator is, how it relates to SOPS, and whic
 weight: 60
 menu:
   principal:
-    parent: container-platform-overview-security
-    identifier: container-platform-overview-security-external-secrets-operator
+    parent: security-platform-overview
+    identifier: security-platform-overview-external-secrets-operator
 user_questions:
 - What is External Secrets Operator?
 - Should I use External Secrets Operator or SOPS?
@@ -21,7 +21,7 @@ aliases:
 
 External Secrets Operator (ESO) is a Kubernetes operator that reads secrets from an external source and delivers them securely as Kubernetes secrets for your workloads to consume.
 
-We make ESO available on all management clusters, and also as a managed application for you to deploy on your workload clusters. To install and use it, follow [using External Secrets Operator]({{< relref "/container-platform/tutorials/security/external-secrets-operator/" >}}).
+We make ESO available on all management clusters, and also as a managed application for you to deploy on your workload clusters. To install and use it, follow [using External Secrets Operator]({{< relref "/security-platform/tutorials/external-secrets-operator/" >}}).
 
 ESO binds secrets into the cluster that would otherwise have required you to commit them to source control or deploy them manually. The full upstream documentation lives on [the External Secrets Operator website](https://external-secrets.io/).
 

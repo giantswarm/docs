@@ -479,6 +479,6 @@ Note that bindings that come with the cluster by default like `system:masters` c
 
 **Warning**: certificates with bindings to built-in groups like `system:masters` with no expiration can only be revoked by rotating the root certificate authority for the entire cluster, which can be very disruptive to workloads and external resource access. For this reason, we strongly recommend using alternative groups and bindings even for administrative purposes.
 
-Learn more about [policies]({{< relref "/container-platform/tutorials/security/policy-enforcement" >}}) and how to enforce security them through the platform.
+Learn more about [policies]({{< relref "/security-platform/tutorials/policy-enforcement" >}}) and how to enforce security them through the platform.
 
 [platform-access-management]: {{< relref "/container-platform/tutorials/access-management" >}}

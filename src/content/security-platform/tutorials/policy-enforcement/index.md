@@ -6,8 +6,8 @@ description: This article describes the security policies enforced in a cluster 
 weight: 20
 menu:
   principal:
-    identifier: container-platform-tutorials-security-policy-enforcement
-    parent: container-platform-tutorials-security
+    identifier: security-platform-tutorials-policy-enforcement
+    parent: security-platform-tutorials
 user_questions:
  -  Why won't my workload deploy?
  -  How do I fix a Kyverno policy violation?
@@ -68,7 +68,7 @@ Users who are unaware of those requirements may be surprised when their workload
 ### Kyverno
 
 Giant Swarm clusters currently use Kyverno to perform the actual enforcement of the policies we manage.
-Our [Policy API]({{< relref "/container-platform/tutorials/security/policy-api" >}}), along with other platform internals, manage the Kyverno cluster policy resources as well as any necessary Kyverno policy exceptions.
+Our [Policy API]({{< relref "/security-platform/tutorials/policy-api" >}}), along with other platform internals, manage the Kyverno cluster policy resources as well as any necessary Kyverno policy exceptions.
 
 Kyverno is an admission controller, which inspects incoming requests to the Kubernetes API server and checks them against configured policies. Kyverno policies can be configured in two modes: `audit` and `enforce`.
 
@@ -1099,7 +1099,7 @@ There are two ways to do this, depending on your cluster administrators' policy 
 
 This is the preferred method for configuring exceptions to security policies in Giant Swarm clusters.
 
-The [Policy API]({{< relref "/container-platform/tutorials/security/policy-api" >}}) provides a higher-level abstraction for configuring cluster policies which makes it easier for cluster admins and for Giant Swarm to manage policy lifecycle.
+The [Policy API]({{< relref "/security-platform/tutorials/policy-api" >}}) provides a higher-level abstraction for configuring cluster policies which makes it easier for cluster admins and for Giant Swarm to manage policy lifecycle.
 
 To configure an exception for a workload, create a Giant Swarm PolicyException (`policy.giantswarm.io/v1alpha1/PolicyException`).
 

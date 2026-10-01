@@ -6,8 +6,8 @@ description: An overview of how to use Giant Swarm `Policy` types to enforce clu
 weight: 60
 menu:
   principal:
-    parent: container-platform-tutorials-security
-    identifier: container-platform-tutorials-security-policy-api
+    parent: security-platform-tutorials
+    identifier: security-platform-tutorials-policy-api
 user_questions:
  -  How can I exclude a workload from a Kyverno policy?
  -  What security policies are enforced in my cluster?
@@ -78,7 +78,7 @@ Based on this exception, the Policy API controllers will generate additional res
 
 #### PolicyExceptionDrafts
 
-Giant Swarm clusters can also suggest exceptions for you. The `exception-recommender` inspects policy reports and generates `PolicyExceptionDraft` resources containing suggestions for the exceptions a workload would need. A cluster administrator reviews a draft and, if appropriate, promotes it to a `PolicyException`. For the full workflow, see [generating exceptions automatically]({{< relref "/container-platform/tutorials/security/policy-enforcement" >}}#generating-exceptions-automatically) on the policy enforcement page.
+Giant Swarm clusters can also suggest exceptions for you. The `exception-recommender` inspects policy reports and generates `PolicyExceptionDraft` resources containing suggestions for the exceptions a workload would need. A cluster administrator reviews a draft and, if appropriate, promotes it to a `PolicyException`. For the full workflow, see [generating exceptions automatically]({{< relref "/security-platform/tutorials/policy-enforcement" >}}#generating-exceptions-automatically) on the policy enforcement page.
 
 ### Motivation / historical note
 
@@ -113,4 +113,4 @@ Suppose that, in the future, Giant Swarm chooses to stop managing Kyverno as par
 
 The custom ClusterPolicy, and any configured Kyverno PolicyExceptions, would need to be adapted by the cluster administrator, or they would need to then manage Kyverno themselves.
 
-[sec-policy-enforcement]: {{< relref "/container-platform/tutorials/security/policy-enforcement" >}}
+[sec-policy-enforcement]: {{< relref "/security-platform/tutorials/policy-enforcement" >}}

@@ -282,4 +282,4 @@ Now that you're monitoring your clusters and applications, explore these advance
 - **[Import/export data]({{< relref "/observability-platform/overview/data-management/data-import-export/" >}})**: Connect external systems and analysis tools
 - **[Set up multi-tenancy]({{< relref "/observability-platform/overview/configuration/multi-tenancy/" >}})**: Organize data access for teams and environments
 
-Ready to explore platform security? Learn more [in the security overview]({{< relref "/container-platform/overview/security" >}}).
+Ready to explore platform security? Learn more [in the security overview]({{< relref "/security-platform/overview/" >}}).
