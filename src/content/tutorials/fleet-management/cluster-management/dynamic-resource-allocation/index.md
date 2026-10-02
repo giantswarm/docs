@@ -109,7 +109,7 @@ nodePools:
       effect: "NoSchedule"
 ```
 
-**Note**: Give the root volume at least 100 GB. It holds the NVIDIA driver built at first boot, as well as container images, and CUDA images alone are several gigabytes each.
+**Note**: Give the root volume at least 100 GB. It holds the NVIDIA driver built at first boot and the container images. CUDA images alone are several gigabytes each.
 
 ## Install DRA drivers
 
@@ -298,10 +298,10 @@ By default each claim gets exclusive use of a whole GPU. The DRA driver also sup
 sharing one physical GPU between workloads: time-slicing, MPS and MIG.
 
 Sharing happens when several containers reference the **same** claim. The examples below put two
-containers in one pod; to share across pods, create a standalone `ResourceClaim` instead of a
+containers in one pod. To share across pods, create a standalone `ResourceClaim` instead of a
 `ResourceClaimTemplate` and reference it from each pod with `resourceClaimName`.
 
-**Time-slicing and MPS are alpha features and disabled by default.** Enable the matching feature gate
+**Time-slicing and MPS are alpha features and turned off by default.** Enable the matching feature gate
 in the chart values, otherwise the driver rejects any `sharing` block with
 `invalid GPU sharing settings`:
 
@@ -517,18 +517,18 @@ Having the driver create and reshape MIG partitions on demand is a separate alph
 
 ### Common issues
 
-1. **Kubelet plugin stuck in `Init:0/1`**: The node runs an NVIDIA driver older than 570, which means a release predating the node image that defaults to 570. Check the init container log for `Option --version is not recognized` and see [NVIDIA driver requirement](#nvidia-driver-requirement).
+1. **kubelet plugin stuck in `Init:0/1`**: The node runs an NVIDIA driver older than 570, which means a release predating the node image that defaults to 570. Check the init container log for `Option --version is not recognized` and see [NVIDIA driver requirement](#nvidia-driver-requirement).
 
-2. **No DRA driver pods at all**: The DaemonSet selected no nodes. Label the GPU node with `nvidia.com/gpu.present=true` as shown above.
+2. **No DRA driver pods at all**: The DaemonSet selected no nodes. Label the GPU node with `nvidia.com/gpu.present=true` as described earlier.
 
-3. **Pods running but no ResourceSlice objects**: The kubelet plugin registers with kubelet but can't reach the API server. Check its log for `dial tcp <apiserver>:443: i/o timeout`. Chart `26.0.0` and later ship the required network policies by default; earlier versions don't, and silently publish nothing on clusters with a default-deny policy.
+3. **Pods running but no ResourceSlice objects**: The kubelet plugin registers with kubelet but can't reach the API server. Check its log for `dial tcp <apiserver>:443: i/o timeout`. Chart `26.0.0` and later ship the required network policies by default. Earlier versions don't, so on a cluster with a default-deny policy the plugin publishes nothing and logs no error.
 
-4. **`invalid GPU sharing settings`**: A claim asks for time-slicing or MPS while the matching feature gate is off. Enable `TimeSlicingSettings` or `MPSSupport` in the chart values — see [Share GPUs between workloads](#share-gpus-between-workloads).
+4. **`invalid GPU sharing settings`**: A claim asks for time-slicing or MPS while the matching feature gate is off. Enable `TimeSlicingSettings` or `MPSSupport` in the chart values. See [Share GPUs between workloads](#share-gpus-between-workloads).
 
 5. **Workloads not scheduling**: Ensure that:
    - ResourceClaimTemplate selectors match available devices
    - Pods have appropriate tolerations for GPU nodes
-   - The node has a free GPU — an allocated device isn't shared between claims
+   - The node has a free GPU, since an allocated device isn't shared between claims
 
 ## Limitations and considerations
 
@@ -538,8 +538,8 @@ Having the driver create and reshape MIG partitions on demand is a separate alph
 - DRA requires Giant Swarm release 1.33+
 - Chart `26.0.0` requires NVIDIA driver 570 or newer on GPU nodes
 - The DRA driver can't run alongside the NVIDIA device plugin on the same node
-- Compute domains require NVLink-fabric hardware and must be disabled otherwise
-- Time-slicing and MPS are alpha features, disabled by default, and provide no memory isolation between workloads
+- Compute domains require NVLink-fabric hardware and must be turned off otherwise
+- Time-slicing and MPS are alpha features, turned off by default, and provide no memory isolation between workloads
 - MIG requires A100 or H100 class hardware and partitions created outside the DRA driver
 
 ## Next steps
