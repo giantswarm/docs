@@ -7,6 +7,9 @@ VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.15.1@sha256:1e4449aba172e268fcb40
 APPLICATION=docs-app
 RUNNING_IN_CI ?= false
 
+# The included files define rules too; keep `default` as the goal.
+.DEFAULT_GOAL := default
+
 include Makefile.*.mk
 
 default: docker-build
