@@ -13,7 +13,7 @@ owner:
 user_questions:
   - How can I deploy Ray clusters on Giant Swarm using KubeRay?
   - How do I configure KubeRay for distributed machine learning workloads?
-last_review_date: 2026-05-19
+last_review_date: 2026-10-05
 ---
 
 [Ray](https://www.ray.io/) is a unified framework for scaling AI and Python applications. It provides a simple, universal API for building distributed applications and includes libraries for machine learning, reinforcement learning, and hyperparameter tuning. [KubeRay](https://ray-project.github.io/kuberay/) is the official Kubernetes operator for Ray that automates the deployment, scaling, and management of Ray clusters on Kubernetes.
@@ -36,7 +36,7 @@ Before starting this tutorial, ensure you have:
 
 ## Installing the KubeRay operator
 
-The KubeRay operator manages the lifecycle of Ray clusters on Kubernetes. You can install it using the Giant Swarm App Platform.
+The KubeRay operator manages the lifecycle of Ray clusters on Kubernetes. You can install it using the Giant Swarm App Platform. Version 1.2.1 of the app ships KubeRay v1.7.1.
 
 ### Using the App Platform
 
@@ -52,7 +52,7 @@ kubectl gs template app \
   --name=kuberay-operator \
   --organization=${ORGANIZATION} \
   --target-namespace=kuberay-system \
-  --version=1.1.0 2>/dev/null > kuberay-operator.yaml
+  --version=1.2.1 2>/dev/null > kuberay-operator.yaml
 
 kubectl apply -f kuberay-operator.yaml
 ```
@@ -76,9 +76,24 @@ Verify that the Custom Resource Definitions (CRDs) are installed:
 $ kubectl get crd | grep ray
 
 rayclusters.ray.io                    2026-05-19T10:00:00Z
+raycronjobs.ray.io                    2026-05-19T10:00:00Z
 rayjobs.ray.io                        2026-05-19T10:00:00Z
 rayservices.ray.io                    2026-05-19T10:00:00Z
 ```
+
+**Note**: the `RayCronJob` CRD is installed, but its controller sits behind a feature gate that is off by default. To use it, set the gate in the app's user values:
+
+```yaml
+featureGates:
+  - name: RayCronJob
+    enabled: true
+```
+
+The same applies to `RayClusterMTLS`, `RayClusterNetworkPolicy` and `RayClusterHistoryServer`. All of them are alpha upstream.
+
+### Upgrading from version 1.1.0
+
+Version 1.2.1 renames one value. If you set `metrics.serviceMonitor.selector`, rename it to `metrics.serviceMonitor.additionalLabels`. The old key is ignored, so a `ServiceMonitor` would silently lose its labels.
 
 ## Deploying a Ray cluster
 
