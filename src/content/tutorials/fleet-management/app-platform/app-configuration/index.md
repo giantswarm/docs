@@ -25,7 +25,7 @@ user_questions:
   - What are the limitations around secrets when configuring them for an App?
   - How are configuration values stored and referenced in the Control Plane?
   - How can I provide configuration values for apps?
-last_review_date: 2026-07-02
+last_review_date: 2026-10-05
 ---
 
 The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install apps across your entire fleet of clusters. The platform fully support [`helm`](https://helm.sh/) as a general tool to deploy your applications as well as the official Giant Swarm app catalog.
@@ -36,7 +36,7 @@ The apps are packaged as `helm` charts. Those charts rely on _values_ to be set 
 
 ## HelmRelease equivalent {#flux-equivalent}
 
-In a HelmRelease, configuration values come from two places: an inline `spec.values` block, and any number of `ConfigMap` or `Secret` references in `spec.valuesFrom`. Flux merges them in the listed order, with later entries overriding earlier ones, so the order of entries determines precedence.
+In a HelmRelease, configuration values come from two places: an inline `spec.values` block, and any number of `ConfigMap` or `Secret` references in `spec.valuesFrom`. Flux merges the `valuesFrom` entries in the listed order, with later entries overriding earlier ones, and then merges `spec.values` on top. Inline values therefore take precedence over every `valuesFrom` entry. The one exception is a `valuesFrom` entry with `targetPath` set, which overrides everything before it, inline values included.
 
 ```yaml
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -49,7 +49,7 @@ spec:
     kind: OCIRepository
     name: dev01-my-app
   values:
-    replicas: 2                 # inline values, overridden by anything below
+    replicas: 2                 # inline values, override everything in valuesFrom
   valuesFrom:
     - kind: ConfigMap
       name: cluster-values      # cluster-level config
@@ -58,7 +58,7 @@ spec:
     - kind: ConfigMap
       name: dev01-my-app-values # per-release user values
     - kind: Secret
-      name: dev01-my-app-secret # per-release user secrets, last wins
+      name: dev01-my-app-secret # per-release user secrets, last valuesFrom entry wins
 ```
 
 This replaces the App CR's `config`, `extraConfigs`, and `userConfig` slots. The notion of "level" is no longer baked into the API: you express it through the order of entries in `valuesFrom`.
