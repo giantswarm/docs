@@ -8,7 +8,7 @@ menu:
   principal:
     parent: reference-kubectlgs
     identifier: reference-kubectlgs-updatecluster
-last_review_date: 2026-06-08
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -45,7 +45,7 @@ kubectl-gs update cluster \
   --provider capa \
   --name a1b2c \
   --namespace org-acme \
-  --release-version 29.0.0
+  --release-version 29.0.0 \
   --scheduled-time "2024-08-28 12:10"
 ```
 
