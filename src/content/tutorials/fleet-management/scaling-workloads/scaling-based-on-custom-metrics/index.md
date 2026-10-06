@@ -95,10 +95,9 @@ Giant Swarm automatically provides a `ClusterTriggerAuthentication` that allows 
 kubectl label cluster ${CLUSTER} observability.giantswarm.io/keda-authentication=true
 ```
 
-1. **If KEDA isn't running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed. This applies if you followed Step 2, as it installs KEDA into `keda-system`:
+1. **Annotate your Cluster CR** with the namespace where KEDA runs. Step 2 installs KEDA into `keda-system`, not the default `keda`, so the annotation is required:
 
 ```bash
-# Only needed if KEDA runs in a different namespace than 'keda'
 kubectl annotate cluster ${CLUSTER} observability.giantswarm.io/keda-namespace=keda-system
 ```
 
