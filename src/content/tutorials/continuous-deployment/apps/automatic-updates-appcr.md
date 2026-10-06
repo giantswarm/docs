@@ -191,7 +191,7 @@ apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: ${cluster_name}-hello-world
-  namespace: org-${organization}
+  namespace: default
 spec:
   ...
   secretRef:

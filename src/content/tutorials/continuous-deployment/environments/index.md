@@ -107,7 +107,7 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}-default-apps
+      name: \${cluster_name}-default-apps
       namespace: org-\${organization}
 resources:
   - ../../../clusters/capa/template/
@@ -249,7 +249,7 @@ patches:
       group: application.giantswarm.io
       kind: App
       name: \${cluster_name}
-      namespace: org-${organization}
+      namespace: org-\${organization}
 kind: Kustomization
 ```
 

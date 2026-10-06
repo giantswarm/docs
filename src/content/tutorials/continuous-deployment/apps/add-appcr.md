@@ -147,7 +147,7 @@ kind: Kustomization
 patches:
   - path: config_patch.yaml
 resources:
-  - ../../../../../../../../../${APP_TEMPLATE_PATH}
+  - ../../../../../../../../../${APP_TEMPLATE_DIR}
   - secret.enc.yaml ## ONLY IF INCLUDING SECRET
 ```
 

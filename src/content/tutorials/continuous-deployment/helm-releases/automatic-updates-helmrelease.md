@@ -133,7 +133,7 @@ spec:
   imageRepositoryRef:
     name: ${APP_NAME}
   filterTags:
-    extract: \$version
+    extract: $version
     pattern: ^v?(?P<version>.*)$
   policy:
     semver:
