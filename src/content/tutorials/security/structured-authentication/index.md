@@ -312,7 +312,9 @@ global:
         enabled: true
 ```
 
-Once the rolling update completes and you have confirmed that existing users can still authenticate, you can move to the richer `issuers` list at your own pace, for example to add a second provider or CEL rules. The legacy top-level fields aren't ignored when `issuers` is set. The cluster app still turns them into an issuer and puts it first in the list, in front of the entries from `issuers`. So when you move the same provider into `issuers`, remove the legacy fields, otherwise the API server gets a duplicate issuer URL and rejects the configuration.
+Once the rolling update completes and you have confirmed that existing users can still authenticate, you can move to the richer `issuers` list at your own pace, for example to add a second provider or CEL rules. The legacy top-level fields aren't ignored when `issuers` is set. The cluster app still turns them into an issuer and puts it first in the list, in front of the entries from `issuers`.
+
+When you move the same provider into `issuers`, remove the legacy fields. Otherwise the API server gets a duplicate issuer URL and rejects the configuration.
 
 ## Verify the configuration
 

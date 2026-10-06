@@ -38,7 +38,7 @@ You need to create a `ServiceAccount` that represents your automation task. Idea
 kubectl create serviceaccount <service-account-name> -n <namespace>
 ```
 
-Since Kubernetes 1.24, the API does not create the token automatically for service accounts. You need to explicitly annotate a secret with `kubernetes.io/service-account.name` opting to the service account. Now Kubernetes uses [TokenRequest](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/) to obtain that credentials.
+Since Kubernetes 1.24, the API doesn't create the token automatically for service accounts. You need to explicitly annotate a secret with `kubernetes.io/service-account.name` opting to the service account. Now Kubernetes uses [TokenRequest](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/) to obtain that credentials.
 
 Since you want a token for a external system to automate actions on the Kubernetes API, you can just use the `create token` command with the optional `--duration` flag to generate a token representing the service account.
 
