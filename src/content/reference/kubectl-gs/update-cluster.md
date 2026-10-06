@@ -41,7 +41,7 @@ kubectl gs update cluster \
 To schedule a workload cluster upgrade in the future, the `--scheduled-time` flag is used, like in the example below:
 
 ```nohighlight
-kubectl-gs update cluster \
+kubectl gs update cluster \
   --provider capa \
   --name a1b2c \
   --namespace org-acme \

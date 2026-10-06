@@ -111,7 +111,7 @@ https://github.com/demotechinc/demotech-gitops/blob/299de19645659b14421992d059b6
 
 ## Default Configuration
 
-By default, the system is pre-configured with two GitHub repository patterns. These defaults are hardcoded into the system and are always applied, even if no `flux.gitRepositoryPatterns` configuration is provided in the `app-config.yaml` file. The default entries are:
+By default, the system is pre-configured with two GitHub repository patterns. These defaults are built into the portal and always apply, even if no `flux.gitRepositoryPatterns` configuration is provided in the `app-config.yaml` file. The default entries are:
 
 - **Default GitHub (SSH):**
 
@@ -129,7 +129,7 @@ By default, the system is pre-configured with two GitHub repository patterns. Th
 
 These default patterns ensure that links to GitHub repositories can be generated out of the box without requiring any additional configuration.
 
-When custom `flux.gitRepositoryPatterns` entries are provided in the `app-config.yaml` file, they are appended to the default GitHub configurations. The system evaluates all entries (default and custom) in the order they are defined, and the first matching entry is used to generate the link.
+When custom `flux.gitRepositoryPatterns` entries are provided in the `app-config.yaml` file, they're appended to the default GitHub configurations. The system evaluates all entries (default and custom) in the order they're defined, and the first matching entry is used to generate the link.
 
 ## Full example
 

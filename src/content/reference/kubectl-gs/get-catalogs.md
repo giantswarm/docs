@@ -95,7 +95,7 @@ However by default we hide internal catalogs in the `giantswarm` namespace.
 
 ### `--max-col-width` {#flags-max-col-width}
 
-Maximum width of a column in the table output, longer values are truncated. Defaults to 80.
+Maximum width of the `DESCRIPTION` column when listing the apps of a catalog, longer descriptions are truncated. Defaults to 80.
 
 ### `--output/-o` {#flags-output}
 
