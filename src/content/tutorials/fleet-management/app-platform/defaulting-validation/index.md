@@ -38,7 +38,10 @@ There is no `app-admission-controller` for HelmRelease. Flux's helm-controller a
     valuesFrom:
       - kind: ConfigMap
         name: dev01-cluster-values
+        valuesKey: values
   ```
+
+  The `ConfigMap` stores the values under the `values` key, and Flux reads `values.yaml` unless you set `valuesKey`.
 
 - **`kubeconfig`.** The `<cluster>-kubeconfig` Secret is created for you alongside the cluster. Reference it from the HelmRelease via `spec.kubeConfig.secretRef.name` so Flux installs the chart into the workload cluster.
 - **App-operator version label.** Not applicable. Flux's helm-controller handles all releases, so there's no per-cluster operator routing to default.
