@@ -24,6 +24,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
   - /use-the-api/management-api/crd/silences.observability.giantswarm.io/
+  - /ui-api/management-api/crd/silences.observability.giantswarm.io/
+  - /reference/cp-k8s-api/silences.observability.giantswarm.io/
 technical_name: silences.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
 source_repository_ref: v0.21.0

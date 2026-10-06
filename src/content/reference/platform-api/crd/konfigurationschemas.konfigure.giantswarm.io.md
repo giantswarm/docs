@@ -23,6 +23,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /use-the-api/management-api/crd/konfigurationschemas.konfigure.giantswarm.io/
+  - /ui-api/management-api/crd/konfigurationschemas.konfigure.giantswarm.io/
+  - /reference/cp-k8s-api/konfigurationschemas.konfigure.giantswarm.io/
 technical_name: konfigurationschemas.konfigure.giantswarm.io
 source_repository: https://github.com/giantswarm/konfigure-operator
 source_repository_ref: v1.2.2

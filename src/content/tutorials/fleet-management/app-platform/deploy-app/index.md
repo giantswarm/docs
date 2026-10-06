@@ -7,6 +7,10 @@ weight: 100
 aliases:
   - /getting-started/app-platform/deploy-app
   - /vintage/getting-started/app-platform/deploy-app
+  - /app-platform/getting-started
+  - /ui-api/web/app-platform
+  - /platform-overview/web-interface/app-platform
+  - /reference/web-interface/app-catalog
 menu:
   principal:
     parent: tutorials-fleet-management-app-platform

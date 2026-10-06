@@ -24,6 +24,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 aliases:
   - /use-the-api/management-api/crd/releases.release.giantswarm.io/
+  - /ui-api/management-api/crd/releases.release.giantswarm.io/
+  - /reference/cp-k8s-api/releases.release.giantswarm.io/
 technical_name: releases.release.giantswarm.io
 source_repository: https://github.com/giantswarm/release-operator
 source_repository_ref: v4.2.1

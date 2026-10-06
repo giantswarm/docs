@@ -10,6 +10,8 @@ menu:
     parent: tutorials-continuous-deployment-apps
 user_questions:
   - How can I add an app to a workload cluster with GitOps?
+aliases:
+  - /advanced/gitops/apps
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2026-07-02

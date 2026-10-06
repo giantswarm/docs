@@ -23,6 +23,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 aliases:
   - /use-the-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io/
+  - /ui-api/management-api/crd/rolebindingtemplates.auth.giantswarm.io/
+  - /reference/cp-k8s-api/rolebindingtemplates.auth.giantswarm.io/
 technical_name: rolebindingtemplates.auth.giantswarm.io
 source_repository: https://github.com/giantswarm/rbac-operator
 source_repository_ref: v1.2.0

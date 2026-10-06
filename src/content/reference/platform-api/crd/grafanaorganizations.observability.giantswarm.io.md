@@ -25,6 +25,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 aliases:
   - /use-the-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
+  - /ui-api/management-api/crd/grafanaorganizations.observability.giantswarm.io/
+  - /reference/cp-k8s-api/grafanaorganizations.observability.giantswarm.io/
 technical_name: grafanaorganizations.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/observability-operator
 source_repository_ref: v0.80.0

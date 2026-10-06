@@ -16,6 +16,7 @@ aliases:
   - /advanced/connectivity/ingress/multi-nginx-ic
   - /guides/multi-nginx/
   - /advanced/multi-nginx/
+  - /advanced/ingress/multi-nginx-ic
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---

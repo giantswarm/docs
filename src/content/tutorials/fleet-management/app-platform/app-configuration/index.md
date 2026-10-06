@@ -11,6 +11,7 @@ weight: 30
 aliases:
   - /getting-started/app-platform/app-configuration
   - /vintage/getting-started/app-platform/app-configuration
+  - /app-platform/app-configuration
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:

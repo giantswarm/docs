@@ -12,6 +12,8 @@ user_questions:
   - How to manage workload clusters with GitOps?
   - How to prepare repositories for use with Flux?
   - How to ensure security by combining Flux with the platform API permission model?
+aliases:
+  - /advanced/gitops
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 last_review_date: 2026-07-02

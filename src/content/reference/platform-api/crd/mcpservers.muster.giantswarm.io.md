@@ -24,6 +24,8 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
+  - /ui-api/management-api/crd/mcpservers.muster.giantswarm.io/
+  - /reference/cp-k8s-api/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
 source_repository_ref: v5.32.10

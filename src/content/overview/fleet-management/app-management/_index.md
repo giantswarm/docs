@@ -8,6 +8,10 @@ menu:
   principal:
     parent: overview-fleetmanagement
     identifier: overview-fleetmanagement-appmanagement
+aliases:
+  - /app-platform
+  - /app-platform/overview
+  - /basics/app-platform
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
