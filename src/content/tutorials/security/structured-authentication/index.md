@@ -18,7 +18,7 @@ user_questions:
   - How does kubectl gs login discover the OIDC issuer, client ID, CA, and API endpoint?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2026-04-13
+last_review_date: 2026-10-06
 ---
 
 Kubernetes [structured authentication configuration](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#using-authentication-configuration) replaces the legacy `--oidc-*` API server flags with a declarative, file-based configuration. Giant Swarm workload clusters now expose this mechanism through the `cluster` app values, which lets you wire one or more identity providers into the API server without rolling your own kubeconfig distribution.
@@ -312,7 +312,7 @@ global:
         enabled: true
 ```
 
-Once the rolling update completes and you have confirmed that existing users can still authenticate, you can move to the richer `issuers` list at your own pace, for example to add a second provider or CEL rules. The legacy top-level fields are ignored when `issuers` is set, so remove them at that point to keep the configuration unambiguous.
+Once the rolling update completes and you have confirmed that existing users can still authenticate, you can move to the richer `issuers` list at your own pace, for example to add a second provider or CEL rules. The legacy top-level fields aren't ignored when `issuers` is set. The cluster app still turns them into an issuer and puts it first in the list, in front of the entries from `issuers`. So when you move the same provider into `issuers`, remove the legacy fields, otherwise the API server gets a duplicate issuer URL and rejects the configuration.
 
 ## Verify the configuration
 
