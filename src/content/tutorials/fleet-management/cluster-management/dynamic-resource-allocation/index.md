@@ -61,36 +61,9 @@ DRA for GPUs is supported on:
 
 ## Enable DRA in your cluster
 
-### Step 1: Enable the DRA feature gate
+### Step 1: Check the DRA feature gate
 
-DRA requires the `DynamicResourceAllocation` feature gate to be enabled in your cluster (previous to 1.34 release). Update your cluster configuration to include this feature gate.
-
-For Cluster API clusters, add the following to your cluster app values:
-
-```yaml
-    cluster:
-      internal:
-        advancedConfiguration:
-          controlPlane:
-            apiServer:
-              featureGates:
-              - name: DynamicResourceAllocation
-                enabled: true
-            controllerManager:
-              featureGates:
-              - name: DynamicResourceAllocation
-                enabled: true
-            scheduler:
-              featureGates:
-              - name: DynamicResourceAllocation
-                enabled: true
-          kubelet:
-            featureGates:
-            - name: DynamicResourceAllocation
-              enabled: true
-```
-
-Apply the updated configuration and wait for the cluster to be updated.
+On Kubernetes 1.34 and later, the `DynamicResourceAllocation` feature gate is stable and enabled by default, so you don't need to change your cluster configuration. The gate was off by default in 1.32 and 1.33, which is why this guide requires 1.34 or later.
 
 ### Step 2: Configure GPU nodes with DRA labels
 
@@ -536,7 +509,7 @@ Having the driver create and reshape MIG partitions on demand is a separate alph
 - The NVIDIA driver's own APIs (`resource.nvidia.com/v1beta1`) are still beta and may change
 - Not all GPU features are immediately available through DRA drivers
 - Performance overhead compared to traditional device plugins is minimal but measurable
-- DRA requires Giant Swarm release 1.33+
+- DRA requires a Giant Swarm release that ships Kubernetes 1.34 or later
 - Chart `26.0.0` requires NVIDIA driver 570 or newer on GPU nodes
 - The DRA driver can't run alongside the NVIDIA device plugin on the same node
 - Compute domains require NVLink-fabric hardware and must be turned off otherwise
