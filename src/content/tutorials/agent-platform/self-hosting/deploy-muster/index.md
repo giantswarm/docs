@@ -37,6 +37,8 @@ For the concepts behind the aggregator, see the [architecture overview]({{< relr
 
 The application chart bundles the CRDs in its `crds/` directory, so a fresh `helm install` of `muster` creates them. Helm never upgrades or deletes files from `crds/`. If you upgrade with plain Helm and want the CRDs upgraded too, install the `muster-crds` chart first. With Flux, set `install.crds` and `upgrade.crds: CreateReplace` on the `HelmRelease` instead.
 
+To manage the CRDs with Helm, install `muster-crds` before `muster`:
+
 ```bash
 helm upgrade --install muster-crds \
   oci://gsoci.azurecr.io/charts/giantswarm/muster-crds \
