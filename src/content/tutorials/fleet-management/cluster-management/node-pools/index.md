@@ -29,7 +29,7 @@ aliases:
   - /vintage/advanced/cluster-management/node-pools-vintage
   - /vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types
   - /vintage/advanced/cluster-management/upgrades/upgrade-disruption
-last_review_date: 2026-07-24
+last_review_date: 2026-10-06
 ---
 
 A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
@@ -112,7 +112,7 @@ data:
           type: karpenter # This is the key difference that will make karpenter manage your worker nodes
           consolidateAfter: 6h
           consolidationPolicy: WhenEmptyOrUnderutilized
-          consolidationBudgets: # You can control when and how nodes will be updated / rolled with the budgets
+          disruptionBudgets: # You can control when and how nodes will be updated / rolled with the budgets
             - nodes: "20%"
             - schedule: "0 9 * * mon-fri"
               duration: "8h"
@@ -409,7 +409,7 @@ Nodes may also get replaced involuntarily, for example if the node becomes unhea
 
 During a cluster upgrade, creating new EC2 instances (called "rolling nodes") can be necessary. That only happens if anything changes in the node configuration, such as configuration files or newer version of Kubernetes or Flatcar Linux. For such planned node replacements, the default [instance warmup settings](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) to ensure that AWS doesn't replace the old nodes too quickly all at once, but rather in steps so a human could still intervene if something goes wrong (for example roll back to previous version). One node will be replaced every 10 minutes for a small node pool. Instead, for bigger node pools, small sets of nodes would be replaced every 10 minutes.
 
-When node pool instances need to be rolled, each instance receives a terminate signal from AWS. With `aws-node-termination-handler` preinstalled on the cluster, affected nodes are first gracefully drained before allowing AWS to finally continue terminating the EC2 instance. By default, the timeout for draining is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools) (30 minutes). For nodes which could not be fully drained within that time, for example, because a pod did not terminate gracefully, the handler lets AWS continue the termination of the instance.
+When node pool instances need to be rolled, each instance receives a terminate signal from AWS. With `aws-node-termination-handler` preinstalled on the cluster, affected nodes are first gracefully drained before allowing AWS to finally continue terminating the EC2 instance. By default, the timeout for draining is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=180`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools) (3 minutes). For nodes which could not be fully drained within that time, for example, because a pod did not terminate gracefully, the handler lets AWS continue the termination of the instance.
 
 {{< /tab >}}
 {{< tab id="nodepool-update-capa-karpenter" for-impl="capa_ec2_karpenter" >}}
@@ -565,7 +565,7 @@ In case there are workloads not assigned to any node pools, the autoscaler may p
 Karpenter is watching the `Pods` in the cluster, and [it will scale up the node pool](https://karpenter.sh/docs/) based on the `Pods` that are in `Pending` state.
 
 {{< /tab >}}
-{{< tab id="nodepool-autoscaling-capz" for-impl="capz_vms" >}} >}}
+{{< tab id="nodepool-autoscaling-capz" for-impl="capz_vms" >}}
 
 Not supported at the moment.
 
