@@ -187,7 +187,7 @@ kubectl get filesystem.efs.aws.upbound.io <CLUSTER_NAME>-efs \
 
 The first ID starts with `sg-`, the second one with `fs-`. You need both in the next step.
 
-### Allow NFS traffic and create the mount targets
+### Open the NFS port and create the mount targets
 
 Create a file `efs-network.yaml`. Replace `<SECURITY_GROUP_ID>`, `<FILE_SYSTEM_ID>`, and `<VPC_CIDR>` with your values, and add one `MountTarget` per private subnet:
 
@@ -238,7 +238,7 @@ Give the mount targets **a few minutes** after they turn ready. Until AWS publis
 
 ## Mount the volume in your pods
 
-All of the following steps run against the **workload cluster**.
+Run the following steps against the **workload cluster**.
 
 ### Create a storage class
 
@@ -365,5 +365,5 @@ Delete the resources in reverse order, or the AWS resources get stuck on their d
 
 - [Persistent volumes]({{< relref "/tutorials/storage/persistent-volumes" >}})
 - [AWS EFS CSI driver repository](https://github.com/giantswarm/aws-efs-csi-driver)
-- [Upstream EFS CSI driver documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/tree/master/docs)
+- [EFS CSI driver upstream documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/tree/master/docs)
 - [Crossplane AWS provider for EFS](https://marketplace.upbound.io/providers/upbound/provider-aws-efs/)
