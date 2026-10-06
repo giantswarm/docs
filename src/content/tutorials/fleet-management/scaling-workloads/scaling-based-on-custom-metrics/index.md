@@ -8,7 +8,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-scaling
     identifier: tutorials-fleet-management-scaling-custom-gpu-metrics
-last_review_date: 2026-05-18
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -95,11 +95,11 @@ Giant Swarm automatically provides a `ClusterTriggerAuthentication` that allows 
 kubectl label cluster ${CLUSTER} observability.giantswarm.io/keda-authentication=true
 ```
 
-1. **(Optional) If KEDA is not running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed:
+1. **If KEDA is not running in the `keda` namespace**, annotate your Cluster CR with the namespace where KEDA is installed. This applies if you followed Step 2, as it installs KEDA into `keda-system`:
 
 ```bash
 # Only needed if KEDA runs in a different namespace than 'keda'
-kubectl annotate cluster ${CLUSTER} observability.giantswarm.io/keda-namespace=<your-keda-namespace>
+kubectl annotate cluster ${CLUSTER} observability.giantswarm.io/keda-namespace=keda-system
 ```
 
 Once enabled, the observability operator automatically creates:
