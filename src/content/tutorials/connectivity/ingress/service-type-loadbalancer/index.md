@@ -10,7 +10,7 @@ user_questions:
   - How do I configure an ingress controller behind an ELB that terminates SSL?
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
-last_review_date: 2026-05-18
+last_review_date: 2026-10-06
 aliases:
   - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
@@ -54,16 +54,16 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - host name: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
+    - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
-The above YAML would expose port `8080` of our `helloworld` pods on the HTTP port of the provisioned Elastic Load Balancer (ELB).
+The above YAML would expose the `http` port of our `helloworld` pods on port `8080` of the provisioned Elastic Load Balancer (ELB).
 
 ### Exposing on a non-HTTP port and protocol
 
-You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort` field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the ingress controller.
+You can change the port of the load balancer by changing the `port` field, and its protocol by adding a `protocol` field to the port. The `targetPort` field selects the port on the pods. This way you can expose TCP services directly without having to customize the ingress controller.
 
-Following example would set the ELB to TCP and port `8888`:
+Following example would set the ELB to TCP and port `8080`, forwarding to port `8888` on the pods:
 
 ```yaml
 apiVersion: v1
@@ -83,7 +83,7 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - host name: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
+    - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
 ### Customizing the external load balancer
