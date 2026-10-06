@@ -130,7 +130,8 @@ sops --encrypt --in-place secret.enc.yaml
 It's a good practice to clear the imported private key from your keyring afterward:
 
 ```sh
-gpg --delete-secret-keys "${KEY_FP}"
+gpg --list-secret-keys
+gpg --delete-secret-keys "<fingerprint of the imported key>"
 ```
 
 Commit `secret.enc.yaml` (and only the encrypted form). Flux applies the change and Helm picks up the new values on the next reconciliation.
