@@ -57,7 +57,7 @@ spec:
   interval: 24h
   url: oci://gsoci.azurecr.io/charts/giantswarm/aws-efs-csi-driver-bundle
   ref:
-    tag: 3.3.0
+    tag: 3.4.0
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
