@@ -419,8 +419,7 @@ spec:
     name: my-app
   cors:
     allowOrigins:
-    - type: Exact
-      value: "https://example.com"
+    - "https://example.com"
 ```
 
 #### Post-conversion steps
