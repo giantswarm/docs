@@ -45,7 +45,7 @@ helm upgrade --install muster-crds \
   --namespace muster --create-namespace
 ```
 
-The CRDs carry `helm.sh/resource-policy: keep`, so a later `helm uninstall muster-crds` leaves them, and every `MCPServer` and `Workflow` resource, in place. Removing them is a deliberate, destructive step that also deletes the dependent resources.
+The CRDs carry `helm.sh/resource-policy: keep`, so a later `helm uninstall muster-crds` leaves them, and every `MCPServer`, `Workflow`, and `WorkflowExecution` resource, in place. Removing them is a deliberate, destructive step that also deletes the dependent resources.
 
 ## Install the application
 
