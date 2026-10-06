@@ -12,7 +12,7 @@ user_questions:
   - How can I manage different environments with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 On many occasions, you need to set good defaults for your workload clusters but have the ability to change some values depending on the type of environment: development, staging or production for example. In such a case, you can rely on specific `bases` defined on your GitOps repository. Let's see in this document how you can create a `/bases/environments` folder structure.
@@ -94,7 +94,7 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-\${organization}
   - patch: |
       - type: merge
@@ -177,7 +177,7 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-\${organization}
 resources:
   - ../../../../../../../../bases/clusters/capa/v0.21.0/
@@ -242,13 +242,13 @@ patches:
       - op: add
         path: /spec/extraConfigs/0
         value:
-          - name: "${cluster_name}-region-config"
-            namespace: org-${organization}
-            priority: 120
+          name: "${cluster_name}-region-config"
+          namespace: org-${organization}
+          priority: 120
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-${organization}
 kind: Kustomization
 ```
