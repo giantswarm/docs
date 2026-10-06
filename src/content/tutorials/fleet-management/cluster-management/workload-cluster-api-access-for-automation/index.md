@@ -11,7 +11,7 @@ menu:
 user_questions:
   - How can I use the workload Cluster API in a programmatic way?
   - How do I grant access to Kubernetes API from my CI system?
-last_review_date: 2025-11-28
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -38,7 +38,7 @@ You need to create a `ServiceAccount` that represents your automation task. Idea
 kubectl create serviceaccount <service-account-name> -n <namespace>
 ```
 
-Since Kubernetes 1.30 version, the API does not create the token automatically for service accounts. You need to explicitly annotate a secret with `kubernetes.io/service-account.name` opting to the service account. Now Kubernetes uses [TokenRequest](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/) to obtain that credentials.
+Since Kubernetes 1.24, the API does not create the token automatically for service accounts. You need to explicitly annotate a secret with `kubernetes.io/service-account.name` opting to the service account. Now Kubernetes uses [TokenRequest](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/) to obtain that credentials.
 
 Since you want a token for a external system to automate actions on the Kubernetes API, you can just use the `create token` command with the optional `--duration` flag to generate a token representing the service account.
 
@@ -95,7 +95,7 @@ For generating a `kubeconfig` for the hypothetical `jenkins` service account, yo
 CLUSTER=$1
 
 # Init env vars
-TOKEN=$(kubectl create token jenkins')
+TOKEN=$(kubectl create token jenkins)
 CA_CERT=$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
 API_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
