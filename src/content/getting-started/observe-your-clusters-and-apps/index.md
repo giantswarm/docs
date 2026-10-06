@@ -3,7 +3,7 @@ title: Observe your clusters and apps
 diataxis_content_type: tutorial
 description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics and logs to distributed tracing, custom dashboards and alerts.
 weight: 60
-last_review_date: 2025-07-17
+last_review_date: 2026-10-06
 aliases:
   - /getting-started/observability/
   - /getting-started/observability/observe-your-clusters-and-apps/
@@ -75,7 +75,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    observability.giantswarm.io/tenant: my-team
+    observability.giantswarm.io/tenant: my_team
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: my-namespace
@@ -91,7 +91,7 @@ spec:
 
 **Key configuration points:**
 
-- **Tenant label**: The `observability.giantswarm.io/tenant: my-team` label is required for metrics routing and data isolation
+- **Tenant label**: The `observability.giantswarm.io/tenant: my_team` label is required for metrics routing and data isolation
 - **Scrape interval**: Metrics are collected every 60 seconds (adjust based on your needs)
 - **Metrics endpoint**: The `/metrics` path should expose Prometheus-format metrics
 - **Port reference**: Use the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) from your service definition
@@ -160,7 +160,7 @@ spec:
     metadata:
       labels:
         # Required for trace data routing
-        observability.giantswarm.io/tenant: my-team
+        observability.giantswarm.io/tenant: my_team
         app: my-traced-app
     spec:
       containers:
