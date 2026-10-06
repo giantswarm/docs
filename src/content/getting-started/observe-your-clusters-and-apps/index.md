@@ -114,7 +114,7 @@ Once metrics collection is configured, explore your data using Grafana's Explore
 Try these sample queries to get started:
 
 - `rate(http_requests_total[5m])` - Request rate over the last five minutes
-- `histogram_quantile(0.95, http_request_duration_seconds_bucket)` - 95th percentile response time
+- `histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))` - 95th percentile response time
 - `up{job="my-service"}` - Check if your service is up and running
 
 **New to PromQL?** See the [PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}) for detailed guidance.
