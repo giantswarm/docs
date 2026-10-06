@@ -10,7 +10,7 @@ user_questions:
   - How do I configure an ingress controller behind an ELB that terminates SSL?
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
-last_review_date: 2026-05-18
+last_review_date: 2026-10-06
 aliases:
   - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
@@ -108,6 +108,8 @@ metadata:
   name: my-service
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+```
+
 #### SSL termination on AWS
 
 There are three annotations you can set to configure SSL termination.
@@ -152,7 +154,7 @@ Writing access logs to an S3 bucket is a standard feature of ELBs. For `LoadBala
 metadata:
   name: my-service
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: true
+    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: "true"
     # The interval for publishing the access logs (can be 5 or 60 minutes).
     service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: "60"
     service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: my-logs-bucket
