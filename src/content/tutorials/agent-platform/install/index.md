@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-install
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-08
+last_review_date: 2026-10-06
 user_questions:
   - How do I install the Agent Platform on my own cluster?
   - Why does the Agent Platform chart need Helm 4?
@@ -194,7 +194,7 @@ The release manages itself. The engine the chart brought also holds the chart: t
 
     The Secret *is* the values of the release, so always write the whole file—a partial file reverts everything it omits to the chart defaults.
 
-- **The next major is a deliberate step.** Set `gitops.self.versionRange` (for example `">=4.0.0 <5.0.0"`) in the values file, read the operator actions in the chart's [UPGRADE.md](https://github.com/giantswarm/agent-platform/blob/main/UPGRADE.md), and rewrite the Secret the same way.
+- **The next major is a deliberate step.** Set `gitops.self.versionRange` (for example `">=5.0.0 <6.0.0"`) in the values file, read the operator actions in the chart's [UPGRADE.md](https://github.com/giantswarm/agent-platform/blob/main/UPGRADE.md), and rewrite the Secret the same way.
 
 If you'd rather keep the Helm CLI as your day-two tool, set `gitops.self.enabled: false` in the values file before the install and keep it there. `helm upgrade -f values.yaml` then stays the way to change values and to move the chart itself, while the components keep following their version ranges.
 
@@ -212,7 +212,7 @@ spec:
   interval: 1h
   url: oci://gsoci.azurecr.io/charts/giantswarm/agent-platform
   ref:
-    semver: ">=3.0.0 <4.0.0"   # or a pinned tag
+    semver: ">=4.0.0 <5.0.0"   # or a pinned tag
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
