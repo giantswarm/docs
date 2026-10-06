@@ -116,7 +116,7 @@ The v1alpha2 API supports four match types using Alertmanager operator symbols:
 Silences in the v1alpha2 API resolve their time window as follows:
 
 - **Start time**: `spec.startsAt` (RFC3339). Defaults to the creation timestamp, so set a future value to schedule a silence.
-- **End time**: The first of these that is set wins:
+- **End time**: The first of these that's set wins:
   1. `spec.endsAt` (RFC3339).
   2. `spec.duration`, counted from the start time, for example `7d`, `2w`, `1d12h`, `30m` (units `w`, `d`, `h`, `m`, `s`).
   3. The `valid-until` annotation in `yyyy-mm-dd` or RFC3339 format.

@@ -81,8 +81,8 @@ traces_service_graph_request_total{client="api-gateway", server="user-service"}
 # Failed requests between services
 traces_service_graph_request_failed_total{client="api-gateway", server="user-service"}
 
-# Request duration between services (histogram: _bucket, _sum, _count series)
-traces_service_graph_request_server_seconds_count{client="api-gateway", server="user-service"}
+# Request duration histogram buckets between services
+traces_service_graph_request_server_seconds_bucket{client="api-gateway", server="user-service"}
 ```
 
 ### Span metrics
