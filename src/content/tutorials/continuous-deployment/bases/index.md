@@ -12,7 +12,7 @@ user_questions:
   - How can I create an base template for workload clusters in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-08-19
+last_review_date: 2026-10-06
 ---
 
 In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [the app platform]({{< relref "/overview/fleet-management/app-management/" >}}). The application custom resource contains the specification and configuration of the cluster in this format:
@@ -148,8 +148,8 @@ In this example you create a custom version for AWS base:
     generatorOptions:
       disableNameSuffixHash: true
     kind: Kustomization
-    patchesStrategicMerge:
-      - patch_config.yaml
+    patches:
+      - path: patch_config.yaml
     resources:
       - ../template
     ```

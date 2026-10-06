@@ -12,7 +12,7 @@ user_questions:
   - How can I add an app to a workload cluster with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 **Deprecated:** This guide covers the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
@@ -144,8 +144,8 @@ generatorOptions:
   disableNameSuffixHash: true
 ## CONFIGURATION OVERRIDE BLOCK END
 kind: Kustomization
-patchesStrategicMerge:
-  - config_patch.yaml
+patches:
+  - path: config_patch.yaml
 resources:
   - ../../../../../../../../../${APP_TEMPLATE_PATH}
   - secret.enc.yaml ## ONLY IF INCLUDING SECRET
