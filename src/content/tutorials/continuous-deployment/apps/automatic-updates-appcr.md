@@ -108,7 +108,7 @@ apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
-  namespace: flux-system
+  namespace: default
 spec:
   imageRepositoryRef:
     name: ${APP_NAME}
