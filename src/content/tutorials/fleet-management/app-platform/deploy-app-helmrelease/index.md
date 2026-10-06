@@ -36,7 +36,7 @@ To deploy workloads to workload clusters, Flux [HelmRelease](https://fluxcd.io/f
 | Automatic version updates | Requires Flux `ImageUpdateAutomation` on `.spec.version` | Native via a SemVer range on the source |
 | Configuration | `config` + `userConfig` (Giant Swarm convention) | `values` + `valuesFrom` with explicit merge order |
 | Cross-release ordering | Not modelled | `dependsOn` |
-| Drift detection | App-operator reconciliation | Native Flux drift detection |
+| Drift detection | App-operator reconciliation | Flux drift detection (opt-in via `spec.driftDetection.mode`) |
 | Pause and resume | Annotation-based | `flux suspend` and `flux resume` |
 | Post-render patches | Not supported | Native post-renderers (Kustomize) |
 
@@ -232,7 +232,7 @@ flux create helmrelease dev01-hello-world \
     --export > releases/dev01-hello-world.yaml
 ```
 
-Commit both files to your Git repository. Once Flux reconciles your repository through a Kustomization or GitRepository source, the resources are applied. From then on, edits to the YAML in Git become the only way to change the deployment, and Flux reverts manual edits as drift.
+Commit both files to your Git repository. Once Flux reconciles your repository through a Kustomization or GitRepository source, the resources are applied. From then on, edits to the YAML in Git become the only way to change the deployment, and, if you enable `spec.driftDetection.mode: enabled` on the HelmRelease, Flux reverts manual edits as drift.
 
 For an end-to-end GitOps setup, see [FluxCD]({{< relref "/tutorials/continuous-deployment/flux" >}}) and the [continuous deployment tutorials]({{< relref "/tutorials/continuous-deployment/" >}}).
 
