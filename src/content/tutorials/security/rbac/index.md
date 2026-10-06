@@ -17,7 +17,7 @@ user_questions:
   - Why are my containers failing to access some resources?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 mermaid: true
 ---
 
@@ -104,13 +104,13 @@ metadata:
     rbac.example.com/aggregate-to-monitoring: "true"
 rules:
 - apiGroups: [""]
-  Resources: ["services", "endpoints", "pods"]
+  resources: ["services", "endpoints", "pods"]
   verbs: ["get", "list", "watch"]
 ```
 
 You can further use this feature to extend already existing cluster roles, if you feel an existing role is too restrictive or want to include access to new custom resources. The default cluster roles (`admin`, `edit`, `view`) are already prepared to be extended through aggregation rules.
 
-For example, you could extend the `admin` cluster role to include access to some custom `PodSecurityPolicy`:
+For example, you could extend the `admin` cluster role to include access to a custom resource, here `crontabs` from the `stable.example.com` API group:
 
 ```yaml
 kind: ClusterRole
@@ -122,16 +122,20 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
 rules:
 - apiGroups:
-  - policy
+  - stable.example.com
   resources:
-  - podsecuritypolicies
-  resourceNames:
-  - admin-psp
+  - crontabs
   verbs:
-  - use
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
 ```
 
-After applying above ClusterRole to the cluster, everyone with the cluster role `admin` will be able to use the `admin-psp` policy.
+After applying above ClusterRole to the cluster, everyone with the cluster role `admin` will be able to manage `crontabs` resources.
 
 ### Binding a roles {#binding-role}
 
