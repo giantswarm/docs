@@ -101,7 +101,9 @@ ingress:
         - muster.<management-cluster>.<base-domain>
 ```
 
-For Gateway API, set `gatewayAPI.enabled: true` with a `parentRefs` entry and `hostnames`. On Envoy Gateway, also enable `gatewayAPI.backendTrafficPolicy` with `timeout: "0s"`, because the default fifteen-second backend timeout kills the long-lived streaming connections MCP relies on.
+For Gateway API, set `gatewayAPI.enabled: true` with at least one `gatewayAPI.httpRoute.parentRefs` entry and `gatewayAPI.httpRoute.hostnames`. On Envoy Gateway, also enable `gatewayAPI.backendTrafficPolicy` with `timeout: "0s"`, because the default fifteen-second backend timeout kills the long-lived streaming connections MCP relies on.
+
+The chart refuses to render an Ingress or HTTPRoute while `muster.oauth.server.enabled` is `false`, as the route would accept every request unauthenticated. Either configure OAuth first (see [OAuth setup]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}})) or, for a deliberate test setup, set `muster.oauth.server.acknowledgeUnauthenticatedExposure: true`.
 
 Tokens from enterprise single sign-on can carry many group claims and overflow the default ingress header buffers. Raise `large_client_header_buffers` on the ingress that fronts Muster. The [OAuth setup]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}}) guide covers the symptom and fix.
 
