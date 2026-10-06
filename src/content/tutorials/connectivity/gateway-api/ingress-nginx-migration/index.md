@@ -17,7 +17,7 @@ user_questions:
   - What ingress-nginx annotations are supported when migrating to Gateway API?
   - How do I configure DNS and TLS certificates for Gateway API?
   - Can I run ingress-nginx and Gateway API at the same time?
-last_review_date: 2026-02-04
+last_review_date: 2026-10-06
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is the successor to the Kubernetes Ingress API, offering a more expressive and extensible model for managing traffic routing. This guide walks you through migrating from Ingress resources to Gateway API with Envoy Gateway on Giant Swarm clusters.
@@ -506,8 +506,9 @@ kubectl describe httproute <your-route-name> -n <namespace>
 
 - **`Condition: Accepted, Status: True`**: The route is valid and attached to the Gateway.
 - **`Condition: ResolvedRefs, Status: False`**: The `backendRef` (Service) cannot be found. Check the service name and port.
-- **`Reason: NotAllowedByListeners`**: The Gateway exists, but no listener matches your hostname, or the listener blocks this namespace.
-- **`Reason: Detached`**: The route references a Gateway that doesn't exist or isn't programmed.
+- **`Reason: NotAllowedByListeners`**: The Gateway exists, but no listener's `allowedRoutes` permits this route, for example because the listener blocks this namespace.
+- **`Reason: NoMatchingListenerHostname`**: The Gateway has no listener whose hostname matches the hostnames of your route.
+- **`Reason: NoMatchingParent`**: The `parentRefs` entry doesn't match anything, for example a `sectionName` or `port` that no listener of the Gateway has.
 
 ### DNS considerations
 
