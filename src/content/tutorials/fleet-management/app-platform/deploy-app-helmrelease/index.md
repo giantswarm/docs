@@ -188,7 +188,7 @@ flux get helmreleases \
 
 kubectl describe helmrelease \
     --namespace org-acmedev \
-    helloworld-marian
+    dev01-hello-world
 ```
 
 ### Cleaning up
@@ -200,11 +200,11 @@ To remove the deployed application, you'll have to delete the HelmRelease and th
 ```nohighlight
 flux delete helmrelease \
     --namespace org-acmedev \
-    helloworld-marian
+    dev01-hello-world
 
 flux delete source oci \
     --namespace org-acmedev \
-    helloworld-marian
+    dev01-hello-world
 ```
 
 ## Git-driven workflow
