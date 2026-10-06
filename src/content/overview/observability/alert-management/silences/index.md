@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-alert-management
     identifier: overview-observability-alert-management-silences
-last_review_date: 2026-06-09
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -34,7 +34,7 @@ Use the v1alpha2 Silence API (`observability.giantswarm.io/v1alpha2`) for GitOps
 
 **Important:** Silence CRDs can only be created in management clusters. The silence-operator runs on management clusters and manages silences for the entire observability platform.
 
-The v1alpha2 API is namespace-scoped and uses a simplified timing model where silences start immediately when created and end at the time specified in the `valid-until` annotation. For the complete `Silence` field schema, see the [Silence CRD reference]({{< relref "/reference/platform-api/crd/silences.observability.giantswarm.io" >}}).
+The v1alpha2 API is namespace-scoped and supports explicit timing through `spec.startsAt`, `spec.endsAt`, and `spec.duration`. Without them, silences start immediately and end at the `valid-until` annotation. For the complete `Silence` field schema, see the [Silence CRD reference]({{< relref "/reference/platform-api/crd/silences.observability.giantswarm.io" >}}).
 
 ### Required tenant labeling
 
@@ -113,13 +113,25 @@ The v1alpha2 API supports four match types using Alertmanager operator symbols:
 
 ### Silence timing
 
-Silences in the v1alpha2 API use a simple timing model:
+Silences in the v1alpha2 API resolve their time window as follows:
 
-- **Start time**: Silences become active immediately when created in the cluster
-- **End time**: Set using the `valid-until` annotation in either `yyyy-mm-dd` or RFC3339 format
-- **No scheduling**: You can't schedule silences for future activation - they start when you create them
+- **Start time**: `spec.startsAt` (RFC3339). Defaults to the creation timestamp, so set a future value to schedule a silence.
+- **End time**: The first of these that is set wins:
+  1. `spec.endsAt` (RFC3339).
+  2. `spec.duration`, counted from the start time, for example `7d`, `2w`, `1d12h`, `30m` (units `w`, `d`, `h`, `m`, `s`).
+  3. The `valid-until` annotation in `yyyy-mm-dd` or RFC3339 format.
+  4. A 100-year default.
+- `spec.endsAt` and `spec.duration` are mutually exclusive, and `spec.startsAt` must be before `spec.endsAt`.
 
-This design keeps the API simple while supporting the most common use cases. For precise timing, create the silence CRD exactly when you want it to start.
+```yaml
+spec:
+  startsAt: "2026-10-20T22:00:00Z"
+  duration: 4h
+  matchers:
+    - name: alertname
+      matchType: "="
+      value: DatabaseDown
+```
 
 ### Forcing complete silence
 
@@ -269,7 +281,7 @@ kubectl delete silences -l observability.giantswarm.io/tenant=my_tenant -n my-na
 - Check matcher values exactly match alert labels
 - Confirm the silence hasn't expired (check the `valid-until` annotation)
 - Validate namespace and RBAC permissions
-- Ensure the silence was created when you wanted it to start (no future scheduling)
+- Check `spec.startsAt` isn't in the future
 
 **Can't create silences:**
 
@@ -303,7 +315,7 @@ kubectl get configmap alertmanager-config -n monitoring -o yaml
 - **Prefer CRDs for most use cases**: The GitOps approach with CRDs is recommended for better version control, audit trails, and team collaboration
 - **Use CRDs for planned silences**: Leverage GitOps for predictable maintenance windows
 - **Use Grafana UI for emergencies**: Quick silences during active incidents when immediate action is needed
-- **Time creation**: Since v1alpha2 silences start immediately, create them exactly when needed
+- **Time creation**: Without `spec.startsAt`, silences start when created. Set `spec.startsAt` to schedule one ahead of time
 - **Set reasonable durations**: Use appropriate `valid-until` times to avoid indefinite silences
 - **Use meaningful names**: Choose descriptive silence names for easy identification
 - **Regular cleanup**: Remove expired silences and review long-running ones
