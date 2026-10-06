@@ -12,7 +12,7 @@ user_questions:
   - How can I create an base template for workload clusters in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-08-19
+last_review_date: 2026-10-06
 ---
 
 In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [the app platform]({{< relref "/overview/fleet-management/app-management/" >}}). The application custom resource contains the specification and configuration of the cluster in this format:
@@ -114,8 +114,8 @@ In this example you create a custom version for AWS base:
 4. Replace `mywcl`, `myorg` values from the previous step with variables:
 
     ```nohighlight
-    sed -i "s/myorg/${organization}/g" bases/clusters/capa/v0.21.0/cluster_config.yaml
-    sed -i "s/mywcl/${cluster_name}/g" bases/clusters/capa/v0.21.0/cluster_config.yaml
+    sed -i 's/myorg/${organization}/g' bases/clusters/capa/v0.21.0/cluster_config.yaml
+    sed -i 's/mywcl/${cluster_name}/g' bases/clusters/capa/v0.21.0/cluster_config.yaml
     ```
 
 5. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
