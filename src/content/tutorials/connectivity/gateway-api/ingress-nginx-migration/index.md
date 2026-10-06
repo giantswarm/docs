@@ -17,7 +17,7 @@ user_questions:
   - What ingress-nginx annotations are supported when migrating to Gateway API?
   - How do I configure DNS and TLS certificates for Gateway API?
   - Can I run ingress-nginx and Gateway API at the same time?
-last_review_date: 2026-02-04
+last_review_date: 2026-10-06
 ---
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) is the successor to the Kubernetes Ingress API, offering a more expressive and extensible model for managing traffic routing. This guide walks you through migrating from Ingress resources to Gateway API with Envoy Gateway on Giant Swarm clusters.
@@ -419,8 +419,7 @@ spec:
     name: my-app
   cors:
     allowOrigins:
-    - type: Exact
-      value: "https://example.com"
+    - "https://example.com"
 ```
 
 #### Post-conversion steps
