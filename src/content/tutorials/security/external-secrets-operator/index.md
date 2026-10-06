@@ -16,7 +16,7 @@ aliases:
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
   - /advanced/external-secrets-operator/
-last_review_date: 2026-08-19
+last_review_date: 2026-10-06
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
@@ -69,4 +69,4 @@ You can define multiple `SecretStores` on the cluster. This works best inside a 
 
 Next, create the [`ExternalSecret`](https://external-secrets.io/latest/api/externalsecret/). Here you bind one or many external secrets to the Kubernetes secret that this resource manages.
 
-An `ExternalSecret` may bind several secrets to one Kubernetes secret. Where it does, it may only reference a single `SecretStore`. For details, see [binding multiple secrets](https://external-secrets.io/latest/guides/getallsecrets/).
+An `ExternalSecret` may bind several secrets to one Kubernetes secret. It can pull them from a single `SecretStore` set in `spec.secretStoreRef`, or from different stores by setting `sourceRef.storeRef` on individual `data` or `dataFrom` entries. For details, see [binding multiple secrets](https://external-secrets.io/latest/guides/getallsecrets/).
