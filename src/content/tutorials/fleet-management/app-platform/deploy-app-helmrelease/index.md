@@ -79,7 +79,7 @@ For the following example we make a few assumptions:
 
 To determine what configuration values of our chart accepts, let's take a look at the source repository. Our application's source lives in the GitHub repository [giantswarm/hello-world-app](https://github.com/giantswarm/hello-world-app).
 
-Assuming that we want to deploy the most recent release, which is [v3.0.2](https://github.com/giantswarm/hello-world-app/releases/tag/v3.0.2) as of the writing of this guide, and at the same time we want to have automatic upgrades for minor and patch versions, we use `v3.x.x`.
+Assuming that we want to deploy the most recent release, which is [v3.0.2](https://github.com/giantswarm/hello-world-app/releases/tag/v3.0.2) as of the writing of this guide, and at the same time we want to have automatic upgrades for minor and patch versions, we use the range `3.x.x`.
 
 We don't have to deal with most of the configuration options in this case. However, to get the application fully working and see a little demo website deployed to our server, we need to expose it through the cluster's [Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api" >}}) using a Gateway API `HTTPRoute`. The chart's `route` block renders that `HTTPRoute` for us. Based on our assumptions for this example case, we create a new `values.yaml` file like this:
 
