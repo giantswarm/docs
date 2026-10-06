@@ -211,6 +211,7 @@ SLO[s]?
 [Ss]panset[s]?
 SOPS
 Spotify
+Streamable
 SRE[s]?
 SSL
 SSO
