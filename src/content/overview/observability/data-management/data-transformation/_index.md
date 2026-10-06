@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-transformation
-last_review_date: 2025-07-17
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -69,14 +69,15 @@ spec:
   endpoints:
   - path: /metrics
     port: metrics
-    # Transform labels during collection
+    # Applied to target labels, before the scrape
     relabelings:
     # Add environment label based on namespace
     - sourceLabels: [__meta_kubernetes_namespace]
       targetLabel: environment
       regex: "production-(.*)"
       replacement: "prod"
-
+    # Applied to scraped samples, before ingestion
+    metricRelabelings:
     # Drop sensitive metrics
     - sourceLabels: [__name__]
       regex: "secret_.*|password_.*"
