@@ -14,7 +14,7 @@ user_questions:
   - How can I deploy an app using a HelmRelease?
   - How does HelmRelease compare to the Giant Swarm App custom resource?
   - How do I deploy a chart from an OCI registry to a workload cluster?
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 **Note:** The CLI command [kubectl gs deploy chart]({{< relref "/reference/kubectl-gs/deploy-chart" >}}) simplifies deploying a chart as described on this page. We recommend looking into that CLI command first and coming back here if your use case isn't covered.
@@ -188,7 +188,7 @@ flux get helmreleases \
 
 kubectl describe helmrelease \
     --namespace org-acmedev \
-    helloworld-marian
+    dev01-hello-world
 ```
 
 ### Cleaning up
@@ -200,11 +200,11 @@ To remove the deployed application, you'll have to delete the HelmRelease and th
 ```nohighlight
 flux delete helmrelease \
     --namespace org-acmedev \
-    helloworld-marian
+    dev01-hello-world
 
 flux delete source oci \
     --namespace org-acmedev \
-    helloworld-marian
+    dev01-hello-world
 ```
 
 ## Git-driven workflow
