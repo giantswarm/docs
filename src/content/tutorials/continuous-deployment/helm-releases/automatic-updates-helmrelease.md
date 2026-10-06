@@ -14,7 +14,7 @@ user_questions:
   - How do I commit chart version bumps to my Git repository?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 Flux can roll new chart versions for a `HelmRelease` without manual tag bumps. Two approaches:
@@ -128,7 +128,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
-  namespace: flux-system
+  namespace: default
 spec:
   imageRepositoryRef:
     name: ${APP_NAME}

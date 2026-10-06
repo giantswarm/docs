@@ -12,7 +12,7 @@ user_questions:
   - How can I enable and configure auto update for apps deployment with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-05-21
+last_review_date: 2026-10-06
 ---
 
 **Deprecated:** This guide covers automatic updates for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Enable automatic updates for HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/automatic-updates-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
@@ -108,7 +108,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
-  namespace: flux-system
+  namespace: default
 spec:
   imageRepositoryRef:
     name: ${APP_NAME}
