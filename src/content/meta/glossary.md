@@ -2,6 +2,7 @@
 title: Glossary
 description: A page with the term definitions Giant Swarm uses in the documentation.
 search: false
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -31,11 +32,11 @@ Managed capabilities are a set of curated components that can be used in the [pl
 
 ## Management cluster
 
-A management cluster is a Kubernetes cluster that acts as a central management point of the platform. This cluster hosts platform-wide services for GitOps, observability, security and user management to ensure automation and visibility of the workloads across all clusters. Users can create new clusters via a Management Cluster. [Platform engineers](#platform-engineers) usually have access to the [API](#platform-api) of the management cluster to manage [workload clusters](#workload-cluster) and services of the platform.
+A management cluster is a Kubernetes cluster that acts as a central management point of the platform. This cluster hosts platform-wide services for GitOps, observability, security and user management to ensure automation and visibility of the workloads across all clusters. Users can create new clusters via a Management Cluster. [Platform engineers](#platform-team) usually have access to the [API](#platform-api) of the management cluster to manage [workload clusters](#workload-cluster) and services of the platform.
 
 ## Platform API
 
-The Platform API is the entrypoint of Giant Swarm's [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the Platform API, allowing the automation of processes, including GitOps support, and fostering standardization. The Platform API is the Kubernetes API of the Management Cluster, extended with custom resources such as [`App`](#managed-apps) to enable a variety of use cases. [Learn more here](#future-link-to-platform-api-intro-page).
+The Platform API is the entrypoint of Giant Swarm's [cloud-native developer platform](#cloud-native-developer-platform). Everything in the platform is exposed via the Platform API, allowing the automation of processes, including GitOps support, and fostering standardization. The Platform API is the Kubernetes API of the Management Cluster, extended with custom resources such as [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) to enable a variety of use cases. [Learn more here]({{< relref "/overview/architecture/#platform-api" >}}).
 
 ## Platform team
 
