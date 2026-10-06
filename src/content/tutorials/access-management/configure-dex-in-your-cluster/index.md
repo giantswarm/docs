@@ -11,7 +11,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2026-04-09
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -288,15 +288,14 @@ trustedRootCA:
   name: ... # Name of the property inside the secret
 ```
 
-It's also possible to disable retrieving certificates from the cert-manager and supply custom certificates to `Dex` directly. They can be configured in the `ingress` section of the `Secret` or `ConfigMap` with the configuration values for the `Dex` app:
+It's also possible to disable retrieving certificates from the cert-manager and supply a certificate to `Dex` directly. Create a `kubernetes.io/tls` `Secret` with your certificate and key in the namespace where `Dex` runs, and reference it in the `ingress.tls` list of the `Secret` or `ConfigMap` with the configuration values for the `Dex` app. When `ingress.tls` is a list, the app doesn't set the cert-manager cluster issuer annotation on the `Ingress`:
 
 ```yaml
 ingress:
   tls:
-    letsencrypt: false
-    caPemB64: ...
-    crtPemB64: ...
-    keyPemB64: ...
+    - hosts:
+        - dex.CLUSTER_NAME.BASE_DOMAIN
+      secretName: dex-custom-tls # Name of your TLS secret
 ```
 
 ### Running Dex in a private workload cluster
