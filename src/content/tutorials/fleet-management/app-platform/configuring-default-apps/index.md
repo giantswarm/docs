@@ -218,9 +218,10 @@ You can use both methods together. Values are merged in this order (later values
 
 1. Default provider-independent values (from the chart)
 2. Default provider-specific values (from the provider chart)
-3. Values from `extraConfigs` with `priority` of 100 or lower, ordered by `priority` (ConfigMaps before Secrets)
+3. ConfigMaps from `extraConfigs` with `priority` of 100 or lower, ordered by `priority`
 4. Inline `values`
-5. Values from `extraConfigs` with `priority` above 100 (rare, use it to override inline values)
+5. ConfigMaps from `extraConfigs` with `priority` above 100 (rare, use it to override inline values)
+6. Secrets from `extraConfigs`, ordered by `priority` (always last, so they override inline `values` whatever their priority)
 
 ```yaml
 global:
@@ -284,7 +285,7 @@ global:
 
 **ConfigMap not found**: Verify the ConfigMap or Secret exists in the cluster's namespace before creating the cluster.
 
-**Merge conflicts**: Inline `values` override `extraConfigs` entries with `priority` of 100 or lower (default 25), but an `extraConfigs` entry with a higher `priority` overrides them. A Secret also overrides any ConfigMap.
+**Merge conflicts**: Inline `values` override `extraConfigs` entries with `priority` of 100 or lower (default 25), but an `extraConfigs` entry with a higher `priority` overrides them. A Secret also overrides any ConfigMap, including the inline `values`.
 
 ## Further reading
 
