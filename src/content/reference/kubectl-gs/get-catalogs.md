@@ -7,7 +7,7 @@ weight: 20
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2026-06-08
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -59,8 +59,8 @@ kubectl gs get catalogs giantswarm
 
 ```nohighlight
 kubectl gs get catalogs giantswarm
-CATALOG      APP NAME                       APP VERSION   VERSION            AGE
-giantswarm   cert-manager-app               1.3.1         2.7.0              25h
+CATALOG      APP NAME           VERSION   UPSTREAM VERSION   AGE   DESCRIPTION
+giantswarm   cert-manager-app   2.7.0     1.3.1              25h   Chart for cert-manager
 ```
 
 Note: As an alternative to `get catalogs`, `get catalog` will also work.
@@ -70,7 +70,8 @@ Note: As an alternative to `get catalogs`, `get catalog` will also work.
 The standard tabular output format for catalogs features these columns:
 
 - `NAME`: Name of the app catalog.
-- `URL`: URL for the Helm chart repository.
+- `NAMESPACE`: Namespace of the catalog resource.
+- `CATALOG URL`: URL for the Helm chart repository.
 - `AGE`: How long ago was the catalog created.
 
 When viewing the available apps within a catalog the output format features
@@ -78,9 +79,10 @@ these columns:
 
 - `CATALOG`: Name of the app catalog.
 - `APP NAME`: Name of the app.
-- `APP VERSION`: Upstream version of the app.
-- `VERSION`: Latest version of the app.
+- `VERSION`: Latest version of the app (the chart version).
+- `UPSTREAM VERSION`: Upstream version of the app.
 - `AGE`: How long ago was the app release created.
+- `DESCRIPTION`: Description of the app.
 
 ## Flags {#flags}
 
@@ -90,6 +92,10 @@ Here we document the flags that have a particular meaning for the `get catalogs`
 
 `kubectl` commonly allows to list resources for all namespaces for all `get` subcommands. `kubectl gs get catalogs` is no different.
 However by default we hide internal catalogs in the `giantswarm` namespace.
+
+### `--max-col-width` {#flags-max-col-width}
+
+Maximum width of a column in the table output, longer values are truncated. Defaults to 80.
 
 ### `--output/-o` {#flags-output}
 
