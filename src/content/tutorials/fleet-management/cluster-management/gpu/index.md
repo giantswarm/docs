@@ -25,6 +25,14 @@ GPU support is available starting with release v30.1.0.
 
 GPU-accelerated computing can significantly enhance performance for specific workloads like machine learning, video processing, scientific simulations, and other compute-intensive tasks. Giant Swarm's CAPI workload clusters support GPU nodes on AWS (CAPA) and Azure (CAPZ).
 
+### Two ways to request a GPU
+
+A pod can get a GPU through the **NVIDIA device plugin**, asking for a whole device with `nvidia.com/gpu: 1`, or through **[Dynamic Resource Allocation]({{< relref "/tutorials/fleet-management/cluster-management/dynamic-resource-allocation" >}})** (DRA), asking for a device by its attributes with a `ResourceClaim`.
+
+The device plugin is the default and what this page describes. It's what the ecosystem speaks: Kueue, KubeRay, Kubeflow and most GPU Helm charts all request `nvidia.com/gpu`. Reach for DRA when you need something it can't express, typically selecting a device by model, memory or compute capability in a fleet with mixed GPU types.
+
+Either way you install the GPU Operator. DRA replaces the device plugin only, not the operator: the DRA kubelet plugin schedules onto a node by way of the node feature labels the operator publishes, and the `nvidia` RuntimeClass every GPU pod references is created by the operator too. The two allocation paths can't manage the same GPU, so a cluster using both separates them by node pool.
+
 ## Prerequisites
 
 - A running CAPI workload cluster
