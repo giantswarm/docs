@@ -81,8 +81,8 @@ traces_service_graph_request_total{client="api-gateway", server="user-service"}
 # Failed requests between services
 traces_service_graph_request_failed_total{client="api-gateway", server="user-service"}
 
-# Request duration between services
-traces_service_graph_request_server_seconds{client="api-gateway", server="user-service"}
+# Request duration between services (histogram: _bucket, _sum, _count series)
+traces_service_graph_request_server_seconds_count{client="api-gateway", server="user-service"}
 ```
 
 ### Span metrics
@@ -97,7 +97,7 @@ traces_spanmetrics_calls_total{service="user-service", span_name="GET /api/users
 traces_spanmetrics_calls_total{service="user-service", status_code="STATUS_CODE_ERROR"}
 
 # Span duration percentiles
-traces_spanmetrics_latency{service="user-service", span_name="database_query"}
+histogram_quantile(0.95, sum by (le) (rate(traces_spanmetrics_latency_bucket{service="user-service", span_name="database_query"}[5m])))
 ```
 
 ### Custom dimensions
@@ -178,7 +178,8 @@ sum(rate(traces_service_graph_request_total[5m])) by (client, server)
 sum(rate(traces_service_graph_request_failed_total[5m])) by (client, server)
 
 # Service dependency latency
-avg(traces_service_graph_request_server_seconds) by (client, server)
+sum(rate(traces_service_graph_request_server_seconds_sum[5m])) by (client, server) /
+sum(rate(traces_service_graph_request_server_seconds_count[5m])) by (client, server)
 ```
 
 ## See also

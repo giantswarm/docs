@@ -279,7 +279,7 @@ kubectl delete silences -l observability.giantswarm.io/tenant=my_tenant -n my-na
 
 - Verify tenant labeling matches an existing Grafana organization
 - Check matcher values exactly match alert labels
-- Confirm the silence hasn't expired (check the `valid-until` annotation)
+- Confirm the silence hasn't expired (check `spec.endsAt`, `spec.duration`, or the `valid-until` annotation)
 - Validate namespace and RBAC permissions
 - Check `spec.startsAt` isn't in the future
 
@@ -316,7 +316,7 @@ kubectl get configmap alertmanager-config -n monitoring -o yaml
 - **Use CRDs for planned silences**: Leverage GitOps for predictable maintenance windows
 - **Use Grafana UI for emergencies**: Quick silences during active incidents when immediate action is needed
 - **Time creation**: Without `spec.startsAt`, silences start when created. Set `spec.startsAt` to schedule one ahead of time
-- **Set reasonable durations**: Use appropriate `valid-until` times to avoid indefinite silences
+- **Set reasonable durations**: Use `spec.duration`, `spec.endsAt`, or `valid-until` to avoid indefinite silences
 - **Use meaningful names**: Choose descriptive silence names for easy identification
 - **Regular cleanup**: Remove expired silences and review long-running ones
 
