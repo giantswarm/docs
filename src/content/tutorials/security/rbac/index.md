@@ -265,10 +265,10 @@ no
 or impersonate a ServiceAccount to check if it's set up right:
 
 ```nohighlight
-$ kubectl auth can-i use podsecuritypolicies/privileged \
-  -n kube-system \
-  --as=system:serviceaccount:kube-system:calico-node
-yes
+$ kubectl auth can-i create deployments \
+  --namespace production \
+  --as=system:serviceaccount:production:default
+no
 ```
 
 You can also verify access for a whole group:
