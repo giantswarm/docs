@@ -35,13 +35,13 @@ Dynamic Resource Allocation offers several advantages over traditional device pl
 - **Better resource visibility**: Detailed information about available hardware resources
 - **Future-proof architecture**: Extensible framework for new resource types
 
-DRA is available as a beta feature in Kubernetes 1.31+ and requires specific driver installations for GPU support.
+DRA is generally available (stable) since Kubernetes 1.34, and was beta in 1.32 and 1.33. It requires specific driver installations for GPU support.
 
 ## Prerequisites
 
 Before setting up DRA, ensure you have:
 
-- A Giant Swarm Cluster API workload cluster running Kubernetes 1.33 or later
+- A Giant Swarm Cluster API workload cluster running Kubernetes 1.34 or later (the manifests below use `resource.k8s.io/v1`, which doesn't exist in earlier versions)
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for cluster configuration
 - GPU nodes configured in your cluster (see [GPU workloads tutorial]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}}))
@@ -533,7 +533,7 @@ Having the driver create and reshape MIG partitions on demand is a separate alph
 
 ## Limitations and considerations
 
-- DRA is currently in beta and may have API changes in future Kubernetes versions
+- The NVIDIA driver's own APIs (`resource.nvidia.com/v1beta1`) are still beta and may change
 - Not all GPU features are immediately available through DRA drivers
 - Performance overhead compared to traditional device plugins is minimal but measurable
 - DRA requires Giant Swarm release 1.33+
