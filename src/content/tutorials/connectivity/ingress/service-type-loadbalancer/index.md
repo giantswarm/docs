@@ -200,7 +200,7 @@ metadata:
     # individual instance. Defaults to 10, must be between 5 and 300.
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "5"
     # The amount of time, in seconds, during which no response means a failed
-    # health check. This value must be less than the service.beta.kubernetesaws-load-balancer-healthcheck-interval
+    # health check. This value must be less than the service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval
     # value. Defaults to 5, must be between 2 and 60.
     service.beta.kubernetes.io/aws-load-balancer-extra-security-groups: "sg-53fae93f,sg-42efd82e"
     # A list of additional security groups to be added to the ELB.
