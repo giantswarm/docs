@@ -94,7 +94,7 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-\${organization}
   - patch: |
       - type: merge
@@ -177,7 +177,7 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-\${organization}
 resources:
   - ../../../clusters/capa/v0.21.0/
@@ -242,13 +242,13 @@ patches:
       - op: add
         path: /spec/extraConfigs/0
         value:
-          - name: "${cluster_name}-region-config"
-            namespace: org-${organization}
-            priority: 120
+          name: "${cluster_name}-region-config"
+          namespace: org-${organization}
+          priority: 120
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-${organization}
 kind: Kustomization
 ```
