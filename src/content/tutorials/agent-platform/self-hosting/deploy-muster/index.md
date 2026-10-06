@@ -23,7 +23,7 @@ aliases:
 **Applies to self-hosted Muster only.** Follow this guide when you operate your own Muster. On the managed Giant Swarm platform, Muster is already deployed for you.
 {{% /notice %}}
 
-Muster ships as two Helm charts: `muster`, which runs the aggregator and bundles the `MCPServer` and `Workflow` CustomResourceDefinitions in its `crds/` directory, and `muster-crds`, which carries the same CRDs (plus `WorkflowExecution`) as a regular chart so Helm can upgrade them. This guide installs both and explains the custom-resource discovery mode the aggregator runs in on a cluster.
+Muster ships as two Helm charts: `muster`, which runs the aggregator and bundles the `MCPServer`, `Workflow`, and `WorkflowExecution` CustomResourceDefinitions in its `crds/` directory, and `muster-crds`, which carries the same CRDs as a regular chart so Helm can upgrade them. This guide installs both and explains the custom-resource discovery mode the aggregator runs in on a cluster.
 
 For the concepts behind the aggregator, see the [architecture overview]({{< relref "/overview/agent-platform/architecture" >}}). To protect the deployed endpoint with single sign-on, continue to [set up OAuth]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}}).
 
