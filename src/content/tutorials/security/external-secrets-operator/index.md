@@ -16,7 +16,7 @@ aliases:
   - /advanced/security/external-secrets-operator
   - /guides/external-secrets-operator/
   - /advanced/external-secrets-operator/
-last_review_date: 2026-08-19
+last_review_date: 2026-10-06
 owner:
 - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
@@ -61,7 +61,7 @@ To configure specific parts of the values yourself, start from the application c
 
 Using ESO requires two resources on your cluster. Create the [`SecretStore`](https://external-secrets.io/latest/introduction/overview/#secretstore) first.
 
-The secret store binds ESO to your secret manager, whether that's AWS KMS, Azure Key Vault, Hashicorp Vault, or another of the [many supported secret providers](https://external-secrets.io/latest/provider/aws-secrets-manager/).
+The secret store binds ESO to your secret manager, whether that's AWS Secrets Manager, Azure Key Vault, Hashicorp Vault, or another of the [many supported secret providers](https://external-secrets.io/latest/provider/aws-secrets-manager/).
 
 You can define multiple `SecretStores` on the cluster. This works best inside a multi-tenant environment. Different teams may have different secret providers, or only have restricted access to part of the secret provider, as is the case with Hashicorp Vault Enterprise.
 
