@@ -19,7 +19,7 @@ user_questions:
   - Why are no ResourceSlice objects appearing in my cluster?
   - How do I share one GPU between several workloads with DRA?
   - How do I use time-slicing, MPS or MIG with the NVIDIA DRA driver?
-last_review_date: 2026-09-28
+last_review_date: 2026-10-06
 ---
 
 Dynamic Resource Allocation (DRA) is a Kubernetes feature that provides a more flexible and extensible way to request and allocate hardware resources like GPUs. Unlike traditional device plugins that only support simple counting of identical resources, DRA enables fine-grained resource selection based on device attributes and capabilities.
@@ -97,16 +97,17 @@ Apply the updated configuration and wait for the cluster to be updated.
 When creating GPU node pools, add specific a taint to disable common workloads to run in GPU instances:
 
 ```yaml
-nodePools:
-  gpu-dra-pool:
-    instanceType: g4dn.4xlarge
-    minSize: 1
-    maxSize: 3
-    rootVolumeSizeGB: 100
-    customNodeTaints:
-    - key: "nvidia.com/gpu"
-      value: "Exists"
-      effect: "NoSchedule"
+global:
+  nodePools:
+    gpu-dra-pool:
+      instanceType: g4dn.4xlarge
+      minSize: 1
+      maxSize: 3
+      rootVolumeSizeGB: 100
+      customNodeTaints:
+      - key: "nvidia.com/gpu"
+        value: "Exists"
+        effect: "NoSchedule"
 ```
 
 **Note**: Give the root volume at least 100 GB. It holds the NVIDIA driver built at first boot and the container images. CUDA images alone are several gigabytes each.
