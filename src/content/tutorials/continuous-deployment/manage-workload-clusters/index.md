@@ -14,7 +14,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 Below you will learn how to manage infrastructure and applications in the Giant Swarm `Flux` setup.
@@ -150,7 +150,7 @@ Now, you apply the private key to the management cluster to let `Flux` decrypt t
 ```sh
 export ORG_NAME=myorg
 kubectl create secret generic sops-gpg-master \
---namespace=${ORG_NAME}t \
+--namespace=default \
 --from-file=${MC_NAME}.master.asc=/dev/stdin
 ```
 
