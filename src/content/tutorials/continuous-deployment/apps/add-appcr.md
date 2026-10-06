@@ -12,7 +12,7 @@ user_questions:
   - How can I add an app to a workload cluster with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 **Deprecated:** This guide covers the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
@@ -139,7 +139,7 @@ buildMetadata: [originAnnotations]
 configMapGenerator:
   - files:
       - values=override_config.yaml
-    name: \${cluster_name}-${APP_NAME}-user-values
+    name: ${cluster_name}-${APP_NAME}-user-values
 generatorOptions:
   disableNameSuffixHash: true
 ## CONFIGURATION OVERRIDE BLOCK END
@@ -159,13 +159,13 @@ Otherwise, you need to patch the configuration, that will extend the app templat
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: \${cluster_name}-${APP_NAME}
+  name: ${cluster_name}-${APP_NAME}
 spec:
   userConfig:
     configMap: # include if you override the config from Template
-      name: \${cluster_name}-${APP_NAME}-user-values
+      name: ${cluster_name}-${APP_NAME}-user-values
     secret: # include if you override the secret from Template
-      name: \${cluster_name}-${APP_NAME}-user-secret
+      name: ${cluster_name}-${APP_NAME}-user-secret
 ```
 
 **Note**: Alternatively, you can rely on [`Kustomize` patches](https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/) to extend the `App` resource configuration instead.
