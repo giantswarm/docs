@@ -144,8 +144,8 @@ generatorOptions:
   disableNameSuffixHash: true
 ## CONFIGURATION OVERRIDE BLOCK END
 kind: Kustomization
-patchesStrategicMerge:
-  - config_patch.yaml
+patches:
+  - path: config_patch.yaml
 resources:
   - ../../../../../../../../../${APP_TEMPLATE_PATH}
   - secret.enc.yaml ## ONLY IF INCLUDING SECRET

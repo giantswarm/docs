@@ -148,8 +148,8 @@ In this example you create a custom version for AWS base:
     generatorOptions:
       disableNameSuffixHash: true
     kind: Kustomization
-    patchesStrategicMerge:
-      - patch_config.yaml
+    patches:
+      - path: patch_config.yaml
     resources:
       - ../template
     ```

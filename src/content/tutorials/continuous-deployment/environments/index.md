@@ -306,8 +306,9 @@ In this case, you decide to use the `development` stage template. [Read more abo
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
-commonLabels:
-  giantswarm.io/managed-by: flux
+labels:
+  - pairs:
+      giantswarm.io/managed-by: flux
 kind: Kustomization
 resources:
   - ../../../../../../../../bases/environments/stages/dev
