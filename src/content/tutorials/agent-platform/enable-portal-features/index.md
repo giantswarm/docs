@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-enable-portal-features
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-10-05
 user_questions:
   - How do I enable the Agent Platform section in Backstage?
   - Why does the installation picker show the wrong name?
@@ -18,7 +18,7 @@ user_questions:
   - What's needed before agents can be deployed from the portal?
 ---
 
-The [Agent Platform section]({{< relref "/overview/developer-portal/agent-platform" >}}) ships with the Giant Swarm Backstage plugins but is off by default. Enabling it takes several independent configuration changes—none of them discoverable from the portal itself. This guide walks them in order: first the browse experience, then the extra pieces deploying agents needs.
+The [Agent Platform section]({{< relref "/overview/developer-portal/agent-platform" >}}) ships with the Giant Swarm Backstage plugins but is off by default. Enabling it takes several independent configuration changes—none of them discoverable from the portal itself. This guide walks them in order: first the browse experience, then what deploying agents needs.
 
 All configuration goes into the instance's Backstage app-config.
 
@@ -81,29 +81,7 @@ agentPlatform:
 
 Every `SKILL.md` file in a listed repository defines one selectable skill.
 
-That's the browse experience complete. The remaining steps are only needed before users can *deploy* agents.
-
-## Register the deployment template
-
-The create flow deploys through a scaffolder template resolved by the fixed reference `template:default/agent-deployment`. Register it as a plain `url` catalog location—a location type that stamps a different namespace onto the entity breaks the reference, and the deploy fails with a `404` at submit:
-
-```yaml
-catalog:
-  locations:
-    - type: url
-      target: https://github.com/giantswarm/backstage-catalogs/blob/<release tag>/templates/agent-deployment/template.yaml
-```
-
-## Set the Flux service account
-
-Clusters with Flux multi-tenancy enforcement reject a `HelmRelease` in a tenant namespace unless it names a service account. Tell the portal which one the generated releases should carry:
-
-```yaml
-agentPlatform:
-  fluxServiceAccountName: <service account name>
-```
-
-The named service account must exist in the target namespace with the RBAC to install the agent chart—provisioning it stays a platform-side task, not a portal setting.
+That's the browse experience complete. Deploying agents needs no further portal configuration: the portal creates agents through agent-manager's tools, called over the installation's Muster as the signed-in person. The installation picker offers only installations whose Muster lists `agent-manager`.
 
 ## Accept the portal's token at the agent runtime
 
@@ -126,8 +104,6 @@ Several portal instances share one comma-separated value—don't add a second `o
 | `muster.installations` | required | required |
 | CSP image origin | required | required |
 | Skill repositories | optional | recommended |
-| Deployment template location | — | required |
-| `fluxServiceAccountName` | — | required on multi-tenancy clusters |
 | Runtime OAuth audience | Sessions tab only | Sessions tab only |
 
 ## Related
