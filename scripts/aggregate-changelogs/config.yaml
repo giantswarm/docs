@@ -103,17 +103,11 @@ repositories:
     delete: true
   giantswarm/klaus:
     category: AI Agents
-  giantswarm/klaus-operator:
-    category: AI Agents
   giantswarm/klausctl:
     category: AI Agents
   giantswarm/klaus-oci:
     category: AI Agents
   giantswarm/klaus-toolchains:
-    category: AI Agents
-  giantswarm/klaus-personalities:
-    category: AI Agents
-  giantswarm/klaus-plugins:
     category: AI Agents
   giantswarm/k8s-dns-node-cache-app:
     category: Connectivity
