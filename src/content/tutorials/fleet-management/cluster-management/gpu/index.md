@@ -15,7 +15,7 @@ user_questions:
   - How do I add GPU nodes to my CAPI cluster?
   - How do I configure GPU support in my workload cluster?
   - How do I monitor the GPU state?
-last_review_date: 2025-10-22
+last_review_date: 2026-10-06
 ---
 
 This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads, focusing on NVIDIA GPUs.
@@ -79,21 +79,22 @@ To add GPU nodes to your CAPI workload cluster, you need to create a new node po
 Update your cluster app's values to add a new node pool with GPU instances:
 
 ```yaml
-nodePools:
-  gpu-worker-pool-1:
-    # instance type with GPU
-    instanceType: g5.2xlarge
-    maxSize: 1
-    minSize: 1
-    # root volume size in GB needs to be at least 15
-    rootVolumeSizeGB: 15
-    instanceWarmup: 600
-    minHealthyPercentage: 90
-    # taints which are required for GPU workloads
-    customNodeTaints:
-    - key: "nvidia.com/gpu"
-      value: "Exists"
-      effect: "NoSchedule"
+global:
+  nodePools:
+    gpu-worker-pool-1:
+      # instance type with GPU
+      instanceType: g5.2xlarge
+      maxSize: 1
+      minSize: 1
+      # root volume size in GB needs to be at least 15
+      rootVolumeSizeGB: 15
+      instanceWarmup: 600
+      minHealthyPercentage: 90
+      # taints which are required for GPU workloads
+      customNodeTaints:
+      - key: "nvidia.com/gpu"
+        value: "Exists"
+        effect: "NoSchedule"
 ```
 
 Apply the updated configuration to your cluster.

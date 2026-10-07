@@ -19,7 +19,7 @@ user_questions:
   - Why are no ResourceSlice objects appearing in my cluster?
   - How do I share one GPU between several workloads with DRA?
   - How do I use time-slicing, MPS or MIG with the NVIDIA DRA driver?
-last_review_date: 2026-09-28
+last_review_date: 2026-10-06
 ---
 
 Dynamic Resource Allocation (DRA) is a Kubernetes feature that provides a more flexible and extensible way to request and allocate hardware resources like GPUs. Unlike traditional device plugins that only support simple counting of identical resources, DRA enables fine-grained resource selection based on device attributes and capabilities.
@@ -35,13 +35,13 @@ Dynamic Resource Allocation offers several advantages over traditional device pl
 - **Better resource visibility**: Detailed information about available hardware resources
 - **Future-proof architecture**: Extensible framework for new resource types
 
-DRA is available as a beta feature in Kubernetes 1.31+ and requires specific driver installations for GPU support.
+DRA is generally available (stable) since Kubernetes 1.34, and was beta in 1.32 and 1.33. It requires specific driver installations for GPU support.
 
 ## Prerequisites
 
 Before setting up DRA, ensure you have:
 
-- A Giant Swarm Cluster API workload cluster running Kubernetes 1.33 or later
+- A Giant Swarm Cluster API workload cluster running Kubernetes 1.34 or later (the manifests below use `resource.k8s.io/v1`, which doesn't exist in earlier versions)
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for cluster configuration
 - GPU nodes configured in your cluster (see [GPU workloads tutorial]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}}))
@@ -61,52 +61,26 @@ DRA for GPUs is supported on:
 
 ## Enable DRA in your cluster
 
-### Step 1: Enable the DRA feature gate
+### Step 1: Check the DRA feature gate
 
-DRA requires the `DynamicResourceAllocation` feature gate to be enabled in your cluster (previous to 1.34 release). Update your cluster configuration to include this feature gate.
-
-For Cluster API clusters, add the following to your cluster app values:
-
-```yaml
-    cluster:
-      internal:
-        advancedConfiguration:
-          controlPlane:
-            apiServer:
-              featureGates:
-              - name: DynamicResourceAllocation
-                enabled: true
-            controllerManager:
-              featureGates:
-              - name: DynamicResourceAllocation
-                enabled: true
-            scheduler:
-              featureGates:
-              - name: DynamicResourceAllocation
-                enabled: true
-          kubelet:
-            featureGates:
-            - name: DynamicResourceAllocation
-              enabled: true
-```
-
-Apply the updated configuration and wait for the cluster to be updated.
+On Kubernetes 1.34 and later, the `DynamicResourceAllocation` feature gate is stable and enabled by default, so you don't need to change your cluster configuration. The gate was off by default in 1.32 and 1.33, which is why this guide requires 1.34 or later.
 
 ### Step 2: Configure GPU nodes with DRA labels
 
 When creating GPU node pools, add specific a taint to disable common workloads to run in GPU instances:
 
 ```yaml
-nodePools:
-  gpu-dra-pool:
-    instanceType: g4dn.4xlarge
-    minSize: 1
-    maxSize: 3
-    rootVolumeSizeGB: 100
-    customNodeTaints:
-    - key: "nvidia.com/gpu"
-      value: "Exists"
-      effect: "NoSchedule"
+global:
+  nodePools:
+    gpu-dra-pool:
+      instanceType: g4dn.4xlarge
+      minSize: 1
+      maxSize: 3
+      rootVolumeSizeGB: 100
+      customNodeTaints:
+      - key: "nvidia.com/gpu"
+        value: "Exists"
+        effect: "NoSchedule"
 ```
 
 **Note**: Give the root volume at least 100 GB. It holds the NVIDIA driver built at first boot and the container images. CUDA images alone are several gigabytes each.
@@ -532,10 +506,10 @@ Having the driver create and reshape MIG partitions on demand is a separate alph
 
 ## Limitations and considerations
 
-- DRA is currently in beta and may have API changes in future Kubernetes versions
+- The NVIDIA driver's own APIs (`resource.nvidia.com/v1beta1`) are still beta and may change
 - Not all GPU features are immediately available through DRA drivers
 - Performance overhead compared to traditional device plugins is minimal but measurable
-- DRA requires Giant Swarm release 1.33+
+- DRA requires a Giant Swarm release that ships Kubernetes 1.34 or later
 - Chart `26.0.0` requires NVIDIA driver 570 or newer on GPU nodes
 - The DRA driver can't run alongside the NVIDIA device plugin on the same node
 - Compute domains require NVLink-fabric hardware and must be turned off otherwise
