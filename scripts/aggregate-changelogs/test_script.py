@@ -1,6 +1,6 @@
 from datetime import date, datetime, timedelta, timezone
 
-from script import as_utc, link_pull_requests, resolve_relative_links
+from script import as_utc, is_prerelease, link_pull_requests, resolve_relative_links
 
 if __name__ == "__main__":
 
@@ -72,5 +72,16 @@ if __name__ == "__main__":
     assert as_utc(date(2019, 2, 22)) < cutoff
     assert as_utc(datetime(2026, 9, 15, 6, 49, 10)) >= cutoff
     print("age cutoff: ok")
+
+    # Test is_prerelease
+    print("\nTesting is_prerelease:")
+    assert is_prerelease('v2.92.0-rc.11')
+    assert is_prerelease('1.2.9-dev.3')
+    assert is_prerelease('v1.0.0-alpha')
+    assert not is_prerelease('v2.92.0')
+    assert not is_prerelease('2.92.0')
+    assert not is_prerelease('v1.0.0+build.1')
+    assert not is_prerelease('azure-32.1.0')
+    print("is_prerelease: ok")
 
     print("\nAll tests passed!")
