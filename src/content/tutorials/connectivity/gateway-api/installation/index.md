@@ -220,7 +220,7 @@ You can add multiple listeners to the same Gateway to accept traffic from differ
 
 ### Load balancers on AWS
 
-On CAPA (AWS) clusters, each Gateway gets an AWS Network Load Balancer (NLB) in front of its Envoy proxy pods. You tune the NLB with the `service.beta.kubernetes.io/aws-load-balancer-*` annotations of the [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/service/annotations/), which you set in `gateways.<name>.service.annotations`. The `gateway-api-config` chart adds a few defaults so that the proxy pods and the NLB stay in step.
+On CAPA (AWS) clusters, each Gateway gets an AWS Network Load Balancer (NLB) in front of its Envoy proxy pods. You tune the NLB with the `service.beta.kubernetes.io/aws-load-balancer-*` annotations of the [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/service/annotations/), which you set in `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.service.annotations` of the `gateway-api-bundle`. The `gateway-api-config` chart adds a few defaults so that the proxy pods and the NLB stay in step.
 
 #### Zone spread of the proxy pods
 
@@ -244,13 +244,13 @@ The existing preferred anti-affinity, one proxy pod per node, stays in place. Th
 
 As `whenUnsatisfiable` is `ScheduleAnyway`, the spread is a preference. If a zone has no free node, the scheduler puts the pod in a different zone, so a scale-out never stops. If you need a strict spread, set your own list with `DoNotSchedule`.
 
-**Note:** Upgrading to v1.13.0 restarts all proxy pods.
+**Note:** The first `gateway-api-bundle` upgrade that includes `gateway-api-config` v1.13.0 restarts all proxy pods.
 
 You can change the default in three ways:
 
-- Set `gatewayClasses.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to define the spread for all Gateways of a class. The chart then adds no default.
-- Set a non-empty list in `gateways.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to replace the default for one Gateway.
-- Set `gateways.<name>.provider.aws.zoneSpread: false` to remove the default for one Gateway.
+- Set `apps.gatewayApiConfig.userConfig.configMap.values.gatewayClasses.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to define the spread for all Gateways of a class. The chart then adds no default.
+- Set a non-empty list in `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to replace the default for one Gateway.
+- Set `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.provider.aws.zoneSpread` to `false` to remove the default for one Gateway.
 
 #### Readiness gates in IP target mode
 
@@ -302,7 +302,7 @@ data:
                                         - eu-central-1b
 ```
 
-Keep the zones in `values` and the subnets in the annotation in sync. The zone spread from v1.13.0 then only spreads the proxy pods across these two zones.
+Keep the zones in the node affinity and the subnets in the annotation in sync. The zone spread from v1.13.0 then only spreads the proxy pods across these two zones.
 
 ## Troubleshooting
 
