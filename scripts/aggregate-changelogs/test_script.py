@@ -82,6 +82,12 @@ if __name__ == "__main__":
     assert not is_prerelease('2.92.0')
     assert not is_prerelease('v1.0.0+build.1')
     assert not is_prerelease('azure-32.1.0')
+    assert is_prerelease('v1.0.0-rc1')
+    assert is_prerelease('v1.0.0-beta.2')
+    assert not is_prerelease('v1.6.1-gs.3')
+    assert not is_prerelease('v0.11.0-gs2')
+    assert not is_prerelease('v1.6.1-gs2.1')
+    assert not is_prerelease('v1.0.0-preflight')
     print("is_prerelease: ok")
 
     print("\nAll tests passed!")

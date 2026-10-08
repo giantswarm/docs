@@ -74,6 +74,9 @@ def get_releases(client, repo_shortname):
         if release.published_at is None:
             continue
 
+        if release.prerelease or is_prerelease(release.tag_name):
+            continue
+
         body = ""
         if release.body is not None:
             body = link_pull_requests(release.body, repo_shortname)
@@ -86,7 +89,6 @@ def get_releases(client, repo_shortname):
             'date': release.published_at,
             'body': body,
             'url': release.html_url,
-            'prerelease': release.prerelease,
         }
 
 def get_changelog_file(client, repo_shortname):
@@ -242,10 +244,11 @@ def normalize_version(v):
 
 def is_prerelease(version_tag):
     """
-    Returns True for version tags with a semver pre-release suffix,
-    like v2.92.0-rc.11 or 1.2.9-dev.3
+    Returns True for version tags with a pre-release suffix, like
+    v2.92.0-rc.11 or 1.2.9-dev.3. Fork releases like v1.6.1-gs.3 are
+    final releases and don't count.
     """
-    return bool(re.match(r'^v?\d+\.\d+\.\d+-', version_tag))
+    return bool(re.match(r'^v?\d+\.\d+\.\d+-(alpha|beta|rc|dev|pre|preview)(?![a-z])', version_tag, flags=re.I))
 
 def link_pull_requests(mkdwn, repo_shortname):
     """
@@ -353,10 +356,11 @@ def prune_entries(content_path, cutoff):
             filepath = path.join(root, fname)
 
             front_matter = read_generated_front_matter(filepath)
-            if front_matter is None:
+            if not isinstance(front_matter, dict):
                 continue
 
-            version_tag = (front_matter.get('changes_entry') or {}).get('version_tag', '')
+            changes_entry = front_matter.get('changes_entry')
+            version_tag = changes_entry.get('version_tag', '') if isinstance(changes_entry, dict) else ''
             if is_prerelease(str(version_tag)):
                 os.remove(filepath)
                 deleted_prereleases += 1
@@ -514,8 +518,6 @@ if __name__ == "__main__":
             if repo_conf.get('skip_if_body_is_one_of', ()) and release['body'].strip() in repo_conf['skip_if_body_is_one_of']:
                 delete = True
             if repo_short != RELEASES_REPO and as_utc(release['date']) < cutoff:
-                delete = True
-            if release.get('prerelease') or is_prerelease(release.get('version_tag', '')):
                 delete = True
 
             generate_release_file(repo_short, repo_conf, release, delete)
