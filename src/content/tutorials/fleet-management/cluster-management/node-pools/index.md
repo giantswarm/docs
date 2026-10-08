@@ -521,7 +521,7 @@ data:
         version: 35.0.0
 ```
 
-Karpenter also supports arm64 node pools. This is a very brief example of how to configure mixed node pools:
+Karpenter also supports arm64 node pools. As with regular node pools, the `kubernetes.io/arch=arm64:NoSchedule` taint must be set under `customNodeTaints`. This is a very brief example of how to configure mixed node pools:
 
 ```yaml
 global:
@@ -533,6 +533,10 @@ global:
     graviton:
       type: karpenter
       architecture: arm64
+      customNodeTaints:
+      - key: kubernetes.io/arch
+        value: arm64
+        effect: NoSchedule
 ```
 
 Pods that should run on the arm64 pool need a matching toleration and a `kubernetes.io/arch: arm64` `nodeSelector` (or `nodeAffinity`):
