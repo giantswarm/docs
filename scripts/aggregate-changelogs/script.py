@@ -86,6 +86,7 @@ def get_releases(client, repo_shortname):
             'date': release.published_at,
             'body': body,
             'url': release.html_url,
+            'prerelease': release.prerelease,
         }
 
 def get_changelog_file(client, repo_shortname):
@@ -239,6 +240,13 @@ def normalize_version(v):
         return v[1:]
     return v
 
+def is_prerelease(version_tag):
+    """
+    Returns True for version tags with a semver pre-release suffix,
+    like v2.92.0-rc.11 or 1.2.9-dev.3
+    """
+    return bool(re.match(r'^v?\d+\.\d+\.\d+-', version_tag))
+
 def link_pull_requests(mkdwn, repo_shortname):
     """
     Links pull request mentions like #123 in a markdown string
@@ -321,15 +329,16 @@ def remove_empty_dirs(content_path):
         if not os.listdir(root):
             os.rmdir(root)
 
-def prune_old_entries(content_path, cutoff):
+def prune_entries(content_path, cutoff):
     """
-    Deletes generated entries older than the cutoff date.
+    Deletes generated entries older than the cutoff date, and pre-releases.
 
     This also covers entries the generator does not visit anymore, e. g. after
     a repository has been removed from the config, or a release was deleted
     upstream.
     """
     deleted = 0
+    deleted_prereleases = 0
 
     for root, dirs, files in os.walk(content_path, topdown=True):
         relative_root = path.relpath(root, content_path)
@@ -344,16 +353,23 @@ def prune_old_entries(content_path, cutoff):
             filepath = path.join(root, fname)
 
             front_matter = read_generated_front_matter(filepath)
-            if front_matter is None or 'date' not in front_matter:
+            if front_matter is None:
                 continue
 
-            if as_utc(front_matter['date']) < cutoff:
+            version_tag = (front_matter.get('changes_entry') or {}).get('version_tag', '')
+            if is_prerelease(str(version_tag)):
+                os.remove(filepath)
+                deleted_prereleases += 1
+                continue
+
+            if 'date' in front_matter and as_utc(front_matter['date']) < cutoff:
                 os.remove(filepath)
                 deleted += 1
 
     remove_empty_dirs(content_path)
 
     print(f'Pruned {deleted} entries older than {cutoff.strftime("%Y-%m-%d")}')
+    print(f'Pruned {deleted_prereleases} pre-release entries')
 
 def generate_release_file(repo_shortname, repo_config, release, delete):
     """
@@ -431,7 +447,7 @@ if __name__ == "__main__":
     cutoff = datetime.now(timezone.utc) - timedelta(days=conf.get('max_age_days', DEFAULT_MAX_AGE_DAYS))
 
     if PRUNE_ONLY:
-        prune_old_entries(CONTENT_PATH, cutoff)
+        prune_entries(CONTENT_PATH, cutoff)
         sys.exit(0)
 
     if GITHUB_TOKEN == "":
@@ -499,7 +515,9 @@ if __name__ == "__main__":
                 delete = True
             if repo_short != RELEASES_REPO and as_utc(release['date']) < cutoff:
                 delete = True
+            if release.get('prerelease') or is_prerelease(release.get('version_tag', '')):
+                delete = True
 
             generate_release_file(repo_short, repo_conf, release, delete)
 
-    prune_old_entries(CONTENT_PATH, cutoff)
+    prune_entries(CONTENT_PATH, cutoff)
