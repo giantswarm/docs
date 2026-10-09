@@ -2,11 +2,27 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "architecture": {
+            "type": "string",
+            "description": "Target CPU architecture for this workload. Empty imposes no constraint. `arm64` pins the pod to arm64 nodes, adding both the `kubernetes.io/arch` node selector and the toleration for the `kubernetes.io/arch=arm64:NoSchedule` taint that Giant Swarm arm64 node pools carry. Both are required, so this single value sets both. Requires a multi-arch container image; an amd64-only image will crash-loop with `exec format error` on an arm64 node.",
+            "enum": [
+                "",
+                "amd64",
+                "arm64"
+            ]
+        },
         "name": {
             "type": "string"
         },
         "namespace": {
             "type": "string"
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector for pod scheduling. Merged with `architecture`. Pinning to arm64 here rather than through `architecture` also adds the arm64 taint toleration, so either route is safe. A value that contradicts `architecture` fails the render.",
+            "additionalProperties": {
+                "type": "string"
+            }
         },
         "resources": {
             "type": "object",
@@ -37,6 +53,30 @@
                         "ephemeralStorage": {
                             "type": "string"
                         }
+                    }
+                }
+            }
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations for pod scheduling. Merged with the toleration that `architecture: arm64` adds.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "effect": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    },
+                    "operator": {
+                        "type": "string"
+                    },
+                    "tolerationSeconds": {
+                        "type": "integer"
+                    },
+                    "value": {
+                        "type": "string"
                     }
                 }
             }

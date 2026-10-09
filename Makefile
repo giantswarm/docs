@@ -7,6 +7,9 @@ VALE_IMAGE=gsoci.azurecr.io/giantswarm/vale:v3.15.1@sha256:1e4449aba172e268fcb40
 APPLICATION=docs-app
 RUNNING_IN_CI ?= false
 
+# The included files define rules too; keep `default` as the goal.
+.DEFAULT_GOAL := default
+
 include Makefile.*.mk
 
 default: docker-build
@@ -32,8 +35,9 @@ changes:
 	  $(REGISTRY)/$(COMPANY)/docs-scriptrunner:latest \
 	  /workdir/script.py /workdir/config.yaml /output /data
 
-# Remove Changes and Releases entries older than max_age_days (see
-# scripts/aggregate-changelogs/config.yaml). Needs no Github token.
+# Remove Changes and Releases entries that are pre-releases or older than
+# max_age_days (see scripts/aggregate-changelogs/config.yaml).
+# Needs no Github token.
 changes-prune:
 	docker run --rm \
 	  --volume=${PWD}/scripts/aggregate-changelogs:/workdir:ro \

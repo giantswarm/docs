@@ -22,6 +22,9 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
+      {{- with include "docs-app.podScheduling" . }}
+      {{- . | nindent 6 }}
+      {{- end }}
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
