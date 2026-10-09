@@ -8,7 +8,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-clusters-multi-az
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 user_questions:
 - Does Giant Swarm support multiple availability zones (AZ)?
 - What are the benefits of using multiple availability zones (AZ)?
@@ -163,9 +163,9 @@ kubectl apply -f /tmp/merged.yaml
 To get the node pool information, query the `AWSMachinePool` resource as shown below.
 
 ```text
-$ kubectl get AWSManagedMachinePool -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
+$ kubectl get AWSMachinePool -l cluster.x-k8s.io/cluster-name=mycluster -oyaml
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
-kind: AWSManagedMachinePool
+kind: AWSMachinePool
 metadata:
   name: mycluster-np001
   namespace: org-testing
@@ -254,7 +254,7 @@ The node pools in Cluster API for Azure are managed by the `MachineDeployment` r
 Define the failure domain for the node pool in the `values.yaml` file.
 
 ```sh
-cat << EOF > /tmp/cluster.yaml
+cat << EOF > /tmp/values.yaml
 data:
   values: |
     global:

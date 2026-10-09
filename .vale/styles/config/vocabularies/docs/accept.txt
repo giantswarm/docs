@@ -92,7 +92,7 @@ discoverability
 [Dd]ex
 [Dd][Nn][Ss]
 composable
-configmap[s]?
+[Cc]onfig[Mm]ap[s]?
 configs?
 conformant
 [C|c]ontainerd
