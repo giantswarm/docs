@@ -13,7 +13,11 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2026-05-18
+  - How are the Envoy proxy pods spread across availability zones on AWS?
+  - How do I override or turn off the zone spread of the Envoy proxy pods?
+  - Which subnets must the AWS Network Load Balancer of a Gateway use?
+  - How do I keep the Gateway load balancer in fewer availability zones?
+last_review_date: 2026-10-08
 ---
 
 ## Prerequisites
@@ -213,6 +217,92 @@ data:
 ```
 
 You can add multiple listeners to the same Gateway to accept traffic from different domains. Each listener can have its own configuration for TLS certificates, DNS endpoints, and subdomain lists, allowing you to manage multiple domains within a single Gateway resource. The `giantswarm-default` gateway comes with 2 listeners enabled by default: one on port 80 (HTTP) and one on port 443 (HTTPS). Keep in mind that there is a limit of 64 listeners per Gateway, and each listener must have a unique combination of port, protocol, and hostname.
+
+### Load balancers on AWS
+
+On CAPA (AWS) clusters, each Gateway gets an AWS Network Load Balancer (NLB) in front of its Envoy proxy pods. You tune the NLB with the `service.beta.kubernetes.io/aws-load-balancer-*` annotations of the [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/service/annotations/), which you set in `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.service.annotations` of the `gateway-api-bundle`. The `gateway-api-config` chart adds a few defaults so that the proxy pods and the NLB stay in step.
+
+#### Zone spread of the proxy pods
+
+Starting with `gateway-api-config` v1.13.0, the chart prefers an even spread of the proxy pods of each Gateway across availability zones. It adds this `topologySpreadConstraint` to the Envoy proxy deployment:
+
+```yaml
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: ScheduleAnyway
+    nodeTaintsPolicy: Honor
+    labelSelector:
+      matchLabels:
+        gateway.envoyproxy.io/owning-gateway-name: <GATEWAY_NAME>
+        gateway.envoyproxy.io/owning-gateway-namespace: <GATEWAY_NAMESPACE>
+    matchLabelKeys:
+      - pod-template-hash
+```
+
+The existing preferred anti-affinity, one proxy pod per node, stays in place. The default only applies on CAPA clusters with an NLB. With `nodeTaintsPolicy: Honor`, only zones with nodes that the proxy pods can run on count. Zones that only have control plane nodes don't count. Clusters with worker nodes in a single zone need no change.
+
+As `whenUnsatisfiable` is `ScheduleAnyway`, the spread is a preference. If a zone has no free node, the scheduler puts the pod in a different zone, so a scale-out never stops. If you need a strict spread, set your own list with `DoNotSchedule`.
+
+**Note:** The first `gateway-api-bundle` upgrade that includes `gateway-api-config` v1.13.0 restarts all proxy pods.
+
+You can change the default in three ways:
+
+- Set `apps.gatewayApiConfig.userConfig.configMap.values.gatewayClasses.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to define the spread for all Gateways of a class. The chart then adds no default.
+- Set a non-empty list in `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to replace the default for one Gateway.
+- Set `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.provider.aws.zoneSpread` to `false` to remove the default for one Gateway.
+
+#### Readiness gates in IP target mode
+
+Starting with `gateway-api-config` v1.13.0, if a Gateway or GatewayClass on a CAPA cluster uses NLB IP target mode (`service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`), the chart labels the `envoy-gateway-system` namespace with `elbv2.k8s.aws/pod-readiness-gate-inject: enabled`. New proxy pods then only become `Ready` once the NLB reports their target as healthy. An update whose new pods the NLB can't use stops, and the old pods keep serving traffic.
+
+In instance target mode, the default, the chart doesn't add the label.
+
+#### Load balancer subnets
+
+If you set the subnets of the NLB with `service.beta.kubernetes.io/aws-load-balancer-subnets`, the list must contain one subnet for **each** availability zone that can run proxy pods. The NLB marks targets in zones without a subnet as `unused`, and traffic to the Gateway times out.
+
+Starting with `gateway-api-config` v1.13.0, the chart refuses to render if the list has an empty entry or if the value is empty. A trailing comma such as `subnet-a,` adds an empty entry. To unblock the upgrade, remove the empty entry or the annotation.
+
+If the NLB must stay in fewer zones, pin the proxy pods to the same zones with a node affinity on `topology.kubernetes.io/zone`. The node affinity merges with the default anti-affinity. This example keeps the default Gateway in two zones:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  service:
+                    annotations:
+                      # One subnet per zone: eu-central-1a and eu-central-1b
+                      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0aaa1111,subnet-0bbb2222
+                  envoyProxy:
+                    envoyDeployment:
+                      pod:
+                        affinity:
+                          nodeAffinity:
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              nodeSelectorTerms:
+                                - matchExpressions:
+                                    - key: topology.kubernetes.io/zone
+                                      operator: In
+                                      values:
+                                        - eu-central-1a
+                                        - eu-central-1b
+```
+
+Keep the zones in the node affinity and the subnets in the annotation in sync. The zone spread from v1.13.0 then only spreads the proxy pods across these two zones.
 
 ## Troubleshooting
 
