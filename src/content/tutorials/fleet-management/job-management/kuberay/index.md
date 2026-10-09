@@ -93,7 +93,7 @@ The same applies to `RayClusterMTLS`, `RayClusterNetworkPolicy` and `RayClusterH
 
 ### Upgrading from version 1.1.0
 
-Version 1.2.1 renames one value. If you set `metrics.serviceMonitor.selector`, rename it to `metrics.serviceMonitor.additionalLabels`. The old key is ignored, so a `ServiceMonitor` would silently lose its labels.
+Version 1.2.1 renames one value. If you set `metrics.serviceMonitor.selector`, rename it to `metrics.serviceMonitor.additionalLabels`. The old key is ignored, so a `ServiceMonitor` would lose its labels.
 
 ## Deploying a Ray cluster
 
