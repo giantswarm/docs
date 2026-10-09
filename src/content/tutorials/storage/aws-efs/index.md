@@ -25,8 +25,6 @@ In this guide, you'll:
 
 1. Install the AWS EFS CSI driver in your workload cluster.
 2. Create an EFS file system and its network plumbing with Crossplane.
-3. Create a storage class and a persistent volume claim, and mount the volume in pods.
-
 ## Requirements
 
 - A workload cluster on AWS (CAPA). Run all management cluster commands in the cluster's organization namespace, `org-<ORGANIZATION>`.
