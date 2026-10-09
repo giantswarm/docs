@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-developer-portal-customizing
     identifier: overview-developer-portal-customizing-gitopslinks
-last_review_date: 2026-07-23
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -72,7 +72,7 @@ In order to provide links which end users can use to navigate to the source of a
 1. Understand the URL found in the GitRepository resource. This is configured using the `gitRepositoryUrlPattern` field.
 2. The URL pattern used by the source code management system UI (for example GitHub, GitLab, Bitbucket) that we want to link to. To be configured via the `targetUrl` field.
 
-The Giant Swarm Backstage plugin allows you to specify any number of combinations of the two above in the `app-config.yaml` file under the `gs.gitopsRepositories` section, to handle a variety of different cases.
+The Giant Swarm Backstage plugin allows you to specify any number of combinations of the two above in the `app-config.yaml` file under the `flux.gitRepositoryPatterns` section, to handle a variety of different cases.
 
 ### `gitRepositoryUrlPattern`
 
@@ -111,25 +111,25 @@ https://github.com/demotechinc/demotech-gitops/blob/299de19645659b14421992d059b6
 
 ## Default Configuration
 
-By default, the system is pre-configured with two GitHub repository patterns. These defaults are hardcoded into the system and are always applied, even if no `gitopsRepositories` configuration is provided in the `app-config.yaml` file. The default entries are:
+By default, the system is pre-configured with two GitHub repository patterns. These defaults are built into the portal and always apply, even if no `flux.gitRepositoryPatterns` configuration is provided in the `app-config.yaml` file. The default entries are:
 
 - **Default GitHub (SSH):**
 
   ```yaml
-  gitRepositoryUrlPattern: '^ssh:\/\/git@(ssh\.)?(?<HOSTNAME>github.+?)(:443)?\/(?<REPO_PATH>.+?)(\.git)?$'
-  targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
+  gitRepositoryUrlPattern: '^ssh:\/\/git@(ssh\.)?(?<HOSTNAME>github.+?)(:443)?\/(?<REPOSITORY_PATH>.+?)(\.git)?$'
+  targetUrl: 'https://${{HOSTNAME}}/${{REPOSITORY_PATH}}/tree/${{REVISION}}/${{PATH}}'
   ```
 
 - **Default GitHub (HTTPS):**
 
   ```yaml
-  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPO_PATH>.+?)(\.git)?$'
-  targetUrl: 'https://${{HOSTNAME}}/${{REPO_PATH}}/blob/${{REVISION}}/${{PATH}}'
+  gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>github.+?)\/(?<REPOSITORY_PATH>.+?)$'
+  targetUrl: 'https://${{HOSTNAME}}/${{REPOSITORY_PATH}}/tree/${{REVISION}}/${{PATH}}'
   ```
 
 These default patterns ensure that links to GitHub repositories can be generated out of the box without requiring any additional configuration.
 
-When custom `gitopsRepositories` entries are provided in the `app-config.yaml` file, they are appended to the default GitHub configurations. The system evaluates all entries (default and custom) in the order they are defined, and the first matching entry is used to generate the link.
+When custom `flux.gitRepositoryPatterns` entries are provided in the `app-config.yaml` file, they're appended to the default GitHub configurations. The system evaluates all entries (default and custom) in the order they're defined, and the first matching entry is used to generate the link.
 
 ## Full example
 
@@ -138,8 +138,8 @@ In this section we demonstrate how a complete configuration could look like, cov
 Backstage `app-config.yaml` snippet, configuring two additional pairs of `gitRepositoryUrlPattern` and `targetUrl`:
 
 ```yaml
-gs:
-  gitopsRepositories:
+flux:
+  gitRepositoryPatterns:
     # BitBucket
     - gitRepositoryUrlPattern: '^https:\/\/(?<HOSTNAME>bitbucket.+?)\/scm\/(?<PROJECT_NAME>.+?)\/(?<REPO_NAME>.+?)(\.git)?$'
       targetUrl: 'https://${{HOSTNAME}}/projects/${{PROJECT_NAME}}/repos/${{REPO_NAME}}/browse/${{PATH}}?at=${{REVISION}}'
@@ -184,7 +184,7 @@ With repository URLs such as
 and a path `dir/subdir`, and a revision of `1234567890`, the URL becomes:
 
 ```nohighlight
-https://github.example.com/myorg/gitops-repo/blob/1234567890/dir/subdir
+https://github.example.com/myorg/gitops-repo/tree/1234567890/dir/subdir
         ------------------ -----------------      ---------- ----------
-             HOSTNAME          REPO_PATH           REVISION     PATH
+             HOSTNAME       REPOSITORY_PATH         REVISION     PATH
 ```
