@@ -89,7 +89,7 @@ featureGates:
     enabled: true
 ```
 
-The same applies to `RayClusterMTLS`, `RayClusterNetworkPolicy` and `RayClusterHistoryServer`. All of them are alpha upstream.
+The same applies to `RayClusterMTLS`, `RayClusterNetworkPolicy` and `RayClusterHistoryServer`. All are alpha upstream.
 
 ### Upgrading from version 1.1.0
 
