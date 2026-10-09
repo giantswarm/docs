@@ -30,6 +30,7 @@ In this guide, you'll:
 ## Requirements
 
 - A workload cluster on AWS (CAPA). Run all management cluster commands in the cluster's organization namespace, `org-<ORGANIZATION>`.
+- The [`kubectl gs`]({{< relref "/reference/kubectl-gs/installation" >}}) plugin, v6 or newer.
 - `kubectl` access to the [management cluster]({{< relref "/getting-started/access-to-platform-api" >}}) and to the workload cluster.
 - Permission to create Crossplane AWS resources on the management cluster. If you lack it, ask your Giant Swarm account engineer.
 
@@ -43,53 +44,56 @@ The examples use these placeholders:
 
 The [`aws-efs-csi-driver-bundle`](https://github.com/giantswarm/aws-efs-csi-driver) chart runs on the management cluster. It creates the **IAM role** the driver needs, using Crossplane, and deploys the driver to your workload cluster.
 
-You install the bundle with [Flux](https://fluxcd.io/), the same way your cluster's default apps are installed. An `OCIRepository` points to the chart in the Giant Swarm registry, and a `HelmRelease` installs it.
+You install the bundle with [`kubectl gs deploy chart`]({{< relref "/reference/kubectl-gs/deploy-chart" >}}). The command creates the [Flux](https://fluxcd.io/) resources that install the chart: an `OCIRepository` pointing to the chart in the Giant Swarm registry, and a `HelmRelease` that installs it.
 
-Create a file `efs-bundle.yaml` with this content:
+Deploy the bundle from the management cluster:
+
+```sh
+kubectl gs deploy chart \
+  --chart-name aws-efs-csi-driver-bundle \
+  --version 4.0.0 \
+  --organization <ORGANIZATION> \
+  --target-cluster <CLUSTER_NAME> \
+  --bundle
+```
+
+Check the [repository releases](https://github.com/giantswarm/aws-efs-csi-driver/releases) for the latest version, and set it in `--version`. With `--bundle`, the `HelmRelease` runs on the management cluster in the organization namespace, using the `automation` service account. The platform injects the workload cluster ID into the bundle values, so you don't need to pass any values.
+
+To review the resources before you create them, add `--dry-run`. The command then prints them instead of applying them:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
+  labels:
+    giantswarm.io/cluster: <CLUSTER_NAME>
   name: <CLUSTER_NAME>-aws-efs-csi-driver-bundle
   namespace: org-<ORGANIZATION>
 spec:
-  interval: 24h
-  url: oci://gsoci.azurecr.io/charts/giantswarm/aws-efs-csi-driver-bundle
+  interval: 10m0s
+  provider: generic
   ref:
     tag: 4.0.0
+  url: oci://gsoci.azurecr.io/charts/giantswarm/aws-efs-csi-driver-bundle
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
+  labels:
+    giantswarm.io/cluster: <CLUSTER_NAME>
   name: <CLUSTER_NAME>-aws-efs-csi-driver-bundle
   namespace: org-<ORGANIZATION>
 spec:
-  interval: 1m
   chartRef:
     kind: OCIRepository
     name: <CLUSTER_NAME>-aws-efs-csi-driver-bundle
+  interval: 10m0s
   releaseName: <CLUSTER_NAME>-aws-efs-csi-driver-bundle
   serviceAccountName: automation
   targetNamespace: org-<ORGANIZATION>
-  storageNamespace: org-<ORGANIZATION>
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    remediation:
-      retries: -1
-  values:
-    clusterID: <CLUSTER_NAME>
 ```
 
-Check the [repository releases](https://github.com/giantswarm/aws-efs-csi-driver/releases) for the latest version, and set it in `spec.ref.tag`. The `clusterID` value tells the bundle which workload cluster to deploy the driver to.
-
-Apply it to the management cluster:
-
-```sh
-kubectl apply -f efs-bundle.yaml
-```
+If you manage the management cluster resources with GitOps, commit this output to your repository instead of running the command without `--dry-run`.
 
 The bundle creates a second `HelmRelease`, `<CLUSTER_NAME>-aws-efs-csi-driver`, which installs the driver itself and a Crossplane AWS IAM Role resource. Wait until both report `Ready`:
 
@@ -242,7 +246,9 @@ Run the following steps against the **workload cluster**.
 
 ### Create a storage class
 
-The storage class tells the driver which file system to use. With `provisioningMode: efs-ap`, the driver creates an [EFS access point](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) for each persistent volume claim. Every claim gets its own directory on the shared file system.
+The storage class tells the driver which file system to use. With `provisioningMode: efs-ap`, the driver creates an [EFS access point](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) for each persistent volume claim.
+
+In AWS, the root directory of an access point is optional and defaults to the root of the file system (`/`). The driver doesn't rely on that default. It always sets the root directory of each access point to a new directory named after the persistent volume, with a unique ID appended. As a result, every claim gets its own directory on the shared file system and can't see the data of other claims. To change this layout, use the `basePath`, `subPathPattern`, and `ensureUniqueDirectory` parameters of the storage class, described in the [driver documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/parameters.md).
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -358,7 +364,8 @@ Delete the resources in reverse order, or the AWS resources get stuck on their d
 4. To remove the driver too, delete the bundle:
 
     ```sh
-    kubectl delete -f efs-bundle.yaml
+    kubectl -n org-<ORGANIZATION> delete helmrelease,ocirepository \
+      <CLUSTER_NAME>-aws-efs-csi-driver-bundle
     ```
 
 ## Further reading
