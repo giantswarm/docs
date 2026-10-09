@@ -17,7 +17,7 @@ user_questions:
   - How do I set up gang scheduling for distributed workloads?
   - How do I configure all-or-nothing scheduling for coordinated jobs?
   - How do I install and configure Kueue in Giant Swarm?
-last_review_date: 2026-05-18
+last_review_date: 2026-09-28
 ---
 
 Kueue is a Kubernetes-native system that manages quotas and how jobs consume them. It provides advanced job queueing, resource management, and fair sharing capabilities for batch workloads, machine learning training jobs, and other compute-intensive tasks. Giant Swarm supports Kueue through a managed app that simplifies installation and configuration.
@@ -72,7 +72,7 @@ kubectl gs template app \
   --organization=ORGANIZATION \
   --name=kueue \
   --target-namespace=kueue-system \
-  --version=0.2.0 > kueue.yaml
+  --version=0.4.0 > kueue.yaml
 
 kubectl apply -f kueue.yaml
 ```
@@ -121,7 +121,7 @@ Create a basic Kueue configuration with resource flavors, cluster queue, and loc
 Resource flavors represent different types of compute resources:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ResourceFlavor
 metadata:
   name: default-flavor
@@ -129,7 +129,7 @@ spec:
   nodeLabels:
     node.kubernetes.io/instance-type: m5.xlarge
 ---
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ResourceFlavor
 metadata:
   name: gpu-flavor
@@ -147,7 +147,7 @@ spec:
 First, lets create a cluster queue like:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ClusterQueue
 metadata:
   name: cluster-queue
@@ -173,7 +173,7 @@ spec:
 And later create a local one for our example:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: LocalQueue
 metadata:
   namespace: default
@@ -256,14 +256,14 @@ spec:
 Now define two new queues (Cluster and Local) to run the tests:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ClusterQueue
 metadata:
   name: gang-cluster-queue
 spec:
   namespaceSelector: {}
   resourceGroups:
-  - coveredResources: ["cpu", "memory", "nvidia.com/gpu"]
+  - coveredResources: ["cpu", "memory"]
     flavors:
     - name: default-flavor
       resources:
@@ -271,12 +271,14 @@ spec:
         nominalQuota: 10
       - name: "memory"
         nominalQuota: 20Gi
+  - coveredResources: ["nvidia.com/gpu"]
+    flavors:
     - name: gpu-flavor
       resources:
       - name: "nvidia.com/gpu"
         nominalQuota: 2
 ---
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: LocalQueue
 metadata:
   namespace: default
@@ -378,12 +380,12 @@ In multi-team environments where different teams have varying workload patterns 
 This is an example for enabling resource borrowing between cluster queues:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ClusterQueue
 metadata:
   name: team-a-queue
 spec:
-  cohort: shared-cohort
+  cohortName: shared-cohort
   resourceGroups:
   - coveredResources: ["cpu", "memory"]
     flavors:
@@ -396,12 +398,12 @@ spec:
         nominalQuota: 100Gi
         borrowingLimit: 200Gi
 ---
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ClusterQueue
 metadata:
   name: team-b-queue
 spec:
-  cohort: shared-cohort
+  cohortName: shared-cohort
   resourceGroups:
   - coveredResources: ["cpu", "memory"]
     flavors:
@@ -422,14 +424,14 @@ Preemption policies are essential when you need to ensure that critical, can acc
 First, let's configure the workload priority classes:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: WorkloadPriorityClass
 metadata:
   name: high-priority
 value: 1000
 description: "Priority class for critical jobs"
 ---
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: WorkloadPriorityClass
 metadata:
   name: low-priority
@@ -440,7 +442,7 @@ description: "Priority class for non critical jobs"
 Configure preemption to allow higher-priority jobs to preempt lower-priority ones:
 
 ```yaml
-apiVersion: kueue.x-k8s.io/v1beta1
+apiVersion: kueue.x-k8s.io/v1beta2
 kind: ClusterQueue
 metadata:
   name: preemption-queue
