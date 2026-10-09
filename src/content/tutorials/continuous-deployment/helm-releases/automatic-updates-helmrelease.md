@@ -14,7 +14,7 @@ user_questions:
   - How do I commit chart version bumps to my Git repository?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 Flux can roll new chart versions for a `HelmRelease` without manual tag bumps. Two approaches:
@@ -82,7 +82,7 @@ cd automatic-updates
 Define the update automation in `imageupdate.yaml`. This resource watches your Git repository and pushes commits when policies match:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
   name: ${WC_NAME}-updates
@@ -111,7 +111,7 @@ spec:
 In the app folder, create `imagerepository.yaml` to register the chart's OCI source as a scanned repository:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: ${APP_NAME}
@@ -124,16 +124,16 @@ spec:
 Create `imagepolicy.yaml` with tag selection rules:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
-  namespace: flux-system
+  namespace: default
 spec:
   imageRepositoryRef:
     name: ${APP_NAME}
   filterTags:
-    extract: \$version
+    extract: $version
     pattern: ^v?(?P<version>.*)$
   policy:
     semver:
@@ -208,7 +208,7 @@ resources:
 Reference the `Secret` from `imagerepository.yaml`:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: ${APP_NAME}
