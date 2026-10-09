@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-security
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-07
+last_review_date: 2026-10-06
 user_questions:
   - How does Muster authenticate AI agents?
   - Can AI agents only see the tools I'm allowed to use?
@@ -52,14 +52,14 @@ A server showing the **Auth Required** state is healthy, not broken. It means th
 
 ## How a backend gets its authority
 
-Every MCP server behind the gateway declares how calls to it are authenticated. The taxonomy has four modes:
+Every MCP server behind the gateway declares how calls to it are authenticated, in the `auth` block of its `MCPServer` resource. That gives four modes:
 
-| Mode | What happens |
-|---|---|
-| `none` | No authentication—for servers that are anonymous by design |
-| `oauth` | The caller must be authenticated, but no token is passed to the server |
-| `forward` | The caller's own token is forwarded to the server unchanged—for servers that trust the same identity provider |
-| `exchange` | The caller's token is exchanged (RFC 8693) at the target's identity provider for one that server accepts—for servers behind a different provider, such as a remote cluster |
+| Mode | `MCPServer` setting | What happens |
+|---|---|---|
+| None | `auth.type: none` | No authentication—for servers that are anonymous by design |
+| OAuth | `auth.type: oauth` | Muster acts as an OAuth client toward the server: you sign in once in the browser, and Muster sends the resulting token on your calls |
+| Forward | `auth.type: oauth` with `auth.forwardToken: true` | The caller's own token is forwarded to the server—for servers that trust the same identity provider |
+| Exchange | `auth.type: oauth` with `auth.tokenExchange.enabled: true` | The caller's token is exchanged (RFC 8693) at the target's identity provider for one that server accepts—for servers behind a different provider, such as a remote cluster |
 
 Which design a backend gets follows one rule: **who administers the backend's account system decides**.
 
