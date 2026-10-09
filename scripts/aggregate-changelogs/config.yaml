@@ -9,6 +9,7 @@
 # Maximum age of entries, in days. Releases older than this are not
 # generated, and existing entries older than this are pruned on every run.
 # Workload cluster releases (giantswarm/releases) are exempt from this.
+# Pre-releases (e. g. v1.2.0-rc.1) are never generated, regardless of age.
 max_age_days: 365
 
 repositories:
@@ -103,17 +104,11 @@ repositories:
     delete: true
   giantswarm/klaus:
     category: AI Agents
-  giantswarm/klaus-operator:
-    category: AI Agents
   giantswarm/klausctl:
     category: AI Agents
   giantswarm/klaus-oci:
     category: AI Agents
   giantswarm/klaus-toolchains:
-    category: AI Agents
-  giantswarm/klaus-personalities:
-    category: AI Agents
-  giantswarm/klaus-plugins:
     category: AI Agents
   giantswarm/k8s-dns-node-cache-app:
     category: Connectivity

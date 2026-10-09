@@ -31,11 +31,27 @@ This tutorial explains how to set up DRA in Giant Swarm Cluster API workload clu
 Dynamic Resource Allocation offers several advantages over traditional device plugins:
 
 - **Attribute-based selection**: Request specific GPU models, memory sizes, or other hardware attributes
-- **Flexible resource sharing**: Support for time-slicing and multi-instance GPUs (MIG)
+- **Flexible resource sharing**: Time-slicing, MPS and MIG, with the caveats in [Share GPUs between workloads](#share-gpus-between-workloads). Time-slicing and MPS are alpha and off by default, and MIG needs A100 or H100 class hardware, so don't pick DRA for sharing alone without checking those first
 - **Better resource visibility**: Detailed information about available hardware resources
 - **Future-proof architecture**: Extensible framework for new resource types
 
-DRA is available as a beta feature in Kubernetes 1.31+ and requires specific driver installations for GPU support.
+The `resource.k8s.io/v1` API is served on Giant Swarm clusters running Kubernetes 1.35.
+
+### How DRA relates to the GPU Operator
+
+DRA isn't an alternative to the [NVIDIA GPU Operator]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}}). It replaces one of its components, the device plugin, and depends on the rest:
+
+- The DRA kubelet plugin only schedules onto nodes carrying node feature labels (`feature.node.kubernetes.io/pci-10de.present` or `nvidia.com/gpu.present`), which Node Feature Discovery and GPU Feature Discovery publish as part of the operator. Without them its DaemonSet reports zero desired pods and nothing happens.
+- The `nvidia` RuntimeClass that the pods below reference is created by the operator.
+- GPU metrics still come from the operator's DCGM exporter.
+
+So install the GPU Operator first, then add the DRA driver and turn the device plugin off on the nodes DRA manages.
+
+### Should you use DRA?
+
+Use the device plugin, which is the default, unless you need something it can't express. The clearest case for DRA is a fleet with mixed GPU models, where a workload has to ask for a device by `architecture`, `memory` or `cudaComputeCapability` rather than take whatever the node has.
+
+Weigh it against the cost: workload authors write `ResourceClaimTemplate`s instead of a `nvidia.com/gpu: 1` limit, and most of the GPU ecosystem doesn't speak DRA yet. The NVIDIA DRA driver is also still pre-1.0 (chart `26.0.0` packages upstream `0.5.0`).
 
 ## Prerequisites
 
@@ -44,7 +60,7 @@ Before setting up DRA, ensure you have:
 - A Giant Swarm Cluster API workload cluster running Kubernetes 1.33 or later
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for cluster configuration
-- GPU nodes configured in your cluster (see [GPU workloads tutorial]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}}))
+- GPU nodes configured in your cluster, with the NVIDIA GPU Operator installed (see [GPU workloads tutorial]({{< relref "/tutorials/fleet-management/cluster-management/gpu" >}})). The operator is required, not optional, for the reasons in [How DRA relates to the GPU Operator](#how-dra-relates-to-the-gpu-operator)
 
 ## Supported hardware and cloud providers
 

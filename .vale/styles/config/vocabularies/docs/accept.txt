@@ -148,6 +148,7 @@ krew
 kube-vip
 kubeconfig[s]?
 kubectl
+Kubeflow
 kubelet
 Kueue
 [K|k]yverno
