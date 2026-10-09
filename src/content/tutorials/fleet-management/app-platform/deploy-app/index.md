@@ -17,7 +17,7 @@ user_questions:
   - How can I deploy an app using an App CR?
   - How can I configure an App CR?
   - How can I see which apps are available using the platform API?
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 **Note:** This guide covers the Giant Swarm `App` custom resource, which is being phased out. For new deployments, follow [Deploying an application via a Flux HelmRelease]({{< relref "/tutorials/fleet-management/app-platform/deploy-app-helmrelease" >}}) instead. See [App Platform deprecation]({{< relref "/overview/fleet-management/app-management/app-platform-deprecation" >}}) for the timeline and migration path.
@@ -95,7 +95,7 @@ command to generate the `App` resource using the latest version from the previou
 ```nohighlight
 kubectl gs template app \
   --catalog=giantswarm \
-  --orgnanization=${ORGANIZATION} \
+  --organization=${ORGANIZATION} \
   --cluster-name=${CLUSTER} \
   --name=envoy-gateway \
   --target-namespace=kube-system \
