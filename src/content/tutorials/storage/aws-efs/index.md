@@ -25,6 +25,7 @@ In this guide, you'll:
 
 1. Install the AWS EFS CSI driver in your workload cluster.
 2. Create an EFS file system and its network plumbing with Crossplane.
+
 ## Requirements
 
 - A workload cluster on AWS (CAPA). Run all management cluster commands in the cluster's organization namespace, `org-<ORGANIZATION>`.
