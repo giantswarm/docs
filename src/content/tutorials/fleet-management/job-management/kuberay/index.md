@@ -81,7 +81,7 @@ rayjobs.ray.io                        2026-05-19T10:00:00Z
 rayservices.ray.io                    2026-05-19T10:00:00Z
 ```
 
-**Note**: the `RayCronJob` CRD is installed, but its controller sits behind a feature gate that is off by default. To use it, set the gate in the app's user values:
+**Note**: the `RayCronJob` CRD is installed, but its controller sits behind a feature gate that's off by default. To use it, set the gate in the app's user values:
 
 ```yaml
 featureGates:
