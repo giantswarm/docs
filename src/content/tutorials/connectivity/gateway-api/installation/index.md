@@ -254,7 +254,7 @@ You can change the default in three ways:
 
 #### Readiness gates in IP target mode
 
-Starting with `gateway-api-config` v1.13.0, if a Gateway or GatewayClass on a CAPA cluster uses NLB IP target mode (`service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`), the chart labels the `envoy-gateway-system` namespace with `elbv2.k8s.aws/pod-readiness-gate-inject: enabled`. New proxy pods then only become `Ready` once the NLB reports their target as healthy. An update whose new pods the NLB can't use stops, and the old pods keep serving traffic.
+Starting with `gateway-api-config` v1.13.0, if a Gateway or GatewayClass on a CAPA cluster uses NLB IP target mode (`service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`), the chart labels the `envoy-gateway-system` namespace with `elbv2.k8s.aws/pod-readiness-gate-inject: enabled`. New proxy pods then only become `Ready` once the NLB reports their target as healthy. If an update's new pods aren't ready, the NLB stops sending traffic to them, and the old pods keep serving traffic.
 
 In instance target mode, the default, the chart doesn't add the label.
 
