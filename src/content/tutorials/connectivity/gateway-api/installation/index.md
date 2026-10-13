@@ -17,7 +17,9 @@ user_questions:
   - How do I override or turn off the zone spread of the Envoy proxy pods?
   - Which subnets must the AWS Network Load Balancer of a Gateway use?
   - How do I keep the Gateway load balancer in fewer availability zones?
-last_review_date: 2026-10-08
+  - What does a Gateway need to use NLB IP target mode on AWS?
+  - Why do the Envoy proxy pods never become ready in IP target mode?
+last_review_date: 2026-10-13
 ---
 
 ## Prerequisites
@@ -258,6 +260,8 @@ Starting with `gateway-api-config` v1.13.0, if a Gateway or GatewayClass on a CA
 
 In instance target mode, the default, the chart doesn't add the label.
 
+IP target mode only works on clusters that run Cilium in [ENI IPAM mode]({{< relref "/tutorials/fleet-management/cluster-management/aws-cilium-eni-mode/" >}}). In IP target mode, the NLB sends traffic straight to the pod IPs. By default, Cilium gives pods IPs from `100.64.0.0/12`, which aren't part of the VPC, so the NLB can't register them as targets. The readiness gate then never turns true, and the new proxy pods never become `Ready`. You can only set the IPAM mode when you create the cluster. On clusters with the default IPAM mode, keep instance target mode.
+
 #### Load balancer subnets
 
 If you set the subnets of the NLB with `service.beta.kubernetes.io/aws-load-balancer-subnets`, the list must contain one subnet for **each** availability zone that can run proxy pods. The NLB marks targets in zones without a subnet as `unused`, and traffic to the Gateway times out.
@@ -315,3 +319,19 @@ egctl x status all -A
 This displays the status conditions (such as `Accepted`, `Programmed`, or `ResolvedRefs`) for GatewayClasses, Gateways, HTTPRoutes, and other Gateway API resources, making it easier to spot misconfigurations or issues.
 
 Find more information about the command in the [official documentation](https://gateway.envoyproxy.io/docs/tasks/operations/egctl/).
+
+### Proxy pods never become ready in IP target mode
+
+If a Gateway uses NLB IP target mode and its new proxy pods never become ready, although their containers are ready, `kubectl get pods -n envoy-gateway-system -o wide` shows `0/1` in the `READINESS GATES` column. List the conditions of such a pod:
+
+```bash
+kubectl get pod -n envoy-gateway-system <POD_NAME> -o jsonpath='{range .status.conditions[*]}{.type}={.status}{"\n"}{end}'
+```
+
+If the `target-health.elbv2.k8s.aws/...` condition stays `False` or is missing, check which IPAM mode Cilium uses:
+
+```bash
+kubectl get configmap -n kube-system cilium-config -o jsonpath='{.data.ipam}'
+```
+
+If the command doesn't print `eni`, the pod IPs aren't part of the VPC and the NLB can't register them. Switch the Gateway back to instance target mode, or use a cluster with [Cilium ENI IPAM mode]({{< relref "/tutorials/fleet-management/cluster-management/aws-cilium-eni-mode/" >}}).
