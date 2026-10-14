@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: Azure
 description: Prepare your Azure account to start building your cloud-native developer platform with Giant Swarm.
 weight: 20
-last_review_date: 2026-09-16
+last_review_date: 2026-10-06
 layout: single
 menu:
   principal:
@@ -62,13 +62,13 @@ Two permission roles need to be created in the Azure subscription: one for the G
 
 At Giant Swarm we require customers to configure Microsoft solution called [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview), which delegates resource management to service providers. This solution grants access for Giant Swarm ops/support to your Azure subscription. Ability to view the portal is essential for our everyday support, where investigation and manual interventions are sometimes necessary.
 
-The easiest way is to create an [Azure Deployment Environment](https://azure.microsoft.com/en-us/products/deployment-environments) to delegate resource management to third parties. In this case, you must permit the `Giant Swarm Staff` group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription. Instead, you add a managed group that's **kept up to date by Giant Swarm**.
+The easiest way is to onboard your subscription to [Azure Lighthouse](https://learn.microsoft.com/en-us/azure/lighthouse/how-to/onboard-customer) with an ARM template deployment, which delegates resource management to third parties. In this case, you must permit the `Giant Swarm Staff` group to manage your resources. This is beneficial as you don't have to manage access for each person separately within your subscription. Instead, you add a managed group that's **kept up to date by Giant Swarm**.
 
 The recommendation is to choose Azure's [built-in role `Contributor`](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) to give Giant Swarm access and deployment permissions for resources within your subscription.
 
 Alternatively, you can create your role assignment with restricted access to specific Resource Groups. However, it must be kept up to date so that Giant Swarm can also provide full support for newly created clusters.
 
-#### Create a deployment environment
+#### Delegate resource management
 
 * Download the template file [delegatedResourceManagement](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.json). This file is left unchanged.
 * Download the parameters example file [delegatedResourceManagement.parameters](https://raw.githubusercontent.com/giantswarm/azure-operator/master/docs/delegatedResourceManagement.parameters.json) and fill in the required fields:
@@ -76,10 +76,10 @@ Alternatively, you can create your role assignment with restricted access to spe
     * Replace `<GiantSwarmTenantID>` and `<GiantSwarmPrincipalID>` with the values provided by Giant Swarm's Account Engineer
     * Keep the value of `roleDefinitionId` if you are fine assigning the `Contributor` role. If a custom role is desired, please replace the value.
 
-* Now you can run this command to create the deployment environment:
+* Now you can run this command to create the delegation:
 
     ```sh
-    az deployment create \
+    az deployment sub create \
       --name "giantswarm-access" \
       --location <AzureRegion> \
       --template-file delegatedResourceManagement.json \
