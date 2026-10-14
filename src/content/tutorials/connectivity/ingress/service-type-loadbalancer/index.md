@@ -10,7 +10,7 @@ user_questions:
   - How do I configure an ingress controller behind an ELB that terminates SSL?
   - How do I configure an internal Load Balancer on AWS?
   - How do I configure an internal Load Balancer on Azure?
-last_review_date: 2026-05-18
+last_review_date: 2026-10-06
 aliases:
   - /advanced/connectivity/ingress/service-type-loadbalancer
   - /guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
@@ -54,16 +54,16 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - host name: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
+    - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
-The above YAML would expose port `8080` of our `helloworld` pods on the HTTP port of the provisioned Elastic Load Balancer (ELB).
+The above YAML would expose the `http` port of our `helloworld` pods on port `8080` of the provisioned Elastic Load Balancer (ELB).
 
 ### Exposing on a non-HTTP port and protocol
 
-You can change the port of the load balancer and protocol of the load balancer by changing the `targetPort` field and adding a `ports.protocol` field. This way you can expose TCP services directly without having to customize the ingress controller.
+You can change the port of the load balancer by changing the `port` field, and its protocol by adding a `protocol` field to the port. The `targetPort` field selects the port on the pods. This way you can expose TCP services directly without having to customize the ingress controller.
 
-Following example would set the ELB to TCP and port `8888`:
+Following example would set the ELB to TCP and port `8080`, forwarding to port `8888` on the pods:
 
 ```yaml
 apiVersion: v1
@@ -83,7 +83,7 @@ spec:
 status:
   loadBalancer:
     ingress:
-    - host name: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
+    - hostname: a54cae28bd42b11e7b2c7020a3f15370-27798109.eu-central-1.elb.amazonaws.com
 ```
 
 ### Customizing the external load balancer
@@ -108,6 +108,8 @@ metadata:
   name: my-service
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+```
+
 #### SSL termination on AWS
 
 There are three annotations you can set to configure SSL termination.
@@ -152,7 +154,7 @@ Writing access logs to an S3 bucket is a standard feature of ELBs. For `LoadBala
 metadata:
   name: my-service
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: true
+    service.beta.kubernetes.io/aws-load-balancer-access-log-enabled: "true"
     # The interval for publishing the access logs (can be 5 or 60 minutes).
     service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval: "60"
     service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name: my-logs-bucket
@@ -198,7 +200,7 @@ metadata:
     # individual instance. Defaults to 10, must be between 5 and 300.
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "5"
     # The amount of time, in seconds, during which no response means a failed
-    # health check. This value must be less than the service.beta.kubernetesaws-load-balancer-healthcheck-interval
+    # health check. This value must be less than the service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval
     # value. Defaults to 5, must be between 2 and 60.
     service.beta.kubernetes.io/aws-load-balancer-extra-security-groups: "sg-53fae93f,sg-42efd82e"
     # A list of additional security groups to be added to the ELB.

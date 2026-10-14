@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-access-management-irsa
 user_questions:
  -  How can I use IAM roles for service accounts?
-last_review_date: 2024-12-03
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 aliases:
@@ -69,12 +69,13 @@ This is an example of `external-dns` role trust policy:
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/irsa.$INSTALLATION.gaws.gigantic.io"
+                "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/irsa.<CLUSTER_NAME>.<BASE_DOMAIN>"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "irsa.golem.gaws.gigantic.io:sub": "system:serviceaccount:kube-system:external-dns"
+                    "irsa.<CLUSTER_NAME>.<BASE_DOMAIN>:aud": "sts.amazonaws.com",
+                    "irsa.<CLUSTER_NAME>.<BASE_DOMAIN>:sub": "system:serviceaccount:kube-system:external-dns"
                 }
             }
         }
@@ -82,7 +83,7 @@ This is an example of `external-dns` role trust policy:
 }
 ```
 
-**Note**: In the above example, the federation is set to the `OIDC` provider of the cluster. You can rely on your own OIDC provider making sure the parameter is set correctly.
+**Note**: In the above example, the federation is set to the `OIDC` provider of the cluster, which is served at `irsa.<CLUSTER_NAME>.<BASE_DOMAIN>` (in China regions, it's an S3 bucket URL instead). You can rely on your own OIDC provider making sure the parameter is set correctly.
 
 ### Service account
 
