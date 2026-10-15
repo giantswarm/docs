@@ -212,7 +212,7 @@ Claude and Gemini models are also available through Google Cloud's Vertex AI, bi
 
 You need:
 
-- Agent Platform 4.128.0 or later on the installation, and for an installation that enforces network policies, `<RELEASE-FIXING-1042>` or later, which lets the platform reach Google's token endpoint.
+- Agent Platform `<RELEASE-FIXING-1042>` or later on the installation, with Vertex AI enabled for it. The setting lets the platform reach Google's token endpoint through the installation's network policies. Ask Giant Swarm, for example your account engineer, to enable it.
 - A Google Cloud project with the model enabled. Gemini models are available without further steps. A Claude model has to be enabled first: open its model card in Model Garden and select **Enable**.
 - A service account in that project with the **Agent Platform User** role (`roles/aiplatform.user`, called **Vertex AI User** before Google renamed the product), and a JSON key for it.
 
@@ -391,7 +391,7 @@ In the developer portal, the **Models** tab shows the same state with an **Accep
 
 **An agent on a Vertex AI model is refused because of its Vertex AI credentials.** The key in the Secret fails one of the checks in [Vertex AI](#vertex-ai): it isn't a service account key, it belongs to a different project than `projectID`, or its `token_uri` isn't Google's. Create a key for a service account in the model's project and replace the Secret.
 
-**Every request to a Vertex AI model fails although the key is valid.** The platform can't reach `oauth2.googleapis.com` to exchange the key for a token. On an installation that enforces network policies, upgrade to `<RELEASE-FIXING-1042>` or later. Behind a firewall, permit the domains listed in [Vertex AI](#vertex-ai).
+**Every request to a Vertex AI model fails with `could not exchange the service account key for an access token`.** The platform can't reach `oauth2.googleapis.com` to exchange the key for a token. Check that the installation runs Agent Platform `<RELEASE-FIXING-1042>` or later and that Giant Swarm has enabled Vertex AI for it. Behind a firewall, also permit the domains listed in [Vertex AI](#vertex-ai).
 
 **A self-hosted endpoint times out.** The `baseUrl` must be reachable from pods in the `kagent` namespace of the management cluster, and network policies on that cluster may need an egress rule for the endpoint's address and port. `localhost` and machine-local addresses never work from a pod.
 
