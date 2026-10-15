@@ -212,7 +212,7 @@ Claude and Gemini models are also available through Google Cloud's Vertex AI, bi
 
 You need:
 
-- Agent Platform `<RELEASE-FIXING-1042>` or later on the installation, with Vertex AI enabled for it. The setting lets the platform reach Google's token endpoint through the installation's network policies. Ask Giant Swarm, for example your account engineer, to enable it.
+- Vertex AI enabled for the installation. The setting lets the platform reach Google's token endpoint through the installation's network policies. Ask Giant Swarm, for example your account engineer, to enable it.
 - A Google Cloud project with the model enabled. Gemini models are available without further steps. A Claude model has to be enabled first: open its model card in Model Garden and select **Enable**.
 - A service account in that project with the **Agent Platform User** role (`roles/aiplatform.user`, called **Vertex AI User** before Google renamed the product), and a JSON key for it.
 
@@ -289,7 +289,7 @@ If a firewall restricts the management cluster's outbound traffic, permit `oauth
 Two things differ from the other providers:
 
 - **The LLM gateway doesn't meter Vertex AI models.** Their spend and token counts don't appear on the model's **Usage** tab in the developer portal. Google Cloud billing for the project is the record of what they cost.
-- **Create them through GitOps,** as shown here, or with the developer portal's **Add model** form from Backstage `<PORTAL-RELEASE>`.
+- **Create them through GitOps,** as shown here, or with the developer portal's **Connect a model** form.
 
 ### Ollama
 
@@ -348,7 +348,7 @@ kubectl explain modelconfigs.spec.openAI --api-version=api.kagent.dev/v1alpha3
 
 Both interfaces write the same two resources as option 2, directly to the cluster with your identity. Nothing is committed to Git, so a model created this way is visible and editable in the portal and doesn't survive a rebuild of the cluster from its repository.
 
-**In the developer portal**, open **Agent Platform** → **Models** and choose **Add model**. The form covers OpenAI (including any OpenAI-compatible endpoint), Anthropic, Gemini and Ollama, with an optional endpoint, a switch for endpoints that need no key, and a TLS verification toggle. The API key you enter is stored as a Secret named `kagent-<model name>` next to the model configuration and never displayed again. The write goes through the Kubernetes API with your token, so your RBAC on the `kagent` namespace decides whether it succeeds.
+**In the developer portal**, open **Customize** → **Models** and choose **Connect a model**. The form covers OpenAI (including any OpenAI-compatible endpoint), Anthropic, Gemini, Claude and Gemini on Vertex AI, and Ollama, with an optional endpoint and a TLS verification toggle. The API key is optional, for endpoints that need none. For Vertex AI the form asks for the project ID, the location and a service account key, and checks the key the way the platform does. The key you enter is stored as a Secret named `kagent-<model name>` next to the model configuration and never displayed again. The write goes through the Kubernetes API with your token, so your RBAC on the `kagent` namespace decides whether it succeeds.
 
 **In the agent runtime UI** at `https://kagent.<installation>.<base domain>`, sign in and open **Models** → **New model**. Its form offers every provider the runtime supports and creates the Secret for you as well.
 
@@ -391,7 +391,7 @@ In the developer portal, the **Models** tab shows the same state with an **Accep
 
 **An agent on a Vertex AI model is refused because of its Vertex AI credentials.** The key in the Secret fails one of the checks in [Vertex AI](#vertex-ai): it isn't a service account key, it belongs to a different project than `projectID`, or its `token_uri` isn't Google's. Create a key for a service account in the model's project and replace the Secret.
 
-**Every request to a Vertex AI model fails with `could not exchange the service account key for an access token`.** The platform can't reach `oauth2.googleapis.com` to exchange the key for a token. Check that the installation runs Agent Platform `<RELEASE-FIXING-1042>` or later and that Giant Swarm has enabled Vertex AI for it. Behind a firewall, also permit the domains listed in [Vertex AI](#vertex-ai).
+**Every request to a Vertex AI model fails with `could not exchange the service account key for an access token`.** The platform can't reach `oauth2.googleapis.com` to exchange the key for a token. Check with Giant Swarm that Vertex AI is enabled for the installation. Behind a firewall, also permit the domains listed in [Vertex AI](#vertex-ai).
 
 **A self-hosted endpoint times out.** The `baseUrl` must be reachable from pods in the `kagent` namespace of the management cluster, and network policies on that cluster may need an egress rule for the endpoint's address and port. `localhost` and machine-local addresses never work from a pod.
 
