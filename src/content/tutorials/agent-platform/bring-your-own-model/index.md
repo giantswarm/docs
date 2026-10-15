@@ -278,7 +278,7 @@ You need:
 
 The key never reaches the agent. The platform exchanges it for a short-lived access token at Google's token endpoint and adds that token to the agent's requests on the way out. When an agent is deployed, the runtime checks the key. It refuses the agent unless the key is a service account key (`"type": "service_account"`), its `project_id` equals the model's `projectID`, and its `token_uri` is on `https://oauth2.googleapis.com`.
 
-If a firewall restricts the management cluster's outbound traffic, permit `oauth2.googleapis.com` for the token exchange and the Vertex AI endpoint of the model's location:
+If a firewall restricts the management cluster's outbound traffic, permit `oauth2.googleapis.com` for the token exchange and the Vertex AI endpoint of the model's location, or `*.googleapis.com`, which covers them all:
 
 | `location` | Endpoint |
 |---|---|
