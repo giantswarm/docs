@@ -92,7 +92,7 @@ global:
           kind: ControllerConfiguration
 ```
 
-#### Enabling ListenerSet support
+#### Enabling ListenerSet Support
 
 A [ListenerSet](https://gateway-api.sigs.k8s.io/geps/gep-1713/) lets you add listeners to an existing Gateway from your own namespace, for example to serve your own domain with its own certificate, without changing the shared `giantswarm-default` Gateway. cert-manager can issue certificates for ListenerSets the same way it does for Gateways, but this support is an alpha feature that's turned off by default.
 
