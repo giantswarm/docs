@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2026-06-11
+last_review_date: 2026-10-06
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
@@ -49,7 +49,7 @@ It supports the following flags:
 - `--aws-cluster-role-identity-name` (optional) - Refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account (default: `default`).
 - `--az-usage-limit` (optional) - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets (default: `3`).
 - `--bastion-instance-type` (optional) - Instance type used for the bastion machine (default: `t3.small`).
-- `--bastion-replicas` (optional) - Number of bastion instances to run.
+- `--bastion-replicas` (optional) - Number of bastion instances to run (default: `1`).
 - `--control-plane-instance-type` (optional) - Instance type used for Control plane nodes (default: `r6i.xlarge`).
 - `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
 - `--cluster-version` (optional) - Version of `cluster-aws` helm chart to use. If not provided, the latest version will be used.
@@ -86,11 +86,11 @@ It supports the following flags:
 - `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
 - `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
 - `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
-- `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: 1.24.11).
+- `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: `v1.24.12`).
 - `--vsphere-control-plane-disk-gib` (optional) - Disk size in GiB for individual control plane nodes (default: 50).
 - `--vsphere-control-plane-ip` (optional) - Control plane IP, leave empty for auto allocation.
 - `--vsphere-control-plane-ip-pool` (optional) - Name of `GlobalInClusterIpPool` CR from which to take an IP for the control plane (default: `wc-cp-ips`).
-- `--vsphere-control-plane-memory-mib` (optional) - Memory size in MiB for individual control plane nodes (default: 8096).
+- `--vsphere-control-plane-memory-mib` (optional) - Memory size in MiB for individual control plane nodes (default: 8192).
 - `--vsphere-control-plane-num-cpus` (optional) - Number of CPUs for individual control plane nodes (default: 4).
 - `--vsphere-control-plane-replicas` (optional) - Number of control plane replicas in odd number (default: 3).
 - `--vsphere-credentials-secret-name` (optional) - Name of the kubernetes secret that should be associated to the cluster app. It should exist in the organization's namespace and should contain the credentials for vsphere.

@@ -7,7 +7,7 @@ weight: 70
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2026-06-08
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -80,13 +80,4 @@ It also supports the following optional flags:
 - `--namespace-labels`: Additional labels to be appended to the metadata of the target namespace (through [`spec.namespaceConfig.labels`]({{< relref "/tutorials/fleet-management/app-platform/namespace-configuration" >}}) of [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR) in form `key=value`. To specify multiple labels, either separate label pairs with commata (,) or specify the flag multiple times.
 - `--in-cluster`: Creates in-cluster app by setting `.spec.kubeConfig.inCluster` field of the [App]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) CR to `true`. This is necessary for installing collection of apps.
 
-<!-- TODO: review section below -->
-
-Only required fields are templated. Other fields are are set by the
-[defaulting webhook]({{< relref "/tutorials/fleet-management/app-platform/defaulting-validation" >}}).
-
-This is enabled for the Giant Swarm releases shown below. For older releases you can set the `--defaulting-enabled` flag to false.
-
-- AWS >= v14.0.0
-- Azure >= v13.1.0
-- KVM >= v13.1.0
+Only required fields are templated. The [defaulting webhook]({{< relref "/tutorials/fleet-management/app-platform/defaulting-validation" >}}) sets the other fields. To get the full manifest, set the `--defaulting-enabled` flag to false.

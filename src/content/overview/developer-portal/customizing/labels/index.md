@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-developer-portal-customizing
     identifier: overview-developer-portal-customizing-labels
-last_review_date: 2025-06-24
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -21,7 +21,7 @@ The use of labels and [annotations]({{< relref "/overview/developer-portal/custo
 - Text displayed for the key and for values
 - Color, either independent of the value, or depending on the value
 
-Currently, we only display resource labels in the context of clusters. In the future, we will expand this to other resource types.
+Labels are displayed on the cluster and deployment pages.
 
 All customization applies as long as the user has the _friendly labels_ toggle set to active. Once you deactivate this switch, the UI displays all labels in their raw form.
 
