@@ -10,13 +10,14 @@ menu:
     identifier: tutorials-agent-platform-bring-your-own-model
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-08
+last_review_date: 2026-10-15
 user_questions:
   - Why does the default model show as not accepted in the developer portal?
   - How do I provide the API key for the Agent Platform's default model?
   - How do I add a model from OpenAI, Azure OpenAI, Gemini, Ollama or a self-hosted endpoint?
   - Why does my agent not start although its model configuration is accepted?
   - How do I check which models the Agent Platform can run agents on?
+  - How do I run agents on Claude or Gemini models through Google Cloud Vertex AI?
 ---
 
 The Agent Platform's agent runtime runs every agent on a **model configuration**: a `ModelConfig` resource in the `kagent` namespace of the management cluster that names a provider, a model, and the Secret holding the provider's API key. Giant Swarm installs the runtime **without any model credential**. The model, the provider and the key are yours: your contract, your bill, your data-processing terms.
@@ -26,7 +27,7 @@ Out of the box, one model configuration exists, `default-model-config` (Anthropi
 This guide shows three ways to make a model available. Pick one:
 
 - [Provide the API key for the default model](#option-1-provide-the-api-key-for-the-default-model) through your GitOps repository. The least work if Anthropic is your provider.
-- [Add your own model configuration](#option-2-add-your-own-model-configuration) through your GitOps repository, for any supported provider: Anthropic, OpenAI, Azure OpenAI, Gemini, Ollama, or an OpenAI-compatible endpoint you host yourself.
+- [Add your own model configuration](#option-2-add-your-own-model-configuration) through your GitOps repository, for any supported provider: Anthropic, OpenAI, Azure OpenAI, Gemini, Vertex AI, Ollama, or an OpenAI-compatible endpoint you host yourself.
 - [Create a model configuration in the UI](#option-3-create-a-model-configuration-in-the-ui), in the developer portal or in the UI of the agent runtime. Quickest to try, but the result lives on the cluster only, not in Git.
 
 ## Before you start
@@ -205,6 +206,91 @@ spec:
   apiKeySecretKey: GOOGLE_API_KEY
 ```
 
+### Vertex AI
+
+Claude and Gemini models are also available through Google Cloud's Vertex AI, billed to your Google Cloud project. Two providers cover it: `AnthropicVertexAI` for Claude models and `GeminiVertexAI` for Gemini models. Both authenticate with a service account key instead of an API key.
+
+You need:
+
+- Agent Platform 4.128.0 or later on the installation, and for an installation that enforces network policies, `<RELEASE-FIXING-1042>` or later, which lets the platform reach Google's token endpoint.
+- A Google Cloud project with the model enabled. Gemini models are available without further steps. A Claude model has to be enabled first: open its model card in Model Garden and select **Enable**.
+- A service account in that project with the **Agent Platform User** role (`roles/aiplatform.user`, called **Vertex AI User** before Google renamed the product), and a JSON key for it.
+
+1. Create the service account and its key with the `gcloud` command line tool. Replace `<project>` with your project ID:
+
+    ```sh
+    gcloud iam service-accounts create kagent-vertex --project <project>
+    gcloud projects add-iam-policy-binding <project> \
+      --member serviceAccount:kagent-vertex@<project>.iam.gserviceaccount.com \
+      --role roles/aiplatform.user
+    gcloud iam service-accounts keys create kagent-vertex-key.json \
+      --iam-account kagent-vertex@<project>.iam.gserviceaccount.com
+    ```
+
+    Keep `kagent-vertex-key.json` out of your repository. It's the credential, and you delete it after the next step.
+
+2. Write the Secret with the whole key file under the key `GOOGLE_APPLICATION_CREDENTIALS`, then encrypt it as in [option 1](#option-1-provide-the-api-key-for-the-default-model):
+
+    ```sh
+    kubectl create secret generic kagent-vertex-key \
+      --namespace kagent \
+      --from-file=GOOGLE_APPLICATION_CREDENTIALS=kagent-vertex-key.json \
+      --dry-run=client --output yaml \
+      > management-clusters/<installation>/extras/agent-platform/secrets/kagent-vertex-key.yaml
+    sops --encrypt --in-place management-clusters/<installation>/extras/agent-platform/secrets/kagent-vertex-key.yaml
+    ```
+
+3. Add a `ModelConfig` per model. `projectID` is your project ID, and `location` is where Vertex AI serves the model: `global`, the multi-region `us` or `eu`, or a region such as `europe-west1`. Check the model's card in Model Garden for the locations it's offered in. For Claude:
+
+    ```yaml
+    apiVersion: api.kagent.dev/v1alpha3
+    kind: ModelConfig
+    metadata:
+      name: vertex-claude
+      namespace: kagent
+    spec:
+      provider: AnthropicVertexAI
+      model: <Claude model ID from Model Garden>
+      apiKeySecret: kagent-vertex-key
+      apiKeySecretKey: GOOGLE_APPLICATION_CREDENTIALS
+      anthropicVertexAI:
+        projectID: <project>
+        location: global
+    ```
+
+    For Gemini, the provider and its block change:
+
+    ```yaml
+    apiVersion: api.kagent.dev/v1alpha3
+    kind: ModelConfig
+    metadata:
+      name: vertex-gemini
+      namespace: kagent
+    spec:
+      provider: GeminiVertexAI
+      model: gemini-2.5-flash
+      apiKeySecret: kagent-vertex-key
+      apiKeySecretKey: GOOGLE_APPLICATION_CREDENTIALS
+      geminiVertexAI:
+        projectID: <project>
+        location: europe-west1
+    ```
+
+The key never reaches the agent. The platform exchanges it for a short-lived access token at Google's token endpoint and adds that token to the agent's requests on the way out. When an agent is deployed, the runtime checks the key. It refuses the agent unless the key is a service account key (`"type": "service_account"`), its `project_id` equals the model's `projectID`, and its `token_uri` is on `https://oauth2.googleapis.com`.
+
+If a firewall restricts the management cluster's outbound traffic, permit `oauth2.googleapis.com` for the token exchange and the Vertex AI endpoint of the model's location:
+
+| `location` | Endpoint |
+|---|---|
+| `global` | `aiplatform.googleapis.com` |
+| `us` or `eu` | `aiplatform.us.rep.googleapis.com` or `aiplatform.eu.rep.googleapis.com` |
+| A region, such as `europe-west1` | `<location>-aiplatform.googleapis.com`, for example `europe-west1-aiplatform.googleapis.com` |
+
+Two things differ from the other providers:
+
+- **The LLM gateway doesn't meter Vertex AI models.** Their spend and token counts don't appear on the model's **Usage** tab in the developer portal. Google Cloud billing for the project is the record of what they cost.
+- **Create them through GitOps,** as shown here, or with the developer portal's **Add model** form from Backstage `<PORTAL-RELEASE>`.
+
 ### Ollama
 
 No Secret. The host must be reachable from pods on the management cluster:
@@ -254,8 +340,8 @@ For an endpoint with a certificate from your own certificate authority, add a `t
 The full field list of every provider block is in the resource definition on your cluster:
 
 ```sh
-kubectl explain modelconfig.spec
-kubectl explain modelconfig.spec.openAI
+kubectl explain modelconfigs.spec --api-version=api.kagent.dev/v1alpha3
+kubectl explain modelconfigs.spec.openAI --api-version=api.kagent.dev/v1alpha3
 ```
 
 ## Option 3: Create a model configuration in the UI
@@ -273,7 +359,7 @@ Models the portal or the runtime UI can't edit are the ones something else manag
 On the cluster, the `Accepted` column tells you whether each model is ready for agents:
 
 ```sh
-kubectl --namespace kagent get modelconfig \
+kubectl --namespace kagent get modelconfigs.api.kagent.dev \
   --output custom-columns='NAME:.metadata.name,PROVIDER:.spec.provider,MODEL:.spec.model,ACCEPTED:.status.conditions[?(@.type=="Accepted")].status'
 ```
 
@@ -285,7 +371,7 @@ default-model-config   Anthropic   claude-sonnet-4-6   True
 When a model stays `False`, the condition's message says why:
 
 ```sh
-kubectl --namespace kagent get modelconfig default-model-config \
+kubectl --namespace kagent get modelconfigs.api.kagent.dev default-model-config \
   --output jsonpath='{.status.conditions[?(@.type=="Accepted")].message}{"\n"}'
 ```
 
@@ -302,6 +388,10 @@ In the developer portal, the **Models** tab shows the same state with an **Accep
 **The agent starts but every request fails with an authentication error.** The key is present but invalid or lacks access to the model. Test the key against the provider's API directly with the same model name.
 
 **The model is accepted but every request fails with a connection reset or a TLS error.** An egress firewall or proxy in front of the management cluster allows only listed domains, and the provider's domain isn't among them. The requests leave from pods on the management cluster, so the rule has to cover the cluster's nodes, not your workstation. Permit your provider's domain from the [Agent Platform section of the domain allowlist]({{< relref "/overview/security/domain-allowlist#agent-platform" >}}) and try again.
+
+**An agent on a Vertex AI model is refused because of its Vertex AI credentials.** The key in the Secret fails one of the checks in [Vertex AI](#vertex-ai): it isn't a service account key, it belongs to a different project than `projectID`, or its `token_uri` isn't Google's. Create a key for a service account in the model's project and replace the Secret.
+
+**Every request to a Vertex AI model fails although the key is valid.** The platform can't reach `oauth2.googleapis.com` to exchange the key for a token. On an installation that enforces network policies, upgrade to `<RELEASE-FIXING-1042>` or later. Behind a firewall, permit the domains listed in [Vertex AI](#vertex-ai).
 
 **A self-hosted endpoint times out.** The `baseUrl` must be reachable from pods in the `kagent` namespace of the management cluster, and network policies on that cluster may need an egress rule for the endpoint's address and port. `localhost` and machine-local addresses never work from a pod.
 
