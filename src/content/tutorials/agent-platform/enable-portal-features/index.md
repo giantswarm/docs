@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-enable-portal-features
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-10-05
+last_review_date: 2026-10-16
 user_questions:
   - How do I enable the Agent Platform section in Backstage?
   - Why does the installation picker show the wrong name?
@@ -28,13 +28,12 @@ All configuration goes into the instance's Backstage app-config.
 
 ## Make the section appear
 
-Enable the two UI extensions—the plugin is off by default, and this alone makes the section show up:
+Enable the UI extension—the plugin is off by default:
 
 ```yaml
 app:
   extensions:
     - page:agent-platform
-    - nav-item:agent-platform
 ```
 
 The section's tabs (Agents, Sessions, MCP Servers) come along automatically.
@@ -100,7 +99,7 @@ Several portal instances share one comma-separated value—don't add a second `o
 
 | Configuration | Browse | Deploy |
 |---|---|---|
-| UI extensions | required | required |
+| UI extension | required | required |
 | `muster.installations` | required | required |
 | CSP image origin | required | required |
 | Skill repositories | optional | recommended |
