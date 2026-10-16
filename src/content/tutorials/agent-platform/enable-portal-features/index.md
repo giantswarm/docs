@@ -38,7 +38,7 @@ app:
     - page:agent-platform
 ```
 
-The `page:agent-platform` extension carries the Agent Platform's screens: Sessions, Agents, Models, Connectors, Workflows, and Usage. It's enabled by default, so listing it is optional, but it's only mounted while `app.portals.agentPlatform` is on. Without that setting, the portal shows nothing of the Agent Platform, even when `app.extensions` lists the extension.
+The `page:agent-platform` extension carries the Agent Platform's screens: Sessions, Agents, Models, Connectors, Workflows, and Usage. It's enabled by default, so you don't need to list it, but it's only mounted while `app.portals.agentPlatform` is on. Without that setting, the portal shows nothing of the Agent Platform, even when `app.extensions` lists the extension.
 
 `app.portals.platformPortal` decides whether the classic portal stays. It defaults to `true`, so the classic portal and the Agent Platform run side by side, each linking to the other. Set it to `false` to make the Agent Platform the portal's only navigation.
 
