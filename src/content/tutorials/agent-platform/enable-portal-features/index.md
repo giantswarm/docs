@@ -28,19 +28,25 @@ All configuration goes into the instance's Backstage app-config.
 
 ## Make the section appear
 
-Enable the UI extension—the plugin is off by default:
+The Agent Platform is off by default. Switch it on for the instance with `app.portals.agentPlatform`:
 
 ```yaml
 app:
+  portals:
+    agentPlatform: true
   extensions:
     - page:agent-platform
 ```
 
-The section's tabs (Agents, Sessions, MCP Servers) come along automatically.
+The `page:agent-platform` extension carries the Agent Platform's screens: Sessions, Agents, Models, Connectors, Workflows, and Usage. It's enabled by default, so listing it is optional, but it's only mounted while `app.portals.agentPlatform` is on. Without that setting, the portal shows nothing of the Agent Platform, even when `app.extensions` lists the extension.
+
+`app.portals.platformPortal` decides whether the classic portal stays. It defaults to `true`, so the classic portal and the Agent Platform run side by side, each linking to the other. Set it to `false` to make the Agent Platform the portal's only navigation.
+
+To try the Agent Platform before switching it on for everyone, a person can turn on the `agent-platform-shell` feature flag in their portal settings. It applies to their browser only, after a reload, and isn't offered while `app.portals.agentPlatform` is on.
 
 ## Name the Muster installations
 
-Without an explicit installation list, the MCP Servers view falls back to a legacy single-server entry and the installation picker mislabels your installation. Configure each installation the portal should reach:
+Without an explicit installation list, the Connectors screen falls back to a legacy single-server entry and the installation picker mislabels your installation. Configure each installation the portal should reach:
 
 ```yaml
 muster:
@@ -84,7 +90,7 @@ That's the browse experience complete. Deploying agents needs no further portal 
 
 ## Accept the portal's token at the agent runtime
 
-The Sessions tab reads the agent runtime API, which sits behind an OAuth proxy. That proxy accepts a bearer token only when the token's audience matches its own client or an explicitly allowed extra audience. Each portal instance has its own OIDC client, so add the portal's client ID as an extra audience in the platform deployment's values:
+The Sessions screen reads the agent runtime API, which sits behind an OAuth proxy. That proxy accepts a bearer token only when the token's audience matches its own client or an explicitly allowed extra audience. Each portal instance has its own OIDC client, so add the portal's client ID as an extra audience in the platform deployment's values:
 
 ```yaml
 kagent:
@@ -93,17 +99,17 @@ kagent:
       oidc-extra-audience: <portal OIDC client ID>
 ```
 
-Several portal instances share one comma-separated value—don't add a second `oidc-extra-audience` key, since a duplicate YAML map key drops one of them with no error. Without this, the Sessions tab answers `401` and reports it couldn't read the installation.
+Several portal instances share one comma-separated value—don't add a second `oidc-extra-audience` key, since a duplicate YAML map key drops one of them with no error. Without this, the Sessions screen answers `401` and reports it couldn't read the installation.
 
 ## What each capability needs
 
 | Configuration | Browse | Deploy |
 |---|---|---|
-| UI extension | required | required |
+| `app.portals.agentPlatform` | required | required |
 | `muster.installations` | required | required |
 | CSP image origin | required | required |
 | Skill repositories | optional | recommended |
-| Runtime OAuth audience | Sessions tab only | Sessions tab only |
+| Runtime OAuth audience | Sessions screen only | Sessions screen only |
 
 ## Related
 
