@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2026-10-06
+last_review_date: 2026-10-16
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
@@ -38,11 +38,22 @@ It supports the following flags:
 - `--label` (optional) - Label in the form `key=value` to set on the cluster. Can be specified multiple times.
 - `--service-priority` (optional) - Service priority of the cluster (one of: `highest`, `medium`, `lowest`).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
-- `--oidc-issuer-url` (optional) - Issuer URL for configuring OpenID Connect in the cluster API.
-- `--oidc-ca-file` (optional) - CA file path for OIDC endpoint, when not using a trusted Certificate Authority.
-- `--oidc-client-id` (optional) - Client ID configured in the OIDC endpoint.
-- `--oidc-username-claim` (optional) - Claim used to map the username identity of the user.
-- `--oidc-groups-claim` (optional) - Claim used to map the group identity of the user.
+- `--disable-oidc` (optional) - Leave `global.controlPlane.oidc` out, so that the cluster's API server trusts no OIDC issuer. Cannot be combined with the `--oidc-*` flags. See [OIDC](#oidc).
+- `--oidc-issuer-url` (optional) - Issuer URL the cluster trusts instead of the management cluster's Dex. Requires `--oidc-client-id`.
+- `--oidc-ca-file` (optional) - Path to a PEM file with the CA certificate used to verify the OIDC issuer, when it doesn't use a trusted Certificate Authority.
+- `--oidc-client-id` (optional) - OIDC client ID (default: the management cluster's).
+- `--oidc-username-claim` (optional) - Claim used to map the username identity of the user (default: the management cluster's, or `email` with `--oidc-issuer-url`).
+- `--oidc-groups-claim` (optional) - Claim used to map the group identity of the user (default: the management cluster's, or `groups` with `--oidc-issuer-url`).
+
+### OIDC {#oidc}
+
+For the providers `capa`, `capz`, `vsphere` and `cloud-director`, the command sets `global.controlPlane.oidc` in the generated cluster configuration, so that the workload cluster's API server trusts the OIDC issuer (Dex) of the management cluster that the current kubeconfig context points at. You don't need to pass any `--oidc-*` flag for that. The values are read from the management cluster's own control plane. The `eks` provider runs a managed control plane and isn't affected.
+
+- To override single settings, pass the matching `--oidc-*` flag, for example `--oidc-groups-claim`. Flags you pass win over the values read from the management cluster.
+- To trust another issuer, pass `--oidc-issuer-url` together with `--oidc-client-id`. The management cluster isn't asked in that case.
+- To leave the OIDC settings out, pass `--disable-oidc`. Combining it with any `--oidc-*` flag is an error.
+
+If the values can't be read from the management cluster, for example because the kubeconfig has no context selected, the command fails with an error that names the cause and the two ways out: `--oidc-issuer-url` with `--oidc-client-id`, or `--disable-oidc`.
 
 ### Flags specific to AWS {#flags-capa}
 
