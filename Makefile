@@ -116,12 +116,16 @@ lint-prose-update:
 		--config=/workdir/.vale.ini \
 		sync
 
-# Validate front matter in all pages.
+# Validate front matter in all pages. The validator version is the rev pinned
+# for the frontmatter-validator hook in .pre-commit-config.yaml, so this target
+# and the pre-commit hook always run the same validator and config.
+FRONTMATTER_VALIDATOR_VERSION = $(shell sed -n '/giantswarm\/frontmatter-validator/{n;s/^ *rev: *v//p;}' .pre-commit-config.yaml)
+
 validate-front-matter:
 	docker run --rm \
 		--volume=${PWD}:/workdir:ro \
 		-w /workdir \
-		$(REGISTRY)/$(COMPANY)/frontmatter-validator:0.3.2 \
+		$(REGISTRY)/$(COMPANY)/frontmatter-validator:$(FRONTMATTER_VALIDATOR_VERSION) \
 			--path ./src/content \
 			--config ./scripts/frontmatter-validator/config-default.yaml
 
