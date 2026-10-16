@@ -19,7 +19,9 @@ user_questions:
   - How do I keep the Gateway load balancer in fewer availability zones?
   - What does a Gateway need to use NLB IP target mode on AWS?
   - Why do the Envoy proxy pods never become ready in IP target mode?
-last_review_date: 2026-10-13
+  - How do I enable ListenerSet support in cert-manager?
+  - How do I get TLS certificates for a ListenerSet?
+last_review_date: 2026-10-15
 ---
 
 ## Prerequisites
@@ -89,6 +91,99 @@ global:
           enableGatewayAPI: true
           kind: ControllerConfiguration
 ```
+
+#### Enabling ListenerSet Support
+
+A [ListenerSet](https://gateway-api.sigs.k8s.io/geps/gep-1713/) lets you add listeners to an existing Gateway from your own namespace, for example to serve your own domain with its own certificate, without changing the shared `giantswarm-default` Gateway. cert-manager can issue certificates for ListenerSets the same way it does for Gateways, but this support is an alpha feature that's turned off by default.
+
+ListenerSet support needs cert-manager v1.20 or newer, which ships with cluster release v35.0.0 and newer. These releases include `cert-manager-app` v4, which expects the upstream chart values under the `cert-manager` key.
+
+To turn it on, extend the cert-manager configuration in your cluster's user ConfigMap:
+
+```yaml
+global:
+  apps:
+    certManager:
+      values:
+        cert-manager:
+          config:
+            apiVersion: controller.config.cert-manager.io/v1alpha1
+            kind: ControllerConfiguration
+            enableGatewayAPI: true
+            enableGatewayAPIListenerSet: true
+            featureGates:
+              ListenerSets: true
+```
+
+All three settings are required:
+
+- `enableGatewayAPI` turns on the Gateway API integration that ListenerSet support builds on.
+- `enableGatewayAPIListenerSet` turns on the cert-manager controller that watches ListenerSets.
+- `featureGates.ListenerSets` enables the alpha feature gate. Without it, cert-manager ignores `enableGatewayAPIListenerSet`.
+
+cert-manager checks for the ListenerSet CRD when it starts and fails to start if the CRD is missing. The Gateway API Bundle installs the CRD, so apply this configuration only after the bundle is deployed. If you install the CRDs later, restart the cert-manager controller.
+
+ListenerSets created in your own namespaces can only attach to a Gateway that allows them. Open the default Gateway to ListenerSets in the bundle configuration:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  allowedListeners:
+                    enabled: true
+                    namespaces:
+                      from: All
+```
+
+Use `from: Selector` with a `selector` to limit which namespaces may attach ListenerSets.
+
+With both changes in place, annotate a ListenerSet with an issuer and reference a Secret in each HTTPS listener. cert-manager creates a `Certificate` for every listener's hostname and stores it in that Secret:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: my-listeners
+  namespace: my-namespace
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+spec:
+  parentRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: giantswarm-default
+    namespace: envoy-gateway-system
+  listeners:
+    - name: https
+      hostname: myapp.example.com
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: myapp-example-com-tls
+      allowedRoutes:
+        namespaces:
+          from: Same
+```
+
+If the ListenerSet has no issuer annotation, it inherits the one from its parent Gateway. Check that the ListenerSet is attached with `kubectl get listenerset -n my-namespace my-listeners`, and that the certificate was issued with `kubectl get certificate -n my-namespace`.
+
+**Note:** cert-manager doesn't create DNS records. To get a DNS record for the ListenerSet hostname, enable ListenerSet support in external-dns too, with `global.apps.externalDns.values.enableGatewayListenerSets: true`.
 
 ### Using the default gateway
 
