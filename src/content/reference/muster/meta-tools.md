@@ -14,14 +14,14 @@ user_questions:
   - What meta-tools does Muster expose?
   - What arguments does filter_tools take?
   - Which built-in core tools does Muster provide?
-last_review_date: 2026-09-07
+last_review_date: 2026-10-06
 ---
 
 Muster exposes a small, fixed set of meta-tools to an AI agent instead of the hundreds of underlying tools behind the gateway. The agent discovers what it needs on demand and pays context cost only for the tools it uses. For the concept and the reasoning, see [Meta-tools and tool discovery]({{< relref "/overview/agent-platform/meta-tools" >}}). This page is the field-level reference, verified against Muster `v0.10.0`; the toolset additions are verified against Muster `5.12.0`.
 
 ## The meta-tools {#meta-tools}
 
-Muster exposes 11 meta-tools:
+Muster exposes 13 meta-tools:
 
 | Meta-tool | Purpose |
 |---|---|
@@ -31,9 +31,11 @@ Muster exposes 11 meta-tools:
 | `call_tool` | Execute a tool by name with the given arguments |
 | `list_core_tools` | List Muster's built-in tools only |
 | `list_resources` | List all available MCP resources |
+| `filter_resources` | Filter MCP resources by pattern or server, as a bounded page |
 | `describe_resource` | Get details about one MCP resource |
 | `get_resource` | Retrieve a resource's contents |
 | `list_prompts` | List all available MCP prompts |
+| `filter_prompts` | Filter MCP prompts by pattern or server, as a bounded page |
 | `describe_prompt` | Get details about one MCP prompt |
 | `get_prompt` | Get a prompt with the given arguments |
 
