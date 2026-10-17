@@ -11,7 +11,7 @@ user_questions:
 aliases:
   - /vintage/platform-overview/security/cluster-security/domain-allowlist/
   - /platform-overview/security/cluster-security/domain-allowlist
-last_review_date: 2026-09-04
+last_review_date: 2026-10-15
 owner:
   - https://github.com/orgs/giantswarm/teams/team-teddyfriends
 ---
@@ -100,7 +100,7 @@ The [Agent Platform]({{< relref "/overview/agent-platform" >}}) is an opt-in add
 | `api.openai.com` | Model configurations for OpenAI models. |
 | `*.openai.azure.com` | Model configurations for Azure OpenAI. Permit the endpoint of your own Azure OpenAI resource instead of the wildcard if you prefer. |
 | `*.cognitiveservices.azure.com` | Azure OpenAI resources created as Azure AI Foundry or Azure AI Services resources are served from this domain. |
-| `generativelanguage.googleapis.com` | Model configurations for Google Gemini models. |
+| `*.googleapis.com` | Optional. Model configurations for Google Gemini (`generativelanguage.googleapis.com`) and Vertex AI: the token exchange for the service account key (`oauth2.googleapis.com`) and the endpoint of each model's location (`aiplatform.googleapis.com` for `global`, `aiplatform.us.rep.googleapis.com` and `aiplatform.eu.rep.googleapis.com` for the multi-regions, `<region>-aiplatform.googleapis.com` for a region). Permit only these names instead of the wildcard if you prefer. |
 | `huggingface.co` | Optional. Pulling model weights from the Hugging Face Hub when the installation serves models itself. Weights from any other source need no Hugging Face access. |
 | `*.huggingface.co` | Optional. Pulling model weights from the Hugging Face Hub when the installation serves models itself. Weights from any other source need no Hugging Face access. |
 | `hf.co` | Optional. The Hugging Face Hub serves weights from this domain. |
