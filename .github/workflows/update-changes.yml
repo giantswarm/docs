@@ -46,7 +46,6 @@ jobs:
           title: "chore: update generated content"
           branch: "automatic-update-of-generated-content"
           commit-message: "chore: update generated content"
-          assignees: taylorbot
           reviewers: pipo02mix
           body: |
             This PR has been created automatically by the 'Update generated content' Github workflow
