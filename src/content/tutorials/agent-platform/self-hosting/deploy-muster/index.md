@@ -10,7 +10,7 @@ menu:
     identifier: tutorials-agent-platform-deploy-muster
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-10-06
 user_questions:
   - How do I deploy Muster on a management cluster?
   - Which Helm charts does Muster need?
@@ -23,7 +23,7 @@ aliases:
 **Applies to self-hosted Muster only.** Follow this guide when you operate your own Muster. On the managed Giant Swarm platform, Muster is already deployed for you.
 {{% /notice %}}
 
-Muster ships as two Helm charts: `muster-crds`, which installs the `MCPServer` and `Workflow` CustomResourceDefinitions, and `muster`, which runs the aggregator itself. This guide installs both and explains the custom-resource discovery mode the aggregator runs in on a cluster.
+Muster ships as two Helm charts: `muster`, which runs the aggregator and bundles the `MCPServer`, `Workflow`, and `WorkflowExecution` CustomResourceDefinitions in its `crds/` directory, and `muster-crds`, which carries the same CRDs as a regular chart so Helm can upgrade them. This guide installs both and explains the custom-resource discovery mode the aggregator runs in on a cluster.
 
 For the concepts behind the aggregator, see the [architecture overview]({{< relref "/overview/agent-platform/architecture" >}}). To protect the deployed endpoint with single sign-on, continue to [set up OAuth]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}}).
 
@@ -33,27 +33,29 @@ For the concepts behind the aggregator, see the [architecture overview]({{< relr
 - An ingress controller or Gateway API implementation to expose the aggregator. Production OAuth needs HTTPS.
 - An OIDC provider (Dex on a Giant Swarm cluster) if you plan to protect the endpoint, covered in [OAuth setup]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}}).
 
-## Install the CRDs first
+## Install the CRDs
 
-The application chart no longer renders the CRDs. It expects them to exist, so always reconcile `muster-crds` before `muster`. Installing the application first risks the reconciler starting against missing or stale CRDs.
+The application chart bundles the CRDs in its `crds/` directory, so a fresh `helm install` of `muster` creates them. Helm never upgrades or deletes files from `crds/`. If you upgrade with plain Helm and want the CRDs upgraded too, install the `muster-crds` chart first. With Flux, set `install.crds` and `upgrade.crds: CreateReplace` on the `HelmRelease` instead.
+
+To manage the CRDs with Helm, install `muster-crds` before `muster`:
 
 ```bash
 helm upgrade --install muster-crds \
-  oci://gsoci.azurecr.io/giantswarm/muster-crds \
+  oci://gsoci.azurecr.io/charts/giantswarm/muster-crds \
   --namespace muster --create-namespace
 ```
 
-The CRDs carry `helm.sh/resource-policy: keep`, so a later `helm uninstall muster-crds` leaves them, and every `MCPServer` and `Workflow` resource, in place. Removing them is a deliberate, destructive step that also deletes the dependent resources.
+The CRDs carry `helm.sh/resource-policy: keep`, so a later `helm uninstall muster-crds` leaves them, and every `MCPServer`, `Workflow`, and `WorkflowExecution` resource, in place. Removing them is a deliberate, destructive step that also deletes the dependent resources.
 
 ## Install the application
 
 ```bash
 helm upgrade --install muster \
-  oci://gsoci.azurecr.io/giantswarm/muster \
+  oci://gsoci.azurecr.io/charts/giantswarm/muster \
   --namespace muster
 ```
 
-The image comes from `gsoci.azurecr.io/giantswarm/muster`. On a Giant Swarm management cluster, deploy both charts through the app platform with an `App` resource managed by your GitOps pipeline, rather than running Helm by hand. The ordering rule is the same: the CRD chart lands first.
+The image comes from `gsoci.azurecr.io/giantswarm/muster`. On a Giant Swarm management cluster, deploy the charts through the app platform with an `App` resource managed by your GitOps pipeline, rather than running Helm by hand.
 
 ## How the aggregator finds resources
 
@@ -101,7 +103,9 @@ ingress:
         - muster.<management-cluster>.<base-domain>
 ```
 
-For Gateway API, set `gatewayAPI.enabled: true` with a `parentRefs` entry and `hostnames`. On Envoy Gateway, also enable `gatewayAPI.backendTrafficPolicy` with `timeout: "0s"`, because the default fifteen-second backend timeout kills the long-lived streaming connections MCP relies on.
+For Gateway API, set `gatewayAPI.enabled: true` with at least one `gatewayAPI.httpRoute.parentRefs` entry and `gatewayAPI.httpRoute.hostnames`. On Envoy Gateway, also enable `gatewayAPI.backendTrafficPolicy` with `timeout: "0s"`, because the default fifteen-second backend timeout kills the long-lived streaming connections MCP relies on.
+
+The chart refuses to render an Ingress or HTTPRoute while `muster.oauth.server.enabled` is `false`, as the route would accept every request unauthenticated. Either configure OAuth first (see [OAuth setup]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}})) or, for a deliberate test setup, set `muster.oauth.server.acknowledgeUnauthenticatedExposure: true`.
 
 Tokens from enterprise single sign-on can carry many group claims and overflow the default ingress header buffers. Raise `large_client_header_buffers` on the ingress that fronts Muster. The [OAuth setup]({{< relref "/tutorials/agent-platform/self-hosting/oauth-setup" >}}) guide covers the symptom and fix.
 
