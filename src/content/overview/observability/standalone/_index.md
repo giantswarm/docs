@@ -1,7 +1,7 @@
 ---
-title: Standalone observability platform
+title: Standalone Observability Platform
 linkTitle: Standalone
-description: Run the Giant Swarm observability platform on your own Kubernetes cluster, without a Giant Swarm management cluster.
+description: Run the Giant Swarm Observability Platform on your own Kubernetes cluster, without a Giant Swarm management cluster.
 weight: 60
 menu:
   principal:

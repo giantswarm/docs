@@ -1,8 +1,8 @@
 ---
-title: Prepare your infrastructure for the standalone observability platform
-linkTitle: Prepare your infrastructure
-diataxis_content_type: how-to-guide
-description: Prepare your Kubernetes cluster and object storage to run the standalone Giant Swarm observability platform.
+title: Standalone Observability Platform requirements
+linkTitle: Requirements
+diataxis_content_type: reference
+description: Kubernetes cluster, network, and object storage requirements for the standalone Giant Swarm Observability Platform.
 weight: 10
 mermaid: true
 menu:
@@ -13,14 +13,14 @@ last_review_date: 2026-10-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - How do I prepare my infrastructure for the standalone observability platform?
-  - What does the standalone observability platform need to run in my cluster?
-  - Which object storage does the standalone observability platform support?
-  - Which network endpoints does the standalone observability platform need to reach?
-  - How big a cluster does the standalone observability platform need?
+  - What do I need before I install the standalone Observability Platform?
+  - What does the standalone Observability Platform need to run in my cluster?
+  - Which object storage does the standalone Observability Platform support?
+  - Which network endpoints does the standalone Observability Platform need to reach?
+  - How big a cluster does the standalone Observability Platform need?
 ---
 
-The standalone observability platform runs Mimir, Loki, Tempo, and Grafana in a Kubernetes cluster you own. It stores all data in object storage you own.
+The standalone Observability Platform runs Mimir, Loki, Tempo, and Grafana in a Kubernetes cluster you own. It stores all data in object storage you own.
 
 This page lists what the cluster and the object storage need before the install. Each requirement links to a setup guide in the [observability-platform repository](https://github.com/giantswarm/observability-platform).
 
@@ -85,13 +85,13 @@ flowchart LR
 
 ### Kubernetes cluster
 
-- **Kubernetes cluster**: a conformant cluster that runs only the observability platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36.
+- **Kubernetes cluster**: a conformant cluster that runs only the Observability Platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36 and Amazon EKS 1.36.
 - **Release namespace `monitoring`**. The platform installs into the `monitoring` namespace only.
 
 ### Access and tools
 
 - **`cluster-admin`** on the Kubernetes cluster. The install creates custom resource definitions and cluster-wide RBAC.
-- **[`kubectl`](https://kubernetes.io/docs/tasks/tools/)** and **[`helm`](https://helm.sh/docs/intro/install/) 3**, pointed at the right cluster.
+- **[`kubectl`](https://kubernetes.io/docs/tasks/tools/)** and **[`helm`](https://helm.sh/docs/intro/install/)**, pointed at the right cluster.
 
 ### Cluster capacity
 
@@ -102,7 +102,7 @@ The platform ships one sizing profile, tuned for a small cluster.
 - **Memory**: 16 GiB per node, 48 GiB in total.
 - **Node disk**: 50 GiB per node.
 
-At rest, the platform requests 4.2 vCPU and 26.4 GiB of memory. The remaining capacity absorbs ingest and query load.
+At rest, the platform requests 5.2 vCPU and 36.9 GiB of memory. The remaining capacity absorbs ingest and query load.
 
 ### Cluster add-ons
 
@@ -137,6 +137,7 @@ Allow egress to these hosts from the cluster nodes. See the [observability-platf
 - **`giantswarm.github.io/giantswarm-catalog`**, for Helm charts.
 - **`giantswarm.github.io/control-plane-catalog`**, for Helm charts.
 - **Object storage endpoint**, over HTTPS on port 443. Mimir, Loki, and Tempo reach it.
+- **OIDC issuer JWKS URI**, over HTTPS, with the [External API](#external-api-optional) enabled. The Envoy Gateway pods fetch it.
 
 ### Object storage
 
@@ -162,7 +163,7 @@ The platform reads object storage settings from two places:
 - **Secret**: holds the credentials.
 - **Helm values** under `global.objectStorage`: hold the account and bucket names.
 
-The platform installs into the `monitoring` namespace. Create it:
+Create the `monitoring` namespace:
 
 ```sh
 kubectl create namespace monitoring
@@ -208,7 +209,7 @@ The chart creates no Ingress and no TLS certificate for Grafana. Exposing Grafan
 
 ### External API (optional)
 
-The observability platform API accepts metrics and logs from outside the cluster. It's disabled by default. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
+The Observability Platform API accepts metrics, logs, and traces from outside the cluster. It's disabled by default. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
 
 - **[Envoy Gateway](https://gateway.envoyproxy.io/)** installed in the cluster. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
 - **Gateway with an HTTPS listener** named `https`. The listener accepts routes from the `monitoring` namespace. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
@@ -274,11 +275,10 @@ az aks nodepool add \
 
 ## Known limitations
 
-- **Release namespace**: the platform installs into the `monitoring` namespace only.
 - **Grafana client certificate**: Grafana organizations, datasources, and dashboards need a Grafana client certificate Secret named `grafana-tls` in `monitoring`. The chart doesn't provide it yet. Until it does, these resources aren't reconciled.
 
 ## Next steps
 
-Contact your Giant Swarm account engineer to verify the setup. For sharing any secret with us, read [Sharing secrets with our team]({{< relref "/overview/security/sharing-secrets" >}}) first.
+Install the platform with the [observability-platform chart](https://github.com/giantswarm/observability-platform).
 
-You then install the platform with the [observability-platform chart](https://github.com/giantswarm/observability-platform).
+If you need help with the setup, contact your Giant Swarm account engineer. For sharing any secret with us, read [Sharing secrets with our team]({{< relref "/overview/security/sharing-secrets" >}}) first.
