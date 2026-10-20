@@ -89,13 +89,12 @@ flowchart LR
 
 ### Kubernetes cluster
 
-- **Conformant Kubernetes cluster** that runs only the observability platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Amazon EKS 1.36.
+- **Conformant Kubernetes cluster** that runs only the observability platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36.
 - **Release namespace `monitoring`**. The platform installs into the `monitoring` namespace only.
 
 ### Access and tools
 
 - **`cluster-admin`** on the Kubernetes cluster. The install creates custom resource definitions and cluster-wide RBAC.
-- **Object storage permissions** to create buckets and access credentials.
 - **[`kubectl`](https://kubernetes.io/docs/tasks/tools/)** and **[`helm`](https://helm.sh/docs/intro/install/) 3**, pointed at the right cluster.
 
 ### Cluster capacity
@@ -108,8 +107,6 @@ The platform ships one sizing profile, tuned for a small cluster.
 - **Node disk**: 50 GiB per node.
 
 At rest, the platform requests 4.2 vCPU and 26.4 GiB of memory. The remaining capacity absorbs ingest and query load.
-
-**Note**: This profile has no answer yet for high ingest volume. Contact your account engineer before you send production traffic.
 
 ### Cluster add-ons
 
@@ -141,6 +138,8 @@ Allow egress to these hosts from the cluster nodes. See the [observability-platf
 
 - **`gsoci.azurecr.io`**, for container images.
 - **`docker.io`**, for container images.
+- **`giantswarm.github.io/giantswarm-catalog`**, for Helm charts.
+- **`giantswarm.github.io/control-plane-catalog`**, for Helm charts.
 - **Object storage endpoint**, over HTTPS on port 443. Mimir, Loki, and Tempo reach it.
 
 ### Object storage
