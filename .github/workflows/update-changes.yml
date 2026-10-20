@@ -23,9 +23,20 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Generate giantswarm-release token for reading releases
+        id: read-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.RELEASE_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}
+          # make changes reads releases and changelogs of repositories all
+          # over the org, some of them private.
+          owner: ${{ github.repository_owner }}
+          permission-contents: read
+
       - name: Aggregate releases
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ steps.read-token.outputs.token }}
         run: make changes
 
       - name: Update Cluster Apps pages
@@ -38,10 +49,20 @@ jobs:
       #- name: Update website header and footer
       #  run: make update-website-content
 
+      - name: Generate giantswarm-release token for the pull request
+        id: pr-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.RELEASE_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}
+          # Push the content branch, open the PR and request its reviewer.
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@b65137ca591da0b9f43bad7b24df13050ea45d1b # v1.10.1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ steps.pr-token.outputs.token }}
         with:
           title: "chore: update generated content"
           branch: "automatic-update-of-generated-content"
