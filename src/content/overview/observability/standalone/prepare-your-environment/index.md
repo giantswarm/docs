@@ -30,10 +30,6 @@ The diagram shows what you provide in blue, the Giant Swarm Observability Platfo
 
 <!-- vale off -->
 {{< mermaid >}}
----
-config:
-  layout: dagre
----
 %%{init: {"themeCSS": ".edgeLabel, .edgeLabel p, .edgeLabel rect { background-color: transparent !important; fill: none !important; color: #000 !important; } .edgeLabel foreignObject { overflow: visible; } .edgeLabel foreignObject div { transform: translateY(-11px); } [id*=L_grafana_operator] path, [id*=L_api_operator] path, path[id*=L_grafana_operator], path[id*=L_api_operator] { marker-end: none !important; }"}}%%
 flowchart LR
   clients["External clients<br/>(agents, collectors, users)"]
@@ -89,7 +85,7 @@ flowchart LR
 
 ### Kubernetes cluster
 
-- **Conformant Kubernetes cluster** that runs only the observability platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36.
+- **Kubernetes cluster**: a conformant cluster that runs only the observability platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36.
 - **Release namespace `monitoring`**. The platform installs into the `monitoring` namespace only.
 
 ### Access and tools
@@ -111,7 +107,7 @@ At rest, the platform requests 4.2 vCPU and 26.4 GiB of memory. The remaining ca
 ### Cluster add-ons
 
 - **Default StorageClass** backed by a working CSI driver. Mimir, Loki, and Tempo store data on persistent volumes. Use `volumeBindingMode: WaitForFirstConsumer` on a multi-zone cluster. A volume then lands in the zone of the pod that uses it. See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md) and [Provider guidance](#provider-guidance).
-- **Metrics server**. The platform autoscales Mimir and Loki components with HorizontalPodAutoscalers. These need the `metrics.k8s.io` API. If it's missing, install [metrics-server](https://github.com/kubernetes-sigs/metrics-server). See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md).
+- **Metrics server**. The platform scales Mimir and Loki components with HorizontalPodAutoscalers. These need the `metrics.k8s.io` API. If it's missing, install [metrics-server](https://github.com/kubernetes-sigs/metrics-server). See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md).
 - **DNS service**. Mimir discovers its components through the cluster DNS service. The chart expects a Service named `kube-dns` in `kube-system`. On a cluster where the Service has another name, set `mimir.global.dnsService` to that name.
 
 Check that a default StorageClass exists. One class must show `(default)` next to its name:
@@ -147,11 +143,11 @@ Allow egress to these hosts from the cluster nodes. See the [observability-platf
 The platform supports Amazon S3 and Azure Blob Storage. See [OBJECT_STORAGE.md](https://github.com/giantswarm/observability-platform/blob/main/doc/OBJECT_STORAGE.md).
 
 - **Buckets**: five private buckets. On Azure Blob Storage, a bucket is a container in a storage account.
-  - `mimir-blocks`, for metrics.
-  - `mimir-alertmanager`, for Alertmanager state.
-  - `mimir-ruler`, for recording and alerting rules.
-  - `loki`, for logs.
-  - `tempo`, for traces.
+    - `mimir-blocks`, for metrics.
+    - `mimir-alertmanager`, for Alertmanager state.
+    - `mimir-ruler`, for recording and alerting rules.
+    - `loki`, for logs.
+    - `tempo`, for traces.
 - **Bucket names**: you can pick other names. Set them under `global.objectStorage.buckets` at install time.
 - **Public access**: disabled.
 - **Transport**: HTTPS only.
@@ -159,7 +155,7 @@ The platform supports Amazon S3 and Azure Blob Storage. See [OBJECT_STORAGE.md](
 - **Redundancy**: zone-redundant, if your data needs to survive a zone outage.
 - **Credentials** with read and write access to the five buckets.
 
-### Namespace, Secret, and Helm values
+### Release namespace, Secret, and Helm values
 
 The platform reads object storage settings from two places:
 
@@ -278,7 +274,7 @@ az aks nodepool add \
 
 ## Known limitations
 
-- **Namespace**: the platform installs into the `monitoring` namespace only.
+- **Release namespace**: the platform installs into the `monitoring` namespace only.
 - **Grafana client certificate**: Grafana organizations, datasources, and dashboards need a Grafana client certificate Secret named `grafana-tls` in `monitoring`. The chart doesn't provide it yet. Until it does, these resources aren't reconciled.
 
 ## Next steps
