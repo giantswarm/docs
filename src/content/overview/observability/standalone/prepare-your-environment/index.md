@@ -1,6 +1,6 @@
 ---
-title: Standalone Observability Platform requirements
-linkTitle: Requirements
+title: Prepare your environment for the standalone Observability Platform
+linkTitle: Prepare your environment
 diataxis_content_type: reference
 description: Kubernetes cluster, network, and object storage requirements for the standalone Giant Swarm Observability Platform.
 weight: 10
@@ -212,10 +212,11 @@ The chart creates no Ingress and no TLS certificate for Grafana. Exposing Grafan
 The Observability Platform API accepts metrics, logs, and traces from outside the cluster. It's disabled by default. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
 
 - **[Envoy Gateway](https://gateway.envoyproxy.io/)** installed in the cluster. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
-- **Gateway with an HTTPS listener** named `https`. The listener accepts routes from the `monitoring` namespace. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+- **Gateway with an HTTPS listener** that accepts routes from the `monitoring` namespace. Set `parentRefs` on every API component (`loki`, `mimir`, `tempo`, and `basicAuth`) to that Gateway and listener. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
 - **Base domain**. The API answers at `observability.<domain>`.
 - **DNS record** for `observability.<domain>`, pointing at the Gateway. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
 - **OIDC issuer**, at least one. Every request carries a JWT from that issuer.
+- **Tenant header**. Every request carries an `X-Scope-OrgID` header with the tenant name.
 
 ## Provider guidance {#provider-guidance}
 
@@ -226,7 +227,7 @@ See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/m
 
 - **Nodes**: 3 × `m6i.xlarge` or `t3.xlarge`, one per availability zone.
 - **CSI driver**: install the `aws-ebs-csi-driver` add-on. Its IAM role needs the `AmazonEBSCSIDriverPolicy` policy.
-- **StorageClass**: create a `gp3` class with provisioner `ebs.csi.aws.com` and mark it as default. The built-in `gp2` class uses a removed in-tree provisioner.
+- **StorageClass**: create a `gp3` class with provisioner `ebs.csi.aws.com` and mark it as default. The built-in `gp2` class isn't the default on EKS 1.30 and later.
 - **Metrics server**: install the `metrics-server` add-on.
 - **DNS service**: `kube-dns`. No change needed.
 
@@ -254,7 +255,7 @@ EOF
 
 - **Nodes**: 3 × `Standard_D4s_v5`, spread over zones 1, 2, and 3.
 - **CSI driver**: the Azure Disk CSI driver ships with AKS. No change needed.
-- **StorageClass**: the built-in `default` class is the default. It uses Standard SSD with `WaitForFirstConsumer`. Use `managed-csi-premium` for Premium SSD.
+- **StorageClass**: the built-in `default` class is the default. It uses zone-redundant Standard SSD (`StandardSSD_ZRS`) with `WaitForFirstConsumer`. Use `managed-csi-premium` for Premium SSD.
 - **Metrics server**: ships with AKS. No change needed.
 - **DNS service**: `kube-dns`. No change needed.
 
