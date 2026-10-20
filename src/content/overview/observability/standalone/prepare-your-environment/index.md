@@ -1,8 +1,8 @@
 ---
-title: Prepare your environment for the standalone observability platform
-linkTitle: Prepare your environment
-diataxis_content_type: reference
-description: The infrastructure you provide before you install the standalone observability platform, from the Kubernetes cluster and object storage to the Gateway, OIDC issuer, and network access.
+title: Prepare your infrastructure for the standalone observability platform
+linkTitle: Prepare your infrastructure
+diataxis_content_type: how-to-guide
+description: Prepare your Kubernetes cluster and object storage to run the standalone Giant Swarm observability platform.
 weight: 10
 mermaid: true
 menu:
@@ -13,17 +13,16 @@ last_review_date: 2026-10-20
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
-  - What do I need before I install the standalone observability platform?
+  - How do I prepare my infrastructure for the standalone observability platform?
+  - What does the standalone observability platform need to run in my cluster?
   - Which object storage does the standalone observability platform support?
-  - Does the standalone observability platform support S3?
-  - What does the observability-platform chart install, and what do I provide?
   - Which network endpoints does the standalone observability platform need to reach?
   - How big a cluster does the standalone observability platform need?
 ---
 
-The standalone observability platform runs on your own Kubernetes cluster. One Helm chart installs Mimir, Loki, Tempo, Grafana, the observability-operator, and the observability platform API. You provide the infrastructure around it.
+The standalone observability platform runs Mimir, Loki, Tempo, and Grafana in a Kubernetes cluster you own. It stores all data in object storage you own.
 
-This page lists that infrastructure. Each requirement links to a setup guide in the [observability-platform repository](https://github.com/giantswarm/observability-platform).
+This page lists what the cluster and the object storage need before the install. Each requirement links to a setup guide in the [observability-platform repository](https://github.com/giantswarm/observability-platform).
 
 ## Responsibility boundary
 
@@ -43,7 +42,7 @@ flowchart LR
   subgraph customer["Customer-provided"]
     dns["DNS record<br/>observability.#lt;domain#gt;"]
     oidc["OIDC issuer<br/>(JWKS URI)"]
-    storage["Object storage<br/>(Azure Blob Storage)"]
+    storage["Object storage<br/>(Amazon S3, Azure Blob Storage)"]
     subgraph cluster["Kubernetes cluster"]
       gateway["Envoy Gateway<br/>HTTPS listener, TLS certificate"]
       subgraph chart["Giant Swarm Observability Platform<br/>(monitoring namespace)"]
@@ -90,58 +89,201 @@ flowchart LR
 
 ### Kubernetes cluster
 
-- **Default StorageClass** with dynamic provisioning. Mimir, Loki, and Tempo store data on persistent volumes. See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md).
-- **metrics-server**. The Loki, Mimir, and Tempo HorizontalPodAutoscalers read from the metrics API. Without it, they stay at their minimum replicas. See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md).
-- **Release namespace `monitoring`**. The chart installs into `monitoring` only. The render fails in any other namespace.
+- **Conformant Kubernetes cluster** that runs only the observability platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Amazon EKS 1.36.
+- **Release namespace `monitoring`**. The platform installs into the `monitoring` namespace only.
 
-### Object storage
+### Access and tools
 
-Azure Blob Storage is the supported backend. S3 and S3-compatible storage are coming soon, tracked in [giantswarm/giantswarm#38467](https://github.com/giantswarm/giantswarm/issues/38467). See [OBJECT_STORAGE.md](https://github.com/giantswarm/observability-platform/blob/main/doc/OBJECT_STORAGE.md).
+- **`cluster-admin`** on the Kubernetes cluster. The install creates custom resource definitions and cluster-wide RBAC.
+- **Object storage permissions** to create buckets and access credentials.
+- **[`kubectl`](https://kubernetes.io/docs/tasks/tools/)** and **[`helm`](https://helm.sh/docs/intro/install/) 3**, pointed at the right cluster.
 
-- **Storage account**: `StorageV2`, `Standard_LRS` (default) or `Standard_ZRS`, `Hot` access tier, minimum TLS 1.2, HTTPS only, blob public access disabled, shared key access enabled.
-- **Containers**: `mimir-blocks`, `mimir-alertmanager`, `mimir-ruler`, `loki`, and `tempo`.
-- **Secret**: `observability-platform-object-storage` in the `monitoring` namespace, with the account key under the key `AZURE_STORAGE_KEY`.
+### Cluster capacity
 
-### Gateway
+The platform ships one sizing profile, tuned for a small cluster.
 
-- **Envoy Gateway**. It brings the Gateway API CRDs. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
-- **Gateway with an HTTPS listener** named `https`, for `observability.<domain>`. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
-- **DNS record** for `observability.<domain>`, pointing to the Gateway load balancer. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
-- **TLS certificate**: cert-manager with `--enable-gateway-api`, or a `kubernetes.io/tls` Secret. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+- **Nodes**: 3, one per availability zone.
+- **CPU**: 4 vCPU per node, 12 vCPU in total.
+- **Memory**: 16 GiB per node, 48 GiB in total.
+- **Node disk**: 50 GiB per node.
 
-### OIDC issuer
+At rest, the platform requests 4.2 vCPU and 26.4 GiB of memory. The remaining capacity absorbs ingest and query load.
 
-- **Issuer URL** and **JWKS URI**. The observability platform API validates every request's JWT against the issuer. Envoy fetches the JWKS, so the JWKS URI must be reachable from the Envoy pods. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
+**Note**: This profile has no answer yet for high ingest volume. Contact your account engineer before you send production traffic.
 
-### Grafana exposure
+### Cluster add-ons
 
-- **Route and TLS for Grafana**. The chart creates no ingress and no certificate for Grafana. You attach the Grafana route to your Gateway's HTTPS listener. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
+- **Default StorageClass** backed by a working CSI driver. Mimir, Loki, and Tempo store data on persistent volumes. Use `volumeBindingMode: WaitForFirstConsumer` on a multi-zone cluster. A volume then lands in the zone of the pod that uses it. See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md) and [Provider guidance](#provider-guidance).
+- **Metrics server**. The platform autoscales Mimir and Loki components with HorizontalPodAutoscalers. These need the `metrics.k8s.io` API. If it's missing, install [metrics-server](https://github.com/kubernetes-sigs/metrics-server). See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md).
+- **DNS service**. Mimir discovers its components through the cluster DNS service. The chart expects a Service named `kube-dns` in `kube-system`. On a cluster where the Service has another name, set `mimir.global.dnsService` to that name.
+
+Check that a default StorageClass exists. One class must show `(default)` next to its name:
+
+```sh
+kubectl get storageclass
+```
+
+Check that the metrics API serves. The command prints CPU and memory per node:
+
+```sh
+kubectl top nodes
+```
+
+Check that each HorizontalPodAutoscaler reads its metrics after the install. No target must show `<unknown>`:
+
+```sh
+kubectl get hpa -n monitoring
+```
 
 ### Network access
 
-The cluster reaches these endpoints. See the [observability-platform README](https://github.com/giantswarm/observability-platform/blob/main/README.md).
+Allow egress to these hosts from the cluster nodes. See the [observability-platform README](https://github.com/giantswarm/observability-platform/blob/main/README.md).
 
-- The object storage endpoint, for example `https://<account>.blob.core.windows.net`.
-- The OIDC JWKS URI.
-- `gsoci.azurecr.io`, for container images and charts.
-- `docker.io`, for container images.
-- The Giant Swarm Helm catalogs.
+- **`gsoci.azurecr.io`**, for container images.
+- **`docker.io`**, for container images.
+- **Object storage endpoint**, over HTTPS on port 443. Mimir, Loki, and Tempo reach it.
 
-## Validated reference setup
+### Object storage
 
-Giant Swarm validates the platform on the setup below. The values are examples, not minimums.
+The platform supports Amazon S3 and Azure Blob Storage. See [OBJECT_STORAGE.md](https://github.com/giantswarm/observability-platform/blob/main/doc/OBJECT_STORAGE.md).
+
+- **Buckets**: five private buckets. On Azure Blob Storage, a bucket is a container in a storage account.
+  - `mimir-blocks`, for metrics.
+  - `mimir-alertmanager`, for Alertmanager state.
+  - `mimir-ruler`, for recording and alerting rules.
+  - `loki`, for logs.
+  - `tempo`, for traces.
+- **Bucket names**: you can pick other names. Set them under `global.objectStorage.buckets` at install time.
+- **Public access**: disabled.
+- **Transport**: HTTPS only.
+- **Minimum TLS version**: 1.2.
+- **Redundancy**: zone-redundant, if your data needs to survive a zone outage.
+- **Credentials** with read and write access to the five buckets.
+
+### Namespace, Secret, and Helm values
+
+The platform reads object storage settings from two places:
+
+- **Secret**: holds the credentials.
+- **Helm values** under `global.objectStorage`: hold the account and bucket names.
+
+The platform installs into the `monitoring` namespace. Create it:
+
+```sh
+kubectl create namespace monitoring
+```
+
+- **Secret name**: `observability-platform-object-storage`. Keep the name and the key names exactly as written.
+- **Secret key on Azure Blob Storage**: `AZURE_STORAGE_KEY`, holding the storage account key.
+
+Example for Azure Blob Storage:
+
+```sh
+kubectl create secret generic observability-platform-object-storage \
+  --namespace monitoring \
+  --from-literal=AZURE_STORAGE_KEY=<storage-account-key>
+```
+
+**Warning**: Static credentials are long-lived. Rotate them in your object storage service, then update the Secret and restart the Mimir, Loki, and Tempo pods.
+
+Set the account and bucket names in your values file. Example for Azure Blob Storage:
+
+```yaml
+global:
+  objectStorage:
+    azure:
+      accountName: <storage-account>
+    buckets:
+      mimirBlocks: mimir-blocks
+      mimirAlertmanager: mimir-alertmanager
+      mimirRuler: mimir-ruler
+      loki: loki
+      tempo: tempo
+```
+
+The bucket names above are the defaults. With these names, only `accountName` is required.
+
+### Grafana access
+
+The chart creates no Ingress and no TLS certificate for Grafana. Exposing Grafana to your users is your responsibility. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+
+- **Ingress controller or Gateway API implementation**.
+- **DNS name** for Grafana.
+- **TLS certificate** for that name.
+
+### External API (optional)
+
+The observability platform API accepts metrics and logs from outside the cluster. It's disabled by default. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
+
+- **[Envoy Gateway](https://gateway.envoyproxy.io/)** installed in the cluster. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+- **Gateway with an HTTPS listener** named `https`. The listener accepts routes from the `monitoring` namespace. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+- **Base domain**. The API answers at `observability.<domain>`.
+- **DNS record** for `observability.<domain>`, pointing at the Gateway. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+- **OIDC issuer**, at least one. Every request carries a JWT from that issuer.
+
+## Provider guidance {#provider-guidance}
 
 {{< tabs >}}
-{{< tab title="EKS" active="true" >}}
+{{< tab title="Amazon EKS" active="true" >}}
 
-- EKS 1.36.
-- Three `t3.xlarge` nodes across three availability zones.
-- `gp3` default StorageClass with `volumeBindingMode: WaitForFirstConsumer`.
-- Measured platform requests: 4.2 vCPU and 26.4 GiB memory across 29 pods.
+See [EKS_CLUSTER.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EKS_CLUSTER.md).
+
+- **Nodes**: 3 × `m6i.xlarge` or `t3.xlarge`, one per availability zone.
+- **CSI driver**: install the `aws-ebs-csi-driver` add-on. Its IAM role needs the `AmazonEBSCSIDriverPolicy` policy.
+- **StorageClass**: create a `gp3` class with provisioner `ebs.csi.aws.com` and mark it as default. The built-in `gp2` class uses a removed in-tree provisioner.
+- **Metrics server**: install the `metrics-server` add-on.
+- **DNS service**: `kube-dns`. No change needed.
+
+Create the `gp3` StorageClass:
+
+```sh
+kubectl apply -f - <<'EOF'
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp3
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: ebs.csi.aws.com
+parameters:
+  type: gp3
+  encrypted: "true"
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+EOF
+```
+
+{{< /tab >}}
+{{< tab title="Azure AKS" >}}
+
+- **Nodes**: 3 × `Standard_D4s_v5`, spread over zones 1, 2, and 3.
+- **CSI driver**: the Azure Disk CSI driver ships with AKS. No change needed.
+- **StorageClass**: the built-in `default` class is the default. It uses Standard SSD with `WaitForFirstConsumer`. Use `managed-csi-premium` for Premium SSD.
+- **Metrics server**: ships with AKS. No change needed.
+- **DNS service**: `kube-dns`. No change needed.
+
+Create a node pool across three zones:
+
+```sh
+az aks nodepool add \
+  --resource-group <resource-group> \
+  --cluster-name <cluster> \
+  --name observability \
+  --node-count 3 \
+  --node-vm-size Standard_D4s_v5 \
+  --zones 1 2 3
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
+## Known limitations
+
+- **Namespace**: the platform installs into the `monitoring` namespace only.
+- **Grafana client certificate**: Grafana organizations, datasources, and dashboards need a Grafana client certificate Secret named `grafana-tls` in `monitoring`. The chart doesn't provide it yet. Until it does, these resources aren't reconciled.
+
 ## Next steps
 
-With your environment ready, install the platform with the [observability-platform chart](https://github.com/giantswarm/observability-platform).
+Contact your Giant Swarm account engineer to verify the setup. For sharing any secret with us, read [Sharing secrets with our team]({{< relref "/overview/security/sharing-secrets" >}}) first.
+
+You then install the platform with the [observability-platform chart](https://github.com/giantswarm/observability-platform).
