@@ -16,7 +16,7 @@ user_questions:
   - Which presets are built into Muster?
   - How does the agent chart render a toolset?
   - What does agent-manager require for toolset?
-last_review_date: 2026-09-07
+last_review_date: 2026-10-21
 ---
 
 A **toolset** is the selector list an agent declares to say which of the gateway's tools it's composed with. Muster evaluates it per request as the third filter on the caller's catalog. For the concept, see [Toolsets and presets]({{< relref "/overview/agent-platform/toolsets" >}}); for defining presets on your installation, see [Define toolset presets]({{< relref "/tutorials/agent-platform/toolset-presets" >}}). This page is the field-level reference, verified against Muster `5.12.0`, the Generic agent chart `0.6.0`, agent-manager `0.4.0`, and the fleet meta-package `agent-platform` `3.11.0`.
@@ -54,6 +54,8 @@ X-Muster-Toolset: preset:read-only, workflow:incident-triage
 ```
 
 A comma-separated list of inline selectors; whitespace around each selector is trimmed. Muster reads the header on **every** request, nothing is bound to the MCP session, and a request without the header is unscoped—exactly the behavior before toolsets existed. Two requests on the same session with different headers get different catalogs.
+
+A request of a bound session (agent-manager's `start_session` on an installation where Muster trusts the actor JWT) resolves within the toolset bound to that session: no header gets the bound toolset, and a header resolves to *binding ∩ header*—it narrows, never widens. A `call_tool` outside the binding is refused with `tool "<name>" is outside the toolset [<selectors>] bound to the session`. The binding is fixed at the session's start; `update_agent` applies to sessions started after it.
 
 ## Presets configuration {#presets}
 
@@ -184,7 +186,8 @@ The schema declares `toolset` as `[array, null]` of strings; the cap and the emp
 | `create_agent` | `POST /api/v1/agents` | **Required.** The refusal names the shipped presets—`read-only`, `none`, `infrastructure`, `agent-platform`, `full`—and points at `preset:none` for a chat-only agent and `preset:full` for the deliberate choice of every tool |
 | `validate_agent` | `POST /api/v1/agents/validate` | Validated like `create_agent`, without writing |
 | `update_agent` | `PATCH /api/v1/agents/{ns}/{name}` | Replaces the whole list. The edit path, and the way agents that predate toolsets get one |
-| `get_agent`, `list_agents` | `GET /api/v1/agents…` | Report `toolset` when the release declares one, `implicitFullAccess: true` when it doesn't |
+| `get_agent`, `list_agents` | `GET /api/v1/agents…` | Report `toolset` when the release declares one, `implicitFullAccess: true` when it doesn't, and `toolsetBound` when the installation binds it to each session |
+| `start_session` | | Binds the agent's toolset to the new session at Muster where Muster trusts the actor JWT; `get_info` reports the `toolsetBound` capability there |
 
 agent-manager validates the inline grammar—non-empty, at most 32 selectors, the four forms, `toolset:` reserved, `label:` refused—and writes the list to the chart's `toolset` value exactly as given. It never resolves a toolset; resolution is Muster's, per caller. The former `toolNames` argument is removed; a caller still passing it gets `toolNames never narrowed anything against muster (kagent filters muster's meta-tools only); declare a toolset instead, e.g. toolset: ["preset:read-only"]`.
 
@@ -200,6 +203,8 @@ agent-manager validates the inline grammar—non-empty, at most 32 selectors, th
 | `agent-platform` meta-package | `3.11.0` | The `infrastructure` and `agent-platform` presets; Muster floored at `5.12.0` |
 | `agent-platform-mcps` | `0.9.0` | The tool-group label on the fleet's infrastructure families |
 | `model-manager` | `0.18.0` | The tool-group label on its `MCPServer` resource |
+| Muster | `5.49.0` | The toolset stored with a session binding; a bound session's requests resolve within it (*binding ∩ header*) |
+| agent-manager | `2.9.0` | `start_session` binds the agent's toolset; `toolsetBound` on `get_info`, `get_agent` and `list_agents` |
 
 ## Related
 

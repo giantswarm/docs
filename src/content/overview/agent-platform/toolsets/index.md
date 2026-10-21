@@ -10,7 +10,7 @@ menu:
     identifier: overview-agent-platform-toolsets
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-08
+last_review_date: 2026-10-21
 user_questions:
   - What is an agent's toolset?
   - What are toolset presets?
@@ -74,7 +74,9 @@ A toolset controls which tools the *model* can discover and call through request
 
 What authorizes a call hasn't moved. The invoking person's identity is forwarded unchanged, and each backend's own authorization—Kubernetes RBAC for `mcp-kubernetes`, tenancy for Prometheus, a third-party service's own accounts—decides what happens. A toolset can never exceed the invoking person's access, because tools the person can't see aren't in the catalog: an agent is always bounded by *its toolset ∩ the invoking person's own access*. Read the [security model]({{< relref "/overview/agent-platform/security" >}}) for how that access is derived.
 
-The toolset is *declared* by the request. Muster can't yet tell which agent is calling, because the only credential on the agent path is the human's token. A client that sends no header therefore reaches whatever the person behind it may reach—exactly what it could reach before toolsets existed. A toolset bounds the model, not the pod. When the platform adopts an agent identity Muster can trust, Muster will resolve the toolset from that identity instead of the header. Presets, the picker, and the agent page carry over unchanged.
+Where the installation trusts the agent's own identity (Muster's actor JWT, with workspaces and Agent Substrate on), the toolset is *bound to each session at its start*. When agent-manager starts a session, it hands Muster the agent's toolset together with the session binding, and Muster resolves every request from that session's sandbox within it. A process that sends no header gets the bound toolset, not the person's full access. A header can narrow it, never widen it: Muster applies *binding ∩ header*. A changed toolset applies to the sessions started after the change; a running session keeps the toolset it started with.
+
+Elsewhere the toolset is *declared* by the request: Muster can't tell which agent is calling, because the only credential on the agent path is the human's token. A client that sends no header there reaches whatever the person behind it may reach—exactly what it could reach before toolsets existed. The agent page says which of the two applies.
 
 Changing a toolset means changing the agent's release, through the portal's deploy path or agent-manager. That happens with your own identity, under Kubernetes RBAC in the agent's namespace, and is recorded in the API server's audit log. Presets change through GitOps on Muster's values. There's no second policy system.
 
