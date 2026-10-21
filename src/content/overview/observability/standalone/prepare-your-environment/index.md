@@ -139,6 +139,8 @@ Allow egress to these hosts from the cluster nodes. See the [observability-platf
 - **Object storage endpoint**, over HTTPS on port 443. Mimir, Loki, and Tempo reach it.
 - **OIDC issuer JWKS URI**, over HTTPS, with the [External API](#external-api-optional) enabled. The Envoy Gateway pods fetch it.
 
+A registry cache or proxy in front of these hosts works too.
+
 ### Object storage
 
 The platform supports Amazon S3 and Azure Blob Storage. See [OBJECT_STORAGE.md](https://github.com/giantswarm/observability-platform/blob/main/doc/OBJECT_STORAGE.md).
