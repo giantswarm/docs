@@ -272,10 +272,6 @@ az aks nodepool add \
 {{< /tab >}}
 {{< /tabs >}}
 
-## Known limitations
-
-- **Grafana client certificate**: Grafana organizations, datasources, and dashboards need a Grafana client certificate Secret named `grafana-tls` in `monitoring`. The chart doesn't provide it yet. Until it does, these resources aren't reconciled.
-
 ## Next steps
 
 Install the platform with the [observability-platform chart](https://github.com/giantswarm/observability-platform).
