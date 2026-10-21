@@ -207,7 +207,7 @@ The chart creates no Ingress and no TLS certificate for Grafana. Exposing Grafan
 
 ### External API (optional)
 
-The Observability Platform API accepts metrics, logs, and traces from outside the cluster. It's disabled by default. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
+The Observability Platform API accepts metrics, logs, and traces from outside the cluster. It's disabled by default. Without it, the platform observes only the cluster it runs in. Enable it when agents, collectors, or users outside the cluster send or query data. See [EXTERNAL_API.md](https://github.com/giantswarm/observability-platform/blob/main/doc/EXTERNAL_API.md).
 
 - **[Envoy Gateway](https://gateway.envoyproxy.io/)** installed in the cluster. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
 - **Gateway with an HTTPS listener** that accepts routes from the `monitoring` namespace. Set `parentRefs` on every API component (`loki`, `mimir`, `tempo`, and `basicAuth`) to that Gateway and listener. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
