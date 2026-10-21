@@ -85,7 +85,7 @@ flowchart LR
 
 ### Kubernetes cluster
 
-- **Kubernetes cluster**: a conformant cluster that runs only the Observability Platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36 and Amazon EKS 1.36.
+- **Kubernetes cluster**: a conformant cluster that can host the Observability Platform. Any managed or self-managed distribution works. Giant Swarm has verified the platform on Kubernetes 1.36 and Amazon EKS 1.36.
 - **Release namespace `monitoring`**. The platform installs into the `monitoring` namespace only.
 
 ### Access and tools
