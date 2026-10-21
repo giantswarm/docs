@@ -99,44 +99,18 @@ Pick the profile that matches your data volume. The chart's default values match
 
 At rest, the platform requests 5.2 vCPU and 36.9 GiB of memory. The remaining capacity absorbs ingest and query load.
 
-#### Minimum
-
-- **Nodes**: 3, one per availability zone.
-- **CPU**: 4 vCPU per node, 12 vCPU in total.
-- **Memory**: 16 GiB per node, 48 GiB in total.
-- **Node disk**: 50 GiB per node.
-
-Data volume:
-
-- **Metrics**: up to 1 million active series and 20,000 samples per second.
-- **Logs**: up to 30 GB per day.
-- **Traces**: up to 2,000 spans per second.
-
-#### Recommended
-
-- **Nodes**: 6, two per availability zone.
-- **CPU**: 8 vCPU per node, 48 vCPU in total.
-- **Memory**: 32 GiB per node, 192 GiB in total.
-- **Node disk**: 100 GiB per node.
-
-Data volume:
-
-- **Metrics**: up to 5 million active series and 100,000 samples per second.
-- **Logs**: up to 150 GB per day.
-- **Traces**: TBD.
-
-#### High volume
-
-- **Nodes**: 9, three per availability zone.
-- **CPU**: 16 vCPU per node, 144 vCPU in total.
-- **Memory**: 64 GiB per node, 576 GiB in total.
-- **Node disk**: 100 GiB per node.
-
-Data volume:
-
-- **Metrics**: up to 20 million active series and 350,000 samples per second.
-- **Logs**: up to 500 GB per day.
-- **Traces**: TBD.
+| Profile | Minimum | Recommended | High volume |
+|---------|---------|-------------|-------------|
+| **Nodes** | 3, one per availability zone | 6, two per availability zone | 9, three per availability zone |
+| **CPU per node** | 4 vCPU | 8 vCPU | 16 vCPU |
+| **CPU in total** | 12 vCPU | 48 vCPU | 144 vCPU |
+| **Memory per node** | 16 GiB | 32 GiB | 64 GiB |
+| **Memory in total** | 48 GiB | 192 GiB | 576 GiB |
+| **Node disk** | 50 GiB per node | 100 GiB per node | 100 GiB per node |
+| **Metrics active series** | Up to 1 million | Up to 5 million | Up to 20 million |
+| **Metrics samples per second** | Up to 20,000 | Up to 100,000 | Up to 350,000 |
+| **Logs per day** | Up to 30 GB | Up to 150 GB | Up to 500 GB |
+| **Traces spans per second** | Up to 2,000 | TBD | TBD |
 
 ### Cluster add-ons
 
