@@ -165,11 +165,7 @@ The platform reads object storage settings from two places:
 - **Secret**: holds the credentials.
 - **Helm values** under `global.objectStorage`: hold the account and bucket names.
 
-Create the `monitoring` namespace:
-
-```sh
-kubectl create namespace monitoring
-```
+Inside the `monitoring` namespace, in which the platform lives:
 
 - **Secret name**: `observability-platform-object-storage`. Keep the name and the key names exactly as written.
 - **Secret key on Azure Blob Storage**: `AZURE_STORAGE_KEY`, holding the storage account key.
