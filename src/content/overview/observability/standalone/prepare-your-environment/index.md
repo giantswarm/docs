@@ -103,14 +103,11 @@ At rest, the platform requests 5.2 vCPU and 36.9 GiB of memory. The remaining ca
 |---------|---------|-------------|-------------|
 | **Nodes** | 3, one per availability zone | 6, two per availability zone | 9, three per availability zone |
 | **CPU per node** | 4 vCPU | 8 vCPU | 16 vCPU |
-| **CPU in total** | 12 vCPU | 48 vCPU | 144 vCPU |
 | **Memory per node** | 16 GiB | 32 GiB | 64 GiB |
-| **Memory in total** | 48 GiB | 192 GiB | 576 GiB |
-| **Node disk** | 50 GiB per node | 100 GiB per node | 100 GiB per node |
-| **Metrics active series** | Up to 1 million | Up to 5 million | Up to 20 million |
-| **Metrics samples per second** | Up to 20,000 | Up to 100,000 | Up to 350,000 |
-| **Logs per day** | Up to 30 GB | Up to 150 GB | Up to 500 GB |
-| **Traces spans per second** | Up to 2,000 | TBD | TBD |
+| **Node disk per node** | 50 GiB | 100 GiB | 100 GiB |
+| **Metrics** | Up to 1 million series / 20,000 samples/sec | Up to 5 million series / 100,000 samples/sec | Up to 20 million series / 350,000 samples/sec |
+| **Logs** | Up to 30 GB/day | Up to 150 GB/day | Up to 500 GB/day |
+| **Traces** | Up to 2,000 spans/sec | TBD | TBD |
 
 ### Cluster add-ons
 
