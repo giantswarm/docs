@@ -206,6 +206,7 @@ agent-manager validates the inline grammar—non-empty, at most 32 selectors, th
 | Muster | `5.49.0` | The toolset stored with a session binding; a bound session's requests resolve within it (*binding ∩ header*) |
 | agent-manager | `2.9.0` | `start_session` binds the agent's toolset; `toolsetBound` on `get_info`, `get_agent` and `list_agents` |
 | `agent-platform` meta-package | `4.162.0` | Muster floored at `5.49.0`, agent-manager at `2.9.0`; agent-manager told Muster trusts the actor JWT (`muster.actorBearer`) with workspaces and Agent Substrate on |
+| Developer portal (Backstage) | `3.17.0` | The Toolset card says whether the toolset is bound to each session or only declared |
 
 ## Related
 
