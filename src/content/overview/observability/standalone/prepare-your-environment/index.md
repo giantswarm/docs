@@ -199,7 +199,7 @@ The bucket names above are the defaults. With these names, only `accountName` is
 
 ### Grafana access
 
-The chart creates no Ingress and no TLS certificate for Grafana. Exposing Grafana to your users is your responsibility. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
+The chart creates no Ingress and no TLS certificate for Grafana. Exposing Grafana to your users is your responsibility. Giant Swarm recommends it. Without it, users reach Grafana through `kubectl port-forward` only. See [GATEWAY.md](https://github.com/giantswarm/observability-platform/blob/main/doc/GATEWAY.md).
 
 - **Ingress controller or Gateway API implementation**.
 - **DNS name** for Grafana.
