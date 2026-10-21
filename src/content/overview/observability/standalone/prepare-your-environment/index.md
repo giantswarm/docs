@@ -95,14 +95,48 @@ flowchart LR
 
 ### Cluster capacity
 
-The platform ships one sizing profile, tuned for a small cluster. These values are the minimum cluster size.
+Pick the profile that matches your data volume. The chart's default values match the minimum profile. Larger profiles need more Mimir ingesters and higher autoscaling limits in your values.
+
+At rest, the platform requests 5.2 vCPU and 36.9 GiB of memory. The remaining capacity absorbs ingest and query load.
+
+#### Minimum
 
 - **Nodes**: 3, one per availability zone.
 - **CPU**: 4 vCPU per node, 12 vCPU in total.
 - **Memory**: 16 GiB per node, 48 GiB in total.
 - **Node disk**: 50 GiB per node.
 
-At rest, the platform requests 5.2 vCPU and 36.9 GiB of memory. The remaining capacity absorbs ingest and query load.
+Data volume:
+
+- **Metrics**: up to 1 million active series and 20,000 samples per second.
+- **Logs**: up to 30 GB per day.
+- **Traces**: up to 2,000 spans per second.
+
+#### Recommended
+
+- **Nodes**: 6, two per availability zone.
+- **CPU**: 8 vCPU per node, 48 vCPU in total.
+- **Memory**: 32 GiB per node, 192 GiB in total.
+- **Node disk**: 100 GiB per node.
+
+Data volume:
+
+- **Metrics**: up to 5 million active series and 100,000 samples per second.
+- **Logs**: up to 150 GB per day.
+- **Traces**: TBD.
+
+#### High volume
+
+- **Nodes**: 9, three per availability zone.
+- **CPU**: 16 vCPU per node, 144 vCPU in total.
+- **Memory**: 64 GiB per node, 576 GiB in total.
+- **Node disk**: 100 GiB per node.
+
+Data volume:
+
+- **Metrics**: up to 20 million active series and 350,000 samples per second.
+- **Logs**: up to 500 GB per day.
+- **Traces**: TBD.
 
 ### Cluster add-ons
 
