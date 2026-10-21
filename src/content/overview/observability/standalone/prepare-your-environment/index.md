@@ -95,7 +95,7 @@ flowchart LR
 
 ### Cluster capacity
 
-The platform ships one sizing profile, tuned for a small cluster.
+The platform ships one sizing profile, tuned for a small cluster. These values are the minimum cluster size.
 
 - **Nodes**: 3, one per availability zone.
 - **CPU**: 4 vCPU per node, 12 vCPU in total.
