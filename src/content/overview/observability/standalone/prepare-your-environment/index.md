@@ -139,7 +139,7 @@ Allow egress to these hosts from the cluster nodes. See the [observability-platf
 - **Object storage endpoint**, over HTTPS on port 443. Mimir, Loki, and Tempo reach it.
 - **OIDC issuer JWKS URI**, over HTTPS, with the [External API](#external-api-optional) enabled. The Envoy Gateway pods fetch it.
 
-A registry cache or proxy in front of these hosts works too.
+A registry cache or proxy in front of these hosts works too. For examples on Giant Swarm clusters, see the [Zot registry cache]({{< relref "/tutorials/registry/zot" >}}) and the [cluster proxy settings]({{< relref "/reference/platform-api/cluster-apps/cluster#connectivity" >}}).
 
 ### Object storage
 
