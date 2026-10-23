@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-transformation
-last_review_date: 2025-07-17
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -24,7 +24,7 @@ Data transformation allows you to process, enrich, and modify observability data
 
 Transform data before storage to improve performance and create derived metrics:
 
-- **[Recording rules]({{< relref "/overview/observability/alert-management/alert-rules#recording-rules" >}})**: Pre-compute complex PromQL expressions as new time series
+- **[Recording rules]({{< relref "/overview/observability/alert-management/alert-rules#recording-rule-examples" >}})**: Pre-compute complex PromQL expressions as new time series
 - **[Relabeling rules](#relabeling-rules)**: Modify, filter, or enrich metrics and logs during collection
 - **[Data parsing](#data-parsing-and-enrichment)**: Extract structured data from logs and add contextual information
 
@@ -38,7 +38,7 @@ Transform data during visualization for specific dashboard requirements:
 
 [Recording rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) pre-compute frequently used or expensive PromQL expressions and store results as new time series. This improves dashboard performance and enables complex aggregations for alerting.
 
-Recording rules are created using the same `PrometheusRule` resources as alerting rules and are covered in detail in our [alert rules documentation]({{< relref "/overview/observability/alert-management/alert-rules#recording-rules" >}}).
+Recording rules are created using the same `PrometheusRule` resources as alerting rules and are covered in detail in our [alert rules documentation]({{< relref "/overview/observability/alert-management/alert-rules#recording-rule-examples" >}}).
 
 ### Key benefits for data transformation
 
@@ -47,7 +47,7 @@ Recording rules are created using the same `PrometheusRule` resources as alertin
 - **Custom metrics creation**: Combine multiple metrics into business-relevant indicators
 - **Consistent calculations**: Ensure identical computation across dashboards and alerts
 
-For comprehensive guidance on creating and managing recording rules, including examples and best practices, see the [recording rules section]({{< relref "/overview/observability/alert-management/alert-rules#recording-rules" >}}) in our alert rules documentation.
+For comprehensive guidance on creating and managing recording rules, including examples and best practices, see the [recording rules section]({{< relref "/overview/observability/alert-management/alert-rules#recording-rule-examples" >}}) in our alert rules documentation.
 
 ## Relabeling rules
 
@@ -69,14 +69,15 @@ spec:
   endpoints:
   - path: /metrics
     port: metrics
-    # Transform labels during collection
+    # Applied to target labels, before the scrape
     relabelings:
     # Add environment label based on namespace
     - sourceLabels: [__meta_kubernetes_namespace]
       targetLabel: environment
       regex: "production-(.*)"
       replacement: "prod"
-
+    # Applied to scraped samples, before ingestion
+    metricRelabelings:
     # Drop sensitive metrics
     - sourceLabels: [__name__]
       regex: "secret_.*|password_.*"
