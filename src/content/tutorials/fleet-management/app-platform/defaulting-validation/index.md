@@ -18,7 +18,7 @@ user_questions:
   - How can I use App custom resource defaulting logic when installing Managed Apps?
   - What fields are validated in App custom resources when installing or updating Managed Apps?
   - How can I ensure flux is not blocked by the validating webhook?
-last_review_date: 2026-10-06
+last_review_date: 2026-10-26
 ---
 
 The Giant Swarm applications use a defaulting and validation logic for the [`App` custom resources]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) to enhance the user experience and prevent common mistakes.
@@ -67,16 +67,16 @@ In the following example, there is an `App` resource only with the basic setting
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-kong
+  name: hello-world
   namespace: x7jwz
 spec:
   catalog: giantswarm
-  name: kong-app
-  namespace: kong
-  version: 0.7.2
+  name: hello-world-app
+  namespace: hello-world-app
+  version: 2.11.0
   userConfig:
     configMap:
-      name: kong-user-values
+      name: hello-world-user-values
       namespace: x7jwz
 ```
 
@@ -86,15 +86,15 @@ Next is the `App` resource with the defaults added by the mutating webhook.
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-kong
+  name: hello-world
   namespace: x7jwz
   labels:
     app-operator.giantswarm.io/version: 3.0.0
 spec:
   catalog: giantswarm
-  name: kong-app
-  namespace: kong
-  version: 0.7.2
+  name: hello-world-app
+  namespace: hello-world-app
+  version: 2.11.0
   config:
     configMap:
       name: x7jwz-cluster-values
@@ -108,7 +108,7 @@ spec:
       namespace: x7jwz
   userConfig:
     configMap:
-      name: kong-user-values
+      name: hello-world-user-values
       namespace: x7jwz
 ```
 

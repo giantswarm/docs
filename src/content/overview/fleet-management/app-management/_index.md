@@ -21,7 +21,7 @@ user_questions:
   - What is the App custom resource and is it still supported?
   - How can I create an organizational app catalog?
   - Can I host my own catalog?
-last_review_date: 2026-10-06
+last_review_date: 2026-10-26
 ---
 
 The _Giant Swarm App Platform_ is the set of features that help you browse, install, and manage applications across your clusters. It covers both curated Giant Swarm-managed apps (such as `prometheus`, `envoy-gateway`, or `cert-manager`) and your own internal services.
@@ -134,7 +134,7 @@ Deployments managed via the Giant Swarm `App` CR continue to work without change
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-kong
+  name: hello-world
   namespace: x7jwz
 spec:
   catalog: giantswarm
@@ -142,14 +142,14 @@ spec:
     configMap:
       name: x7jwz-cluster-values
       namespace: x7jwz
-  name: kong-app
-  namespace: kong
-  version: 0.7.2
+  name: hello-world-app
+  namespace: hello-world-app
+  version: 2.11.0
   kubeConfig:
     inCluster: false
   userConfig:
     configMap:
-      name: kong-user-values
+      name: hello-world-user-values
       namespace: x7jwz
 ```
 
