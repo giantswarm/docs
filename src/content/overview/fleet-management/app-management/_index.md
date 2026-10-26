@@ -134,7 +134,7 @@ Deployments managed via the Giant Swarm `App` CR continue to work without change
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-envoy-gateway
+  name: hello-world
   namespace: x7jwz
 spec:
   catalog: giantswarm
@@ -142,14 +142,14 @@ spec:
     configMap:
       name: x7jwz-cluster-values
       namespace: x7jwz
-  name: envoy-gateway-app
-  namespace: envoy-gateway-system
-  version: 1.10.3
+  name: hello-world-app
+  namespace: hello-world-app
+  version: 2.11.0
   kubeConfig:
     inCluster: false
   userConfig:
     configMap:
-      name: envoy-gateway-user-values
+      name: hello-world-user-values
       namespace: x7jwz
 ```
 
