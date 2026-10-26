@@ -52,7 +52,7 @@ A server showing the **Auth Required** state is healthy, not broken. It means th
 
 ## How a backend gets its authority
 
-Every MCP server behind the gateway declares how calls to it are authenticated, in the `auth` block of its `MCPServer` resource. That gives four modes:
+Every MCP server behind the gateway declares how calls to it are authenticated, in the `auth` block of its `MCPServer` resource. That gives five modes:
 
 | Mode | `MCPServer` setting | What happens |
 |---|---|---|
@@ -60,6 +60,9 @@ Every MCP server behind the gateway declares how calls to it are authenticated, 
 | OAuth | `auth.type: oauth` | Muster acts as an OAuth client toward the server: you sign in once in the browser, and Muster sends the resulting token on your calls |
 | Forward | `auth.type: oauth` with `auth.forwardToken: true` | The caller's own token is forwarded to the server—for servers that trust the same identity provider |
 | Exchange | `auth.type: oauth` with `auth.tokenExchange.enabled: true` | The caller's token is exchanged (RFC 8693) at the target's identity provider for one that server accepts—for servers behind a different provider, such as a remote cluster |
+| SigV4 | `auth.type: sigv4` | For AWS-hosted MCP servers: Muster signs every request with AWS Signature Version 4 as its own machine identity, not the caller's |
+
+An OAuth server with a pinned `auth.authorizationServer` can also set `auth.forwardIdentity: true` to receive the caller's ID token in the `X-Muster-Id-Token` header, next to the token in `Authorization`.
 
 Which design a backend gets follows one rule: **who administers the backend's account system decides**.
 
