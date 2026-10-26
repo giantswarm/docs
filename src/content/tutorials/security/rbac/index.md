@@ -135,7 +135,7 @@ rules:
   - delete
 ```
 
-After applying above ClusterRole to the cluster, everyone with the cluster role `admin` will be able to manage `crontabs` resources.
+After applying the above ClusterRole to the cluster, everyone with the cluster role `admin` will be able to manage `crontabs` resources.
 
 ### Binding a roles {#binding-role}
 
