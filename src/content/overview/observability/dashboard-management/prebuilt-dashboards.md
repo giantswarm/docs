@@ -57,7 +57,6 @@ Application performance and resource monitoring:
 - **Pod Requests vs Usage** - Resource requests vs actual consumption
 - **SLO Reporting** - Service Level Objective compliance tracking
 - **Container Images from docker.io** - Container image usage analytics
-- **Kong Connection Distribution** - Kong ingress controller metrics
 
 ## Observability platform dashboards
 

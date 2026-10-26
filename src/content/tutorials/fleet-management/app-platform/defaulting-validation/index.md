@@ -67,16 +67,16 @@ In the following example, there is an `App` resource only with the basic setting
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-kong
+  name: my-envoy-gateway
   namespace: x7jwz
 spec:
   catalog: giantswarm
-  name: kong-app
-  namespace: kong
-  version: 0.7.2
+  name: envoy-gateway-app
+  namespace: envoy-gateway-system
+  version: 1.10.3
   userConfig:
     configMap:
-      name: kong-user-values
+      name: envoy-gateway-user-values
       namespace: x7jwz
 ```
 
@@ -86,15 +86,15 @@ Next is the `App` resource with the defaults added by the mutating webhook.
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: my-kong
+  name: my-envoy-gateway
   namespace: x7jwz
   labels:
     app-operator.giantswarm.io/version: 3.0.0
 spec:
   catalog: giantswarm
-  name: kong-app
-  namespace: kong
-  version: 0.7.2
+  name: envoy-gateway-app
+  namespace: envoy-gateway-system
+  version: 1.10.3
   config:
     configMap:
       name: x7jwz-cluster-values
@@ -108,7 +108,7 @@ spec:
       namespace: x7jwz
   userConfig:
     configMap:
-      name: kong-user-values
+      name: envoy-gateway-user-values
       namespace: x7jwz
 ```
 

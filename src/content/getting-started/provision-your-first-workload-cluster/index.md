@@ -200,7 +200,7 @@ $ kubectl get orgs
 error: the server doesn't have a resource type "organizations"
 ```
 
-The workload clusters are where the "actual" work happens, where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep kong`.
+The workload clusters are where the "actual" work happens, where Giant Swarm-supported managed apps and your business applications are deployed. The easiest way to check whether an application is running is `kubectl get pods -A | grep APPLICATION_NAME`, for instance: `kubectl get pods -A | grep coredns`.
 
 ## Step 4: Deleting the workload cluster {#deleting-workload-cluster}
 
