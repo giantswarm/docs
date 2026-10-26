@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-observability-dashboard-management
     identifier: overview-observability-dashboard-management-prebuilt-dashboards
-last_review_date: 2026-07-03
+last_review_date: 2026-10-26
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:

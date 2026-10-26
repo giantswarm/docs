@@ -9,7 +9,7 @@ aliases:
   - /getting-started/create-workload-cluster
   - /getting-started/kubectl-gs/
   - /vintage/getting-started/create-workload-cluster
-last_review_date: 2026-02-04
+last_review_date: 2026-10-26
 menu:
   principal:
     parent: getting-started

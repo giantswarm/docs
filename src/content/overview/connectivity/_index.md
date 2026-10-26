@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-connectivity
-last_review_date: 2025-09-22
+last_review_date: 2026-10-26
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 aliases:
