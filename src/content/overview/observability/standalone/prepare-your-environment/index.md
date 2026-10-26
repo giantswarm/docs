@@ -142,6 +142,7 @@ Allow egress to these hosts from the cluster nodes. See the [observability-platf
 - **`giantswarm.github.io/giantswarm-catalog`**, for Helm charts.
 - **`giantswarm.github.io/control-plane-catalog`**, for Helm charts.
 - **Object storage endpoint**, over HTTPS on port 443. Mimir, Loki, and Tempo reach it.
+- **Alert receivers**, such as your paging system. Mimir Alertmanager reaches them.
 - **OIDC issuer JWKS URI**, over HTTPS, with the [External API](#external-api-optional) enabled. The Envoy Gateway pods fetch it.
 
 A registry cache or proxy in front of these hosts works too. For examples on Giant Swarm clusters, see the [Zot registry cache]({{< relref "/tutorials/registry/zot" >}}) and the [cluster proxy settings]({{< relref "/reference/platform-api/cluster-apps/cluster#connectivity" >}}).
@@ -211,6 +212,16 @@ An ingress for Grafana needs:
 - **Ingress controller or Gateway API implementation**.
 - **DNS name** for Grafana.
 - **TLS certificate** for that name.
+
+### Alerting
+
+The platform runs Mimir Alertmanager. It routes alerts from the Mimir ruler to your receivers. The default is a placeholder config which routes every alert to a receiver with no integrations. See [ALERTING.md](https://github.com/giantswarm/observability-platform/blob/main/doc/ALERTING.md).
+
+To send alerts to your paging system, you need:
+
+- **Alertmanager config**: a Secret with the `observability.giantswarm.io/kind: alertmanager-config` and `observability.giantswarm.io/tenant` labels. Its `alertmanager.yaml` key holds the full [Alertmanager config](https://prometheus.io/docs/alerting/latest/configuration/).
+- **Helm values**: `defaultAlertmanagerConfig.enabled: false`.
+- **Receiver credentials**, such as a webhook URL or an API key for your paging system.
 
 ### External API (optional)
 
