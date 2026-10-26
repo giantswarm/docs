@@ -22,7 +22,7 @@ user_questions:
   - How can I hide or show an app catalog in the web UI?
   - How can I install an apps from an app catalog?
   - How can I inspect the apps in an app catalog?
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 An app catalog is a collection of apps that can be deployed using the Giant Swarm app platform.
@@ -115,7 +115,7 @@ You should create the `Catalog` resource in the [organization]({{< relref "/over
 ```nohighlight
 kubectl gs template catalog \
   --name example \
-  --namespace org-example \
+  --target-namespace org-example \
   --description "An example Catalog" \
   --url https://example.github.io/example-catalog/ \
   --logo https://example.com/logos/example-logo.png
@@ -154,8 +154,8 @@ kubectl gs template app \
   --catalog example \
   --catalog-namespace org-example \
   --name hello-world-app \
-  --namespace default \
-  --cluster 2hr7z  \
+  --target-namespace default \
+  --cluster-name 2hr7z  \
   --version 0.1.0
 ```
 
@@ -163,14 +163,14 @@ kubectl gs template app \
 apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
-  name: example-app
+  name: hello-world-app
   namespace: 2hr7z
 spec:
   catalog: example
   catalogNamespace: org-example
   kubeConfig:
     inCluster: false
-  name: example-app
+  name: hello-world-app
   namespace: default
   version: 0.1.0
 ```
