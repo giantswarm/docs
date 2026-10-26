@@ -335,7 +335,7 @@ spec:
     baseUrl: https://inference.example.internal/v1
 ```
 
-For an endpoint with a certificate from your own certificate authority, add a `tls` block with `tls.disableVerify: true` to skip verification for lab endpoints. The `ModelConfig` API has no field for a custom CA bundle yet.
+The `ModelConfig` API has no field for a custom CA bundle yet, so an endpoint with a certificate from your own certificate authority isn't supported. For lab endpoints only, a `tls` block with `tls.disableVerify: true` skips certificate verification.
 
 The full field list of every provider block is in the resource definition on your cluster:
 
