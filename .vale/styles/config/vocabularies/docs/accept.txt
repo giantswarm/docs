@@ -92,7 +92,7 @@ discoverability
 [Dd]ex
 [Dd][Nn][Ss]
 composable
-configmap[s]?
+[Cc]onfig[Mm]ap[s]?
 configs?
 conformant
 [C|c]ontainerd
@@ -129,6 +129,7 @@ HTTPRoute[s]?
 hyperparameter
 IDE[s']?
 impl_title
+[Ii]ngester[s]?
 [Ii]ntrinsic[s]?
 IP[s]?
 IPAM
@@ -148,6 +149,7 @@ krew
 kube-vip
 kubeconfig[s]?
 kubectl
+Kubeflow
 kubelet
 Kueue
 [K|k]yverno

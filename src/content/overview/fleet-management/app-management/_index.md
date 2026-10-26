@@ -21,7 +21,7 @@ user_questions:
   - What is the App custom resource and is it still supported?
   - How can I create an organizational app catalog?
   - Can I host my own catalog?
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 The _Giant Swarm App Platform_ is the set of features that help you browse, install, and manage applications across your clusters. It covers both curated Giant Swarm-managed apps (such as `prometheus`, `envoy-gateway`, or `cert-manager`) and your own internal services.
@@ -80,7 +80,7 @@ A few features customers tell us matter most:
 - **Automatic version updates.** Pin a SemVer range on the OCIRepository and Flux rolls out new patches or minors as they ship.
 - **Layered configuration.** `valuesFrom` references `ConfigMap` and `Secret` resources with explicit merge order, so there's no surprise about which value wins.
 - **Dependency ordering.** Use `dependsOn` to install resources in a specific sequence (for example, install `cert-manager` before anything that needs a certificate).
-- **Drift detection.** If something or someone edits the deployed resources manually, Flux brings them back in line.
+- **Drift detection.** Opt-in per release: set `spec.driftDetection.mode` to `enabled` (or `warn` to only report) and Flux brings manually edited resources back in line.
 - **Post-renderers.** Apply a Kustomize patch over a chart's rendered output without forking the chart.
 - **Operational controls.** Suspend a release for a maintenance window with `flux suspend`, then `flux resume` when you're ready. Force an immediate reconciliation with `flux reconcile`.
 

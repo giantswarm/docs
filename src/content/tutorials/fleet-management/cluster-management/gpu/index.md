@@ -15,7 +15,7 @@ user_questions:
   - How do I add GPU nodes to my CAPI cluster?
   - How do I configure GPU support in my workload cluster?
   - How do I monitor the GPU state?
-last_review_date: 2025-10-22
+last_review_date: 2026-10-06
 ---
 
 This guide explains how to configure and use GPU-enabled nodes in Cluster API (CAPI) workload clusters to run GPU-accelerated workloads, focusing on NVIDIA GPUs.
@@ -24,6 +24,14 @@ GPU support is available starting with release v30.1.0.
 ## Overview
 
 GPU-accelerated computing can significantly enhance performance for specific workloads like machine learning, video processing, scientific simulations, and other compute-intensive tasks. Giant Swarm's CAPI workload clusters support GPU nodes on AWS (CAPA) and Azure (CAPZ).
+
+### Two ways to request a GPU
+
+A pod can get a GPU through the **NVIDIA device plugin**, asking for a whole device with `nvidia.com/gpu: 1`, or through **[Dynamic Resource Allocation]({{< relref "/tutorials/fleet-management/cluster-management/dynamic-resource-allocation" >}})** (DRA), asking for a device by its attributes with a `ResourceClaim`.
+
+The device plugin is the default and what this page describes. It's what the ecosystem speaks: Kueue, KubeRay, Kubeflow and most GPU Helm charts all request `nvidia.com/gpu`. Reach for DRA when you need something it can't express, typically selecting a device by model, memory or compute capability in a fleet with mixed GPU types.
+
+Either way you install the GPU Operator. DRA replaces the device plugin only, not the operator: the DRA kubelet plugin schedules onto a node by way of the node feature labels the operator publishes, and the `nvidia` RuntimeClass every GPU pod references is created by the operator too. The two allocation paths can't manage the same GPU, so a cluster using both separates them by node pool.
 
 ## Prerequisites
 
@@ -79,21 +87,22 @@ To add GPU nodes to your CAPI workload cluster, you need to create a new node po
 Update your cluster app's values to add a new node pool with GPU instances:
 
 ```yaml
-nodePools:
-  gpu-worker-pool-1:
-    # instance type with GPU
-    instanceType: g5.2xlarge
-    maxSize: 1
-    minSize: 1
-    # root volume size in GB needs to be at least 15
-    rootVolumeSizeGB: 15
-    instanceWarmup: 600
-    minHealthyPercentage: 90
-    # taints which are required for GPU workloads
-    customNodeTaints:
-    - key: "nvidia.com/gpu"
-      value: "Exists"
-      effect: "NoSchedule"
+global:
+  nodePools:
+    gpu-worker-pool-1:
+      # instance type with GPU
+      instanceType: g5.2xlarge
+      maxSize: 1
+      minSize: 1
+      # root volume size in GB needs to be at least 15
+      rootVolumeSizeGB: 15
+      instanceWarmup: 600
+      minHealthyPercentage: 90
+      # taints which are required for GPU workloads
+      customNodeTaints:
+      - key: "nvidia.com/gpu"
+        value: "Exists"
+        effect: "NoSchedule"
 ```
 
 Apply the updated configuration to your cluster.

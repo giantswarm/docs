@@ -74,6 +74,9 @@ def get_releases(client, repo_shortname):
         if release.published_at is None:
             continue
 
+        if release.prerelease or is_prerelease(release.tag_name):
+            continue
+
         body = ""
         if release.body is not None:
             body = link_pull_requests(release.body, repo_shortname)
@@ -239,6 +242,14 @@ def normalize_version(v):
         return v[1:]
     return v
 
+def is_prerelease(version_tag):
+    """
+    Returns True for version tags with a pre-release suffix, like
+    v2.92.0-rc.11 or 1.2.9-dev.3. Fork releases like v1.6.1-gs.3 are
+    final releases and don't count.
+    """
+    return bool(re.match(r'^v?\d+\.\d+\.\d+-(alpha|beta|rc|dev|pre|preview)(?![a-z])', version_tag, flags=re.I))
+
 def link_pull_requests(mkdwn, repo_shortname):
     """
     Links pull request mentions like #123 in a markdown string
@@ -321,15 +332,16 @@ def remove_empty_dirs(content_path):
         if not os.listdir(root):
             os.rmdir(root)
 
-def prune_old_entries(content_path, cutoff):
+def prune_entries(content_path, cutoff):
     """
-    Deletes generated entries older than the cutoff date.
+    Deletes generated entries older than the cutoff date, and pre-releases.
 
     This also covers entries the generator does not visit anymore, e. g. after
     a repository has been removed from the config, or a release was deleted
     upstream.
     """
     deleted = 0
+    deleted_prereleases = 0
 
     for root, dirs, files in os.walk(content_path, topdown=True):
         relative_root = path.relpath(root, content_path)
@@ -344,16 +356,24 @@ def prune_old_entries(content_path, cutoff):
             filepath = path.join(root, fname)
 
             front_matter = read_generated_front_matter(filepath)
-            if front_matter is None or 'date' not in front_matter:
+            if not isinstance(front_matter, dict):
                 continue
 
-            if as_utc(front_matter['date']) < cutoff:
+            changes_entry = front_matter.get('changes_entry')
+            version_tag = changes_entry.get('version_tag', '') if isinstance(changes_entry, dict) else ''
+            if is_prerelease(str(version_tag)):
+                os.remove(filepath)
+                deleted_prereleases += 1
+                continue
+
+            if 'date' in front_matter and as_utc(front_matter['date']) < cutoff:
                 os.remove(filepath)
                 deleted += 1
 
     remove_empty_dirs(content_path)
 
     print(f'Pruned {deleted} entries older than {cutoff.strftime("%Y-%m-%d")}')
+    print(f'Pruned {deleted_prereleases} pre-release entries')
 
 def generate_release_file(repo_shortname, repo_config, release, delete):
     """
@@ -431,7 +451,7 @@ if __name__ == "__main__":
     cutoff = datetime.now(timezone.utc) - timedelta(days=conf.get('max_age_days', DEFAULT_MAX_AGE_DAYS))
 
     if PRUNE_ONLY:
-        prune_old_entries(CONTENT_PATH, cutoff)
+        prune_entries(CONTENT_PATH, cutoff)
         sys.exit(0)
 
     if GITHUB_TOKEN == "":
@@ -502,4 +522,4 @@ if __name__ == "__main__":
 
             generate_release_file(repo_short, repo_conf, release, delete)
 
-    prune_old_entries(CONTENT_PATH, cutoff)
+    prune_entries(CONTENT_PATH, cutoff)

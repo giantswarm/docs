@@ -14,7 +14,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 Below you will learn how to manage infrastructure and applications in the Giant Swarm `Flux` setup.
@@ -269,7 +269,7 @@ Committing and pushing the changes to the repository will trigger the creation o
 
 ```text
 kubectl get app -n $ORG_NAME
-alba-grafana-agent    2.0.2    10s    deployed
+alba-grafana          2.0.2    10s    deployed
 ```
 
 In the workload cluster the `Helm` release and all the resources applied should be created in the `monitoring` namespace.

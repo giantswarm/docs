@@ -8,9 +8,8 @@ user_questions:
   - How do I install multiple ingress-nginx controllers?
   - How do I separate internal and external Services?
   - How do I configure ingress-nginx controller for internal traffic?
-  - How do I override the NodePorts on KVM ingresses?
   - How do I configure ingress-nginx controller to allow weak ciphers?
-last_review_date: 2026-05-18
+last_review_date: 2026-10-06
 aliases:
   - /vintage/advanced/connectivity/ingress/multi-nginx-ic
   - /advanced/connectivity/ingress/multi-nginx-ic
