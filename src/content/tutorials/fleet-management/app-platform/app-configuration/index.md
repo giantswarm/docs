@@ -25,7 +25,7 @@ user_questions:
   - What are the limitations around secrets when configuring them for an App?
   - How are configuration values stored and referenced in the Control Plane?
   - How can I provide configuration values for apps?
-last_review_date: 2026-10-05
+last_review_date: 2026-10-06
 ---
 
 The Giant Swarm's [app platform]({{< relref "/overview/fleet-management/app-management" >}}) allows you to easily install apps across your entire fleet of clusters. The platform fully support [`helm`](https://helm.sh/) as a general tool to deploy your applications as well as the official Giant Swarm app catalog.
@@ -96,14 +96,16 @@ Each level of configuration - same applies to extra configuration layers - has t
 
 All values are gathered together and merged into the final values object that will become available to the chart template.
 
-Values are merged in the following order:
+The operator first merges all configuration values (`ConfigMap` resources) level by level, then merges all secret values (`Secret` resources) level by level, and finally merges the secret result on top of the configuration result. Values are merged in the following order, later entries override earlier ones:
 
 1. `Catalog` configuration values
-2. `Catalog` secret values
-3. `Cluster` configuration values
-4. `Cluster` secret values
-5. `User` configuration values
+2. `Cluster` configuration values
+3. `User` configuration values
+4. `Catalog` secret values
+5. `Cluster` secret values
 6. `User` secret values
+
+This means that a value from any `Secret`, even at the `Catalog` level, overrides the same value set in any `ConfigMap`, even at the `User` level.
 
 If no value is provided then the default in the chart's values file (`values.yaml`) is used.
 

@@ -10,7 +10,7 @@ menu:
 user_questions:
   - How can I list clusters using kubectl?
   - How can I inspect clusters using kubectl?
-last_review_date: 2026-06-08
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 aliases:
@@ -29,7 +29,7 @@ Simply execute
 kubectl gs get clusters
 ```
 
-to list some information on all clusters available to you in the current installation. Use `--all-namespace` (if you have the permission to do so) or specify a namespace using the `--namespace` flag.
+to list some information on all clusters available to you in the current installation. Use `--all-namespaces` (if you have the permission to do so) or specify a namespace using the `--namespace` flag.
 
 Here is some example output:
 

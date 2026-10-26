@@ -6,7 +6,7 @@ weight: 50
 aliases:
   - /getting-started/connectivity/network-policies
   - /vintage/getting-started/connectivity/network-policies
-last_review_date: 2024-11-28
+last_review_date: 2026-10-06
 menu:
   principal:
     parent: getting-started
@@ -227,12 +227,12 @@ metadata:
   name: allow-default-namespace
   namespace: default
 spec:
-  podSelector:
+  podSelector: {}
   ingress:
- - from:
- - namespaceSelector:
-          matchLabels:
-            name: default
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: default
 ```
 
 Note that the namespace to which this policy applies needs to carry a label `name:` similar to the actual name key in its metadata:

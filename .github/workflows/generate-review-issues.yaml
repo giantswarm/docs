@@ -16,8 +16,6 @@ jobs:
         run: pip3 install click colored PyYAML
 
       - name: Validate front matter and last review date
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           ISSUES=$(make validate-last-reviewed-json)
           echo "ISSUES=$(echo "$ISSUES" | jq -c '.')" >> $GITHUB_ENV

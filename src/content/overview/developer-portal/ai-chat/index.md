@@ -11,12 +11,14 @@ menu:
     identifier: overview-developer-portal-ai-chat
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-06-20
+last_review_date: 2026-10-06
 user_questions:
   - What is the developer portal AI chat?
   - Can I ask questions about my clusters in the portal?
   - How does the portal chat answer questions?
 ---
+
+**Deprecated:** The AI chat is deprecated. No new features are being added to it, and changes are limited to fixes and keeping it building.
 
 The developer portal includes a built-in AI chat. You ask a question in plain language and get an answer grounded in live platform state, without leaving the portal or switching to a terminal. It's the same assistant experience you'd configure in your [IDE]({{< relref "/getting-started/ai-agent-setup" >}}), but already wired up and waiting in the browser.
 
