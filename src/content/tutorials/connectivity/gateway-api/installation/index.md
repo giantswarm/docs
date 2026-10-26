@@ -21,7 +21,8 @@ user_questions:
   - Why do the Envoy proxy pods never become ready in IP target mode?
   - How do I enable ListenerSet support in cert-manager?
   - How do I get TLS certificates for a ListenerSet?
-last_review_date: 2026-10-15
+  - How do I get DNS records for ListenerSet hostnames?
+last_review_date: 2026-10-26
 ---
 
 ## Prerequisites
@@ -183,7 +184,32 @@ spec:
 
 If the ListenerSet has no issuer annotation, it inherits the one from its parent Gateway. Check that the ListenerSet is attached with `kubectl get listenerset -n my-namespace my-listeners`, and that the certificate was issued with `kubectl get certificate -n my-namespace`.
 
-**Note:** cert-manager doesn't create DNS records. To get a DNS record for the ListenerSet hostname, enable ListenerSet support in external-dns too, with `global.apps.externalDns.values.enableGatewayListenerSets: true`.
+#### DNS records for ListenerSet hostnames
+
+cert-manager doesn't create DNS records. external-dns can create them, but neither ListenerSets nor HTTPRoutes are among the sources it watches by default. It only creates records for Services and for the `DNSEndpoint` resources that the Gateway API Bundle generates.
+
+ListenerSet support needs `external-dns-app` v3.5.0 or newer, which ships with cluster release v35.0.0 and newer.
+
+To turn it on, add the following section to your cluster's user ConfigMap:
+
+```yaml
+global:
+  apps:
+    externalDns:
+      values:
+        sources:
+          - service
+          - crd
+          - gateway-httproute
+        enableGatewayListenerSets: true
+```
+
+Both settings are required:
+
+- `sources` adds `gateway-httproute`, so external-dns creates a record for every HTTPRoute hostname. Keep `service` and `crd` in the list, because the list replaces the default instead of extending it.
+- `enableGatewayListenerSets` lets external-dns follow an HTTPRoute that's attached to a ListenerSet up to its parent Gateway, and use the Gateway's load balancer address for the record.
+
+external-dns creates the record from the HTTPRoute, not from the ListenerSet. A hostname only gets a record once an HTTPRoute attaches to the ListenerSet listener. The managed external-dns only creates records for subdomains of your cluster's base domain. For other domains, run your own external-dns instance.
 
 ### Using the default gateway
 
