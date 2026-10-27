@@ -116,8 +116,6 @@ repositories:
     category: Fleet Management
   giantswarm/keda-app:
     category: Fleet Management
-  giantswarm/kong-app:
-    category: Connectivity
   giantswarm/kube-prometheus-stack-app:
     category: Observability
   giantswarm/kube-state-metrics-app:
