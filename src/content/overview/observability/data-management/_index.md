@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability
     identifier: overview-observability-data-management
-last_review_date: 2025-07-17
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -87,7 +87,7 @@ Advanced querying and analysis capabilities:
 
 **[Transform and enrich your data]({{< relref "/overview/observability/data-management/data-transformation" >}})** during collection and visualization:
 
-- **[Recording rules]({{< relref "/overview/observability/alert-management/alert-rules#recording-rules" >}})**: Pre-compute expensive PromQL expressions for better performance
+- **[Recording rules]({{< relref "/overview/observability/alert-management/alert-rules#recording-rule-examples" >}})**: Pre-compute expensive PromQL expressions for better performance
 - **Relabeling rules**: Modify, filter, or enrich metrics and logs before storage
 - **Data parsing**: Extract structured data from logs and add contextual information
 - **Grafana transformations**: Client-side data processing for visualization
