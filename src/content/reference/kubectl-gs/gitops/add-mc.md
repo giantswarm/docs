@@ -7,7 +7,7 @@ weight: 15
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-06-08
+last_review_date: 2026-10-27
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -31,10 +31,10 @@ The structure created by this command is presented below. Resources enclosed in 
 ```nohighlight
 management-clusters
 └── MC_NAME
-    ├── .sops.keys
+    ├── [.sops.keys]
     │   └── [master.KEY_FINGERPRINT.asc]
-    ├── secrets
-    │   └── MC_NAME.gpgkey.enc.yaml
+    ├── [secrets]
+    │   └── [MC_NAME.gpgkey.enc.yaml]
     ├── organizations
     └── MC_NAME.yaml
 
@@ -45,6 +45,9 @@ repository can be driven without encryption. To enable the keys creation, pass t
 when adding the cluster. When skipped at this point, encryption can still be added later by the [`add encryption`]({{< relref "/reference/kubectl-gs/gitops/add-enc" >}})
 command.
 
+If the repository doesn't use SOPS at all, for example because secrets come from a secret manager through External
+Secrets Operator, pass the `--skip-encryption` flag. It leaves out the `secrets` and `.sops.keys` directories.
+
 ## Usage
 
 Basic command syntax: `kubectl gs gitops add management-cluster FLAGS`.
@@ -54,6 +57,7 @@ Basic command syntax: `kubectl gs gitops add management-cluster FLAGS`.
 - `--name` -- name of the management cluster (required)
 - `--repository-name` -- name of the GitOps repository (required)
 - `--gen-master-key` -- generate a master GPG key for SOPS for this management cluster
+- `--skip-encryption` -- leave out the `secrets` and `.sops.keys` directories. It can't be combined with `--gen-master-key`
 
 {{% kubectl_gs_gitops_common_flags %}}
 
@@ -176,6 +180,44 @@ creation_rules:
 - encrypted_regex: ^(data|stringData)$
   path_regex: management-clusters/demomc/secrets/.*\.enc\.yaml
   pgp: e11262662a86090ea64c8b137235e9a0582989cc
+```
+
+{{< /tab >}}
+{{< tab id="skip-encryption" title="No SOPS directories" >}}
+
+With the `--skip-encryption` flag, the command creates only the `Kustomization` and the `organizations` directory:
+
+```nohighlight
+kubectl gs gitops add management-cluster \
+  --local-path /tmp/gitops-demo \
+  --name demomc \
+  --repository-name gitops-demo \
+  --skip-encryption \
+  --dry-run
+```
+
+Output:
+
+```nohighlight
+## CREATE ##
+/tmp/gitops-demo/management-clusters/demomc
+/tmp/gitops-demo/management-clusters/demomc/demomc.yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: demomc-gitops
+  namespace: default
+spec:
+  interval: 1m
+  path: ./management-clusters/demomc
+  prune: false
+  serviceAccountName: automation
+  sourceRef:
+    kind: GitRepository
+    name: gitops-demo
+  timeout: 2m
+
+/tmp/gitops-demo/management-clusters/demomc/organizations
 ```
 
 {{< /tab >}}
