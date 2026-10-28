@@ -13,7 +13,7 @@ crd:
   technical_name: workflows.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v5.46.5
+  source_repository_ref: v5.53.3
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/workflows.muster.giantswarm.io/
 technical_name: workflows.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v5.46.5
+source_repository_ref: v5.53.3
 ---
 
 # Workflow
@@ -244,9 +244,11 @@ sequentially and their own failures are tolerated.</p>
 </div>
 
 <div class="property-description">
-<p>WorkflowSubStep is a tool-call step used inside forEach bodies, parallel
-groups, and onFailure handlers. Unlike WorkflowStep it cannot itself contain
-forEach or parallel, which keeps the CRD schema structural (non-recursive).</p>
+<p>WorkflowSubStep is a step used inside forEach bodies, parallel groups, and
+onFailure handlers: a tool call or, in a forEach body only, a nested
+forEach. Unlike WorkflowStep it cannot hold a parallel group, and a nested
+forEach holds tool calls only, which keeps the CRD schema structural
+(non-recursive).</p>
 
 </div>
 
@@ -513,6 +515,566 @@ Optional when FromStep or Template is used.</p>
 
 <div class="property depth-3">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach">.spec.onFailure[*].forEach</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ForEach makes this sub-step a nested loop, one level deep. Only valid in
+a forEach body (not in parallel or onFailure); its loop variable must
+differ from the outer one. Mutually exclusive with tool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.as">.spec.onFailure[*].forEach.as</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>As is the loop variable name made available to the body as
+&ldquo;{{ .vars.<as> }}&rdquo;. Defaults to &ldquo;item&rdquo;; it must differ from the outer
+loop&rsquo;s.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.items">.spec.onFailure[*].forEach.items</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Items is a template expression that must resolve to an array, typically
+a result of an earlier sub-step of the outer iteration, e.g.
+&ldquo;{{ .results.clusters.items }}&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.parallelism">.spec.onFailure[*].forEach.parallelism</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Parallelism is how many iterations may run at once within one outer
+iteration. The calls in flight at once are at most the outer
+parallelism times this one.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps">.spec.onFailure[*].forEach.steps</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Steps is the body executed for each item.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*]">.spec.onFailure[*].forEach.steps[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>WorkflowNestedStep is a tool-call step in the body of a nested forEach.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].allowFailure">.spec.onFailure[*].forEach.steps[*].allowFailure</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>AllowFailure defines if in case of an error execution continues.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].args">.spec.onFailure[*].forEach.steps[*].args</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Args provides arguments for the tool execution (supports templating).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition">.spec.onFailure[*].forEach.steps[*].condition</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Condition defines an optional condition that determines whether this sub-step should execute.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.args">.spec.onFailure[*].forEach.steps[*].condition.args</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Args provides the arguments to pass to the condition tool.
+Values may be any JSON type.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.expect">.spec.onFailure[*].forEach.steps[*].condition.expect</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Expect defines positive health check expectations.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.expect.jsonPath">.spec.onFailure[*].forEach.steps[*].condition.expect.jsonPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JsonPath defines JSON path conditions to check in the result.
+Values may be any JSON type (typically scalars compared to a result field).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.expect.success">.spec.onFailure[*].forEach.steps[*].condition.expect.success</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Success indicates whether the tool call should succeed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.expectNot">.spec.onFailure[*].forEach.steps[*].condition.expectNot</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ExpectNot defines negative health check expectations.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.expectNot.jsonPath">.spec.onFailure[*].forEach.steps[*].condition.expectNot.jsonPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JsonPath defines JSON path conditions to check in the result.
+Values may be any JSON type (typically scalars compared to a result field).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.expectNot.success">.spec.onFailure[*].forEach.steps[*].condition.expectNot.success</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Success indicates whether the tool call should succeed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.fromStep">.spec.onFailure[*].forEach.steps[*].condition.fromStep</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FromStep specifies the step ID to reference for condition evaluation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.template">.spec.onFailure[*].forEach.steps[*].condition.template</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Template is a boolean Go-template gate. When set, the step executes only
+if the template renders to &ldquo;true&rdquo; (e.g. &ldquo;{{ eq .input.env \&ldquo;production\&rdquo; }}&ldquo;).
+Mutually exclusive with Tool/FromStep; when present, Expect/ExpectNot are ignored.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].condition.tool">.spec.onFailure[*].forEach.steps[*].condition.tool</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Tool specifies the name of the tool to execute for condition evaluation.
+Optional when FromStep or Template is used.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].description">.spec.onFailure[*].forEach.steps[*].description</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Description provides human-readable documentation for this sub-step&rsquo;s purpose.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].id">.spec.onFailure[*].forEach.steps[*].id</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ID is the unique identifier for this sub-step.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].jq">.spec.onFailure[*].forEach.steps[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ reshapes the sub-step&rsquo;s result before it is stored (see
+WorkflowStep.jq).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].output">.spec.onFailure[*].forEach.steps[*].output</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Output indicates whether this sub-step&rsquo;s result is included in the
+workflow&rsquo;s returned document. The result is always referenceable by
+later steps regardless of this flag.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].paginate">.spec.onFailure[*].forEach.steps[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes the sub-step follow the tool&rsquo;s pages (see
+WorkflowStep.paginate).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].paginate.itemsField">.spec.onFailure[*].forEach.steps[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].paginate.maxPages">.spec.onFailure[*].forEach.steps[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].paginate.tokenArg">.spec.onFailure[*].forEach.steps[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].paginate.tokenField">.spec.onFailure[*].forEach.steps[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].store">.spec.onFailure[*].forEach.steps[*].store</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Store is a deprecated alias for Output, kept for backwards compatibility.
+Prefer Output.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].forEach.steps[*].tool">.spec.onFailure[*].forEach.steps[*].tool</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Tool specifies the name of the tool to execute.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.onFailure[*].id">.spec.onFailure[*].id</h3>
 </div>
 <div class="property-body">
@@ -523,6 +1085,26 @@ Optional when FromStep or Template is used.</p>
 
 <div class="property-description">
 <p>ID is the unique identifier for this sub-step.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].jq">.spec.onFailure[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ reshapes the sub-step&rsquo;s result before it is stored (see
+WorkflowStep.jq). On a nested forEach it reshapes the loop&rsquo;s
+per-iteration records.</p>
 
 </div>
 
@@ -544,6 +1126,98 @@ Optional when FromStep or Template is used.</p>
 workflow&rsquo;s returned document. The result is always referenceable by later
 steps regardless of this flag. When unset, the deprecated Store flag is
 used as a fallback.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].paginate">.spec.onFailure[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes a tool sub-step follow the tool&rsquo;s pages (see
+WorkflowStep.paginate).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].paginate.itemsField">.spec.onFailure[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].paginate.maxPages">.spec.onFailure[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].paginate.tokenArg">.spec.onFailure[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.onFailure[*].paginate.tokenField">.spec.onFailure[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
 
 </div>
 
@@ -576,11 +1250,12 @@ Prefer Output.</p>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
-<p>Tool specifies the name of the tool to execute.</p>
+<p>Tool specifies the name of the tool to execute. Mutually exclusive
+with forEach.</p>
 
 </div>
 
@@ -648,8 +1323,8 @@ returned unchanged.</p>
 
 <div class="property-description">
 <p>WorkflowStep defines a single step in the workflow execution.
-A step is exactly one of: a tool call (tool), a sequential loop (forEach),
-or a concurrent group (parallel).</p>
+A step is exactly one of: a tool call (tool), a loop (forEach), or a
+concurrent group (parallel).</p>
 
 </div>
 
@@ -978,6 +1653,26 @@ the duration of one iteration.</p>
 
 <div class="property depth-4">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.parallelism">.spec.steps[*].forEach.parallelism</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Parallelism is how many iterations may run at once. Unset, they run
+one after another. Results, step records and the loop&rsquo;s per-iteration
+records come out in item order either way.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps">.spec.steps[*].forEach.steps</h3>
 </div>
 <div class="property-body">
@@ -1005,9 +1700,11 @@ the duration of one iteration.</p>
 </div>
 
 <div class="property-description">
-<p>WorkflowSubStep is a tool-call step used inside forEach bodies, parallel
-groups, and onFailure handlers. Unlike WorkflowStep it cannot itself contain
-forEach or parallel, which keeps the CRD schema structural (non-recursive).</p>
+<p>WorkflowSubStep is a step used inside forEach bodies, parallel groups, and
+onFailure handlers: a tool call or, in a forEach body only, a nested
+forEach. Unlike WorkflowStep it cannot hold a parallel group, and a nested
+forEach holds tool calls only, which keeps the CRD schema structural
+(non-recursive).</p>
 
 </div>
 
@@ -1274,6 +1971,566 @@ Optional when FromStep or Template is used.</p>
 
 <div class="property depth-6">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach">.spec.steps[*].forEach.steps[*].forEach</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ForEach makes this sub-step a nested loop, one level deep. Only valid in
+a forEach body (not in parallel or onFailure); its loop variable must
+differ from the outer one. Mutually exclusive with tool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.as">.spec.steps[*].forEach.steps[*].forEach.as</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>As is the loop variable name made available to the body as
+&ldquo;{{ .vars.<as> }}&rdquo;. Defaults to &ldquo;item&rdquo;; it must differ from the outer
+loop&rsquo;s.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.items">.spec.steps[*].forEach.steps[*].forEach.items</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Items is a template expression that must resolve to an array, typically
+a result of an earlier sub-step of the outer iteration, e.g.
+&ldquo;{{ .results.clusters.items }}&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.parallelism">.spec.steps[*].forEach.steps[*].forEach.parallelism</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Parallelism is how many iterations may run at once within one outer
+iteration. The calls in flight at once are at most the outer
+parallelism times this one.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps">.spec.steps[*].forEach.steps[*].forEach.steps</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Steps is the body executed for each item.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*]">.spec.steps[*].forEach.steps[*].forEach.steps[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>WorkflowNestedStep is a tool-call step in the body of a nested forEach.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].allowFailure">.spec.steps[*].forEach.steps[*].forEach.steps[*].allowFailure</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>AllowFailure defines if in case of an error execution continues.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].args">.spec.steps[*].forEach.steps[*].forEach.steps[*].args</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Args provides arguments for the tool execution (supports templating).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Condition defines an optional condition that determines whether this sub-step should execute.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.args">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.args</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Args provides the arguments to pass to the condition tool.
+Values may be any JSON type.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expect">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expect</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Expect defines positive health check expectations.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-11">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expect.jsonPath">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expect.jsonPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JsonPath defines JSON path conditions to check in the result.
+Values may be any JSON type (typically scalars compared to a result field).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-11">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expect.success">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expect.success</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Success indicates whether the tool call should succeed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expectNot">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expectNot</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ExpectNot defines negative health check expectations.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-11">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expectNot.jsonPath">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expectNot.jsonPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JsonPath defines JSON path conditions to check in the result.
+Values may be any JSON type (typically scalars compared to a result field).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-11">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expectNot.success">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.expectNot.success</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Success indicates whether the tool call should succeed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.fromStep">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.fromStep</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FromStep specifies the step ID to reference for condition evaluation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.template">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.template</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Template is a boolean Go-template gate. When set, the step executes only
+if the template renders to &ldquo;true&rdquo; (e.g. &ldquo;{{ eq .input.env \&ldquo;production\&rdquo; }}&ldquo;).
+Mutually exclusive with Tool/FromStep; when present, Expect/ExpectNot are ignored.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.tool">.spec.steps[*].forEach.steps[*].forEach.steps[*].condition.tool</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Tool specifies the name of the tool to execute for condition evaluation.
+Optional when FromStep or Template is used.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].description">.spec.steps[*].forEach.steps[*].forEach.steps[*].description</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Description provides human-readable documentation for this sub-step&rsquo;s purpose.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].id">.spec.steps[*].forEach.steps[*].forEach.steps[*].id</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ID is the unique identifier for this sub-step.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].jq">.spec.steps[*].forEach.steps[*].forEach.steps[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ reshapes the sub-step&rsquo;s result before it is stored (see
+WorkflowStep.jq).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].output">.spec.steps[*].forEach.steps[*].forEach.steps[*].output</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Output indicates whether this sub-step&rsquo;s result is included in the
+workflow&rsquo;s returned document. The result is always referenceable by
+later steps regardless of this flag.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate">.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes the sub-step follow the tool&rsquo;s pages (see
+WorkflowStep.paginate).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.itemsField">.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.maxPages">.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.tokenArg">.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.tokenField">.spec.steps[*].forEach.steps[*].forEach.steps[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].store">.spec.steps[*].forEach.steps[*].forEach.steps[*].store</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Store is a deprecated alias for Output, kept for backwards compatibility.
+Prefer Output.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].forEach.steps[*].tool">.spec.steps[*].forEach.steps[*].forEach.steps[*].tool</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Tool specifies the name of the tool to execute.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].id">.spec.steps[*].forEach.steps[*].id</h3>
 </div>
 <div class="property-body">
@@ -1284,6 +2541,26 @@ Optional when FromStep or Template is used.</p>
 
 <div class="property-description">
 <p>ID is the unique identifier for this sub-step.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].jq">.spec.steps[*].forEach.steps[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ reshapes the sub-step&rsquo;s result before it is stored (see
+WorkflowStep.jq). On a nested forEach it reshapes the loop&rsquo;s
+per-iteration records.</p>
 
 </div>
 
@@ -1305,6 +2582,98 @@ Optional when FromStep or Template is used.</p>
 workflow&rsquo;s returned document. The result is always referenceable by later
 steps regardless of this flag. When unset, the deprecated Store flag is
 used as a fallback.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].paginate">.spec.steps[*].forEach.steps[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes a tool sub-step follow the tool&rsquo;s pages (see
+WorkflowStep.paginate).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].paginate.itemsField">.spec.steps[*].forEach.steps[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].paginate.maxPages">.spec.steps[*].forEach.steps[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].paginate.tokenArg">.spec.steps[*].forEach.steps[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].forEach.steps[*].paginate.tokenField">.spec.steps[*].forEach.steps[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
 
 </div>
 
@@ -1337,11 +2706,12 @@ Prefer Output.</p>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
-<p>Tool specifies the name of the tool to execute.</p>
+<p>Tool specifies the name of the tool to execute. Mutually exclusive
+with forEach.</p>
 
 </div>
 
@@ -1368,6 +2738,27 @@ Prefer Output.</p>
 
 <div class="property depth-3">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].jq">.spec.steps[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ is a jq program that reshapes the step&rsquo;s result before it is stored:
+the tool&rsquo;s result for a tool step, the per-iteration records for a
+forEach step. It sees the workflow input as $input and the loop
+variables as $vars, and must yield one value.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.steps[*].output">.spec.steps[*].output</h3>
 </div>
 <div class="property-body">
@@ -1382,6 +2773,98 @@ returned document (what the caller receives). Every step result is always
 referenceable by later steps via {{ .results.<id>.<field> }} regardless of
 this flag; Output only controls visibility in the returned result. When
 unset, the deprecated Store flag is used as a fallback.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].paginate">.spec.steps[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes a tool step follow the tool&rsquo;s next-page token and store
+every page&rsquo;s items as one list. Only valid with tool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].paginate.itemsField">.spec.steps[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].paginate.maxPages">.spec.steps[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].paginate.tokenArg">.spec.steps[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].paginate.tokenField">.spec.steps[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
 
 </div>
 
@@ -1420,9 +2903,11 @@ exclusive with tool and forEach.</p>
 </div>
 
 <div class="property-description">
-<p>WorkflowSubStep is a tool-call step used inside forEach bodies, parallel
-groups, and onFailure handlers. Unlike WorkflowStep it cannot itself contain
-forEach or parallel, which keeps the CRD schema structural (non-recursive).</p>
+<p>WorkflowSubStep is a step used inside forEach bodies, parallel groups, and
+onFailure handlers: a tool call or, in a forEach body only, a nested
+forEach. Unlike WorkflowStep it cannot hold a parallel group, and a nested
+forEach holds tool calls only, which keeps the CRD schema structural
+(non-recursive).</p>
 
 </div>
 
@@ -1689,6 +3174,566 @@ Optional when FromStep or Template is used.</p>
 
 <div class="property depth-5">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach">.spec.steps[*].parallel[*].forEach</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ForEach makes this sub-step a nested loop, one level deep. Only valid in
+a forEach body (not in parallel or onFailure); its loop variable must
+differ from the outer one. Mutually exclusive with tool.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.as">.spec.steps[*].parallel[*].forEach.as</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>As is the loop variable name made available to the body as
+&ldquo;{{ .vars.<as> }}&rdquo;. Defaults to &ldquo;item&rdquo;; it must differ from the outer
+loop&rsquo;s.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.items">.spec.steps[*].parallel[*].forEach.items</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Items is a template expression that must resolve to an array, typically
+a result of an earlier sub-step of the outer iteration, e.g.
+&ldquo;{{ .results.clusters.items }}&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.parallelism">.spec.steps[*].parallel[*].forEach.parallelism</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>Parallelism is how many iterations may run at once within one outer
+iteration. The calls in flight at once are at most the outer
+parallelism times this one.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps">.spec.steps[*].parallel[*].forEach.steps</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Steps is the body executed for each item.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-7">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*]">.spec.steps[*].parallel[*].forEach.steps[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>WorkflowNestedStep is a tool-call step in the body of a nested forEach.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].allowFailure">.spec.steps[*].parallel[*].forEach.steps[*].allowFailure</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>AllowFailure defines if in case of an error execution continues.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].args">.spec.steps[*].parallel[*].forEach.steps[*].args</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Args provides arguments for the tool execution (supports templating).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition">.spec.steps[*].parallel[*].forEach.steps[*].condition</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Condition defines an optional condition that determines whether this sub-step should execute.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.args">.spec.steps[*].parallel[*].forEach.steps[*].condition.args</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Args provides the arguments to pass to the condition tool.
+Values may be any JSON type.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.expect">.spec.steps[*].parallel[*].forEach.steps[*].condition.expect</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Expect defines positive health check expectations.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.expect.jsonPath">.spec.steps[*].parallel[*].forEach.steps[*].condition.expect.jsonPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JsonPath defines JSON path conditions to check in the result.
+Values may be any JSON type (typically scalars compared to a result field).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.expect.success">.spec.steps[*].parallel[*].forEach.steps[*].condition.expect.success</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Success indicates whether the tool call should succeed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.expectNot">.spec.steps[*].parallel[*].forEach.steps[*].condition.expectNot</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>ExpectNot defines negative health check expectations.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.expectNot.jsonPath">.spec.steps[*].parallel[*].forEach.steps[*].condition.expectNot.jsonPath</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>JsonPath defines JSON path conditions to check in the result.
+Values may be any JSON type (typically scalars compared to a result field).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-10">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.expectNot.success">.spec.steps[*].parallel[*].forEach.steps[*].condition.expectNot.success</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Success indicates whether the tool call should succeed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.fromStep">.spec.steps[*].parallel[*].forEach.steps[*].condition.fromStep</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>FromStep specifies the step ID to reference for condition evaluation.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.template">.spec.steps[*].parallel[*].forEach.steps[*].condition.template</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Template is a boolean Go-template gate. When set, the step executes only
+if the template renders to &ldquo;true&rdquo; (e.g. &ldquo;{{ eq .input.env \&ldquo;production\&rdquo; }}&ldquo;).
+Mutually exclusive with Tool/FromStep; when present, Expect/ExpectNot are ignored.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].condition.tool">.spec.steps[*].parallel[*].forEach.steps[*].condition.tool</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Tool specifies the name of the tool to execute for condition evaluation.
+Optional when FromStep or Template is used.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].description">.spec.steps[*].parallel[*].forEach.steps[*].description</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Description provides human-readable documentation for this sub-step&rsquo;s purpose.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].id">.spec.steps[*].parallel[*].forEach.steps[*].id</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ID is the unique identifier for this sub-step.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].jq">.spec.steps[*].parallel[*].forEach.steps[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ reshapes the sub-step&rsquo;s result before it is stored (see
+WorkflowStep.jq).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].output">.spec.steps[*].parallel[*].forEach.steps[*].output</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Output indicates whether this sub-step&rsquo;s result is included in the
+workflow&rsquo;s returned document. The result is always referenceable by
+later steps regardless of this flag.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].paginate">.spec.steps[*].parallel[*].forEach.steps[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes the sub-step follow the tool&rsquo;s pages (see
+WorkflowStep.paginate).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].paginate.itemsField">.spec.steps[*].parallel[*].forEach.steps[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].paginate.maxPages">.spec.steps[*].parallel[*].forEach.steps[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].paginate.tokenArg">.spec.steps[*].parallel[*].forEach.steps[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-9">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].paginate.tokenField">.spec.steps[*].parallel[*].forEach.steps[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].store">.spec.steps[*].parallel[*].forEach.steps[*].store</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">boolean</span>
+
+</div>
+
+<div class="property-description">
+<p>Store is a deprecated alias for Output, kept for backwards compatibility.
+Prefer Output.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-8">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].forEach.steps[*].tool">.spec.steps[*].parallel[*].forEach.steps[*].tool</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Tool specifies the name of the tool to execute.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].id">.spec.steps[*].parallel[*].id</h3>
 </div>
 <div class="property-body">
@@ -1699,6 +3744,26 @@ Optional when FromStep or Template is used.</p>
 
 <div class="property-description">
 <p>ID is the unique identifier for this sub-step.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].jq">.spec.steps[*].parallel[*].jq</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>JQ reshapes the sub-step&rsquo;s result before it is stored (see
+WorkflowStep.jq). On a nested forEach it reshapes the loop&rsquo;s
+per-iteration records.</p>
 
 </div>
 
@@ -1720,6 +3785,98 @@ Optional when FromStep or Template is used.</p>
 workflow&rsquo;s returned document. The result is always referenceable by later
 steps regardless of this flag. When unset, the deprecated Store flag is
 used as a fallback.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].paginate">.spec.steps[*].parallel[*].paginate</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Paginate makes a tool sub-step follow the tool&rsquo;s pages (see
+WorkflowStep.paginate).</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].paginate.itemsField">.spec.steps[*].parallel[*].paginate.itemsField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>ItemsField is where a page&rsquo;s list is. Defaults to &ldquo;items&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].paginate.maxPages">.spec.steps[*].parallel[*].paginate.maxPages</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxPages bounds the pages fetched. Defaults to 10.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].paginate.tokenArg">.spec.steps[*].parallel[*].paginate.tokenArg</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenArg is the tool argument the token is passed in. Defaults to
+&ldquo;continue&rdquo;.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-6">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.steps[*].parallel[*].paginate.tokenField">.spec.steps[*].parallel[*].paginate.tokenField</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>TokenField is where a page&rsquo;s next-page token is. Defaults to &ldquo;continue&rdquo;.</p>
 
 </div>
 
@@ -1752,11 +3909,12 @@ Prefer Output.</p>
 <div class="property-body">
 <div class="property-meta">
 <span class="property-type">string</span>
-<span class="property-required">Required</span>
+
 </div>
 
 <div class="property-description">
-<p>Tool specifies the name of the tool to execute.</p>
+<p>Tool specifies the name of the tool to execute. Mutually exclusive
+with forEach.</p>
 
 </div>
 
