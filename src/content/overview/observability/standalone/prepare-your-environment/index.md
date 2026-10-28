@@ -9,7 +9,7 @@ menu:
   principal:
     identifier: overview-observability-standalone-prepare-your-environment
     parent: overview-observability-standalone
-last_review_date: 2026-10-20
+last_review_date: 2026-10-28
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
