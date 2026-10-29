@@ -35,6 +35,8 @@ To ensure smooth operation, some deviations from the default configuration of Ci
 - Disable built in Envoy Proxy DaemonSet
 - Disable `kube-proxy` usage. See [Kubernetes Without kube-proxy](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/)
 
+AKS clusters use AKS-managed networking by default, and can [opt into Giant Swarm's Cilium]({{< relref "/tutorials/fleet-management/cluster-management/aks-byo-cni" >}}), which keeps `kube-proxy`.
+
 All changes to the official Helm chart are recorded in [https://github.com/giantswarm/cilium-app/tree/main/diffs](https://github.com/giantswarm/cilium-app/tree/main/diffs).
 
 ## Troubleshooting
