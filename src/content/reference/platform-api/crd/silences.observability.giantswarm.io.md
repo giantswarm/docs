@@ -13,7 +13,7 @@ crd:
   technical_name: silences.observability.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/silence-operator
-  source_repository_ref: v0.21.0
+  source_repository_ref: v0.21.1
   versions:
     - v1alpha2
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/silences.observability.giantswarm.io/
 technical_name: silences.observability.giantswarm.io
 source_repository: https://github.com/giantswarm/silence-operator
-source_repository_ref: v0.21.0
+source_repository_ref: v0.21.1
 ---
 
 # Silence
