@@ -11,7 +11,7 @@ menu:
 user_questions:
   - How can I cache container images within the cluster?
   - How can I have a backup registry for container images?
-last_review_date: 2025-05-20
+last_review_date: 2026-10-30
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 ---
@@ -65,7 +65,8 @@ The below example configures `docker.io` as on-demand mirror, while the `my-regi
           "onDemand": true,
           "tlsVerify": true,
           "maxRetries": 3,
-          "retryDelay": "5m"
+          "retryDelay": "1s",
+          "maxRetryDelay": "30s"
         },
         {
           "urls": [
@@ -75,7 +76,8 @@ The below example configures `docker.io` as on-demand mirror, while the `my-regi
           "pollInterval": "5m",
           "tlsVerify": true,
           "maxRetries": 3,
-          "retryDelay": "5m",
+          "retryDelay": "1s",
+          "maxRetryDelay": "30s",
           "onlySigned": false,
           "content": [
             {
@@ -92,6 +94,8 @@ The below example configures `docker.io` as on-demand mirror, while the `my-regi
   }
 }
 ```
+
+Keep `retryDelay` short. In Zot v2.1.14 and later (Giant Swarm app version 2.7.0 and later), a failed request to an upstream registry, such as a DNS timeout, puts the whole upstream host into a backoff for `retryDelay`, and every image pull that waits on that host waits with it. With `"retryDelay": "1s"` and `"maxRetryDelay": "30s"` the retries back off exponentially from one second to 30 seconds, which is what the Zot project recommends. A value like `5m` stalls all pulls through that host for minutes after a single failed lookup. `maxRetryDelay` needs app version 2.9.1 or later; on older versions leave it out, as Zot refuses to start on unknown configuration keys.
 
 <!-- Please update the section below once containerd mirroring configuration is settled -->
 
@@ -355,7 +359,8 @@ data:
                   "onDemand": true,
                   "tlsVerify": true,
                   "maxRetries": 3,
-                  "retryDelay": "5m"
+                  "retryDelay": "1s",
+                  "maxRetryDelay": "30s"
                 }
               ]
             },
