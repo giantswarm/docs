@@ -113,6 +113,7 @@ FQDN
 [F|f]alco
 firewalling
 freely
+Fulcio
 GCP
 Giant Swarm
 GPU[s]
@@ -196,6 +197,7 @@ rapidly
 RBAC
 really
 reconnection[s]?
+Rekor
 relref
 rollouts
 rulesets
