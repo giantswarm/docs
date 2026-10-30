@@ -18,7 +18,7 @@ user_questions:
  -  How can I run a container as a certain user?
  -  How can I run a container as privileged?
  -  Why is my container lacking permission to use a persistent volume?
-last_review_date: 2026-07-16
+last_review_date: 2026-10-29
 mermaid: true
 layout: single
 owner:
@@ -1082,6 +1082,111 @@ spec:
 Beyond the Pod Security Standards enforced by default, Giant Swarm's [`kyverno-policies`](https://github.com/giantswarm/kyverno-policies) include additional policies that clusters can opt into. These cover a range of concerns related to security, governance, and best practices.
 
 These policies aren't enforced unless you enable them. Refer to the [`kyverno-policies` repository](https://github.com/giantswarm/kyverno-policies) for the full, current list.
+
+## Image signature verification
+
+The security bundle includes `ImageValidatingPolicy` resources (`policies.kyverno.io/v1`) that check whether container images carry a valid [cosign](https://docs.sigstore.dev/cosign/) signature.
+
+### Default verification
+
+One verifier, `gsoci-circleci-keyless`, is enabled on every cluster running the security bundle, except installations where Giant Swarm has opted it out, such as those in China. It covers `gsoci.azurecr.io/giantswarm/*` and accepts a keyless signature from a CircleCI pipeline (issuer `https://oidc.circleci.com`). It runs in `Audit` mode by default.
+
+The following aren't verified by default:
+
+- Private images, for example `gsociprivate.azurecr.io`.
+- The mirror used for clusters in China.
+- Legacy `quay.io` and `docker.io` registries.
+- Images Giant Swarm built before 2026-06-01. Third-party images mirrored by Giant Swarm since then are signed, including older tags.
+
+### Reading the results
+
+In `Audit` mode, the policy isn't evaluated when a pod is created. The Kyverno reports controller checks existing pods during the configured background scan and writes the results to `PolicyReport` resources. In Policy Reporter, filter by source `KyvernoImageValidatingPolicy`. Policy names follow the pattern `verify-image-signatures-<name>`, for example `verify-image-signatures-gsoci-circleci-keyless`.
+
+### Where to configure it
+
+Set custom values in the user values of the `kyvernoPolicies` component of the security bundle, under `userConfig.kyvernoPolicies.configMap.values.imageVerification`.
+
+### Tune or disable the Giant Swarm verifier
+
+The Giant Swarm verifier sits under the fixed key `imageVerification.giantswarm.gsoci-circleci-keyless`. Values for our verifier can be individually overridden. For example, to turn the verifier off:
+
+```yaml
+userConfig:
+  kyvernoPolicies:
+    configMap:
+      values:
+        imageVerification:
+          giantswarm:
+            gsoci-circleci-keyless:
+              enabled: false
+```
+
+Images listed in the Giant Swarm verifier `excludeImages` will not be verified.
+
+Customer policies are templated to automatically skip every image matched by the `images` globs of an enabled Giant Swarm verifier. To verify Giant Swarm images against a configuration you control, disable our built-in verifier and add one of your own matching our images.
+
+### Add your own verifier
+
+Add a verifier to the `customer` list. Helm replaces lists on merge, so write the whole list in one place. This example verifies images from a private registry that GitHub Actions signed with a keyless signature:
+
+```yaml
+userConfig:
+  kyvernoPolicies:
+    configMap:
+      values:
+        imageVerification:
+          customer:
+            - name: acme-prod
+              images:
+                - registry.acme.example/prod/*
+              attestors:
+                - name: github
+                  keyless:
+                    issuer: https://token.actions.githubusercontent.com
+                    subjectRegExp: ^https://github\.com/acme/.+/\.github/workflows/release\.yaml@refs/tags/.+$
+              credentials:
+                secrets:
+                  - acme-registry-pull
+```
+
+The Kyverno controllers require network egress to the registry and trust root for your verifier. Add your registry to `ciliumNetworkPolicy.imageVerificationEgress` in the user values of the `kyverno` component, under `userConfig.kyverno.configMap.values`. Helm replaces lists on merge, so keep the four default entries. Giant Swarm's registry serves blobs from Azure Storage, hence `*.blob.core.windows.net`. If your registry serves image layers from another host, that host needs an entry too. For example:
+
+```yaml
+userConfig:
+  kyverno:
+    configMap:
+      values:
+        ciliumNetworkPolicy:
+          imageVerificationEgress:
+            fqdns:
+              - matchName: gsoci.azurecr.io
+              - matchPattern: "*.blob.core.windows.net"
+              - matchName: tuf-repo-cdn.sigstore.dev
+              - matchName: rekor.sigstore.dev
+              - matchName: registry.acme.example
+```
+
+### Move a verifier to Enforce
+
+Set `mode: Enforce` to render the policy with the `Deny` action. This turns on admission evaluation for that verifier, so pod creation now waits for the signature check. The `failurePolicy` field governs what happens when the Kyverno webhook itself can't be reached: `Ignore` admits the pod, `Fail` rejects it. A verification error during evaluation, such as the registry answering 429, Sigstore or Rekor being unreachable, or a signature bundle that can't be fetched, is reported as `error` in `Audit` mode and denies the pod in `Enforce` mode, whatever `failurePolicy` says. Don't expect `Ignore` to admit pods during a registry or Sigstore outage. Enforcing the Giant Swarm verifier looks like this:
+
+```yaml
+userConfig:
+  kyvernoPolicies:
+    configMap:
+      values:
+        imageVerification:
+          giantswarm:
+            gsoci-circleci-keyless:
+              mode: Enforce
+              failurePolicy: Fail
+```
+
+Check the Policy Reporter results first, because pods with unsigned images are rejected in `Enforce` mode. To exempt images, add them to `excludeImages` of the verifier, or keep that verifier in `Audit` mode. Kyverno's own `PolicyException` (`policies.kyverno.io`) can target an `ImageValidatingPolicy`.
+
+### Limitation of the signer identity
+
+Fulcio issues the same subject shape to every CircleCI pipeline, and the Kyverno keyless attestor matches only issuer and subject. The default policy therefore proves that an image was signed by some CircleCI pipeline. It relies on the registry restriction for the claim that Giant Swarm signed it: only Giant Swarm CI can push to `gsoci.azurecr.io/giantswarm/*`. There is a longstanding feature request with CircleCI to support a signature flow that is repository or workload identity aware, similar to GitHub Actions.
 
 ## Policy exceptions
 
