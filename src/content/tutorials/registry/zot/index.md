@@ -95,7 +95,7 @@ The below example configures `docker.io` as on-demand mirror, while the `my-regi
 }
 ```
 
-Keep `retryDelay` short. In current Zot versions (v2.1.22, Giant Swarm app version 2.12.0), a failed request to an upstream registry, such as a DNS timeout, puts the whole upstream host into a backoff for `retryDelay`, and every image pull that waits on that host waits with it. With `"retryDelay": "1s"` and `"maxRetryDelay": "30s"` the retries back off exponentially from one second to 30 seconds, which is what the Zot project recommends. A value like `5m` stalls all pulls through that host for minutes after a single failed lookup. `maxRetryDelay` needs app version 2.11.0 or later; on older versions leave it out, as Zot refuses to start on unknown configuration keys.
+Keep `retryDelay` short. In Zot v2.1.14 and later (Giant Swarm app version 2.7.0 and later), a failed request to an upstream registry, such as a DNS timeout, puts the whole upstream host into a backoff for `retryDelay`, and every image pull that waits on that host waits with it. With `"retryDelay": "1s"` and `"maxRetryDelay": "30s"` the retries back off exponentially from one second to 30 seconds, which is what the Zot project recommends. A value like `5m` stalls all pulls through that host for minutes after a single failed lookup. `maxRetryDelay` needs app version 2.9.1 or later; on older versions leave it out, as Zot refuses to start on unknown configuration keys.
 
 <!-- Please update the section below once containerd mirroring configuration is settled -->
 
