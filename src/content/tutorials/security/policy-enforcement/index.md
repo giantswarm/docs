@@ -1121,7 +1121,7 @@ userConfig:
               enabled: false
 ```
 
-Images listed in the Giant Swarm verifier `excludeImages` will not be verified.
+Images listed in the Giant Swarm verifier `excludeImages` won't be verified.
 
 Customer policies are templated to automatically skip every image matched by the `images` globs of an enabled Giant Swarm verifier. To verify Giant Swarm images against a configuration you control, disable our built-in verifier and add one of your own matching our images.
 
@@ -1168,7 +1168,7 @@ userConfig:
 
 ### Move a verifier to Enforce
 
-Set `mode: Enforce` to render the policy with the `Deny` action. This turns on admission evaluation for that verifier, so pod creation now waits for the signature check. The `failurePolicy` field governs what happens when the Kyverno webhook itself can't be reached: `Ignore` admits the pod, `Fail` rejects it. A verification error during evaluation, such as the registry answering 429, Sigstore or Rekor being unreachable, or a signature bundle that can't be fetched, is reported as `error` in `Audit` mode and denies the pod in `Enforce` mode, whatever `failurePolicy` says. Don't expect `Ignore` to admit pods during a registry or Sigstore outage. Enforcing the Giant Swarm verifier looks like this:
+Set `mode: Enforce` to render the policy with the `Deny` action. This turns on admission evaluation for that verifier, so pod creation now waits for the signature check. The `failurePolicy` field governs what happens when the Kyverno webhook itself can't be reached: `Ignore` admits the pod, `Fail` rejects it. A verification error during evaluation is reported as `error` in `Audit` mode and denies the pod in `Enforce` mode, whatever `failurePolicy` says. Examples are the registry answering 429, Sigstore or Rekor being unreachable, or a signature bundle that can't be fetched. Don't expect `Ignore` to admit pods during a registry or Sigstore outage. Enforcing the Giant Swarm verifier looks like this:
 
 ```yaml
 userConfig:
@@ -1186,7 +1186,7 @@ Check the Policy Reporter results first, because pods with unsigned images are r
 
 ### Limitation of the signer identity
 
-Fulcio issues the same subject shape to every CircleCI pipeline, and the Kyverno keyless attestor matches only issuer and subject. The default policy therefore proves that an image was signed by some CircleCI pipeline. It relies on the registry restriction for the claim that Giant Swarm signed it: only Giant Swarm CI can push to `gsoci.azurecr.io/giantswarm/*`. There is a longstanding feature request with CircleCI to support a signature flow that is repository or workload identity aware, similar to GitHub Actions.
+Fulcio issues the same subject shape to every CircleCI pipeline, and the Kyverno keyless attestor matches only issuer and subject. The default policy therefore proves that an image was signed by some CircleCI pipeline. It relies on the registry restriction for the claim that Giant Swarm signed it: only Giant Swarm CI can push to `gsoci.azurecr.io/giantswarm/*`. There is a longstanding feature request with CircleCI to support a signature flow aware of the repository or workload identity, similar to GitHub Actions.
 
 ## Policy exceptions
 
