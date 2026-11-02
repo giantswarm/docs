@@ -13,7 +13,7 @@ crd:
   technical_name: konfigurations.konfigure.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/konfigure-operator
-  source_repository_ref: v1.2.2
+  source_repository_ref: v1.3.0
   versions:
     - v1alpha1
   topics:
@@ -25,7 +25,7 @@ aliases:
   - /use-the-api/management-api/crd/konfigurations.konfigure.giantswarm.io/
 technical_name: konfigurations.konfigure.giantswarm.io
 source_repository: https://github.com/giantswarm/konfigure-operator
-source_repository_ref: v1.2.2
+source_repository_ref: v1.3.0
 ---
 
 # Konfiguration
@@ -1045,6 +1045,25 @@ Equals the Revision of the applied artifact from the referenced source.</p>
 <div class="property-description">
 <p>The last revision that was attempted for reconciliation.
 Equals the Revision of the last attempted artifact from the referenced source.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.lastHandledReconcileAt">.status.lastHandledReconcileAt</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>LastHandledReconcileAt is the value of the reconcile.giantswarm.io/requestedAt
+annotation that was last handled by the controller.</p>
 
 </div>
 
