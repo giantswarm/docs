@@ -55,19 +55,15 @@ in such case, because `cluster` directory is initially empty. Note however, in o
 working base and reference it by the `--base` flag when running the command. You may customize the referenced base with
 the `--cluster-user-config` flag when needed.
 
-**Note:** The cluster App in a base installs one of two kinds of charts. For older clusters, previous `35.x.x` versions, the `cluster-<provider>` chart, such as `cluster-aws`, has its own version numbers, separate from the release. The cluster version is defined in the values ConfigMap via `global.release.version`. In newer versions, a `release-<provider>` chart, such as `release-aws`, uses the release version as its chart version. To see which kind your base uses, check `spec.name` of the App in the base.
+With `--base`, use a base whose cluster App installs a `release-<provider>` chart, such as `release-aws`. The
+[CAPA release base](https://github.com/giantswarm/gitops-template/tree/main/bases/clusters/capa/release) in
+gitops-template is one. The chart version of a `release-<provider>` chart is the Giant Swarm release version, and the
+release must have such a chart in the `cluster` catalog. The `--release` flag sets the `release` variable of the Flux
+Kustomization, and the base uses it as the version of the cluster App. The release is then stored in Git, and you upgrade
+the cluster by changing that variable.
 
-With `--base`, the `--release` flag sets the `release` variable of the Flux Kustomization. What else the command does
-depends on the chart of the cluster App in the base:
-
-- For a `cluster-<provider>` chart, such as `cluster-aws`, the command also writes the release to the cluster values as
-  `global.release.version`. The management cluster then sets the version of the cluster app that the release ships.
-- For a `release-<provider>` chart, such as `release-aws`, the chart version is the release version, and the chart
-  carries `global.release.version` in its default values. The command doesn't write any values. The base sets the App's
-  version, for example from the `release` variable.
-- If the base holds no cluster App, for example because it's an overlay of another base, the command only sets the
-  `release` variable and reminds you to set the release in the base's values. With `--cluster-user-config`, these values
-  replace the base's values, so they must set `global.release.version` themselves.
+The chart sets `global.release.version` in its default values. Don't set it in the values you pass with
+`--cluster-user-config`. A copy in your values would stay at the old release when you upgrade the cluster.
 
 The command doesn't create the workload cluster's SOPS key Secret. The
 [`add encryption`]({{< relref "/reference/kubectl-gs/gitops/add-enc" >}}) command creates it when you add encryption to the
@@ -181,8 +177,7 @@ resources:
 {{< tab id="with-definition" title="Definition" >}}
 
 When desired to manage cluster definition from GitOps repository, it can be added by the `--base`
-and `--release` flags. The CAPA template base uses the `cluster-aws` chart, so the command writes the release to the
-cluster values.
+and `--release` flags. This example uses the CAPA release base, so the cluster App installs `release-aws` 36.2.0.
 
 ```nohighlight
 kubectl gs gitops add workload-cluster \
@@ -191,8 +186,8 @@ kubectl gs gitops add workload-cluster \
   --management-cluster demomc \
   --organization demoorg \
   --repository-name gitops-demo \
-  --base bases/clusters/capa/template \
-  --release 36.1.1 \
+  --base bases/clusters/capa/release \
+  --release 36.2.0 \
   --dry-run
 ```
 
@@ -214,7 +209,7 @@ spec:
     substitute:
       cluster_name: demowc
       cluster_description: "demowc managed by GitOps"
-      release: 36.1.1
+      release: 36.2.0
       organization: demoorg
   prune: false
   serviceAccountName: automation
@@ -259,35 +254,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 commonLabels:
   giantswarm.io/managed-by: flux
 kind: Kustomization
-patches:
-  - path: patch_cluster_userconfig.yaml
 resources:
-  - ../../../../../../../../bases/clusters/capa/template
-  - cluster_userconfig.yaml
-
-/tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/cluster/cluster_userconfig.yaml
-apiVersion: v1
-data:
-  values: |
-    global:
-      release:
-        version: 36.1.1
-kind: ConfigMap
-metadata:
-  name: demowc-cluster-userconfig
-  namespace: org-demoorg
-
-/tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/cluster/patch_cluster_userconfig.yaml
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
-metadata:
-  name: ${cluster_name}
-  namespace: org-${organization}
-spec:
-  userConfig:
-    configMap:
-      name: demowc-cluster-userconfig
-      namespace: org-demoorg
+  - ../../../../../../../../bases/clusters/capa/release
 
 
 ## MODIFY ##
@@ -311,7 +279,7 @@ spec:
       cluster_description: demowc managed by GitOps
       cluster_name: demowc
       organization: demoorg
-      release: 36.1.1
+      release: 36.2.0
   prune: false
   serviceAccountName: automation
   sourceRef:
@@ -324,7 +292,7 @@ spec:
 {{< tab id="with-definition-config" title="Definition and Configuration" >}}
 
 Cluster definition coming from a base may also be customized with a user configuration passed by the
-`--cluster-user-config` flag. The command adds `global.release.version` to these values.
+`--cluster-user-config` flag. Don't set `global.release.version` in these values, because the chart sets it.
 
 **Note:** files referenced by this flag should carry a valid values YAML configuration conforming the values schema of the given cluster app versions.
 
@@ -345,8 +313,8 @@ kubectl gs gitops add workload-cluster \
   --management-cluster demomc \
   --organization demoorg \
   --repository-name gitops-demo \
-  --base bases/clusters/capa/template \
-  --release 36.1.1 \
+  --base bases/clusters/capa/release \
+  --release 36.2.0 \
   --cluster-user-config /tmp/values.yaml \
   --dry-run
 ```
@@ -369,7 +337,7 @@ spec:
     substitute:
       cluster_name: demowc
       cluster_description: "demowc managed by GitOps"
-      release: 36.1.1
+      release: 36.2.0
       organization: demoorg
   prune: false
   serviceAccountName: automation
@@ -417,7 +385,7 @@ kind: Kustomization
 patches:
   - path: patch_cluster_userconfig.yaml
 resources:
-  - ../../../../../../../../bases/clusters/capa/template
+  - ../../../../../../../../bases/clusters/capa/release
   - cluster_userconfig.yaml
 
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc/mapi/cluster/cluster_userconfig.yaml
@@ -427,8 +395,6 @@ data:
     global:
       metadata:
         description: GitOps Demo Cluster
-      release:
-        version: 36.1.1
 kind: ConfigMap
 metadata:
   name: demowc-cluster-userconfig
@@ -468,7 +434,7 @@ spec:
       cluster_description: demowc managed by GitOps
       cluster_name: demowc
       organization: demoorg
-      release: 36.1.1
+      release: 36.2.0
   prune: false
   serviceAccountName: automation
   sourceRef:
