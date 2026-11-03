@@ -7,7 +7,7 @@ weight: 25
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-10-27
+last_review_date: 2026-11-03
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -33,8 +33,6 @@ in a square brackets `[]` are considered optional.
 
 ```nohighlight
 management-clusters/MC_NAME
-└── [secrets]
-│   └── [WC_NAME.gpgkey.enc.yaml]
 └── organizations
     └── ORG_NAME
         └── workload-clusters
@@ -57,14 +55,21 @@ in such case, because `cluster` directory is initially empty. Note however, in o
 working base and reference it by the `--base` flag when running the command. You may customize the referenced base with
 the `--cluster-user-config` flag when needed.
 
-With `--base`, the command sets the version of the cluster app and the `global.release.version` value from the release
-given by `--release`. To find the cluster app version, it reads the chart name from the App in the base, for example
-`cluster-aws`, and looks it up in the release on [giantswarm/releases](https://github.com/giantswarm/releases). This
-needs access to `raw.githubusercontent.com`. To skip the lookup, pass the version with `--cluster-app-version`.
+With `--base`, the `--release` flag sets the `release` variable of the Flux Kustomization. What else the command does
+depends on the chart of the cluster App in the base:
 
-The `WC_NAME.gpgkey.enc.yaml` Secret stores the workload cluster's SOPS keys, if you add encryption later. It's left out
-when the management cluster has no `secrets` directory, for example after
-[`add management-cluster --skip-encryption`]({{< relref "/reference/kubectl-gs/gitops/add-mc" >}}).
+- For a `cluster-<provider>` chart, such as `cluster-aws`, the command also writes the release to the cluster values as
+  `global.release.version`. The management cluster then sets the version of the cluster app that the release ships.
+- For a `release-<provider>` chart, such as `release-aws`, the chart version is the release version, and the chart
+  carries `global.release.version` in its default values. The command doesn't write any values. The base sets the App's
+  version, for example from the `release` variable.
+- If the base holds no cluster App, for example because it's an overlay of another base, the command only sets the
+  `release` variable and reminds you to set the release in the base's values. With `--cluster-user-config`, these values
+  replace the base's values, so they must set `global.release.version` themselves.
+
+The command doesn't create the workload cluster's SOPS key Secret. The
+[`add encryption`]({{< relref "/reference/kubectl-gs/gitops/add-enc" >}}) command creates it when you add encryption to the
+cluster.
 
 **Note:** the latest recommendation mandates creation of the `mapi` directory. However, users who have not yet migrated to it,
 but still want to use automation for their repositories, may skip the `mapi` layer by using the `--skip-mapi` flag. Migration is
@@ -82,7 +87,6 @@ Basic command syntax: `kubectl gs gitops add workload-cluster <FLAGS>`
 - `--repository-name` -- name of the GitOps repository (required)
 - `--base` -- path to the base directory; must be relative to the repository root
 - `--release` -- [workload cluster release](https://github.com/giantswarm/releases) version; required when `--base` is set
-- `--cluster-app-version` -- version of the cluster app. When set, the command doesn't look it up in the release
 - `--cluster-user-config` -- cluster app user configuration to patch the base with
 - `--skip-mapi` -- skip mapi directory when adding the app
 
@@ -110,13 +114,6 @@ Output:
 
 ```nohighlight
 ## CREATE ##
-/tmp/gitops-demo/management-clusters/demomc/secrets/demowc.gpgkey.enc.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-    name: sops-gpg-demowc
-    namespace: default
-
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -182,7 +179,8 @@ resources:
 {{< tab id="with-definition" title="Definition" >}}
 
 When desired to manage cluster definition from GitOps repository, it can be added by the `--base`
-and `--release` flags. The command looks up the version of the cluster app in the release.
+and `--release` flags. The CAPA template base uses the `cluster-aws` chart, so the command writes the release to the
+cluster values.
 
 ```nohighlight
 kubectl gs gitops add workload-cluster \
@@ -200,13 +198,6 @@ Output:
 
 ```nohighlight
 ## CREATE ##
-/tmp/gitops-demo/management-clusters/demomc/secrets/demowc.gpgkey.enc.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-    name: sops-gpg-demowc
-    namespace: default
-
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -291,7 +282,6 @@ metadata:
   name: ${cluster_name}
   namespace: org-${organization}
 spec:
-  version: "11.0.2"
   userConfig:
     configMap:
       name: demowc-cluster-userconfig
@@ -363,13 +353,6 @@ Output:
 
 ```nohighlight
 ## CREATE ##
-/tmp/gitops-demo/management-clusters/demomc/secrets/demowc.gpgkey.enc.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-    name: sops-gpg-demowc
-    namespace: default
-
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters
 /tmp/gitops-demo/management-clusters/demomc/organizations/demoorg/workload-clusters/demowc.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -456,7 +439,6 @@ metadata:
   name: ${cluster_name}
   namespace: org-${organization}
 spec:
-  version: "11.0.2"
   userConfig:
     configMap:
       name: demowc-cluster-userconfig
