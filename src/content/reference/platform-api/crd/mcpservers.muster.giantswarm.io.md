@@ -13,7 +13,7 @@ crd:
   technical_name: mcpservers.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v5.46.5
+  source_repository_ref: v5.53.3
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v5.46.5
+source_repository_ref: v5.53.3
 ---
 
 # MCPServer
@@ -453,6 +453,32 @@ identity pinned here, set ExpectedIssuer.</p>
 
 <div class="property depth-3">
 <div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.revocationEndpoint">.spec.auth.authorizationServer.revocationEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>RevocationEndpoint is the authorization server&rsquo;s RFC 7009 token
+revocation endpoint. When the person disconnects a subject-scoped grant
+(core_auth_logout), muster revokes its refresh and access tokens there
+before dropping its copy, so the provider stops honouring them and the
+next sign-in asks for consent again. Default: the revocation_endpoint
+of the authorization server&rsquo;s metadata; set it for one whose metadata
+names none or is pinned through AuthorizationEndpoint and TokenEndpoint
+(GitLab: <a href="https://gitlab.example.com/oauth/revoke">https://gitlab.example.com/oauth/revoke</a>). Without either, the
+grant stays valid at the provider until it expires.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
 <h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.scopes">.spec.auth.authorizationServer.scopes</h3>
 </div>
 <div class="property-body">
@@ -551,6 +577,45 @@ token is accepted by every forwardToken backend, so all forwardToken
 backends must be equally trusted. A token&rsquo;s nested act claim (minted
 by the IdP, e.g. via exchange at dex) carries the delegation chain for
 backend authorization decisions.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.providerApps">.spec.auth.providerApps</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>ProviderApps names the provider Apps (muster&rsquo;s aggregator.providerApps)
+whose grants this server receives. On every request muster attaches the
+access token of each named App the person granted, in the header
+X-Muster-Grant-<app>, refreshed ahead of its expiry; an App the person
+did not grant sends no header. A tool result that names missing Apps
+({&ldquo;status&rdquo;: &ldquo;grant_required&rdquo;, &ldquo;apps&rdquo;: [&hellip;]} in structuredContent) is
+answered auth_required with each App&rsquo;s sign-in link. The person&rsquo;s
+connection is made as the person, so this needs ForwardToken or
+ForwardIdentity.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.providerApps[*]">.spec.auth.providerApps[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
@@ -1333,8 +1398,9 @@ up to 3600 seconds.</p>
 
 <div class="property-description">
 <p>MaxDuration bounds, in seconds, a tool call kept going by progress. On
-a tool call whose caller asked for progress, each progress notification
-from the server restarts Timeout, up to MaxDuration; any other call and
+a tool call, each progress notification from the server restarts
+Timeout, up to MaxDuration; muster sends the server a progressToken on
+every tool call, whether its caller asked for progress or not. Any other
 operation stays bounded by Timeout. A value equal to Timeout extends
 nothing. Unset, 3600.</p>
 
