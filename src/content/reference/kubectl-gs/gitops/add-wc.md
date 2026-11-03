@@ -55,6 +55,13 @@ in such case, because `cluster` directory is initially empty. Note however, in o
 working base and reference it by the `--base` flag when running the command. You may customize the referenced base with
 the `--cluster-user-config` flag when needed.
 
+**Note:** the cluster App in a base installs one of two kinds of chart. A `cluster-<provider>` chart, such as
+`cluster-aws`, has its own version numbers, separate from the release. The cluster values name the release in
+`global.release.version`, and the management cluster installs the chart version that the release ships. A
+`release-<provider>` chart, such as `release-aws`, uses the release version as its chart version. The App's version is
+the release itself, so an upgrade is a change of that version in Git. To see which kind your base uses, check
+`spec.name` of the App in the base.
+
 With `--base`, the `--release` flag sets the `release` variable of the Flux Kustomization. What else the command does
 depends on the chart of the cluster App in the base:
 
