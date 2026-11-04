@@ -8,7 +8,7 @@ menu:
   principal:
     identifier: tutorials-fleet-management-clusters-aks-byo-cni
     parent: tutorials-fleet-management-clusters
-last_review_date: 2026-10-22
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 user_questions:
@@ -53,7 +53,7 @@ Keep AKS-managed networking if you need:
 | AKS control plane and API server, Konnectivity, node VMs and node images, kube-proxy | Microsoft |
 | Pod network, Cilium, Hubble, network policies | Giant Swarm |
 
-Microsoft [doesn't support CNI issues](https://learn.microsoft.com/azure/aks/use-byo-cni) on BYO CNI clusters. Contact Giant Swarm for pod networking problems. For problems on the path from the API server to pods, such as webhooks or `kubectl logs`, Giant Swarm checks the pod network first and works with Microsoft when the cause is on the AKS side.
+Microsoft [doesn't support CNI issues](https://learn.microsoft.com/azure/aks/use-byo-cni) on BYO CNI clusters. Contact Giant Swarm for pod networking problems. Problems on the path from the API server to pods, such as webhooks or `kubectl logs`, can have either cause. Giant Swarm checks the pod network first and works with Microsoft when the cause is on the AKS side.
 
 ## Create an AKS cluster with BYO CNI
 

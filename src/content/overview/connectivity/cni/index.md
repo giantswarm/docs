@@ -11,7 +11,7 @@ user_questions:
   - How does Giant Swarm configure Cilium on clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2025-02-17
+last_review_date: 2026-11-04
 ---
 
 Every Giant Swarm Kubernetes cluster uses [Cilium](https://cilium.io) as a container networking interface (CNI). This ensures proper connectivity between nodes, services and pods in the cluster.
