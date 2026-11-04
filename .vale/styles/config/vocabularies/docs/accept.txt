@@ -31,6 +31,7 @@ iptables
 Konnectivity
 [Kk]ustomization[s]?
 [Kk]ustomize
+[Dd]ataplane[s]?
 Gemini
 LiteLLM
 llama.cpp
@@ -214,6 +215,7 @@ SLA[s]?
 SLI[s]?
 SLO[s]?
 SNAT(ed)?
+[Rr]outable
 [Ss]panset[s]?
 SOPS
 Spotify
