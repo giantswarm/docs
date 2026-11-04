@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-dashboard-management
     identifier: overview-observability-dashboard-creation
-last_review_date: 2025-07-08
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -76,6 +76,8 @@ The `observability.giantswarm.io/organization` annotation determines which [Graf
 
 For rapid prototyping and iterative development, create dashboards directly in Grafana's web interface.
 
+Saving a dashboard requires the Editor or Admin role in the target Grafana organization. Viewers can't create or save dashboards. See the [roles in a Grafana organization]({{< relref "/overview/observability/configuration/creating-grafana-organization#rbac-configuration" >}}).
+
 ### Getting started
 
 1. [Access your Grafana instance]({{< relref "/overview/observability/data-management/data-exploration" >}})
@@ -95,7 +97,7 @@ Dashboards created in the UI are stored in PostgreSQL with automatic backups, en
 
 ### Start with exploration
 
-Before building dashboards, spend time in [Grafana's Explore view]({{< relref "/overview/observability/data-management/data-exploration#how-to-use-explore-and-drilldown-in-grafana" >}}) to understand your data and refine your queries.
+Before building dashboards, spend time in [Grafana's Explore view]({{< relref "/overview/observability/data-management/data-exploration#how-to-use-explore-and-drilldown-in-grafana" >}}) to understand your data and refine your queries. Explore requires the Editor or Admin role in the selected organization.
 
 ### Design for your audience
 

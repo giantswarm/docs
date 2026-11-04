@@ -13,7 +13,7 @@ user_questions:
   - How do I enable network monitoring?
   - How can I see cross-AZ traffic in my cluster?
   - Where can I find network traffic dashboards?
-last_review_date: 2026-02-23
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 ---
@@ -47,7 +47,7 @@ After applying the label, the platform automatically deploys the network monitor
 
 ### Verify monitoring is active
 
-You can verify that network monitoring is active by checking if the `beyla_network_flow_bytes_total` metric is being collected. In Grafana, navigate to **Explore** and run the following query:
+You can verify that network monitoring is active by checking if the `beyla_network_flow_bytes_total` metric is being collected. In Grafana, navigate to **Explore** and run the following query. Explore requires the Editor or Admin role in the selected organization.
 
 ```promql
 beyla_network_flow_bytes_total{cluster_id="<your-cluster-id>"}

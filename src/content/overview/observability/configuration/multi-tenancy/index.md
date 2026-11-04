@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-configuration
     identifier: overview-observability-configuration-multi-tenancy
-last_review_date: 2025-07-17
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -52,12 +52,19 @@ Every Giant Swarm installation comes with two built-in Grafana organizations:
 ### Shared Org
 
 - **Purpose**: Contains curated dashboards and system-wide observability data
-- **Access**: Available to all users with Grafana access in read-only mode
+- **Access**: All users with Grafana access get the Viewer role. Giant Swarm grants the Editor role to selected identity provider groups on request.
 - **Content**: Managed dashboards for platform monitoring, cluster health, and system metrics
 
 When you first log into Grafana, you'll see the Shared Org selected by default. This gives you immediate access to platform monitoring without needing to create your own organization first.
 
-**Need different access?** If you want to restrict Shared Org access to specific groups or give certain users editor permissions, contact your account engineer. They can help configure custom access controls.
+Roles in the Shared Org work like this:
+
+- **Viewer**: Browse dashboards. Viewers have no dashboard edit controls, no Explore, and no Drilldown.
+- **Editor**: Create, edit, and delete dashboards. Editors also use Explore and Drilldown. Dashboards saved from the Grafana UI persist across platform updates and restarts.
+
+A user in several groups gets the highest role. For example, a user in an Editor group gets the Editor role in the Shared Org, even though all users also match the Viewer role.
+
+**Need different access?** If you want to give specific groups the Editor role or restrict Shared Org access to specific groups, contact your account engineer. They can help configure custom access controls.
 
 ### Giant Swarm
 
