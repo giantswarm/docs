@@ -217,6 +217,7 @@ SNAT(ed)?
 [Ss]panset[s]?
 SOPS
 Spotify
+Streamable
 SRE[s]?
 SSL
 SSO

@@ -44,7 +44,7 @@ You need:
 A `ModelConfig` is small. The controller reads it, looks up the referenced Secret in the same namespace, and sets an `Accepted` condition on the resource:
 
 ```yaml
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: default-model-config
@@ -119,7 +119,7 @@ The name of the `ModelConfig` is what agents reference and what the portal displ
 The Secret can be the same `kagent-anthropic-key` as the default model uses, so a second Anthropic model needs no second key:
 
 ```yaml
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: anthropic-opus
@@ -142,7 +142,7 @@ metadata:
 stringData:
   OPENAI_API_KEY: <your OpenAI API key>
 ---
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: openai-gpt
@@ -167,7 +167,7 @@ metadata:
 stringData:
   AZURE_OPENAI_API_KEY: <your Azure OpenAI key>
 ---
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: azure-gpt
@@ -194,7 +194,7 @@ metadata:
 stringData:
   GOOGLE_API_KEY: <your Gemini API key>
 ---
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: gemini-flash
@@ -296,7 +296,7 @@ Two things differ from the other providers:
 No Secret. The host must be reachable from pods on the management cluster:
 
 ```yaml
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: ollama-llama
@@ -321,7 +321,7 @@ metadata:
 stringData:
   OPENAI_API_KEY: unused
 ---
-apiVersion: kagent.dev/v1alpha2
+apiVersion: kagent.dev/v1alpha3
 kind: ModelConfig
 metadata:
   name: qwen
@@ -335,7 +335,7 @@ spec:
     baseUrl: https://inference.example.internal/v1
 ```
 
-For an endpoint with a certificate from your own certificate authority, add a `tls` block: `tls.caCertSecretRef` and `tls.caCertSecretKey` point at a Secret holding the CA bundle, and `tls.disableVerify: true` skips verification altogether for lab endpoints.
+The `ModelConfig` API has no field for a custom CA bundle yet, so an endpoint with a certificate from your own certificate authority isn't supported. For lab endpoints only, a `tls` block with `tls.disableVerify: true` skips certificate verification.
 
 The full field list of every provider block is in the resource definition on your cluster:
 

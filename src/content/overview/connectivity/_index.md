@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview
     identifier: overview-connectivity
-last_review_date: 2025-09-22
+last_review_date: 2026-10-26
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-product
 aliases:
@@ -36,7 +36,6 @@ Our platform leverages various projects under the cloud-native initiative that h
 
 - **Kubernetes**: the backbone of our platform, Kubernetes give a good foundation for container communication and networking discovery.
 - **Cilium**: a container network interface providing reliable and secure communication between your pods and scales with your cluster.
-- **Kong**: an open-source API gateway that helps you manage your API traffic efficiently and ensures reliable external traffic routing to your services.
 - **Envoy Gateway**: an open-source Kubernetes Gateway API controller powered by Envoy Proxy that routes external traffic to your services.
 - **CoreDNS**: flexible DNS server improves service discovery within your clusters, aiding in efficient internal DNS management.
 - **Node Local DNS**: an extension to CoreDNS that provides a scalable DNS solution regardless of the cluster's size. It improves the speed and reliability of DNS resolution for your workloads while reducing the load on CoreDNS.

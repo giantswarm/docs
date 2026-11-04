@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-authentication
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-08-31
+last_review_date: 2026-10-06
 user_questions:
   - Which token does my MCP client send to Muster?
   - How does Muster validate tokens on every request?
@@ -68,7 +68,7 @@ You type your password at the identity provider login page, and only there. Neit
 
 The identity provider redirects the browser back to Dex's callback with a code. Dex exchanges it (authenticating with its identity provider / connector `client_secret`), mints its own tokens, and redirects the browser to Muster's `/oauth/callback` with a new code. Muster exchanges that code at Dex's `/token` endpoint, authenticating with Muster's Dex `client_secret`, and receives the Dex ID token. Muster then redirects the browser one last time to Claude Code's localhost callback with yet another code. When Claude Code exchanges that code, Muster mints and returns its own access token.
 
-Why does every hop hand over a code instead of a token? The code is the only credential that travels through the browser, where it can end up in address bars, history, and logs. So it's designed to be low-value: it can be used once, it expires within seconds, and it's worthless on its own. Redeeming it requires the client's own credentials (its `client_secret`, or the PKCE verifier for public clients like Claude Code). The actual tokens only travel on direct server-to-server calls (the "back channel") and never pass through the browser.
+Why does every hop hand over a code instead of a token? The code is the only credential that travels through the browser, where it can end up in address bars, history, and logs. So it's designed to be low-value: it can be used once, it's short-lived (Muster's default is 10 minutes), and it's worthless on its own. Redeeming it requires the client's own credentials (its `client_secret`, or the PKCE verifier for public clients like Claude Code). The actual tokens only travel on direct server-to-server calls (the "back channel") and never pass through the browser.
 
 {{% /step %}}
 
@@ -549,7 +549,7 @@ GET https://github-mcp.example.gigantic.io/.well-known/oauth-protected-resource/
 
 By design, this is the exact same header and document that *Muster* serves to Claude Code at the top of this document. Every MCP server in the chain advertises its authorization server the same way. Only the AS it names differs. The `auth.authorizationServer` pin in the MCPServer spec exists for backends that don't publish this document: it supplies the same two answers (issuer and scopes) from configuration instead.
 
-Note the two callback endpoints Muster now serves, one per direction: `/oauth/callback` is Muster acting as a *client of Dex* during inbound login, and `/oauth/proxy/callback` is Muster acting as a *client of external providers* for outbound auth. For identifying itself outbound, Muster prefers the same mechanism Claude Code uses inbound: it self-hosts a Client ID Metadata Document at `<public URL>/.well-known/oauth-client.json` and uses that URL as its `client_id`. Providers that don't accept CIMD and require pre-registered apps (GitHub among them) get a pre-registered `client_id` via Muster's `oauth.mcpClient.clientId` configuration instead.
+Note the two callback endpoints Muster now serves, one per direction: `/oauth/callback` is Muster acting as a *client of Dex* during inbound login, and `/oauth/proxy/callback` is Muster acting as a *client of external providers* for outbound auth. For identifying itself outbound, Muster prefers the same mechanism Claude Code uses inbound: it self-hosts a Client ID Metadata Document at `<public URL>/.well-known/oauth-client.json` and uses that URL as its `client_id`. Providers that don't accept CIMD and require pre-registered apps (GitHub among them) get a pre-registered client instead: its credentials go in a Secret (keys `client-id` and `client-secret`) referenced by `auth.authorizationServer.clientCredentialsSecretRef` in the MCPServer spec. (Muster's `oauth.mcpClient.clientId` is the CIMD URL, not a pre-registered ID.)
 
 From then on, every tool call the user makes to that backend carries the external token. Muster resolves the inbound Muster access token to the session as always, finds the stored GitHub token for it, and sends it as the bearer to github-mcp. github-mcp then uses it against the GitHub API. Outbound tokens are stored per *login session × issuer × scope*, so they're per-user (never shared between users). By design, they're shared across backends that use the same provider: log in to GitHub once, and every GitHub-backed server behind Muster works. When the provider issues a refresh token, Muster refreshes the external token automatically as it approaches expiry. When it can't, the backend's `401` flips it back to `Auth Required` and the user logs in again.
 

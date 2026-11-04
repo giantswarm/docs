@@ -10,7 +10,7 @@ menu:
     parent: reference
 aliases:
   - /reference/muster/crds/
-last_review_date: 2026-09-07
+last_review_date: 2026-10-06
 user_questions:
   - Which commands does the Muster CLI offer?
   - What meta-tools does Muster expose to AI agents?
@@ -66,7 +66,8 @@ The client commands that talk to a running aggregator (`list`, `get`, `create`, 
 | `--config-path` | Configuration directory. Defaults to `~/.config/muster` |
 | `--endpoint` | Remote aggregator endpoint URL. Reads `MUSTER_ENDPOINT` when unset |
 | `--context` | Use a named context. Reads `MUSTER_CONTEXT` when unset |
-| `--auth` | Authentication mode: `auto` (default), `prompt`, or `none`. Reads `MUSTER_AUTH_MODE` when unset |
+| `--auth` | Authentication mode: `none` (default, fails with `auth_required`), `prompt`, or `auto`. Reads `MUSTER_AUTH_MODE` when unset |
+| `--login` | Open the browser to sign in when authentication is required. Same as `--auth auto` |
 
 Most of these commands need a running aggregator. Start one with [`muster serve`]({{< relref "/reference/muster/cli/serve" >}}), or point `--endpoint` at a remote one.
 
