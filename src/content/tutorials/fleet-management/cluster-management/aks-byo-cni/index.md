@@ -45,6 +45,7 @@ Keep AKS-managed networking if you need:
 - **No Windows node pools** and **no API server VNet integration.**
 - **kube-proxy stays.** AKS keeps running kube-proxy (iptables mode), and Cilium runs without kube-proxy replacement. Cilium features that need kube-proxy replacement aren't available, such as eBPF host routing, Cilium Ingress and Gateway API, egress gateway, DSR and Maglev load balancing. Giant Swarm's Gateway API offering is based on Envoy Gateway and isn't affected.
 - **Webhooks behind a default deny.** The API server reaches pods through the Konnectivity agent, which runs on the node network. If an admission webhook is behind a default-deny network policy, allow ingress from the `host` and `remote-node` Cilium entities on the webhook port. The webhooks Giant Swarm ships already do this.
+- **DNS egress policies with node-local DNS.** On clusters running node-local DNS, pods send DNS queries to the `k8s-dns-node-cache` pods in `kube-system` instead of `kube-dns`. Network policies that allow DNS egress must also allow those pods on port 53.
 
 ## Support boundary
 
