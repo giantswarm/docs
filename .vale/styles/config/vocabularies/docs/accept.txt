@@ -31,6 +31,7 @@ iptables
 Konnectivity
 [Kk]ustomization[s]?
 [Kk]ustomize
+[Dd]ataplane[s]?
 Gemini
 LiteLLM
 llama.cpp
@@ -59,7 +60,9 @@ aws-pod-identity-webhook
 AWS
 azure-cloud-controller-manager-app
 azure-cloud-node-manager-app
+ACNS
 Azure
+Azure CNI Overlay
 Azure Workload Identity
 backbone
 Backstage
@@ -214,6 +217,7 @@ SLA[s]?
 SLI[s]?
 SLO[s]?
 SNAT(ed)?
+[Rr]outable
 [Ss]panset[s]?
 SOPS
 Spotify
