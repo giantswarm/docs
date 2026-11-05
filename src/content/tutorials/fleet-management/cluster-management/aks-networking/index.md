@@ -99,13 +99,19 @@ global:
       outboundType: userDefinedRouting
 ```
 
-Prepare the subnet first:
+Prepare the subnet before you create the cluster:
 
 - **Bring your own subnet.** A VNet created by the cluster has no route table, so `userDefinedRouting` requires `subnetArmId`.
 - **Default route.** The subnet's route table must send `0.0.0.0/0` to your egress device. If node pools use their own subnets, each of them needs that route table too.
+- **Ready before creation.** The route table and the egress device must work before the cluster is created, because nodes need egress to bootstrap.
 
 ## Change the outbound type of an existing cluster
 
 You can change `outboundType` on a running cluster along the [migration paths AKS supports](https://learn.microsoft.com/azure/aks/egress-outboundtype). On your own subnet, these are `loadBalancer`, `userAssignedNATGateway` and `userDefinedRouting`.
 
-The change interrupts existing connections and changes the cluster's egress IP. Update firewall rules and authorized IP ranges that rely on the old IP.
+When you switch between `userDefinedRouting` and another outbound type, move the default route with it:
+
+- **Leaving `userDefinedRouting`.** Remove the `0.0.0.0/0` route from the subnet's route table. Otherwise egress keeps going through your device.
+- **Going back to `userDefinedRouting`.** Add the `0.0.0.0/0` route before you change `outboundType`.
+
+The change interrupts existing connections and changes the cluster's egress IP. Nodes have no egress until AKS finishes the change, so `kubectl logs`, `kubectl exec` and port forwarding stop working in the meantime. Update firewall rules and authorized IP ranges that rely on the old IP.
