@@ -150,7 +150,9 @@ If the route has no entry for the Gateway in `status.parents` at all, check the 
 
 ### In the developer portal
 
-The **Gateways** tab of a cluster's page in the developer portal shows the same conditions for all routes of the cluster at once, with broken routes first. It also lists the Gateways with their listeners, and the Envoy Gateway policies with their targets and whether each Gateway accepted them. The tab is based on metrics, so a change can take a minute or two to appear. The route conditions and policy status need observability-bundle 3.6.0 or newer on the cluster.
+The **Gateways** tab of a cluster's page in the [developer portal]({{< relref "/overview/developer-portal" >}}) shows the same conditions for all HTTPRoutes of the cluster at once, with broken routes first. It also lists the Gateways with their listeners, and the Envoy Gateway policies with their targets and whether each Gateway accepted them.
+
+The tab is based on metrics, so changes can take a minute or two to appear, and it's only shown on installations with Mimir enabled. The route conditions, policy targets set with `targetRefs`, and policy status need observability-bundle 3.6.0 or newer on the cluster. With an older bundle, the tab still lists the Gateways and routes, and shows "Not available" for these.
 
 ## Further reading
 
