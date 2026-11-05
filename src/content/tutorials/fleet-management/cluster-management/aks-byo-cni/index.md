@@ -41,10 +41,10 @@ Keep AKS-managed networking if you need:
 
 - **New clusters only.** AKS can't change the network plugin of a running cluster, so existing clusters can't move into or out of BYO CNI.
 - **Overlay pod IPs.** Pods get IPs from the cluster's pod CIDR on a VXLAN overlay. They aren't reachable from the VNet, peered or on-premises networks except through Services, and their egress is SNATed to the node IP. Pods don't use VNet IPs.
-- **One pod CIDR.** Give exactly one pod CIDR block. It must not overlap the VNet, peered or on-premises networks, the service CIDR or the [AKS reserved ranges](https://learn.microsoft.com/azure/aks/use-byo-cni).
+- **One pod CIDR.** Give exactly one pod CIDR block. It must not overlap the VNet, peered networks, on-premises networks, the service CIDR, or the [AKS reserved ranges](https://learn.microsoft.com/azure/aks/use-byo-cni).
 - **No Windows node pools** and **no API server VNet integration.**
 - **kube-proxy stays.** AKS keeps running kube-proxy (iptables mode), and Cilium runs without kube-proxy replacement. Cilium features that need kube-proxy replacement aren't available, such as eBPF host routing, Cilium Ingress and Gateway API, egress gateway, DSR and Maglev load balancing. Giant Swarm's Gateway API offering is based on Envoy Gateway and isn't affected.
-- **Webhooks behind a default deny.** The API server reaches pods through the Konnectivity agent, which runs on the node network. If an admission webhook is behind a default-deny network policy, allow ingress from the `host` and `remote-node` Cilium entities on the webhook port. The webhooks Giant Swarm ships already do this.
+- **Webhooks behind a default deny.** The API server reaches pods through the Konnectivity agent, which runs on the node network. If an admission webhook is behind a default-deny network policy, allow ingress from the `host` and `remote-node` Cilium entities on the webhook port. Giant Swarm's webhooks already do this.
 - **DNS egress policies with node-local DNS.** On clusters running node-local DNS, pods send DNS queries to the `k8s-dns-node-cache` pods in `kube-system` instead of `kube-dns`. Network policies that allow DNS egress must also allow those pods on port 53.
 
 ## Support boundary
