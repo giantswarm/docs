@@ -25,7 +25,7 @@ AKS workload clusters use AKS-managed networking (Azure CNI powered by Cilium) b
 - [Advanced Container Networking Services](https://learn.microsoft.com/azure/aks/advanced-container-networking-services-overview) (ACNS), for network observability and FQDN or L7 network policies;
 - User Defined Routing, to send the cluster's egress through your own firewall or network virtual appliance (NVA).
 
-These options require AKS release v36.2.0 or newer. They apply to AKS-managed networking only. On clusters that run [Giant Swarm's Cilium with BYO CNI]({{< relref "/overview/connectivity/cni" >}}), the cluster chart rejects overlay and ACNS.
+These options require AKS release v36.2.0 or newer. They apply to AKS-managed networking only. On clusters that run [Giant Swarm's Cilium with BYO CNI]({{< relref "/tutorials/fleet-management/cluster-management/aks-byo-cni" >}}), the cluster chart rejects overlay and ACNS.
 
 All settings go in the cluster's user values. See the [cluster-aks README](https://github.com/giantswarm/cluster-aks#azure-cni-overlay-and-acns) for the full reference.
 
