@@ -8,7 +8,7 @@ menu:
     identifier: overview-observability-configuration-grafana-org
     parent: overview-observability-configuration
 weight: 40
-last_review_date: 2026-07-08
+last_review_date: 2026-11-04
 user_questions:
   - How to create a Grafana organization?
   - How to configure RBAC for Grafana organizations?
@@ -283,7 +283,9 @@ The RBAC section maps identity provider groups to [Grafana organization roles](h
 |------|-------------|
 | **Admin** | Full organization access: manage users, datasources, dashboards, and settings |
 | **Editor** | Create and edit dashboards, alerts, and folders (can't manage users) |
-| **Viewer** | Read-only access to dashboards and data |
+| **Viewer** | Browse dashboards (no Explore, Drilldown, or dashboard edit controls) |
+
+A user in several groups gets the highest role in the organization. For example, a user listed in both `editors` and `viewers` gets the Editor role.
 
 ### Group format
 

@@ -6,7 +6,7 @@ menu:
   principal:
     parent: overview-observability-data-management
     identifier: overview-observability-data-management-data-exploration
-last_review_date: 2025-07-17
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -47,7 +47,9 @@ You can use the [Explore](https://grafana.com/docs/grafana/latest/visualizations
 
 ## How to use Explore and Drilldown in Grafana
 
-When you first log in, you'll see the `Shared Org` selected by default. This organization contains curated dashboards and system metrics that are accessible to everyone with Grafana access.
+Explore and Drilldown require the Editor or Admin role in the selected Grafana organization. Viewers don't see Explore or Drilldown. To get the Editor or Admin role in your own organization, see [creating a Grafana organization]({{< relref "/overview/observability/configuration/creating-grafana-organization" >}}).
+
+When you first log in, you'll see the `Shared Org` selected by default. This organization contains curated dashboards and system metrics that are accessible to everyone with Grafana access. Shared Org users get the Viewer role by default, so they don't see Explore or Drilldown there. Switch to an organization where you have the Editor or Admin role to use them.
 Learn more about these default organizations and how to create your own in our [multi-tenancy documentation]({{< relref "/overview/observability/configuration/multi-tenancy" >}}).
 
 1. **Access the Explore tab:**

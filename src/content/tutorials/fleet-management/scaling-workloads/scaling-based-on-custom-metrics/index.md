@@ -8,7 +8,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-scaling
     identifier: tutorials-fleet-management-scaling-custom-gpu-metrics
-last_review_date: 2026-10-06
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
 user_questions:
@@ -44,7 +44,7 @@ kubectl get pods -n kube-system -l app=nvidia-dcgm-exporter
 kubectl get servicemonitor -n kube-system dcgm-exporter
 ```
 
-You should see DCGM metrics in your Grafana Explore view, such as:
+You should see DCGM metrics in your Grafana Explore view. Explore requires the Editor or Admin role in the selected organization. Look for metrics such as:
 
 - `DCGM_FI_DEV_GPU_UTIL` - GPU utilization percentage
 - `DCGM_FI_DEV_MEM_COPY_UTIL` - GPU memory utilization

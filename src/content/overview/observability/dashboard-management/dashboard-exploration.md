@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-dashboard-management
     identifier: overview-observability-dashboard-management-dashboard-exploration
-last_review_date: 2026-07-03
+last_review_date: 2026-11-04
 user_questions:
   - How do I find dashboards in Grafana?
   - What dashboards come out of the box?
@@ -31,7 +31,7 @@ Once you're logged in to Grafana:
 
 1. **Navigate to dashboards**: Click the **Dashboards** icon (grid squares) in the left sidebar
 2. **Browse by organization**: You'll see all dashboards available in your selected [Grafana organization]({{< relref "/overview/observability/configuration/multi-tenancy" >}}), switching to another Grafana organization will most likely change the list of available dashboards.
-3. **Start with Shared Org**: The `Shared Org` contains system dashboards accessible to all users
+3. **Start with Shared Org**: The `Shared Org` contains system dashboards accessible to all users. Shared Org users get the Viewer role. Giant Swarm grants the Editor role to selected groups on request. See [Shared Org]({{< relref "/overview/observability/configuration/multi-tenancy#shared-org" >}}).
 
 ## Out-of-the-box dashboards
 
@@ -96,7 +96,7 @@ Concentrate on infrastructure and platform monitoring:
 Once you're comfortable navigating existing dashboards:
 
 - **Learn dashboard creation**: Follow our [dashboard creation guide]({{< relref "/overview/observability/dashboard-management/dashboard-creation" >}}) to build custom visualizations
-- **Explore data sources**: Use [Grafana Explore]({{< relref "/overview/observability/data-management/data-exploration" >}}) to query data directly
+- **Explore data sources**: Use [Grafana Explore]({{< relref "/overview/observability/data-management/data-exploration" >}}) to query data directly. Explore requires the Editor or Admin role in the selected organization.
 - **Set up alerts**: Configure [alert rules]({{< relref "/overview/observability/alert-management/alert-rules" >}}) based on dashboard insights
 - **Advanced queries**: Learn [PromQL]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}) and [LogQL]({{< relref "/overview/observability/data-management/data-exploration/logql" >}}) for custom queries
 
@@ -104,6 +104,6 @@ Once you're comfortable navigating existing dashboards:
 
 Dashboard exploration works best when integrated with other platform capabilities:
 
-- **[Data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Explore to query data behind dashboard visualizations
+- **[Data exploration]({{< relref "/overview/observability/data-management/data-exploration" >}})**: Use Explore to query data behind dashboard visualizations (requires the Editor or Admin role)
 - **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy" >}})**: Understand dashboard organization and access controls
 - **[Alert management]({{< relref "/overview/observability/alert-management" >}})**: Connect dashboard insights to automated alerting
