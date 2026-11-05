@@ -11,7 +11,7 @@ user_questions:
   - How does Giant Swarm configure Cilium on clusters?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
-last_review_date: 2025-02-17
+last_review_date: 2026-11-04
 ---
 
 Every Giant Swarm Kubernetes cluster uses [Cilium](https://cilium.io) as a container networking interface (CNI). This ensures proper connectivity between nodes, services and pods in the cluster.
@@ -34,6 +34,8 @@ To ensure smooth operation, some deviations from the default configuration of Ci
 - Install a PodDisruptionPolicy
 - Disable built in Envoy Proxy DaemonSet
 - Disable `kube-proxy` usage. See [Kubernetes Without kube-proxy](https://docs.cilium.io/en/stable/network/kubernetes/kubeproxy-free/)
+
+AKS clusters use AKS-managed networking by default, and can [opt into Giant Swarm's Cilium]({{< relref "/tutorials/fleet-management/cluster-management/aks-byo-cni" >}}), which keeps `kube-proxy`.
 
 All changes to the official Helm chart are recorded in [https://github.com/giantswarm/cilium-app/tree/main/diffs](https://github.com/giantswarm/cilium-app/tree/main/diffs).
 

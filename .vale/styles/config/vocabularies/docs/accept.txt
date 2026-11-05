@@ -27,12 +27,15 @@ Autoscaler
 [Ee]nsure
 [Ee]xplore
 [Ii][Aa][Mm]
+iptables
+Konnectivity
 [Kk]ustomization[s]?
 [Kk]ustomize
 Gemini
 LiteLLM
 llama.cpp
 lookup[s]?
+Maglev
 [Mm]atcher[s]?
 [Nn]ginx
 against
@@ -210,6 +213,7 @@ Sigstore
 SLA[s]?
 SLI[s]?
 SLO[s]?
+SNAT(ed)?
 [Ss]panset[s]?
 SOPS
 Spotify
@@ -245,6 +249,7 @@ VLANs
 vLLM
 VM[s]?
 VMware
+VNet[s]?
 VPC
 vs.
 VS Code
