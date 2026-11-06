@@ -7,7 +7,7 @@ weight: 19
 menu:
   principal:
     parent: reference-kubectlgs
-last_review_date: 2026-03-25
+last_review_date: 2026-10-27
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
@@ -47,7 +47,7 @@ These flags are optional:
 - `--registry-provider` - Allows Flux to use other authentication means than username/password for private registries on AWS, Azure, and GCP. Hence value can be one of `aws`, `azure`, `gcp`. The value is applied to the [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/#provider) attribute `.spec.provider`.
 - `--registry-username` - Username for "generic" (in Flux terms) private OCI registry authentication. Password is read from `KUBECTL_GS_REGISTRY_PASSWORD` or prompted interactively.
 - `--values-file` - Path to a YAML file with chart values.
-- `--values-from` - Reference to a ConfigMap or Secret containing chart values (format: `ConfigMap/name` or `Secret/name`). Can be specified multiple times.
+- `--values-from` - Reference to a ConfigMap or Secret containing chart values (format: `Kind/name[:key[:optional]]`, for example `ConfigMap/my-config` or `Secret/my-secret:values:optional`). Can be specified multiple times. More details in the [configuration section](#configuration) below.
 - `--version` - Chart version to deploy. If not specified, the latest version found in the registry is used.
 
 ## Auto-upgrade options {#auto-upgrade}
@@ -60,11 +60,17 @@ The `--auto-upgrade` flag accepts three values:
 
 If you need an upgrade logic that is not provided here, you might want to first run the command with `--dry-run` to create a manifest and then edit the `.spec.ref.semver` field in the [OCIRepository](https://fluxcd.io/flux/components/source/ocirepositories/#reference) resource manifest to fit your needs.
 
-## Configuration
+## Configuration {#configuration}
 
 Using the `--values-file` with a YAML file path as value, you can pass configuration values for the deployed chart to the command. These values will be stored as part of the HelmRelease resource, in the so-called [inline values](https://fluxcd.io/flux/components/helm/helmreleases/#inline-values).
 
-In addition, you can pre-create ConfigMap and Secret resources in the same namespace that you will be using with this command (your organization namespace) and reference these using the `--values-from` flag. You can reference any number of these resources, simply by specifying the flag as often as needed. Note the specific syntax for this flag's value. Take a look at the [example below](#ex-cm-secret).
+In addition, you can pre-create ConfigMap and Secret resources in the same namespace that you will be using with this command (your organization namespace) and reference these using the `--values-from` flag. You can reference any number of these resources, simply by specifying the flag as often as needed. Note the specific syntax for this flag's value, `Kind/name[:key[:optional]]`:
+
+- `Kind` is `ConfigMap` or `Secret`.
+- `key` is the key in the resource that holds the values. Without it, Flux reads the key `values.yaml`. For example, the `CLUSTER_NAME-cluster-values` ConfigMap that every workload cluster gets stores its values under `values`, so reference it as `ConfigMap/CLUSTER_NAME-cluster-values:values`.
+- `optional` lets the HelmRelease proceed when the resource doesn't exist. To mark a resource optional and keep the default key, leave the key empty, as in `Secret/my-secret::optional`.
+
+Take a look at the [examples below](#ex-cm-secret).
 
 ### Validation
 
@@ -163,6 +169,18 @@ kubectl gs deploy chart \
   --target-namespace hello \
   --values-from ConfigMap/my-config \
   --values-from Secret/my-secret
+```
+
+To read the values from another key, and to skip a Secret that may not exist:
+
+```nohighlight
+kubectl gs deploy chart \
+  --chart-name hello-world \
+  --organization acme \
+  --target-cluster mycluster01 \
+  --target-namespace hello \
+  --values-from ConfigMap/mycluster01-cluster-values:values \
+  --values-from Secret/mycluster01-hello-world-user-secrets:values:optional
 ```
 
 ### Deploy to the management cluster itself
