@@ -150,7 +150,7 @@ Now, you apply the private key to the management cluster to let `Flux` decrypt t
 ```sh
 export ORG_NAME=myorg
 kubectl create secret generic sops-gpg-master \
---namespace=${ORG_NAME}t \
+--namespace=default \
 --from-file=${MC_NAME}.master.asc=/dev/stdin
 ```
 

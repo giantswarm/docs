@@ -12,7 +12,7 @@ user_questions:
   - How can I create and use `App Sets` in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 **Deprecated:** This guide covers App Sets for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Group multiple HelmReleases together]({{< relref "/tutorials/continuous-deployment/helm-releases/multiple-releases" >}}), which covers the equivalent Helm umbrella chart and Kustomize-over-HelmRelease patterns. See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
@@ -45,7 +45,7 @@ An example of an `App Set` template is available in the [gitops-template reposit
 
 ### Using app sets
 
-An example showing how to use an `App Set` is available in the [gitops-template repository in `WC_NAME/app_sets/hello-web-app-1`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/app_sets/hello-web-app-1). You can observe how a `ConfigMap` is automatically created using a override configuration file. Also, you see `patchesStrategicMerge` that replaces the `ConfigMap` name in the `App` resource.
+An example showing how to use an `App Set` is available in the [gitops-template repository in `WC_NAME/app_sets/hello-web-app-1`](https://github.com/giantswarm/gitops-template/tree/main/management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME_OUT_OF_BAND_NO_FLUX_APP/mapi/app_sets/hello-web-app-1). You can observe how a `ConfigMap` is automatically created using a override configuration file. Also, you see a `patches` entry that replaces the `ConfigMap` name in the `App` resource.
 
 ## Creating an app set template
 
@@ -56,8 +56,9 @@ To get started, go to the `bases` directory and create a subdirectory for your `
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 buildMetadata: [originAnnotations]
-commonLabels:
-  gitops.giantswarm.io/appSet: hello-web-app # this label will be applied to all resources included in the `App Set`
+labels:
+  - pairs:
+      gitops.giantswarm.io/appSet: hello-web-app # this label will be applied to all resources included in the `App Set`
 # (optional) replace default config of apps included in the set
 configMapGenerator:
   - behavior: replace
@@ -116,8 +117,8 @@ generatorOptions:
   disableNameSuffixHash: true
 kind: Kustomization
 namespace: hello-web-team1
-patchesStrategicMerge:
-  - config_patch.yaml
+patches:
+  - path: config_patch.yaml
 resources:
   - ../../../../../../../../../bases/app_sets/hello-web-app
 ```

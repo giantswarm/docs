@@ -14,7 +14,7 @@ user_questions:
   - How do I change values or secrets for an existing HelmRelease?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 To update an existing `HelmRelease` deployment you edit one or more of four files. The `OCIRepository` handles chart version changes. The `HelmRelease` handles install or upgrade behavior. The values `ConfigMap` and the encrypted Secret hold the chart values. Commit the change and Flux applies it on the next reconciliation.
@@ -113,19 +113,13 @@ gpg --import ~/keys/${MC_NAME}-${WC_NAME}-flux.asc
 
 Retrieve the key from wherever your team stores workload cluster secrets, for example a password manager or a shared secret store. Adjust the path in the commands to match wherever you saved the key.
 
-Decrypt the Secret in place and pull the values out into a temporary file you can edit:
+Decrypt the Secret in place:
 
 ```sh
 sops --decrypt --in-place secret.enc.yaml
-yq eval .data.values secret.enc.yaml | base64 -d > values.tmp.yaml
 ```
 
-Edit `values.tmp.yaml`, then encode the new contents back into the Secret's `data.values` field:
-
-```sh
-export NEW_USER_VALUES=$(cat values.tmp.yaml | base64)
-yq -i eval ".data.values = \"${NEW_USER_VALUES}\"" secret.enc.yaml
-```
+Edit the values under `stringData.values.yaml` in `secret.enc.yaml`, the same key you created in [Add a HelmRelease to a workload cluster]({{< relref "/tutorials/continuous-deployment/helm-releases/add-helmrelease" >}}). Flux reads the `values.yaml` key of a referenced `Secret` by default.
 
 Re-encrypt the file:
 
@@ -136,7 +130,8 @@ sops --encrypt --in-place secret.enc.yaml
 It's a good practice to clear the imported private key from your keyring afterward:
 
 ```sh
-gpg --delete-secret-keys "${KEY_FP}"
+gpg --list-secret-keys
+gpg --delete-secret-keys "<fingerprint of the imported key>"
 ```
 
 Commit `secret.enc.yaml` (and only the encrypted form). Flux applies the change and Helm picks up the new values on the next reconciliation.

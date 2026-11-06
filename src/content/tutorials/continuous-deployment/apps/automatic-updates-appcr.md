@@ -12,7 +12,7 @@ user_questions:
   - How can I enable and configure auto update for apps deployment with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-05-21
+last_review_date: 2026-10-06
 ---
 
 **Deprecated:** This guide covers automatic updates for the legacy Giant Swarm `App` custom resource, which is being phased out in favor of Flux HelmRelease. For new deployments, see [Enable automatic updates for HelmRelease]({{< relref "/tutorials/continuous-deployment/helm-releases/automatic-updates-helmrelease" >}}). See [App management]({{< relref "/overview/fleet-management/app-management" >}}) for the conceptual overview.
@@ -62,7 +62,7 @@ mkdir automatic-updates
 Later on, define the image update configuration in the `imageupdate.yaml` file on the new folder:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
   name: ${WC_NAME}-updates
@@ -91,7 +91,7 @@ spec:
 Now, in the app folder create the `imagerepository.yaml` file to configure registry to scan for new tags:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: ${APP_NAME}
@@ -104,16 +104,16 @@ spec:
 In the same app folder also create the `imagepolicy.yaml` file with tag selection rules:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: ${APP_NAME}
-  namespace: flux-system
+  namespace: default
 spec:
   imageRepositoryRef:
     name: ${APP_NAME}
   filterTags:
-      extract: \$version
+      extract: $version
       pattern: ^v?(?P<version>.*)$
   policy:
     semver:
@@ -187,11 +187,11 @@ resources:
 Last step, you can create the `imagerepository.yaml` file referencing the newly created secret:
 
 ```yaml
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: ${cluster_name}-hello-world
-  namespace: org-${organization}
+  namespace: default
 spec:
   ...
   secretRef:

@@ -15,7 +15,7 @@ user_questions:
   - What's the HelmRelease equivalent of Giant Swarm App Sets?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-06-17
+last_review_date: 2026-10-06
 ---
 
 There are three idiomatic ways to deploy a related group of `HelmReleases` together. Pick the one that fits your coupling level:
@@ -69,8 +69,9 @@ Create a base directory with the per-component manifests (one `HelmRelease` + on
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  gitops.giantswarm.io/releaseGroup: hello-web-app
+labels:
+  - pairs:
+      gitops.giantswarm.io/releaseGroup: hello-web-app
 namespace: hello-web
 patches:
   - patch: |-
@@ -94,7 +95,7 @@ resources:
 
 What this base provides:
 
-- **`commonLabels`** stamps a single label across every `HelmRelease` and `OCIRepository` in the group, so you can filter the developer portal or `kubectl` queries by that label.
+- **`labels`** stamps a single label across every `HelmRelease` and `OCIRepository` in the group, so you can filter the developer portal or `kubectl` queries by that label.
 - **`namespace`** enforces the same target namespace for the `HelmRelease` and `OCIRepository` resources themselves. The Helm install target namespace is a separate field (`spec.targetNamespace` on the `HelmRelease`).
 - **Inline patches** pin the chart versions on each `OCIRepository`, so the group uses a known-good combination.
 - **`resources`** references the per-component bases. Each component base contains its own `HelmRelease`, `OCIRepository`, and optional `ConfigMap` or `Secret`.
