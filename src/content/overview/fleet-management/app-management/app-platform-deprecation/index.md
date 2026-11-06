@@ -84,9 +84,9 @@ Their reference documentation remains available but will be marked as deprecated
 
 ## Migrating with the CLI
 
-The [appcr-to-helmrelease-converter](https://github.com/giantswarm/appcr-to-helmrelease-converter) CLI moves one App CR at a time to Flux. It reads the App CR and its `Catalog` from the management cluster and creates an `OCIRepository` (or a `HelmRepository` for a Helm catalog) and a `HelmRelease` with the same name, namespace and values. Its `ConfigMap` and `Secret` references become `valuesFrom` entries in the same order. Flux then takes over the Helm release the App CR installed, so the app isn't reinstalled.
+The [`appcr-to-helmrelease-converter`](https://github.com/giantswarm/appcr-to-helmrelease-converter) CLI moves one App CR at a time to Flux. It reads the App CR and its `Catalog` from the management cluster and creates an `OCIRepository` (or a `HelmRepository` for a Helm catalog) and a `HelmRelease` with the same name, namespace and values. Its `ConfigMap` and `Secret` references become `valuesFrom` entries in the same order. Flux then takes over the Helm release the App CR installed, so the app isn't reinstalled.
 
-You need [uv](https://docs.astral.sh/uv/getting-started/installation/) and `kubectl` access to the management cluster. The app must be deployed, as the CLI reads its live state.
+You need [`uv`](https://docs.astral.sh/uv/getting-started/installation/) and `kubectl` access to the management cluster. The app must be deployed, as the CLI reads its live state.
 
 First, set up the CLI. `uvx` runs it straight from the repository, without a clone. This alias keeps the commands short:
 
