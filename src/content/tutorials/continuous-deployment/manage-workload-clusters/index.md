@@ -14,7 +14,7 @@ user_questions:
   - How to ensure security by combining Flux with the platform API permission model?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-10-06
+last_review_date: 2026-11-06
 ---
 
 Below you will learn how to manage infrastructure and applications in the Giant Swarm `Flux` setup.
@@ -150,7 +150,7 @@ Now, you apply the private key to the management cluster to let `Flux` decrypt t
 ```sh
 export ORG_NAME=myorg
 kubectl create secret generic sops-gpg-master \
---namespace=${ORG_NAME}t \
+--namespace=default \
 --from-file=${MC_NAME}.master.asc=/dev/stdin
 ```
 
@@ -216,21 +216,32 @@ export WC_NAME=mywc
 kubectl gs gitops add workload-cluster \
 --management-cluster ${MC_NAME} \
 --name ${WC_NAME} \
---organization ORG_NAME \
---repository-name ${MC_NAME}-git-repository\
---base bases/cluster/capa/template \
---release 29.0.0
+--organization ${ORG_NAME} \
+--repository-name ${MC_NAME}-git-repository \
+--base bases/clusters/capa/template \
+--release 36.1.1
 ```
 
-**Note**: The `--release` flag is optional. If you don't provide it, the latest version of the base will be used. If you want to use a specific version, you can check the check the releases page of the cluster provider.
+**Note**: The `--release` flag is required when you use `--base`. The base deploys the cluster as a Flux `HelmRelease` of the `release-<provider>` chart, and `--release` sets the chart version, which is the Giant Swarm release version. The command checks that the release is published as that chart in the `gsoci.azurecr.io` registry. It refuses a base that deploys the cluster with an `App` resource. To move such a base to a `HelmRelease`, read [App Platform deprecation]({{< relref "/overview/fleet-management/app-management/app-platform-deprecation" >}}).
 
 The command will create the folders and the files needed. If you already applied the management cluster `Kustomization`, the cluster will start to be created as you commit and push the files.
 
-Alternatively, you can add the flag `--cluster-user-config` with the values you want to add to the cluster and it will generate a `ConfigMap` with the values.
+Alternatively, you can add the flag `--cluster-user-config` with the values you want to add to the cluster. It generates a `WC_NAME-cluster-userconfig` ConfigMap with the values and a `patch_cluster_userconfig.yaml` patch that appends the ConfigMap to the `valuesFrom` list of the cluster `HelmRelease`:
+
+```yaml
+- op: add
+  path: /spec/valuesFrom/-
+  value:
+    kind: ConfigMap
+    name: WC_NAME-cluster-userconfig
+    valuesKey: values
+```
+
+Flux merges `valuesFrom` in order, so your values override the values of the base. The patch is a JSON 6902 patch because a merge patch would replace the whole list.
 
 #### Upgrading workload clusters
 
-To upgrade a workload cluster, you need to change the `release.version` field in the `cluster-user-config` file. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the version in the `release.version` field.
+To upgrade a workload cluster, you need to change the `release` variable in the `postBuild.substitute` field of the cluster's Flux `Kustomization`, in `management-clusters/MC_NAME/organizations/ORG_NAME/workload-clusters/WC_NAME.yaml`. Flux substitutes it as the tag of the `OCIRepository`, so it sets the version of the release chart. After that, you commit and push the changes to the repository. The `Flux` controller will detect the changes and the cluster will be upgraded to the new version. The release version can be found by running `kubectl get releases` in the management cluster. You only need to set the version without the provider prefix.
 
 Example:
 
@@ -238,10 +249,11 @@ Example:
 
 ```sh
 NAME         KUBERNETES VERSION   FLATCAR VERSION   AGE     STATE
-aws-29.4.0   1.29.10              3975.2.2          29d     active
+aws-36.1.1   1.36.5               4757.2.1          12d     active
+aws-36.2.0   1.36.5               4757.2.2          10d     active
 ```
 
-You set the `release.version` in the `cluster-user-config` file to `29.4.0` and commit and push the changes.
+You set `release` to `36.2.0` and commit and push the changes.
 
 ### Installing managed apps
 
@@ -276,9 +288,13 @@ In the workload cluster the `Helm` release and all the resources applied should 
 
 ## Troubleshooting
 
-In case you have any issues with the creation of the resources, you can check the logs of the `Flux` controller to understand what's happening. You can use the following command to check the logs:
+In case you have any issues with the creation of the resources, check the status of the management cluster `Kustomization` to understand what's happening:
 
 ```sh
+kubectl describe kustomization ${MC_NAME}-gitops --namespace default
+```
+
+For example, when a policy blocks a resource, the output contains a message like this:
 
 ```nohighlight
 resource Kustomization... was blocked due to the following policies
