@@ -80,52 +80,51 @@ In this example you create a custom version for AWS base:
 1. Create a directory structure:
 
     ```nohighlight
-    mkdir -p bases/clusters/capa/v0.21.0
+    mkdir -p bases/clusters/capa/v36.1.1
     ```
 
-2. Use the [kubectl gs template cluster]({{< relref "/reference/kubectl-gs/template-cluster" >}}) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process. Set `--release` to a release that's published as a `release-aws` chart, so the values match the release chart and leave out the release version:
+2. Use the [kubectl gs template cluster]({{< relref "/reference/kubectl-gs/template-cluster" >}}) to template cluster resources, see an example for the `capa` provider below. Use arbitrary values for the mandatory fields, we will configure them later in our process. Set `--release` to a release that's published as a `release-aws` chart, so the values match the release chart and leave out the release version. The command renders a `ConfigMap` with the cluster values, an `OCIRepository` and a `HelmRelease`. Keep only the values of the `ConfigMap` in a new `cluster_config.yaml` file in your version folder:
 
     ```nohighlight
     kubectl gs template cluster \
     --name mywcl \
     --organization myorg \
     --release 36.1.1 \
-    --provider capa | yq -s '.metadata.name'
+    --provider capa \
+    | yq 'select(.kind == "ConfigMap") | .data.values' > bases/clusters/capa/v36.1.1/cluster_config.yaml
     ```
 
-3. The above command generates several files, though in the current example you are only interested in the cluster user configuration file `mywcl-userconfig.yaml`. Extract the values and create a new `cluster_config.yaml` file in our version folder:
+3. Check the content of the file. It looks like this:
 
     ```nohighlight
-    cat mywcl-userconfig.yaml | yq eval '.data.values' > bases/clusters/capa/v0.21.0/cluster_config.yaml
+    global:
+      connectivity:
+        availabilityZoneUsageLimit: 3
+        network: {}
+        topology: {}
+      controlPlane: {}
+      metadata:
+        name: mywcl
+        organization: myorg
+        preventDeletion: false
+        servicePriority: highest
+      nodePools:
+        nodepool0:
+          instanceType: m5.xlarge
+          maxSize: 10
+          minSize: 3
+          rootVolumeSizeGB: 8
+      providerSpecific: {}
     ```
 
-    The content of the file will be something like this:
+4. Replace `mywcl`, `myorg` values from the previous step with variables. The single quotes keep your shell from expanding the variables, as Flux substitutes them later:
 
     ```nohighlight
-    aws: {}
-    bastion: {}
-    clusterName: mywcl
-    controlPlane:
-      replicas: 3
-    machinePools:
-      machine-pool0:
-        availabilityZones:
-        - eu-central-1a
-        instanceType: m5.xlarge
-        maxSize: 10
-        minSize: 3
-        rootVolumeSizeGB: 300
-    network:
-      availabilityZoneUsageLimit: 3
-    organization: myorg
+    sed -i 's/myorg/${organization}/g' bases/clusters/capa/v36.1.1/cluster_config.yaml
+    sed -i 's/mywcl/${cluster_name}/g' bases/clusters/capa/v36.1.1/cluster_config.yaml
     ```
 
-4. Replace `mywcl`, `myorg` values from the previous step with variables:
-
-    ```nohighlight
-    sed -i "s/myorg/${organization}/g" bases/clusters/capa/v0.21.0/cluster_config.yaml
-    sed -i "s/mywcl/${cluster_name}/g" bases/clusters/capa/v0.21.0/cluster_config.yaml
-    ```
+    Note that on macOS, `sed -i` needs an empty suffix argument: `sed -i '' 's/myorg/${organization}/g' ...`.
 
 5. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
 

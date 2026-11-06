@@ -150,7 +150,7 @@ Now, you apply the private key to the management cluster to let `Flux` decrypt t
 ```sh
 export ORG_NAME=myorg
 kubectl create secret generic sops-gpg-master \
---namespace=${ORG_NAME}t \
+--namespace=default \
 --from-file=${MC_NAME}.master.asc=/dev/stdin
 ```
 
@@ -216,9 +216,9 @@ export WC_NAME=mywc
 kubectl gs gitops add workload-cluster \
 --management-cluster ${MC_NAME} \
 --name ${WC_NAME} \
---organization ORG_NAME \
---repository-name ${MC_NAME}-git-repository\
---base bases/cluster/capa/template \
+--organization ${ORG_NAME} \
+--repository-name ${MC_NAME}-git-repository \
+--base bases/clusters/capa/template \
 --release 36.1.1
 ```
 
@@ -249,10 +249,11 @@ Example:
 
 ```sh
 NAME         KUBERNETES VERSION   FLATCAR VERSION   AGE     STATE
-aws-29.4.0   1.29.10              3975.2.2          29d     active
+aws-36.1.1   1.36.5               4757.2.1          12d     active
+aws-36.2.0   1.36.5               4757.2.2          10d     active
 ```
 
-You set `release` to `29.4.0` and commit and push the changes.
+You set `release` to `36.2.0` and commit and push the changes.
 
 ### Installing managed apps
 
@@ -287,9 +288,13 @@ In the workload cluster the `Helm` release and all the resources applied should 
 
 ## Troubleshooting
 
-In case you have any issues with the creation of the resources, you can check the logs of the `Flux` controller to understand what's happening. You can use the following command to check the logs:
+In case you have any issues with the creation of the resources, check the status of the management cluster `Kustomization` to understand what's happening:
 
 ```sh
+kubectl describe kustomization ${MC_NAME}-gitops --namespace default
+```
+
+For example, when a policy blocks a resource, the output contains a message like this:
 
 ```nohighlight
 resource Kustomization... was blocked due to the following policies
