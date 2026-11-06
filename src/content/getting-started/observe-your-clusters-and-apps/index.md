@@ -3,7 +3,7 @@ title: Observe your clusters and apps
 diataxis_content_type: tutorial
 description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics and logs to distributed tracing, custom dashboards and alerts.
 weight: 60
-last_review_date: 2025-07-17
+last_review_date: 2026-10-06
 aliases:
   - /getting-started/observability/
   - /getting-started/observability/observe-your-clusters-and-apps/
@@ -75,7 +75,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    observability.giantswarm.io/tenant: my-team
+    observability.giantswarm.io/tenant: my_team
     app.kubernetes.io/instance: my-service
   name: my-service
   namespace: my-namespace
@@ -91,7 +91,7 @@ spec:
 
 **Key configuration points:**
 
-- **Tenant label**: The `observability.giantswarm.io/tenant: my-team` label is required for metrics routing and data isolation
+- **Tenant label**: The `observability.giantswarm.io/tenant: my_team` label is required for metrics routing and data isolation
 - **Scrape interval**: Metrics are collected every 60 seconds (adjust based on your needs)
 - **Metrics endpoint**: The `/metrics` path should expose Prometheus-format metrics
 - **Port reference**: Use the [port name](https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports) from your service definition
@@ -114,7 +114,7 @@ Once metrics collection is configured, explore your data using Grafana's Explore
 Try these sample queries to get started:
 
 - `rate(http_requests_total[5m])` - Request rate over the last five minutes
-- `histogram_quantile(0.95, http_request_duration_seconds_bucket)` - 95th percentile response time
+- `histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))` - 95th percentile response time
 - `up{job="my-service"}` - Check if your service is up and running
 
 **New to PromQL?** See the [PromQL query reference]({{< relref "/overview/observability/data-management/data-exploration/promql" >}}) for detailed guidance.
@@ -160,7 +160,7 @@ spec:
     metadata:
       labels:
         # Required for trace data routing
-        observability.giantswarm.io/tenant: my-team
+        observability.giantswarm.io/tenant: my_team
         app: my-traced-app
     spec:
       containers:
@@ -183,8 +183,8 @@ Once traces are flowing, explore them in Grafana:
 Try these example queries:
 
 - `{resource.service.name = "my-traced-app"}` - All traces from the service "my-traced-app"
-- `{trace.duration > 5s}` - Find slow requests
-- `{status = error}` - Find failed traces
+- `{trace:duration > 5s}` - Find slow requests
+- `{span:status = error}` - Find failed traces
 - `{span.http.method = "POST" && span.http.status_code >= 400}` - Failed HTTP requests
 
 ### Service graph insights

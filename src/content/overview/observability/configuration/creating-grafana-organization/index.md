@@ -8,7 +8,7 @@ menu:
     identifier: overview-observability-configuration-grafana-org
     parent: overview-observability-configuration
 weight: 40
-last_review_date: 2026-07-08
+last_review_date: 2026-10-06
 user_questions:
   - How to create a Grafana organization?
   - How to configure RBAC for Grafana organizations?
@@ -140,18 +140,18 @@ spec:
     - customer:junior-engineers
     - customer:qa-team
   tenants:
-  - name: prod-frontend
+  - name: prod_frontend
     types:
     - data
     - alerting
-  - name: prod-backend
+  - name: prod_backend
     types:
     - data
     - alerting
-  - name: staging-frontend
+  - name: staging_frontend
     types:
     - data
-  - name: staging-backend
+  - name: staging_backend
     types:
     - data
 ```
@@ -178,10 +178,10 @@ spec:
     - customer:junior-engineers
     - customer:qa-team
   tenants:
-  - prod-frontend
-  - prod-backend
-  - staging-frontend
-  - staging-backend
+  - prod_frontend
+  - prod_backend
+  - staging_frontend
+  - staging_backend
 ```
 
 {{< /tab >}}
@@ -261,16 +261,16 @@ spec:
     - customer:read-only-team
   tenants:
   # Full access (data and alerting)
-  - name: critical-services
+  - name: critical_services
     types:
     - data
     - alerting
   # Data access only (no alerting)
-  - name: development-metrics
+  - name: development_metrics
     types:
     - data
   # Alerting access only
-  - name: alerting-management
+  - name: alerting_management
     types:
     - alerting
 ```
