@@ -16,7 +16,7 @@ user_questions:
   - How do I route to a service in another namespace?
   - How do I attach a SecurityPolicy to my route?
   - How do I check whether my HTTPRoute is accepted?
-last_review_date: 2026-10-02
+last_review_date: 2026-11-05
 ---
 
 This page lists what the default Gateway installed by the [Gateway API bundle]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}) expects from the routes and policies you create for your service. It applies to the default configuration. Your cluster administrator may have changed some of these settings.
@@ -147,6 +147,12 @@ The output starts with the `sectionName` of each parent, which is empty when the
 | `ResolvedRefs` | `InvalidKind` | A `backendRefs` entry references a kind the Gateway can't route to. |
 
 If the route has no entry for the Gateway in `status.parents` at all, check the `name` and `namespace` in `parentRefs`.
+
+### In the developer portal
+
+The **Gateways** tab of a cluster's page in the [developer portal]({{< relref "/overview/developer-portal" >}}) shows the same conditions for all HTTPRoutes of the cluster at once, with broken routes first. It also lists the Gateways with their listeners, and the Envoy Gateway policies with their targets and whether each Gateway accepted them.
+
+The tab is based on metrics, so changes can take a minute or two to appear, and it's only shown on installations with Mimir enabled. The route conditions, policy targets set with `targetRefs`, and policy status need observability-bundle 3.6.0 or newer on the cluster. With an older bundle, the tab still lists the Gateways and routes, and shows "Not available" for these.
 
 ## Further reading
 
