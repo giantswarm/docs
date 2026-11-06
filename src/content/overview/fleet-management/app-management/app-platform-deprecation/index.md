@@ -17,7 +17,6 @@ user_questions:
   - When will App CRs stop being supported?
   - How do I migrate from App CRs to Flux HelmRelease?
   - What's the recommended way to deploy apps on Giant Swarm now?
-  - How do I migrate a cluster deployed with an App CR to a HelmRelease?
 last_review_date: 2026-11-06
 ---
 
@@ -89,18 +88,16 @@ The [appcr-to-helmrelease-converter](https://github.com/giantswarm/appcr-to-helm
 
 You need [uv](https://docs.astral.sh/uv/getting-started/installation/) and `kubectl` access to the management cluster. The app must be deployed, as the CLI reads its live state.
 
-First, install the CLI:
+First, set up the CLI. `uvx` runs it straight from the repository, without a clone. This alias keeps the commands short:
 
 ```sh
-git clone https://github.com/giantswarm/appcr-to-helmrelease-converter
-cd appcr-to-helmrelease-converter
-uv sync
+alias appcr-to-helmrelease-converter='uvx --from git+https://github.com/giantswarm/appcr-to-helmrelease-converter@main appcr-to-helmrelease-converter'
 ```
 
 Then preview the Flux resources it generates for the App CR, here `loki` in `org-acme`:
 
 ```sh
-uv run python main.py migrate --name loki --namespace org-acme --dry-run --output loki-flux.yaml
+appcr-to-helmrelease-converter migrate --name loki --namespace org-acme --dry-run --output loki-flux.yaml
 ```
 
 Run it again without `--dry-run` to migrate. The CLI suspends the App CR, applies the Flux resources and waits for the `HelmRelease` to be ready. If it fails, the CLI offers to roll back.
@@ -110,7 +107,7 @@ If the App CR comes from a GitOps repository, replace it there with the resource
 Finally, delete the App CR and its `Chart` CR from the cluster:
 
 ```sh
-uv run python main.py cleanup --name loki --namespace org-acme
+appcr-to-helmrelease-converter cleanup --name loki --namespace org-acme
 ```
 
 `cleanup` checks that the `HelmRelease` is ready and that Flux manages it before it deletes anything. Note that it can't check your GitOps repository. If the App CR is still there, Flux creates it again.
@@ -119,15 +116,13 @@ The [CLI's README](https://github.com/giantswarm/appcr-to-helmrelease-converter#
 
 ### Clusters
 
-Clusters deployed with an App CR of a cluster chart, like `cluster-aws`, migrate the same way. The App CR has the name of the cluster and lives in the organization namespace. The CLI deploys the cluster with the release chart, like `release-aws`, at the cluster's release version. The release chart's version is the release version, so you upgrade the cluster by changing the chart version in the `OCIRepository`.
-
-Before the next upgrade, remove `global.release.version` from the cluster values. `cleanup` refuses to run while it's set.
+The CLI can also move a cluster deployed with an App CR of a cluster chart, like `cluster-aws`, to a `HelmRelease` of the release chart, like `release-aws`. Giant Swarm is migrating its own clusters this way first, and this section will describe the steps once that's done. If you want to migrate a cluster before then, ask your account engineer.
 
 ### GitOps repositories created with kubectl-gs
 
 Since [kubectl-gs v5.13.0](https://github.com/giantswarm/kubectl-gs/releases/tag/v5.13.0), `kubectl gs template cluster` renders clusters as a `HelmRelease` of the release chart. Newer versions of `kubectl gs gitops add base` and `kubectl gs gitops add workload-cluster` do the same and don't support App CRs anymore. To keep using them on a repository created with an older version, upgrade the repository once its App CRs are gone:
 
-1. Migrate every cluster and app in the repository with the CLI.
+1. Migrate every app in the repository with the CLI, and every cluster as [Clusters](#clusters) describes.
 2. Replace the cluster App CR in each cluster base with the `OCIRepository` and `HelmRelease` that `kubectl gs gitops add base` generates.
 3. Check which parts of the repository are outdated, then upgrade them:
 
