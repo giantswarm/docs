@@ -8,7 +8,7 @@ menu:
   principal:
     identifier: kubectlgs-gitops
     parent: reference-kubectlgs
-last_review_date: 2024-11-25
+last_review_date: 2026-11-09
 user_questions:
   - Which GitOps commands does the kubectl-gs plugin offer?
 owner:
