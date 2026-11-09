@@ -24,7 +24,7 @@ Container images and the writable container layers stay on the EBS volume.
 
 ## When to use it
 
-The instance store is a good fit for scratch data that pods write and read a lot, such as caches, build directories, or intermediate files of batch jobs:
+The instance store is a good fit for scratch data that pods write and read a lot, such as caches, downloaded AI models, build directories, or intermediate files of batch jobs:
 
 - Local NVMe disks offer higher throughput and IOPS than EBS `gp3` volumes
 - You don't pay for EBS capacity for scratch data
