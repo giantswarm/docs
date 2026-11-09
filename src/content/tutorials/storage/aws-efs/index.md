@@ -265,11 +265,12 @@ kubectl wait --for=condition=Ready --timeout=10m \
   -f efs-filesystem.yaml -f efs-network.yaml
 ```
 
-Then read the ID of the file system. It starts with `fs-`, and you need it for the storage class:
+Then read the ID of the file system, which starts with `fs-`. The storage class needs it:
 
 ```sh
-kubectl get filesystem.efs.aws.upbound.io "${CLUSTER_NAME}-efs" \
-  -o jsonpath='{.status.atProvider.id}{"\n"}'
+FILE_SYSTEM_ID="$(kubectl get filesystem.efs.aws.upbound.io "${CLUSTER_NAME}-efs" \
+  -o jsonpath='{.status.atProvider.id}')"
+echo "$FILE_SYSTEM_ID"
 ```
 
 {{% notice note %}}
@@ -278,7 +279,7 @@ Give the mount targets **a few minutes** after they turn ready. Until AWS publis
 
 ## Mount the volume in your pods
 
-Run the following steps against the **workload cluster**.
+Run the following steps against the **workload cluster**. Stay in the same shell, so that `FILE_SYSTEM_ID` is still set.
 
 ### Create a storage class
 
@@ -286,7 +287,8 @@ The storage class tells the driver which file system to use. With `provisioningM
 
 In AWS, the root directory of an access point is optional and defaults to the root of the file system (`/`). The driver doesn't rely on that default. It always sets the root directory of each access point to a new directory named after the persistent volume, with a unique ID appended. As a result, every claim gets its own directory on the shared file system and can't see the data of other claims. To change this layout, use the `basePath`, `subPathPattern`, and `ensureUniqueDirectory` parameters of the storage class, described in the [driver documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/parameters.md).
 
-```yaml
+```sh
+kubectl apply -f - <<EOF
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -294,10 +296,11 @@ metadata:
 provisioner: efs.csi.aws.com
 parameters:
   provisioningMode: efs-ap
-  fileSystemId: <FILE_SYSTEM_ID>
+  fileSystemId: ${FILE_SYSTEM_ID}
   directoryPerms: "700"
   uid: "1000"
   gid: "1000"
+EOF
 ```
 
 The `uid` and `gid` parameters set the owner of the access point directory. Match them to the user your pods run as, so that **non-root containers** can write to the volume.
