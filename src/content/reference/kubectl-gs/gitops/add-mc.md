@@ -46,7 +46,8 @@ when adding the cluster. When skipped at this point, encryption can still be add
 command.
 
 If the repository doesn't use SOPS at all, for example because secrets come from a secret manager through External
-Secrets Operator, pass the `--skip-encryption` flag. It leaves out the `secrets` and `.sops.keys` directories.
+Secrets Operator, pass the `--skip-encryption` flag. It leaves out the `secrets` and `.sops.keys` directories. The flag
+needs kubectl-gs v5.12.0 or newer.
 
 ## Usage
 

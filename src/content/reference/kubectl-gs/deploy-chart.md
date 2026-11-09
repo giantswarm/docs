@@ -70,7 +70,7 @@ In addition, you can pre-create ConfigMap and Secret resources in the same names
 - `key` is the key in the resource that holds the values. Without it, Flux reads the key `values.yaml`. For example, the `CLUSTER_NAME-cluster-values` ConfigMap that every workload cluster gets stores its values under `values`, so reference it as `ConfigMap/CLUSTER_NAME-cluster-values:values`.
 - `optional` lets the HelmRelease proceed when the resource doesn't exist. To mark a resource optional and keep the default key, leave the key empty, as in `Secret/my-secret::optional`.
 
-Take a look at the [examples below](#ex-cm-secret).
+The `key` and `optional` parts need kubectl-gs v5.12.0 or newer. Take a look at the [examples below](#ex-cm-secret).
 
 ### Validation
 

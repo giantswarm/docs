@@ -60,10 +60,19 @@ With `--base`, use a base whose cluster App installs a `release-<provider>` char
 gitops-template is one. The chart version of a `release-<provider>` chart is the Giant Swarm release version, and the
 release must have such a chart in the `cluster` catalog. The `--release` flag sets the `release` variable of the Flux
 Kustomization, and the base uses it as the version of the cluster App. The release is then stored in Git, and you upgrade
-the cluster by changing that variable.
+the cluster by changing that variable. Pass the version without the `v` prefix, for example `36.2.0`.
 
 The chart sets `global.release.version` in its default values. Don't set it in the values you pass with
 `--cluster-user-config`. A copy in your values would stay at the old release when you upgrade the cluster.
+
+**Note:** the release base needs kubectl-gs v5.13.1 or newer. Older versions don't recognize it and print a notice that
+asks you to set the release in the values.
+
+Releases before v34 have no `release-<provider>` chart. For these, use a base whose cluster App installs a
+`cluster-<provider>` chart, such as the
+[CAPA template base](https://github.com/giantswarm/gitops-template/tree/main/bases/clusters/capa/template). The command
+then writes the release to the cluster values as `global.release.version`, and the management cluster sets the version
+of the cluster App that the release ships.
 
 The command doesn't create the workload cluster's SOPS key Secret. The
 [`add encryption`]({{< relref "/reference/kubectl-gs/gitops/add-enc" >}}) command creates it when you add encryption to the
@@ -84,7 +93,7 @@ Basic command syntax: `kubectl gs gitops add workload-cluster <FLAGS>`
 - `--organization` -- name of the organization the workload cluster belongs to (required)
 - `--repository-name` -- name of the GitOps repository (required)
 - `--base` -- path to the base directory; must be relative to the repository root
-- `--release` -- [workload cluster release](https://github.com/giantswarm/releases) version; required when `--base` is set
+- `--release` -- [workload cluster release](https://github.com/giantswarm/releases) version without the `v` prefix, for example `36.2.0`; required when `--base` is set
 - `--cluster-user-config` -- cluster app user configuration to patch the base with
 - `--skip-mapi` -- skip mapi directory when adding the app
 
@@ -296,12 +305,12 @@ Cluster definition coming from a base may also be customized with a user configu
 
 **Note:** files referenced by this flag should carry a valid values YAML configuration conforming the values schema of the given cluster app versions.
 
-Below is the example of `values.yaml` setting the cluster description.
+Below is the example of `values.yaml` setting the service priority of the cluster.
 
 ```yaml
 global:
   metadata:
-    description: GitOps Demo Cluster
+    servicePriority: medium
 ```
 
 After saving this into `/tmp/values.yaml`, it can be referenced when adding a cluster.
@@ -394,7 +403,7 @@ data:
   values: |
     global:
       metadata:
-        description: GitOps Demo Cluster
+        servicePriority: medium
 kind: ConfigMap
 metadata:
   name: demowc-cluster-userconfig
