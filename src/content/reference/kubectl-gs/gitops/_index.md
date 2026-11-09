@@ -19,7 +19,7 @@ aliases:
 
 The `gitops` command family provides operations to set up a GitOps repository as required to manage Giant Swarm infrastructure, as well as add and modify resources in this repository.
 
-It implements the same basic operations the [gitops-template repository](https://github.com/giantswarm/gitops-template#using-this-repository) supports and respects [the recommended GitOps structure](https://github.com/giantswarm/gitops-template/blob/main/docs/repo_structure.md).
+It implements the same basic operations the [gitops-template repository](https://github.com/giantswarm/gitops-template#guides) supports and respects [the recommended GitOps structure](https://github.com/giantswarm/gitops-template/blob/main/docs/reference/repo-structure.md).
 
 ## Important remarks
 
