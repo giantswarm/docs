@@ -110,6 +110,7 @@ easily
 effectively
 [E|e]dgedb
 ELB[s]?
+emptyDir
 ENI[s]?
 Entra
 ESXi
@@ -125,6 +126,7 @@ GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
+HDD[s]?
 HelmRelease
 Honeybadger
 [H|h]ostname[s]?
@@ -174,6 +176,7 @@ namespace[ds]?
 Nirmata
 NLB[s]?
 node[pP]ool[s]?
+NVMe
 OAuth
 OCI
 OCIRepository
