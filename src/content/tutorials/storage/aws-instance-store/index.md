@@ -34,8 +34,6 @@ It's not a fit for data that must outlive the node. The instance store is lost w
 
 - When a node pool rolls, for example during a cluster upgrade or after a change to the node pool configuration
 - When the cluster autoscaler or Karpenter removes a node to scale down or consolidate
-- When Karpenter replaces a drifted or expired node
-- When AWS retires the underlying hardware
 
 The data survives a reboot of the instance. Stopping and starting an instance [wipes the instance store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-store-lifetime.html). Giant Swarm clusters don't stop and start instances during normal operation. If someone does so manually, for example in the AWS console, the kubelet doesn't start again on that node, and you have to delete the node.
 
