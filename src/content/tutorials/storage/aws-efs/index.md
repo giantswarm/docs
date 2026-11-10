@@ -314,6 +314,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: shared-data
+  namespace: default
 spec:
   accessModes:
     - ReadWriteMany
@@ -329,7 +330,7 @@ EFS grows and shrinks with the data you store, so the requested size isn't enfor
 Apply the claim. It turns `Bound` within seconds:
 
 ```sh
-kubectl apply -f shared-data-pvc.yaml && kubectl get pvc shared-data
+kubectl apply -f shared-data-pvc.yaml && kubectl -n default get pvc shared-data
 ```
 
 ### Use the volume
@@ -342,6 +343,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shared-data-demo
+  namespace: default
 spec:
   replicas: 2
   selector:
@@ -389,7 +391,7 @@ kubectl apply -f shared-data-demo.yaml
 To check that the replicas share the volume, read the file from one of the pods. It contains a line from each replica:
 
 ```sh
-kubectl exec deploy/shared-data-demo -- cat /data/log.txt
+kubectl -n default exec deploy/shared-data-demo -- cat /data/log.txt
 ```
 
 ## Clean up
