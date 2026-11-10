@@ -163,7 +163,7 @@ echo "$NODE_SUBNETS"
 
 The cluster tags the private subnets for nodes with `giantswarm.io/role: nodes`. The filter therefore skips the public subnets and, on EKS, the secondary subnets for pod IPs. EFS allows only one mount target per availability zone, so `awk` keeps the first subnet of each zone.
 
-If `NODE_SUBNETS` is empty, the cluster was created with a chart version that doesn't set this tag yet, older than `cluster-aws` v3.5.0 or `cluster-eks` v3.1.0. Upgrade the cluster, or set `NODE_SUBNETS` yourself, with one line `<SUBNET_ID> <AVAILABILITY_ZONE>` per private subnet.
+If `NODE_SUBNETS` is empty, the cluster was created with a chart version that doesn't set this tag yet. Upgrade the cluster, or set `NODE_SUBNETS` yourself, with one line `<SUBNET_ID> <AVAILABILITY_ZONE>` per private subnet.
 
 ### Generate the manifests
 
@@ -201,9 +201,16 @@ spec:
 EOF
 ```
 
-Generate `efs-network.yaml` with the rule that opens the NFS port, and one mount target per node subnet:
+Generate `efs-network.yaml` with the rule that opens the NFS port, and one mount target per node subnet. On CAPA, the rule allows NFS traffic from the whole VPC. On EKS, it allows NFS traffic only from the cluster's nodes, using the cluster security group that EKS attaches to all nodes:
 
 ```sh
+if [ "$NETWORK_RESOURCE" = awsmanagedcontrolplane ]; then
+  NFS_SOURCE="sourceSecurityGroupId: $(kubectl -n "$NAMESPACE" get awsmanagedcontrolplane "$CLUSTER_NAME" \
+    -o jsonpath='{.status.network.securityGroups.cluster.id}')"
+else
+  NFS_SOURCE="cidrBlocks: [${VPC_CIDR}]"
+fi
+
 {
   cat <<EOF
 apiVersion: ec2.aws.upbound.io/v1beta1
@@ -219,8 +226,7 @@ spec:
     protocol: tcp
     fromPort: 2049
     toPort: 2049
-    cidrBlocks:
-      - ${VPC_CIDR}
+    ${NFS_SOURCE}
   providerConfigRef:
     name: ${CLUSTER_NAME}
 EOF
@@ -246,15 +252,6 @@ EOF
 } > efs-network.yaml
 ```
 
-On EKS, you can allow NFS traffic only from the cluster's nodes instead of the whole VPC. EKS attaches its cluster security group to all nodes. Read its ID before you generate `efs-network.yaml`:
-
-```sh
-CLUSTER_SECURITY_GROUP_ID="$(kubectl -n "$NAMESPACE" get awsmanagedcontrolplane "$CLUSTER_NAME" \
-  -o jsonpath='{.status.network.securityGroups.cluster.id}')"
-```
-
-Then, in the `SecurityGroupRule`, replace the two `cidrBlocks` lines with `sourceSecurityGroupId: ${CLUSTER_SECURITY_GROUP_ID}`.
-
 ### Create the resources
 
 Review both files, then apply them to the management cluster. Crossplane creates the security group and the file system first, and the rule and the mount targets as soon as their references resolve. Wait until all resources are ready. This usually takes a few minutes:
@@ -265,12 +262,22 @@ kubectl wait --for=condition=Ready --timeout=10m \
   -f efs-filesystem.yaml -f efs-network.yaml
 ```
 
-Then read the ID of the file system, which starts with `fs-`. The storage class needs it:
+Then generate `efs-storageclass.yaml`, the storage class for the workload cluster. The command reads the ID of the file system, which starts with `fs-`, from the management cluster:
 
 ```sh
-FILE_SYSTEM_ID="$(kubectl get filesystem.efs.aws.upbound.io "${CLUSTER_NAME}-efs" \
-  -o jsonpath='{.status.atProvider.id}')"
-echo "$FILE_SYSTEM_ID"
+cat > efs-storageclass.yaml <<EOF
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: $(kubectl get filesystem.efs.aws.upbound.io "${CLUSTER_NAME}-efs" -o jsonpath='{.status.atProvider.id}')
+  directoryPerms: "700"
+  uid: "1000"
+  gid: "1000"
+EOF
 ```
 
 {{% notice note %}}
@@ -279,28 +286,16 @@ Give the mount targets **a few minutes** after they turn ready. Until AWS publis
 
 ## Mount the volume in your pods
 
-Run the following steps against the **workload cluster**. Stay in the same shell, so that `FILE_SYSTEM_ID` is still set.
+Run the following steps against the **workload cluster**.
 
 ### Create a storage class
 
-The storage class tells the driver which file system to use. With `provisioningMode: efs-ap`, the driver creates an [EFS access point](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) for each persistent volume claim.
+The storage class in `efs-storageclass.yaml` tells the driver which file system to use. With `provisioningMode: efs-ap`, the driver creates an [EFS access point](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) for each persistent volume claim.
 
 In AWS, the root directory of an access point is optional and defaults to the root of the file system (`/`). The driver doesn't rely on that default. It always sets the root directory of each access point to a new directory named after the persistent volume, with a unique ID appended. As a result, every claim gets its own directory on the shared file system and can't see the data of other claims. To change this layout, use the `basePath`, `subPathPattern`, and `ensureUniqueDirectory` parameters of the storage class, described in the [driver documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/parameters.md).
 
 ```sh
-kubectl apply -f - <<EOF
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: efs
-provisioner: efs.csi.aws.com
-parameters:
-  provisioningMode: efs-ap
-  fileSystemId: ${FILE_SYSTEM_ID}
-  directoryPerms: "700"
-  uid: "1000"
-  gid: "1000"
-EOF
+kubectl apply -f efs-storageclass.yaml
 ```
 
 The `uid` and `gid` parameters set the owner of the access point directory. Match them to the user your pods run as, so that **non-root containers** can write to the volume.
