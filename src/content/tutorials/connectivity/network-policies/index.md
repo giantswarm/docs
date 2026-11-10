@@ -44,7 +44,7 @@ For your own namespaces, three things open traffic again:
 
 All of these only add allowed traffic. In a namespace without any deny policy they change nothing until the clusterwide deny is on, so you can prepare those namespaces ahead of time. In a namespace that already has its own deny policy, they open that traffic at once.
 
-Any namespace you create after turning on the clusterwide deny is denied from the start. Add their allow labels and Same-namespace policy when you create them.
+Any namespace you create after turning on the clusterwide deny is denied from the start. Add its allow labels and Same-namespace policy when you create it.
 
 ## Turn on the clusterwide deny
 
