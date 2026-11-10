@@ -205,8 +205,12 @@ Generate `efs-network.yaml` with the rule that opens the NFS port, and one mount
 
 ```sh
 if [ "$NETWORK_RESOURCE" = awsmanagedcontrolplane ]; then
-  NFS_SOURCE="sourceSecurityGroupId: $(kubectl -n "$NAMESPACE" get awsmanagedcontrolplane "$CLUSTER_NAME" \
-    -o jsonpath='{.status.network.securityGroups.cluster.id}')"
+  CLUSTER_SECURITY_GROUP_ID="$(kubectl -n "$NAMESPACE" get awsmanagedcontrolplane "$CLUSTER_NAME" \
+    -o jsonpath='{.status.networkStatus.securityGroups.cluster.id}')"
+  if [ -z "$CLUSTER_SECURITY_GROUP_ID" ]; then
+    echo "Error: AWSManagedControlPlane ${CLUSTER_NAME} has no cluster security group in its status" >&2
+  fi
+  NFS_SOURCE="sourceSecurityGroupId: ${CLUSTER_SECURITY_GROUP_ID}"
 else
   NFS_SOURCE="cidrBlocks: [${VPC_CIDR}]"
 fi
