@@ -306,9 +306,10 @@ The `uid` and `gid` parameters set the owner of the access point directory. Matc
 
 ### Create a persistent volume claim
 
-Request a volume with the `ReadWriteMany` access mode:
+Generate `shared-data-pvc.yaml`, which requests a volume with the `ReadWriteMany` access mode:
 
-```yaml
+```sh
+cat > shared-data-pvc.yaml <<EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -320,21 +321,23 @@ spec:
   resources:
     requests:
       storage: 5Gi
+EOF
 ```
 
 EFS grows and shrinks with the data you store, so the requested size isn't enforced. Kubernetes still requires a value.
 
-The claim turns `Bound` within seconds:
+Apply the claim. It turns `Bound` within seconds:
 
 ```sh
-kubectl get pvc shared-data
+kubectl apply -f shared-data-pvc.yaml && kubectl get pvc shared-data
 ```
 
 ### Use the volume
 
-Mount the claim like any other volume. Because the access mode is `ReadWriteMany`, all replicas of this deployment share the same files, **no matter which node** they run on:
+Mount the claim like any other volume. Because the access mode is `ReadWriteMany`, all replicas of this deployment share the same files, **no matter which node** they run on. Generate `shared-data-demo.yaml` with the deployment. The quoted `'EOF'` keeps your shell from expanding `$(hostname)`:
 
-```yaml
+```sh
+cat > shared-data-demo.yaml <<'EOF'
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -374,6 +377,13 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: shared-data
+EOF
+```
+
+Apply the deployment:
+
+```sh
+kubectl apply -f shared-data-demo.yaml
 ```
 
 To check that the replicas share the volume, read the file from one of the pods. It contains a line from each replica:
@@ -386,7 +396,12 @@ kubectl exec deploy/shared-data-demo -- cat /data/log.txt
 
 Delete the resources in reverse order, or the AWS resources get stuck on their dependencies:
 
-1. In the workload cluster, delete the workloads, the persistent volume claims, and the storage class. With the default `reclaimPolicy: Delete`, the driver removes the access points, **including their data**.
+1. In the workload cluster, delete the workloads, the persistent volume claims, and the storage class. With the default `reclaimPolicy: Delete`, the driver removes the access points, **including their data**. For the examples in this guide:
+
+    ```sh
+    kubectl delete -f shared-data-demo.yaml -f shared-data-pvc.yaml -f efs-storageclass.yaml
+    ```
+
 2. On the management cluster, delete the mount targets and the security group rule:
 
     ```sh
