@@ -251,7 +251,7 @@ $ kubectl exec -it debug-toolbox -- sh
 / HTTP/1.1 200 OK
 ```
 
-This guide has introduced how network policies work and some peculiarities to be aware of when working in Giant Swarm clusters. However, the ideal configuration is to have a **default deny policy in all namespaces**, and permit only the necessary traffic to and from each application. This approach improves security, and ensures cluster traffic is intentionally and declaratively managed.
+This guide has introduced how network policies work and some peculiarities to be aware of when working in Giant Swarm clusters. However, the ideal configuration is to have a **default deny policy in all namespaces**, and permit only the necessary traffic to and from each application. This approach improves security, and ensures cluster traffic is intentionally and declaratively managed. Instead of a deny policy in every namespace, you can turn on the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}) for the whole cluster.
 
 ## Next step
 
