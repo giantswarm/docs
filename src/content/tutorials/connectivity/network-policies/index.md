@@ -165,7 +165,7 @@ Also turn the clusterwide deny off before you delete a cluster, so that apps can
 
 ## Rolling it out
 
-Giant Swarm tests the clusterwide deny on every change of the `network-policies` app in ephemeral test clusters on AWS (CAPA), Azure (CAPZ), vSphere, and VMware Cloud Director. The `allow-ingress-controller` and `allow-metrics-scraping` labels aren't covered by these tests yet, and AKS and EKS aren't tested yet. For your clusters, the recommended order is:
+Giant Swarm tests the clusterwide deny on every change of the `network-policies` app in ephemeral test clusters on AWS (CAPA), Azure (CAPZ), vSphere, and VMware Cloud Director. AKS and EKS aren't tested yet. For your clusters, the recommended order is:
 
 1. Turn it on for one non-production cluster at a time. Leave each running for two weeks without incidents caused by the deny before you move on.
 2. Turn it on for production clusters, one at a time.
