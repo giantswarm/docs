@@ -8,7 +8,7 @@ menu:
   principal:
     parent: tutorials-storage
     identifier: tutorials-storage-aws-efs
-last_review_date: 2026-11-09
+last_review_date: 2026-11-10
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
   - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -29,7 +29,7 @@ In this guide, you'll:
 ## Requirements
 
 - A workload cluster on AWS, either CAPA with EC2 nodes ([`cluster-aws`](https://github.com/giantswarm/cluster-aws)) or EKS ([`cluster-eks`](https://github.com/giantswarm/cluster-eks)). Run all management cluster commands in the cluster's organization namespace, `org-<ORGANIZATION>`.
-- On EKS, `aws-efs-csi-driver-bundle` v4.0.10 or newer. Older versions wait for a `<CLUSTER_NAME>-cloud-provider-aws` HelmRelease that EKS clusters don't have, and schedule the driver controller only on control plane nodes, which EKS doesn't expose.
+- On EKS, `aws-efs-csi-driver-bundle` v4.1.0 or newer. Older versions wait for a `<CLUSTER_NAME>-cloud-provider-aws` HelmRelease that EKS clusters don't have, and schedule the driver controller only on control plane nodes, which EKS doesn't expose.
 - The [`kubectl gs`]({{< relref "/reference/kubectl-gs/installation" >}}) plugin, v6 or newer.
 - `kubectl` access to the [management cluster]({{< relref "/getting-started/access-to-platform-api" >}}) and to the workload cluster.
 - Permission to create Crossplane AWS resources on the management cluster. If you lack it, ask your Giant Swarm account engineer.
@@ -51,7 +51,7 @@ Deploy the bundle from the management cluster:
 ```sh
 kubectl gs deploy chart \
   --chart-name aws-efs-csi-driver-bundle \
-  --version 4.0.10 \
+  --version 4.1.0 \
   --organization <ORGANIZATION> \
   --target-cluster <CLUSTER_NAME> \
   --bundle
@@ -73,7 +73,7 @@ spec:
   interval: 10m0s
   provider: generic
   ref:
-    tag: 4.0.10
+    tag: 4.1.0
   url: oci://gsoci.azurecr.io/charts/giantswarm/aws-efs-csi-driver-bundle
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
