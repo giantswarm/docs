@@ -58,13 +58,13 @@ global:
         denyByDefault:
           clusterWide:
             enabled: true
-            # Optional: allows DNS for every namespace, see the warning below.
+            # Optional if every namespace carries the allow-dns label, see the warning below.
             allowDNS:
               enabled: true
 ```
 
 {{% notice warning %}}
-Turning on the clusterwide deny cuts DNS in every namespace that has no DNS allow. In the same change, either set `allowDNS.enabled: true` as in the example, or first add the `policy.giantswarm.io/allow-dns` label to every one of your namespaces. Otherwise DNS lookups fail in all your namespaces.
+Turning on the clusterwide deny cuts DNS in every namespace that has no DNS allow. In the same change, either set `allowDNS.enabled: true` as in the example, or first add the `policy.giantswarm.io/allow-dns` label to every one of your namespaces. Otherwise DNS lookups fail in all your namespaces. If a namespace limits DNS with `rules.dns`, see [Allow DNS for all namespaces](#allow-dns-for-all-namespaces).
 {{% /notice %}}
 
 If your cluster reaches the internet through an HTTP proxy, your namespaces also need their own policy for egress to the proxy. If that policy uses `toFQDNs` for the proxy's hostname, it also needs a `rules.dns` rule matching that name, because the `allow-dns` label and the DNS switch don't send lookups through Cilium's DNS proxy.
@@ -161,7 +161,7 @@ Use the levers in this order:
 
 Allow labels and Same-namespace policies can stay in place after a rollback. They only add allowed traffic.
 
-Also turn the clusterwide deny off before you delete a cluster, so that apps can still reach the API server while they're uninstalled. Wait until `kubectl get ciliumclusterwidenetworkpolicies default-deny-all-namespaces` returns `NotFound` before you delete it.
+Also turn the clusterwide deny off before you delete a cluster, so that apps can still reach the API server while they're uninstalled. Wait until `kubectl get ciliumclusterwidenetworkpolicies default-deny-all-namespaces` returns `NotFound` before you delete the cluster.
 
 ## Rolling it out
 
