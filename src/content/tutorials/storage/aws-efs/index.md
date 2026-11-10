@@ -299,6 +299,7 @@ The storage class in `efs-storageclass.yaml` tells the driver which file system 
 In AWS, the root directory of an access point is optional and defaults to the root of the file system (`/`). The driver doesn't rely on that default. It always sets the root directory of each access point to a new directory named after the persistent volume, with a unique ID appended. As a result, every claim gets its own directory on the shared file system and can't see the data of other claims. To change this layout, use the `basePath`, `subPathPattern`, and `ensureUniqueDirectory` parameters of the storage class, described in the [driver documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/parameters.md).
 
 ```sh
+# Run against the workload cluster
 kubectl apply -f efs-storageclass.yaml
 ```
 
@@ -330,6 +331,7 @@ EFS grows and shrinks with the data you store, so the requested size isn't enfor
 Apply the claim. It turns `Bound` within seconds:
 
 ```sh
+# Run against the workload cluster
 kubectl apply -f shared-data-pvc.yaml && kubectl -n default get pvc shared-data
 ```
 
@@ -385,12 +387,14 @@ EOF
 Apply the deployment:
 
 ```sh
+# Run against the workload cluster
 kubectl apply -f shared-data-demo.yaml
 ```
 
 To check that the replicas share the volume, read the file from one of the pods. It contains a line from each replica:
 
 ```sh
+# Run against the workload cluster
 kubectl -n default exec deploy/shared-data-demo -- cat /data/log.txt
 ```
 
