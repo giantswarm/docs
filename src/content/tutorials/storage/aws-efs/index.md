@@ -261,6 +261,7 @@ EOF
 Review both files, then apply them to the management cluster. Crossplane creates the security group and the file system first, and the rule and the mount targets as soon as their references resolve. Wait until all resources are ready. This usually takes a few minutes:
 
 ```sh
+# Run against the management cluster
 kubectl apply -f efs-filesystem.yaml -f efs-network.yaml
 kubectl wait --for=condition=Ready --timeout=10m \
   -f efs-filesystem.yaml -f efs-network.yaml
@@ -405,24 +406,28 @@ Delete the resources in reverse order, or the AWS resources get stuck on their d
 1. In the workload cluster, delete the workloads, the persistent volume claims, and the storage class. With the default `reclaimPolicy: Delete`, the driver removes the access points, **including their data**. For the examples in this guide:
 
     ```sh
+    # Run against the workload cluster
     kubectl delete -f shared-data-demo.yaml -f shared-data-pvc.yaml -f efs-storageclass.yaml
     ```
 
 2. On the management cluster, delete the mount targets and the security group rule:
 
     ```sh
+    # Run against the management cluster
     kubectl delete -f efs-network.yaml
     ```
 
 3. On the management cluster, delete the file system and the security group:
 
     ```sh
+    # Run against the management cluster
     kubectl delete -f efs-filesystem.yaml
     ```
 
 4. To remove the driver too, delete the bundle:
 
     ```sh
+    # Run against the management cluster
     kubectl -n org-<ORGANIZATION> delete helmrelease,ocirepository \
       <CLUSTER_NAME>-aws-efs-csi-driver-bundle
     ```
