@@ -27,14 +27,14 @@ This guide explains how to turn the clusterwide deny on, how to keep your worklo
 ## Before you start
 
 - The cluster needs a release with `network-policies` v0.6.0 or newer. Check the version in the release notes of your cluster's release.
-- The clusterwide deny enforces immediately, there is no audit or dry-run mode. Find out which traffic each of your namespaces needs before you turn it on, and set the allow labels and policies for it first. Allow labels and Same-namespace policies have no effect while the clusterwide deny is off, so you can prepare every namespace ahead of time.
+- Turn the clusterwide deny on only for a running cluster whose default apps are all ready. Never set it in the values you create a cluster with: some default apps can't finish installing under the deny.
+- Not every Giant Swarm managed app carries its own network policies yet. Check with your account engineer which apps on your cluster are covered before you turn it on.
+- The clusterwide deny enforces immediately. There's no audit or dry-run mode. Find out which traffic each of your namespaces needs, and set the allow labels and policies for it first.
 - Start on a non-production cluster, see [Rolling it out](#rolling-it-out).
 
 ## How the clusterwide deny works
 
-The clusterwide deny is a `CiliumClusterwideNetworkPolicy` named `default-deny-all-namespaces`. It denies all ingress and egress traffic of every pod in every namespace, `kube-system` and `giantswarm` included. Only namespaces with the namespace opt-out label are left out.
-
-It replaces the per-namespace `default-deny-all` policies in `kube-system` and `giantswarm`. Giant Swarm managed apps come with their own network policies for the traffic they need.
+The clusterwide deny is a `CiliumClusterwideNetworkPolicy` named `default-deny-all-namespaces`. It denies all ingress and egress traffic of every pod in every namespace, `kube-system` and `giantswarm` included. Only namespaces with the namespace opt-out label are left out. It replaces the per-namespace `default-deny-all` policies in `kube-system` and `giantswarm`.
 
 For your own namespaces, three things open traffic again:
 
@@ -42,32 +42,29 @@ For your own namespaces, three things open traffic again:
 - A **Same-namespace policy** that you apply lets the pods of a namespace talk to each other.
 - Your own network policies, as before, for everything else.
 
-All of these only add allowed traffic. None of them restrict a namespace on their own.
+All of these only add allowed traffic. In a namespace without any deny policy they change nothing until the clusterwide deny is on, so you can prepare those namespaces ahead of time. In a namespace that already has its own deny policy, they open that traffic at once.
+
+Any namespace you create after turning on the clusterwide deny is denied from the start. Add their allow labels and Same-namespace policy when you create them.
 
 ## Turn on the clusterwide deny
 
-Set the `network-policies` app values in the user configuration of your cluster, under `global.apps.networkPolicies.values`:
+Add the `network-policies` app values to the user configuration of your cluster, under `global.apps.networkPolicies.values`. Merge them into the `values` of the existing `<cluster>-userconfig` ConfigMap instead of replacing it:
 
 ```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mycluster-userconfig
-  namespace: org-my-org
-data:
-  values: |
-    global:
-      apps:
-        networkPolicies:
-          values:
-            denyByDefault:
-              clusterWide:
-                enabled: true
-                allowDNS:
-                  enabled: true
+global:
+  apps:
+    networkPolicies:
+      values:
+        denyByDefault:
+          clusterWide:
+            enabled: true
+            allowDNS:
+              enabled: true
 ```
 
 **Warning:** Turning on the clusterwide deny cuts DNS in every namespace that has no DNS allow. In the same change, either set `allowDNS.enabled: true` as in the example, or first add the `policy.giantswarm.io/allow-dns` label to every one of your namespaces. Otherwise DNS lookups fail in all your namespaces.
+
+If your cluster reaches the internet through an HTTP proxy, your namespaces also need their own policy for egress to the proxy.
 
 The deny takes effect as soon as the app is reconciled. To check that it's active:
 
@@ -83,14 +80,14 @@ Read more about [customizing default apps]({{< relref "/tutorials/fleet-manageme
 
 With `allowDNS` off, which is the more restrictive setting, a namespace only gets DNS through the `policy.giantswarm.io/allow-dns` label or its own policies. `kube-system` and `giantswarm` keep their DNS either way.
 
-**Warning:** Both the DNS switch and the `allow-dns` label allow DNS for every name. If a namespace limits egress to some domains with Cilium FQDN rules (`toFQDNs` with a `rules.dns` selector), these allows widen that list, because any name can then be resolved. For such namespaces, keep `allowDNS` off, don't set the `allow-dns` label, and write the DNS rule in your own policy.
+**Warning:** Both the DNS switch and the `allow-dns` label allow DNS for every name. If a namespace limits DNS to some domains with a Cilium `rules.dns` allow-list, for example to use `toFQDNs`, these allows defeat that list, because any name can then be resolved. For such namespaces, keep `allowDNS` off, don't set the `allow-dns` label, and write the DNS rule in your own policy.
 
 ## Exclude a namespace with the namespace opt-out
 
 Label a namespace with `policy.giantswarm.io/default-deny: "false"` to take it out of the clusterwide deny:
 
 ```nohighlight
-kubectl label namespace my-namespace policy.giantswarm.io/default-deny=false
+kubectl label namespace my-namespace policy.giantswarm.io/default-deny=false --overwrite
 ```
 
 The namespace is then open again, as it was before the clusterwide deny, unless your own policies restrict it. The change takes effect without restarting pods. Remove the label to put the namespace back under the clusterwide deny:
@@ -113,7 +110,7 @@ kubectl label namespace my-namespace policy.giantswarm.io/allow-dns=true policy.
 |---|---|---|
 | `policy.giantswarm.io/allow-dns` | Egress to the cluster DNS | CoreDNS, the node-local DNS cache and `kube-dns` on AKS, ports 53 and 1053, UDP and TCP |
 | `policy.giantswarm.io/allow-kube-apiserver` | Egress to the Kubernetes API server | Any port |
-| `policy.giantswarm.io/allow-webhook-ingress` | Ingress from the API server to admission and conversion webhooks | Ports 443, 4443, 8443, 9443 and 10250. On AKS any source inside the cluster can reach these ports, because the API server's calls arrive through the cluster |
+| `policy.giantswarm.io/allow-webhook-ingress` | Ingress to admission and conversion webhooks | Ports 443, 4443, 8443, 9443 and 10250, from the API server and from the host network of other nodes, which the API server's calls can arrive through. Not on AKS yet: write your own webhook ingress policy there |
 | `policy.giantswarm.io/allow-ingress-controller` | Ingress from Envoy Gateway | Any pod in the `envoy-gateway-system` namespace, any port. Other ingress controllers need your own policy |
 | `policy.giantswarm.io/allow-metrics-scraping` | Ingress from the Giant Swarm metrics agent | The `alloy-metrics` pods in `kube-system`, any port |
 
@@ -125,7 +122,7 @@ Anyone who may label a namespace may set these labels. This is the same permissi
 
 ## Allow traffic inside a namespace
 
-Under the clusterwide deny, pods in the same namespace can't reach each other either. Cilium can't express "same namespace" in a clusterwide policy, so there is no allow label for it. Apply this Same-namespace policy to every namespace whose pods talk to each other:
+Under the clusterwide deny, pods in the same namespace can't reach each other either. Cilium can't express "same namespace" in a clusterwide policy, so there's no allow label for it. Apply this Same-namespace policy to every namespace whose pods talk to each other:
 
 ```yaml
 apiVersion: cilium.io/v2
@@ -152,16 +149,18 @@ spec:
 
 Use the levers in this order:
 
-1. **The namespace opt-out** on the namespace that broke. It takes effect within about a minute, without restarting pods, and leaves the rest of the cluster under the deny.
+1. **Set the namespace opt-out** on the namespace that broke. It takes effect within about a minute, without restarting pods, and leaves the rest of the cluster under the deny.
 2. **Turn the clusterwide deny off** for the whole cluster with `denyByDefault.clusterWide.enabled: false` in the cluster's user configuration. This restores the per-namespace denies in `kube-system` and `giantswarm` and leaves your namespaces open, as before.
 
-Allow labels and Same-namespace policies can stay in place after a rollback, they don't restrict anything without the clusterwide deny.
+Allow labels and Same-namespace policies can stay in place after a rollback. They only add allowed traffic.
+
+Also turn the clusterwide deny off before you delete a cluster, so that apps can still reach the API server while they're uninstalled.
 
 ## Rolling it out
 
-Giant Swarm tests the clusterwide deny on every change in ephemeral test clusters for each provider, then on internal long-lived clusters and a Giant Swarm production cluster. For your clusters, the recommended order is:
+Giant Swarm tests the clusterwide deny on every change of the `network-policies` app in ephemeral test clusters on AWS, Azure, vSphere and VMware Cloud Director. For your clusters, the recommended order is:
 
-1. One non-production cluster at a time. Leave it running for two weeks without incidents caused by the deny before you move on.
-2. Production clusters, one at a time.
+1. Turn it on for one non-production cluster at a time. Leave each running for two weeks without incidents caused by the deny before you move on.
+2. Turn it on for production clusters, one at a time.
 
-Before each step, make sure every namespace on that cluster has the allow labels and policies it needs. Contact your Account Engineer if you want to plan the rollout together.
+Before each step, make sure every namespace on that cluster has the allow labels and policies it needs. Contact your account engineer if you want to plan the rollout together.

@@ -6,7 +6,7 @@ weight: 50
 aliases:
   - /getting-started/connectivity/network-policies
   - /vintage/getting-started/connectivity/network-policies
-last_review_date: 2026-10-06
+last_review_date: 2026-11-10
 menu:
   principal:
     parent: getting-started
