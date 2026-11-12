@@ -15,7 +15,7 @@ user_questions:
   - How do I allow traffic between pods in the same namespace under the clusterwide deny?
   - How do I keep DNS working when I turn on the clusterwide deny?
   - How do I roll back the clusterwide deny?
-last_review_date: 2026-11-10
+last_review_date: 2026-11-12
 owner:
   - https://github.com/orgs/giantswarm/teams/team-cabbage
 ---
@@ -26,7 +26,7 @@ This guide explains how to turn the clusterwide deny on, how to keep your worklo
 
 ## Before you start
 
-- The cluster needs a release with `network-policies` v0.6.0 or newer. Check the version in the release notes of your cluster's release.
+- The cluster needs release v36.3.0 or newer, which brings `network-policies` v0.6.0. Check the version in the release notes of your cluster's release. On AKS and EKS the clusterwide deny isn't tested yet, see [Rolling it out](#rolling-it-out).
 - Turn the clusterwide deny on only for a running cluster whose default apps are all ready. Never set it in the values you create a cluster with: some default apps can't finish installing under the deny. For the same reason, an app's install or upgrade jobs can fail under the deny if the app doesn't carry its own policies yet.
 - Not every Giant Swarm managed app carries its own network policies yet. Check with your account engineer which apps on your cluster are covered before you turn it on.
 - The clusterwide deny enforces immediately. There's no audit or dry-run mode. Find out which traffic each of your namespaces needs, and set the allow labels and policies for it first.
@@ -165,7 +165,7 @@ Also turn the clusterwide deny off before you delete a cluster, so that apps can
 
 ## Rolling it out
 
-Giant Swarm tests the clusterwide deny on every change of the `network-policies` app in ephemeral test clusters on AWS (CAPA), Azure (CAPZ), vSphere, and VMware Cloud Director. AKS and EKS aren't tested yet. For your clusters, the recommended order is:
+Giant Swarm tests the clusterwide deny on every change of the `network-policies` app in ephemeral test clusters on AWS (CAPA), Azure (CAPZ), vSphere, and VMware Cloud Director. On each of these providers, a cluster upgrade with the clusterwide deny on was also tested once, and all apps became ready again. Try an upgrade on a non-production cluster first. AKS and EKS aren't tested yet. For your clusters, the recommended order is:
 
 1. Turn it on for one non-production cluster at a time. Leave each running for two weeks without incidents caused by the deny before you move on.
 2. Turn it on for production clusters, one at a time.
