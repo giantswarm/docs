@@ -27,12 +27,16 @@ Autoscaler
 [Ee]nsure
 [Ee]xplore
 [Ii][Aa][Mm]
+iptables
+Konnectivity
 [Kk]ustomization[s]?
 [Kk]ustomize
+[Dd]ataplane[s]?
 Gemini
 LiteLLM
 llama.cpp
 lookup[s]?
+Maglev
 [Mm]atcher[s]?
 [Nn]ginx
 against
@@ -56,7 +60,9 @@ aws-pod-identity-webhook
 AWS
 azure-cloud-controller-manager-app
 azure-cloud-node-manager-app
+ACNS
 Azure
+Azure CNI Overlay
 Azure Workload Identity
 backbone
 Backstage
@@ -104,6 +110,7 @@ easily
 effectively
 [E|e]dgedb
 ELB[s]?
+emptyDir
 ENI[s]?
 Entra
 ESXi
@@ -119,6 +126,7 @@ GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
+HDD[s]?
 HelmRelease
 Honeybadger
 [H|h]ostname[s]?
@@ -168,6 +176,7 @@ namespace[ds]?
 Nirmata
 NLB[s]?
 node[pP]ool[s]?
+NVMe
 OAuth
 OCI
 OCIRepository
@@ -210,6 +219,8 @@ Sigstore
 SLA[s]?
 SLI[s]?
 SLO[s]?
+SNAT(ed)?
+[Rr]outable
 [Ss]panset[s]?
 SOPS
 Spotify
@@ -245,6 +256,7 @@ VLANs
 vLLM
 VM[s]?
 VMware
+VNet[s]?
 VPC
 vs.
 VS Code
