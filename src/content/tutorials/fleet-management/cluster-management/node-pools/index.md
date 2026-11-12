@@ -29,7 +29,7 @@ aliases:
   - /vintage/advanced/cluster-management/node-pools-vintage
   - /vintage/advanced/cluster-management/spot-instances/aws/similar-instance-types
   - /vintage/advanced/cluster-management/upgrades/upgrade-disruption
-last_review_date: 2026-10-06
+last_review_date: 2026-11-09
 ---
 
 A node pool is a set of nodes within a Kubernetes cluster that share the same configuration (machine type, operating system, etc.). Each node in the pool is labeled by the node pool's name.
@@ -483,7 +483,7 @@ Three settings must stay aligned for an arm64 pool to come up:
 
 - **`architecture: arm64`**: selects the matching CAPI Flatcar arm64 Amazon Machine Image (AMI).
 - **`instanceType`**: must be an arm64 family (for example `m7g.xlarge`, `t4g.medium`). x86_64 instance types will fail to boot.
-- **A `kubernetes.io/arch=arm64:NoSchedule` taint** under `customNodeTaints`: prevents amd64-only workloads from being scheduled onto the pool. This taint is not added automatically, intentionally, so it doesn't override existing taint configuration.
+- **A `kubernetes.io/arch=arm64:NoSchedule` taint** under `customNodeTaints`: prevents amd64-only workloads from being scheduled onto the pool. This taint isn't added automatically, intentionally, so it doesn't override existing taint configuration.
 
 An example of configuration values mixing x86_64 and arm64 pools in the same cluster:
 
@@ -547,6 +547,10 @@ spec:
   nodeSelector:
     kubernetes.io/arch: arm64
 ```
+
+## Using instance-store disks for ephemeral storage {#instance-store}
+
+On {{% impl_title "capa_ec2" %}}, a node pool can place pod `emptyDir` volumes on the local NVMe instance-store disks of its nodes. See [fast ephemeral storage with AWS instance store]({{< relref "/tutorials/storage/aws-instance-store" >}}).
 
 ## Node pools and autoscaling {#autoscaling}
 
@@ -716,7 +720,7 @@ data:
 {{< /tab >}}
 {{< tab id="nodepool-machinehealthcheck-other" title="Other" >}}
 
-For other providers, we do not support health checks yet.
+For other providers, we don't support health checks yet.
 
 {{< /tab >}}
 {{< /tabs >}}
