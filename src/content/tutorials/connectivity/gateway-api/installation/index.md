@@ -22,7 +22,7 @@ user_questions:
   - How do I enable ListenerSet support in cert-manager?
   - How do I get TLS certificates for a ListenerSet?
   - How do I get DNS records for ListenerSet hostnames?
-last_review_date: 2026-10-26
+last_review_date: 2026-11-11
 ---
 
 ## Prerequisites
@@ -161,6 +161,7 @@ metadata:
   namespace: my-namespace
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+    giantswarm.io/external-dns: managed
 spec:
   parentRef:
     group: gateway.networking.k8s.io
@@ -210,6 +211,20 @@ Both settings are required:
 - `enableGatewayListenerSets` lets external-dns follow an HTTPRoute that's attached to a ListenerSet up to its parent Gateway, and use the Gateway's load balancer address for the record.
 
 external-dns creates the record from the HTTPRoute, not from the ListenerSet. A hostname only gets a record once an HTTPRoute attaches to the ListenerSet listener. The managed external-dns only creates records for subdomains of your cluster's base domain. For other domains, run your own external-dns instance.
+
+By default, the managed external-dns only reads resources that carry the `giantswarm.io/external-dns: managed` annotation. Add it to every HTTPRoute that needs a record:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: myapp
+  namespace: my-namespace
+  annotations:
+    giantswarm.io/external-dns: managed
+```
+
+Since `external-dns-app` v3.7.0, which ships with cluster release v36.2.0 and newer on CAPA and CAPZ, external-dns also ignores a ListenerSet without the annotation. Routes attached to such a ListenerSet get no record, even when they carry the annotation themselves. Add it to the ListenerSet too, as in the earlier ListenerSet example. Older versions ignore it on ListenerSets, so it's safe to add before upgrading.
 
 ### Using the default gateway
 
