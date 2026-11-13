@@ -24,7 +24,7 @@ user_questions:
   - How do I enable ListenerSet support in cert-manager?
   - How do I get TLS certificates for a ListenerSet?
   - How do I get DNS records for ListenerSet hostnames?
-last_review_date: 2026-11-11
+last_review_date: 2026-11-13
 ---
 
 ## Prerequisites
