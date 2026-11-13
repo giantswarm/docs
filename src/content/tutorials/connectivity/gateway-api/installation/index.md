@@ -13,6 +13,8 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
+  - Why does the default Gateway get no address on AWS?
+  - How do I install the AWS Load Balancer Controller for Gateway API?
   - How are the Envoy proxy pods spread across availability zones on AWS?
   - How do I override or turn off the zone spread of the Envoy proxy pods?
   - Which subnets must the AWS Network Load Balancer of a Gateway use?
@@ -33,13 +35,13 @@ Before setting up Gateway API, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
 - Basic understanding of Kubernetes networking concepts
-- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers.
+- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers. Without it, the default Gateway never gets an address. See [Install the AWS Load Balancer Controller](#install-the-aws-load-balancer-controller).
 
 ## Installation
 
 Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components (Gateway API CRDs, [Envoy Gateway](https://gateway.envoyproxy.io/) and a preconfigured default Gateway):
 
-**Note:** The Gateway API Bundle currently ships as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}), which is being phased out in favor of Flux HelmRelease. The bundle itself doesn't yet have a HelmRelease equivalent because it deploys nested App resources internally. For application deployments outside the bundle, use HelmRelease.
+**Note:** The Gateway API Bundle runs on the management cluster. You install it as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}) with `kubeConfig.inCluster: true`, and since version 2.0.0 it deploys its components to the workload cluster as Flux `HelmRelease` resources. Install it on the management cluster as shown below. Targeting the workload cluster directly fails with `no matches for kind "HelmRelease"`, because the workload cluster has no Flux. For application deployments outside the bundle, use HelmRelease.
 
 ```yaml
 apiVersion: v1
@@ -72,7 +74,47 @@ spec:
   version: 2.0.0
 ```
 
-Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until the child apps are deployed (CRDs, Envoy Gateway, and Gateway default config).
+Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until its three `HelmRelease` resources (CRDs, Envoy Gateway, and Gateway default config) are ready:
+
+```bash
+kubectl get helmreleases -n org-<ORGANIZATION> | grep <CLUSTER_NAME>-
+```
+
+### Install the AWS Load Balancer Controller
+
+On AWS, the default Gateway gets a Network Load Balancer, which the AWS Load Balancer Controller creates. Until the controller runs, the Gateway stays `Programmed=False` with the reason `AddressNotAssigned`. Like the Gateway API Bundle, its bundle runs on the management cluster:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-aws-lb-controller-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+  name: <CLUSTER_NAME>-aws-lb-controller-bundle
+  namespace: org-<ORGANIZATION>
+spec:
+  catalog: giantswarm
+  kubeConfig:
+    inCluster: true
+  name: aws-lb-controller-bundle
+  namespace: org-<ORGANIZATION>
+  userConfig:
+    configMap:
+      name: <CLUSTER_NAME>-aws-lb-controller-bundle
+      namespace: org-<ORGANIZATION>
+  version: 6.1.0
+```
+
+Apply it on the management cluster. Once the controller runs on the workload cluster, the default Gateway gets an address within a few minutes.
 
 ## Configuration
 
