@@ -17,7 +17,7 @@ user_questions:
   - How do I set up gang scheduling for distributed workloads?
   - How do I configure all-or-nothing scheduling for coordinated jobs?
   - How do I install and configure Kueue in Giant Swarm?
-last_review_date: 2026-09-28
+last_review_date: 2026-11-13
 ---
 
 Kueue is a Kubernetes-native system that manages quotas and how jobs consume them. It provides advanced job queueing, resource management, and fair sharing capabilities for batch workloads, machine learning training jobs, and other compute-intensive tasks. Giant Swarm supports Kueue through a managed app that simplifies installation and configuration.
