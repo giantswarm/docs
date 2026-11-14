@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-observability-data-management-data-transformation
     identifier: overview-observability-data-management-data-transformation-alert-on-trace-derived-metrics
-last_review_date: 2026-07-07
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -31,8 +31,8 @@ groups:
   - alert: HighServiceErrorRate
     expr: |
       (
-        sum(rate(tempo_service_graph_request_failed_total[5m])) by (server) /
-        sum(rate(tempo_service_graph_request_total[5m])) by (server)
+        sum(rate(traces_service_graph_request_failed_total[5m])) by (server) /
+        sum(rate(traces_service_graph_request_total[5m])) by (server)
       ) * 100 > 5
     for: 5m
     labels:
@@ -50,7 +50,7 @@ Alert when the 95th percentile latency for a service crosses a threshold:
 - alert: HighServiceLatency
   expr: |
     histogram_quantile(0.95,
-      sum(rate(tempo_service_graph_request_duration_seconds_bucket[5m])) by (server, le)
+      sum(rate(traces_service_graph_request_server_seconds_bucket[5m])) by (server, le)
     ) > 2
   for: 10m
   labels:
@@ -67,9 +67,7 @@ Alert when a service stops producing request metrics, which suggests it's unavai
 ```yaml
 - alert: ServiceUnavailable
   expr: |
-    absent_over_time(
-      sum(rate(tempo_service_graph_request_total[1m])) by (server)[5m:]
-    ) == 1
+    absent_over_time(traces_service_graph_request_total{server="my-service"}[5m])
   labels:
     severity: critical
   annotations:
