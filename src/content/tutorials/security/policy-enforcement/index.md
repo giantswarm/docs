@@ -1186,7 +1186,7 @@ Check the Policy Reporter results first, because pods with unsigned images are r
 
 ### Limitation of the signer identity
 
-Fulcio issues the same subject shape to every CircleCI pipeline, and the Kyverno keyless attestor matches only issuer and subject. The default policy therefore proves that an image was signed by some CircleCI pipeline. It relies on the registry restriction for the claim that Giant Swarm signed it: only Giant Swarm CI can push to `gsoci.azurecr.io/giantswarm/*`. There is a longstanding feature request with CircleCI to support a signature flow aware of the repository or workload identity, similar to GitHub Actions.
+[Fulcio](https://docs.sigstore.dev/certificate_authority/overview/), the Sigstore certificate authority for keyless signing, issues the same subject shape to every CircleCI pipeline, and the Kyverno keyless attestor matches only issuer and subject. The default policy therefore proves that an image was signed by some CircleCI pipeline. It relies on the registry restriction for the claim that Giant Swarm signed it: only Giant Swarm CI can push to `gsoci.azurecr.io/giantswarm/*`. There is a longstanding feature request with CircleCI to support a signature flow aware of the repository or workload identity, similar to GitHub Actions.
 
 ## Policy exceptions
 
