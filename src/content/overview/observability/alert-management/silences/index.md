@@ -7,7 +7,7 @@ menu:
   principal:
     parent: overview-observability-alert-management
     identifier: overview-observability-alert-management-silences
-last_review_date: 2026-06-09
+last_review_date: 2026-11-04
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -327,4 +327,4 @@ Silence management works best when integrated with other platform capabilities:
 
 - **[Multi-tenancy]({{< relref "/overview/observability/configuration/multi-tenancy/" >}})**: Essential for understanding tenant labeling requirements and secure silence isolation
 - **[Alert rules]({{< relref "/overview/observability/alert-management/alert-rules/" >}})**: Understanding your alert rules helps create effective silences
-- **[Data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}})**: Use Grafana Explore to test alert matchers before creating silences
+- **[Data exploration]({{< relref "/overview/observability/data-management/data-exploration/" >}})**: Use Grafana Explore to test alert matchers before creating silences (requires the Editor or Admin role)

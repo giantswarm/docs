@@ -3,7 +3,7 @@ title: Observe your clusters and apps
 diataxis_content_type: tutorial
 description: Start monitoring your clusters and applications with Giant Swarm's observability platform - from basic metrics and logs to distributed tracing, custom dashboards and alerts.
 weight: 60
-last_review_date: 2025-07-17
+last_review_date: 2026-11-04
 aliases:
   - /getting-started/observability/
   - /getting-started/observability/observe-your-clusters-and-apps/
@@ -46,6 +46,7 @@ Before you start:
 1. **Running workload cluster**: If you don't have one, [create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}) first
 2. **Sample application**: Deploy the [`hello-world` application]({{< relref "/getting-started/install-an-application" >}}) or use your own instrumented application
 3. **Local tools**: Install [`jq`](https://jqlang.org/download/) for command-line JSON processing
+4. **Grafana role**: Steps 3, 4, 5, and 7 use Explore and save dashboards. Both require the Editor or Admin role in a Grafana organization. Viewers, including all users of the `Shared Org` by default, can't use Explore or save dashboards. To set up an organization with these roles, see [creating a Grafana organization]({{< relref "/overview/observability/configuration/creating-grafana-organization" >}})
 
 **Important**: If you're using your own application, ensure it's [instrumented](https://opentelemetry.io/docs/concepts/instrumentation/) to export metrics. Adding new metrics impacts platform costs, so choose your metrics thoughtfully.
 
@@ -103,7 +104,7 @@ Apply this configuration to start collecting metrics from your application.
 
 ## Step 3: Explore your metrics
 
-Once metrics collection is configured, explore your data using Grafana's Explore view:
+Once metrics collection is configured, explore your data using Grafana's Explore view. Explore requires the Editor or Admin role in the selected organization.
 
 1. **Open Explore**: In Grafana, click `Explore` in the left sidebar
 2. **Select data source**: Choose the appropriate Prometheus data source
@@ -225,7 +226,7 @@ These dashboards give you instant visibility into system health and help identif
 
 ## Step 7: Create your first custom dashboard
 
-While pre-built dashboards provide great starting points, you'll likely want custom visualizations for your specific applications and workflows.
+While pre-built dashboards provide great starting points, you'll likely want custom visualizations for your specific applications and workflows. Saving a dashboard requires the Editor or Admin role in the selected organization.
 
 ### Method 1: Create in Grafana UI (Quick start)
 
