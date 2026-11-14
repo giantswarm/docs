@@ -13,7 +13,7 @@ crd:
   technical_name: mcpservers.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v5.46.5
+  source_repository_ref: v5.62.6
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v5.46.5
+source_repository_ref: v5.62.6
 ---
 
 # MCPServer
@@ -411,7 +411,8 @@ client, a re-login, a front-end whose bearer rotates &ndash; reuses the grant
 without a new consent, until the person signs out of this server
 (<code>core_auth_logout</code>) or everywhere. Use <code>subject</code> for external accounts
 the person owns (GitHub), never for tokens that carry session-specific
-authority.</p>
+authority. MCPServerAuth.GrantScope says the same for a server that
+discovers its authorization server instead of pinning it.</p>
 
 </div>
 
@@ -445,6 +446,32 @@ AuthorizationEndpoint and TokenEndpoint are set, in which case no
 discovery happens and the issuer is only that identity. When the
 authorization server publishes a different issuer identifier than the
 identity pinned here, set ExpectedIssuer.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.revocationEndpoint">.spec.auth.authorizationServer.revocationEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>RevocationEndpoint is the authorization server&rsquo;s RFC 7009 token
+revocation endpoint. When the person disconnects a subject-scoped grant
+(core_auth_logout), muster revokes its refresh and access tokens there
+before dropping its copy, so the provider stops honouring them and the
+next sign-in asks for consent again. Default: the revocation_endpoint
+of the authorization server&rsquo;s metadata; set it for one whose metadata
+names none or is pinned through AuthorizationEndpoint and TokenEndpoint
+(GitLab: <a href="https://gitlab.example.com/oauth/revoke">https://gitlab.example.com/oauth/revoke</a>). Without either, the
+grant stays valid at the provider until it expires.</p>
 
 </div>
 
@@ -551,6 +578,83 @@ token is accepted by every forwardToken backend, so all forwardToken
 backends must be equally trusted. A token&rsquo;s nested act claim (minted
 by the IdP, e.g. via exchange at dex) carries the delegation chain for
 backend authorization decisions.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.grantScope">.spec.auth.grantScope</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>GrantScope decides whom the grant of this server&rsquo;s OAuth sign-in
+belongs to, whichever authorization server the server uses: the one
+muster discovers through the server&rsquo;s RFC 9728 Protected Resource
+Metadata, or the one pinned in AuthorizationServer. <code>session</code> (the
+default) binds the grant to the login session that completed the
+browser flow. <code>subject</code> files it under the person as well, so every
+later session of the same person &ndash; another client, an agent
+conversation, a session after a muster restart &ndash; connects with it
+without a new consent, until the person signs out of the server
+(<code>core_auth_logout</code>). The semantics are those of
+AuthorizationServer.GrantScope, which a pinned server may set instead;
+set both only to the same value.</p>
+
+<p>muster decides grant scope per authorization server: a server with
+<code>subject</code> and no pin makes the issuer it discovers subject-scoped, as a
+pin with <code>grantScope: subject</code> does for its issuer, and the
+one-description-per-issuer rule of the pins applies to it, except that
+an issuer an operator names in an AuthorizationServer pin keeps that
+pin&rsquo;s description. <code>subject</code> is only valid with Type &ldquo;oauth&rdquo; and
+neither ForwardToken nor TokenExchange, which obtain no grant of their
+own; <code>session</code> is accepted everywhere.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.providerApps">.spec.auth.providerApps</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>ProviderApps names the provider Apps (muster&rsquo;s aggregator.providerApps)
+whose grants this server receives. On every request muster attaches the
+access token of each named App the person granted, in the header
+X-Muster-Grant-<app>, refreshed ahead of its expiry; an App the person
+did not grant sends no header. A tool result that names missing Apps
+({&ldquo;status&rdquo;: &ldquo;grant_required&rdquo;, &ldquo;apps&rdquo;: [&hellip;]} in structuredContent) is
+answered auth_required with each App&rsquo;s sign-in link. The person&rsquo;s
+connection is made as the person, so this needs ForwardToken or
+ForwardIdentity.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.providerApps[*]">.spec.auth.providerApps[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
@@ -842,8 +946,11 @@ muster refuses the server otherwise.</p>
 
 <div class="property-description">
 <p>ConnectorID is the ID of the OIDC connector on the remote Dex that
-trusts the local cluster&rsquo;s Dex.
-Required when Enabled is true.
+trusts the local cluster&rsquo;s Dex, sent as Dex&rsquo;s connector_id parameter.
+Required for a person&rsquo;s exchange. A delegated caller&rsquo;s exchange sends
+none: it goes to the Dex that issued the delegated token, which verifies
+it with its own keys, so a server only delegated callers reach may leave
+it empty.
 Example: &ldquo;cluster-a-dex&rdquo;</p>
 
 </div>
@@ -1333,8 +1440,9 @@ up to 3600 seconds.</p>
 
 <div class="property-description">
 <p>MaxDuration bounds, in seconds, a tool call kept going by progress. On
-a tool call whose caller asked for progress, each progress notification
-from the server restarts Timeout, up to MaxDuration; any other call and
+a tool call, each progress notification from the server restarts
+Timeout, up to MaxDuration; muster sends the server a progressToken on
+every tool call, whether its caller asked for progress or not. Any other
 operation stays bounded by Timeout. A value equal to Timeout extends
 nothing. Unset, 3600.</p>
 
@@ -1687,6 +1795,31 @@ This field may not be empty.</p>
 <p>ConsecutiveFailures tracks the number of consecutive connection failures.
 This is used for exponential backoff and to identify unreachable servers.
 Reset to 0 when a connection succeeds.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.icon">.status.icon</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Icon is the icon the server declares in its initialize result,
+otherwise a built-in brand icon when spec.url is on a known brand
+domain, or is in-cluster and names a known brand as service,
+namespace or first path segment. It is a data: URI (data:<mime>;base64,&hellip;) of type
+image/svg+xml, image/png, image/jpeg or image/webp; the whole data: URI
+is at most 65536 characters. SVG icons are sanitised (allowlist) before
+they are stored. Absent when there is neither.
+Render only as an image (e.g. <img src>); never inline the markup.</p>
 
 </div>
 

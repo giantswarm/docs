@@ -8,7 +8,7 @@ menu:
   principal:
     parent: tutorials-storage
     identifier: tutorials-storage-aws-efs
-last_review_date: 2026-10-06
+last_review_date: 2026-11-09
 owner:
   - https://github.com/orgs/giantswarm/teams/sig-docs
   - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -28,7 +28,8 @@ In this guide, you'll:
 
 ## Requirements
 
-- A workload cluster on AWS (CAPA). Run all management cluster commands in the cluster's organization namespace, `org-<ORGANIZATION>`.
+- A workload cluster on AWS, either CAPA with EC2 nodes ([`cluster-aws`](https://github.com/giantswarm/cluster-aws)) or EKS ([`cluster-eks`](https://github.com/giantswarm/cluster-eks)). Run all management cluster commands in the cluster's organization namespace, `org-<ORGANIZATION>`.
+- On EKS, `aws-efs-csi-driver-bundle` v4.0.10 or newer. Older versions wait for a `<CLUSTER_NAME>-cloud-provider-aws` HelmRelease that EKS clusters don't have, and schedule the driver controller only on control plane nodes, which EKS doesn't expose.
 - The [`kubectl gs`]({{< relref "/reference/kubectl-gs/installation" >}}) plugin, v6 or newer.
 - `kubectl` access to the [management cluster]({{< relref "/getting-started/access-to-platform-api" >}}) and to the workload cluster.
 - Permission to create Crossplane AWS resources on the management cluster. If you lack it, ask your Giant Swarm account engineer.
@@ -50,7 +51,7 @@ Deploy the bundle from the management cluster:
 ```sh
 kubectl gs deploy chart \
   --chart-name aws-efs-csi-driver-bundle \
-  --version 4.0.0 \
+  --version 4.0.10 \
   --organization <ORGANIZATION> \
   --target-cluster <CLUSTER_NAME> \
   --bundle
@@ -72,7 +73,7 @@ spec:
   interval: 10m0s
   provider: generic
   ref:
-    tag: 4.0.0
+    tag: 4.0.10
   url: oci://gsoci.azurecr.io/charts/giantswarm/aws-efs-csi-driver-bundle
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -117,122 +118,171 @@ An EFS file system needs three things before nodes can mount it:
 - The **file system** itself.
 - One **mount target** per availability zone, placed in the cluster's private subnets.
 
-Every workload cluster comes with a Crossplane `ProviderConfig` named after the cluster. It grants Crossplane access to the cluster's AWS account, so you reference it as `<CLUSTER_NAME>` in all resources below.
+Every workload cluster comes with a Crossplane `ProviderConfig` named after the cluster. It grants Crossplane access to the cluster's AWS account, so all resources below reference it by the cluster name.
+
+The resources refer to each other by name, for example with `securityGroupIdRef` and `fileSystemIdRef`. Crossplane fills in the AWS IDs on its own, so you can create all resources at once. Only the VPC and the subnets belong to the cluster itself. You read them from the management cluster in the next step.
 
 ### Look up the network details
 
-Read the VPC ID, the VPC CIDR, and the private subnets from the cluster's `AWSCluster` resource on the management cluster:
+Set these variables in your shell. The cluster's network settings live in the `AWSCluster` resource on CAPA, and in the `AWSManagedControlPlane` resource on EKS:
+
+{{< tabs >}}
+{{< tab id="efs-network-capa-ec2" for-impl="capa_ec2" >}}
 
 ```sh
-kubectl -n org-<ORGANIZATION> get awscluster <CLUSTER_NAME> \
-  -o jsonpath='{.spec.network.vpc.id} {.spec.network.vpc.cidrBlock}{"\n"}'
+CLUSTER_NAME=<CLUSTER_NAME>
+NAMESPACE=org-<ORGANIZATION>
+NETWORK_RESOURCE=awscluster
 ```
+
+{{< /tab >}}
+{{< tab id="efs-network-capa-eks" for-impl="capa_eks" >}}
 
 ```sh
-kubectl -n org-<ORGANIZATION> get awscluster <CLUSTER_NAME> \
-  -o jsonpath='{range .spec.network.subnets[?(@.isPublic==false)]}'\
-'{.resourceID} {.availabilityZone}{"\n"}{end}'
+CLUSTER_NAME=<CLUSTER_NAME>
+NAMESPACE=org-<ORGANIZATION>
+NETWORK_RESOURCE=awsmanagedcontrolplane
 ```
 
-The second command prints one private subnet per line, together with its availability zone. Pick **one subnet per availability zone**.
+{{< /tab >}}
+{{< /tabs >}}
 
-### Create the security group and the file system
+Read the region, the VPC ID, the VPC CIDR, and the subnets the nodes run in:
 
-Create a file `efs-filesystem.yaml`. Replace `<VPC_ID>` with the VPC ID from the previous step:
+```sh
+read -r REGION VPC_ID VPC_CIDR <<< "$(kubectl -n "$NAMESPACE" get "$NETWORK_RESOURCE" "$CLUSTER_NAME" \
+  -o jsonpath='{.spec.region} {.spec.network.vpc.id} {.spec.network.vpc.cidrBlock}')"
 
-```yaml
+NODE_SUBNETS="$(kubectl -n "$NAMESPACE" get "$NETWORK_RESOURCE" "$CLUSTER_NAME" \
+  -o jsonpath='{range .spec.network.subnets[?(@.tags.giantswarm\.io/role=="nodes")]}'\
+'{.resourceID} {.availabilityZone}{"\n"}{end}' | awk '!seen[$2]++')"
+
+echo "$REGION $VPC_ID $VPC_CIDR"
+echo "$NODE_SUBNETS"
+```
+
+The cluster tags the private subnets for nodes with `giantswarm.io/role: nodes`. The filter therefore skips the public subnets and, on EKS, the secondary subnets for pod IPs. EFS allows only one mount target per availability zone, so `awk` keeps the first subnet of each zone.
+
+If `NODE_SUBNETS` is empty, the cluster was created with a chart version that doesn't set this tag yet. Upgrade the cluster, or set `NODE_SUBNETS` yourself, with one line `<SUBNET_ID> <AVAILABILITY_ZONE>` per private subnet.
+
+### Generate the manifests
+
+Generate `efs-filesystem.yaml` with the security group and the file system:
+
+```sh
+cat > efs-filesystem.yaml <<EOF
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroup
 metadata:
-  name: <CLUSTER_NAME>-efs-sg
+  name: ${CLUSTER_NAME}-efs-sg
 spec:
   forProvider:
-    region: <REGION>
-    vpcId: <VPC_ID>
+    region: ${REGION}
+    vpcId: ${VPC_ID}
     description: Allow NFS access to EFS
     tags:
-      Name: <CLUSTER_NAME>-efs-sg
+      Name: ${CLUSTER_NAME}-efs-sg
   providerConfigRef:
-    name: <CLUSTER_NAME>
+    name: ${CLUSTER_NAME}
 ---
 apiVersion: efs.aws.upbound.io/v1beta1
 kind: FileSystem
 metadata:
-  name: <CLUSTER_NAME>-efs
+  name: ${CLUSTER_NAME}-efs
 spec:
   forProvider:
-    region: <REGION>
+    region: ${REGION}
     performanceMode: generalPurpose
     encrypted: true
     tags:
-      Name: <CLUSTER_NAME>-efs
+      Name: ${CLUSTER_NAME}-efs
   providerConfigRef:
-    name: <CLUSTER_NAME>
+    name: ${CLUSTER_NAME}
+EOF
 ```
 
-Apply it to the management cluster and wait until both resources are ready:
+Generate `efs-network.yaml` with the rule that opens the NFS port, and one mount target per node subnet. On CAPA, the rule allows NFS traffic from the whole VPC. On EKS, it allows NFS traffic only from the cluster's nodes, using the cluster security group that EKS attaches to all nodes:
 
 ```sh
-kubectl apply -f efs-filesystem.yaml
-kubectl wait --for=condition=Ready --timeout=5m \
-  securitygroup.ec2.aws.upbound.io/<CLUSTER_NAME>-efs-sg \
-  filesystem.efs.aws.upbound.io/<CLUSTER_NAME>-efs
-```
+if [ "$NETWORK_RESOURCE" = awsmanagedcontrolplane ]; then
+  CLUSTER_SECURITY_GROUP_ID="$(kubectl -n "$NAMESPACE" get awsmanagedcontrolplane "$CLUSTER_NAME" \
+    -o jsonpath='{.status.networkStatus.securityGroups.cluster.id}')"
+  if [ -z "$CLUSTER_SECURITY_GROUP_ID" ]; then
+    echo "Error: AWSManagedControlPlane ${CLUSTER_NAME} has no cluster security group in its status" >&2
+  fi
+  NFS_SOURCE="sourceSecurityGroupId: ${CLUSTER_SECURITY_GROUP_ID}"
+else
+  NFS_SOURCE="cidrBlocks: [${VPC_CIDR}]"
+fi
 
-Then read the AWS IDs that Crossplane got back:
-
-```sh
-kubectl get securitygroup.ec2.aws.upbound.io <CLUSTER_NAME>-efs-sg \
-  -o jsonpath='{.status.atProvider.id}{"\n"}'
-kubectl get filesystem.efs.aws.upbound.io <CLUSTER_NAME>-efs \
-  -o jsonpath='{.status.atProvider.id}{"\n"}'
-```
-
-The first ID starts with `sg-`, the second one with `fs-`. You need both in the next step.
-
-### Open the NFS port and create the mount targets
-
-Create a file `efs-network.yaml`. Replace `<SECURITY_GROUP_ID>`, `<FILE_SYSTEM_ID>`, and `<VPC_CIDR>` with your values, and add one `MountTarget` per private subnet:
-
-```yaml
+{
+  cat <<EOF
 apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroupRule
 metadata:
-  name: <CLUSTER_NAME>-efs-nfs
+  name: ${CLUSTER_NAME}-efs-nfs
 spec:
   forProvider:
-    region: <REGION>
-    securityGroupId: <SECURITY_GROUP_ID>
+    region: ${REGION}
+    securityGroupIdRef:
+      name: ${CLUSTER_NAME}-efs-sg
     type: ingress
     protocol: tcp
     fromPort: 2049
     toPort: 2049
-    cidrBlocks:
-      - <VPC_CIDR>
+    ${NFS_SOURCE}
   providerConfigRef:
-    name: <CLUSTER_NAME>
+    name: ${CLUSTER_NAME}
+EOF
+  while read -r SUBNET_ID ZONE; do
+    cat <<EOF
 ---
 apiVersion: efs.aws.upbound.io/v1beta1
 kind: MountTarget
 metadata:
-  name: <CLUSTER_NAME>-efs-<AVAILABILITY_ZONE>
+  name: ${CLUSTER_NAME}-efs-${ZONE}
 spec:
   forProvider:
-    region: <REGION>
-    fileSystemId: <FILE_SYSTEM_ID>
-    subnetId: <PRIVATE_SUBNET_ID>
-    securityGroups:
-      - <SECURITY_GROUP_ID>
+    region: ${REGION}
+    fileSystemIdRef:
+      name: ${CLUSTER_NAME}-efs
+    subnetId: ${SUBNET_ID}
+    securityGroupsRefs:
+      - name: ${CLUSTER_NAME}-efs-sg
   providerConfigRef:
-    name: <CLUSTER_NAME>
-# Repeat the MountTarget for each availability zone.
+    name: ${CLUSTER_NAME}
+EOF
+  done <<< "$NODE_SUBNETS"
+} > efs-network.yaml
 ```
 
-Apply it to the management cluster and wait until all mount targets are ready. This usually takes one to two minutes:
+### Create the resources
+
+Review both files, then apply them to the management cluster. Crossplane creates the security group and the file system first, and the rule and the mount targets as soon as their references resolve. Wait until all resources are ready. This usually takes a few minutes:
 
 ```sh
-kubectl apply -f efs-network.yaml
-kubectl get mounttarget.efs.aws.upbound.io
+# Run against the management cluster
+kubectl apply -f efs-filesystem.yaml -f efs-network.yaml
+kubectl wait --for=condition=Ready --timeout=10m \
+  -f efs-filesystem.yaml -f efs-network.yaml
+```
+
+Then generate `efs-storageclass.yaml`, the storage class for the workload cluster. The command reads the ID of the file system, which starts with `fs-`, from the management cluster:
+
+```sh
+cat > efs-storageclass.yaml <<EOF
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: $(kubectl get filesystem.efs.aws.upbound.io "${CLUSTER_NAME}-efs" -o jsonpath='{.status.atProvider.id}')
+  directoryPerms: "700"
+  uid: "1000"
+  gid: "1000"
+EOF
 ```
 
 {{% notice note %}}
@@ -245,35 +295,28 @@ Run the following steps against the **workload cluster**.
 
 ### Create a storage class
 
-The storage class tells the driver which file system to use. With `provisioningMode: efs-ap`, the driver creates an [EFS access point](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) for each persistent volume claim.
+The storage class in `efs-storageclass.yaml` tells the driver which file system to use. With `provisioningMode: efs-ap`, the driver creates an [EFS access point](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) for each persistent volume claim.
 
 In AWS, the root directory of an access point is optional and defaults to the root of the file system (`/`). The driver doesn't rely on that default. It always sets the root directory of each access point to a new directory named after the persistent volume, with a unique ID appended. As a result, every claim gets its own directory on the shared file system and can't see the data of other claims. To change this layout, use the `basePath`, `subPathPattern`, and `ensureUniqueDirectory` parameters of the storage class, described in the [driver documentation](https://github.com/kubernetes-sigs/aws-efs-csi-driver/blob/master/docs/parameters.md).
 
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: efs
-provisioner: efs.csi.aws.com
-parameters:
-  provisioningMode: efs-ap
-  fileSystemId: <FILE_SYSTEM_ID>
-  directoryPerms: "700"
-  uid: "1000"
-  gid: "1000"
+```sh
+# Run against the workload cluster
+kubectl apply -f efs-storageclass.yaml
 ```
 
 The `uid` and `gid` parameters set the owner of the access point directory. Match them to the user your pods run as, so that **non-root containers** can write to the volume.
 
 ### Create a persistent volume claim
 
-Request a volume with the `ReadWriteMany` access mode:
+Generate `shared-data-pvc.yaml`, which requests a volume with the `ReadWriteMany` access mode:
 
-```yaml
+```sh
+cat > shared-data-pvc.yaml <<EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: shared-data
+  namespace: default
 spec:
   accessModes:
     - ReadWriteMany
@@ -281,25 +324,29 @@ spec:
   resources:
     requests:
       storage: 5Gi
+EOF
 ```
 
 EFS grows and shrinks with the data you store, so the requested size isn't enforced. Kubernetes still requires a value.
 
-The claim turns `Bound` within seconds:
+Apply the claim. It turns `Bound` within seconds:
 
 ```sh
-kubectl get pvc shared-data
+# Run against the workload cluster
+kubectl apply -f shared-data-pvc.yaml && kubectl -n default get pvc shared-data
 ```
 
 ### Use the volume
 
-Mount the claim like any other volume. Because the access mode is `ReadWriteMany`, all replicas of this deployment share the same files, **no matter which node** they run on:
+Mount the claim like any other volume. Because the access mode is `ReadWriteMany`, all replicas of this deployment share the same files, **no matter which node** they run on. Generate `shared-data-demo.yaml` with the deployment. The quoted `'EOF'` keeps your shell from expanding `$(hostname)`:
 
-```yaml
+```sh
+cat > shared-data-demo.yaml <<'EOF'
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shared-data-demo
+  namespace: default
 spec:
   replicas: 2
   selector:
@@ -335,34 +382,52 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: shared-data
+EOF
+```
+
+Apply the deployment:
+
+```sh
+# Run against the workload cluster
+kubectl apply -f shared-data-demo.yaml
 ```
 
 To check that the replicas share the volume, read the file from one of the pods. It contains a line from each replica:
 
 ```sh
-kubectl exec deploy/shared-data-demo -- cat /data/log.txt
+# Run against the workload cluster
+kubectl -n default exec deploy/shared-data-demo -- cat /data/log.txt
 ```
 
 ## Clean up
 
 Delete the resources in reverse order, or the AWS resources get stuck on their dependencies:
 
-1. In the workload cluster, delete the workloads, the persistent volume claims, and the storage class. With the default `reclaimPolicy: Delete`, the driver removes the access points, **including their data**.
+1. In the workload cluster, delete the workloads, the persistent volume claims, and the storage class. With the default `reclaimPolicy: Delete`, the driver removes the access points, **including their data**. For the examples in this guide:
+
+    ```sh
+    # Run against the workload cluster
+    kubectl delete -f shared-data-demo.yaml -f shared-data-pvc.yaml -f efs-storageclass.yaml
+    ```
+
 2. On the management cluster, delete the mount targets and the security group rule:
 
     ```sh
+    # Run against the management cluster
     kubectl delete -f efs-network.yaml
     ```
 
 3. On the management cluster, delete the file system and the security group:
 
     ```sh
+    # Run against the management cluster
     kubectl delete -f efs-filesystem.yaml
     ```
 
 4. To remove the driver too, delete the bundle:
 
     ```sh
+    # Run against the management cluster
     kubectl -n org-<ORGANIZATION> delete helmrelease,ocirepository \
       <CLUSTER_NAME>-aws-efs-csi-driver-bundle
     ```
