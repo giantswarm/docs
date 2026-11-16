@@ -17,7 +17,7 @@ user_questions:
   - How do I set up gang scheduling for distributed workloads?
   - How do I configure all-or-nothing scheduling for coordinated jobs?
   - How do I install and configure Kueue in Giant Swarm?
-last_review_date: 2026-09-28
+last_review_date: 2026-11-13
 ---
 
 Kueue is a Kubernetes-native system that manages quotas and how jobs consume them. It provides advanced job queueing, resource management, and fair sharing capabilities for batch workloads, machine learning training jobs, and other compute-intensive tasks. Giant Swarm supports Kueue through a managed app that simplifies installation and configuration.
@@ -52,7 +52,7 @@ Before setting up Kueue, ensure you have:
 - A Giant Swarm workload cluster
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
-- Have `JobSet` extension on the workload cluster (`helm install jobset oci://registry.k8s.io/jobset/charts/jobset --version 0.12.0`). It will be automatically deployed in the near future as Kueue dependency.
+- Have `JobSet` extension on the workload cluster (`helm install jobset oci://registry.k8s.io/jobset/charts/jobset --version 0.13.0 --namespace jobset-system --create-namespace`). It will be automatically deployed in the near future as Kueue dependency. Install it in its own namespace, not in `kube-system`: the chart ships no network policy, and `kube-system` denies all traffic by default, so the JobSet controller can't reach the API server there.
 - Basic understanding of Kubernetes batch workloads and resource management
 
 ## Installation
@@ -244,7 +244,7 @@ apiVersion: application.giantswarm.io/v1alpha1
 kind: App
 metadata:
   name: <CLUSTER_NAME>-kueue
-  namespace: org-fer
+  namespace: org-<ORGANIZATION>
 spec:
   ...
   userConfig:
