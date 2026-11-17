@@ -20,13 +20,13 @@ Before a production upgrade, you might ask if you can go back to the previous re
 
 ## Why downgrades aren't supported
 
-A [workload cluster release]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/releases" >}}) bundles Kubernetes with many other components, like the operating system, the container runtime, and the network plugin. An upgrade changes all of them. Some of these changes are one way:
+A [workload cluster release]({{< relref "/overview/fleet-management/cluster-management/cluster-concepts/releases" >}}) bundles Kubernetes with many other components, like the operating system, the container runtime, and the network plugin. An upgrade changes all them. Some of these changes are one way:
 
 - A newer Kubernetes version can store resources in etcd in a format or API version that the older version can't read.
 - Components can migrate their own state or custom resources to a new schema during the upgrade.
 - Major releases follow Kubernetes minor versions. The Kubernetes project doesn't test downgrades between minor versions, so a downgrade of a major release has no upstream guarantee either.
 
-A downgrade might work in some cases, but the result is unpredictable. A failed downgrade can leave the cluster in a worse state than the upgrade you wanted to undo. That's why it isn't an option we offer as a fallback.
+A downgrade might work sometimes, but the result is unpredictable. A failed downgrade can leave the cluster in a worse state than the upgrade you wanted to undo. That's why it isn't an option we offer as a fallback.
 
 ## Use staged upgrades instead
 
@@ -35,7 +35,7 @@ Reduce the risk of an upgrade by rolling it out in stages, so a problem shows up
 1. Upgrade your development or staging clusters first.
 2. Run your workloads on the new release for a while and check that they behave as expected.
 3. Upgrade production clusters one at a time, or in small groups, rather than all at once.
-4. Spread production upgrades over different days or regions, so one issue can't affect all of them.
+4. Spread production upgrades over different days or regions, so one issue can't affect all them.
 
 Before you start, read the [changelog]({{< relref "/changes" >}}) for the target release and make your workloads [resilient to upgrades]({{< relref "/tutorials/fleet-management/cluster-management/cluster-upgrades#avoid-downtime-during-upgrades" >}}).
 
