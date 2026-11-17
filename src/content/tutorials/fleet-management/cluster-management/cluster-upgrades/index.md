@@ -10,7 +10,7 @@ menu:
 aliases:
   - /platform-overview/cluster-management/cluster-upgrades/
   - /reference/cluster-upgrades/
-last_review_date: 2026-10-06
+last_review_date: 2026-11-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -53,6 +53,8 @@ When a new major version is released, the oldest major release is deprecated. Yo
 ![Upgrade Types Comparison](upgrade-types-comparison.svg)
 
 You cannot skip major versions when upgrading (for example, v32.x.y to v34.x.y)–upgrades must proceed sequentially through major versions. You can usually skip minor and patch releases if needed. Please always check the [changelog]({{< relref "/changes" >}}).
+
+Downgrading a cluster to an older release isn't supported. See [cluster downgrades]({{< relref "/tutorials/fleet-management/cluster-management/cluster-downgrades" >}}) for why, and how to make upgrades safer with staged rollouts.
 
 To trigger an upgrade:
 
