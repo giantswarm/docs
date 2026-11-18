@@ -24,7 +24,7 @@ user_questions:
 aliases:
   - /platform-overview/cluster-management/releases
   - /reference/workload-cluster-release-versions/
-last_review_date: 2025-07-07
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-tenet
 ---
@@ -135,8 +135,6 @@ You've got several options to inspect workload cluster release details:
 - [prometheus-operator-crd](https://github.com/giantswarm/prometheus-operator-crd)
 - [kube-prometheus-stack-app](https://github.com/giantswarm/kube-prometheus-stack-app)
 - [prometheus-agent](https://github.com/giantswarm/prometheus-agent-app)
-- [promtail-app](https://github.com/giantswarm/promtail-app)
-- [grafana-agent-app](https://github.com/giantswarm/grafana-agent-app)
 - [observability-policies](https://github.com/giantswarm/observability-policies-app)
 - [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter-app)
 - [security-bundle](https://github.com/giantswarm/security-bundle)

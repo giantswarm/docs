@@ -13,7 +13,7 @@ crd:
   technical_name: mcpservers.muster.giantswarm.io
   scope: Namespaced
   source_repository: https://github.com/giantswarm/muster
-  source_repository_ref: v5.32.10
+  source_repository_ref: v5.63.12
   versions:
     - v1alpha1
   topics:
@@ -26,7 +26,7 @@ aliases:
   - /use-the-api/management-api/crd/mcpservers.muster.giantswarm.io/
 technical_name: mcpservers.muster.giantswarm.io
 source_repository: https://github.com/giantswarm/muster
-source_repository_ref: v5.32.10
+source_repository_ref: v5.63.12
 ---
 
 # MCPServer
@@ -355,7 +355,9 @@ Required.</p>
 
 <div class="property-description">
 <p>Namespace is the Kubernetes namespace where the secret is located.
-If not specified, defaults to the MCPServer&rsquo;s namespace.</p>
+If not specified, defaults to the MCPServer&rsquo;s namespace. An MCPServer
+outside muster&rsquo;s own namespace may name only its own namespace here;
+muster refuses the server otherwise.</p>
 
 </div>
 
@@ -409,7 +411,8 @@ client, a re-login, a front-end whose bearer rotates &ndash; reuses the grant
 without a new consent, until the person signs out of this server
 (<code>core_auth_logout</code>) or everywhere. Use <code>subject</code> for external accounts
 the person owns (GitHub), never for tokens that carry session-specific
-authority.</p>
+authority. MCPServerAuth.GrantScope says the same for a server that
+discovers its authorization server instead of pinning it.</p>
 
 </div>
 
@@ -443,6 +446,32 @@ AuthorizationEndpoint and TokenEndpoint are set, in which case no
 discovery happens and the issuer is only that identity. When the
 authorization server publishes a different issuer identifier than the
 identity pinned here, set ExpectedIssuer.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.authorizationServer.revocationEndpoint">.spec.auth.authorizationServer.revocationEndpoint</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>RevocationEndpoint is the authorization server&rsquo;s RFC 7009 token
+revocation endpoint. When the person disconnects a subject-scoped grant
+(core_auth_logout), muster revokes its refresh and access tokens there
+before dropping its copy, so the provider stops honouring them and the
+next sign-in asks for consent again. Default: the revocation_endpoint
+of the authorization server&rsquo;s metadata; set it for one whose metadata
+names none or is pinned through AuthorizationEndpoint and TokenEndpoint
+(GitLab: <a href="https://gitlab.example.com/oauth/revoke">https://gitlab.example.com/oauth/revoke</a>). Without either, the
+grant stays valid at the provider until it expires.</p>
 
 </div>
 
@@ -549,6 +578,83 @@ token is accepted by every forwardToken backend, so all forwardToken
 backends must be equally trusted. A token&rsquo;s nested act claim (minted
 by the IdP, e.g. via exchange at dex) carries the delegation chain for
 backend authorization decisions.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.grantScope">.spec.auth.grantScope</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>GrantScope decides whom the grant of this server&rsquo;s OAuth sign-in
+belongs to, whichever authorization server the server uses: the one
+muster discovers through the server&rsquo;s RFC 9728 Protected Resource
+Metadata, or the one pinned in AuthorizationServer. <code>session</code> (the
+default) binds the grant to the login session that completed the
+browser flow. <code>subject</code> files it under the person as well, so every
+later session of the same person &ndash; another client, an agent
+conversation, a session after a muster restart &ndash; connects with it
+without a new consent, until the person signs out of the server
+(<code>core_auth_logout</code>). The semantics are those of
+AuthorizationServer.GrantScope, which a pinned server may set instead;
+set both only to the same value.</p>
+
+<p>muster decides grant scope per authorization server: a server with
+<code>subject</code> and no pin makes the issuer it discovers subject-scoped, as a
+pin with <code>grantScope: subject</code> does for its issuer, and the
+one-description-per-issuer rule of the pins applies to it, except that
+an issuer an operator names in an AuthorizationServer pin keeps that
+pin&rsquo;s description. <code>subject</code> is only valid with Type &ldquo;oauth&rdquo; and
+neither ForwardToken nor TokenExchange, which obtain no grant of their
+own; <code>session</code> is accepted everywhere.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.providerApps">.spec.auth.providerApps</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>ProviderApps names the provider Apps (muster&rsquo;s aggregator.providerApps)
+whose grants this server receives. On every request muster attaches the
+access token of each named App the person granted, in the header
+X-Muster-Grant-<app>, refreshed ahead of its expiry; an App the person
+did not grant sends no header. A tool result that names missing Apps
+({&ldquo;status&rdquo;: &ldquo;grant_required&rdquo;, &ldquo;apps&rdquo;: [&hellip;]} in structuredContent) is
+answered auth_required with each App&rsquo;s sign-in link. The person&rsquo;s
+connection is made as the person, so this needs ForwardToken or
+ForwardIdentity.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.auth.providerApps[*]">.spec.auth.providerApps[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
 
 </div>
 
@@ -819,7 +925,9 @@ Required.</p>
 
 <div class="property-description">
 <p>Namespace is the Kubernetes namespace where the secret is located.
-If not specified, defaults to the MCPServer&rsquo;s namespace.</p>
+If not specified, defaults to the MCPServer&rsquo;s namespace. An MCPServer
+outside muster&rsquo;s own namespace may name only its own namespace here;
+muster refuses the server otherwise.</p>
 
 </div>
 
@@ -838,8 +946,11 @@ If not specified, defaults to the MCPServer&rsquo;s namespace.</p>
 
 <div class="property-description">
 <p>ConnectorID is the ID of the OIDC connector on the remote Dex that
-trusts the local cluster&rsquo;s Dex.
-Required when Enabled is true.
+trusts the local cluster&rsquo;s Dex, sent as Dex&rsquo;s connector_id parameter.
+Required for a person&rsquo;s exchange. A delegated caller&rsquo;s exchange sends
+none: it goes to the Dex that issued the delegated token, which verifies
+it with its own keys, so a server only delegated callers reach may leave
+it empty.
 Example: &ldquo;cluster-a-dex&rdquo;</p>
 
 </div>
@@ -1017,9 +1128,10 @@ This field is required when Type is &ldquo;stdio&rdquo;.</p>
 </div>
 
 <div class="property-description">
-<p>Env contains environment variables to set for the MCP server.
-For stdio servers, these are passed to the process when it is started.
-For remote servers, these can be used for authentication or configuration.</p>
+<p>Env contains environment variables to set for a stdio server&rsquo;s process
+when it is started. Only allowed when Type is &ldquo;stdio&rdquo;: a remote server
+has no process to receive them. A remote server that needs a credential
+reads it from a Secret through HeadersFrom.</p>
 
 </div>
 
@@ -1108,6 +1220,150 @@ their tools as {musterPrefix}<em>{Name}</em>{toolName}.</p>
 <p>Headers contains HTTP headers to send with requests to remote MCP servers.
 This field is only relevant when Type is &ldquo;streamable-http&rdquo; or &ldquo;sse&rdquo;.</p>
 
+<p>Everyone who can read the MCPServer can read these values, so they hold
+no credential: a value in an Authorization, Proxy-Authorization, Cookie
+or X-API-Key header (in any case) is refused. Send a credential with
+HeadersFrom instead.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom">.spec.headersFrom</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">array</span>
+
+</div>
+
+<div class="property-description">
+<p>HeadersFrom lists HTTP headers whose values muster reads from a Secret
+in the MCPServer&rsquo;s own namespace, each time it connects to the server.
+It is the place for a credential such as an Authorization header: the
+value never enters the MCPServer, muster&rsquo;s service data or the output
+of a core tool. An entry wins over a Headers entry of the same name.
+Only relevant when Type is &ldquo;streamable-http&rdquo; or &ldquo;sse&rdquo;.</p>
+
+<p>A connection that carries a person&rsquo;s own credential (an OAuth sign-in,
+a forwarded or exchanged token) sends its own Authorization header, so
+an Authorization entry here reaches only muster&rsquo;s own connection.</p>
+
+<p>Header names are case-insensitive, so two entries whose names differ
+only in case are refused.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom[*]">.spec.headersFrom[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>MCPServerHeaderFrom is an HTTP header whose value muster reads from a
+Secret, in the shape of kagent&rsquo;s RemoteMCPServer headersFrom.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom[*].name">.spec.headersFrom[*].name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the HTTP header name, for example Authorization.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom[*].valueFrom">.spec.headersFrom[*].valueFrom</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>ValueFrom names the Secret key that holds the header&rsquo;s value.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom[*].valueFrom.key">.spec.headersFrom[*].valueFrom.key</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Key is the key in the Secret&rsquo;s data that holds the value.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom[*].valueFrom.name">.spec.headersFrom[*].valueFrom.name</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Name is the name of the Secret.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.headersFrom[*].valueFrom.type">.spec.headersFrom[*].valueFrom.type</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+<span class="property-required">Required</span>
+</div>
+
+<div class="property-description">
+<p>Type is the kind of object that holds the value. Only Secret.</p>
+
 </div>
 
 </div>
@@ -1146,6 +1402,49 @@ region argument, so without this a call fails with NoRegionError. That
 operating region is a different value from Auth.SigV4.Region, which is
 the signing region — the two default to the same string but resolve
 independently, endpoint-first for signing and config-first for operating.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.progress">.spec.progress</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">object</span>
+
+</div>
+
+<div class="property-description">
+<p>Progress configures how progress the server reports on a tool call
+affects that call&rsquo;s budget. Unset, progress keeps a tool call going for
+up to 3600 seconds.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.spec.progress.maxDuration">.spec.progress.maxDuration</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">integer</span>
+
+</div>
+
+<div class="property-description">
+<p>MaxDuration bounds, in seconds, a tool call kept going by progress. On
+a tool call, each progress notification from the server restarts
+Timeout, up to MaxDuration; muster sends the server a progressToken on
+every tool call, whether its caller asked for progress or not. Any other
+operation stays bounded by Timeout. A value equal to Timeout extends
+nothing. Unset, 3600.</p>
 
 </div>
 
@@ -1209,7 +1508,9 @@ audited by the apiserver like any other spec mutation (issue #1055).</p>
 </div>
 
 <div class="property-description">
-<p>Timeout specifies the connection timeout for remote operations (in seconds)</p>
+<p>Timeout bounds every operation on the server in seconds, a tool call
+included, for every type; for a remote server also the connect and the
+health probe. See Progress for a tool call that reports progress.</p>
 
 </div>
 
@@ -1275,6 +1576,10 @@ server as its own workload and use &ldquo;streamable-http&rdquo; or &ldquo;sse&r
 <p>URL is the endpoint where the remote MCP server can be reached
 This field is required when Type is &ldquo;streamable-http&rdquo; or &ldquo;sse&rdquo;.
 Examples: <a href="http://mcp-server:8080/mcp">http://mcp-server:8080/mcp</a>, <a href="https://api.example.com/mcp">https://api.example.com/mcp</a></p>
+
+<p>The URL holds no credential: a user name or password in it is refused.
+Put the credential in a Secret and send it with HeadersFrom. The rule is
+a regex, because CEL&rsquo;s URL library has no accessor for the user info.</p>
 
 </div>
 
@@ -1490,6 +1795,31 @@ This field may not be empty.</p>
 <p>ConsecutiveFailures tracks the number of consecutive connection failures.
 This is used for exponential backoff and to identify unreachable servers.
 Reset to 0 when a connection succeeds.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-1">
+<div class="property-header">
+<h3 class="property-path" id="v1alpha1-.status.icon">.status.icon</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">string</span>
+
+</div>
+
+<div class="property-description">
+<p>Icon is the icon the server declares in its initialize result,
+otherwise a built-in brand icon when spec.url is on a known brand
+domain, or is in-cluster and names a known brand as service,
+namespace or first path segment. It is a data: URI (data:<mime>;base64,&hellip;) of type
+image/svg+xml, image/png, image/jpeg or image/webp; the whole data: URI
+is at most 65536 characters. SVG icons are sanitised (allowlist) before
+they are stored. Absent when there is neither.
+Render only as an image (e.g. <img src>); never inline the markup.</p>
 
 </div>
 

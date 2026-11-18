@@ -18,7 +18,7 @@ user_questions:
   - How can I customize default apps configuration?
   - How can I pass custom values to default apps?
   - How can I configure aws-ebs-csi-driver?
-last_review_date: 2026-09-01
+last_review_date: 2026-10-06
 ---
 
 Every workload cluster has a set of apps installed automatically at creation time, called default apps. Default apps are defined in the [cluster chart](https://github.com/giantswarm/cluster) and provider-specific charts (like [cluster-aws](https://github.com/giantswarm/cluster-aws)). These include essential applications like CoreDNS, Cilium, and cloud provider integrations.
@@ -27,10 +27,7 @@ While the default configuration works for most cases, sometimes customization is
 
 ## App deployment mechanism
 
-Default applications are deployed using two mechanisms:
-
-- **App CR** - Giant Swarm's in-house app management
-- **HelmRelease CR** - Flux CD's Helm controller
+Since cluster chart v8.0.0, all default apps are deployed as `HelmRelease` resources, handled by Flux CD's Helm controller. Older cluster chart versions deploy some default apps as Giant Swarm `App` resources. For those, use the `App CR` notes in the `extraConfigs` section below.
 
 ## Understanding app keys
 
@@ -47,26 +44,26 @@ These apps are deployed on all clusters regardless of the infrastructure provide
 | [network-policies-app](https://github.com/giantswarm/network-policies-app)                                      | `networkPolicies` | `HelmRelease` |
 | [node-problem-detector-app](https://github.com/giantswarm/node-problem-detector-app)                            | `nodeProblemDetector` | `HelmRelease` |
 | [vertical-pod-autoscaler-crd](https://github.com/giantswarm/vertical-pod-autoscaler-crd)                    | `verticalPodAutoscalerCrd` | `HelmRelease` |
-| [cert-exporter](https://github.com/giantswarm/cert-exporter)                                                | `certExporter` | `App` |
-| [cert-manager](https://github.com/giantswarm/cert-manager-app)                                              | `certManager` | `App` |
-| [chart-operator-extensions](https://github.com/giantswarm/chart-operator-extensions)                        | `chartOperatorExtensions` | `App` |
-| [cilium-servicemonitors-app](https://github.com/giantswarm/cilium-servicemonitors-app)                          | `ciliumServiceMonitors` | `App` |
-| [cluster-autoscaler-app](https://github.com/giantswarm/cluster-autoscaler-app)                                  | `clusterAutoscaler` | `App` |
-| [coredns-extensions](https://github.com/giantswarm/coredns-extensions)                                      | `coreDnsExtensions` | `App` |
-| [etcd-defrag](https://github.com/giantswarm/etcd-defrag-app)                                                | `etcdDefrag` | `App` |
-| [etcd-kubernetes-resources-count-exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter) | `etcdKubernetesResourcesCountExporter` | `App` |
-| [external-dns-app](https://github.com/giantswarm/external-dns-app)                                              | `externalDns` | `App` |
-| [k8s-audit-metrics](https://github.com/giantswarm/k8s-audit-metrics)                                        | `k8sAuditMetrics` | `App` |
-| [k8s-dns-node-cache-app](https://github.com/giantswarm/k8s-dns-node-cache-app)                                  | `k8sDnsNodeCache` | `App` |
-| [metrics-server-app](https://github.com/giantswarm/metrics-server-app)                                          | `metricsServer` | `App` |
-| [net-exporter](https://github.com/giantswarm/net-exporter)                                                  | `netExporter` | `App` |
-| [node-exporter-app](https://github.com/giantswarm/node-exporter-app)                                            | `nodeExporter` | `App` |
-| [observability-bundle](https://github.com/giantswarm/observability-bundle)                                  | `observabilityBundle` | `App` |
-| [observability-policies-app](https://github.com/giantswarm/observability-policies-app)                          | `observabilityPolicies` | `App` |
-| [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter)                  | `prometheusBlackboxExporter` | `App` |
-| [security-bundle](https://github.com/giantswarm/security-bundle)                                            | `securityBundle` | `App` |
-| [teleport-kube-agent-app](https://github.com/giantswarm/teleport-kube-agent-app)                                | `teleportKubeAgent` | `App` |
-| [vertical-pod-autoscaler-app](https://github.com/giantswarm/vertical-pod-autoscaler-app)                        | `verticalPodAutoscaler` | `App` |
+| [cert-exporter](https://github.com/giantswarm/cert-exporter)                                                | `certExporter` | `HelmRelease` |
+| [cert-manager](https://github.com/giantswarm/cert-manager-app)                                              | `certManager` | `HelmRelease` |
+| [chart-operator-extensions](https://github.com/giantswarm/chart-operator-extensions)                        | `chartOperatorExtensions` | `HelmRelease` |
+| [cilium-servicemonitors-app](https://github.com/giantswarm/cilium-servicemonitors-app)                          | `ciliumServiceMonitors` | `HelmRelease` |
+| [cluster-autoscaler-app](https://github.com/giantswarm/cluster-autoscaler-app)                                  | `clusterAutoscaler` | `HelmRelease` |
+| [coredns-extensions](https://github.com/giantswarm/coredns-extensions)                                      | `coreDnsExtensions` | `HelmRelease` |
+| [etcd-defrag](https://github.com/giantswarm/etcd-defrag-app)                                                | `etcdDefrag` | `HelmRelease` |
+| [etcd-kubernetes-resources-count-exporter](https://github.com/giantswarm/etcd-kubernetes-resources-count-exporter) | `etcdKubernetesResourcesCountExporter` | `HelmRelease` |
+| [external-dns-app](https://github.com/giantswarm/external-dns-app)                                              | `externalDns` | `HelmRelease` |
+| [k8s-audit-metrics](https://github.com/giantswarm/k8s-audit-metrics)                                        | `k8sAuditMetrics` | `HelmRelease` |
+| [k8s-dns-node-cache-app](https://github.com/giantswarm/k8s-dns-node-cache-app)                                  | `k8sDnsNodeCache` | `HelmRelease` |
+| [metrics-server-app](https://github.com/giantswarm/metrics-server-app)                                          | `metricsServer` | `HelmRelease` |
+| [net-exporter](https://github.com/giantswarm/net-exporter)                                                  | `netExporter` | `HelmRelease` |
+| [node-exporter-app](https://github.com/giantswarm/node-exporter-app)                                            | `nodeExporter` | `HelmRelease` |
+| [observability-bundle](https://github.com/giantswarm/observability-bundle)                                  | `observabilityBundle` | `HelmRelease` |
+| [observability-policies-app](https://github.com/giantswarm/observability-policies-app)                          | `observabilityPolicies` | `HelmRelease` |
+| [prometheus-blackbox-exporter](https://github.com/giantswarm/prometheus-blackbox-exporter)                  | `prometheusBlackboxExporter` | `HelmRelease` |
+| [security-bundle](https://github.com/giantswarm/security-bundle)                                            | `securityBundle` | `HelmRelease` |
+| [teleport-kube-agent-app](https://github.com/giantswarm/teleport-kube-agent-app)                                | `teleportKubeAgent` | `HelmRelease` |
+| [vertical-pod-autoscaler-app](https://github.com/giantswarm/vertical-pod-autoscaler-app)                        | `verticalPodAutoscaler` | `HelmRelease` |
 
 ### AWS provider apps
 
@@ -77,9 +74,9 @@ These apps are specific to clusters running on AWS:
 | [aws-cloud-controller-manager-app](https://github.com/giantswarm/aws-cloud-controller-manager-app)     | `awsCloudControllerManager` | `HelmRelease` |
 | [aws-ebs-csi-driver-app](https://github.com/giantswarm/aws-ebs-csi-driver-app)                         | `awsEbsCsiDriver` | `HelmRelease` |
 | [Karpenter](https://github.com/giantswarm/karpenter-app)                                               | `karpenter` | `HelmRelease` |
-| [aws-ebs-csi-driver-servicemonitors](https://github.com/giantswarm/aws-ebs-csi-driver-servicemonitors) | `awsEbsCsiDriverServiceMonitors` | `App` |
-| [aws-pod-identity-webhook](https://github.com/giantswarm/aws-pod-identity-webhook)                     | `awsPodIdentityWebhook` | `App` |
-| [IRSA-servicemonitors](https://github.com/giantswarm/irsa-servicemonitors)                             | `irsaServiceMonitors` | `App` |
+| [aws-ebs-csi-driver-servicemonitors](https://github.com/giantswarm/aws-ebs-csi-driver-servicemonitors) | `awsEbsCsiDriverServiceMonitors` | `HelmRelease` |
+| [aws-pod-identity-webhook](https://github.com/giantswarm/aws-pod-identity-webhook)                     | `awsPodIdentityWebhook` | `HelmRelease` |
+| [IRSA-servicemonitors](https://github.com/giantswarm/irsa-servicemonitors)                             | `irsaServiceMonitors` | `HelmRelease` |
 
 ### Azure provider apps
 
@@ -166,10 +163,13 @@ The `extraConfigs` field uses:
 
 - `kind`: `ConfigMap` or `Secret` (PascalCase)
 - `optional`: boolean - if `true`, missing resources are ignored
+- `priority`: integer (1-150, default 25) - higher priority values override lower ones
+
+The cluster chart turns `extraConfigs` into the HelmRelease's `valuesFrom` list, sorted by `priority`. Entries sort lowest priority first, so the later entry wins, and ConfigMaps always come before Secrets, so a Secret overrides a ConfigMap whatever the priority.
 
 ### For App CR-based Apps
 
-The `extraConfigs` field uses:
+On older cluster chart versions that still render App CRs, the `extraConfigs` field uses:
 
 - `kind`: `configMap` or `secret` (camelCase)
 - `priority`: integer (1-150, default 25) - higher priority values override lower ones
@@ -218,8 +218,10 @@ You can use both methods together. Values are merged in this order (later values
 
 1. Default provider-independent values (from the chart)
 2. Default provider-specific values (from the provider chart)
-3. Values from `extraConfigs` (in the order listed)
-4. Inline `values` (highest priority)
+3. ConfigMaps from `extraConfigs` with `priority` of 100 or lower, ordered by `priority`
+4. Inline `values`
+5. ConfigMaps from `extraConfigs` with `priority` above 100 (rare, use it to override inline values)
+6. Secrets from `extraConfigs`, ordered by `priority` (always last, so they override inline `values` whatever their priority)
 
 ```yaml
 global:
@@ -233,7 +235,7 @@ global:
           name: ebs-sensitive-config
           optional: false
       values:
-        # These values override everything above
+        # These values override the extraConfigs above (default priority 25)
         controller:
           logLevel: debug
 ```
@@ -270,7 +272,7 @@ global:
     # Customize cert-manager with external config
     certManager:
       extraConfigs:
-        - kind: configMap
+        - kind: ConfigMap
           name: cert-manager-org-config
           optional: true
       values:
@@ -283,7 +285,7 @@ global:
 
 **ConfigMap not found**: Verify the ConfigMap or Secret exists in the cluster's namespace before creating the cluster.
 
-**Merge conflicts**: Remember that inline `values` always take highest priority over `extraConfigs`.
+**Merge conflicts**: Inline `values` override `extraConfigs` entries with `priority` of 100 or lower (default 25), but an `extraConfigs` entry with a higher `priority` overrides them. A Secret also overrides any ConfigMap, including the inline `values`.
 
 ## Further reading
 

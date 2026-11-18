@@ -10,7 +10,7 @@ menu:
     identifier: overview-agent-platform-meta-tools
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-07
+last_review_date: 2026-10-06
 user_questions:
   - What are Muster's meta-tools?
   - How does Muster keep my AI agent's context small?
@@ -26,7 +26,7 @@ Muster avoids this with **meta-tool indirection**. Instead of exposing every und
 
 ## The meta-tool surface
 
-Muster exposes 11 meta-tools:
+Muster exposes 13 meta-tools:
 
 | Meta-tool | Purpose |
 |---|---|
@@ -35,8 +35,8 @@ Muster exposes 11 meta-tools:
 | `describe_tool` | Get the authoritative full description and schema for a specific tool |
 | `call_tool` | Execute any tool by name |
 | `list_core_tools` | List Muster's built-in tools only |
-| `list_resources` / `get_resource` / `describe_resource` | Access MCP resources |
-| `list_prompts` / `get_prompt` / `describe_prompt` | Access MCP prompts |
+| `list_resources` / `filter_resources` / `describe_resource` / `get_resource` | Access MCP resources |
+| `list_prompts` / `filter_prompts` / `describe_prompt` / `get_prompt` | Access MCP prompts |
 
 The assistant sees only these meta-tools in its MCP configuration—not the 100+ underlying tools. It discovers what it needs via `list_tools` or `filter_tools`, inspects a candidate with `describe_tool`, and runs it with `call_tool`. Because the configuration never names individual tools, adding or removing a downstream MCP server changes what `list_tools` returns without any change to the assistant's setup.
 

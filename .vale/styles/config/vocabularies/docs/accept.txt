@@ -27,12 +27,16 @@ Autoscaler
 [Ee]nsure
 [Ee]xplore
 [Ii][Aa][Mm]
+iptables
+Konnectivity
 [Kk]ustomization[s]?
 [Kk]ustomize
+[Dd]ataplane[s]?
 Gemini
 LiteLLM
 llama.cpp
 lookup[s]?
+Maglev
 [Mm]atcher[s]?
 [Nn]ginx
 against
@@ -56,7 +60,9 @@ aws-pod-identity-webhook
 AWS
 azure-cloud-controller-manager-app
 azure-cloud-node-manager-app
+ACNS
 Azure
+Azure CNI Overlay
 Azure Workload Identity
 backbone
 Backstage
@@ -92,7 +98,7 @@ discoverability
 [Dd]ex
 [Dd][Nn][Ss]
 composable
-configmap[s]?
+[Cc]onfig[Mm]ap[s]?
 configs?
 conformant
 [C|c]ontainerd
@@ -104,6 +110,7 @@ easily
 effectively
 [E|e]dgedb
 ELB[s]?
+emptyDir
 ENI[s]?
 Entra
 ESXi
@@ -113,12 +120,14 @@ FQDN
 [F|f]alco
 firewalling
 freely
+Fulcio
 GCP
 Giant Swarm
 GPU[s]
 gracefully
 [G|g]rafana
 Hashicorp
+HDD[s]?
 HelmRelease
 Honeybadger
 [H|h]ostname[s]?
@@ -129,6 +138,7 @@ HTTPRoute[s]?
 hyperparameter
 IDE[s']?
 impl_title
+[Ii]ngester[s]?
 [Ii]ntrinsic[s]?
 IP[s]?
 IPAM
@@ -148,6 +158,7 @@ krew
 kube-vip
 kubeconfig[s]?
 kubectl
+Kubeflow
 kubelet
 Kueue
 [K|k]yverno
@@ -166,6 +177,7 @@ namespace[ds]?
 Nirmata
 NLB[s]?
 node[pP]ool[s]?
+NVMe
 OAuth
 OCI
 OCIRepository
@@ -194,6 +206,7 @@ rapidly
 RBAC
 really
 reconnection[s]?
+Rekor
 relref
 rollouts
 rulesets
@@ -208,9 +221,12 @@ Sigstore
 SLA[s]?
 SLI[s]?
 SLO[s]?
+SNAT(ed)?
+[Rr]outable
 [Ss]panset[s]?
 SOPS
 Spotify
+Streamable
 SRE[s]?
 SSL
 SSO
@@ -242,6 +258,7 @@ VLANs
 vLLM
 VM[s]?
 VMware
+VNet[s]?
 VPC
 vs.
 VS Code

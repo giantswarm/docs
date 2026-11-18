@@ -13,12 +13,12 @@ menu:
 user_questions:
   - Where can I find the ConfigMap to configure cluster-autoscaler?
   - What cluster-autoscaler options can I configure?
-last_review_date: 2024-12-13
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 ---
 
-In Giant Swarm platform, your workload clusters come with default autoscaling functionality. Today, it's supported by {{/*% autoscaling_supported_versions*/%}}, but our goal is to bring this feature to all supported providers.
+In Giant Swarm platform, your workload clusters come with default autoscaling functionality.
 
 The cluster autoscaler runs in the workload cluster and is responsible for scaling the number of nodes in the cluster. The configuration though is managed in the management cluster though. The autoscaling controller has a default configuration for the [cluster-autoscaler addon](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler). To configure the `cluster-autoscaler` further, you need to access the platform API. [Learn how to access the platform API]({{< relref "/getting-started/access-to-platform-api" >}}).
 
@@ -76,7 +76,7 @@ data:
 
 ### Scan interval
 
-Defines what interval is used to review the state for taking a decision to scale up/down. Our default value is 10 seconds.
+Defines what interval is used to review the state for taking a decision to scale up/down. Our default value is 30 seconds.
 
 ```yaml
 data:
@@ -109,13 +109,13 @@ data:
 
 ### Balance similar node groups
 
-The cluster autoscaler by default doesn't differentiate between node groups when scaling. In case you want to enable considering node groups, you need to set the following property to true.
+The cluster autoscaler by default detects similar node groups and balances the number of nodes between them. In case you want to disable this behavior, you need to set the following property to false.
 
 ```yaml
 data:
   values: |
     configmap:
-      balanceSimilarNodeGroups: "true"
+      balanceSimilarNodeGroups: "false"
 ```
 
 Read [the Kubernetes autoscaler FAQ](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md) to learn more about the cluster autoscaler and its configuration options.

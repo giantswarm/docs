@@ -11,7 +11,7 @@ menu:
 user_questions:
   - How can I configure OIDC in my cluster?
   - How can I add a new OIDC connector?
-last_review_date: 2026-04-09
+last_review_date: 2026-10-27
 owner:
   - https://github.com/orgs/giantswarm/teams/team-shield
 ---
@@ -262,9 +262,39 @@ spec:
 
 **Note**: When applying the example in the snippet shown earlier, replace the `CLUSTER_NAME` placeholder with the name of the workload cluster you are configuring. Replace `CLUSTER_NAMESPACE_NAME` with the name of the namespace that contains the cluster.
 
-Then submit the resource to the management API and the app operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that `Dex` creates for you. By default, it will be `https://login.CLUSTER_NAME.BASE_DOMAIN`.
+Then submit the resource to the management API and the app operator will manage it to make the actual installation and configuration. You can log in now into the cluster API with your identity provider using the login endpoint that `Dex` creates for you. By default, it will be `https://dex.CLUSTER_NAME.BASE_DOMAIN`.
 
-**Warning**: It's assumed that you have an [ingress controller and cert-manager]({{< relref "/getting-started/install-an-application" >}}) running in your cluster, so Dex is available for the callback request made by your identity provider securely. Both of these apps are offered in our managed app catalog. If you supply custom certificates when deploying `Dex`, you can skip cert-manager installation.
+**Warning**: It's assumed that you have [Gateway API with Envoy Gateway]({{< relref "/tutorials/connectivity/gateway-api/installation" >}}) and cert-manager running in your cluster, so Dex is reachable for the callback request made by your identity provider securely. Both are offered in our managed app catalog. If you supply a custom certificate for the gateway listener, you can skip the [cert-manager configuration for Gateway API]({{< relref "/tutorials/connectivity/gateway-api/installation#certificate-management-with-cert-manager" >}}).
+
+### Exposing Dex through Gateway API {#dex-gateway-api}
+
+The `Dex` app renders an `Ingress` by default. To expose `Dex` with a Gateway API `HTTPRoute` instead, disable the `Ingress` and attach the route to the HTTPS listener of the default gateway in the `Secret` or `ConfigMap` with the configuration values for the `Dex` app:
+
+```yaml
+ingress:
+  enabled: false
+route:
+  enabled: true
+  parentRefs:
+    - name: giantswarm-default
+      namespace: envoy-gateway-system
+      sectionName: https
+```
+
+The app derives the hostname of the route from the cluster, `dex.CLUSTER_NAME.BASE_DOMAIN`, so you don't need to set `route.hostnames`.
+
+Unlike an `Ingress`, an `HTTPRoute` doesn't make the gateway create a DNS record or a TLS certificate for its hostname. Add the `dex` subdomain to the HTTPS listener of the default gateway in the configuration of the [Gateway API bundle]({{< relref "/tutorials/connectivity/gateway-api/installation#using-the-default-gateway" >}}), so that external-dns creates the record and cert-manager issues the certificate:
+
+```yaml
+gateways:
+  default:
+    listeners:
+      https:
+        subdomains:
+          - dex
+```
+
+**Note**: If you don't use the default gateway, point `route.parentRefs` at the gateway and HTTPS listener that serve your cluster's domain.
 
 ### Using Dex group filtering {#dex-group-filtering}
 
@@ -288,15 +318,40 @@ trustedRootCA:
   name: ... # Name of the property inside the secret
 ```
 
-It's also possible to disable retrieving certificates from the cert-manager and supply custom certificates to `Dex` directly. They can be configured in the `ingress` section of the `Secret` or `ConfigMap` with the configuration values for the `Dex` app:
+With Gateway API, TLS terminates at the gateway listener, not in the `Dex` app, so a custom certificate is configured on the gateway rather than in the `Dex` values. Create a `kubernetes.io/tls` `Secret` with your certificate and key in the `envoy-gateway-system` namespace, where the gateway runs, and add a listener for the `Dex` hostname that references it instead of a cert-manager certificate. Keep `dex` in the `subdomains` of the `https` listener so that the DNS record is still created:
 
 ```yaml
-ingress:
-  tls:
-    letsencrypt: false
-    caPemB64: ...
-    crtPemB64: ...
-    keyPemB64: ...
+gateways:
+  default:
+    listeners:
+      https:
+        subdomains:
+          - dex
+      dex-https:
+        name: dex-https
+        protocol: HTTPS
+        hostname: dex.CLUSTER_NAME.BASE_DOMAIN
+        port: 443
+        allowedRoutes:
+          namespaces:
+            from: All
+        certificate:
+          enabled: false
+        tls:
+          mode: Terminate
+          certificateRefs:
+            - name: dex-custom-tls # Name of your TLS secret in the envoy-gateway-system namespace
+```
+
+Then attach the `Dex` route to that listener in the `Secret` or `ConfigMap` with the configuration values for the `Dex` app:
+
+```yaml
+route:
+  enabled: true
+  parentRefs:
+    - name: giantswarm-default
+      namespace: envoy-gateway-system
+      sectionName: dex-https
 ```
 
 ### Running Dex in a private workload cluster
@@ -366,28 +421,51 @@ kubernetes:
     address: https://6EAE2F2E28XUD92EXZF54DFEF7C37081D.gr7.eu-central-1.eks.amazonaws.com
 ```
 
-Access to `Athena` can be restricted to certain `CIDRs`.
-
-```yaml
-security:
-  subnet:
-    customer:
-      public: x.x.x.x/x,x.x.x.x/x
-      private: x.x.x.x/x
-    restrictAccess:
-      gsAPI: true
-```
-
-Athena also supports custom certificates, same as the `Dex` app.
-The certificates need to be provided in the `ingress` section of the configuration:
+Like `Dex`, `Athena` renders an `Ingress` by default. To expose it with a Gateway API `HTTPRoute`, disable the `Ingress`, set the hostname and attach the route to the HTTPS listener of the default gateway. `Athena` doesn't derive the hostname itself, so `route.hostnames` is required:
 
 ```yaml
 ingress:
-  tls:
-    letsencrypt: false
-    caPemB64: ...
-    crtPemB64: ...
-    keyPemB64: ...
+  enabled: false
+route:
+  enabled: true
+  hostnames:
+    - athena.CLUSTER_NAME.BASE_DOMAIN
+  parentRefs:
+    - name: giantswarm-default
+      namespace: envoy-gateway-system
+      sectionName: https
+```
+
+Add the `athena` subdomain to the HTTPS listener of the default gateway, as described for [`Dex`]({{< relref "/tutorials/access-management/configure-dex-in-your-cluster#dex-gateway-api" >}}), so that the DNS record and the TLS certificate are created. The certificate comes from the gateway listener, `Athena` doesn't accept one in its values. To use a different cert-manager issuer, set it on the listener in the configuration of the Gateway API bundle:
+
+```yaml
+gateways:
+  default:
+    listeners:
+      https:
+        subdomains:
+          - dex
+          - athena
+        certificate:
+          issuer:
+            kind: ClusterIssuer
+            name: ... # Name of your cert-manager ClusterIssuer
+```
+
+Access to `Athena` can be restricted to certain `CIDRs`. The `security.subnet` values only apply to the `Ingress`, so with an `HTTPRoute` use the authorization rules of the Envoy Gateway `SecurityPolicy` that `Athena` can create for its route:
+
+```yaml
+route:
+  securityPolicy:
+    enabled: true
+    authorization:
+      defaultAction: Deny
+      rules:
+        - action: Allow
+          principal:
+            clientCIDRs:
+              - x.x.x.x/x
+              - x.x.x.x/x
 ```
 
 If both `Dex` and `Athena` are configured correctly and you have installed `kubectl gs` on your machine, you can create a kubectl context using the platform API address.

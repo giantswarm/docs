@@ -10,7 +10,7 @@ menu:
 aliases:
   - /platform-overview/cluster-management/cluster-upgrades/
   - /reference/cluster-upgrades/
-last_review_date: 2025-09-09
+last_review_date: 2026-11-17
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
@@ -54,6 +54,8 @@ When a new major version is released, the oldest major release is deprecated. Yo
 
 You cannot skip major versions when upgrading (for example, v32.x.y to v34.x.y)–upgrades must proceed sequentially through major versions. You can usually skip minor and patch releases if needed. Please always check the [changelog]({{< relref "/changes" >}}).
 
+Downgrading a cluster to an older release isn't supported. See [cluster downgrades]({{< relref "/tutorials/fleet-management/cluster-management/cluster-downgrades" >}}) for why, and how to make upgrades safer with staged rollouts.
+
 To trigger an upgrade:
 
 - **GitOps**: Update the cluster configuration file with the desired release version
@@ -84,7 +86,7 @@ Control plane machines are rotated first, followed by worker nodes. Control plan
 
 The Cluster API for AWS controller manages upgrades using EC2 instances. The default [instance warmup](https://github.com/search?q=repo%3Agiantswarm%2Fcluster-aws%20refreshPreferences&type=code) configuration ensures AWS doesn't replace all nodes at once but in steps, allowing human intervention if needed. For small node pools, one node is replaced every 10 minutes. For larger pools, small sets of nodes are replaced every 10 minutes.
 
-Worker nodes receive a terminate signal from AWS. The preinstalled [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) drains machines gracefully before termination. The default timeout is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=1800`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools), which you can adjust as needed.
+Worker nodes receive a terminate signal from AWS. The preinstalled [`aws-node-termination-handler`](https://github.com/aws/aws-node-termination-handler) drains machines gracefully before termination. The default timeout is [`global.nodePools.PATTERN.awsNodeTerminationHandler.heartbeatTimeoutSeconds=180`](https://github.com/giantswarm/cluster-aws/blob/main/helm/cluster-aws/README.md#node-pools), which you can adjust as needed.
 
 {{< /tab >}}
 {{< tab id="azure-upgrade-details" for-impl="capz" title="Azure" >}}

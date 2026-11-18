@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2026-06-11
+last_review_date: 2026-10-16
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
@@ -38,18 +38,29 @@ It supports the following flags:
 - `--label` (optional) - Label in the form `key=value` to set on the cluster. Can be specified multiple times.
 - `--service-priority` (optional) - Service priority of the cluster (one of: `highest`, `medium`, `lowest`).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
-- `--oidc-issuer-url` (optional) - Issuer URL for configuring OpenID Connect in the cluster API.
-- `--oidc-ca-file` (optional) - CA file path for OIDC endpoint, when not using a trusted Certificate Authority.
-- `--oidc-client-id` (optional) - Client ID configured in the OIDC endpoint.
-- `--oidc-username-claim` (optional) - Claim used to map the username identity of the user.
-- `--oidc-groups-claim` (optional) - Claim used to map the group identity of the user.
+- `--disable-oidc` (optional) - Leave `global.controlPlane.oidc` out, so that the cluster's API server trusts no OIDC issuer. Cannot be combined with the `--oidc-*` flags. See [OIDC](#oidc).
+- `--oidc-issuer-url` (optional) - Issuer URL the cluster trusts instead of the management cluster's Dex. Requires `--oidc-client-id`.
+- `--oidc-ca-file` (optional) - Path to a PEM file with the CA certificate used to verify the OIDC issuer, when it doesn't use a trusted Certificate Authority.
+- `--oidc-client-id` (optional) - OIDC client ID (default: the management cluster's).
+- `--oidc-username-claim` (optional) - Claim used to map the username identity of the user (default: the management cluster's, or `email` with `--oidc-issuer-url`).
+- `--oidc-groups-claim` (optional) - Claim used to map the group identity of the user (default: the management cluster's, or `groups` with `--oidc-issuer-url`).
+
+### OIDC {#oidc}
+
+For the providers `capa`, `capz`, `vsphere` and `cloud-director`, the command sets `global.controlPlane.oidc` in the generated cluster configuration, so that the workload cluster's API server trusts the OIDC issuer (Dex) of the management cluster that the current kubeconfig context points at. You don't need to pass any `--oidc-*` flag for that. The values are read from the management cluster's own control plane. The `eks` provider runs a managed control plane and isn't affected.
+
+- To override single settings, pass the matching `--oidc-*` flag, for example `--oidc-groups-claim`. Flags you pass win over the values read from the management cluster.
+- To trust another issuer, pass `--oidc-issuer-url` together with `--oidc-client-id`. The management cluster isn't asked in that case.
+- To leave the OIDC settings out, pass `--disable-oidc`. Combining it with any `--oidc-*` flag is an error.
+
+If the values can't be read from the management cluster, for example because the kubeconfig has no context selected, the command fails with an error that names the cause and the two ways out: `--oidc-issuer-url` with `--oidc-client-id`, or `--disable-oidc`.
 
 ### Flags specific to AWS {#flags-capa}
 
 - `--aws-cluster-role-identity-name` (optional) - Refers to the IAM role used to create all AWS cloud resources when creating the cluster. The role can be in another AWS account in order to create all resources in that account (default: `default`).
 - `--az-usage-limit` (optional) - Maximum number of availability zones (AZ) that should be used in a region. If a region has more than this number of AZs then this number of AZs will be picked randomly when creating subnets (default: `3`).
 - `--bastion-instance-type` (optional) - Instance type used for the bastion machine (default: `t3.small`).
-- `--bastion-replicas` (optional) - Number of bastion instances to run.
+- `--bastion-replicas` (optional) - Number of bastion instances to run (default: `1`).
 - `--control-plane-instance-type` (optional) - Instance type used for Control plane nodes (default: `r6i.xlarge`).
 - `--cluster-catalog` (optional) - Name of the Giant Swarm app catalog that holds the cluster's app release.
 - `--cluster-version` (optional) - Version of `cluster-aws` helm chart to use. If not provided, the latest version will be used.
@@ -86,11 +97,11 @@ It supports the following flags:
 - `--cluster-version` (optional) - Version of `cluster-vsphere` helm chart to use. If not provided, the latest version will be used.
 - `--default-apps-catalog` (optional) - Name of the Giant Swarm app catalog that holds the default-apps' app release.
 - `--default-apps-version` (optional) - Version of `default-apps-vsphere` helm chart to use. If not provided, the latest version will be used.
-- `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: 1.24.11).
+- `--kubernetes-version` (optional) - Cluster's Kubernetes version (default: `v1.24.12`).
 - `--vsphere-control-plane-disk-gib` (optional) - Disk size in GiB for individual control plane nodes (default: 50).
 - `--vsphere-control-plane-ip` (optional) - Control plane IP, leave empty for auto allocation.
 - `--vsphere-control-plane-ip-pool` (optional) - Name of `GlobalInClusterIpPool` CR from which to take an IP for the control plane (default: `wc-cp-ips`).
-- `--vsphere-control-plane-memory-mib` (optional) - Memory size in MiB for individual control plane nodes (default: 8096).
+- `--vsphere-control-plane-memory-mib` (optional) - Memory size in MiB for individual control plane nodes (default: 8192).
 - `--vsphere-control-plane-num-cpus` (optional) - Number of CPUs for individual control plane nodes (default: 4).
 - `--vsphere-control-plane-replicas` (optional) - Number of control plane replicas in odd number (default: 3).
 - `--vsphere-credentials-secret-name` (optional) - Name of the kubernetes secret that should be associated to the cluster app. It should exist in the organization's namespace and should contain the credentials for vsphere.

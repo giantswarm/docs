@@ -4,7 +4,7 @@ diataxis_content_type: how-to-guide
 linkTitle: AWS
 description: Prepare your AWS account to start building your cloud-native developer platform with Giant Swarm.
 weight: 10
-last_review_date: 2026-02-25
+last_review_date: 2026-10-06
 layout: single
 menu:
   principal:
@@ -37,7 +37,7 @@ To onboard a new AWS account to use with the Giant Swarm platform, for both Mana
 
 After that, make sure to notify your Giant Swarm account engineer to provide the new AWS account ID so we can bootstrap the rest of the required IAM resources.
 
-In case you have already set up the management cluster and Giant Swarm has confirmed configuration of the new AWS account, you can [configure cluster role identity](#configure-cluster-role-identity}) for your Workload Cluster. With this in place you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
+In case you have already set up the management cluster and Giant Swarm has confirmed configuration of the new AWS account, you can [configure cluster role identity](#configure-cluster-role-identity) for your Workload Cluster. With this in place you can proceed with the [creation of the workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster" >}}).
 
 ## Step 2: Configure the cluster role identity for Workload Clusters {#configure-cluster-role-identity}
 

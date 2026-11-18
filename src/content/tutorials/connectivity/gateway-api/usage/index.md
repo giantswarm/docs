@@ -19,6 +19,8 @@ last_review_date: 2025-10-17
 
 ## Usage examples
 
+The hostnames in these examples only get a DNS record and a TLS certificate when they're listed as subdomains in the bundle configuration. See [Requirements for exposing a service through Gateway API]({{< relref "/tutorials/connectivity/gateway-api/route-requirements" >}}).
+
 ### Basic HTTP routing
 
 Create an HTTPRoute to route traffic to your application using the default Gateway:

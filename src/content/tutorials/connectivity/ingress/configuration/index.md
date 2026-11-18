@@ -23,7 +23,7 @@ user_questions:
   - How can I use ingress-nginx controller as a Web Application Firewall?
   - How can I protect my workload from malicious requests?
   - How can I enable & configure ModSecurity inside of the ingress-nginx controller?
-last_review_date: 2026-05-18
+last_review_date: 2026-10-06
 aliases:
   - /vintage/advanced/connectivity/ingress/configuration
   - /advanced/connectivity/ingress/configuration
@@ -52,7 +52,7 @@ You can aggregate multiple ingress rules into a single ingress definition like f
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
 spec:
@@ -88,7 +88,7 @@ You can route an ingress to different Services based on the path:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
 spec:
@@ -127,7 +127,7 @@ For SSL passthrough you need to set an annotation and enable TLS for the host:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
   annotations:
@@ -173,7 +173,7 @@ Referencing this secret in an ingress will tell the ingress controller to secure
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
 spec:
@@ -237,7 +237,7 @@ Last, we create the ingress with the according annotations:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
   annotations:
@@ -280,7 +280,7 @@ This can for example be used together with path based routing, when the applicat
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
   annotations:
@@ -366,7 +366,7 @@ Here is an example of adding an `Expires` header to every response:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: ingress
+kind: Ingress
 metadata:
   name: INGRESS_NAME
   annotations:

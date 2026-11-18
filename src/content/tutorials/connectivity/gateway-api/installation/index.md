@@ -13,7 +13,18 @@ owner:
 user_questions:
   - How do I install Gateway API in my Giant Swarm cluster?
   - How do I install and configure the Gateway API Bundle?
-last_review_date: 2026-05-18
+  - Why does the default Gateway get no address on AWS?
+  - How do I install the AWS Load Balancer Controller for Gateway API?
+  - How are the Envoy proxy pods spread across availability zones on AWS?
+  - How do I override or turn off the zone spread of the Envoy proxy pods?
+  - Which subnets must the AWS Network Load Balancer of a Gateway use?
+  - How do I keep the Gateway load balancer in fewer availability zones?
+  - What does a Gateway need to use NLB IP target mode on AWS?
+  - Why do the Envoy proxy pods never become ready in IP target mode?
+  - How do I enable ListenerSet support in cert-manager?
+  - How do I get TLS certificates for a ListenerSet?
+  - How do I get DNS records for ListenerSet hostnames?
+last_review_date: 2026-11-13
 ---
 
 ## Prerequisites
@@ -24,13 +35,13 @@ Before setting up Gateway API, ensure you have:
 - `kubectl` configured to access your workload cluster
 - Access to the Giant Swarm platform API for app installation
 - Basic understanding of Kubernetes networking concepts
-- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers.
+- On AWS based clusters, [`aws-load-balancer-controller`](https://github.com/giantswarm/aws-lb-controller-bundle) is required for configuring AWS Network Load Balancers. Without it, the default Gateway never gets an address. See [Install the AWS Load Balancer Controller](#install-the-aws-load-balancer-controller).
 
 ## Installation
 
 Gateway API support is provided through three apps that work together. You can install them individually or use the Gateway API Bundle for simplified deployment. Our recommendation is to use the Gateway API Bundle, which installs all required components (Gateway API CRDs, [Envoy Gateway](https://gateway.envoyproxy.io/) and a preconfigured default Gateway):
 
-**Note:** The Gateway API Bundle currently ships as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}), which is being phased out in favor of Flux HelmRelease. The bundle itself doesn't yet have a HelmRelease equivalent because it deploys nested App resources internally. For application deployments outside the bundle, use HelmRelease.
+**Note:** The Gateway API Bundle runs on the management cluster. You install it as an [`App` custom resource]({{< relref "/overview/fleet-management/app-management" >}}) with `kubeConfig.inCluster: true`, and since version 2.0.0 it deploys its components to the workload cluster as Flux `HelmRelease` resources. Install it on the management cluster as shown below. Targeting the workload cluster directly fails with `no matches for kind "HelmRelease"`, because the workload cluster has no Flux. For application deployments outside the bundle, use HelmRelease.
 
 ```yaml
 apiVersion: v1
@@ -60,10 +71,50 @@ spec:
     configMap:
       name: <CLUSTER_NAME>-gateway-api-bundle
       namespace: org-<ORGANIZATION>
-  version: 1.15.0
+  version: 2.0.0
 ```
 
-Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until the child apps are deployed (CRDs, Envoy Gateway, and Gateway default config).
+Run the `kubectl apply -f <bundle-config.yaml>` command on your management cluster to install the bundle, then wait until its three `HelmRelease` resources (CRDs, Envoy Gateway, and Gateway default config) are ready:
+
+```bash
+kubectl get helmreleases -n org-<ORGANIZATION> | grep <CLUSTER_NAME>-
+```
+
+### Install the AWS Load Balancer Controller
+
+On AWS, the default Gateway gets a Network Load Balancer, which the AWS Load Balancer Controller creates. Until the controller runs, the Gateway stays `Programmed=False` with the reason `AddressNotAssigned`. Like the Gateway API Bundle, its bundle runs on the management cluster:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-aws-lb-controller-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 0.0.0
+  name: <CLUSTER_NAME>-aws-lb-controller-bundle
+  namespace: org-<ORGANIZATION>
+spec:
+  catalog: giantswarm
+  kubeConfig:
+    inCluster: true
+  name: aws-lb-controller-bundle
+  namespace: org-<ORGANIZATION>
+  userConfig:
+    configMap:
+      name: <CLUSTER_NAME>-aws-lb-controller-bundle
+      namespace: org-<ORGANIZATION>
+  version: 6.1.0
+```
+
+Apply it on the management cluster. Once the controller runs on the workload cluster, the default Gateway gets an address within a few minutes.
 
 ## Configuration
 
@@ -83,6 +134,139 @@ global:
           enableGatewayAPI: true
           kind: ControllerConfiguration
 ```
+
+#### Enabling ListenerSet Support
+
+A [ListenerSet](https://gateway-api.sigs.k8s.io/geps/gep-1713/) lets you add listeners to an existing Gateway from your own namespace, for example to serve your own domain with its own certificate, without changing the shared `giantswarm-default` Gateway. cert-manager can issue certificates for ListenerSets the same way it does for Gateways, but this support is an alpha feature that's turned off by default.
+
+ListenerSet support needs cert-manager v1.20 or newer, which ships with cluster release v35.0.0 and newer. These releases include `cert-manager-app` v4, which expects the upstream chart values under the `cert-manager` key.
+
+To turn it on, extend the cert-manager configuration in your cluster's user ConfigMap:
+
+```yaml
+global:
+  apps:
+    certManager:
+      values:
+        cert-manager:
+          config:
+            apiVersion: controller.config.cert-manager.io/v1alpha1
+            kind: ControllerConfiguration
+            enableGatewayAPI: true
+            enableGatewayAPIListenerSet: true
+            featureGates:
+              ListenerSets: true
+```
+
+All three settings are required:
+
+- `enableGatewayAPI` turns on the Gateway API integration that ListenerSet support builds on.
+- `enableGatewayAPIListenerSet` turns on the cert-manager controller that watches ListenerSets.
+- `featureGates.ListenerSets` enables the alpha feature gate. Without it, cert-manager ignores `enableGatewayAPIListenerSet`.
+
+cert-manager checks for the ListenerSet CRD when it starts and fails to start if the CRD is missing. The Gateway API Bundle installs the CRD, so apply this configuration only after the bundle is deployed. If you install the CRDs later, restart the cert-manager controller.
+
+ListenerSets created in your own namespaces can only attach to a Gateway that allows them. Open the default Gateway to ListenerSets in the bundle configuration:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  allowedListeners:
+                    enabled: true
+                    namespaces:
+                      from: All
+```
+
+Use `from: Selector` with a `selector` to limit which namespaces may attach ListenerSets.
+
+With both changes in place, annotate a ListenerSet with an issuer and reference a Secret in each HTTPS listener. cert-manager creates a `Certificate` for every listener's hostname and stores it in that Secret:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: my-listeners
+  namespace: my-namespace
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+    giantswarm.io/external-dns: managed
+spec:
+  parentRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: giantswarm-default
+    namespace: envoy-gateway-system
+  listeners:
+    - name: https
+      hostname: myapp.example.com
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: myapp-example-com-tls
+      allowedRoutes:
+        namespaces:
+          from: Same
+```
+
+If the ListenerSet has no issuer annotation, it inherits the one from its parent Gateway. Check that the ListenerSet is attached with `kubectl get listenerset -n my-namespace my-listeners`, and that the certificate was issued with `kubectl get certificate -n my-namespace`.
+
+#### DNS records for ListenerSet hostnames
+
+cert-manager doesn't create DNS records. external-dns can create them, but neither ListenerSets nor HTTPRoutes are among the sources it watches by default. It only creates records for Services and for the `DNSEndpoint` resources that the Gateway API Bundle generates.
+
+ListenerSet support needs `external-dns-app` v3.5.0 or newer, which ships with cluster release v35.0.0 and newer.
+
+To turn it on, add the following section to your cluster's user ConfigMap:
+
+```yaml
+global:
+  apps:
+    externalDns:
+      values:
+        sources:
+          - service
+          - crd
+          - gateway-httproute
+        enableGatewayListenerSets: true
+```
+
+Both settings are required:
+
+- `sources` adds `gateway-httproute`, so external-dns creates a record for every HTTPRoute hostname. Keep `service` and `crd` in the list, because the list replaces the default instead of extending it.
+- `enableGatewayListenerSets` lets external-dns follow an HTTPRoute that's attached to a ListenerSet up to its parent Gateway, and use the Gateway's load balancer address for the record.
+
+external-dns creates the record from the HTTPRoute, not from the ListenerSet. A hostname only gets a record once an HTTPRoute attaches to the ListenerSet listener. The managed external-dns only creates records for subdomains of your cluster's base domain. For other domains, run your own external-dns instance.
+
+By default, the managed external-dns only reads resources that carry the `giantswarm.io/external-dns: managed` annotation. Add it to every HTTPRoute that needs a record:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: myapp
+  namespace: my-namespace
+  annotations:
+    giantswarm.io/external-dns: managed
+```
+
+Since `external-dns-app` v3.7.0, which ships with cluster release v36.2.0 and newer on CAPA and CAPZ, external-dns also ignores a ListenerSet without the annotation. Routes attached to such a ListenerSet get no record, even when they carry the annotation themselves. Add it to the ListenerSet too, as in the earlier ListenerSet example. Older versions ignore it on ListenerSets, so it's safe to add before upgrading.
 
 ### Using the default gateway
 
@@ -214,6 +398,94 @@ data:
 
 You can add multiple listeners to the same Gateway to accept traffic from different domains. Each listener can have its own configuration for TLS certificates, DNS endpoints, and subdomain lists, allowing you to manage multiple domains within a single Gateway resource. The `giantswarm-default` gateway comes with 2 listeners enabled by default: one on port 80 (HTTP) and one on port 443 (HTTPS). Keep in mind that there is a limit of 64 listeners per Gateway, and each listener must have a unique combination of port, protocol, and hostname.
 
+### Load balancers on AWS
+
+On CAPA (AWS) clusters, each Gateway gets an AWS Network Load Balancer (NLB) in front of its Envoy proxy pods. You tune the NLB with the `service.beta.kubernetes.io/aws-load-balancer-*` annotations of the [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/service/annotations/), which you set in `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.service.annotations` of the `gateway-api-bundle`. The `gateway-api-config` chart adds a few defaults so that the proxy pods and the NLB stay in step.
+
+#### Zone spread of the proxy pods
+
+Starting with `gateway-api-config` v1.13.0, the chart prefers an even spread of the proxy pods of each Gateway across availability zones. It adds this `topologySpreadConstraint` to the Envoy proxy deployment:
+
+```yaml
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: ScheduleAnyway
+    nodeTaintsPolicy: Honor
+    labelSelector:
+      matchLabels:
+        gateway.envoyproxy.io/owning-gateway-name: <GATEWAY_NAME>
+        gateway.envoyproxy.io/owning-gateway-namespace: <GATEWAY_NAMESPACE>
+    matchLabelKeys:
+      - pod-template-hash
+```
+
+The existing preferred anti-affinity, one proxy pod per node, stays in place. The default only applies on CAPA clusters with an NLB. With `nodeTaintsPolicy: Honor`, only zones with nodes that the proxy pods can run on count. Zones that only have control plane nodes don't count. Clusters with worker nodes in a single zone need no change.
+
+As `whenUnsatisfiable` is `ScheduleAnyway`, the spread is a preference. If a zone has no free node, the scheduler puts the pod in a different zone, so a scale-out never stops. If you need a strict spread, set your own list with `DoNotSchedule`.
+
+**Note:** The first `gateway-api-bundle` upgrade that includes `gateway-api-config` v1.13.0 restarts all proxy pods.
+
+You can change the default in three ways:
+
+- Set `apps.gatewayApiConfig.userConfig.configMap.values.gatewayClasses.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to define the spread for all Gateways of a class. The chart then adds no default.
+- Set a non-empty list in `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.envoyProxy.envoyDeployment.pod.topologySpreadConstraints` to replace the default for one Gateway.
+- Set `apps.gatewayApiConfig.userConfig.configMap.values.gateways.<name>.provider.aws.zoneSpread` to `false` to remove the default for one Gateway.
+
+#### Readiness gates in IP target mode
+
+Starting with `gateway-api-config` v1.13.0, if a Gateway or GatewayClass on a CAPA cluster uses NLB IP target mode (`service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip`), the chart labels the `envoy-gateway-system` namespace with `elbv2.k8s.aws/pod-readiness-gate-inject: enabled`. New proxy pods then only become `Ready` once the NLB reports their target as healthy. If an update's new pods aren't ready, the NLB stops sending traffic to them, and the old pods keep serving traffic.
+
+In instance target mode, the default, the chart doesn't add the label.
+
+IP target mode only works on clusters that run Cilium in [ENI IPAM mode]({{< relref "/tutorials/fleet-management/cluster-management/aws-cilium-eni-mode/" >}}). In IP target mode, the NLB sends traffic straight to the pod IPs. By default, Cilium gives pods IPs from `100.64.0.0/12`, which aren't part of the VPC, so the NLB can't register them as targets. The readiness gate then never turns true, and the new proxy pods never become `Ready`. You can only set the IPAM mode when you create the cluster. On clusters with the default IPAM mode, keep instance target mode.
+
+#### Load balancer subnets
+
+If you set the subnets of the NLB with `service.beta.kubernetes.io/aws-load-balancer-subnets`, the list must contain one subnet for **each** availability zone that can run proxy pods. The NLB marks targets in zones without a subnet as `unused`, and traffic to the Gateway times out.
+
+Starting with `gateway-api-config` v1.13.0, the chart refuses to render if the list has an empty entry or if the value is empty. A trailing comma such as `subnet-a,` adds an empty entry. To unblock the upgrade, remove the empty entry or the annotation.
+
+If the NLB must stay in fewer zones, pin the proxy pods to the same zones with a node affinity on `topology.kubernetes.io/zone`. The node affinity merges with the default anti-affinity. This example keeps the default Gateway in two zones:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <CLUSTER_NAME>-gateway-api-bundle
+  namespace: org-<ORGANIZATION>
+data:
+  values: |
+    clusterID: <CLUSTER_NAME>
+    organization: <ORGANIZATION>
+    apps:
+      gatewayApiConfig:
+        userConfig:
+          configMap:
+            values: |
+              gateways:
+                default:
+                  service:
+                    annotations:
+                      # One subnet per zone: eu-central-1a and eu-central-1b
+                      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0aaa1111,subnet-0bbb2222
+                  envoyProxy:
+                    envoyDeployment:
+                      pod:
+                        affinity:
+                          nodeAffinity:
+                            requiredDuringSchedulingIgnoredDuringExecution:
+                              nodeSelectorTerms:
+                                - matchExpressions:
+                                    - key: topology.kubernetes.io/zone
+                                      operator: In
+                                      values:
+                                        - eu-central-1a
+                                        - eu-central-1b
+```
+
+Keep the zones in the node affinity and the subnets in the annotation in sync. The zone spread from v1.13.0 then only spreads the proxy pods across these two zones.
+
 ## Troubleshooting
 
 Envoy Gateway provides the `egctl` command-line tool for diagnostics. To get an overview of the status of all Gateway API resources across all namespaces, run:
@@ -225,3 +497,19 @@ egctl x status all -A
 This displays the status conditions (such as `Accepted`, `Programmed`, or `ResolvedRefs`) for GatewayClasses, Gateways, HTTPRoutes, and other Gateway API resources, making it easier to spot misconfigurations or issues.
 
 Find more information about the command in the [official documentation](https://gateway.envoyproxy.io/docs/tasks/operations/egctl/).
+
+### Proxy pods never become ready in IP target mode
+
+If a Gateway uses NLB IP target mode and its new proxy pods never become ready, although their containers are ready, `kubectl get pods -n envoy-gateway-system -o wide` shows `0/1` in the `READINESS GATES` column. List the conditions of such a pod:
+
+```bash
+kubectl get pod -n envoy-gateway-system <POD_NAME> -o jsonpath='{range .status.conditions[*]}{.type}={.status}{"\n"}{end}'
+```
+
+If the `target-health.elbv2.k8s.aws/...` condition stays `False` or is missing, check which IPAM mode Cilium uses:
+
+```bash
+kubectl get configmap -n kube-system cilium-config -o jsonpath='{.data.ipam}'
+```
+
+If the command doesn't print `eni`, the pod IPs aren't part of the VPC and the NLB can't register them. Switch the Gateway back to instance target mode, or use a cluster with [Cilium ENI IPAM mode]({{< relref "/tutorials/fleet-management/cluster-management/aws-cilium-eni-mode/" >}}).

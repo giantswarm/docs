@@ -11,7 +11,7 @@ menu:
     identifier: overview-agent-platform-architecture
 owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
-last_review_date: 2026-09-28
+last_review_date: 2026-10-06
 user_questions:
   - How is the Agent Platform structured?
   - What is agentgateway and where does it sit?
@@ -52,7 +52,7 @@ OAuth sign-in, token, and discovery endpoints are served by Muster directly. Onl
 
 ## The aggregator
 
-Muster hosts all the aggregation logic, manages the lifecycle of downstream MCP server connections, monitors their health, and exposes a [meta-tools]({{< relref "/overview/agent-platform/meta-tools" >}}) interface using the MCP HTTP and SSE transports.
+Muster hosts all the aggregation logic, manages the lifecycle of downstream MCP server connections, monitors their health, and exposes a [meta-tools]({{< relref "/overview/agent-platform/meta-tools" >}}) interface over the MCP Streamable HTTP transport (the default, served at `/mcp`).
 
 Modern AI assistants—Claude Code, Cursor, VS Code with GitHub Copilot, the developer portal chat, and other MCP-capable tools—support remote, OAuth-protected MCP servers natively. You point them straight at the platform's MCP URL and they handle the [OAuth flow]({{< relref "/overview/agent-platform/security" >}}) themselves:
 

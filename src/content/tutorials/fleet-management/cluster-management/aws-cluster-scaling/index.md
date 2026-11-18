@@ -9,7 +9,7 @@ menu:
   principal:
     parent: tutorials-fleet-management-clusters
     identifier: tutorials-fleet-management-clusters-scaling
-last_review_date: 2025-01-09
+last_review_date: 2026-10-06
 owner:
   - https://github.com/orgs/giantswarm/teams/team-rocket
   - https://github.com/orgs/giantswarm/teams/team-phoenix
@@ -21,7 +21,7 @@ At Giant Swarm, your workload clusters run with [cluster autoscaler](https://git
 
 The cluster autoscaler is running by default in all your cluster and it is responsible for scaling the number of nodes on the different node pools. It's triggered by not schedule pods, pods in `Pending` state, making the controller increase the number of desired nodes in the node pool. Indeed it modifies the `AutoScalingGroup` to reflect the new desired capacity.
 
-Instead, `Karpenter` is a recommended add-on that relies on the Kubernetes events to scale up or down the number of nodes in the cluster. It's select from a suite of instance types defined in a special `Provisioner` resources to match the workload requirements and can be configured to use spot instances to save costs. It's faster and more efficient than the cluster autoscaler, but it's harder to configure and manage.
+Instead, `Karpenter` is a recommended add-on that relies on the Kubernetes events to scale up or down the number of nodes in the cluster. It's select from a suite of instance types defined in `NodePool` and `EC2NodeClass` resources to match the workload requirements and can be configured to use spot instances to save costs. It's faster and more efficient than the cluster autoscaler, but it's harder to configure and manage.
 
 ## How both work together
 
@@ -45,7 +45,7 @@ When checking the flags provided to the controller, you see:
   containers:
   - args:
     - --scan-interval=30s
-    - --skip-nodes-with-system-pods=false
+    - --skip-nodes-with-system-pods=true
     - --skip-nodes-with-local-storage=false
     - --new-pod-scale-up-delay=300s
     - --scale-down-utilization-threshold=0.7
