@@ -14,7 +14,8 @@ user_questions:
   - How can I safeguard resources?
   - How can I protect clusters from accidental deletion?
   - How can I safeguard clusters?
-last_review_date: 2026-07-02
+  - How can I delete a cluster that has deletion prevention?
+last_review_date: 2026-11-19
 aliases:
   - /advanced/app-platform/deletion-prevention
   - /guides/deletion-prevention/
@@ -69,7 +70,9 @@ To use this mechanism you have to do two things:
 
 ## Creating a cluster with deletion prevention
 
-In the `kubectl gs template cluster` command of the [Create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) guide, add the parameter `--prevent-deletion`.
+Since kubectl-gs v7.0.0, [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [`kubectl gs gitops add base`]({{< relref "/reference/kubectl-gs/gitops/add-base" >}}) protect new clusters by default. They label the cluster's `HelmRelease` and `OCIRepository` (or its `App`, for clusters deployed as one), and set `global.metadata.preventDeletion: true` in the cluster values, so that the chart labels the `Cluster` resource too. `kubectl gs template cluster` also labels the `<cluster-name>-userconfig` ConfigMap.
+
+To create a cluster without deletion prevention, pass `--prevent-deletion=false`. Older kubectl-gs versions only protect the cluster when you pass `--prevent-deletion`.
 
 ## Adding deletion prevention to an existing cluster
 
@@ -123,6 +126,45 @@ spec:
 ```
 
 After applying the ConfigMap change on the management cluster, you should see the deletion prevention label on certain resources such as the `Cluster` object.
+
+The value doesn't protect the resources that deploy the chart. Label them too, for example for a cluster deployed as a `HelmRelease`:
+
+```sh
+kubectl label -n org-myorg helmrelease/mycluster ocirepository/mycluster configmap/mycluster-userconfig giantswarm.io/prevent-deletion=true
+```
+
+For a cluster deployed as an `App`, label `app/mycluster` instead of the `HelmRelease` and the `OCIRepository`.
+
+## Deleting a cluster with deletion prevention {#deleting-a-protected-cluster}
+
+The management cluster refuses to delete a resource with the `giantswarm.io/prevent-deletion` label. To delete a protected cluster, remove the protection first:
+
+1. Set `global.metadata.preventDeletion` to `false`, so that the chart removes the label from the `Cluster` resource. For a cluster deployed as a `HelmRelease`, set it in the `HelmRelease` values, which take precedence over the ConfigMaps in `valuesFrom`:
+
+   ```sh
+   kubectl patch -n org-myorg helmrelease mycluster --type merge \
+     -p '{"spec":{"values":{"global":{"metadata":{"preventDeletion":false}}}}}'
+   ```
+
+   For a cluster deployed as an `App`, set it in the `<cluster-name>-userconfig` ConfigMap instead.
+
+2. Wait until the chart upgrade has removed the label from the `Cluster` resource. The `PREVENT-DELETION` column has to be empty:
+
+   ```sh
+   kubectl get clusters.cluster.x-k8s.io -n org-myorg mycluster -L giantswarm.io/prevent-deletion
+   ```
+
+3. Remove the label from the resources that deploy the chart:
+
+   ```sh
+   kubectl label -n org-myorg helmrelease/mycluster ocirepository/mycluster configmap/mycluster-userconfig giantswarm.io/prevent-deletion-
+   ```
+
+   For a cluster deployed as an `App`, remove it from `app/mycluster` and `configmap/mycluster-userconfig`.
+
+4. Delete the cluster as usual, for example as described in [Create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster#deleting-workload-cluster" >}}).
+
+If Flux applies the cluster's resources from a GitOps repository, make these changes in the repository instead, or Flux restores the labels and values. The [gitops-template getting started guide](https://github.com/giantswarm/gitops-template/blob/main/docs/getting-started.md#6-delete-the-cluster-optional) shows how.
 
 ## Creating a managed app with deletion prevention
 

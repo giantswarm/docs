@@ -58,7 +58,7 @@ Downgrading a cluster to an older release isn't supported. See [cluster downgrad
 
 To trigger an upgrade:
 
-- **GitOps**: Update the cluster configuration file with the desired release version
+- **GitOps**: Update the release version in your repository. For a cluster deployed as a `HelmRelease` of a `release-<provider>` chart, that's the `spec.ref.tag` of its `OCIRepository`. Otherwise, it's `global.release.version` in the cluster values
 - **kubectl-gs** command line tool: Use the [`update cluster`]({{< relref "/reference/kubectl-gs/update-cluster" >}}) command with the `--release-version` flag
 
 ## Avoid downtime during upgrades

@@ -11,7 +11,7 @@ owner:
   - https://github.com/orgs/giantswarm/teams/team-bumblebee
 user_questions:
   - How can I create a cluster manifest for the platform API?
-last_review_date: 2026-10-16
+last_review_date: 2026-11-19
 aliases:
   - /vintage/use-the-api/kubectl-gs/template-cluster/
 ---
@@ -20,8 +20,12 @@ This command helps with creating a Cluster API (CAPI) cluster by producing a man
 
 The generated manifest includes:
 
-- [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) - describes the Giant Swarm App which defines the helm release which in turn creates the actual cluster resources. The resource name is identical with the cluster name.
-- `ConfigMap` - describes the configuration for the above cluster chart. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which cluster chart is used, depending on the cloud provider. The resource name is the cluster name plus the `-userconfig` suffix.
+- `ConfigMap` - describes the configuration for the cluster chart. The resource name is the cluster name plus the `-userconfig` suffix.
+- Flux `OCIRepository` and `HelmRelease` - deploy the `release-<provider>` chart of the given release, such as `release-aws`, with the values of the above ConfigMap. The chart creates the actual cluster resources. Both resource names are identical with the cluster name.
+
+When no `release-<provider>` chart exists for the given release, for example for a release that isn't published yet, the command generates an [`App`]({{< relref "/reference/platform-api/crd/apps.application.giantswarm.io.md" >}}) of the `cluster-<provider>` chart instead of the `OCIRepository` and the `HelmRelease`, and prints a warning. It does the same when you pass `--cluster-version`. Please see [Creating a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster/" >}}) for which cluster chart is used, depending on the cloud provider.
+
+By default, the generated resources are protected from deletion. See [deletion prevention](#deletion-prevention).
 
 ## Syntax and flags
 
@@ -36,6 +40,7 @@ It supports the following flags:
 - `--description` (optional) - User-friendly description of the cluster's purpose.
 - `--control-plane-az` (optional) - Availability zone(s) of the control plane instance(s). On AWS, must match the installation region (e.g. `eu-central-1a` for region `eu-central-1`). On Azure, can be any of `1`, `2`, `3`. Use the flag once for a single control plane node, or three times with distinct AZs for high-availability (AWS only).
 - `--label` (optional) - Label in the form `key=value` to set on the cluster. Can be specified multiple times.
+- `--prevent-deletion` (optional) - Protect the cluster from deletion (default: `true`). Pass `--prevent-deletion=false` to allow deleting it. See [deletion prevention](#deletion-prevention).
 - `--service-priority` (optional) - Service priority of the cluster (one of: `highest`, `medium`, `lowest`).
 - `--output` (optional) - The name of the file to write the output to instead of stdout.
 - `--disable-oidc` (optional) - Leave `global.controlPlane.oidc` out, so that the cluster's API server trusts no OIDC issuer. Cannot be combined with the `--oidc-*` flags. See [OIDC](#oidc).
@@ -54,6 +59,15 @@ For the providers `capa`, `capz`, `vsphere` and `cloud-director`, the command se
 - To leave the OIDC settings out, pass `--disable-oidc`. Combining it with any `--oidc-*` flag is an error.
 
 If the values can't be read from the management cluster, for example because the kubeconfig has no context selected, the command fails with an error that names the cause and the two ways out: `--oidc-issuer-url` with `--oidc-client-id`, or `--disable-oidc`.
+
+### Deletion prevention {#deletion-prevention}
+
+Since kubectl-gs v7.0.0, the command protects the cluster from accidental deletion by default:
+
+- It adds the `giantswarm.io/prevent-deletion: "true"` label to the ConfigMap, and to the `OCIRepository` and the `HelmRelease`, or to the `App`.
+- It sets `global.metadata.preventDeletion: true` in the cluster values, so that the chart adds the label to the `Cluster` resource too.
+
+The management cluster refuses to delete resources with this label. To delete the cluster later, remove the protection first, as described in [Prevent accidental deletion of resources]({{< relref "/tutorials/fleet-management/deletion-prevention#deleting-a-protected-cluster" >}}). To create a cluster without deletion prevention, pass `--prevent-deletion=false`.
 
 ### Flags specific to AWS {#flags-capa}
 
@@ -125,7 +139,7 @@ Example command for an AWS CAPI cluster:
 ```nohighlight
 kubectl gs template cluster \
   --provider capa \
-  --release 31.1.1 \
+  --release 36.1.1 \
   --control-plane-az eu-central-1a \
   --description "Development Cluster" \
   --name dev01 \
@@ -140,7 +154,7 @@ Example command for an Azure CAPI cluster:
 ```nohighlight
 kubectl gs template cluster \
   --provider capz \
-  --release 29.0.0 \
+  --release 36.1.1 \
   --region germanywestcentral \
   --azure-subscription-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --description "Development Cluster" \
@@ -170,7 +184,7 @@ kubectl gs template cluster \
 
 ## Output
 
-The above example command would generate the following output:
+The above example commands would generate the following output. The OIDC settings that the command reads from the management cluster are left out.
 
 {{< tabs >}}
 {{< tab id="command-output-aws-capi" for-impl="capa_ec2">}}
@@ -190,7 +204,8 @@ data:
         description: Development Cluster
         name: dev01
         organization: acme
-        preventDeletion: false
+        preventDeletion: true
+        servicePriority: highest
       nodePools:
         nodepool0:
           availabilityZones:
@@ -200,45 +215,61 @@ data:
           minSize: 3
           rootVolumeSizeGB: 8
       providerSpecific: {}
-      release:
-        version: 31.1.1
 kind: ConfigMap
 metadata:
   labels:
     giantswarm.io/cluster: dev01
+    giantswarm.io/prevent-deletion: "true"
   name: dev01-userconfig
   namespace: org-acme
 ---
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
 metadata:
   labels:
-    app-operator.giantswarm.io/version: 0.0.0
+    giantswarm.io/cluster: dev01
+    giantswarm.io/prevent-deletion: "true"
   name: dev01
   namespace: org-acme
 spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: cluster-aws
+  interval: 10m0s
+  provider: generic
+  ref:
+    tag: 36.1.1
+  timeout: 1m0s
+  url: oci://gsoci.azurecr.io/charts/giantswarm/release-aws
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  labels:
+    giantswarm.io/cluster: dev01
+    giantswarm.io/prevent-deletion: "true"
+  name: dev01
   namespace: org-acme
-  userConfig:
-    configMap:
-      name: dev01-userconfig
-      namespace: org-acme
-  version: ""
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: dev01
+    namespace: org-acme
+  install:
+    remediation:
+      remediateLastFailure: false
+  interval: 5m0s
+  releaseName: dev01
+  serviceAccountName: automation
+  storageNamespace: org-acme
+  targetNamespace: org-acme
+  timeout: 10m0s
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 10
+      strategy: rollback
+  valuesFrom:
+  - kind: ConfigMap
+    name: dev01-userconfig
+    valuesKey: values
 ```
 
 {{< /tab >}}
@@ -259,48 +290,66 @@ data:
         description: Development Cluster
         name: dev01
         organization: acme
+        preventDeletion: true
+        servicePriority: highest
       providerSpecific:
         location: germanywestcentral
         subscriptionId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-      release:
-        version: 29.0.0
 kind: ConfigMap
 metadata:
   labels:
     giantswarm.io/cluster: dev01
+    giantswarm.io/prevent-deletion: "true"
   name: dev01-userconfig
   namespace: org-acme
 ---
-apiVersion: application.giantswarm.io/v1alpha1
-kind: App
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
 metadata:
   labels:
-    app-operator.giantswarm.io/version: 0.0.0
+    giantswarm.io/cluster: dev01
+    giantswarm.io/prevent-deletion: "true"
   name: dev01
   namespace: org-acme
 spec:
-  catalog: cluster
-  config:
-    configMap:
-      name: ""
-      namespace: ""
-    secret:
-      name: ""
-      namespace: ""
-  kubeConfig:
-    context:
-      name: ""
-    inCluster: true
-    secret:
-      name: ""
-      namespace: ""
-  name: cluster-azure
+  interval: 10m0s
+  provider: generic
+  ref:
+    tag: 36.1.1
+  timeout: 1m0s
+  url: oci://gsoci.azurecr.io/charts/giantswarm/release-azure
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  labels:
+    giantswarm.io/cluster: dev01
+    giantswarm.io/prevent-deletion: "true"
+  name: dev01
   namespace: org-acme
-  userConfig:
-    configMap:
-      name: dev01-userconfig
-      namespace: org-acme
-  version: ""
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: dev01
+    namespace: org-acme
+  install:
+    remediation:
+      remediateLastFailure: false
+  interval: 5m0s
+  releaseName: dev01
+  serviceAccountName: automation
+  storageNamespace: org-acme
+  targetNamespace: org-acme
+  timeout: 10m0s
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: 10
+      strategy: rollback
+  valuesFrom:
+  - kind: ConfigMap
+    name: dev01-userconfig
+    valuesKey: values
 ```
 
 {{< /tab >}}

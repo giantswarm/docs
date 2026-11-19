@@ -106,7 +106,7 @@ In this example you create a custom version for AWS base:
       metadata:
         name: mywcl
         organization: myorg
-        preventDeletion: false
+        preventDeletion: true
         servicePriority: highest
       nodePools:
         nodepool0:
