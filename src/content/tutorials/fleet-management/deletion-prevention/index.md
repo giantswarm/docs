@@ -70,7 +70,7 @@ To use this mechanism you have to do two things:
 
 ## Creating a cluster with deletion prevention
 
-Since kubectl-gs v7.0.0, [`kubectl gs template cluster`]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [`kubectl gs gitops add base`]({{< relref "/reference/kubectl-gs/gitops/add-base" >}}) protect new clusters by default. They label the cluster's `HelmRelease` and `OCIRepository` (or its `App`, for clusters deployed as one), and set `global.metadata.preventDeletion: true` in the cluster values, so that the chart labels the `Cluster` resource too. `kubectl gs template cluster` also labels the `<cluster-name>-userconfig` ConfigMap.
+Since kubectl-gs v7.0.0, `kubectl gs template cluster` and `kubectl gs gitops add base` protect new clusters by default, as described in their [template cluster]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [add base]({{< relref "/reference/kubectl-gs/gitops/add-base" >}}) references. They label the cluster's `HelmRelease` and `OCIRepository` (or its `App`, for clusters deployed as one), and set `global.metadata.preventDeletion: true` in the cluster values, so that the chart labels the `Cluster` resource too. `kubectl gs template cluster` also labels the `<cluster-name>-userconfig` ConfigMap.
 
 To create a cluster without deletion prevention, pass `--prevent-deletion=false`. Older kubectl-gs versions only protect the cluster when you pass `--prevent-deletion`.
 
@@ -164,7 +164,7 @@ The management cluster refuses to delete a resource with the `giantswarm.io/prev
 
 4. Delete the cluster as usual, for example as described in [Create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster#deleting-workload-cluster" >}}).
 
-If Flux applies the cluster's resources from a GitOps repository, make these changes in the repository instead, or Flux restores the labels and values. The [`gitops-template` getting started guide](https://github.com/giantswarm/gitops-template/blob/main/docs/getting-started.md#6-delete-the-cluster-optional) shows how.
+If Flux applies the cluster's resources from a GitOps repository, make these changes in the repository instead, or Flux restores the labels and values. The `gitops-template` [getting started guide](https://github.com/giantswarm/gitops-template/blob/main/docs/getting-started.md#6-delete-the-cluster-optional) shows how.
 
 ## Creating a managed app with deletion prevention
 
