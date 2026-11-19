@@ -32,7 +32,7 @@ Observability is all about understanding what's happening in your systems, so yo
 
 - <i class="fas fa-file-alt" aria-hidden="true"></i> **Centralize your logs:** Capture detailed records of system and application events. Centralized logging makes troubleshooting and auditing easier. Search and analyze logs to find issues, track changes, and meet compliance needs, all in one place.
 
-- <i class="fas fa-route" aria-hidden="true"></i> **Trace your requests:** Follow requests as they flow through your distributed systems. Distributed tracing helps you understand how services interact, identify bottlenecks, and troubleshoot performance issues across your entire application stack. Tracing isn't enabled by default, so ask your account engineer to enable it for your installation. Once it's on, [send your traces with OpenTelemetry]({{< relref "/overview/observability/data-management/data-ingestion/" >}}).
+- <i class="fas fa-stream" aria-hidden="true"></i> **Trace your requests:** Follow requests as they flow through your distributed systems. Distributed tracing helps you understand how services interact, identify bottlenecks, and troubleshoot performance issues across your entire application stack. Tracing isn't enabled by default, so ask your account engineer to enable it for your installation. Once it's on, [send your traces with OpenTelemetry]({{< relref "/overview/observability/data-management/data-ingestion/" >}}).
 
 - <i class="fas fa-chart-bar" aria-hidden="true"></i> **Visualize your data:** Connect the dots between different data sources. Use dashboards, visualizations, and alerts to get a clear picture of your platform. Start with our ready-made dashboards or create your own to track what matters most to you.
 
