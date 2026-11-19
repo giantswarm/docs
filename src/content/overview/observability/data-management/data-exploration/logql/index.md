@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-observability-data-management-data-exploration
     identifier: overview-observability-data-management-data-exploration-logql
-last_review_date: 2025-07-17
+last_review_date: 2026-10-06
 aliases:
   - /overview/observability/data-management/data-exploration/advanced-logql-tutorial/
 owner:
@@ -140,7 +140,7 @@ Generate metrics to track error rates across services:
 **Query:**
 
 ```logql
-sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"}[5m] |~ `(?i)error|exception|failed`)) by (service, namespace)
+sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"} |~ `(?i)error|exception|failed` [5m])) by (service, namespace)
 /
 sum(rate({cluster_id="myInstallation", service_name="kube-apiserver"}[5m])) by (service, namespace)
 ```
