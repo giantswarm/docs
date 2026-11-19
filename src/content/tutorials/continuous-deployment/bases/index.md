@@ -124,12 +124,6 @@ In this example you create a custom version for AWS base:
     sed -i 's/mywcl/${cluster_name}/g' bases/clusters/capa/v36.1.1/cluster_config.yaml
     ```
 
-4. Replace `mywcl`, `myorg` values from the previous step with variables:
-
-    ```nohighlight
-    sed -i 's/myorg/${organization}/g' bases/clusters/capa/v0.21.0/cluster_config.yaml
-    sed -i 's/mywcl/${cluster_name}/g' bases/clusters/capa/v0.21.0/cluster_config.yaml
-    ```
     Note that on macOS, `sed -i` needs an empty suffix argument: `sed -i '' 's/myorg/${organization}/g' ...`.
 
 5. Check `cluster_config.yaml` against the version-specific `values.yaml`, and tweak it if necessary to match the expected schema. At this point you may also provide extra configuration, like additional availability zones, node pools, etc. If you used `kubectl gs template` to get the values, this should be aligned with the latest version. If you were trying to create a different version, you might need to check proper values for that version.
