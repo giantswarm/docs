@@ -164,7 +164,7 @@ The management cluster refuses to delete a resource with the `giantswarm.io/prev
 
 4. Delete the cluster as usual, for example as described in [Create a workload cluster]({{< relref "/getting-started/provision-your-first-workload-cluster#deleting-workload-cluster" >}}).
 
-If Flux applies the cluster's resources from a GitOps repository, make these changes in the repository instead, or Flux restores the labels and values. The [gitops-template getting started guide](https://github.com/giantswarm/gitops-template/blob/main/docs/getting-started.md#6-delete-the-cluster-optional) shows how.
+If Flux applies the cluster's resources from a GitOps repository, make these changes in the repository instead, or Flux restores the labels and values. The [`gitops-template` getting started guide](https://github.com/giantswarm/gitops-template/blob/main/docs/getting-started.md#6-delete-the-cluster-optional) shows how.
 
 ## Creating a managed app with deletion prevention
 
