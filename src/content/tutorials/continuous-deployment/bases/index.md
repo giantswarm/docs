@@ -12,7 +12,7 @@ user_questions:
   - How can I create an base template for workload clusters in GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-11-06
+last_review_date: 2026-11-19
 ---
 
 In Giant Swarm the interface to define a workload cluster is built on top of `Helm` and [Flux](https://fluxcd.io/flux/components/helm/helmreleases/). A Flux `HelmRelease` installs the release chart of your provider, for example `release-aws`, and an `OCIRepository` pulls that chart from `oci://gsoci.azurecr.io/charts/giantswarm/release-aws`. The chart version is the Giant Swarm release version. The `HelmRelease` contains the specification and configuration of the cluster in this format:

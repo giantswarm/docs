@@ -10,7 +10,7 @@ menu:
 aliases:
   - /platform-overview/cluster-management/cluster-upgrades/
   - /reference/cluster-upgrades/
-last_review_date: 2026-11-17
+last_review_date: 2026-11-19
 owner:
   - https://github.com/orgs/giantswarm/teams/team-phoenix
 user_questions:
