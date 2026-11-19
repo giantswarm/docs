@@ -1,0 +1,20 @@
+{
+  "_comment": "Example query set to be replaced with the real ~30 queries from sig-docs. 'expect' lists URL fragments; a result counts as a hit when any fragment is a substring of its URL. 'inkeep_hit' is filled in by hand after running the same query in the live Inkeep search (see README).",
+  "endpoint": "https://docs.giantswarm.io/searchapi/",
+  "docs_size": 10,
+  "blog_size": 4,
+  "top_k": 5,
+  "latency_budget_ms": 300,
+  "queries": [
+    {"q": "node pool", "expect": ["/node-pools"], "inkeep_hit": null},
+    {"q": "how do I add a node pool", "expect": ["/node-pools"], "inkeep_hit": null},
+    {"q": "create a cluster", "expect": ["/cluster-management", "/getting-started"], "inkeep_hit": null},
+    {"q": "upgrade a cluster", "expect": ["/cluster-management", "/upgrade"], "inkeep_hit": null},
+    {"q": "configuration management", "expect": ["/blog/configuration-management"], "inkeep_hit": null},
+    {"q": "kubectl gs", "expect": ["/kubectl-gs"], "inkeep_hit": null},
+    {"q": "observability", "expect": ["/observability"], "inkeep_hit": null},
+    {"q": "ingress", "expect": ["/networking", "/ingress"], "inkeep_hit": null},
+    {"q": "rbac", "expect": ["/security", "/rbac", "/authorization"], "inkeep_hit": null},
+    {"q": "backup and restore", "expect": ["/backup", "/velero"], "inkeep_hit": null}
+  ]
+}
