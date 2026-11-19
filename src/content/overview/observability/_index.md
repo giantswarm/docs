@@ -40,11 +40,19 @@ Observability is all about understanding what's happening in your systems, so yo
 
 - **Work securely with multi-tenancy:** Keep sensitive data safe by isolating it for the right teams, departments, or organizational structures. Our multi-tenant solution ensures only the right people have access to the right data.
 
+Each team signs in to its own Grafana organization, and each organization reads only the tenants assigned to it:
+
+![Multi-tenancy: each team signs in to its own Grafana organization, which reads only its own tenants](./observability-multi-tenancy.svg)
+
 One of the biggest benefits of using Giant Swarm is that you get the same reliable, integrated observability tools our own teams use every day. This gives you a comprehensive view of your applications and infrastructure, right out of the box.
 
 ## The technology behind our platform
 
 We rely exclusively on open source tools, so you have complete ownership of the software that we run for you.
+Alloy collects metrics, logs, and traces in your clusters and sends them to Mimir, Loki, and Tempo. You explore all three in Grafana, and Alertmanager notifies you when an alerting rule fires:
+
+![Observability platform overview: Alloy sends metrics, logs, and traces to Mimir, Loki, and Tempo, which feed Grafana and Alertmanager](./observability-overview.svg)
+
 Here are the most important tools we rely on:
 
 - **Mimir:** An open-source, horizontally scalable, highly available, multi-tenant time series database for long-term metric storage. Mimir is at the core of our metrics system. It stores the metrics that Alloy collects as time series data, and enables powerful querying and alerting.
