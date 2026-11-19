@@ -119,20 +119,35 @@ abbr[title]
 .centered-text
   text-align: center
 
-#searchInputMobile
-  margin-bottom: 20px
+.site-search-trigger
+  display: block
+  box-sizing: border-box
+  width: 100%
+  max-width: 480px
+  margin: 0 auto 20px
+  padding: 12px 18px 12px 46px
+  font-size: 15px
+  line-height: 1.4
+  color: #222326
+  background-color: #fff
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%236a6d77' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E")
+  background-repeat: no-repeat
+  background-position: 18px center
+  background-size: 18px 18px
+  border: 1px solid #e3e6ec
+  border-radius: 999px
+  box-shadow: 0 1px 2px rgba(17, 18, 20, 0.04)
+  cursor: pointer
+  appearance: none
 
-.ikp-search-bar__text
-  font-size: 14px
-  margin: 28px 0 28px auto
-  // match Inkeep's dimensions to avoid visible reflow
-  width: 262.5px
-  height: 40px
+.site-search-trigger::placeholder
+  color: #9aa0ab
+  opacity: 1
 
-  //input
-  //  width: 160px
-  //  font-size: 14px
-  //  padding: 2px
+.site-search-trigger:hover, .site-search-trigger:focus
+  border-color: #c7ccd6
+  box-shadow: 0 2px 8px rgba(17, 18, 20, 0.08)
+  outline: none
   //  padding-bottom: 2px
   //  padding-top: 2px
   //  padding-left: 4px
