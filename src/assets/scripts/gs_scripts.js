@@ -92,6 +92,38 @@ if (search_open && search_form && search_input && search_list) {
   let query = "";
   let controller = null;
   let debounce = null;
+  let searchStart = 0;
+  let performedTimer = null;
+  let performed = null;
+
+  // Telemetry. The query text is truncated to 100 characters because people
+  // sometimes paste tokens or personal data into a search box.
+  function track(type, payload) {
+    if (window.sendTelemetryEvent) {
+      window.sendTelemetryEvent(type, payload);
+    }
+  }
+
+  // "Search performed" is sent once the query settles, not on every keystroke,
+  // so one logical search is one event. A result click flushes it first, so a
+  // quick click still records both the search and the click.
+  function flushPerformed() {
+    if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
+    if (performed) {
+      track("Docs.Search.Performed", performed);
+      performed = null;
+    }
+  }
+
+  function schedulePerformed(resultCount) {
+    performed = {
+      query: query.slice(0, 100),
+      resultCount: resultCount,
+      durationMs: Date.now() - searchStart,
+    };
+    if (performedTimer) clearTimeout(performedTimer);
+    performedTimer = setTimeout(flushPerformed, 1500);
+  }
 
   function escapeHtml(value) {
     return String(value)
@@ -131,7 +163,7 @@ if (search_open && search_form && search_input && search_list) {
     document.body.classList.remove("site-search-active");
   }
 
-  function renderResult(hit) {
+  function renderResult(hit, group, position) {
     const source = hit._source || {};
     const highlight = hit.highlight || {};
     const title = highlight.title && highlight.title[0]
@@ -141,7 +173,8 @@ if (search_open && search_form && search_input && search_list) {
       ? withHighlight(highlight.body[0])
       : escapeHtml(source.description || "");
     let html = '<div class="site-search__result">';
-    html += '<div class="site-search__result-title"><a href="' + safeHref(source.url) + '">' + title + "</a></div>";
+    html += '<div class="site-search__result-title"><a href="' + safeHref(source.url) + '"'
+      + ' data-group="' + escapeHtml(group) + '" data-pos="' + position + '">' + title + "</a></div>";
     if (snippet) {
       html += '<div class="site-search__result-desc">' + snippet + "</div>";
     }
@@ -156,12 +189,13 @@ if (search_open && search_form && search_input && search_list) {
     blogHits.forEach(function(hit) { groups.Blog.push(hit); });
 
     let html = "";
+    let position = 0;
     GROUP_ORDER.forEach(function(name) {
       const items = groups[name];
       if (items.length === 0) return;
       html += '<div class="site-search__group">';
       html += '<div class="site-search__group-title">' + name + "</div>";
-      items.forEach(function(hit) { html += renderResult(hit); });
+      items.forEach(function(hit) { position += 1; html += renderResult(hit, name, position); });
       html += "</div>";
     });
 
@@ -201,6 +235,7 @@ if (search_open && search_form && search_input && search_list) {
       docsHits = [];
       docsTotal = 0;
       blogHits = [];
+      searchStart = Date.now();
     }
 
     // Drop any in-flight request so a slower earlier query cannot render late.
@@ -213,6 +248,8 @@ if (search_open && search_form && search_input && search_list) {
       if (search_zero) search_zero.hidden = true;
       if (search_error) search_error.hidden = true;
       if (search_more) search_more.hidden = true;
+      if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
+      performed = null;
       return;
     }
 
@@ -240,10 +277,18 @@ if (search_open && search_form && search_input && search_list) {
     }
 
     Promise.all(tasks)
-      .then(renderResults)
+      .then(function() {
+        renderResults();
+        if (!append) {
+          schedulePerformed(docsHits.length + blogHits.length);
+        }
+      })
       .catch(function(error) {
         if (error && error.name === "AbortError") return;
         showFallback();
+        if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
+        performed = null;
+        track("Docs.Search.Failed", { query: query.slice(0, 100), reason: "unavailable" });
       });
   }
 
@@ -277,4 +322,15 @@ if (search_open && search_form && search_input && search_list) {
       runSearch(true);
     });
   }
+  search_list.addEventListener("click", function(event) {
+    const link = event.target.closest && event.target.closest(".site-search__result-title a");
+    if (!link) return;
+    flushPerformed();
+    track("Docs.Search.ResultClicked", {
+      query: query.slice(0, 100),
+      group: link.getAttribute("data-group") || "",
+      position: Number(link.getAttribute("data-pos")) || 0,
+      url: link.getAttribute("href") || "",
+    });
+  });
 }

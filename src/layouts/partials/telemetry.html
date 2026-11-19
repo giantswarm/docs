@@ -1,0 +1,71 @@
+{{/* TelemetryDeck custom-event helper. The pageview web SDK loaded in scripts.html
+     only sends page views and exposes no API for custom events, so docs search
+     reports its own events through this helper, to the same docs TelemetryDeck
+     app. Mirrors the intranet's sendTelemetryEvent helper. */}}
+<script>
+(function() {
+  window.TELEMETRY_DECK_CONFIG = {
+    appID: "F188E67D-F9C1-43CD-B65C-B793BFA303AB",
+    endpoint: "https://nom.telemetrydeck.com/v2/",
+    enabled: true,
+    sessionDurationMinutes: 30
+  };
+
+  // A session-scoped anonymous token. It is not a user identity: TelemetryDeck
+  // requires a clientUser field, so this is a random value kept in sessionStorage
+  // that only allows counting distinct sessions. It carries no name or email.
+  window.getClientUserId = function() {
+    var storageKey = "telemetry_client_user";
+    var timestampKey = "telemetry_client_user_timestamp";
+    var sessionDurationMs = window.TELEMETRY_DECK_CONFIG.sessionDurationMinutes * 60 * 1000;
+    try {
+      var existingUser = sessionStorage.getItem(storageKey);
+      var timestamp = sessionStorage.getItem(timestampKey);
+      if (existingUser && timestamp && (Date.now() - parseInt(timestamp, 10)) < sessionDurationMs) {
+        return existingUser;
+      }
+      var newUserId = "anonymous_" + Date.now() + "_" + Math.random().toString(36).substring(2, 11);
+      sessionStorage.setItem(storageKey, newUserId);
+      sessionStorage.setItem(timestampKey, Date.now().toString());
+      return newUserId;
+    } catch (e) {
+      return null;
+    }
+  };
+
+  window.sendTelemetryEvent = function(eventType, payload) {
+    var config = window.TELEMETRY_DECK_CONFIG;
+    if (!config.enabled || !config.appID) {
+      return;
+    }
+    var clientUser = window.getClientUserId();
+    if (!clientUser) {
+      return;
+    }
+    if (!window.telemetrySessionId) {
+      window.telemetrySessionId = "session_" + Date.now() + "_" + Math.random().toString(36).substring(2, 11);
+    }
+    // Signals from a developer machine are filed as test data, so they never
+    // mix with production usage.
+    var isTestMode = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    var signal = {
+      appID: config.appID,
+      clientUser: clientUser,
+      type: eventType,
+      sessionID: window.telemetrySessionId,
+      isTestMode: isTestMode,
+      payload: payload || {}
+    };
+    try {
+      // keepalive lets a result-click event still reach the server while the
+      // browser is navigating away to the result.
+      fetch(config.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify([signal]),
+        keepalive: true
+      }).catch(function() {});
+    } catch (e) {}
+  };
+})();
+</script>
