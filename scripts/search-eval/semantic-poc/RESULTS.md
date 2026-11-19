@@ -9,31 +9,28 @@ hybrid search on 15 reworded / synonym queries.
 | Method | Hit rate |
 |---|---|
 | keyword | 8/15 (53%) |
-| neural (semantic) | 12/15 (80%) |
-| hybrid (min-max, 0.3 keyword / 0.7 neural) | 11/15 (73%) |
+| neural (semantic) | 13/15 (87%) |
+| hybrid (min-max, 0.3 keyword / 0.7 neural) | 13/15 (87%) |
 
-Setting aside one broken query (`make a cluster smaller`, whose best page
-`cluster-downgrades` is not on this branch), neural is 12/14 (86%).
+Semantic (neural) and hybrid both reach 87% against keyword's 53% on these
+reworded queries.
 
 ## Reading it
 
-- Semantic search clearly helps on reworded queries. Neural rescued the cases
-  keyword missed: "restrict traffic between pods" to network policy, "move apps
-  off the app platform" to the app-platform deprecation page, "single sign on
-  setup" to Dex.
-- Hybrid landed below neural here only because every query in this set is
-  reworded, so the weak keyword scores drag the min-max blend down. On mixed
-  traffic (the real gate queries hit 91% on keyword alone) hybrid is normally the
-  best of both. Re-weighting toward neural, or using the RRF score-ranker, would
-  lift it.
-- Two genuine neural misses show the small-model, page-level limits. For
-  "automatically add and remove nodes" the model keyed on the surface words
-  "automatic" and "add" (gitops automatic-update, add organization) rather than
-  the concept of autoscaling. For "sign in to my cluster" the word "cluster"
-  dominated and pulled cluster-management pages over authentication. Both are
-  what real phase 2 addresses: section-level records (the autoscaler page body
-  describes adding and removing nodes, which embeds far better than the title)
-  and optionally a stronger model.
+- Semantic search clearly helps on reworded queries. Neural and hybrid rescued
+  the cases keyword missed: "restrict traffic between pods" to network policy,
+  "move apps off the app platform" to the app-platform deprecation page, "single
+  sign on setup" to Dex, "automatically add and remove nodes" to the autoscaler,
+  "make a cluster smaller" to scaling.
+- Hybrid matched neural at 87% and even caught one query neural alone missed
+  ("cache container images locally"), so on this set it is the best of both. On
+  mixed real traffic (the gate queries hit 91% on keyword alone) hybrid is the
+  production choice, combining keyword precision with semantic recall.
+- One residual miss shows the small-model, page-level limit: for "sign in to my
+  cluster" the word "cluster" dominates the embedding and pulls cluster-management
+  pages over authentication. This is what real phase 2 addresses: section-level
+  records embed the concept more precisely than a page title, and a stronger model
+  would help further.
 
 ## For the plan
 
