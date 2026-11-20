@@ -239,7 +239,10 @@ form { margin-bottom: 0px; }
 .site-search-active { overflow: hidden; }
 .site-search { display: flex; }
 .site-search__open, .site-search__open:hover { text-decoration: none; }
-.site-search__close { opacity: 0; position: fixed; right: 24px; top: 24px; z-index: 8; }
+.site-search__open { background: none; border: none; cursor: pointer; padding: 0px; }
+.site-search__open:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.site-search__close { background: none; border: none; cursor: pointer; opacity: 0; padding: 0px; position: fixed; right: 24px; top: 24px; z-index: 8; }
+.site-search__close:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .site-search__popup:not(.site-search__popup--active) .site-search__close { display: none; }
 .site-search__popup--active .site-search__close { animation: 0.2s ease-in-out 0.2s 1 normal forwards running fadeIn; }
 .site-search__popup { inset: 0px; position: fixed; z-index: 7; }
@@ -261,14 +264,13 @@ form { margin-bottom: 0px; }
 .site-search__results { inset: 0px; display: none; overflow-y: auto; position: fixed; width: 100%; z-index: 0; }
 .site-search__results-block { margin: 0px auto; max-width: 800px; padding: 160px 0px 96px; }
 .site-search__popup--form-submitted .site-search__results { display: block; }
-.site-search__result { animation: 0.2s ease-in-out 0s 1 normal forwards running fadeIn; border-top: 1px solid; padding: 24px 0px; padding-inline: 24px 48px; transition: 0.2s ease-in-out; }
+.site-search__result { animation: 0.2s ease-in-out 0s 1 normal forwards running fadeIn; border-top: 1px solid; padding: 24px 0px; padding-inline: 24px 48px; position: relative; transition: 0.2s ease-in-out; }
 .site-search__result:first-child { border-top: 0px; }
 .site-search__result-list { list-style: none; margin: 0px; padding: 0px; }
-.site-search__result-link { color: inherit; display: block; text-decoration: none; }
-.site-search__result-link:hover { color: inherit; text-decoration: none; }
-.site-search__result-link:hover .site-search__result-title { text-decoration: underline; }
+.site-search__result-link { color: inherit; display: inline-block; font-size: 1.11rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.33rem; text-decoration: none; }
+.site-search__result-link::after { content: ""; inset: 0px; position: absolute; }
+.site-search__result-link:hover { color: inherit; text-decoration: underline; }
 .site-search__result-breadcrumb { font-size: 0.78rem; letter-spacing: 0.02em; margin-bottom: 0.33rem; }
-.site-search__result-title { font-size: 1.11rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.33rem; }
 .site-search__result .hs-search-highlight { color: rgb(196, 48, 43); font-weight: 700; }
 .site-search__result-link:hover .hs-search-highlight { color: inherit; }
 .site-search__more { margin-top: 24px; margin-inline-start: 24px; }

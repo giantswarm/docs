@@ -92,6 +92,7 @@ if (search_open && search_form && search_input && search_list) {
 
   let docsHits = [];
   let docsTotal = 0;
+  let docsTotalGte = false;
   let changesHits = [];
   let query = "";
   let controller = null;
@@ -151,7 +152,8 @@ if (search_open && search_form && search_input && search_list) {
       'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
     );
     const visible = Array.prototype.filter.call(focusable, function(el) {
-      return !el.hidden && el.offsetParent !== null;
+      // getClientRects works for position:fixed elements; offsetParent is null for them.
+      return !el.hidden && el.getClientRects().length > 0;
     });
     if (!visible.length) return;
     const first = visible[0];
@@ -204,7 +206,8 @@ if (search_open && search_form && search_input && search_list) {
     if (target && typeof target.focus === "function") target.focus();
   }
 
-  // The whole row is one link, so a click anywhere on the result follows it.
+  // The title is the link. A stretched ::after (see the styles) makes the whole
+  // row clickable, while the screen-reader link name stays just the title.
   function renderResult(hit) {
     const source = hit._source || {};
     const highlight = hit.highlight || {};
@@ -216,26 +219,21 @@ if (search_open && search_form && search_input && search_list) {
       : escapeHtml(source.description || "");
     const crumb = breadcrumbText(source);
     let html = '<li class="site-search__result">';
-    html += '<a class="site-search__result-link" href="' + safeHref(source.url) + '">';
     if (crumb) {
       html += '<div class="site-search__result-breadcrumb">' + crumb + "</div>";
     }
-    html += '<div class="site-search__result-title">' + title + "</div>";
+    html += '<a class="site-search__result-link" href="' + safeHref(source.url) + '">' + title + "</a>";
     if (snippet) {
       html += '<div class="site-search__result-desc">' + snippet + "</div>";
     }
-    return html + "</a></li>";
+    return html + "</li>";
   }
 
   function summaryText() {
-    const parts = [];
-    if (docsTotal) {
-      parts.push(docsTotal + (docsTotal === 1 ? " documentation result" : " documentation results"));
-    }
-    if (changesHits.length) {
-      parts.push(changesHits.length + (changesHits.length === 1 ? " release note" : " release notes"));
-    }
-    return parts.join(", ");
+    if (!docsTotal) return "";
+    // The gateway caps the total at 10,000 and reports relation "gte" beyond that.
+    const n = docsTotalGte ? docsTotal.toLocaleString() + "+" : docsTotal.toLocaleString();
+    return n + (docsTotal === 1 ? " result" : " results");
   }
 
   function renderResults() {
@@ -273,7 +271,9 @@ if (search_open && search_form && search_input && search_list) {
     if (search_more) {
       search_more.hidden = docsHits.length >= docsTotal || docsHits.length + PAGE_SIZE > MAX_FROM;
     }
-    announce(count > 0 ? (summary || (count + " results")) : "No results");
+    // Include the query so two searches with the same count still announce.
+    const outcome = count > 0 ? (summary || (count + " results")) : "No results";
+    announce(outcome + ' for "' + query + '"');
 
     // After paging, move focus to the first newly loaded docs result.
     if (appendFocusIndex >= 0) {
@@ -317,6 +317,7 @@ if (search_open && search_form && search_input && search_list) {
       query = value;
       docsHits = [];
       docsTotal = 0;
+      docsTotalGte = false;
       changesHits = [];
     }
 
@@ -335,8 +336,12 @@ if (search_open && search_form && search_input && search_list) {
       return;
     }
 
-    // Remember where the new docs results will start, to move focus there after paging.
-    appendFocusIndex = append ? docsHits.length : -1;
+    // Remember where the new docs results will start, to move focus there after
+    // paging. Count only the Docs-group items, since release notes from the main
+    // query are rendered in the Changes group, not the Docs list.
+    appendFocusIndex = append
+      ? docsHits.filter(function(h) { return docsGroupOf(h._source || {}) !== "Changes"; }).length
+      : -1;
 
     controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     const signal = controller ? controller.signal : undefined;
@@ -350,7 +355,9 @@ if (search_open && search_form && search_input && search_list) {
     const docsTask = load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
       .then(function(data) {
         const page = (data && data.hits && data.hits.hits) || [];
-        docsTotal = (data && data.hits && data.hits.total && data.hits.total.value) || 0;
+        const total = (data && data.hits && data.hits.total) || {};
+        docsTotal = total.value || 0;
+        docsTotalGte = total.relation === "gte";
         docsHits = docsHits.concat(page);
       });
     const tasks = [docsTask];
