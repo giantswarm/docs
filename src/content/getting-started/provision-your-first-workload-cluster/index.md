@@ -9,7 +9,7 @@ aliases:
   - /getting-started/create-workload-cluster
   - /getting-started/kubectl-gs/
   - /vintage/getting-started/create-workload-cluster
-last_review_date: 2026-10-26
+last_review_date: 2026-11-19
 menu:
   principal:
     parent: getting-started
@@ -204,12 +204,12 @@ The workload clusters are where the "actual" work happens, where Giant Swarm-sup
 
 ## Step 4: Deleting the workload cluster {#deleting-workload-cluster}
 
-Deletion works similarly: run `kubectl delete -f cluster.yaml`, `cluster.yaml` being the name selected for the output file when creating the cluster, and the operators in the management cluster will delete the resources in a few minutes. Please **don't directly delete the Cluster API custom resources** (such as `Cluster`, `AWSCluster` or `MachineDeployment`) since this may leave resources behind or even lead to inadvertently recreating the cluster once the `App` is reconciled again. Deletion should be done exactly like the creation, using the original manifests. For the Cluster API product family, our example output file `cluster.yaml` contains 2 `App` and 2 `ConfigMap` manifests. If you no longer have the manifests at hand, delete the following:
+Since kubectl-gs v7.0.0, `kubectl gs template cluster` protects the cluster from accidental deletion by default. Before deleting it, remove the protection as described in [deleting a cluster with deletion prevention]({{< relref "/tutorials/fleet-management/deletion-prevention#deleting-a-protected-cluster" >}}).
 
-- `App/<cluster>`
+Deletion works similarly to creation. Run `kubectl delete -f cluster.yaml`, where `cluster.yaml` is the output file you created the cluster from. The operators in the management cluster then delete the resources within a few minutes. Please **don't directly delete the Cluster API custom resources**, such as `Cluster`, `AWSCluster` or `MachineDeployment`. This may leave resources behind, or even recreate the cluster once the `HelmRelease` or `App` is reconciled again. Delete the cluster exactly like you created it, using the original manifests. If you no longer have the manifests at hand, delete the following:
+
+- `HelmRelease/<cluster>` and `OCIRepository/<cluster>`, or `App/<cluster>` for a cluster deployed as an `App`
 - `ConfigMap/<cluster>-userconfig`
-
-If you would like to protect your clusters from accidental deletion, take a look at our [deletion prevention mechanism]({{< relref "/tutorials/fleet-management/deletion-prevention" >}}).
 
 ## Next step
 
