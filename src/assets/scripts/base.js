@@ -28,12 +28,13 @@ function getParameterByName(name) {
 }
 
 /* Open the self-hosted search modal from the sidebar and homepage search boxes.
+   The triggers are buttons, so Enter and Space already fire a click. Opening on
+   click only (never on focus) keeps keyboard users from being trapped on the box.
    The modal itself lives in the header's shadow DOM and is wired in gs_scripts.js. */
-$(document).on("click focus", ".site-search-trigger", function(event) {
+$(document).on("click", ".site-search-trigger", function(event) {
   event.preventDefault();
-  this.blur();
   if (window.gsOpenSearch) {
-    window.gsOpenSearch();
+    window.gsOpenSearch(this);
   }
 });
 
