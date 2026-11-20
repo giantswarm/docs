@@ -90,14 +90,16 @@ if (search_open && search_form && search_input && search_list) {
   let docsTotal = 0;
   let blogHits = [];
   let query = "";
+  let renderedQuery = "";
   let controller = null;
   let debounce = null;
   let searchStart = 0;
   let performedTimer = null;
   let performed = null;
 
-  // Telemetry. The query text is truncated to 100 characters because people
-  // sometimes paste tokens or personal data into a search box.
+  // Telemetry. The query text is truncated to 100 characters to cap the payload
+  // size. Truncation is not redaction: shorter tokens, emails or secrets still
+  // pass through, so the query text is treated as potentially sensitive.
   function track(type, payload) {
     if (window.sendTelemetryEvent) {
       window.sendTelemetryEvent(type, payload);
@@ -158,6 +160,7 @@ if (search_open && search_form && search_input && search_list) {
   }
 
   function closeSearch() {
+    flushPerformed();
     search_popup.classList.remove("site-search__popup--active");
     search_popup.classList.remove("site-search__popup--form-submitted");
     document.body.classList.remove("site-search-active");
@@ -199,6 +202,9 @@ if (search_open && search_form && search_input && search_list) {
       html += "</div>";
     });
 
+    // Remember which query these results belong to, so a click reports the
+    // query that was on screen even if a newer search is already in flight.
+    renderedQuery = query;
     const count = docsHits.length + blogHits.length;
     search_list.innerHTML = html;
     if (search_zero) search_zero.hidden = count > 0;
@@ -248,8 +254,10 @@ if (search_open && search_form && search_input && search_list) {
       if (search_zero) search_zero.hidden = true;
       if (search_error) search_error.hidden = true;
       if (search_more) search_more.hidden = true;
-      if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
-      performed = null;
+      // The box was cleared or shortened below the minimum. A search that
+      // already rendered (often a zero-result one the reader is about to
+      // retype) is still worth recording, so flush it instead of dropping it.
+      flushPerformed();
       return;
     }
 
@@ -286,9 +294,17 @@ if (search_open && search_form && search_input && search_list) {
       .catch(function(error) {
         if (error && error.name === "AbortError") return;
         showFallback();
-        if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
-        performed = null;
-        track("Docs.Search.Failed", { query: query.slice(0, 100), reason: "unavailable" });
+        // A failed "More results" page must not discard the fresh search that
+        // already succeeded. Only a failed fresh search clears the pending event.
+        if (!append) {
+          if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
+          performed = null;
+        }
+        track("Docs.Search.Failed", {
+          query: query.slice(0, 100),
+          reason: "unavailable",
+          page: append ? "more" : "fresh",
+        });
       });
   }
 
@@ -322,15 +338,29 @@ if (search_open && search_form && search_input && search_list) {
       runSearch(true);
     });
   }
-  search_list.addEventListener("click", function(event) {
+  function onResultActivate(event) {
+    // auxclick fires for every non-primary button; only the middle button
+    // (button 1) opens a result in a new tab, so ignore the rest.
+    if (event.type === "auxclick" && event.button !== 1) return;
     const link = event.target.closest && event.target.closest(".site-search__result-title a");
     if (!link) return;
     flushPerformed();
     track("Docs.Search.ResultClicked", {
-      query: query.slice(0, 100),
+      query: renderedQuery.slice(0, 100),
       group: link.getAttribute("data-group") || "",
       position: Number(link.getAttribute("data-pos")) || 0,
       url: link.getAttribute("href") || "",
     });
+  }
+  search_list.addEventListener("click", onResultActivate);
+  // Middle-click (open in new tab) fires auxclick, not click, so track it too.
+  search_list.addEventListener("auxclick", onResultActivate);
+
+  // The Performed event is deferred by 1.5 s. Flush it when the page is hidden
+  // or unloaded so a quick tab close or back navigation, common after a
+  // zero-result search, is not lost. The helper uses keepalive to send it.
+  window.addEventListener("pagehide", flushPerformed);
+  document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "hidden") flushPerformed();
   });
 }
