@@ -12,7 +12,7 @@ user_questions:
   - How can I manage different environments with GitOps?
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-07-02
+last_review_date: 2026-10-06
 ---
 
 On many occasions, you need to set good defaults for your workload clusters but have the ability to change some values depending on the type of environment: development, staging or production for example. In such a case, you can rely on specific `bases` defined on your GitOps repository. Let's see in this document how you can create a `/bases/environments` folder structure.
@@ -94,7 +94,7 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-\${organization}
   - patch: |
       - type: merge
@@ -107,10 +107,10 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}-defaul-apps
+      name: \${cluster_name}-default-apps
       namespace: org-\${organization}
 resources:
-  - ../../../../../../../../bases/clusters/capa/template/
+  - ../../../clusters/capa/template/
 ```
 
 Next to the `kustomization`, you create the development configuration for the cluster. Use `cluster_config.yaml` as name. It only contains the values specific for this stage:
@@ -177,10 +177,10 @@ patches:
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
+      name: \${cluster_name}
       namespace: org-\${organization}
 resources:
-  - ../../../../../../../../bases/clusters/capa/v0.21.0/
+  - ../../../clusters/capa/v0.21.0/
 ```
 
 **Warning**: For the sake of simplicity both reference the same base template, but in some occasions where there are breaking changes you might need to link a different template. [Read more about bases here]({{< relref "/tutorials/continuous-deployment/bases" >}}).
@@ -225,7 +225,7 @@ mkdir -p bases/environments/regions/us_west
 cd bases/environments/regions
 ```
 
-Let's define a `eu-central` region where you describe some specifics related to the zone. For that, you create a `kustomization.yaml` file and `cluster_config.yaml` file same as you did in previous step.
+Let's define a `eu_central` region where you describe some specifics related to the zone. For that, you create a `kustomization.yaml` file and `cluster_config.yaml` file same as you did in previous step.
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -242,14 +242,14 @@ patches:
       - op: add
         path: /spec/extraConfigs/0
         value:
-          - name: "${cluster_name}-region-config"
-            namespace: org-${organization}
-            priority: 120
+          name: "${cluster_name}-region-config"
+          namespace: org-${organization}
+          priority: 120
     target:
       group: application.giantswarm.io
       kind: App
-      name: ${cluster_name}
-      namespace: org-${organization}
+      name: \${cluster_name}
+      namespace: org-\${organization}
 kind: Kustomization
 ```
 
@@ -280,7 +280,7 @@ The folder structure resulting from this is:
 
 ```nohighlight
 bases/environments/regions
-├── eu-central
+├── eu_central
 │   ├── cluster_config.yaml
 │   └── kustomization.yaml
 └── us_west
@@ -306,13 +306,14 @@ In this case, you decide to use the `development` stage template. [Read more abo
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
-commonLabels:
-  giantswarm.io/managed-by: flux
+labels:
+  - pairs:
+      giantswarm.io/managed-by: flux
 kind: Kustomization
 resources:
   - ../../../../../../../../bases/environments/stages/dev
 # Include a new line with the resources that provide region configuration
-  - ../../../../../../../../bases/environments/regions/eu-central
+  - ../../../../../../../../bases/environments/regions/eu_central
 ```
 
 **Note**:  It uses the extra configuration feature of `App` resource to patch additional layers of configurations. [Read more here]({{< relref "/tutorials/fleet-management/app-platform/app-configuration/#extra-configs" >}}).
