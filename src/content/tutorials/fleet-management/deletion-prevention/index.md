@@ -70,7 +70,7 @@ To use this mechanism you have to do two things:
 
 ## Creating a cluster with deletion prevention
 
-Since kubectl-gs v7.0.0, `kubectl gs template cluster` and `kubectl gs gitops add base` protect new clusters by default, as described in their [template cluster]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [add base]({{< relref "/reference/kubectl-gs/gitops/add-base" >}}) references. They label the cluster's `HelmRelease` and `OCIRepository` (or its `App`, for clusters deployed as one), and set `global.metadata.preventDeletion: true` in the cluster values, so that the chart labels the `Cluster` resource too. `kubectl gs template cluster` also labels the `<cluster-name>-userconfig` ConfigMap.
+Since kubectl-gs v7.0.0, `kubectl gs template cluster` and `kubectl gs gitops add base` protect new clusters by default, as described in their [template cluster]({{< relref "/reference/kubectl-gs/template-cluster" >}}) and [add base]({{< relref "/reference/kubectl-gs/gitops/add-base" >}}) references. They label the cluster's resources, and set `global.metadata.preventDeletion: true` in the cluster values, so that the chart labels the `Cluster` resource too. `kubectl gs template cluster` also labels the `<cluster-name>-userconfig` ConfigMap.
 
 To create a cluster without deletion prevention, pass `--prevent-deletion=false`. Older kubectl-gs versions only protect the cluster when you pass `--prevent-deletion`.
 
