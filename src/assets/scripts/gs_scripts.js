@@ -102,6 +102,42 @@ if (search_open && search_form && search_input && search_list) {
   // When paging with "More results", the index of the first new docs result,
   // so focus can move there instead of being lost. -1 means a fresh search.
   let appendFocusIndex = -1;
+  // Telemetry state. renderedQuery is the query the on-screen results belong to,
+  // so a click reports it even when a newer search is already in flight.
+  let renderedQuery = "";
+  let searchStart = 0;
+  let performedTimer = null;
+  let performed = null;
+
+  // Telemetry. The query text is truncated to 100 characters to cap the payload
+  // size. Truncation is not redaction: shorter tokens, emails or secrets still
+  // pass through, so the query text is treated as potentially sensitive.
+  function track(type, payload) {
+    if (window.sendTelemetryEvent) {
+      window.sendTelemetryEvent(type, payload);
+    }
+  }
+
+  // "Search performed" is sent once the query settles, not on every keystroke,
+  // so one logical search is one event. A result click flushes it first, so a
+  // quick click still records both the search and the click.
+  function flushPerformed() {
+    if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
+    if (performed) {
+      track("Docs.Search.Performed", performed);
+      performed = null;
+    }
+  }
+
+  function schedulePerformed(resultCount) {
+    performed = {
+      query: query.slice(0, 100),
+      resultCount: resultCount,
+      durationMs: Date.now() - searchStart,
+    };
+    if (performedTimer) clearTimeout(performedTimer);
+    performedTimer = setTimeout(flushPerformed, 1500);
+  }
 
   function escapeHtml(value) {
     return String(value)
@@ -191,6 +227,7 @@ if (search_open && search_form && search_input && search_list) {
   }
 
   function closeSearch() {
+    flushPerformed();
     search_popup.classList.remove("site-search__popup--active");
     search_popup.classList.remove("site-search__popup--form-submitted");
     document.body.classList.remove("site-search-active");
@@ -208,7 +245,8 @@ if (search_open && search_form && search_input && search_list) {
 
   // The title is the link. A stretched ::after (see the styles) makes the whole
   // row clickable, while the screen-reader link name stays just the title.
-  function renderResult(hit) {
+  // group and position tag the link so a click can be reported to telemetry.
+  function renderResult(hit, group, position) {
     const source = hit._source || {};
     const highlight = hit.highlight || {};
     const title = highlight.title && highlight.title[0]
@@ -222,7 +260,8 @@ if (search_open && search_form && search_input && search_list) {
     if (crumb) {
       html += '<div class="site-search__result-breadcrumb">' + crumb + "</div>";
     }
-    html += '<a class="site-search__result-link" href="' + safeHref(source.url) + '">' + title + "</a>";
+    html += '<a class="site-search__result-link" href="' + safeHref(source.url) + '"'
+      + ' data-group="' + escapeHtml(group) + '" data-pos="' + position + '">' + title + "</a>";
     if (snippet) {
       html += '<div class="site-search__result-desc">' + snippet + "</div>";
     }
@@ -253,16 +292,20 @@ if (search_open && search_form && search_input && search_list) {
     if (summary) {
       html += '<div class="site-search__summary">' + escapeHtml(summary) + "</div>";
     }
+    let position = 0;
     GROUP_ORDER.forEach(function(name) {
       const items = groups[name];
       if (items.length === 0) return;
       html += '<div class="site-search__group">';
       html += '<h2 class="site-search__group-title">' + name + " (" + items.length + ")</h2>";
       html += '<ul class="site-search__result-list" data-group="' + name + '">';
-      items.forEach(function(hit) { html += renderResult(hit); });
+      items.forEach(function(hit) { position += 1; html += renderResult(hit, name, position); });
       html += "</ul></div>";
     });
 
+    // Remember which query these results belong to, so a click reports the query
+    // that was on screen even if a newer search is already in flight.
+    renderedQuery = query;
     search_list.innerHTML = html;
     setBusy(false);
     if (search_zero) search_zero.hidden = count > 0;
@@ -319,6 +362,7 @@ if (search_open && search_form && search_input && search_list) {
       docsTotal = 0;
       docsTotalGte = false;
       changesHits = [];
+      searchStart = Date.now();
     }
 
     // Drop any in-flight request so a slower earlier query cannot render late.
@@ -333,6 +377,10 @@ if (search_open && search_form && search_input && search_list) {
       if (search_zero) search_zero.hidden = true;
       if (search_error) search_error.hidden = true;
       if (search_more) search_more.hidden = true;
+      // The box was cleared or shortened below the minimum. A search that already
+      // rendered (often a zero-result one the reader is about to retype) is still
+      // worth recording, so flush it instead of dropping it.
+      flushPerformed();
       return;
     }
 
@@ -378,9 +426,23 @@ if (search_open && search_form && search_input && search_list) {
         const reason = docsResult.reason;
         if (reason && reason.name === "AbortError") return;
         showFallback();
+        // A failed "More results" page must not discard the fresh search that
+        // already succeeded. Only a failed fresh search clears the pending event.
+        if (!append) {
+          if (performedTimer) { clearTimeout(performedTimer); performedTimer = null; }
+          performed = null;
+        }
+        track("Docs.Search.Failed", {
+          query: query.slice(0, 100),
+          reason: "unavailable",
+          page: append ? "more" : "fresh",
+        });
         return;
       }
       renderResults();
+      if (!append) {
+        schedulePerformed(docsHits.length + changesHits.length);
+      }
     });
   }
 
@@ -418,4 +480,30 @@ if (search_open && search_form && search_input && search_list) {
       runSearch(true);
     });
   }
+
+  function onResultActivate(event) {
+    // auxclick fires for every non-primary button; only the middle button
+    // (button 1) opens a result in a new tab, so ignore the rest.
+    if (event.type === "auxclick" && event.button !== 1) return;
+    const link = event.target.closest && event.target.closest(".site-search__result-link");
+    if (!link) return;
+    flushPerformed();
+    track("Docs.Search.ResultClicked", {
+      query: renderedQuery.slice(0, 100),
+      group: link.getAttribute("data-group") || "",
+      position: Number(link.getAttribute("data-pos")) || 0,
+      url: link.getAttribute("href") || "",
+    });
+  }
+  search_list.addEventListener("click", onResultActivate);
+  // Middle-click (open in new tab) fires auxclick, not click, so track it too.
+  search_list.addEventListener("auxclick", onResultActivate);
+
+  // The Performed event is deferred by 1.5 s. Flush it when the page is hidden or
+  // unloaded so a quick tab close or back navigation, common after a zero-result
+  // search, is not lost. The helper uses keepalive to send it.
+  window.addEventListener("pagehide", flushPerformed);
+  document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === "hidden") flushPerformed();
+  });
 }

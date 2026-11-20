@@ -1,0 +1,87 @@
+{{/* TelemetryDeck custom-event helper. The pageview web SDK loaded in scripts.html
+     only sends page views and exposes no API for custom events, so docs search
+     reports its own events through this helper, to the same docs TelemetryDeck
+     app. Mirrors the intranet's sendTelemetryEvent helper. */}}
+<script>
+(function() {
+  window.TELEMETRY_DECK_CONFIG = {
+    appID: "{{ site.Params.telemetryDeckAppID }}",
+    endpoint: "https://nom.telemetrydeck.com/v2/",
+    enabled: {{ site.Params.searchTelemetry | default false }},
+    sessionDurationMinutes: 30
+  };
+
+  function randomToken(prefix) {
+    return prefix + "_" + Date.now() + "_" + Math.random().toString(36).substring(2, 11);
+  }
+
+  // Session-scoped anonymous identifiers. They are not a user identity:
+  // TelemetryDeck requires a clientUser field, so these are random values that
+  // only allow counting distinct sessions. They carry no name or email. Both
+  // live in sessionStorage so a click-through to another page keeps the same
+  // clientUser and sessionID. The timestamp is refreshed on every event, so the
+  // session window is an idle timeout rather than a hard 30 minutes from the
+  // first event. When sessionStorage is unavailable (some privacy modes,
+  // embedded contexts), an in-memory token is used so events are still counted
+  // for the current page view.
+  window.getTelemetryIds = function() {
+    var userKey = "telemetry_client_user";
+    var sessionKey = "telemetry_session_id";
+    var timestampKey = "telemetry_client_user_timestamp";
+    var sessionDurationMs = window.TELEMETRY_DECK_CONFIG.sessionDurationMinutes * 60 * 1000;
+    try {
+      var now = Date.now();
+      var user = sessionStorage.getItem(userKey);
+      var session = sessionStorage.getItem(sessionKey);
+      var timestamp = sessionStorage.getItem(timestampKey);
+      var fresh = user && session && timestamp && (now - parseInt(timestamp, 10)) < sessionDurationMs;
+      if (!fresh) {
+        user = randomToken("anonymous");
+        session = randomToken("session");
+        sessionStorage.setItem(userKey, user);
+        sessionStorage.setItem(sessionKey, session);
+      }
+      sessionStorage.setItem(timestampKey, now.toString());
+      return { clientUser: user, sessionID: session };
+    } catch (e) {
+      if (!window.telemetryMemoryIds) {
+        window.telemetryMemoryIds = { clientUser: randomToken("anonymous"), sessionID: randomToken("session") };
+      }
+      return window.telemetryMemoryIds;
+    }
+  };
+
+  window.sendTelemetryEvent = function(eventType, payload) {
+    var config = window.TELEMETRY_DECK_CONFIG;
+    if (!config.enabled || !config.appID) {
+      return;
+    }
+    var ids = window.getTelemetryIds();
+    if (!ids || !ids.clientUser) {
+      return;
+    }
+    // Only the production host counts as real usage. Every other host (local
+    // dev, LAN, preview, staging) is filed as test data, so it never mixes with
+    // production usage.
+    var isTestMode = window.location.hostname !== "docs.giantswarm.io";
+    var signal = {
+      appID: config.appID,
+      clientUser: ids.clientUser,
+      type: eventType,
+      sessionID: ids.sessionID,
+      isTestMode: isTestMode,
+      payload: payload || {}
+    };
+    try {
+      // keepalive lets a result-click event still reach the server while the
+      // browser is navigating away to the result.
+      fetch(config.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify([signal]),
+        keepalive: true
+      }).catch(function() {});
+    } catch (e) {}
+  };
+})();
+</script>
