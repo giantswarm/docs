@@ -73,6 +73,8 @@ const search_list = root.querySelector(".site-search__list");
 const search_zero = root.querySelector(".site-search__results-zero");
 const search_error = root.querySelector(".site-search__error");
 const search_more = root.querySelector(".site-search__more");
+const search_status = root.querySelector(".site-search__status");
+const search_loading = root.querySelector(".site-search__loading");
 
 if (search_open && search_form && search_input && search_list) {
   const SEARCH_ENDPOINT = "/searchapi/";
@@ -80,6 +82,8 @@ if (search_open && search_form && search_input && search_list) {
   const BLOG_SIZE = 4;
   const MAX_QUERY = 200;
   const MIN_QUERY = 2;
+  // The gateway rejects a from offset above this, so stop paging before it.
+  const MAX_FROM = 1000;
   // Groups in display order. Docs and release notes (Changes) come from one
   // query; blog posts come from a separate query so relevant ones always show.
   // The gateway scores blog far below docs, so in a mixed query blog would
@@ -92,6 +96,11 @@ if (search_open && search_form && search_input && search_list) {
   let query = "";
   let controller = null;
   let debounce = null;
+  // The control that opened the modal, so focus can return to it on close.
+  let lastTrigger = null;
+  // When paging with "More results", the index of the first new docs result,
+  // so focus can move there instead of being lost. -1 means a fresh search.
+  let appendFocusIndex = -1;
 
   function escapeHtml(value) {
     return String(value)
@@ -109,8 +118,15 @@ if (search_open && search_form && search_input && search_list) {
     return escapeHtml(value).replace(/\*\*([^*]+?)\*\*/g, '<span class="hs-search-highlight">$1</span>');
   }
 
+  // Allow absolute http(s) URLs and root-relative paths only. The negative
+  // lookahead after the slash rejects protocol-relative URLs like //evil.example.
   function safeHref(url) {
-    return /^(https?:\/\/|\/)/.test(url) ? escapeHtml(url) : "#";
+    return /^(https?:\/\/|\/(?!\/))/.test(url) ? escapeHtml(url) : "#";
+  }
+
+  function breadcrumbText(source) {
+    if (!source.breadcrumb || !source.breadcrumb.length) return "";
+    return escapeHtml(source.breadcrumb.join(" › "));
   }
 
   // A docs-query hit is either a release note (breadcrumb "changes") or a docs page.
@@ -119,18 +135,76 @@ if (search_open && search_form && search_input && search_list) {
     return "Docs";
   }
 
+  function announce(message) {
+    if (search_status) search_status.textContent = message || "";
+  }
+
+  function setBusy(busy) {
+    search_list.setAttribute("aria-busy", busy ? "true" : "false");
+    if (search_loading) search_loading.hidden = !busy;
+  }
+
+  // Keep Tab inside the open dialog. On Tab at an edge, wrap to the other end.
+  function trapFocus(event) {
+    if (event.key !== "Tab") return;
+    const focusable = search_popup.querySelectorAll(
+      'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+    );
+    const visible = Array.prototype.filter.call(focusable, function(el) {
+      return !el.hidden && el.offsetParent !== null;
+    });
+    if (!visible.length) return;
+    const first = visible[0];
+    const last = visible[visible.length - 1];
+    // The modal is in a shadow root, so the focused element is root.activeElement,
+    // not document.activeElement (which reports the shadow host).
+    const active = root.activeElement;
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function onPopupKeydown(event) {
+    if (event.key === "Escape") {
+      closeSearch();
+      return;
+    }
+    trapFocus(event);
+  }
+
   function openSearch() {
     search_popup.classList.add("site-search__popup--active");
     document.body.classList.add("site-search-active");
-    search_input.focus();
+    search_popup.addEventListener("keydown", onPopupKeydown);
+    // Focus the input once the open animation has settled.
+    window.setTimeout(function() {
+      if (search_popup.classList.contains("site-search__popup--active")) {
+        search_input.focus();
+      }
+    }, 250);
   }
 
   function closeSearch() {
     search_popup.classList.remove("site-search__popup--active");
     search_popup.classList.remove("site-search__popup--form-submitted");
     document.body.classList.remove("site-search-active");
+    search_popup.removeEventListener("keydown", onPopupKeydown);
+    // Stop any pending or in-flight search so late results can't update a hidden modal.
+    clearTimeout(debounce);
+    if (controller) controller.abort();
+    controller = null;
+    setBusy(false);
+    announce("");
+    // Return focus to the control that opened the modal.
+    const target = lastTrigger || search_open;
+    if (target && typeof target.focus === "function") target.focus();
   }
 
+  // The whole row is one link, so a click anywhere on the result follows it.
   function renderResult(hit) {
     const source = hit._source || {};
     const highlight = hit.highlight || {};
@@ -140,12 +214,28 @@ if (search_open && search_form && search_input && search_list) {
     const snippet = highlight.body && highlight.body[0]
       ? withHighlight(highlight.body[0])
       : escapeHtml(source.description || "");
-    let html = '<div class="site-search__result">';
-    html += '<div class="site-search__result-title"><a href="' + safeHref(source.url) + '">' + title + "</a></div>";
+    const crumb = breadcrumbText(source);
+    let html = '<li class="site-search__result">';
+    html += '<a class="site-search__result-link" href="' + safeHref(source.url) + '">';
+    if (crumb) {
+      html += '<div class="site-search__result-breadcrumb">' + crumb + "</div>";
+    }
+    html += '<div class="site-search__result-title">' + title + "</div>";
     if (snippet) {
       html += '<div class="site-search__result-desc">' + snippet + "</div>";
     }
-    return html + "</div>";
+    return html + "</a></li>";
+  }
+
+  function summaryText() {
+    const parts = [];
+    if (docsTotal) {
+      parts.push(docsTotal + (docsTotal === 1 ? " documentation result" : " documentation results"));
+    }
+    if (blogHits.length) {
+      parts.push(blogHits.length + (blogHits.length === 1 ? " blog result" : " blog results"));
+    }
+    return parts.join(", ");
   }
 
   function renderResults() {
@@ -155,33 +245,57 @@ if (search_open && search_form && search_input && search_list) {
     });
     blogHits.forEach(function(hit) { groups.Blog.push(hit); });
 
+    const count = docsHits.length + blogHits.length;
+    const summary = summaryText();
+
     let html = "";
+    if (summary) {
+      html += '<div class="site-search__summary">' + escapeHtml(summary) + "</div>";
+    }
     GROUP_ORDER.forEach(function(name) {
       const items = groups[name];
       if (items.length === 0) return;
       html += '<div class="site-search__group">';
-      html += '<div class="site-search__group-title">' + name + "</div>";
+      html += '<h2 class="site-search__group-title">' + name + " (" + items.length + ")</h2>";
+      html += '<ul class="site-search__result-list" data-group="' + name + '">';
       items.forEach(function(hit) { html += renderResult(hit); });
-      html += "</div>";
+      html += "</ul></div>";
     });
 
-    const count = docsHits.length + blogHits.length;
     search_list.innerHTML = html;
+    setBusy(false);
     if (search_zero) search_zero.hidden = count > 0;
     if (search_error) search_error.hidden = true;
-    if (search_more) search_more.hidden = docsHits.length >= docsTotal;
+    // Hide "More results" at the end of the list or at the gateway's from-limit.
+    if (search_more) {
+      search_more.hidden = docsHits.length >= docsTotal || docsHits.length + PAGE_SIZE > MAX_FROM;
+    }
+    announce(count > 0 ? (summary || (count + " results")) : "No results");
+
+    // After paging, move focus to the first newly loaded docs result.
+    if (appendFocusIndex >= 0) {
+      const list = search_list.querySelector('.site-search__result-list[data-group="Docs"]');
+      const item = list && list.children[appendFocusIndex];
+      const link = item && item.querySelector(".site-search__result-link");
+      if (link) link.focus();
+      appendFocusIndex = -1;
+    }
   }
 
   function showFallback() {
     search_list.innerHTML = "";
+    setBusy(false);
     if (search_zero) search_zero.hidden = true;
     if (search_more) search_more.hidden = true;
+    const message = "Search is unavailable right now.";
     if (search_error) {
       const url = "https://www.google.com/search?q=" + encodeURIComponent("site:docs.giantswarm.io " + query);
-      search_error.innerHTML = 'Search is unavailable right now. '
-        + '<a href="' + url + '" target="_blank" rel="noopener">Search on Google instead</a>.';
+      search_error.innerHTML = escapeHtml(message) + " "
+        + '<a href="' + url + '" target="_blank" rel="noopener">Search on Google instead'
+        + '<span class="site-search__sr-only"> (opens in a new tab)</span></a>.';
       search_error.hidden = false;
     }
+    announce(message);
   }
 
   function load(params, signal) {
@@ -210,48 +324,65 @@ if (search_open && search_form && search_input && search_list) {
     if (query.length < MIN_QUERY) {
       search_popup.classList.remove("site-search__popup--form-submitted");
       search_list.innerHTML = "";
+      setBusy(false);
+      announce("");
       if (search_zero) search_zero.hidden = true;
       if (search_error) search_error.hidden = true;
       if (search_more) search_more.hidden = true;
       return;
     }
 
+    // Remember where the new docs results will start, to move focus there after paging.
+    appendFocusIndex = append ? docsHits.length : -1;
+
     controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     const signal = controller ? controller.signal : undefined;
 
     search_popup.classList.add("site-search__popup--form-submitted");
+    setBusy(true);
 
     // Docs (and release notes) in one query; a smaller blog query runs only on a
     // fresh search, so "More results" pages the docs list without refetching blog.
-    const tasks = [
-      load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
-        .then(function(data) {
-          const page = (data && data.hits && data.hits.hits) || [];
-          docsTotal = (data && data.hits && data.hits.total && data.hits.total.value) || 0;
-          docsHits = docsHits.concat(page);
-        }),
-    ];
+    const docsTask = load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
+      .then(function(data) {
+        const page = (data && data.hits && data.hits.hits) || [];
+        docsTotal = (data && data.hits && data.hits.total && data.hits.total.value) || 0;
+        docsHits = docsHits.concat(page);
+      });
+    const tasks = [docsTask];
     if (!append) {
+      // A failed blog query must not hide docs results, so swallow its error.
       tasks.push(
-        load("&type=Blog&size=" + BLOG_SIZE, signal).then(function(data) {
-          blogHits = (data && data.hits && data.hits.hits) || [];
-        })
+        load("&type=Blog&size=" + BLOG_SIZE, signal)
+          .then(function(data) {
+            blogHits = (data && data.hits && data.hits.hits) || [];
+          })
+          .catch(function() { blogHits = []; })
       );
     }
 
-    Promise.all(tasks)
-      .then(renderResults)
-      .catch(function(error) {
-        if (error && error.name === "AbortError") return;
+    Promise.allSettled(tasks).then(function(results) {
+      const docsResult = results[0];
+      if (docsResult.status === "rejected") {
+        const reason = docsResult.reason;
+        if (reason && reason.name === "AbortError") return;
         showFallback();
-      });
+        return;
+      }
+      renderResults();
+    });
   }
 
-  // Expose the modal so the sidebar and homepage search boxes can open it.
-  window.gsOpenSearch = openSearch;
+  // Expose the modal so the sidebar and homepage search boxes can open it. The
+  // trigger is passed so focus can return to it when the modal closes.
+  window.gsOpenSearch = function(trigger) {
+    lastTrigger = trigger || search_open;
+    openSearch();
+  };
 
   search_open.addEventListener("click", function(event) {
     event.preventDefault();
+    lastTrigger = search_open;
     openSearch();
   });
   if (search_close) {
@@ -262,14 +393,13 @@ if (search_open && search_form && search_input && search_list) {
   }
   search_form.addEventListener("submit", function(event) {
     event.preventDefault();
+    // Cancel the pending debounce so Enter doesn't fire a second identical search.
+    clearTimeout(debounce);
     runSearch(false);
   });
   search_input.addEventListener("input", function() {
     clearTimeout(debounce);
     debounce = setTimeout(function() { runSearch(false); }, 220);
-  });
-  search_input.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") closeSearch();
   });
   if (search_more) {
     search_more.addEventListener("click", function(event) {
