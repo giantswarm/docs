@@ -10,7 +10,7 @@ menu:
 weight: 500
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
-last_review_date: 2026-06-17
+last_review_date: 2026-11-10
 user_questions:
   - What's the meaning of a specific Kubernetes resource label?
 ---
@@ -154,6 +154,30 @@ The legacy label `giantswarm.io/network-monitoring` is still accepted during the
 Set on the Cluster resource to control distributed tracing support in Grafana. The default value `true` means tracing is enabled for the cluster. Setting it to `false` disables tracing data sources for that cluster.
 
 The legacy label `giantswarm.io/tracing` is still accepted during the migration period.
+
+### policy.giantswarm.io/allow-dns
+
+Set to `"true"` on a namespace to allow egress to the cluster DNS under the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}). It only adds allowed traffic, and takes effect within about a minute in namespaces that already have their own deny policy.
+
+### policy.giantswarm.io/allow-ingress-controller
+
+Set to `"true"` on a namespace to allow ingress from Envoy Gateway under the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}). It only adds allowed traffic, and takes effect within about a minute in namespaces that already have their own deny policy.
+
+### policy.giantswarm.io/allow-kube-apiserver
+
+Set to `"true"` on a namespace to allow egress to the Kubernetes API server under the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}). It only adds allowed traffic, and takes effect within about a minute in namespaces that already have their own deny policy.
+
+### policy.giantswarm.io/allow-metrics-scraping
+
+Set to `"true"` on a namespace to allow ingress from the Giant Swarm metrics agent under the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}). It only adds allowed traffic, and takes effect within about a minute in namespaces that already have their own deny policy.
+
+### policy.giantswarm.io/allow-webhook-ingress
+
+Set to `"true"` on a namespace to allow ingress to admission and conversion webhooks under the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}). It only adds allowed traffic, and takes effect within about a minute in namespaces that already have their own deny policy.
+
+### policy.giantswarm.io/default-deny
+
+Set to `"false"` on a namespace to exclude it from the [clusterwide deny]({{< relref "/tutorials/connectivity/network-policies" >}}). Never set it on `kube-system` or `giantswarm`.
 
 ### policy.giantswarm.io/resource-kind
 

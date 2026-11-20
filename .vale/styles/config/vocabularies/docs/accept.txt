@@ -19,6 +19,7 @@ Autoscaling
 Autoscaler
 [Bb]ackend
 [cC]loud
+[Cc]lusterwide
 [Cc]ronitor('s)?
 [Cc]rossplane
 [Dd][Nn][Ss]
@@ -208,7 +209,7 @@ really
 reconnection[s]?
 Rekor
 relref
-rollouts
+[Rr]ollouts?
 rulesets
 runbook[s]?
 Ryzen
