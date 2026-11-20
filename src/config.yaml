@@ -67,6 +67,13 @@ outputs:
 
 # Populate the `.Site.Params` variable for use in templates and shortcodes
 params:
+  # TelemetryDeck app that receives both page views (web SDK) and docs search
+  # events. Keep it in one place so both read the same app.
+  telemetryDeckAppID: "F188E67D-F9C1-43CD-B65C-B793BFA303AB"
+  # Docs search sends query analytics to TelemetryDeck only when this is true.
+  # It stays off until the privacy policy documents the collection.
+  searchTelemetry: false
+
   impl_titles:
     # If you want to specify the cloud/datacenter provider and not something vintage/CAPI-specific, use these
     aws_any: "AWS"

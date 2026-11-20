@@ -27,54 +27,15 @@ function getParameterByName(name) {
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-/* Initialize Inkeep widget for the Search Box */
-var inkeepWidget = null;
-var inkeepBaseSettings = {
-  apiKey: "5576a5448b50accc4cc1437c22d7252a7e89c42277956323", // required
-  organizationDisplayName: "Giant Swarm",
-  primaryBrandColor: "#386900",
-  theme: {
-    styles: [
-      {
-        key: "custom-theme",
-        type: "style",
-        value: `
-          .ikp-search-bar__text{
-            font-size: 14px;
-          }
-        `,
-      }
-    ]
+/* Open the self-hosted search modal from the sidebar and homepage search boxes.
+   The triggers are buttons, so Enter and Space already fire a click. Opening on
+   click only (never on focus) keeps keyboard users from being trapped on the box.
+   The modal itself lives in the header's shadow DOM and is wired in gs_scripts.js. */
+$(document).on("click", ".site-search-trigger", function(event) {
+  event.preventDefault();
+  if (window.gsOpenSearch) {
+    window.gsOpenSearch(this);
   }
-};
-
-function handleOpenChange(newOpen) {
-  inkeepWidget.update({ modalSettings: { isOpen: newOpen } });
-}
-
-$(function() {
-  inkeepWidget = Inkeep.SearchBar(
-    "#searchInputMobile", // required
-    {
-      baseSettings: inkeepBaseSettings,
-      modalSettings: {
-        onOpenChange: handleOpenChange
-      },
-      searchSettings: {
-        // optional InkeepSearchSettings
-      },
-      aiChatSettings: {
-        chatSubjectName: "Giant Swarm",
-        aiAssistantAvatar: "https://storage.googleapis.com/organization-image-assets/giantswarm-botAvatarSrcUrl-1701430144117.png",
-        getHelpOptions: [],
-        exampleQuestions: [
-          "How to create a cluster?",
-          "How to add a node pool?",
-          "How to upgrade my cluster?",
-          "How to use the kubectl gs?",
-        ]
-      }
-    });
 });
 
 /** Remove TOC if empty **/
