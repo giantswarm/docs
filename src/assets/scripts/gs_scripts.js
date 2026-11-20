@@ -79,16 +79,20 @@ const search_loading = root.querySelector(".site-search__loading");
 if (search_open && search_form && search_input && search_list) {
   const SEARCH_ENDPOINT = "/searchapi/";
   const PAGE_SIZE = 10;
+  const CHANGES_SIZE = 5;
   const MAX_QUERY = 200;
   const MIN_QUERY = 2;
   // The gateway rejects a from offset above this, so stop paging before it.
   const MAX_FROM = 1000;
-  // Groups in display order. Docs and release notes (Changes) come from one
-  // query. Blog and Handbook are not searched.
+  // Groups in display order. Regular documentation comes from the main query.
+  // Release notes (Changes) rank far below docs in that query, so they get their
+  // own query and show as a smaller group below docs. Blog and Handbook are not
+  // searched.
   const GROUP_ORDER = ["Docs", "Changes"];
 
   let docsHits = [];
   let docsTotal = 0;
+  let changesHits = [];
   let query = "";
   let controller = null;
   let debounce = null;
@@ -228,16 +232,23 @@ if (search_open && search_form && search_input && search_list) {
     if (docsTotal) {
       parts.push(docsTotal + (docsTotal === 1 ? " documentation result" : " documentation results"));
     }
+    if (changesHits.length) {
+      parts.push(changesHits.length + (changesHits.length === 1 ? " release note" : " release notes"));
+    }
     return parts.join(", ");
   }
 
   function renderResults() {
+    // The main query is documentation. Any release note it happens to return is
+    // dropped here, because the Changes group comes from the dedicated query.
     const groups = { Docs: [], Changes: [] };
     docsHits.forEach(function(hit) {
-      groups[docsGroupOf(hit._source || {})].push(hit);
+      if (docsGroupOf(hit._source || {}) === "Changes") return;
+      groups.Docs.push(hit);
     });
+    changesHits.forEach(function(hit) { groups.Changes.push(hit); });
 
-    const count = docsHits.length;
+    const count = groups.Docs.length + groups.Changes.length;
     const summary = summaryText();
 
     let html = "";
@@ -306,6 +317,7 @@ if (search_open && search_form && search_input && search_list) {
       query = value;
       docsHits = [];
       docsTotal = 0;
+      changesHits = [];
     }
 
     // Drop any in-flight request so a slower earlier query cannot render late.
@@ -332,19 +344,37 @@ if (search_open && search_form && search_input && search_list) {
     search_popup.classList.add("site-search__popup--form-submitted");
     setBusy(true);
 
-    // Docs and release notes (Changes) come from one query. "More results" pages
-    // the docs list with a higher from offset.
-    load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
+    // Documentation is the main query. "More results" pages it with a higher from
+    // offset. Release notes rank far below docs in that query, so a smaller changes
+    // query runs only on a fresh search and fills the Changes group.
+    const docsTask = load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
       .then(function(data) {
         const page = (data && data.hits && data.hits.hits) || [];
         docsTotal = (data && data.hits && data.hits.total && data.hits.total.value) || 0;
         docsHits = docsHits.concat(page);
-        renderResults();
-      })
-      .catch(function(error) {
-        if (error && error.name === "AbortError") return;
-        showFallback();
       });
+    const tasks = [docsTask];
+    if (!append) {
+      // A failed changes query must not hide docs results, so swallow its error.
+      tasks.push(
+        load("&type=Documentation&breadcrumb=changes&size=" + CHANGES_SIZE, signal)
+          .then(function(data) {
+            changesHits = (data && data.hits && data.hits.hits) || [];
+          })
+          .catch(function() { changesHits = []; })
+      );
+    }
+
+    Promise.allSettled(tasks).then(function(results) {
+      const docsResult = results[0];
+      if (docsResult.status === "rejected") {
+        const reason = docsResult.reason;
+        if (reason && reason.name === "AbortError") return;
+        showFallback();
+        return;
+      }
+      renderResults();
+    });
   }
 
   // Expose the modal so the sidebar and homepage search boxes can open it. The
