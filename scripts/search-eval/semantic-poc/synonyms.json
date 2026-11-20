@@ -1,0 +1,21 @@
+{
+  "_comment": "Reworded / synonym queries that share few literal words with the target page, to test whether semantic (vector) search finds the right page where keyword search struggles. 'expect' lists URL fragments of the page that answers the query. Used by setup_and_eval.py to compare keyword, neural and hybrid search.",
+  "top_k": 5,
+  "queries": [
+    {"q": "automatically add and remove nodes", "expect": ["/cluster-autoscaler/", "/scaling", "/node-pool"]},
+    {"q": "sign in to my cluster", "expect": ["/access-management/authentication/", "/configure-dex-in-your-cluster/"]},
+    {"q": "restrict traffic between pods", "expect": ["/policy-enforcement/", "/cni/", "/aws-cilium-eni-mode/"]},
+    {"q": "visualize metrics in charts", "expect": ["/creating-grafana-organization/", "/observability/"]},
+    {"q": "shared filesystem across pods", "expect": ["/storage/aws-efs/", "/storage/persistent-volumes/"]},
+    {"q": "cache container images locally", "expect": ["/registry/zot/", "/tutorials/registry/"]},
+    {"q": "move apps off the app platform", "expect": ["/app-platform-deprecation/"]},
+    {"q": "single sign on setup", "expect": ["/configure-dex-in-your-cluster/", "/access-management/authentication/", "/structured-authentication/"]},
+    {"q": "schedule graphics card workloads", "expect": ["/cluster-management/gpu/"]},
+    {"q": "send alert notifications somewhere", "expect": ["/alert-management/alert-routing/", "/observability/alert-management/"]},
+    {"q": "expose a service to the internet", "expect": ["/service-type-loadbalancer/", "/connectivity/ingress/", "/gateway-api/"]},
+    {"q": "make a cluster smaller", "expect": ["/cluster-downgrades/", "/aws-cluster-scaling/", "/node-pool"]},
+    {"q": "control who can access what", "expect": ["/security/rbac/", "/access-management/"]},
+    {"q": "configure the aws role identity for a workload cluster", "expect": ["/prepare-your-provider-infrastructure/aws/"]},
+    {"q": "replace ingress nginx with the new gateway", "expect": ["/gateway-api/ingress-nginx-migration/", "/connectivity/gateway-api/"]}
+  ]
+}
