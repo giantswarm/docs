@@ -79,20 +79,16 @@ const search_loading = root.querySelector(".site-search__loading");
 if (search_open && search_form && search_input && search_list) {
   const SEARCH_ENDPOINT = "/searchapi/";
   const PAGE_SIZE = 10;
-  const BLOG_SIZE = 4;
   const MAX_QUERY = 200;
   const MIN_QUERY = 2;
   // The gateway rejects a from offset above this, so stop paging before it.
   const MAX_FROM = 1000;
   // Groups in display order. Docs and release notes (Changes) come from one
-  // query; blog posts come from a separate query so relevant ones always show.
-  // The gateway scores blog far below docs, so in a mixed query blog would
-  // never reach the top results. Handbook is not searched.
-  const GROUP_ORDER = ["Docs", "Blog", "Changes"];
+  // query. Blog and Handbook are not searched.
+  const GROUP_ORDER = ["Docs", "Changes"];
 
   let docsHits = [];
   let docsTotal = 0;
-  let blogHits = [];
   let query = "";
   let controller = null;
   let debounce = null;
@@ -232,20 +228,16 @@ if (search_open && search_form && search_input && search_list) {
     if (docsTotal) {
       parts.push(docsTotal + (docsTotal === 1 ? " documentation result" : " documentation results"));
     }
-    if (blogHits.length) {
-      parts.push(blogHits.length + (blogHits.length === 1 ? " blog result" : " blog results"));
-    }
     return parts.join(", ");
   }
 
   function renderResults() {
-    const groups = { Docs: [], Blog: [], Changes: [] };
+    const groups = { Docs: [], Changes: [] };
     docsHits.forEach(function(hit) {
       groups[docsGroupOf(hit._source || {})].push(hit);
     });
-    blogHits.forEach(function(hit) { groups.Blog.push(hit); });
 
-    const count = docsHits.length + blogHits.length;
+    const count = docsHits.length;
     const summary = summaryText();
 
     let html = "";
@@ -314,7 +306,6 @@ if (search_open && search_form && search_input && search_list) {
       query = value;
       docsHits = [];
       docsTotal = 0;
-      blogHits = [];
     }
 
     // Drop any in-flight request so a slower earlier query cannot render late.
@@ -341,36 +332,19 @@ if (search_open && search_form && search_input && search_list) {
     search_popup.classList.add("site-search__popup--form-submitted");
     setBusy(true);
 
-    // Docs (and release notes) in one query; a smaller blog query runs only on a
-    // fresh search, so "More results" pages the docs list without refetching blog.
-    const docsTask = load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
+    // Docs and release notes (Changes) come from one query. "More results" pages
+    // the docs list with a higher from offset.
+    load("&type=Documentation&size=" + PAGE_SIZE + "&from=" + docsHits.length, signal)
       .then(function(data) {
         const page = (data && data.hits && data.hits.hits) || [];
         docsTotal = (data && data.hits && data.hits.total && data.hits.total.value) || 0;
         docsHits = docsHits.concat(page);
-      });
-    const tasks = [docsTask];
-    if (!append) {
-      // A failed blog query must not hide docs results, so swallow its error.
-      tasks.push(
-        load("&type=Blog&size=" + BLOG_SIZE, signal)
-          .then(function(data) {
-            blogHits = (data && data.hits && data.hits.hits) || [];
-          })
-          .catch(function() { blogHits = []; })
-      );
-    }
-
-    Promise.allSettled(tasks).then(function(results) {
-      const docsResult = results[0];
-      if (docsResult.status === "rejected") {
-        const reason = docsResult.reason;
-        if (reason && reason.name === "AbortError") return;
+        renderResults();
+      })
+      .catch(function(error) {
+        if (error && error.name === "AbortError") return;
         showFallback();
-        return;
-      }
-      renderResults();
-    });
+      });
   }
 
   // Expose the modal so the sidebar and homepage search boxes can open it. The
