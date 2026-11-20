@@ -156,6 +156,9 @@ docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
 dev:
+	@node scripts/search-proxy/searchapi-proxy.js & \
+	proxy_pid=$$!; \
+	trap "kill $$proxy_pid 2>/dev/null" EXIT INT TERM; \
 	hugo server \
 	  --source ./src \
 	  --ignoreCache \
