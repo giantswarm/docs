@@ -149,11 +149,19 @@ if (search_open && search_form && search_input && search_list) {
   }
 
   // The gateway wraps matched terms in the private-use characters U+E000 and
-  // U+E001, which cannot occur in indexed content. Escape the whole string
-  // first so index content can never inject markup, then turn the markers into
-  // highlight spans.
+  // U+E001, which cannot occur in indexed content. The markers are built from
+  // their code points, the way the gateway builds them, because written out
+  // literally they are invisible in the source.
+  const HIGHLIGHT_OPEN = String.fromCharCode(0xe000);
+  const HIGHLIGHT_CLOSE = String.fromCharCode(0xe001);
+  const HIGHLIGHT_PATTERN = new RegExp(
+    HIGHLIGHT_OPEN + "([^" + HIGHLIGHT_CLOSE + "]+?)" + HIGHLIGHT_CLOSE, "g"
+  );
+
+  // Escape the whole string first so index content can never inject markup,
+  // then turn the markers into highlight spans.
   function withHighlight(value) {
-    return escapeHtml(value).replace(/\\uE000([^\\uE001]+?)\\uE001/g, '<span class="hs-search-highlight">$1</span>');
+    return escapeHtml(value).replace(HIGHLIGHT_PATTERN, '<span class="hs-search-highlight">$1</span>');
   }
 
   // Allow absolute http(s) URLs and root-relative paths only. The negative
