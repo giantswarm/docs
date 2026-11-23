@@ -1,5 +1,10 @@
 # Semantic search PoC
 
+> Superseded by [`../semantic`](../semantic/README.md). That harness scores
+> embedding models under the chosen architecture, with the model in an external
+> service and section-level records. This directory stays as the record of the
+> ML Commons proof of concept.
+
 Checks whether semantic (vector) search finds the right page where keyword
 search struggles, especially for reworded or synonym queries. This is the
 phase 2 shape from the plan: the small embedding model (`all-MiniLM-L6-v2`)

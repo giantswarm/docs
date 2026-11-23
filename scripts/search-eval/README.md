@@ -44,3 +44,6 @@ if not. Re-run `run.py` and it prints the comparison and the verdict.
 
 The query set and this script stay in the repo so the gate can be re-run after
 any tuning or a model change.
+
+Phase 2 model scoring lives in [`semantic/`](semantic/README.md). It reuses this
+query set and these scoring rules.
