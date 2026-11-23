@@ -7,7 +7,7 @@ weight: 20
 menu:
   principal:
     parent: kubectlgs-gitops
-last_review_date: 2026-11-11
+last_review_date: 2026-11-19
 owner:
   - https://github.com/orgs/giantswarm/teams/team-honeybadger
 user_questions:
@@ -46,6 +46,12 @@ ConfigMap that the `HelmRelease` reads.
 
 **Note:** this needs kubectl-gs v6.0.0 or newer. Older versions generate an App CR for the cluster.
 
+Since kubectl-gs v7.0.0, clusters built on the base are protected from accidental deletion by default. The command adds the
+`giantswarm.io/prevent-deletion: "true"` label to the `OCIRepository` and the `HelmRelease`, and sets
+`global.metadata.preventDeletion: true` in `cluster_config.yaml`, so that the chart adds the label to the `Cluster`
+resource too. To delete such a cluster, remove the protection in your GitOps repository first, as described in
+[Prevent accidental deletion of resources]({{< relref "/tutorials/fleet-management/deletion-prevention#deleting-a-protected-cluster" >}}).
+
 ## Usage
 
 Basic command syntax: `kubectl gs gitops add base FLAGS`.
@@ -55,6 +61,7 @@ Basic command syntax: `kubectl gs gitops add base FLAGS`.
 - `--provider` -- Installation infrastructure provider, supported values: `capa`, `capz`, `vsphere` (required)
 - `--region` -- AWS or Azure region where the cluster will be created (required for `capz`)
 - `--azure-subscription-id` -- Azure subscription ID (required for `capz`)
+- `--prevent-deletion` -- Protect clusters built on the base from deletion (default: `true`). Pass `--prevent-deletion=false` to leave out both the labels and `preventDeletion` in the values
 
 {{% kubectl_gs_gitops_common_flags %}}
 
@@ -93,6 +100,7 @@ kind: OCIRepository
 metadata:
   labels:
     giantswarm.io/cluster: ${cluster_name}
+    giantswarm.io/prevent-deletion: "true"
   name: ${cluster_name}
   namespace: org-${organization}
 spec:
@@ -108,6 +116,7 @@ kind: HelmRelease
 metadata:
   labels:
     giantswarm.io/cluster: ${cluster_name}
+    giantswarm.io/prevent-deletion: "true"
   name: ${cluster_name}
   namespace: org-${organization}
 spec:
@@ -118,7 +127,6 @@ spec:
   install:
     remediation:
       remediateLastFailure: false
-      retries: 10
   interval: 5m0s
   releaseName: ${cluster_name}
   serviceAccountName: automation
@@ -144,7 +152,7 @@ global:
   metadata:
     name: ${cluster_name}
     organization: ${organization}
-    preventDeletion: false
+    preventDeletion: true
   nodePools:
     nodepool0: {}
   providerSpecific: {}
@@ -157,10 +165,10 @@ global:
 # repository was generated with, so that `kubectl gs gitops check` can tell
 # you when the repository has fallen behind.
 apiVersion: gitops.giantswarm.io/v1alpha1
-generatedWith: kubectl-gs/6.0.3
+generatedWith: kubectl-gs/7.0.0
 kind: RepositoryMetadata
 layers:
-- generatedWith: kubectl-gs/6.0.3
+- generatedWith: kubectl-gs/7.0.0
   kind: cluster-base
   path: bases/clusters/capa/template
   structureVersion: 2
