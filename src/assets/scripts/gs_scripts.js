@@ -148,11 +148,12 @@ if (search_open && search_form && search_input && search_list) {
       .replace(/'/g, "&#39;");
   }
 
-  // The gateway wraps matched terms in ** ** (its highlight tags). Escape the
-  // whole string first so index content can never inject markup, then turn the
-  // markers into highlight spans.
+  // The gateway wraps matched terms in the private-use characters U+E000 and
+  // U+E001, which cannot occur in indexed content. Escape the whole string
+  // first so index content can never inject markup, then turn the markers into
+  // highlight spans.
   function withHighlight(value) {
-    return escapeHtml(value).replace(/\*\*([^*]+?)\*\*/g, '<span class="hs-search-highlight">$1</span>');
+    return escapeHtml(value).replace(/([^]+?)/g, '<span class="hs-search-highlight">$1</span>');
   }
 
   // Allow absolute http(s) URLs and root-relative paths only. The negative
