@@ -22,7 +22,7 @@ user_questions:
   - How do I enable distributed tracing?
 ---
 
-## What is observability
+## What's observability
 
 Observability is all about understanding what's happening in your systems, so you can keep things running smoothly, spot issues early, and make smart improvements. At Giant Swarm, we make observability a priority. Our platform gives you the tools to see what's going on in your clusters and applications, fix problems fast, and keep everything healthy. You'll get everything you need for data exploration, visualization, and alerting, all in a self-service way. Plus, we provide proven defaults to help you get started quickly and confidently.
 
