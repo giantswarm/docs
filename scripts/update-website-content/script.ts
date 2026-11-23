@@ -6,9 +6,26 @@ import https from "https";
 
 const websiteURL = "https://www.giantswarm.io/privacy-policy";
 
-const headerElementSelector = "header.header";
-const footerElementSelector = "footer.footer";
+// The website renders the header twice, once in a static host and once in a
+// sticky host that takes over on scroll. The docs site keeps its header in
+// place, so it takes the static host, which content pages render solid.
+const headerHostSelector = ".gs-header-host--static";
+
+// The mobile drawer and the search overlay are siblings of the header on the
+// website. The docs site needs all three in the same shadow root.
+const mobileMenuSelector = ".gs-mobile-menu";
+const searchOverlaySelector = ".gs-search";
+
+// Marks the sample search result that search-modal.html carries only so that
+// the website's result rules have something to match.
+const sampleSelector = "[data-sample]";
+
+const footerElementSelector = "footer.gs-footer";
 const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation";
+
+// The language switcher points at translated pages that only exist on the
+// marketing site, so the docs copy drops it.
+const languageSwitcherSelectors = [".gs-nav__item--lang", ".gs-mobile-menu__lang"];
 
 const sectionTemplatesPath = path.join(
   import.meta.dirname,
@@ -53,17 +70,30 @@ const generatedFileDisclaimer =
   // Expose a custom function for fetching text files, to not have to deal with CORS issues.
   await page.exposeFunction("fetchTextFile", fetchTextFile);
 
-  // Header.
+  // Everything below changes the page before anything is read from it, so that
+  // what gets written out is already what the docs site needs.
+  log("Adapting the page for the docs site.");
+  await makeLinksAbsolute(page);
+  await removeElements(page, languageSwitcherSelectors);
+  await installSearchContents(page, (await fs.readFile(searchModalPath)).toString().trim());
+
+  // Header, mobile drawer and search overlay.
   log("Extracting header contents.");
-  const headerElement = await extractElementContents(page, headerElementSelector);
-  const searchModal = (await fs.readFile(searchModalPath)).toString().trim();
-  const header = processHeaderContents(headerElement, searchModal);
+  const headerHost = await extractElementContents(page, headerHostSelector);
+  const mobileMenu = await extractElementContents(page, mobileMenuSelector);
+
+  // The CSS comes first, while the sample result is still in the overlay. It
+  // is there for the website's result rules to match, and nothing more, so it
+  // goes away before the markup is read.
+  const searchCSS = await extractElementCSS(page, searchOverlaySelector);
+  await removeElements(page, [sampleSelector]);
+  const searchHTML = await extractElementHTML(page, searchOverlaySelector);
 
   log("Writing header HTML.");
-  await writeGeneratedFile(headerPath, header.html.join(""));
+  await writeGeneratedFile(headerPath, [...headerHost.html, ...mobileMenu.html, ...searchHTML].join("\n"));
 
   log("Writing header CSS.");
-  const headerCSS = Array.from(new Set(header.css));
+  const headerCSS = forShadowRoot([...headerHost.css, ...mobileMenu.css, ...searchCSS]);
   const headerCSSWithOverrides = await applyCSSOverrides(headerCSS);
   await writeGeneratedFile(headerStylesPath, `<style>\n${headerCSSWithOverrides.join("\n")}\n</style>`);
 
@@ -75,7 +105,7 @@ const generatedFileDisclaimer =
   await writeGeneratedFile(footerPath, footer.html.join(""));
 
   log("Writing footer CSS.");
-  const footerCSS = Array.from(new Set(footer.css));
+  const footerCSS = forShadowRoot(footer.css);
   await writeGeneratedFile(footerStylesPath, `<style>\n${footerCSS.join("\n")}\n</style>`);
 
   // Cookie Consent Banner.
@@ -84,6 +114,8 @@ const generatedFileDisclaimer =
   const cookiesBanner = processCookiesBannerContents(cookiesBannerElement);
 
   log("Writing cookies consent banner CSS file.");
+  // The banner is the one part that renders outside a shadow root, so its
+  // tokens stay on :root.
   const cookiesBannerCSS = Array.from(new Set(cookiesBanner.css));
   await writeGeneratedFile(
     cookiesBannerStylesPath,
@@ -102,6 +134,68 @@ interface ElementContents {
 }
 
 /**
+ * Turn every link on the page into an absolute one. The website serves its own
+ * links as paths, which would resolve against docs.giantswarm.io. The hsLang
+ * parameter goes with them, since it pins a language the docs site has not got.
+ */
+async function makeLinksAbsolute(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    for (const link of document.querySelectorAll("a[href]")) {
+      // The href property is already resolved against the page's own URL.
+      const url = new URL((link as HTMLAnchorElement).href);
+      url.searchParams.delete("hsLang");
+      link.setAttribute("href", url.toString());
+    }
+  });
+}
+
+/**
+ * Remove every element matching one of the selectors from the page.
+ */
+async function removeElements(page: Page, selectors: string[]): Promise<void> {
+  await page.evaluate((list) => {
+    for (const selector of list) {
+      for (const element of document.querySelectorAll(selector)) {
+        element.remove();
+      }
+    }
+  }, selectors);
+}
+
+/**
+ * Put the docs search markup into the website's search overlay. The website
+ * fills the overlay with its own results at runtime, so without this the
+ * extracted CSS would miss every rule that styles a result.
+ */
+async function installSearchContents(page: Page, contents: string): Promise<void> {
+  await page.evaluate(
+    ({ selector, contents }) => {
+      const overlay = document.querySelector(selector);
+      if (!overlay) throw new Error(`Could not find the search overlay (${selector}).`);
+
+      // The website ships the pages it searches as inline JSON. The docs search
+      // queries an API instead, and the index is large, so it goes.
+      overlay.querySelector("#search-index-data")?.remove();
+
+      const body = overlay.querySelector(".gs-search__body");
+      if (!body) throw new Error("Could not find the body of the search overlay.");
+
+      body.innerHTML = contents;
+    },
+    { selector: searchOverlaySelector, contents }
+  );
+}
+
+/**
+ * Move the website's design tokens to where a shadow root can see them. They
+ * are defined on :root, which matches the document element and so never
+ * matches inside the shadow roots that hold the header and the footer.
+ */
+function forShadowRoot(css: string[]): string[] {
+  return Array.from(new Set(css.map((rule) => rule.replaceAll(":root", ":host"))));
+}
+
+/**
  * Get the HTML content and the required CSS
  * for rendering an element.
  */
@@ -109,14 +203,28 @@ async function extractElementContents(
   page: Page,
   selector: string
 ): Promise<ElementContents> {
-  const element = await page.waitForSelector(selector, { state: "attached" });
+  return {
+    html: await extractElementHTML(page, selector),
+    css: await extractElementCSS(page, selector),
+  };
+}
 
+async function extractElementHTML(page: Page, selector: string): Promise<string[]> {
+  const element = await page.waitForSelector(selector, { state: "attached" });
   const html = await element.evaluate(extractHTMLForElement);
+
+  await element.dispose();
+
+  return html;
+}
+
+async function extractElementCSS(page: Page, selector: string): Promise<string[]> {
+  const element = await page.waitForSelector(selector, { state: "attached" });
   const css = await page.evaluate(extractCSSForElement, element);
 
   await element.dispose();
 
-  return { html, css };
+  return css;
 }
 
 function extractHTMLForElement(e: Element): string[] {
@@ -191,6 +299,15 @@ async function extractCSSForElement(e: Element): Promise<string[]> {
       switch (rule.type) {
         case CSSRule.STYLE_RULE: {
           const { selectorText } = rule as CSSStyleRule;
+
+          // The design tokens are defined on :root and used all over the
+          // website's CSS, but no element matches that selector, so they have
+          // to be taken along on their own.
+          if (selectorText.includes(":root")) {
+            cssLines.push(rule.cssText);
+            break;
+          }
+
           for (const element of forElements) {
             if (elementMatchesSelector(element, selectorText)) {
               cssLines.push(rule.cssText);
@@ -281,48 +398,6 @@ async function fetchTextFile(fromURL: string): Promise<string> {
 
 function log(message: string) {
   console.log(message);
-}
-
-/**
- * Replace the website's search widget with the docs search modal.
- * The widget is the div with the id "header_search", so this walks the
- * div tags from there until the matching closing tag.
- */
-function replaceSearchWidget(html: string, searchModal: string): string {
-  const start = html.indexOf('<div id="header_search"');
-  if (start < 0) {
-    throw new Error("Could not find the search widget (#header_search) in the header.");
-  }
-
-  const divTag = /<(\/?)div\b/g;
-  divTag.lastIndex = start;
-
-  let depth = 0;
-  for (let m = divTag.exec(html); m; m = divTag.exec(html)) {
-    depth += m[1] ? -1 : 1;
-    if (depth === 0) {
-      const end = html.indexOf(">", m.index) + 1;
-      return html.slice(0, start) + searchModal + html.slice(end);
-    }
-  }
-
-  throw new Error("Could not find the end of the search widget (#header_search) in the header.");
-}
-
-function processHeaderContents(header: ElementContents, searchModal: string) {
-  const { html, css } = header;
-  const cleanHtml = html.map(function(str) {
-    return replaceSearchWidget(str, searchModal)
-      .replaceAll("nav__item--active-branch", "")
-      .replaceAll("nav__item--active", "")
-      .replaceAll("mnav__menu__item--active-branch", "")
-      .replaceAll("mnav__menu__item--active", "");
-  })
-
-  return {
-    html: cleanHtml,
-    css,
-  }
 }
 
 function processCookiesBannerContents(header: ElementContents) {
