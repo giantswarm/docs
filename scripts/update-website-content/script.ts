@@ -24,6 +24,7 @@ const footerStylesPath = path.join(sectionTemplatesPath, "gs_footer_styles.html"
 const cookiesBannerStylesPath = path.join(sectionTemplatesPath, "gs_cookies_banner_styles.html");
 
 const cssOverridesPath = path.join(__dirname, "overrides.css");
+const searchModalPath = path.join(__dirname, "search-modal.html");
 
 const generatedFileDisclaimer =
   "<!-- !!! DO NOT EDIT !!! File generated with 'make update-website-content' -->";
@@ -54,7 +55,8 @@ const generatedFileDisclaimer =
   // Header.
   log("Extracting header contents.");
   const headerElement = await extractElementContents(page, headerElementSelector);
-  const header = processHeaderContents(headerElement);
+  const searchModal = (await fs.readFile(searchModalPath)).toString().trim();
+  const header = processHeaderContents(headerElement, searchModal);
 
   log("Writing header HTML.");
   await writeGeneratedFile(headerPath, header.html.join(""));
@@ -280,10 +282,36 @@ function log(message: string) {
   console.log(message);
 }
 
-function processHeaderContents(header: ElementContents) {
+/**
+ * Replace the website's search widget with the docs search modal.
+ * The widget is the div with the id "header_search", so this walks the
+ * div tags from there until the matching closing tag.
+ */
+function replaceSearchWidget(html: string, searchModal: string): string {
+  const start = html.indexOf('<div id="header_search"');
+  if (start < 0) {
+    throw new Error("Could not find the search widget (#header_search) in the header.");
+  }
+
+  const divTag = /<(\/?)div\b/g;
+  divTag.lastIndex = start;
+
+  let depth = 0;
+  for (let m = divTag.exec(html); m; m = divTag.exec(html)) {
+    depth += m[1] ? -1 : 1;
+    if (depth === 0) {
+      const end = html.indexOf(">", m.index) + 1;
+      return html.slice(0, start) + searchModal + html.slice(end);
+    }
+  }
+
+  throw new Error("Could not find the end of the search widget (#header_search) in the header.");
+}
+
+function processHeaderContents(header: ElementContents, searchModal: string) {
   const { html, css } = header;
   const cleanHtml = html.map(function(str) {
-    return str
+    return replaceSearchWidget(str, searchModal)
       .replaceAll("nav__item--active-branch", "")
       .replaceAll("nav__item--active", "")
       .replaceAll("mnav__menu__item--active-branch", "")
