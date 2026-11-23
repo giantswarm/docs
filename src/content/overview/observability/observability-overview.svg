@@ -24,7 +24,7 @@
 <rect x="40" y="94" width="240" height="410" rx="10" fill="#f0f7f9" stroke="#6f8a9f" stroke-width="1.5"/>
 <rect x="32" y="102" width="240" height="410" rx="10" fill="#f0f7f9" stroke="#6f8a9f" stroke-width="1.5"/>
 <rect x="24" y="110" width="240" height="410" rx="10" fill="#f0f7f9" stroke="#6f8a9f" stroke-width="1.5"/>
-<text class="container-label" x="144.0" y="140">Your clusters</text>
+<text class="container-label" x="144.0" y="140">Clusters</text>
 <rect x="356" y="110" width="490" height="410" rx="10" fill="#ddf0fa" stroke="#002645" stroke-width="1.5"/>
 <text class="container-label" x="601.0" y="140">Observability platform</text>
 <text class="section" x="54" y="176">COLLECTION</text>

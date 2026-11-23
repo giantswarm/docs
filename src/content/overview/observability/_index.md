@@ -49,7 +49,7 @@ One of the biggest benefits of using Giant Swarm is that you get the same reliab
 ## The technology behind our platform
 
 We rely exclusively on open source tools, so you have complete ownership of the software that we run for you.
-Alloy collects metrics, logs, and traces in your clusters and sends them to Mimir, Loki, and Tempo. You explore all three in Grafana, and Alertmanager notifies you when an alerting rule fires:
+Alloy collects metrics, logs, and traces from your workloads and sends them to Mimir, Loki, and Tempo. You explore all three in Grafana, and Alertmanager notifies you when an alerting rule fires:
 
 ![Observability platform overview: Alloy sends metrics, logs, and traces to Mimir, Loki, and Tempo, which feed Grafana and Alertmanager](./observability-overview.svg)
 
@@ -65,7 +65,7 @@ Here are the most important tools we rely on:
 
 - <img src="./logo-alertmanager.svg" alt="" style="height: 1.2em; margin: 0 4px 0 0; vertical-align: text-bottom"> **Alertmanager:** We run the Mimir Alertmanager, which builds on the Prometheus Alertmanager and handles all your alerts. It manages routing, grouping, and silencing, so the right people get notified at the right time. It supports notifications via email, Slack, PagerDuty, and more.
 
-- <img src="./logo-alloy.svg" alt="" style="height: 1.2em; margin: 0 4px 0 0; vertical-align: text-bottom"> **Alloy:** As an OpenTelemetry collector, Grafana Alloy makes it easy to collect, process, and forward metrics, logs, and traces from your management and workload clusters. Adding new data is as simple as setting up a new service monitor or adding the right labels.
+- <img src="./logo-alloy.svg" alt="" style="height: 1.2em; margin: 0 4px 0 0; vertical-align: text-bottom"> **Alloy:** As an OpenTelemetry collector, Grafana Alloy makes it easy to collect, process, and forward metrics, logs, and traces from your workloads. Adding new data is as simple as setting up a new service monitor or adding the right labels.
 
 ---
 
