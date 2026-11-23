@@ -1,4 +1,5 @@
-import { chromium, Page } from "playwright";
+import { chromium } from "playwright";
+import type { Page } from "playwright";
 import fs from "fs/promises";
 import path from "path";
 import https from "https";
@@ -10,7 +11,7 @@ const footerElementSelector = "footer.footer";
 const cookiesBannerElementSelector = "#hs-eu-cookie-confirmation";
 
 const sectionTemplatesPath = path.join(
-  __dirname,
+  import.meta.dirname,
   "..",
   "..",
   "src",
@@ -23,8 +24,8 @@ const footerPath = path.join(sectionTemplatesPath, "gs_footer.html");
 const footerStylesPath = path.join(sectionTemplatesPath, "gs_footer_styles.html");
 const cookiesBannerStylesPath = path.join(sectionTemplatesPath, "gs_cookies_banner_styles.html");
 
-const cssOverridesPath = path.join(__dirname, "overrides.css");
-const searchModalPath = path.join(__dirname, "search-modal.html");
+const cssOverridesPath = path.join(import.meta.dirname, "overrides.css");
+const searchModalPath = path.join(import.meta.dirname, "search-modal.html");
 
 const generatedFileDisclaimer =
   "<!-- !!! DO NOT EDIT !!! File generated with 'make update-website-content' -->";
