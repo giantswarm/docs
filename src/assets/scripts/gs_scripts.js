@@ -153,7 +153,7 @@ if (search_open && search_form && search_input && search_list) {
   // first so index content can never inject markup, then turn the markers into
   // highlight spans.
   function withHighlight(value) {
-    return escapeHtml(value).replace(/([^]+?)/g, '<span class="hs-search-highlight">$1</span>');
+    return escapeHtml(value).replace(/\\uE000([^\\uE001]+?)\\uE001/g, '<span class="hs-search-highlight">$1</span>');
   }
 
   // Allow absolute http(s) URLs and root-relative paths only. The negative
