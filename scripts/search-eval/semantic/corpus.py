@@ -3,13 +3,12 @@
 One record per page, made from the front matter alone: the title, the
 description and the `user_questions`. The body is not read.
 
-Section-level records were tried first and dropped. Most headings in these
-docs are scaffolding ("Prerequisites", "Usage", "Flags") and would give
-near-identical vectors on hundreds of pages. The page already carries
-hand-written text shaped like a search query, the `user_questions` list, such
-as "How do I configure and provision my first workload cluster?". Embedding
-those compares a query with a query, which is an easier problem than comparing
-a query with body text.
+Headings are not embedded. Most are scaffolding ("Prerequisites", "Usage",
+"Flags") and would give near-identical vectors on hundreds of pages. The page
+carries hand-written text shaped like a search query instead, the
+`user_questions` list, such as "How do I configure and provision my first
+workload cluster?". Embedding those compares a query with a query, which is an
+easier problem than comparing a query with body text.
 
 The 303 pages outside /changes all have a title and a description. 268 have
 `user_questions`, which is every page with a body. The other 35 are list pages

@@ -1,5 +1,5 @@
 {
-  "_comment": "Candidate embedding models. Each entry names an HTTP endpoint (shape 'ollama' or 'tei'), the model, the vector size to index (dimensions, cut from the full vector and renormalised, leave out for the full size) and the text wrappers the model expects. The templates and model tags are from the model cards and the Ollama library as remembered when this was written. Check them against the card of the exact build you serve before trusting a score. With shape 'tei' the model is fixed when the server starts, so 'model' is ignored.",
+  "_comment": "Candidate embedding models. Each entry names an HTTP endpoint (shape 'ollama' or 'tei'), the model, the vector size to index (dimensions, cut from the full vector and renormalised, leave out for the full size) and the text wrappers the model expects. Verify the model tags and templates against the model card of the exact build you serve before trusting a score. With shape 'tei' the model is fixed when the server starts, so 'model' is ignored.",
   "models": [
     {
       "name": "embeddinggemma-300m-512",

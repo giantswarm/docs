@@ -2,16 +2,9 @@
 
 Phase 2 of the docs search adds semantic search. This directory scores
 candidate embedding models on the real query set, so the model is chosen by
-measurement. It replaces [`../semantic-poc`](../semantic-poc/README.md), which
-ran the model inside OpenSearch (ML Commons). That design is dropped. The
-embedding model now runs in a small separate CPU service, the gateway embeds
-the query at search time and sends a plain `knn` clause. There is no ML
-Commons, no neural clause and no stored search template.
-
-The proof of concept stays as the record of the 87% neural and hybrid against
-53% keyword result. It is a separate directory because that result came from a
-different architecture, and this harness would overwrite its scripts and
-findings.
+measurement. The embedding model runs in a small separate CPU service. The
+gateway embeds the query at search time and sends a plain `knn` clause to
+OpenSearch.
 
 ## One record per page
 
@@ -19,13 +12,13 @@ Each page is embedded as one record, built from its front matter only: the
 title, the description and the `user_questions`, on three lines. The body is
 not read.
 
-Section-level records were tried first and dropped. Most headings in these
-docs are scaffolding (`Prerequisites`, `Usage`, `Flags`), so they would give
-near-identical vectors on hundreds of pages. The pages also already carry
-hand-written text shaped like a search query. 268 of the 303 pages outside
-`/changes` have a `user_questions` list, for example "How do I configure and
-provision my first workload cluster?". Embedding those compares a query with
-a query, which is an easier problem than comparing a query with body text.
+Headings are not embedded. Most are scaffolding (`Prerequisites`, `Usage`,
+`Flags`) and would give near-identical vectors on hundreds of pages. The pages
+carry hand-written text shaped like a search query instead. 268 of the 303
+pages outside `/changes` have a `user_questions` list, for example "How do I
+configure and provision my first workload cluster?". Embedding those compares
+a query with a query, which is an easier problem than comparing a query with
+body text.
 
 The other 35 pages are list pages with front matter only. They get the title
 and the description. `/changes` release notes are left out, and a result links
@@ -43,7 +36,7 @@ to the page, as in phase 1.
 > It creates and changes nothing.
 
 Start a disposable OpenSearch and an embedding service. For OpenSearch, see the
-Docker command in the [proof of concept README](../semantic-poc/README.md). For
+Docker command in [`../semantic-poc/README.md`](../semantic-poc/README.md). For
 the embedding service, run Ollama (`ollama pull embeddinggemma`) or a Text
 Embeddings Inference container, and set its URL in `models.json`.
 
@@ -73,8 +66,8 @@ python3 -m unittest discover -s tests
 3. `eval_models.py` loads the vectors into a local OpenSearch index as
    `knn_vector`, then runs each query in `../queries.json` three ways:
    - keyword: the live `/searchapi` gateway, using `run.py`'s own client.
-     This is the real phase 1 system over full page bodies, the system that
-     scored 29 of 32. It is the baseline.
+     This is the real phase 1 system over full page bodies. It is the
+     baseline.
    - vector: a plain `knn` clause on the local index.
    - hybrid: the two rankings fused with reciprocal rank fusion (k=60), in
      the client.
@@ -95,9 +88,11 @@ must not be read as one.
 Several queries in `queries.json` are single words (`gpu`, `zot`, `dex`,
 `karp`). They are keyword-shaped, not question-shaped, so expect the vector leg
 to help little on them. Hybrid is what protects them, because the gateway's
-keyword ranking stays in the fusion. `karp` is now served by prefix matching
-that shipped in giantswarm/docs-proxy#347 and giantswarm/docs-indexer#638, so
-it no longer separates the legs the way it did when the 29 of 32 was measured.
+keyword ranking stays in the fusion. The gateway serves `karp` through prefix
+matching (giantswarm/docs-proxy#347 and giantswarm/docs-indexer#638).
+
+The keyword leg is the live gateway over full page bodies, so the baseline to
+compare against is a `run.py` run on the same day.
 
 ## Changing the model list
 
