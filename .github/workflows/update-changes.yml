@@ -45,9 +45,16 @@ jobs:
       - name: Update CRD pages
         run: make update-crd-reference
 
-      # Disabled in Dec 2024 as it's not working afte rthe website update. (Marian)
-      #- name: Update website header and footer
-      #  run: make update-website-content
+      # The scraper runs as TypeScript through Node's own type stripping, which
+      # needs Node 22.18 or newer. The runner's default version is not pinned to
+      # anything, so ask for one that is new enough.
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "24"
+
+      - name: Update website header and footer
+        run: make update-website-content
 
       - name: Generate giantswarm-release token for the pull request
         id: pr-token
