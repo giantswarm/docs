@@ -74,8 +74,8 @@ python3 -m unittest discover -s tests
 4. It reports the top-k hit rate and p95 latency with the rules of
    [`../run.py`](../run.py), which it imports. A hit means an expected URL
    fragment appears in the top k pages. Like `run.py` and the widget, keyword
-   and hybrid also count the blog results the gateway returns. Vector does not,
-   since no blog is embedded.
+   and hybrid also count the Changes group, the release notes the widget shows
+   below docs. Vector does not, since release notes are not embedded.
 
 The local index holds only front matter, so a keyword search over it would
 compare front matter with front matter and flatter the vector leg. That is why

@@ -58,24 +58,24 @@ class TestKeywordLeg(unittest.TestCase):
         self.assertEqual(n("/a/b"), "/a/b/")
         self.assertEqual(n("/a/b/?q=x"), "/a/b/")
 
-    def test_gateway_keyword_uses_the_phase_1_client_for_docs_and_blog(self):
+    def test_gateway_keyword_uses_the_phase_1_client_for_docs_and_changes(self):
         calls = []
 
-        def fake_fetch(endpoint, query, type_, size, timeout):
-            calls.append((endpoint, query, type_, size, timeout))
-            hits = [{"url": "https://docs.giantswarm.io/x/y#z"}] if type_ == "Documentation" else [{"url": "/blog/b/"}]
+        def fake_fetch(endpoint, query, type_, size, timeout, breadcrumb=None):
+            calls.append((endpoint, query, type_, size, timeout, breadcrumb))
+            hits = [{"url": "/changes/r/"}] if breadcrumb else [{"url": "https://docs.giantswarm.io/x/y#z"}]
             return hits, 12.0
 
         with mock.patch.object(eval_models.run, "fetch", side_effect=fake_fetch):
-            docs, blog, ms = eval_models.keyword_gateway("https://gw/", 7.0, 4)("login", 50)
-        self.assertEqual((docs, blog, ms), (["/x/y/"], ["/blog/b/"], 12.0))
-        self.assertEqual(calls, [("https://gw/", "login", "Documentation", 50, 7.0),
-                                 ("https://gw/", "login", "Blog", 4, 7.0)])
+            docs, changes, ms = eval_models.keyword_gateway("https://gw/", 7.0, 5)("login", 50)
+        self.assertEqual((docs, changes, ms), (["/x/y/"], ["/changes/r/"], 12.0))
+        self.assertEqual(calls, [("https://gw/", "login", "Documentation", 50, 7.0, None),
+                                 ("https://gw/", "login", "Documentation", 5, 7.0, "changes")])
 
-    def test_score_query_counts_blog_for_keyword_and_hybrid_but_not_vector(self):
-        keyword = lambda query, size: (["/a/", "/b/"], ["/blog/post/"], 5.0)  # noqa: E731
+    def test_score_query_counts_changes_for_keyword_and_hybrid_but_not_vector(self):
+        keyword = lambda query, size: (["/a/", "/b/"], ["/changes/post/"], 5.0)  # noqa: E731
         with mock.patch.object(eval_models, "search", return_value=["/c/", "/a/"]):
-            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/blog/"], 5, 50, 60)
+            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/changes/"], 5, 50, 60)
         self.assertEqual([result[m][0] for m in eval_models.METHODS], [True, False, True])
 
     def test_score_query_fuses_gateway_and_vector_rankings(self):

@@ -14,8 +14,9 @@ python3 run.py --queries queries.json
 
 No dependencies beyond the Python standard library. It queries the production
 `/searchapi` the way the widget does (a `Documentation` query plus a smaller
-`Blog` query) and prints a Markdown report: a per-query table, the top-k hit
-rate, the p95 latency, and, once Inkeep results are filled in, a verdict.
+`Changes` query for release notes) and prints a Markdown report: a per-query
+table, the top-k hit rate, the p95 latency, and, once Inkeep results are filled
+in, a verdict.
 
 ## The query set
 
@@ -33,7 +34,7 @@ rate, the p95 latency, and, once Inkeep results are filled in, a verdict.
   until judged.
 
 Top of the file, `top_k` sets how many docs results count as the visible top
-(the blog group is always included), and `latency_budget_ms` sets the p95 budget.
+(the Changes group is always included), and `latency_budget_ms` sets the p95 budget.
 
 ## Judging Inkeep
 

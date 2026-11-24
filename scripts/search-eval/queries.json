@@ -2,7 +2,7 @@
   "_comment": "Real top search queries from the last 30 days (docs search analytics). 'expect' lists URL fragments of the page that genuinely answers the query; a result is a hit when any fragment is a substring of its URL. 'inkeep_hit' is filled by hand after running the same query in the live Inkeep search (see README).",
   "endpoint": "https://docs.giantswarm.io/searchapi/",
   "docs_size": 10,
-  "blog_size": 4,
+  "changes_size": 5,
   "top_k": 5,
   "latency_budget_ms": 300,
   "queries": [
