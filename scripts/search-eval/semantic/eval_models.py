@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """Score candidate embedding models on the real docs query set.
 
-This replaces ../semantic-poc, which ran the model inside OpenSearch (ML
-Commons). Here the model runs in a separate HTTP service, the gateway embeds
-the query and sends a plain `knn` clause, and the index holds one record per
-page.
+The model runs in a separate HTTP service, the gateway embeds the query and
+sends a plain `knn` clause, and the index holds one record per page.
 
 For each model in models.json the script builds one record per page from its
 front matter (title, description and user_questions, see corpus.py), embeds
@@ -12,9 +10,9 @@ them through the model's endpoint, and loads them into a throwaway OpenSearch
 as `knn_vector`. It then runs every query in ../queries.json three ways:
 
 - keyword: the live /searchapi gateway, queried the way ../run.py does it.
-  This is the real phase 1 system over the full page bodies, and it is the
-  baseline the 91% was measured on. The local index holds only front matter,
-  so a keyword search over it would flatter the vector leg.
+  This is the real phase 1 system over the full page bodies, so the baseline
+  to compare against is a ../run.py run on the same day. The local index holds
+  only front matter, so a keyword search over it would flatter the vector leg.
 - vector: a plain `knn` clause on the local index.
 - hybrid: the two rankings fused with reciprocal rank fusion.
 
