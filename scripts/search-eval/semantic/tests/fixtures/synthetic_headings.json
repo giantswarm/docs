@@ -81,7 +81,7 @@
    {"heading": "Six", "id": "six"}
   ],
   "s3": [
-   {"heading": "café mark", "id": "cafe-mark"},
+   {"heading": "café mark", "id": "cafe-mark"},
    {"heading": "नमस्ते hindi", "id": "नमसत-hindi"},
    {"heading": "Foo \\\\* \\\\\\\\ \\\\a", "id": "foo---a"},
    {"heading": "`code` & **x**{#bold-id}", "id": "bold-id"},
@@ -98,4 +98,3 @@
   ]
  }
 }
-
