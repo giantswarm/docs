@@ -4,22 +4,22 @@
 This replaces ../semantic-poc, which ran the model inside OpenSearch (ML
 Commons). Here the model runs in a separate HTTP service, the gateway embeds
 the query and sends a plain `knn` clause, and the index holds one record per
-H2/H3 section.
+page.
 
-For each model in models.json the script splits the docs into sections,
-embeds them through the model's endpoint, loads them into a throwaway
+For each model in models.json the script builds one record per page from its
+front matter (title, description and user_questions, see corpus.py), embeds
+them through the model's endpoint, loads them into a throwaway
 OpenSearch as `knn_vector`, then runs every query in ../queries.json three
 ways: keyword (BM25), pure vector, and hybrid (the two rankings fused with
 reciprocal rank fusion). It prints a Markdown report per model with the same
 top-k hit rate and p95 latency rules as ../run.py.
 
 A hit means an expected URL fragment appears in the URL of one of the top-k
-distinct pages. Sections of the same page count once, so the numbers compare
-with the page-level keyword gate.
+pages, like the page-level keyword gate.
 
 Subcommands:
 
-    python3 eval_models.py sections   # split the docs and print counts, needs nothing running
+    python3 eval_models.py corpus     # build the page records and print counts, needs nothing running
     python3 eval_models.py eval       # score the models in models.json
 
 Standard library only. Never point this at the production sitesearch
@@ -38,7 +38,7 @@ sys.path.insert(0, os.path.join(HERE, ".."))
 from run import matches, percentile  # noqa: E402 - the phase 1 gate's scoring rules
 
 from embed import Embedder  # noqa: E402
-from sections import load_sections  # noqa: E402
+from corpus import load_pages  # noqa: E402
 
 DEFAULT_CONTENT = os.path.join(HERE, "..", "..", "..", "src", "content")
 DEFAULT_QUERIES = os.path.join(HERE, "..", "queries.json")
@@ -47,8 +47,8 @@ DEFAULT_TOP_K = 5
 DEFAULT_LATENCY_BUDGET_MS = 300
 DEFAULT_CANDIDATES = 50
 DEFAULT_RRF_K = 60
-INDEX_PREFIX = "docs-sections-eval-"
-SEARCH_FIELDS = ["title^2", "heading^3", "text"]
+INDEX_PREFIX = "docs-pages-eval-"
+SEARCH_FIELDS = ["title^2", "description", "questions^2"]
 METHODS = ("keyword", "vector", "hybrid")
 
 
@@ -91,20 +91,20 @@ def create_index(c, name, dimension):
         "mappings": {"properties": {
             "embedding": {"type": "knn_vector", "dimension": dimension,
                           "method": {"name": "hnsw", "engine": "lucene", "space_type": "cosinesimil"}},
-            "title": {"type": "text"}, "heading": {"type": "text"}, "text": {"type": "text"},
-            "url": {"type": "keyword"}, "anchor": {"type": "keyword"}, "type": {"type": "keyword"},
+            "title": {"type": "text"}, "description": {"type": "text"}, "questions": {"type": "text"},
+            "url": {"type": "keyword"}, "type": {"type": "keyword"},
         }},
     })
 
 
-def bulk_index(c, name, sections, vectors, batch=200):
-    for start in range(0, len(sections), batch):
+def bulk_index(c, name, pages, vectors, batch=200):
+    for start in range(0, len(pages), batch):
         lines = []
-        for i in range(start, min(start + batch, len(sections))):
-            s = sections[i]
-            lines.append(json.dumps({"index": {"_index": name, "_id": str(i)}}))
-            lines.append(json.dumps({"title": s.title, "heading": s.heading, "text": s.text, "url": s.url,
-                                     "anchor": s.anchor, "type": s.type, "embedding": vectors[i]}))
+        for i in range(start, min(start + batch, len(pages))):
+            p = pages[i]
+            lines.append(json.dumps({"index": {"_index": name, "_id": p.url}}))
+            lines.append(json.dumps({"title": p.title, "description": p.description, "questions": p.text,
+                                     "url": p.url, "type": p.type, "embedding": vectors[i]}))
         res = c.req("POST", "/_bulk", "\n".join(lines) + "\n", ndjson=True)
         if res.get("errors"):
             failed = [it["index"]["error"] for it in res["items"] if it["index"].get("error")]
@@ -113,9 +113,10 @@ def bulk_index(c, name, sections, vectors, batch=200):
 
 
 def search(c, name, query_clause, size):
-    body = {"size": size, "_source": ["title", "heading", "url", "anchor"], "query": query_clause}
+    """Return the page URLs of the top hits, best first. The document id is the URL."""
+    body = {"size": size, "_source": False, "query": query_clause}
     resp = c.req("POST", "/%s/_search" % name, body)
-    return [{"id": h["_id"], **h["_source"]} for h in resp.get("hits", {}).get("hits", [])]
+    return [h["_id"] for h in resp.get("hits", {}).get("hits", [])]
 
 
 def keyword_clause(query):
@@ -139,17 +140,6 @@ def rrf(rankings, k=DEFAULT_RRF_K):
     return sorted(scores, key=lambda d: -scores[d])
 
 
-def top_pages(hits, top_k):
-    """Return the URLs of the first top_k distinct pages in a list of section hits."""
-    urls = []
-    for h in hits:
-        if h["url"] not in urls:
-            urls.append(h["url"])
-        if len(urls) == top_k:
-            break
-    return urls
-
-
 def score_query(c, index, embedder, query, expected, top_k, candidates, rrf_k):
     """Run one query three ways. Return {method: (hit, top_url, latency_ms)} and the embed latency."""
     t0 = time.monotonic()
@@ -164,13 +154,12 @@ def score_query(c, index, embedder, query, expected, top_k, candidates, rrf_k):
     vec_ms = embed_ms + (time.monotonic() - t0) * 1000
 
     # The hybrid cost is every step of it, run one after the other.
-    by_id = {h["id"]: h for h in kw + vec}
-    fused = [by_id[i] for i in rrf([[h["id"] for h in kw], [h["id"] for h in vec]], rrf_k)]
+    fused = rrf([kw, vec], rrf_k)
     hybrid_ms = kw_ms + vec_ms
 
     result = {}
     for method, hits, ms in (("keyword", kw, kw_ms), ("vector", vec, vec_ms), ("hybrid", fused, hybrid_ms)):
-        pages = top_pages(hits, top_k)
+        pages = hits[:top_k]
         result[method] = (any(matches(u, expected) for u in pages), pages[0] if pages else "(no results)", ms)
     return result, embed_ms
 
@@ -180,18 +169,18 @@ def show_progress(done, total):
         print("  %d/%d" % (done, total), file=sys.stderr)
 
 
-def score_model(c, cfg, sections, queries, top_k, candidates, rrf_k, keep_index):
-    """Index the sections with one model and score every query. Return a result dict."""
+def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, keep_index):
+    """Index the pages with one model and score every query. Return a result dict."""
     embedder = Embedder.from_config(cfg)
     name = index_name(cfg["name"])
 
-    print("[%s] embedding %d sections..." % (cfg["name"], len(sections)), file=sys.stderr)
+    print("[%s] embedding %d pages..." % (cfg["name"], len(pages)), file=sys.stderr)
     t0 = time.monotonic()
-    vectors = embedder.embed_sections(sections, progress=show_progress)
+    vectors = embedder.embed_sections(pages, progress=show_progress)
     embed_seconds = time.monotonic() - t0
 
     create_index(c, name, len(vectors[0]))
-    bulk_index(c, name, sections, vectors)
+    bulk_index(c, name, pages, vectors)
 
     rows, latencies, embed_latencies = [], {m: [] for m in METHODS}, []
     hits = {m: 0 for m in METHODS}
@@ -221,12 +210,11 @@ def score_model(c, cfg, sections, queries, top_k, candidates, rrf_k, keep_index)
             "embed_p95": percentile(embed_latencies, 95), "embed_seconds": embed_seconds}
 
 
-def format_report(result, sections, top_k, budget):
+def format_report(result, page_count, top_k, budget):
     """Return the Markdown report for one model."""
-    pages = len({s.url for s in sections})
     lines = ["## %s\n" % result["name"],
-             "%d-dimension vectors, %d sections from %d pages, embedded in %.0f s  |  top-k: %d  |  latency budget: %d ms\n"
-             % (result["dimension"], len(sections), pages, result["embed_seconds"], top_k, budget),
+             "%d-dimension vectors, %d pages, embedded in %.0f s  |  top-k: %d  |  latency budget: %d ms\n"
+             % (result["dimension"], page_count, result["embed_seconds"], top_k, budget),
              "| Query | keyword | vector | hybrid | Top hybrid page |", "|---|---|---|---|---|"]
     for q, hit, top in result["rows"]:
         if hit is None:
@@ -261,12 +249,12 @@ def format_comparison(results, top_k):
     return "\n".join(lines)
 
 
-def cmd_sections(args):
-    sections = load_sections(args.content)
-    pages = {s.url for s in sections}
-    with_anchor = [s for s in sections if s.anchor]
-    print("%d sections from %d pages (%d with an anchor)" % (len(sections), len(pages), len(with_anchor)))
-    lengths = sorted(len(s.text) for s in sections)
+def cmd_corpus(args):
+    pages = load_pages(args.content)
+    asked = [p for p in pages if p.questions]
+    print("%d pages, %d with user_questions, %d with title and description only" % (
+        len(pages), len(asked), len(pages) - len(asked)))
+    lengths = sorted(len(p.title) + len(p.description) + len(p.text) for p in pages)
     if lengths:
         print("text length in characters: median %d, p95 %d, max %d" % (
             lengths[len(lengths) // 2], percentile(lengths, 95), lengths[-1]))
@@ -285,23 +273,23 @@ def cmd_eval(args):
 
     top_k = spec.get("top_k", DEFAULT_TOP_K)
     budget = spec.get("latency_budget_ms", DEFAULT_LATENCY_BUDGET_MS)
-    sections = load_sections(args.content)
+    pages = load_pages(args.content)
     c = OpenSearch(args.scheme, args.host, args.port, args.timeout)
 
     results = []
     print("# Semantic search model scoring\n")
     print("Queries: %d from `%s`\n" % (len(spec["queries"]), os.path.basename(args.queries)))
     for cfg in models:
-        result = score_model(c, cfg, sections, spec["queries"], top_k, args.candidates, args.rrf_k, args.keep_index)
+        result = score_model(c, cfg, pages, spec["queries"], top_k, args.candidates, args.rrf_k, args.keep_index)
         results.append(result)
-        print(format_report(result, sections, top_k, budget) + "\n")
+        print(format_report(result, len(pages), top_k, budget) + "\n")
     if len(results) > 1:
         print(format_comparison(results, top_k))
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["sections", "eval"])
+    ap.add_argument("command", choices=["corpus", "eval"])
     ap.add_argument("--content", default=DEFAULT_CONTENT, help="path to src/content")
     ap.add_argument("--queries", default=DEFAULT_QUERIES, help="path to the query set JSON")
     ap.add_argument("--models", default=DEFAULT_MODELS, help="path to the model list JSON")
@@ -310,13 +298,13 @@ def main():
     ap.add_argument("--port", type=int, default=9200)
     ap.add_argument("--scheme", default="http", choices=["http", "https"])
     ap.add_argument("--candidates", type=int, default=DEFAULT_CANDIDATES,
-                    help="sections fetched per ranking before they are fused and grouped into pages")
+                    help="pages fetched per ranking before they are fused")
     ap.add_argument("--rrf-k", type=int, default=DEFAULT_RRF_K, help="rank constant of reciprocal rank fusion")
     ap.add_argument("--keep-index", action="store_true", help="leave each model's index in place after scoring")
     ap.add_argument("--timeout", type=float, default=120.0)
     args = ap.parse_args()
 
-    {"sections": cmd_sections, "eval": cmd_eval}[args.command](args)
+    {"corpus": cmd_corpus, "eval": cmd_eval}[args.command](args)
 
 
 if __name__ == "__main__":

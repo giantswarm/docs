@@ -5,7 +5,7 @@ from unittest import mock
 import support  # noqa: F401 - sets up the import path
 import embed
 from embed import Embedder, truncate_and_normalize
-from sections import Section
+from corpus import Page
 
 
 def norm(v):
@@ -32,8 +32,8 @@ class TestTruncate(unittest.TestCase):
 
 
 class TestEmbedder(unittest.TestCase):
-    def section(self, heading="Install", text="Run it."):
-        return Section("Guide", heading, "install", "/g/", "Documentation", 2, text)
+    def page(self, description="Install it.", questions=("How?",)):
+        return Page("Guide", description, list(questions), "/g/", "Documentation")
 
     def test_ollama_request_and_response_shape(self):
         e = Embedder("ollama", "http://host:11434/", model="m", dimensions=2)
@@ -57,9 +57,9 @@ class TestEmbedder(unittest.TestCase):
             e.embed_query("login")
         self.assertEqual(post.call_args[0][1]["inputs"], ["Query: login"])
 
-    def test_sections_go_in_batches_and_keep_their_order(self):
+    def test_pages_go_in_batches_and_keep_their_order(self):
         e = Embedder("tei", "http://x", batch_size=2, document_template="{title}|{heading}|{text}")
-        sections = [self.section(text=str(i)) for i in range(5)]
+        pages = [self.page(description="", questions=[str(i)]) for i in range(5)]
         calls = []
 
         def fake(url, body, timeout):
@@ -68,14 +68,19 @@ class TestEmbedder(unittest.TestCase):
 
         seen = []
         with mock.patch.object(embed, "post_json", side_effect=fake):
-            vectors = e.embed_sections(sections, progress=lambda done, total: seen.append((done, total)))
+            vectors = e.embed_sections(pages, progress=lambda done, total: seen.append((done, total)))
         self.assertEqual([len(c) for c in calls], [2, 2, 1])
         self.assertEqual(seen, [(2, 5), (4, 5), (5, 5)])
         self.assertEqual([round(v[0] / v[1]) for v in vectors], [0, 1, 2, 3, 4])
 
-    def test_document_text_skips_the_empty_heading_line_and_caps_the_text(self):
+    def test_document_text_is_title_description_and_questions_on_three_lines(self):
+        e = Embedder("tei", "http://x")
+        page = self.page("Install it.", ["How do I install?", "Where is it?"])
+        self.assertEqual(e.document_text(page), "Guide\nInstall it.\nHow do I install? Where is it?")
+
+    def test_document_text_skips_an_empty_description_line_and_caps_the_text(self):
         e = Embedder("tei", "http://x", max_chars=4)
-        self.assertEqual(e.document_text(self.section(heading="", text="abcdefgh")), "Guide\nabcd")
+        self.assertEqual(e.document_text(self.page(description="", questions=["abcdefgh"])), "Guide\nabcd")
 
     def test_mismatched_vector_count_is_an_error(self):
         e = Embedder("tei", "http://x")

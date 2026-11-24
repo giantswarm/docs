@@ -10,13 +10,31 @@ Commons, no neural clause and no stored search template.
 
 The proof of concept stays as the record of the 87% neural and hybrid against
 53% keyword result. It is a separate directory because that result came from a
-different architecture and page-level vectors, and this harness would
-overwrite its scripts and findings.
+different architecture, and this harness would overwrite its scripts and
+findings.
+
+## One record per page
+
+Each page is embedded as one record, built from its front matter only: the
+title, the description and the `user_questions`, on three lines. The body is
+not read.
+
+Section-level records were tried first and dropped. Most headings in these
+docs are scaffolding (`Prerequisites`, `Usage`, `Flags`), so they would give
+near-identical vectors on hundreds of pages. The pages also already carry
+hand-written text shaped like a search query. 268 of the 303 pages outside
+`/changes` have a `user_questions` list, for example "How do I configure and
+provision my first workload cluster?". Embedding those compares a query with
+a query, which is an easier problem than comparing a query with body text.
+
+The other 35 pages are list pages with front matter only. They get the title
+and the description. `/changes` release notes are left out, and a result links
+to the page, as in phase 1.
 
 ## Run it
 
 > Use a throwaway OpenSearch. This creates and deletes indices named
-> `docs-sections-eval-*`. Production sitesearch has no authentication and holds
+> `docs-pages-eval-*`. Production sitesearch has no authentication and holds
 > the confidential `intranet` index on the same node, so never point this at
 > it. The script refuses hosts under `giantswarm.io`.
 
@@ -26,7 +44,7 @@ the embedding service, run Ollama (`ollama pull embeddinggemma`) or a Text
 Embeddings Inference container, and set its URL in `models.json`.
 
 ```sh
-python3 eval_models.py sections                 # split the docs, print counts, needs no services
+python3 eval_models.py corpus                   # build the page records, print counts, needs no services
 python3 eval_models.py eval                     # score every model in models.json
 python3 eval_models.py eval --only bge-m3       # score one model
 ```
@@ -40,10 +58,10 @@ python3 -m unittest discover -s tests
 
 ## What it does
 
-1. `sections.py` splits each page under `src/content` at H2 and H3. Every
-   record carries title, heading, anchor, URL, type and text. `/changes` is
-   skipped.
-2. `embed.py` sends the sections to the model's HTTP endpoint in batches. It
+1. `corpus.py` reads the front matter of every page under `src/content` and
+   builds one record per page. The questions are joined with a space, since
+   each ends in a question mark.
+2. `embed.py` sends the records to the model's HTTP endpoint in batches. It
    supports the Ollama (`/api/embed`) and Text Embeddings Inference (`/embed`)
    request shapes, and can cut a Matryoshka embedding to fewer dimensions and
    renormalise it, for example to 512.
@@ -53,8 +71,7 @@ python3 -m unittest discover -s tests
    rank fusion, in the client).
 4. It reports the top-k hit rate and p95 latency with the rules of
    [`../run.py`](../run.py), which it imports. A hit means an expected URL
-   fragment appears in the top k distinct pages. Sections of one page count
-   once, so the numbers compare with the keyword gate's 29 of 32.
+   fragment appears in the top k pages.
 
 ## Changing the model list
 
@@ -66,39 +83,23 @@ editing this file, not code. Each entry sets:
   ignored there.
 - `dimensions`: the size to index. Leave it out for the full vector.
 - `query_template` and `document_template`: the text wrapped around queries
-  and sections. Models differ here, for example EmbeddingGemma wants a task
-  prefix. Documents can use `{title}`, `{heading}` and `{text}`.
+  and pages. Models differ here, for example EmbeddingGemma wants a task
+  prefix. The templates keep the names `{title}`, `{heading}` and `{text}`.
+  For a page, `{heading}` is the description and `{text}` is the questions.
 
 A model that needs a Python package gets its own class with the same
 `embed_query` and `embed_sections` methods. Keep the package import inside
 that class so the rest stays dependency-free.
 
-## Anchors
-
-`anchors.py` reproduces the heading ids that Hugo renders, so a result can
-link to `/page/#anchor`. The rules are in the module docstring, and
-`tests/test_anchors.py` checks them against ids that Hugo 0.163 rendered for
-real pages in this repo. docs-indexer needs the same logic and can port or
-call this module.
-
-Known gaps in the anchors and the splitter:
-
-- Setext headings (underlined with `===`) are not recognised. No page uses them.
-- A heading with nested square brackets inside a link, such as
-  `[a [b] c](url)`, gets a different id in Hugo than here.
-- Headings inside `details` and `tab` shortcodes are ignored. Hugo renders
-  their inner Markdown on its own, so their ids can repeat across the page.
-- Headings that a layout generates (the CRD reference pages) are not in the
-  Markdown, so they are not split.
-
 ## What is simplified
 
-- Keyword search here is BM25 over sections with the standard analyzer. The
-  production gateway searches pages, so its 91% is the reference and not an
-  exact baseline for this column.
+- Keyword search here is BM25 over title, description and questions with the
+  standard analyzer. The production gateway searches page bodies too, so its
+  91% is the reference and not an exact baseline for this column.
 - Hybrid uses client-side RRF. Production may use OpenSearch's score ranker
   instead, which gives the same ranking idea but is not the same code.
 - Latency is a client round trip, one request after the other, like `run.py`.
   Hybrid is the sum of the keyword search, the query embedding and the vector
   search.
-- The text is plain text made from the Markdown by regexes, not rendered HTML.
+- The front matter parser reads the flat keys this repo uses (plain, quoted
+  and block scalars, and `- item` lists). It is not a general YAML parser.
