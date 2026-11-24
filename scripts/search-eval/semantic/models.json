@@ -24,14 +24,14 @@
       "endpoint": "http://localhost:11434",
       "model": "qwen3-embedding:0.6b",
       "dimensions": 512,
-      "query_template": "Instruct: Given a search query, retrieve the documentation sections that answer it\nQuery:{text}"
+      "query_template": "Instruct: Given a search query, retrieve the documentation pages that answer it\nQuery:{text}"
     },
     {
       "name": "qwen3-embedding-0.6b-1024",
       "shape": "ollama",
       "endpoint": "http://localhost:11434",
       "model": "qwen3-embedding:0.6b",
-      "query_template": "Instruct: Given a search query, retrieve the documentation sections that answer it\nQuery:{text}"
+      "query_template": "Instruct: Given a search query, retrieve the documentation pages that answer it\nQuery:{text}"
     },
     {
       "name": "bge-m3",

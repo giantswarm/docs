@@ -68,7 +68,7 @@ class TestEmbedder(unittest.TestCase):
 
         seen = []
         with mock.patch.object(embed, "post_json", side_effect=fake):
-            vectors = e.embed_sections(pages, progress=lambda done, total: seen.append((done, total)))
+            vectors = e.embed_pages(pages, progress=lambda done, total: seen.append((done, total)))
         self.assertEqual([len(c) for c in calls], [2, 2, 1])
         self.assertEqual(seen, [(2, 5), (4, 5), (5, 5)])
         self.assertEqual([round(v[0] / v[1]) for v in vectors], [0, 1, 2, 3, 4])

@@ -35,8 +35,12 @@ to the page, as in phase 1.
 
 > Use a throwaway OpenSearch. This creates and deletes indices named
 > `docs-pages-eval-*`. Production sitesearch has no authentication and holds
-> the confidential `intranet` index on the same node, so never point this at
-> it. The script refuses hosts under `giantswarm.io`.
+> the confidential `intranet` index on the same node, so never point the
+> OpenSearch client at it. The script refuses hosts under `giantswarm.io`.
+>
+> The only production call is the keyword leg, a read-only GET to
+> `/searchapi` that is the same request the search widget and `run.py` send.
+> It creates and changes nothing.
 
 Start a disposable OpenSearch and an embedding service. For OpenSearch, see the
 Docker command in the [proof of concept README](../semantic-poc/README.md). For
@@ -45,7 +49,8 @@ Embeddings Inference container, and set its URL in `models.json`.
 
 ```sh
 python3 eval_models.py corpus                   # build the page records, print counts, needs no services
-python3 eval_models.py eval                     # score every model in models.json
+python3 eval_models.py eval                     # score every model in models.json, keyword from the live gateway
+python3 eval_models.py eval --keyword local     # offline: BM25 over front matter, not the baseline
 python3 eval_models.py eval --only bge-m3       # score one model
 ```
 
@@ -65,13 +70,34 @@ python3 -m unittest discover -s tests
    supports the Ollama (`/api/embed`) and Text Embeddings Inference (`/embed`)
    request shapes, and can cut a Matryoshka embedding to fewer dimensions and
    renormalise it, for example to 512.
-3. `eval_models.py` loads the vectors into an OpenSearch index as
-   `knn_vector`, then runs each query in `../queries.json` three ways: keyword
-   (BM25), pure vector (`knn`) and hybrid (both rankings fused with reciprocal
-   rank fusion, in the client).
+3. `eval_models.py` loads the vectors into a local OpenSearch index as
+   `knn_vector`, then runs each query in `../queries.json` three ways:
+   - keyword: the live `/searchapi` gateway, using `run.py`'s own client.
+     This is the real phase 1 system over full page bodies, the system that
+     scored 29 of 32. It is the baseline.
+   - vector: a plain `knn` clause on the local index.
+   - hybrid: the two rankings fused with reciprocal rank fusion (k=60), in
+     the client.
 4. It reports the top-k hit rate and p95 latency with the rules of
    [`../run.py`](../run.py), which it imports. A hit means an expected URL
-   fragment appears in the top k pages.
+   fragment appears in the top k pages. Like `run.py` and the widget, keyword
+   and hybrid also count the blog results the gateway returns. Vector does not,
+   since no blog is embedded.
+
+The local index holds only front matter, so a keyword search over it would
+compare front matter with front matter and flatter the vector leg. That is why
+the keyword column comes from the gateway. `--keyword local` runs BM25 over the
+local index for offline work. The report labels it "NOT the baseline", and it
+must not be read as one.
+
+## Reading the results
+
+Several queries in `queries.json` are single words (`gpu`, `zot`, `dex`,
+`karp`). They are keyword-shaped, not question-shaped, so expect the vector leg
+to help little on them. Hybrid is what protects them, because the gateway's
+keyword ranking stays in the fusion. `karp` is now served by prefix matching
+that shipped in giantswarm/docs-proxy#347 and giantswarm/docs-indexer#638, so
+it no longer separates the legs the way it did when the 29 of 32 was measured.
 
 ## Changing the model list
 
@@ -88,15 +114,17 @@ editing this file, not code. Each entry sets:
   For a page, `{heading}` is the description and `{text}` is the questions.
 
 A model that needs a Python package gets its own class with the same
-`embed_query` and `embed_sections` methods. Keep the package import inside
+`embed_query` and `embed_pages` methods. Keep the package import inside
 that class so the rest stays dependency-free.
 
 ## What is simplified
 
-- Keyword search here is BM25 over title, description and questions with the
-  standard analyzer. The production gateway searches page bodies too, so its
-  91% is the reference and not an exact baseline for this column.
-- Hybrid uses client-side RRF. Production may use OpenSearch's score ranker
+- The gateway's keyword latency is a round trip to the public site, so it
+  overstates what the gateway sees. The gateway returns a limited number of
+  results per query, which may be fewer than `--candidates`, and then RRF fuses
+  a shorter keyword list. Gateway URLs are reduced to their path (no host, no
+  fragment, trailing slash) to line up with the local index.
+- Hybrid uses client-side RRF over the gateway's docs ranking and the vector ranking. Production may use OpenSearch's score ranker
   instead, which gives the same ranking idea but is not the same code.
 - Latency is a client round trip, one request after the other, like `run.py`.
   Hybrid is the sum of the keyword search, the query embedding and the vector

@@ -1,6 +1,7 @@
 import json
 import os
 import unittest
+from unittest import mock
 
 import support  # noqa: F401 - sets up the import path
 import eval_models
@@ -45,9 +46,51 @@ class TestShapes(unittest.TestCase):
             eval_models.Embedder.from_config(m)
 
 
+class FakeEmbedder:
+    def embed_query(self, query):
+        return [1.0, 0.0]
+
+
+class TestKeywordLeg(unittest.TestCase):
+    def test_normalize_url_reduces_gateway_urls_to_index_paths(self):
+        n = eval_models.normalize_url
+        self.assertEqual(n("https://docs.giantswarm.io/a/b/#sec"), "/a/b/")
+        self.assertEqual(n("/a/b"), "/a/b/")
+        self.assertEqual(n("/a/b/?q=x"), "/a/b/")
+
+    def test_gateway_keyword_uses_the_phase_1_client_for_docs_and_blog(self):
+        calls = []
+
+        def fake_fetch(endpoint, query, type_, size, timeout):
+            calls.append((endpoint, query, type_, size, timeout))
+            hits = [{"url": "https://docs.giantswarm.io/x/y#z"}] if type_ == "Documentation" else [{"url": "/blog/b/"}]
+            return hits, 12.0
+
+        with mock.patch.object(eval_models.run, "fetch", side_effect=fake_fetch):
+            docs, blog, ms = eval_models.keyword_gateway("https://gw/", 7.0, 4)("login", 50)
+        self.assertEqual((docs, blog, ms), (["/x/y/"], ["/blog/b/"], 12.0))
+        self.assertEqual(calls, [("https://gw/", "login", "Documentation", 50, 7.0),
+                                 ("https://gw/", "login", "Blog", 4, 7.0)])
+
+    def test_score_query_counts_blog_for_keyword_and_hybrid_but_not_vector(self):
+        keyword = lambda query, size: (["/a/", "/b/"], ["/blog/post/"], 5.0)  # noqa: E731
+        with mock.patch.object(eval_models, "search", return_value=["/c/", "/a/"]):
+            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/blog/"], 5, 50, 60)
+        self.assertEqual([result[m][0] for m in eval_models.METHODS], [True, False, True])
+
+    def test_score_query_fuses_gateway_and_vector_rankings(self):
+        keyword = lambda query, size: (["/a/", "/b/"], [], 5.0)  # noqa: E731
+        with mock.patch.object(eval_models, "search", return_value=["/c/", "/b/"]):
+            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/c/"], 1, 50, 60)
+        self.assertEqual(result["keyword"][:2], (False, "/a/"))
+        self.assertEqual(result["vector"][:2], (True, "/c/"))
+        self.assertEqual(result["hybrid"][1], "/b/")  # in both lists, so it leads the fusion
+        self.assertEqual(result["hybrid"][2], 5.0 + result["vector"][2])
+
+
 class TestReport(unittest.TestCase):
     def result(self):
-        return {"name": "m", "dimension": 512, "embed_seconds": 12.0, "total": 2,
+        return {"name": "m", "keyword_label": eval_models.KEYWORD_LABELS["gateway"], "dimension": 512, "embed_seconds": 12.0, "total": 2,
                 "rows": [("login", {"keyword": True, "vector": False, "hybrid": True}, "/a/"),
                          ("bad", None, "ERROR: boom")],
                 "hits": {"keyword": 1, "vector": 0, "hybrid": 1},
@@ -57,9 +100,15 @@ class TestReport(unittest.TestCase):
         report = format_report(self.result(), 303, 5, 300)
         self.assertIn("| login | hit | miss | hit | /a/ |", report)
         self.assertIn("| bad | ERROR | ERROR | ERROR | ERROR: boom |", report)
-        self.assertIn("- keyword top-5 hit rate: **50%** (1/2), p95 latency **20 ms**", report)
+        self.assertIn("Keyword column: keyword (live /searchapi)", report)
+        self.assertIn("- keyword (live /searchapi) top-5 hit rate: **50%** (1/2), p95 latency **20 ms**", report)
         self.assertIn("- vector top-5 hit rate: **0%** (0/2), p95 latency **350 ms** (over budget)", report)
         self.assertIn("512-dimension vectors, 303 pages", report)
+
+    def test_local_keyword_is_labelled_as_not_the_baseline(self):
+        result = dict(self.result(), keyword_label=eval_models.KEYWORD_LABELS["local"])
+        self.assertIn("NOT the baseline", format_report(result, 303, 5, 300))
+        self.assertIn("NOT the baseline", format_comparison([result], 5))
 
     def test_comparison_has_one_row_per_model(self):
         table = format_comparison([self.result()], 5)

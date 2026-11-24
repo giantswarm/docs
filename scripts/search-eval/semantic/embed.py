@@ -12,7 +12,7 @@ to code. Two request shapes are supported:
   is ignored.
 
 Standard library only. A model that needs a Python package can get its own
-class with the same `embed_query` and `embed_sections` methods, and nothing
+class with the same `embed_query` and `embed_pages` methods, and nothing
 else in this directory changes.
 """
 import json
@@ -46,7 +46,7 @@ def _ollama(model, texts):
 
 
 def _tei(model, texts):
-    # truncate: a section longer than the model's window is cut, not rejected.
+    # truncate: a page longer than the model's window is cut, not rejected.
     return "/embed", {"inputs": texts, "normalize": True, "truncate": True}, lambda data: data
 
 
@@ -65,7 +65,7 @@ def post_json(url, body, timeout):
 
 
 class Embedder:
-    """Embeds queries and sections through one HTTP endpoint.
+    """Embeds queries and pages through one HTTP endpoint.
 
     query_template and document_template wrap the text before it is sent.
     Models differ here: some expect an instruction before the query, some a
@@ -106,9 +106,9 @@ class Embedder:
     def embed_query(self, query):
         return self.embed([self.query_template.format(text=query)])[0]
 
-    def embed_sections(self, sections, progress=None):
-        """Embed Section records in batches, in order."""
-        texts = [self.document_text(s) for s in sections]
+    def embed_pages(self, pages, progress=None):
+        """Embed Page records in batches, in order."""
+        texts = [self.document_text(p) for p in pages]
         vectors = []
         for i in range(0, len(texts), self.batch_size):
             vectors.extend(self.embed(texts[i:i + self.batch_size]))
@@ -116,8 +116,8 @@ class Embedder:
                 progress(len(vectors), len(texts))
         return vectors
 
-    def document_text(self, section):
-        text = self.document_template.format(title=section.title, heading=section.heading,
-                                             text=section.text[:self.max_chars])
-        # An intro record has no heading, which would leave an empty line.
+    def document_text(self, page):
+        text = self.document_template.format(title=page.title, heading=page.heading,
+                                             text=page.text[:self.max_chars])
+        # A list page has no questions, and some have no description, which would leave an empty line.
         return "\n".join(line for line in text.split("\n") if line.strip())
