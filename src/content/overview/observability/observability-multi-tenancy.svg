@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 384" width="980" height="384">
+<style>
+  text { font-family: Roboto, Helvetica Neue, Arial, sans-serif; }
+  .title { font-size: 30px; font-weight: 700; fill: #002645; }
+  .subtitle { font-size: 15px; fill: #5b6c79; }
+  .container-label { font-size: 17px; font-weight: 700; fill: #002645; text-anchor: middle; }
+  .section { font-size: 12px; font-weight: 700; fill: #6f8a9f; letter-spacing: 1.5px; }
+  .name { font-size: 18px; font-weight: 700; fill: #002645; }
+  .desc { font-size: 13px; fill: #5b6c79; text-anchor: middle; }
+  .arrow-label { font-size: 11px; font-style: italic; fill: #5b6c79; }
+  .legend { font-size: 13px; fill: #5b6c79; }
+  .flow { fill: none; stroke-width: 2; }
+</style>
+<defs><marker id="a-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="a-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="980" height="384" fill="#ffffff"/>
+<text class="title" x="24" y="46">Observability Platform: Multi-tenancy</text>
+<text class="subtitle" x="24" y="72">Each team signs in to its own Grafana organization, which reads only its own tenants.</text>
+<line x1="766" y1="42" x2="796" y2="42" stroke="#dc2626" stroke-width="2"/>
+<text class="legend" x="804" y="46">Team A</text>
+<line x1="869.2" y1="42" x2="899.2" y2="42" stroke="#2563eb" stroke-width="2"/>
+<text class="legend" x="907.2" y="46">Team B</text>
+<rect x="300" y="110" width="280" height="250" rx="10" fill="#f0f7f9" stroke="#6f8a9f" stroke-width="1.5"/>
+<text class="container-label" x="440.0" y="140">Grafana</text>
+<rect x="670" y="110" width="280" height="250" rx="10" fill="#ddf0fa" stroke="#002645" stroke-width="1.5"/>
+<text class="container-label" x="810.0" y="140">Mimir, Loki, and Tempo</text>
+<path class="flow" d="M224,200 L330,200" stroke="#dc2626" marker-end="url(#a-a)"/>
+<path class="flow" d="M550,200 L700,200" stroke="#dc2626" marker-end="url(#a-a)"/>
+<text class="arrow-label" x="232" y="193">signs in</text>
+<text class="arrow-label" x="596" y="193">reads</text>
+<rect x="24" y="170" width="200" height="60" rx="30.0" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text class="name" x="124.0" y="192.0" style="text-anchor: middle">Team A</text>
+<text class="desc" x="124.0" y="220.0">identity provider group</text>
+<rect x="330" y="165.0" width="220" height="70" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+<text class="name" x="440.0" y="192.0" style="text-anchor: middle">Organization A</text>
+<text class="desc" x="440.0" y="220.0">dashboards and data sources</text>
+<rect x="700" y="165.0" width="220" height="70" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+<text class="name" x="810.0" y="192.0" style="text-anchor: middle">Tenant A</text>
+<text class="desc" x="810.0" y="220.0">metrics, logs, and traces</text>
+<path class="flow" d="M224,295 L330,295" stroke="#2563eb" marker-end="url(#a-b)"/>
+<path class="flow" d="M550,295 L700,295" stroke="#2563eb" marker-end="url(#a-b)"/>
+<text class="arrow-label" x="232" y="288">signs in</text>
+<text class="arrow-label" x="596" y="288">reads</text>
+<rect x="24" y="265" width="200" height="60" rx="30.0" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text class="name" x="124.0" y="287.0" style="text-anchor: middle">Team B</text>
+<text class="desc" x="124.0" y="315.0">identity provider group</text>
+<rect x="330" y="260.0" width="220" height="70" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+<text class="name" x="440.0" y="287.0" style="text-anchor: middle">Organization B</text>
+<text class="desc" x="440.0" y="315.0">dashboards and data sources</text>
+<rect x="700" y="260.0" width="220" height="70" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+<text class="name" x="810.0" y="287.0" style="text-anchor: middle">Tenant B</text>
+<text class="desc" x="810.0" y="315.0">metrics, logs, and traces</text>
+</svg>
