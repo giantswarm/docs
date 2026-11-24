@@ -1,82 +1,219 @@
+// The header, the mobile drawer and the search overlay are taken from
+// www.giantswarm.io and rendered in a shadow root, which none of the website's
+// own scripts can reach. This is the part of their behaviour the docs site
+// needs, with the lookups pointed at the shadow root.
 const root = document.querySelector('#header').shadowRoot;
-const header = root.querySelector('header');
 
-// sticky header
-const header_sticky_element = root.querySelector(".header__sticky-element");
-if (header_sticky_element) {
-    const header_sticky = root.querySelector(".header--sticky")
-      , header_sticky_prop = header_sticky.getBoundingClientRect();
-    ["resize", "scroll", "load"].forEach((function(event_type) {
-        window.addEventListener(event_type, (function() {
-            window.pageYOffset > header_sticky_prop.height ? (header_sticky.style.height = header_sticky_prop.height + "px",
-            header_sticky.classList.add("header--sticky-active"),
-            header_sticky.classList.remove("header--sticky-inactive")) : (header_sticky.classList.contains("header--sticky-active") && header_sticky.classList.add("header--sticky-inactive"),
-            header_sticky.style.height = "",
-            header_sticky.classList.remove("header--sticky-active"))
-        }
-        ))
-    }
-    ))
+// The website locks the page behind its overlays with a class on the body.
+// That rule sits inside the shadow root here, where it matches nothing, so the
+// lock is set directly. The counter keeps the drawer and the search overlay
+// from unlocking each other.
+let scroll_locks = 0;
+function lockScroll(locked) {
+  scroll_locks = Math.max(0, scroll_locks + (locked ? 1 : -1));
+  document.body.style.overflow = scroll_locks > 0 ? "hidden" : "";
 }
 
-// mobile nav
-const mobile_nav_open = root.querySelector(".mnav__open");
-const mobile_nav_close = root.querySelector(".mnav__close");
-const mobile_nav_popup = root.querySelector(".mnav__popup");
-const mobile_nav_overlay = root.querySelector(".mnav__overlay");
-const open_mobile_nav = function() {
-    document.body.classList.add("mnav-active");
-    header.classList.add("mnav-active");
+// Navigation dropdowns. Each item carries its own button and panel, and a
+// panel is shown by taking its hidden attribute away.
+const nav_items = root.querySelectorAll("[data-nav-dropdown]");
+const nav_open = new Set();
+
+function navPanel(item) {
+  return item.querySelector(".gs-nav__panel");
 }
-const close_mobile_nav = function() {
-    document.body.classList.remove("mnav-active");
-    header.classList.remove("mnav-active");
-};
-mobile_nav_open.addEventListener("click", open_mobile_nav),
-mobile_nav_close.addEventListener("click", close_mobile_nav),
-mobile_nav_overlay.addEventListener("click", close_mobile_nav);
-const vmenu_toggle = root.querySelectorAll('.mnav__menu__toggle, .mnav__menu__link[href="javascript:;"]');
-for (i = 0; i < vmenu_toggle.length; i++) {
-  vmenu_toggle[i].addEventListener("click", (function(event) {
-    const vmenu_current = event.target.closest(".mnav__menu__item--parent");
-    const vmenu_expanded = event.target.closest(".mnav__menu__list").querySelectorAll(":scope > .mnav__menu__item--expanded");
-    for (n = 0; n < vmenu_expanded.length; n++)
-      if (vmenu_expanded[n] != vmenu_current) {
-        vmenu_expanded[n].classList.remove("mnav__menu__item--expanded");
-        const vmenu_expanded_children = vmenu_expanded[n].querySelectorAll(".mnav__menu__item--expanded");
-        for (z = 0; z < vmenu_expanded_children.length; z++) {
-          vmenu_expanded_children[z].classList.remove("mnav__menu__item--expanded");
-        }
-      }
-      event.target.closest(".mnav__menu__item").classList.toggle("mnav__menu__item--expanded");
-    }
-  ));
+
+function navTrigger(item) {
+  return item.querySelector("button[aria-expanded]");
 }
-document.addEventListener("click", (function(e) {
-  if (e.target.matches('.mnav__popup a[href*="#"]')) {
-    document.body.classList.remove("mnav-active");
-    header.classList.remove("mnav-active");
+
+function closeNavItem(item) {
+  const trigger = navTrigger(item);
+  const panel = navPanel(item);
+  if (!trigger || !panel) return;
+  trigger.setAttribute("aria-expanded", "false");
+  panel.setAttribute("hidden", "");
+  nav_open.delete(item);
+}
+
+function openNavItem(item) {
+  const trigger = navTrigger(item);
+  const panel = navPanel(item);
+  if (!trigger || !panel) return;
+  nav_items.forEach(function(other) {
+    if (other !== item) closeNavItem(other);
+  });
+  trigger.setAttribute("aria-expanded", "true");
+  panel.removeAttribute("hidden");
+  nav_open.add(item);
+}
+
+function closeAllNavItems() {
+  nav_open.forEach(closeNavItem);
+}
+
+nav_items.forEach(function(item) {
+  const trigger = navTrigger(item);
+  const panel = navPanel(item);
+  if (!trigger || !panel) return;
+
+  let close_timer = null;
+  function scheduleClose() {
+    clearTimeout(close_timer);
+    close_timer = setTimeout(function() { closeNavItem(item); }, 120);
   }
-}));
+  function cancelClose() {
+    clearTimeout(close_timer);
+  }
+
+  item.addEventListener("mouseenter", function() {
+    cancelClose();
+    openNavItem(item);
+  });
+  item.addEventListener("mouseleave", scheduleClose);
+  panel.addEventListener("mouseenter", cancelClose);
+  panel.addEventListener("mouseleave", scheduleClose);
+  trigger.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (nav_open.has(item)) {
+      closeNavItem(item);
+    } else {
+      openNavItem(item);
+    }
+  });
+  item.addEventListener("focusin", function() {
+    cancelClose();
+    openNavItem(item);
+  });
+  item.addEventListener("focusout", function(event) {
+    if (!item.contains(event.relatedTarget)) scheduleClose();
+  });
+});
+
+// A click outside an item closes the panels. It takes two listeners: a click
+// inside the shadow root is reported to the document as a click on the host,
+// so the document alone cannot tell where it landed.
+root.addEventListener("click", function(event) {
+  if (!event.target.closest("[data-nav-dropdown]")) closeAllNavItems();
+});
+document.addEventListener("click", function(event) {
+  if (event.target !== root.host) closeAllNavItems();
+});
+document.addEventListener("keydown", function(event) {
+  if (event.key !== "Escape" || nav_open.size === 0) return;
+  const last = Array.from(nav_open).pop();
+  closeAllNavItems();
+  if (last) navTrigger(last).focus();
+});
+
+// Mobile drawer. It holds a root view and a view per section, of which one is
+// visible at a time.
+const menu = root.querySelector(".gs-mobile-menu");
+const menu_toggles = root.querySelectorAll("[data-menu-toggle]");
+
+if (menu && menu_toggles.length) {
+  const menu_views = menu.querySelectorAll("[data-view]");
+  const menu_root_view = menu.querySelector('[data-view="root"]');
+
+  // The website picks the drawer's colours from the header it opened under.
+  // The docs header is always the solid one, which pairs with the light drawer.
+  menu.classList.add("gs-mobile-menu--light");
+
+  const showView = function(id) {
+    let target = null;
+    menu_views.forEach(function(view) {
+      if (view.getAttribute("data-view") === id) {
+        target = view;
+        view.removeAttribute("hidden");
+      } else {
+        view.setAttribute("hidden", "");
+      }
+    });
+    if (!target) return;
+    target.scrollTop = 0;
+    const back = target.querySelector("[data-menu-back]");
+    if (back) back.focus();
+  };
+
+  const menuIsOpen = function() {
+    return !menu.hasAttribute("hidden");
+  };
+
+  const openMenu = function() {
+    if (menuIsOpen()) return;
+    menu.removeAttribute("hidden");
+    lockScroll(true);
+    menu_toggles.forEach(function(toggle) {
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
+    });
+  };
+
+  const closeMenu = function() {
+    if (!menuIsOpen()) return;
+    menu.setAttribute("hidden", "");
+    lockScroll(false);
+    menu_toggles.forEach(function(toggle) {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+    });
+    showView("root");
+  };
+
+  menu_toggles.forEach(function(toggle) {
+    toggle.addEventListener("click", function(event) {
+      event.preventDefault();
+      if (menuIsOpen()) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  });
+  menu.querySelectorAll("[data-menu-drill]").forEach(function(button) {
+    button.addEventListener("click", function() {
+      const target = button.getAttribute("data-menu-drill");
+      if (target) showView(target);
+    });
+  });
+  menu.querySelectorAll("[data-menu-back]").forEach(function(button) {
+    button.addEventListener("click", function() { showView("root"); });
+  });
+  menu.querySelectorAll("a").forEach(function(link) {
+    link.addEventListener("click", function() { setTimeout(closeMenu, 0); });
+  });
+  document.addEventListener("keydown", function(event) {
+    if (event.key !== "Escape" || !menuIsOpen()) return;
+    if (menu_root_view.hasAttribute("hidden")) {
+      showView("root");
+    } else {
+      closeMenu();
+    }
+  });
+  window.addEventListener("resize", function() {
+    if (menuIsOpen() && window.innerWidth >= 1025) closeMenu();
+  });
+}
 
 // Self-hosted docs search. The modal queries the /searchapi gateway on
 // docs-proxy, which takes a few validated parameters and returns only the
 // fields a result needs (see docs-proxy search.js). Everything the gateway
 // returns is rendered as text, never HTML, because it comes from a public
 // repo that takes outside PRs and from HubSpot.
-const search_open = root.querySelector(".site-search__open");
-const search_popup = root.querySelector(".site-search__popup");
-const search_form = root.querySelector("#searchForm");
-const search_input = root.querySelector("#searchInput");
-const search_close = root.querySelector(".site-search__close");
-const search_list = root.querySelector(".site-search__list");
-const search_zero = root.querySelector(".site-search__results-zero");
-const search_error = root.querySelector(".site-search__error");
-const search_more = root.querySelector(".site-search__more");
-const search_status = root.querySelector(".site-search__status");
-const search_loading = root.querySelector(".site-search__loading");
+const search_popup = root.querySelector(".gs-search");
+const search_input = root.querySelector(".gs-search__input");
+const search_toggles = root.querySelectorAll("[data-search-toggle]");
+const search_dismissers = root.querySelectorAll("[data-search-dismiss]");
+const search_list = root.querySelector(".gs-search__results");
+const search_intro = root.querySelector(".gs-search__intro");
+const search_zero = root.querySelector(".gs-search__empty");
+const search_zero_query = root.querySelector("[data-search-query]");
+const search_error = root.querySelector(".gs-search__error");
+const search_more = root.querySelector(".gs-search__more");
+const search_status = root.querySelector(".gs-search__status");
+const search_loading = root.querySelector(".gs-search__loading");
 
-if (search_open && search_form && search_input && search_list) {
+if (search_popup && search_input && search_list) {
   const SEARCH_ENDPOINT = "/searchapi/";
   const PAGE_SIZE = 10;
   const CHANGES_SIZE = 5;
@@ -215,31 +352,53 @@ if (search_open && search_form && search_input && search_list) {
     }
   }
 
+  // Move focus from result to result. Enter then follows the focused link by
+  // itself, which is what the footer of the overlay promises.
+  function moveSelection(step) {
+    const results = Array.prototype.slice.call(
+      search_list.querySelectorAll(".gs-search__result")
+    );
+    if (!results.length) return;
+    const current = results.indexOf(root.activeElement);
+    let next = current < 0 ? (step > 0 ? 0 : results.length - 1) : current + step;
+    if (next < 0) next = results.length - 1;
+    if (next >= results.length) next = 0;
+    results[next].focus();
+  }
+
   function onPopupKeydown(event) {
     if (event.key === "Escape") {
       closeSearch();
       return;
     }
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      moveSelection(event.key === "ArrowDown" ? 1 : -1);
+      return;
+    }
     trapFocus(event);
   }
 
+  function searchIsOpen() {
+    return !search_popup.hasAttribute("hidden");
+  }
+
   function openSearch() {
-    search_popup.classList.add("site-search__popup--active");
-    document.body.classList.add("site-search-active");
+    if (searchIsOpen()) return;
+    search_popup.removeAttribute("hidden");
+    lockScroll(true);
     search_popup.addEventListener("keydown", onPopupKeydown);
-    // Focus the input once the open animation has settled.
-    window.setTimeout(function() {
-      if (search_popup.classList.contains("site-search__popup--active")) {
-        search_input.focus();
-      }
-    }, 250);
+    requestAnimationFrame(function() {
+      search_input.focus();
+      search_input.select();
+    });
   }
 
   function closeSearch() {
+    if (!searchIsOpen()) return;
     flushPerformed();
-    search_popup.classList.remove("site-search__popup--active");
-    search_popup.classList.remove("site-search__popup--form-submitted");
-    document.body.classList.remove("site-search-active");
+    search_popup.setAttribute("hidden", "");
+    lockScroll(false);
     search_popup.removeEventListener("keydown", onPopupKeydown);
     // Stop any pending or in-flight search so late results can't update a hidden modal.
     clearTimeout(debounce);
@@ -248,13 +407,12 @@ if (search_open && search_form && search_input && search_list) {
     setBusy(false);
     announce("");
     // Return focus to the control that opened the modal.
-    const target = lastTrigger || search_open;
+    const target = lastTrigger || search_toggles[0];
     if (target && typeof target.focus === "function") target.focus();
   }
 
-  // The title is the link. A stretched ::after (see the styles) makes the whole
-  // row clickable, while the screen-reader link name stays just the title.
-  // group and position tag the link so a click can be reported to telemetry.
+  // The whole row is the link. group and position tag it so that a click can
+  // be reported to telemetry.
   function renderResult(hit, group, position) {
     const source = hit._source || {};
     const highlight = hit.highlight || {};
@@ -265,16 +423,19 @@ if (search_open && search_form && search_input && search_list) {
       ? withHighlight(highlight.body[0])
       : escapeHtml(source.description || "");
     const crumb = breadcrumbText(source);
-    let html = '<li class="site-search__result">';
+    let html = '<a class="gs-search__result" href="' + safeHref(source.url) + '"'
+      + ' data-group="' + escapeHtml(group) + '" data-pos="' + position + '">';
+    html += '<span class="gs-search__result-head">'
+      + '<span class="gs-search__result-title">' + title + "</span>"
+      + '<span class="gs-search__result-type">' + escapeHtml(group) + "</span>"
+      + "</span>";
     if (crumb) {
-      html += '<div class="site-search__result-breadcrumb">' + crumb + "</div>";
+      html += '<span class="gs-search__result-breadcrumb">' + crumb + "</span>";
     }
-    html += '<a class="site-search__result-link" href="' + safeHref(source.url) + '"'
-      + ' data-group="' + escapeHtml(group) + '" data-pos="' + position + '">' + title + "</a>";
     if (snippet) {
-      html += '<div class="site-search__result-desc">' + snippet + "</div>";
+      html += '<span class="gs-search__result-desc">' + snippet + "</span>";
     }
-    return html + "</li>";
+    return html + "</a>";
   }
 
   function summaryText() {
@@ -299,17 +460,16 @@ if (search_open && search_form && search_input && search_list) {
 
     let html = "";
     if (summary) {
-      html += '<div class="site-search__summary">' + escapeHtml(summary) + "</div>";
+      html += '<div class="gs-search__summary">' + escapeHtml(summary) + "</div>";
     }
     let position = 0;
     GROUP_ORDER.forEach(function(name) {
       const items = groups[name];
       if (items.length === 0) return;
-      html += '<div class="site-search__group">';
-      html += '<h2 class="site-search__group-title">' + name + " (" + items.length + ")</h2>";
-      html += '<ul class="site-search__result-list" data-group="' + name + '">';
+      html += '<div class="gs-search__group" data-group="' + name + '">';
+      html += '<p class="gs-search__group-title">' + name + " (" + items.length + ")</p>";
       items.forEach(function(hit) { position += 1; html += renderResult(hit, name, position); });
-      html += "</ul></div>";
+      html += "</div>";
     });
 
     // Remember which query these results belong to, so a click reports the query
@@ -317,7 +477,9 @@ if (search_open && search_form && search_input && search_list) {
     renderedQuery = query;
     search_list.innerHTML = html;
     setBusy(false);
+    if (search_intro) search_intro.hidden = true;
     if (search_zero) search_zero.hidden = count > 0;
+    if (search_zero_query) search_zero_query.textContent = query;
     if (search_error) search_error.hidden = true;
     // Hide "More results" at the end of the list or at the gateway's from-limit.
     if (search_more) {
@@ -329,9 +491,9 @@ if (search_open && search_form && search_input && search_list) {
 
     // After paging, move focus to the first newly loaded docs result.
     if (appendFocusIndex >= 0) {
-      const list = search_list.querySelector('.site-search__result-list[data-group="Docs"]');
-      const item = list && list.children[appendFocusIndex];
-      const link = item && item.querySelector(".site-search__result-link");
+      const group = search_list.querySelector('.gs-search__group[data-group="Docs"]');
+      const links = group ? group.querySelectorAll(".gs-search__result") : [];
+      const link = links[appendFocusIndex];
       if (link) link.focus();
       appendFocusIndex = -1;
     }
@@ -340,6 +502,7 @@ if (search_open && search_form && search_input && search_list) {
   function showFallback() {
     search_list.innerHTML = "";
     setBusy(false);
+    if (search_intro) search_intro.hidden = true;
     if (search_zero) search_zero.hidden = true;
     if (search_more) search_more.hidden = true;
     const message = "Search is unavailable right now.";
@@ -347,7 +510,7 @@ if (search_open && search_form && search_input && search_list) {
       const url = "https://www.google.com/search?q=" + encodeURIComponent("site:docs.giantswarm.io " + query);
       search_error.innerHTML = escapeHtml(message) + " "
         + '<a href="' + url + '" target="_blank" rel="noopener">Search on Google instead'
-        + '<span class="site-search__sr-only"> (opens in a new tab)</span></a>.';
+        + '<span class="gs-search__sr-only"> (opens in a new tab)</span></a>.';
       search_error.hidden = false;
     }
     announce(message);
@@ -379,7 +542,7 @@ if (search_open && search_form && search_input && search_list) {
     controller = null;
 
     if (query.length < MIN_QUERY) {
-      search_popup.classList.remove("site-search__popup--form-submitted");
+      if (search_intro) search_intro.hidden = false;
       search_list.innerHTML = "";
       setBusy(false);
       announce("");
@@ -403,7 +566,7 @@ if (search_open && search_form && search_input && search_list) {
     controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     const signal = controller ? controller.signal : undefined;
 
-    search_popup.classList.add("site-search__popup--form-submitted");
+    if (search_intro) search_intro.hidden = true;
     setBusy(true);
 
     // Documentation is the main query. "More results" pages it with a higher from
@@ -458,26 +621,42 @@ if (search_open && search_form && search_input && search_list) {
   // Expose the modal so the sidebar and homepage search boxes can open it. The
   // trigger is passed so focus can return to it when the modal closes.
   window.gsOpenSearch = function(trigger) {
-    lastTrigger = trigger || search_open;
+    lastTrigger = trigger || search_toggles[0];
     openSearch();
   };
 
-  search_open.addEventListener("click", function(event) {
-    event.preventDefault();
-    lastTrigger = search_open;
-    openSearch();
+  search_toggles.forEach(function(toggle) {
+    toggle.addEventListener("click", function(event) {
+      event.preventDefault();
+      lastTrigger = toggle;
+      openSearch();
+    });
   });
-  if (search_close) {
-    search_close.addEventListener("click", function(event) {
+  search_dismissers.forEach(function(dismisser) {
+    dismisser.addEventListener("click", function(event) {
       event.preventDefault();
       closeSearch();
     });
-  }
-  search_form.addEventListener("submit", function(event) {
+  });
+  search_input.addEventListener("keydown", function(event) {
+    if (event.key !== "Enter") return;
     event.preventDefault();
     // Cancel the pending debounce so Enter doesn't fire a second identical search.
     clearTimeout(debounce);
     runSearch(false);
+  });
+  // The same shortcut the website uses, and the hint that advertises it.
+  document.addEventListener("keydown", function(event) {
+    if (!(event.metaKey || event.ctrlKey) || event.code !== "KeyK") return;
+    event.preventDefault();
+    if (searchIsOpen()) {
+      closeSearch();
+    } else {
+      openSearch();
+    }
+  });
+  root.querySelectorAll("[data-search-shortcut]").forEach(function(hint) {
+    hint.textContent = /Mac|iPod|iPhone|iPad/.test(navigator.platform) ? "\u2318K" : "Ctrl K";
   });
   search_input.addEventListener("input", function() {
     clearTimeout(debounce);
@@ -494,7 +673,7 @@ if (search_open && search_form && search_input && search_list) {
     // auxclick fires for every non-primary button; only the middle button
     // (button 1) opens a result in a new tab, so ignore the rest.
     if (event.type === "auxclick" && event.button !== 1) return;
-    const link = event.target.closest && event.target.closest(".site-search__result-link");
+    const link = event.target.closest && event.target.closest(".gs-search__result");
     if (!link) return;
     flushPerformed();
     track("Docs.Search.ResultClicked", {

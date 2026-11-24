@@ -2,10 +2,11 @@
   "name": "update-website-content",
   "version": "1.0.0",
   "description": "Pulls header and footer content and CSS from www.giantswarm.io and adapts our copy for the docs website.",
-  "main": "script.js",
+  "main": "script.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node script.ts"
+    "start": "node script.ts"
   },
   "author": "giantswarm",
   "license": "Apache-2.0",
@@ -14,8 +15,10 @@
   },
   "devDependencies": {
     "@types/node": "^26.0.0",
-    "ts-node": "10.9.2",
     "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22.18"
   },
   "packageManager": "yarn@1.22.22"
 }
