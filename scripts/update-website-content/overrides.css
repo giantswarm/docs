@@ -1,175 +1,121 @@
-@keyframes sticky_header_active {
-  0% {
-      opacity: 0;
-      transform: scale(1.1) translateY(-50%)
-  }
+/*
+ * Rules the docs site adds on top of what the scraper takes from the website.
+ * They are appended to the generated header styles, so they win over the
+ * scraped rules with the same specificity.
+ *
+ * The website's search finds a handful of marketing pages and shows a title
+ * and a type per result. The docs search returns documentation pages and
+ * release notes, with a breadcrumb and a snippet, and it pages through long
+ * result sets. These rules style the parts the website hasn't got, and lay a
+ * result out as a block instead of a single row. The markup lives in
+ * search-modal.html.
+ */
 
-  to {
-      opacity: 1;
-      transform: scale(1) translateY(0)
-  }
+.gs-search__result {
+  align-items: stretch;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-@keyframes sticky_header_inactive {
-  0% {
-      transform: translateY(20%)
-  }
-
-  to {
-      transform: translateY(0)
-  }
+.gs-search__result-head {
+  align-items: center;
+  display: flex;
+  gap: 0.85rem;
 }
 
-@keyframes navbarFlyout {
-  0% {
-      opacity: 0;
-      transform: scale(.95)
-  }
-
-  to {
-      opacity: 1;
-      transform: scale(1)
-  }
+.gs-search__result-title {
+  white-space: normal;
 }
 
-@keyframes mnavOverlay {
-  0% {
-      opacity: 0
-  }
-
-  to {
-      opacity: .5
-  }
+.gs-search__result-breadcrumb {
+  color: var(--color-fg-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
 }
 
-@keyframes mnavPopup {
-  0% {
-      opacity: 0;
-      transform: translateX(100%)
-  }
-
-  to {
-      opacity: 1;
-      transform: translateX(0)
-  }
+.gs-search__result-desc {
+  color: var(--color-fg-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
 }
 
-@keyframes mnavMenu {
-  0% {
-      opacity: 0;
-      transform: translateY(-10px) translateZ(0)
-  }
-
-  to {
-      opacity: 1;
-      transform: translateY(0) translateZ(0)
-  }
+/* The gateway marks the terms it matched, in the title and in the snippet. */
+.gs-search .hs-search-highlight {
+  color: var(--color-brand-accent);
+  font-weight: var(--weight-bold);
 }
 
-@keyframes uiPop {
-  0% {
-      opacity: 0;
-      transform: scale(.9) translateZ(0)
-  }
-
-  to {
-      opacity: 1;
-      transform: scale(1) translateZ(0)
-  }
+.gs-search__result:hover .hs-search-highlight,
+.gs-search__result:focus-visible .hs-search-highlight {
+  color: inherit;
 }
 
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      visibility: hidden
-  }
-
-  to {
-      opacity: 1;
-      visibility: visible
-  }
+.gs-search__summary {
+  color: var(--color-fg-muted);
+  font-size: 0.8rem;
+  padding: 0.75rem 1.25rem 0;
 }
 
-@keyframes btn_ripple {
-  0% {
-      opacity: .3
-  }
-
-  30% {
-      opacity: .3
-  }
-
-  to {
-      opacity: 0;
-      transform: scale(4)
-  }
+.gs-search__loading,
+.gs-search__error {
+  color: var(--color-fg-muted);
+  font-size: 0.95rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
 }
 
-.btn {
-  transition-duration: .1s;
-  transition-timing-function: ease-in-out;
+.gs-search__error a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.gs-search__more {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-fg);
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  font-size: 0.85rem;
+  margin: 0.5rem auto 1.25rem;
+  padding: 0.5rem 1.25rem;
+  transition: background 0.15s ease;
+}
+
+.gs-search__more:hover {
+  background: var(--color-bg-muted);
+}
+
+.gs-search__more[hidden] {
+  display: none;
+}
+
+/* Announcements for screen readers, which no one should see. */
+.gs-search__sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /*
- * Docs search. The marketing website ships a different search widget, so these
- * rules adjust the scraped .site-search rules to the self-hosted docs search.
- * The markup lives in search-modal.html.
+ * The website lays its header over the top of a page, which is what a hero
+ * wants. A docs page starts with its content, so the header sits in the flow
+ * above it instead.
  */
-.site-search__open { background: none; border: none; cursor: pointer; padding: 0px; }
-.site-search__open:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-.site-search__close { background: none; border: none; cursor: pointer; opacity: 0; padding: 0px; position: fixed; right: 24px; top: 24px; z-index: 8; }
-.site-search__close:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-.site-search__input { appearance: none; border: 1px solid; border-radius: 999px; box-shadow: rgba(34, 35, 38, 0.05) 0px 8px 16px, rgba(34, 35, 38, 0.05) 0px 4px 8px; display: block; font-family: Roboto, sans-serif; font-size: inherit; font-style: normal; font-weight: 400; line-height: 1.28; opacity: 0; outline: revert; padding: 0.91rem 0px; padding-inline: 24px 48px; transition: 0.2s ease-in-out; width: 100% !important; }
-.site-search__input:focus-visible { outline: 2px solid rgb(34, 35, 38); outline-offset: 2px; }
-.site-search__submit { background: none; border: none; cursor: pointer; line-height: 0; margin-top: -0.55rem; opacity: 0; outline: revert; padding: 0px; position: absolute; right: 24px; top: 50%; }
-.site-search__submit:focus-visible { outline: 2px solid rgb(34, 35, 38); outline-offset: 2px; }
-/* The scraped widget toggles these with an --active class, the docs search uses the hidden attribute. */
-.site-search__error:not(.site-search__error--active) { display: block; }
-.site-search__error[hidden] { display: none; }
-.site-search__more:not(.site-search__more--active) { display: inline-flex; }
-.site-search__more[hidden] { display: none; }
-.site-search__result { animation: 0.2s ease-in-out 0s 1 normal forwards running fadeIn; border-top: 1px solid; padding: 24px 0px; padding-inline: 24px 48px; position: relative; transition: 0.2s ease-in-out; }
-.site-search__result-list { list-style: none; margin: 0px; padding: 0px; }
-.site-search__result-link { color: inherit; display: inline-block; font-size: 1.11rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.33rem; text-decoration: none; }
-.site-search__result-link::after { content: ""; inset: 0px; position: absolute; }
-.site-search__result-link:hover { color: inherit; text-decoration: underline; }
-.site-search__result-breadcrumb { font-size: 0.78rem; letter-spacing: 0.02em; margin-bottom: 0.33rem; }
-.site-search__result .hs-search-highlight { color: rgb(196, 48, 43); font-weight: 700; }
-.site-search__result-link:hover .hs-search-highlight { color: inherit; }
-.site-search__summary { font-size: 0.89rem; padding: 0px 24px 8px; }
-.site-search__group { margin-bottom: 8px; }
-.site-search__group-title { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 0px; padding: 16px 24px 4px; }
-.site-search__loading { padding: 24px; }
-.site-search__error { padding: 24px; }
-.site-search__error a { text-decoration: underline; }
-.site-search__sr-only { position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0px; }
-.site-search--light .site-search__result-desc, .site-search--light .site-search__result-breadcrumb, .site-search--light .site-search__group-title, .site-search--light .site-search__summary, .site-search--light .site-search__loading { color: rgb(106, 109, 119); }
-.site-search--dark .site-search__result-desc, .site-search--dark .site-search__result-breadcrumb, .site-search--dark .site-search__group-title, .site-search--dark .site-search__summary, .site-search--dark .site-search__loading { color: rgba(255, 255, 255, 0.8); }
-.site-search--dark .site-search__result .hs-search-highlight { color: rgb(246, 89, 84); }
-
-@keyframes siteSearchInput {
-  0% {
-      opacity: 0;
-      transform: translateY(8px)
-  }
-
-  to {
-      opacity: 1;
-      transform: translateY(0)
-  }
+.gs-header-host--static.gs-header-host--solid {
+  position: static;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .site-search__popup--active,
-  .site-search__popup--active .site-search__close,
-  .site-search__popup--active .site-search__input,
-  .site-search__popup--active .site-search__submit,
-  .site-search__result { animation: none !important; }
-  .site-search__form,
-  .site-search__input,
-  .site-search__result,
-  .site-search__submit { transition: none !important; }
-  .site-search__popup--active .site-search__input,
-  .site-search__popup--active .site-search__submit,
-  .site-search__popup--active .site-search__close { opacity: 1 !important; }
+/*
+ * Arrow keys walk the results, so a focused result reads like a hovered one.
+ */
+.gs-search__result:focus-visible {
+  background: var(--color-bg-muted);
 }

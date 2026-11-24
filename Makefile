@@ -155,12 +155,17 @@ docker-build:
 docker-run:
 	docker run --rm -ti -p 8080:8080 $(REGISTRY)/$(COMPANY)/$(PROJECT):latest
 
+# Serve the site for local work. Search only answers through the proxy, so the
+# proxy is the address to open. Hugo still listens on 1313, but it advertises
+# the proxy instead of itself, so there is one address on screen and it works.
 dev:
 	@node scripts/search-proxy/searchapi-proxy.js & \
 	proxy_pid=$$!; \
 	trap "kill $$proxy_pid 2>/dev/null" EXIT INT TERM; \
 	hugo server \
 	  --source ./src \
+	  --baseURL http://localhost:8888/ \
+	  --appendPort=false \
 	  --ignoreCache \
 	  --disableFastRender \
 	  --cleanDestinationDir \
