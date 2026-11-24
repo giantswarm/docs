@@ -1,0 +1,47 @@
+<!--
+  The docs search, which replaces the body of the website's search overlay.
+  The website searches a handful of marketing pages from an inline index. The
+  docs search queries the /searchapi gateway instead, and shows a breadcrumb
+  and a snippet per result, so it needs a few elements the website hasn't got.
+  src/assets/scripts/gs_scripts.js drives all of it.
+-->
+<div class="gs-search__intro">
+  <p>Search the documentation and the release notes.</p>
+  <p class="gs-search__intro-hint">
+    Tip: open search anywhere with
+    <kbd data-search-shortcut>Ctrl K</kbd>
+  </p>
+</div>
+
+<div class="gs-search__loading" hidden>Searching…</div>
+
+<div class="gs-search__results" aria-busy="false">
+  <!--
+    A sample result. The website renders its results with JavaScript, so
+    nothing on the page matches its result rules while the scraper reads the
+    CSS. This gives those rules something to match. The scraper removes it
+    again before it writes the markup out.
+  -->
+  <div class="gs-search__group" data-sample>
+    <p class="gs-search__group-title">Docs</p>
+    <a class="gs-search__result" href="#">
+      <span class="gs-search__result-head">
+        <span class="gs-search__result-title">Sample result</span>
+        <span class="gs-search__result-type">Docs</span>
+      </span>
+      <span class="gs-search__result-breadcrumb">Sample breadcrumb</span>
+      <span class="gs-search__result-desc">Sample description.</span>
+    </a>
+  </div>
+</div>
+
+<div class="gs-search__empty" hidden>
+  <p>No matches for <span data-search-query></span>.</p>
+  <p class="gs-search__empty-hint">Try a different keyword.</p>
+</div>
+
+<div class="gs-search__error" hidden></div>
+
+<button class="gs-search__more" type="button" hidden>More results</button>
+
+<div class="gs-search__status gs-search__sr-only" role="status" aria-live="polite"></div>

@@ -9,12 +9,12 @@
     "strict": true,
     "incremental": false,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
-    "downlevelIteration": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "noEmit": true,
-    "module": "CommonJS",
+    "module": "nodenext",
     "types": ["node"]
   },
   "include": ["./*.**"]
