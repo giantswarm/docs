@@ -161,7 +161,7 @@ Use the levers in this order:
 
 Allow labels and Same-namespace policies can stay in place after a rollback. They only add allowed traffic.
 
-Also turn the clusterwide deny off before you delete a cluster, so that apps can still reach the API server while they're uninstalled. Wait until `kubectl get ciliumclusterwidenetworkpolicies default-deny-all-namespaces` returns `NotFound` before you delete the cluster.
+Deleting a cluster with the clusterwide deny on was tested on CAPA, including a cluster with a Service of type `LoadBalancer`. On the other providers, including AKS and EKS, it isn't tested yet. There, turn the deny off before you delete the cluster, so that apps can still reach the API server while they're uninstalled, and wait until `kubectl get ciliumclusterwidenetworkpolicies default-deny-all-namespaces` returns `NotFound`.
 
 ## Rolling it out
 
