@@ -19,7 +19,7 @@ as `knn_vector`. It then runs every query in ../queries.json three ways:
 It prints a Markdown report per model with the same top-k hit rate and p95
 latency rules as ../run.py. A hit means an expected URL fragment appears in
 the URL of one of the top-k pages. Like the widget and ../run.py, keyword and
-hybrid also count the blog results the gateway returns, and vector does not.
+hybrid also count the Changes group, and vector does not.
 
 `--keyword local` swaps the gateway for BM25 over the local front matter, for
 offline runs. It is labelled in the report and is not the baseline.
@@ -139,17 +139,17 @@ def normalize_url(url):
     return path if path.endswith("/") else path + "/"
 
 
-def keyword_gateway(endpoint, timeout, blog_size):
+def keyword_gateway(endpoint, timeout, changes_size):
     """Return a keyword function that asks the live gateway, as ../run.py does.
 
     The call is the read-only GET the search widget sends: a Documentation
-    query for the ranking and a smaller Blog query for the blog group.
+    query for the ranking and a smaller Changes query for the release notes group.
     """
     def keyword(query, size):
         docs, ms = run.fetch(endpoint, query, "Documentation", size, timeout)
-        blog, _ = run.fetch(endpoint, query, "Blog", blog_size, timeout)
+        changes, _ = run.fetch(endpoint, query, "Documentation", changes_size, timeout, breadcrumb="changes")
         return ([normalize_url(d.get("url", "")) for d in docs],
-                [b.get("url", "") for b in blog], ms)
+                [c.get("url", "") for c in changes], ms)
     return keyword
 
 
@@ -186,9 +186,9 @@ def rrf(rankings, k=DEFAULT_RRF_K):
 def score_query(c, index, embedder, keyword, query, expected, top_k, candidates, rrf_k):
     """Run one query three ways. Return {method: (hit, top_url, latency_ms)} and the embed latency.
 
-    Keyword and hybrid also count the blog urls, like ../run.py. Vector does not.
+    Keyword and hybrid also count the Changes urls, like ../run.py. Vector does not.
     """
-    kw, blog, kw_ms = keyword(query, candidates)
+    kw, changes, kw_ms = keyword(query, candidates)
 
     t0 = time.monotonic()
     vector = embedder.embed_query(query)
@@ -202,8 +202,8 @@ def score_query(c, index, embedder, keyword, query, expected, top_k, candidates,
     hybrid_ms = kw_ms + vec_ms
 
     result = {}
-    for method, hits, extra, ms in (("keyword", kw, blog, kw_ms), ("vector", vec, [], vec_ms),
-                                    ("hybrid", fused, blog, hybrid_ms)):
+    for method, hits, extra, ms in (("keyword", kw, changes, kw_ms), ("vector", vec, [], vec_ms),
+                                    ("hybrid", fused, changes, hybrid_ms)):
         pages = hits[:top_k]
         result[method] = (any(matches(u, expected) for u in pages + extra),
                           pages[0] if pages else "(no results)", ms)
@@ -215,7 +215,7 @@ def show_progress(done, total):
         print("  %d/%d" % (done, total), file=sys.stderr)
 
 
-def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, keep_index, keyword_mode, endpoint, blog_size,
+def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, keep_index, keyword_mode, endpoint, changes,
                 timeout):
     """Index the pages with one model and score every query. Return a result dict."""
     embedder = Embedder.from_config(cfg)
@@ -228,7 +228,7 @@ def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, keep_index, ke
 
     create_index(c, name, len(vectors[0]))
     bulk_index(c, name, pages, vectors)
-    keyword = keyword_gateway(endpoint, timeout, blog_size) if keyword_mode == "gateway" else keyword_local(c, name)
+    keyword = keyword_gateway(endpoint, timeout, changes) if keyword_mode == "gateway" else keyword_local(c, name)
 
     rows, latencies, embed_latencies = [], {m: [] for m in METHODS}, []
     hits = {m: 0 for m in METHODS}
@@ -327,7 +327,7 @@ def cmd_eval(args):
     c = OpenSearch(args.scheme, args.host, args.port, args.timeout)
 
     endpoint = spec.get("endpoint", run.DEFAULT_ENDPOINT)
-    blog_size = spec.get("blog_size", run.DEFAULT_BLOG_SIZE)
+    changes = run.changes_size(spec)
     results = []
     print("# Semantic search model scoring\n")
     print("Queries: %d from `%s`\n" % (len(spec["queries"]), os.path.basename(args.queries)))
@@ -336,7 +336,7 @@ def cmd_eval(args):
         else "local BM25 over front matter, not the baseline"))
     for cfg in models:
         result = score_model(c, cfg, pages, spec["queries"], top_k, args.candidates, args.rrf_k, args.keep_index,
-                             args.keyword, endpoint, blog_size, args.timeout)
+                             args.keyword, endpoint, changes, args.timeout)
         results.append(result)
         print(format_report(result, len(pages), top_k, budget) + "\n")
     if len(results) > 1:
