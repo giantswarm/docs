@@ -8,7 +8,7 @@ menu:
   principal:
     parent: overview-observability-data-management-data-import-export
     identifier: overview-observability-data-management-data-import-export-export
-last_review_date: 2025-10-20
+last_review_date: 2026-11-25
 owner:
   - https://github.com/orgs/giantswarm/teams/team-atlas
 user_questions:
@@ -16,6 +16,7 @@ user_questions:
   - How do I set up external Grafana to access Giant Swarm data?
   - How do I query observability data programmatically?
   - Which tenant value should I use to read platform data?
+  - How do I get an OIDC token to query the Observability Platform API?
 aliases:
   - /overview/observability/data-management/data-export/
 ---
@@ -66,6 +67,25 @@ For the full mapping of data type to tenant value, see the [tenant selection ref
 ## Method 2: Programmatic API access
 
 Query observability data directly through REST APIs for custom integrations and automated analysis. Each request needs an OIDC bearer token and an `X-Scope-OrgID` header.
+
+Get the OIDC token from your management cluster login. The API trusts the ID token that the management cluster's identity provider issues when you log in with [`kubectl gs login`]({{< relref "/reference/kubectl-gs/login" >}}):
+
+1. Log in to the management cluster through OIDC, passing its Management API URL:
+
+   ```bash
+   kubectl gs login https://api.<domain_name>
+   ```
+
+   This creates a `gs-<installation>` context in your kubeconfig, holding your ID token.
+
+2. Read the ID token from that context into `OIDC_TOKEN`:
+
+   ```bash
+   export OIDC_TOKEN=$(kubectl config view --raw --minify --context gs-<installation> \
+     -o jsonpath='{.users[0].user.exec.env[?(@.name=="KUBECTL_GS_OIDC_ID_TOKEN")].value}')
+   ```
+
+The token is short-lived. When requests start failing with `401 Unauthorized`, run both steps again to get a fresh one.
 
 Query logs with LogQL:
 
