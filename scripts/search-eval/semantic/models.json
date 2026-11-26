@@ -1,0 +1,49 @@
+{
+  "_comment": "Candidate embedding models. Each entry names an HTTP endpoint (shape 'ollama' or 'tei'), the model, the vector size to index (dimensions, cut from the full vector and renormalised, leave out for the full size) and the text wrappers the model expects. Verify the model tags and templates against the model card of the exact build you serve before trusting a score. With shape 'tei' the model is fixed when the server starts, so 'model' is ignored.",
+  "models": [
+    {
+      "name": "embeddinggemma-300m-512",
+      "shape": "ollama",
+      "endpoint": "http://localhost:11434",
+      "model": "embeddinggemma",
+      "dimensions": 512,
+      "query_template": "task: search result | query: {text}",
+      "document_template": "title: {title} | text: {heading}. {text}"
+    },
+    {
+      "name": "embeddinggemma-300m-768",
+      "shape": "ollama",
+      "endpoint": "http://localhost:11434",
+      "model": "embeddinggemma",
+      "query_template": "task: search result | query: {text}",
+      "document_template": "title: {title} | text: {heading}. {text}"
+    },
+    {
+      "name": "qwen3-embedding-0.6b-512",
+      "shape": "ollama",
+      "endpoint": "http://localhost:11434",
+      "model": "qwen3-embedding:0.6b",
+      "dimensions": 512,
+      "query_template": "Instruct: Given a search query, retrieve the documentation pages that answer it\nQuery:{text}"
+    },
+    {
+      "name": "qwen3-embedding-0.6b-1024",
+      "shape": "ollama",
+      "endpoint": "http://localhost:11434",
+      "model": "qwen3-embedding:0.6b",
+      "query_template": "Instruct: Given a search query, retrieve the documentation pages that answer it\nQuery:{text}"
+    },
+    {
+      "name": "bge-m3",
+      "shape": "ollama",
+      "endpoint": "http://localhost:11434",
+      "model": "bge-m3"
+    },
+    {
+      "name": "all-minilm-l6-v2",
+      "shape": "ollama",
+      "endpoint": "http://localhost:11434",
+      "model": "all-minilm"
+    }
+  ]
+}
