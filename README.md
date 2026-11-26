@@ -89,11 +89,23 @@ To keep third party style rules up-to-date, please run `make lint-prose-update` 
 
 ## Search
 
-The search functionality works since last Nov 2023 using a third-party system called [`Inkeep`](https://inkeep.com/) which makes use of Artificial Intelligence to index all the content of our docs and serve good results. Also, it allows to have a conversational interface to get a faster response in our wide documentation hub.
+Search on https://docs.giantswarm.io is self-hosted. The search button in the header opens a modal that searches as you type and lists the matching documentation pages, with release notes from `/changes` in a separate `Changes` group. If a request fails or runs into the rate limit, the modal offers a Google `site:` search instead.
 
-In [the internal portal](https://portal.inkeep.com/) we've defined our docs as main source of content for the Large Language Model(LLM) instance which will be scrapped weekly to digest new content. Access is granted via OIDC and Google.
+The modal queries `/searchapi`, a gateway on [docs-proxy](https://github.com/giantswarm/docs-proxy). That gateway is the only public path to sitesearch, the OpenSearch instance that also holds internal indexes, so it takes a query string and a type filter and nothing else. [docs-indexer](https://github.com/giantswarm/docs-indexer) fills the `docs` index from this repository, so a merged page becomes searchable without waiting for a crawler.
 
-Since we use `Inkeep` for more uses cases the project for docs is called "Giant Swarm customer facing". There in the integration you can see our docs and the configuration keys needed to bootstrap the widget. The code that triggers the render the widget is in `/src/assets/scripts/base.js` and the styles are part of `/static/css/inkeep.css`. Most of the options for the widget are defaulted and only style has be customized to fit our documentation's layout.
+Three files make up the search:
+
+- `src/assets/scripts/gs_scripts.js` drives the modal and calls the gateway.
+- `scripts/update-website-content/search-modal.html` holds the modal markup.
+- `scripts/update-website-content/overrides.css` holds the styles.
+
+The markup and styles also appear in `src/layouts/partials/gs_header.html` and `src/layouts/partials/gs_header_styles.html`, but `make update-website-content` generates both of those from the two files above. Edit the sources, never the generated partials.
+
+To try search locally, run `make dev`. It starts `scripts/search-proxy/searchapi-proxy.js` alongside the Hugo server, which forwards `/searchapi` to the production site, so the modal works from a single local origin.
+
+Search analytics go to TelemetryDeck from `src/layouts/partials/telemetry.html`. They are switched off, because the privacy policy does not document the collection yet. Once it does, set `searchTelemetry: true` in `src/config.yaml` to turn them on.
+
+`scripts/search-eval/` measures how often search returns a correct page. Run it again after a ranking or index change to confirm the hit rate holds.
 
 ## Diagrams
 
