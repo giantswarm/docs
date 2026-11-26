@@ -48,3 +48,17 @@ any tuning or a model change.
 
 Phase 2 model scoring lives in [`semantic/`](semantic/README.md). It reuses this
 query set and these scoring rules.
+
+## The three query sets
+
+Phase 2 uses three query sets with the same format. Each has its own rule, so
+keep them in separate files and pass the one you need with `--queries`.
+
+| File | What it's for | Rule |
+| --- | --- | --- |
+| `queries.json` | The gate: real searches | No change may lose a query that keyword search answers |
+| `queries-tuning.json` | Picking settings, like the fusion weight or the model | Run it as often as you like |
+| `queries-heldout.json` | The phase 2 decision | Never tune on it. Run it once, with the model and settings already fixed |
+
+If a held-out result makes you want to change a setting, change it on the
+tuning set and say so where the result is reported.
