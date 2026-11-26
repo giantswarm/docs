@@ -170,20 +170,22 @@ def vector_clause(vector, k):
     return {"knn": {"embedding": {"vector": vector, "k": k}}}
 
 
-def rrf(rankings, k=DEFAULT_RRF_K):
+def rrf(rankings, k=DEFAULT_RRF_K, weights=None):
     """Fuse ranked id lists with reciprocal rank fusion. Return ids, best first.
 
-    An id scores the sum of 1 / (k + rank) over the lists it appears in, with
-    rank counted from 1. Ties keep the order of first appearance.
+    An id scores the sum of weight / (k + rank) over the lists it appears in,
+    with rank counted from 1 and every weight 1 unless given. Ties keep the
+    order of first appearance.
     """
+    weights = weights or [1.0] * len(rankings)
     scores = {}
-    for ranking in rankings:
+    for ranking, weight in zip(rankings, weights):
         for rank, doc_id in enumerate(ranking, start=1):
-            scores[doc_id] = scores.get(doc_id, 0.0) + 1.0 / (k + rank)
+            scores[doc_id] = scores.get(doc_id, 0.0) + weight / (k + rank)
     return sorted(scores, key=lambda d: -scores[d])
 
 
-def score_query(c, index, embedder, keyword, query, expected, top_k, candidates, rrf_k):
+def score_query(c, index, embedder, keyword, query, expected, top_k, candidates, rrf_k, vector_weight):
     """Run one query three ways. Return {method: (hit, top_url, latency_ms)} and the embed latency.
 
     Keyword and hybrid also count the Changes urls, like ../run.py. Vector does not.
@@ -198,7 +200,7 @@ def score_query(c, index, embedder, keyword, query, expected, top_k, candidates,
     vec_ms = embed_ms + (time.monotonic() - t0) * 1000
 
     # The hybrid cost is every step of it, run one after the other.
-    fused = rrf([kw, vec], rrf_k)
+    fused = rrf([kw, vec], rrf_k, [1.0, vector_weight])
     hybrid_ms = kw_ms + vec_ms
 
     result = {}
@@ -215,8 +217,8 @@ def show_progress(done, total):
         print("  %d/%d" % (done, total), file=sys.stderr)
 
 
-def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, keep_index, keyword_mode, endpoint, changes,
-                timeout):
+def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, vector_weight, keep_index, keyword_mode, endpoint,
+                changes, timeout):
     """Index the pages with one model and score every query. Return a result dict."""
     embedder = Embedder.from_config(cfg)
     name = index_name(cfg["name"])
@@ -236,7 +238,7 @@ def score_model(c, cfg, pages, queries, top_k, candidates, rrf_k, keep_index, ke
         for entry in queries:
             try:
                 result, embed_ms = score_query(c, name, embedder, keyword, entry["q"], entry.get("expect", []),
-                                               top_k, candidates, rrf_k)
+                                               top_k, candidates, rrf_k, vector_weight)
             except Exception as e:  # noqa: BLE001 - report the failure in the row
                 rows.append((entry["q"], None, "ERROR: %s" % e))
                 continue
@@ -334,9 +336,10 @@ def cmd_eval(args):
     print("Keyword leg: %s\n" % (
         "live gateway %s, read-only GETs as the search widget sends them" % endpoint if args.keyword == "gateway"
         else "local BM25 over front matter, not the baseline"))
+    print("Hybrid fusion: RRF k=%d, keyword weight 1, vector weight %g\n" % (args.rrf_k, args.vector_weight))
     for cfg in models:
-        result = score_model(c, cfg, pages, spec["queries"], top_k, args.candidates, args.rrf_k, args.keep_index,
-                             args.keyword, endpoint, changes, args.timeout)
+        result = score_model(c, cfg, pages, spec["queries"], top_k, args.candidates, args.rrf_k, args.vector_weight,
+                             args.keep_index, args.keyword, endpoint, changes, args.timeout)
         results.append(result)
         print(format_report(result, len(pages), top_k, budget) + "\n")
     if len(results) > 1:
@@ -358,6 +361,9 @@ def main():
     ap.add_argument("--candidates", type=int, default=DEFAULT_CANDIDATES,
                     help="pages fetched per ranking before they are fused")
     ap.add_argument("--rrf-k", type=int, default=DEFAULT_RRF_K, help="rank constant of reciprocal rank fusion")
+    ap.add_argument("--vector-weight", type=float, default=1.0,
+                    help="weight of the vector ranking in the fusion, the keyword ranking has weight 1. "
+                         "Tune it on queries-tuning.json only, never on the held-out set")
     ap.add_argument("--keep-index", action="store_true", help="leave each model's index in place after scoring")
     ap.add_argument("--timeout", type=float, default=120.0)
     args = ap.parse_args()

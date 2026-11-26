@@ -70,7 +70,10 @@ python3 -m unittest discover -s tests
      baseline.
    - vector: a plain `knn` clause on the local index.
    - hybrid: the two rankings fused with reciprocal rank fusion (k=60), in
-     the client.
+     the client. `--vector-weight` gives the vector ranking more weight than
+     the keyword ranking, which always has weight 1. The default is 1. Pick
+     the weight on `../queries-tuning.json` only. The held-out set reports a
+     result and never tunes one.
 4. It reports the top-k hit rate and p95 latency with the rules of
    [`../run.py`](../run.py), which it imports. A hit means an expected URL
    fragment appears in the top k pages. Like `run.py` and the widget, keyword

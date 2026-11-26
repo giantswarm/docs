@@ -23,6 +23,17 @@ class TestRrf(unittest.TestCase):
     def test_empty_input(self):
         self.assertEqual(rrf([[], []]), [])
 
+    def test_weight_scales_a_list(self):
+        # Unweighted, a ties with b and keeps first appearance. Weighting the
+        # second list puts b first.
+        self.assertEqual(rrf([["a"], ["b"]], k=60), ["a", "b"])
+        self.assertEqual(rrf([["a"], ["b"]], k=60, weights=[1.0, 2.0]), ["b", "a"])
+
+    def test_weight_lets_a_lower_rank_win(self):
+        # b at rank 3 with weight 2 scores 2/63, more than a at rank 1 with 1/61.
+        fused = rrf([["a"], ["x", "y", "b"]], k=60, weights=[1.0, 2.0])
+        self.assertLess(fused.index("b"), fused.index("a"))
+
 
 class TestShapes(unittest.TestCase):
     def test_index_name_is_prefixed_and_safe(self):
@@ -75,13 +86,13 @@ class TestKeywordLeg(unittest.TestCase):
     def test_score_query_counts_changes_for_keyword_and_hybrid_but_not_vector(self):
         keyword = lambda query, size: (["/a/", "/b/"], ["/changes/post/"], 5.0)  # noqa: E731
         with mock.patch.object(eval_models, "search", return_value=["/c/", "/a/"]):
-            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/changes/"], 5, 50, 60)
+            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/changes/"], 5, 50, 60, 1.0)
         self.assertEqual([result[m][0] for m in eval_models.METHODS], [True, False, True])
 
     def test_score_query_fuses_gateway_and_vector_rankings(self):
         keyword = lambda query, size: (["/a/", "/b/"], [], 5.0)  # noqa: E731
         with mock.patch.object(eval_models, "search", return_value=["/c/", "/b/"]):
-            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/c/"], 1, 50, 60)
+            result, _ = eval_models.score_query(None, "idx", FakeEmbedder(), keyword, "q", ["/c/"], 1, 50, 60, 1.0)
         self.assertEqual(result["keyword"][:2], (False, "/a/"))
         self.assertEqual(result["vector"][:2], (True, "/c/"))
         self.assertEqual(result["hybrid"][1], "/b/")  # in both lists, so it leads the fusion
